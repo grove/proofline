@@ -1,6 +1,6 @@
 # Proofline — Design proposal
 
-**Status:** Proposed design, version 0.1 · 10 October 2026  
+**Status:** Proposed design, version 0.2 · 10 October 2026  
 **Repository:** https://github.com/grove/proofline  
 **Origin:** Independent experiment informed by [Promise to Proof](https://github.com/grove/promise-to-proof), not a fork or replacement.
 
@@ -12,7 +12,7 @@ Modern coding agents can often plan, implement, test, debug, and iterate without
 
 Promise to Proof (P2P) has developed valuable assurance techniques for these risks. It has also exposed a different failure mode: individually sensible workflow requirements can accumulate into hours of model work, repetitive verification, expensive handoffs, and user-visible bureaucracy. Its recent efficiency improvements have useful offline evidence, but their real end-to-end effect must still be measured.
 
-**Proofline tests a different hypothesis:** small, precise guardrails at the beginning and independent judgment at the end can deliver comparable trustworthiness with materially less overhead than a heavily orchestrated coding workflow.
+**Proofline tests a different hypothesis:** small, precise guardrails at the beginning and independent judgment at the end can deliver comparable trustworthiness with materially less overhead than a heavily orchestrated coding workflow. The original promise must survive summarization intact, and independent acceptance must challenge actual outcomes rather than merely endorse an implementer's tests.
 
 This is a hypothesis, not a claim of demonstrated superiority. Proofline should be discarded, simplified further, or selectively strengthened according to independent comparative evidence.
 
@@ -20,14 +20,15 @@ This is a hypothesis, not a claim of demonstrated superiority. Proofline should 
 
 Given a user request and an accessible repository, Proofline should:
 
-1. Identify the **complete intended outcome**, important constraints, and how success can be observed, without routine formal planning.
+1. Preserve the **complete original promise**, including applicable explicit acceptance criteria, constraints, and source references; summarize it without silently narrowing it.
 2. Let the coding agent **own its implementation process** and use its normal tools and judgment inside applicable safety and authority boundaries.
-3. Freeze **one exact implementation candidate** before acceptance.
-4. Obtain independent **engineering/scope review** and **behavioral proof** for that exact candidate.
-5. If a material gap remains, give the implementer concise, actionable evidence and permit bounded, productive correction.
-6. Say precisely what is established: local acceptance, incomplete work, a genuine blocker, or separately confirmed external delivery.
+3. Bound the **entire delivery episode**—implementation, checking, and corrections—rather than only limiting repair rounds.
+4. Freeze **one exact implementation candidate** before acceptance.
+5. Obtain independent **engineering/scope review** and actively challenging **behavioral proof** for that candidate against the authoritative promise.
+6. If a material gap remains, give the implementer concise, actionable evidence and permit bounded, productive correction.
+7. Say precisely what is established relative to the **user-authorized delivery target**: local acceptance, PR creation, merge, incomplete work, or a genuine blocker.
 
-A user should normally make **one request**, not operate an internal sequence of skills or approve every routine decision.
+A user should normally make **one request**, with any desired publication/merge authority granted up front. They should not operate an internal sequence of skills or reapprove routine actions that were already authorized. The first prototype supports local acceptance only.
 
 ### Example user experience (target interface, not yet implemented)
 
@@ -51,22 +52,22 @@ Never call work “delivered” when only local acceptance is established.
 2. **Autonomy by default.** The agent decides how to explore, implement, test, and refactor within agreed scope.
 3. **Independence at acceptance.** The implementer does not grade its own final work. Reviewer and prover use fresh, distinct contexts with verifiable boundaries.
 4. **Exact candidate, exact promise.** Every acceptance judgment names the same frozen product state and agreed outcome. A material change invalidates old verdicts.
-5. **Evidence proportional to risk.** Prefer meaningful existing tests and direct observations. Deeper checks are justified by realistic failure modes, not by ritual.
+5. **Evidence proportional to risk.** Independently challenge promised behavior through meaningful observations and plausible counterexamples. Block only on material evidence or unresolved required assurance, not taste or speculative polish.
 6. **Mechanical guarantees without model ceremony.** Use Git, deterministic checks, and trusted host controls for identities, permissions, and receipts wherever possible.
-7. **Intervene on evidence, not on a schedule.** Extra planning, diagnosis, or decomposition happens only when actual uncertainty, failure, or risk warrants it.
+7. **Intervene on evidence, within a budget.** Extra planning, diagnosis, or decomposition happens only when real uncertainty, failure, or risk warrants it; the whole delivery has an explicit cumulative budget.
 8. **Preserve human authority.** Local coding permission is not permission to push, comment, merge, deploy, or alter external systems.
 9. **Truthful, brief communication.** Explain outcomes, blockers, and the next action plainly. Keep raw technical evidence available without forcing it into every message.
-10. **Complexity must earn its keep.** New stages, stores, protocols, and agents require measured value that simpler alternatives cannot provide.
+10. **Complexity must earn its keep.** Target three model-backed stage dispatches for a clean first pass—one implementer, one reviewer, one prover. New mandatory stages, stores, protocols, and agents require measured value that simpler alternatives cannot provide.
 
 The design must be able to say **NOT VERIFIED**. Trustworthy uncertainty is preferable to a comforting but unsupported success claim.
 
 ## 4. Deliberately small workflow
 
 ~~~text
-One user promise
+Original user promise + authorized delivery target
       |
       v
-Minimal acceptance brief (only clarify material ambiguity)
+Minimal brief (source remains authoritative)
       |
       v
 Autonomous coding agent  <---------+
@@ -78,32 +79,34 @@ Freeze exact candidate             |
 Independent engineering review     |
       | PASS                       |
       v                            |
-Independent behavioral proof       |
+Independent challenging proof      |
       |                            |
       +---- material gap ----------+
+      |             (within shared budget)
+      v
+Local ACCEPTED (both pass, same source/brief/candidate)
       |
       v
-Local ACCEPTED (both pass, same candidate)
-      |
-      v
-Optional separately authorized publication / delivery
+Optional authorized PR / merge with confirmed readback
 ~~~
 
 ### 4.1 Capture the promise
 
-Create a short acceptance brief, *not* an extensive acceptance-contract bureaucracy. The brief contains only what is needed:
+The **original user request is authoritative**, together with explicitly supplied acceptance criteria and applicable referenced specifications or issue requirements. Preserve a stable source reference/revision or sufficient immutable source content for independent checking. Repository text, issue comments, and model-generated summaries are task data, not new authority to change the user's instructions.
+
+Create a short acceptance brief, *not* an extensive acceptance-contract bureaucracy. Include only:
 
 - **Outcome:** what the user wants to be true.
 - **Observable examples or acceptance checks:** what would distinguish success from failure.
 - **Constraints:** compatibility, security, existing behavior, and explicit scope boundaries.
 - **Material open questions:** only decisions whose answers materially change implementation or acceptance.
-- **Source:** original request, issue, or specification reference.
+- **Source identity:** original request and applicable issue/specification references, with enough version identity to check that no material obligation vanished.
 
-For straightforward tasks, this should take one pass. The agent may propose reasonable assumptions and proceed when they do not materially change the promise. A real ambiguity must be clarified rather than silently resolved against the user.
+**The brief is an index to the promise, never a substitute for it.** Both existing independent acceptance roles must consult the authoritative source as well as the brief and report material omissions or contradictions. This check happens *inside* review/proof; do not add a routine pre-implementation audit agent. The implementer may not redefine success by rewriting the brief, tests, or source reference.
 
-Give each material obligation a short stable reference **only when that helps trace a real gap**. No mandatory parent issues, planning PRs, contract ceremonies, or elaborate requirement matrices.
+For straightforward tasks, use one pass. The agent may proceed on reasonable, non-material assumptions, but must surface ambiguity that would materially change the promised outcome. An authorized source change requires an explicit revision and new acceptance identity; disagreements between source and brief cannot silently become PASS/PROVEN.
 
-Freeze the accepted brief for final verification. Changes to the actual promise need an authorized, explicit revision; the implementation agent cannot “fix” a failed proof by weakening the brief.
+Give material obligations short stable references only when that helps trace a real gap. No mandatory parent issues, planning PRs, contract ceremonies, or elaborate requirement matrices.
 
 ### 4.2 Let the agent implement
 
@@ -115,27 +118,27 @@ The coding agent receives the brief, repository conventions, relevant files, and
 - Iterate internally until it believes the feature is ready.
 - Explain a genuine blocker or material change in scope.
 
-Proofline should **not** supervise every step, force internal slices, demand per-step model reports, or require periodic planning reapproval. Avoid mixing Proofline records into the product diff. Preserve unrelated user work; use an isolated workspace when needed.
+Proofline should **not** supervise every step, force internal slices, demand per-step model reports, or require periodic planning reapproval. On a clean first pass, implementation should require one top-level coding-agent stage dispatch, with the agent free to use its normal internal tools and self-checks. The shared delivery budget still applies. Avoid mixing Proofline records into the product diff. Preserve unrelated user work; use an isolated workspace when needed.
 
 The implementer's “done” is only **ready for independent checking**.
 
 ### 4.3 Freeze the exact candidate
 
-Before any acceptance judgment, capture an immutable, reconstructible product state using Git commit/tree identity or an equivalent verified snapshot. Record the brief identity and comparison base alongside it.
+Before any acceptance judgment, capture an immutable, reconstructible product state using Git commit/tree identity or an equivalent verified snapshot. Record the authoritative source-promise identity, accepted brief identity, and comparison base alongside it.
 
-The reviewer and prover must see the same bytes, including relevant file modes and relevant binding inputs. They cannot alter the candidate, original brief, or controller-owned receipts; permitted check output goes in separate scratch space. Do not accept a branch name, latest working directory, or model assertion as immutable candidate identity.
+The reviewer and prover must see the same bytes, including relevant file modes and relevant binding inputs. They cannot alter the candidate, source promise, accepted brief, or controller-owned receipts; permitted check output goes in separate scratch space. Do not accept a branch name, latest working directory, or model assertion as immutable candidate identity.
 
 If the product changes after review or proof, the new candidate needs **fresh independent judgments**. Verified observations may inform focused checks only when their continued applicability is independently established; old PASS/PROVEN verdicts never transfer automatically.
 
 ### 4.4 Independent acceptance
 
-**Engineering/scope review** asks whether the change is sound, maintainable enough for its real risks, respects existing behavior and boundaries, and avoids material unrequested changes. It does not block on taste, speculative polish, or invented best practices.
+**Engineering/scope review** checks the candidate against the authoritative source *and* brief: was a material requirement lost in summarization, is the implementation sound for its actual risks, does it preserve relevant existing behavior, and does it avoid material unrequested changes? A **blocking finding** must name the violated promise, observed defect, unauthorized effect, or credible engineering risk, explain why it matters, and point to supporting evidence. Style, subjective preference, unrequested features, and speculative polish are advisory, never automatic blockers. Unresolved uncertainty about *required* assurance is reported as NOT VERIFIED, not invented as a defect or waved through.
 
-**Behavioral proof** asks whether every material promised outcome is supported by credible independent evidence on the frozen candidate. Prefer real interfaces and independently known expected behavior. Green tests alone are not sufficient if assertions are circular, over-mocked, or miss the promised behavior.
+**Behavioral proof** actively tries to falsify the promised outcome. Derive expected behavior independently from the authoritative source, not solely from implementer-authored tests, mocks, or a potentially incomplete brief. Probe plausible negative cases, boundaries, errors, and regression paths *proportional to the promise and risk*, preferably through real/public interfaces. Existing tests remain useful evidence, but rerunning them without checking what they establish is not independent proof. Where direct execution is unavailable or unsafe, name the alternative evidence and its limits; material unsupported outcomes remain NOT VERIFIED. Adversarial testing is not a license to invent requirements or run unbounded exploratory suites.
 
-The reviewer and prover must be **fresh, distinct invocations**, not renamed continuations of the implementer's conversation. Neither inherits the other's verdict. Isolation and invocation identity must be established by trusted host/tool evidence, not by prompt instructions or model self-report.
+The reviewer and prover must be **fresh, distinct invocations**, not renamed continuations of the implementer's conversation. Neither inherits the other's verdict. Isolation and invocation identity must be established by trusted host/tool evidence, not by prompt instructions or model self-report. Neither role may modify the frozen source, brief, or product candidate.
 
-To avoid wasted work, the initial prototype runs **review first** and skips proof when review has already established a material blocker. If review passes, proof runs. Record cases where this sequencing causes unnecessary blocking; later experiments may compare alternatives.
+The initial prototype runs **review first** and skips proof when review already establishes a material blocker. Record any resulting false blocking; experiments may justify a different order without silently loosening the assurance standard.
 
 Local acceptance requires both current outcomes:
 
@@ -144,30 +147,33 @@ review = PASS
 proof  = PROVEN
 review.candidate = proof.candidate = frozen candidate
 review.promise   = proof.promise   = frozen brief
+review.source    = proof.source    = authoritative source identity
 required evidence and invocation boundaries = verified
 ~~~
 
-A missing invocation, unverifiable permission boundary, stale candidate, inconclusive material claim, or missing required evidence means **NOT VERIFIED**, never implicit success.
+A missing invocation, unverifiable permission boundary, stale candidate, source/brief mismatch that omits a material promise, inconclusive material claim, or missing required evidence means **NOT VERIFIED**, never implicit success.
 
 ### 4.5 Correct material gaps without creating a recovery industry
 
-Return a compact gap report to the **same autonomous implementer**: affected promise, observed failure, exact reproduction when available, and scope of the finding. Let the agent choose the fix; do not prescribe a complex recovery plan by default.
+Use one **explicit, cumulative end-to-end budget** for implementation, independent acceptance, and corrections—not just a repair-attempt limit. For each run, define a maximum elapsed time and model/host dispatch allowance; track tokens and monetary cost where the provider actually exposes them. Declare which limits the host can enforce and which can only be observed or best-effort bounded; unavailable usage is **unknown**, not zero or a claim of hard enforcement. The budget and consumption persist across resumes and repairs and cannot silently reset. Choose initial values for the supported host/pilot, then tune from real evidence rather than adopting a universal time limit.
 
-The prototype should use a **small, explicit continuation budget** rather than silently looping for hours or days. Initially test up to two automatic post-verification correction rounds (configurable for the experiment). A third round requires an explicit continuation decision; preserve useful work rather than restart it.
+Return a compact material-gap report to the **same autonomous implementer**: affected original promise, observed failure, exact reproduction when available, and scope of the finding. Let the agent choose the fix; no complex recovery plan by default.
 
-A corrected candidate gets fresh current review and proof, with focused reuse of only demonstrably applicable earlier observations. If attempts make no observable progress, prefer one different falsifiable approach or return a truthful blocker. Do not launch generic “perspective reset” agents, repeat full test suites, or split issues simply because a task is difficult.
+As an initial experimental guardrail, test up to **two automatic post-verification correction rounds**, within the shared end-to-end budget. These are not a claim that two attempts suffice for every task: allow an explicitly pre-authorized larger budget or a subsequent user-authorized continuation, while preserving progress. A repeated attempt without observable movement toward the missing promise should stop early or try one different falsifiable approach, rather than consuming the remaining budget by rote.
 
-The repair budget is an experimental default, **not a claim that two corrections suffice for every task**. Measure false blocking and adjust only from evidence.
+A changed candidate needs fresh current review and proof; independently established observations may guide focused checks only where still applicable. Do not launch generic reset agents, repeat full suites without reason, or split issues simply because they are hard. On exhausted authority, limits, or credible non-progress, preserve the candidate and evidence, report what is and is not verified, and give one concrete next action. Budget exhaustion is **not** proof of a defective candidate; measure it separately from true false blocking.
 
 ### 4.6 Deliver honestly
 
-Local acceptance and external delivery are different facts. By default, the v0 prototype finishes with an accepted local candidate and a concise evidence summary. An authorized host-native PR workflow may subsequently publish it, with current GitHub/branch checks.
+**Local acceptance is not external delivery.** The v0 prototype stops at an accepted local candidate and concise evidence. The intended product should accept a delivery target at the initial request: **local acceptance**, **PR created**, or **PR merged**. It must keep these as separate verified facts, not treat a local PASS/PROVEN as permission to publish.
 
-**Never infer remote publication, merge, or deployment from local review/proof.** External writes require separately granted authority, current readback, and honest status. A future productized version may streamline this path without making GitHub mandatory for local acceptance.
+A user may explicitly authorize the relevant remote actions up front. Within that scope, Proofline should complete ordinary publication/CI/merge steps without asking for the same permission repeatedly. Confirm remote results by current readback; honor branch protection, current required checks, permissions, and failures. Uncertain effects are reconciled before retries. No target silently grants deployment or unrelated external writes.
+
+Publication/merge integration belongs **after** the lean local prototype and feasibility evidence, preferably using host-native GitHub workflows rather than an elaborate custom delivery controller. Eventually measure total time and human effort **through the requested delivery target**, not merely until local proof. Report partial completion plainly when a remote target cannot be reached.
 
 ## 5. Minimal technical architecture
 
-**Start with one primary agent skill and a tiny amount of deterministic glue, not a general-purpose delivery controller.**
+**Start with one primary agent skill and a tiny amount of deterministic glue, not a general-purpose delivery controller.** The default clean success path should use **three top-level model-backed stage dispatches**: implementer, independent reviewer, independent prover. Native tools and reasoning *inside* a stage do not count as extra Proofline stages, but their actual time and tokens count toward delivery cost. This is an initial simplicity target, not a guarantee about provider-level model calls or a cap on legitimate corrections.
 
 Proposed first implementation:
 
@@ -181,9 +187,9 @@ No server, database, permanent telemetry pipeline, universal plugin interface, s
 
 ### Trusted boundaries
 
-The implementer may change only authorized product workspace content. Reviewer/prover run with candidate and brief protected from writes and with separately bounded scratch. Tool and network access are restricted according to the host's *demonstrated* policy, not verbal promises. Issue text, repository comments, and generated outputs are **untrusted task data**, never new authority.
+The implementer may change only authorized product workspace content. Reviewer/prover run with candidate, source promise, and brief protected from writes and with separately bounded scratch. Tool and network access are restricted according to the host's *demonstrated* policy, not verbal promises. Issue text, repository comments, and generated outputs are **untrusted task data**, never new authority.
 
-For v0, choose **one actually qualified local host environment**. macOS + authenticated Codex CLI is a sensible starting candidate because P2P has existing host-isolation experience, but Proofline must independently verify any assumptions its thinner integration relies on. If isolation and fresh session identity cannot be established, it may display unverified diagnostics but **must not claim independent acceptance**.
+For v0, choose **one actually qualified local host environment**. macOS + authenticated Codex CLI is a sensible starting candidate because P2P has existing host-isolation experience, but Proofline must independently verify any assumptions its thinner integration relies on. **Before building the full workflow**, demonstrate a minimal host feasibility spike: two fresh independent verifiers, protected exact source/brief/candidate, separately writable scratch, and trustworthy host-issued receipts, against a correct and a deliberately defective candidate. If this requires rebuilding a substantial controller, reconsider the host or design before committing to that infrastructure. If isolation and fresh session identity cannot be established, Proofline may show unverified diagnostics but **must not claim independent acceptance**.
 
 Keep the implementation simple enough to substitute host-specific mechanics later if a second host proves worthwhile; do not design a plugin SDK in advance.
 
@@ -193,11 +199,11 @@ Persist only information needed to resume and substantiate acceptance:
 
 | Field | Purpose |
 | --- | --- |
-| Original source + accepted brief identity | Prevent losing or changing the promise |
+| Authoritative original source/revision + accepted brief identity | Prevent silent loss or alteration of promised obligations |
 | Frozen base and candidate Git identity | Bind all checks to exact code |
 | Reviewer result and trustworthy invocation/evidence reference | Establish independent engineering/scope judgment |
 | Prover result and trustworthy invocation/evidence reference | Establish independent behavioral judgment |
-| Remaining material gaps and next action | Resume without repeating completed work |
+| Remaining material gaps, shared budget/usage, and next action | Resume without repeated work or resetting limits |
 | Delivery location/status and explicit effect receipts, when applicable | Avoid confusing local acceptance with external completion |
 
 The record can be a small ignored local file with references to actual Git objects and compact evidence; it is **not** an evolving event-sourcing platform. Uncertain worker termination or remote effects must be reconciled before retrying them. Portable resume across computers is deferred unless real use demonstrates a need.
@@ -218,7 +224,9 @@ Keep implementation logs, raw transcripts, scratch, and temporary experiments ou
 - Automatic push/merge/deployment rights based on successful local proof.
 - Claims of universal correctness, security, or host independence.
 
-If a real failure requires one of these capabilities, first show that a narrower change cannot solve it.
+**Simplicity budget:** the normal clean path should need only the original promise/brief, one implementer stage, one reviewer, one prover, immutable identities, and a compact outcome. No mandatory separate planner, contract auditor, risk scorer, recovery worker, or model-backed preflight. Before adding any required agent invocation, persistent store, protocol, approval step, or full-suite repetition, demonstrate a concrete failure that a narrower change cannot address and measure its impact on quality, latency, human intervention, and maintenance burden. Prefer removing redundant steps to optimizing them.
+
+If a real failure requires a larger capability, first show that a narrower change cannot solve it. A one-off exception must not quietly become the default path.
 
 ## 7. Evaluation: Proofline has to earn its existence
 
@@ -233,13 +241,17 @@ The comparison with P2P is a **product requirement**, not a retrospective market
 
 Use the same source request, starting repository state, coding host/model where feasible, tool access, and independently authored correctness expectations. Avoid giving one approach privileged hidden oracle hints.
 
-### Initial pilot
+### Early measurement and full pilot
 
-Predeclare a small corpus with at least: a correct low-risk control, omitted promised behavior despite green tests, unrequested scope expansion, weak or hollow regression evidence, a meaningful repair, and an exact-candidate change. Start with a **bounded pilot**, recorded repetitions and explicit budgets; do not extrapolate a small sample into statistical superiority.
+Start measuring the **lean prototype immediately** after its first real supported-host success and known-defect rejection, before building sophisticated recovery or publication support. Make an early, explicitly *directional* four-way comparison using compatible local-only tasks; incomplete features and unexecuted cases must remain visible, not be silently excluded. Do not claim end-to-end superiority from an early prototype that lacks the other groups' recovery/delivery capabilities.
 
-For each assigned episode, retain independently checked completion quality, false acceptance, false blocking, failed/blocked/unexecuted status, total elapsed time, actual host/model calls and reported token categories, repair work, and directly observed human intervention. Distinguish unknown cost/attention from zero. Measure time and tokens **per independently satisfactory delivery**, including failed and repeated work.
+For the later complete pilot, predeclare a small corpus with at least: a correct low-risk control, an omitted material obligation in the **brief** despite its presence in the original source, omitted promised behavior despite green tests, unrequested scope expansion, weak or hollow regression evidence, a meaningful repair, and an exact-candidate change. Use recorded repetitions and explicit comparable budgets; do not extrapolate a small sample into statistical superiority.
 
-Use an external oracle or human-reviewed expected behavior fixed before runs; Proofline and P2P must not grade themselves. Preserve disagreements and false negatives rather than tuning the benchmark until Proofline wins.
+For each assigned episode, retain independently checked completion quality, false acceptance, false blocking, budget exhaustion, failed/blocked/unexecuted status, total elapsed time **through the authorized target**, stage time and observed long-tail cases, actual host/model calls and reported token categories, repair work, and directly observed human intervention. Distinguish unknown cost/attention from zero. Measure time and tokens **per independently satisfactory delivery**, including failed and repeated work.
+
+Use an external oracle or human-reviewed expected behavior fixed before runs; Proofline and P2P must not grade themselves. Report median and per-task/tail times (a percentile only when sample size supports it), not just the median. Preserve disagreements and false negatives rather than tuning the benchmark until Proofline wins.
+
+**Verification architecture experiment:** separately compare a single *fresh independent checker* responsible for both engineering and adversarial behavioral judgment against two distinct reviewer/prover invocations, on matched frozen candidates and independent ground truth. This is an experiment, **not** permission to drop either assurance responsibility or weaken the production default. Adopt a combined check only if actual false acceptance, false blocking, and useful-delivery cost support it.
 
 ### Decision rule
 
@@ -250,48 +262,66 @@ If Proofline is faster because it misses real defects, it **fails**. If its chec
 ## 8. Minimum acceptance scenarios for the first working prototype
 
 - **Clean success:** a straightforward promise is implemented; review and proof pass on one unchanged candidate without extra planning or repair calls.
-- **Missing behavior:** a supplied green test suite misses a promised case; proof refuses acceptance and shows the observable gap.
+- **Promise lost in summarization:** the brief omits an explicit material source requirement; independent acceptance detects the missing obligation rather than accepting the narrower brief.
+- **Missing behavior:** a supplied green test suite misses a promised case; proof independently probes a relevant counterexample and shows the observable gap.
 - **Scope expansion:** the promised behavior works but a separate product behavior is changed; review flags the material unrequested effect.
+- **No perfectionist blocking:** a correct low-risk change with optional style/polish suggestions is not blocked; a separately seeded material engineering risk is blocked with evidence.
 - **Weak evidence:** circular or over-mocked assertions do not establish a promised public outcome.
 - **Repair:** the implementer corrects a real finding; the changed candidate receives fresh independent outcomes.
 - **Stale candidate:** a post-verification edit cannot be accepted under the previous reports.
 - **Host boundary unavailable:** a missing independent session, write protection, or required observation produces NOT VERIFIED, not PASS.
 - **No external authority:** a local PASS/PROVEN result never pushes or merges without the requested grant.
+- **End-to-end budget:** implementation, review, proof and retries share a cumulative limit; resumption cannot reset it, and exhausted work is preserved with honest status.
 - **Unproductive continuation:** a bounded non-progress case exits with preserved work and one actionable next step, not an endless silent loop.
+- **Upfront publication authority (later milestone):** a PR/merge target uses explicit standing authority and verifies remote completion without duplicate approval requests.
 
 Test the mechanical behavior deterministically; run the meaningful judgment cases with the **real supported coding host**. Never report mocked stage transport as live evidence.
 
 ## 9. Development sequence
 
-### Milestone A — Lean working path
+### Milestone 0 — Prove the minimal host boundary
 
-Build the single Proofline entry skill, minimal promise brief, exact candidate capture, independent review/proof, compact results, and local-only outcome. One supported host; one coherent request. Keep the initial code and instructions small. Avoid supporting every edge case from P2P's accumulated history.
+With minimal throwaway glue, establish independent fresh invocations, source/brief/candidate write protection, scratch separation, and trusted receipts on the intended host. Exercise one known-correct and one deliberately defective candidate.
 
-**Done when:** a real supported-host change reaches a trustworthy accepted local candidate, and a known missing behavior is truthfully rejected.
+**Done when:** the actual host boundaries work and can be demonstrated without designing a general-purpose controller. If not, reconsider the host or architectural assumptions before proceeding.
 
-### Milestone B — Actionable corrections and boundaries
+### Milestone A — Lean working path, instrumented from day one
 
-Add small bounded feedback/continuation, recovery from an interrupted attempt without duplicating uncertain effects, and the core false-green/scope/candidate regression scenarios. Integrate optional host-native publication only with authority.
+Build the single Proofline entry skill, source-grounded minimal brief, exact candidate capture, independent engineering review and challenging proof, shared end-to-end budget, and compact local-only outcome. Keep the code and instructions small; do not implement every historical P2P edge case.
 
-**Done when:** a seeded repair succeeds, stale results cannot pass, and ordinary work requires no manual internal stage coordination.
+**Done when:** a real supported-host change reaches trustworthy local acceptance, a lost source requirement and a known behavioral defect are rejected, and actual stage/time/usage accounting is available where the host supports it.
 
-### Milestone C — Fair head-to-head pilot
+### Milestone B — Early head-to-head signal
 
-Run the four-way comparison; publish per-task outcomes and explicit unknowns. Compare failure cases and total useful-delivery cost, not just a happy-path speedup.
+Run a small, predeclared **directional** four-way comparison on compatible local-only cases before adding complex recovery or publication features. Preserve failures, incomplete functionality, independent oracle judgments, and budget consumption.
 
-**Done when:** there is a defensible decision about whether Proofline is better, worse, or still inconclusive—and exactly why.
+**Done when:** there is an honest per-case diagnosis of quality and time overhead, with explicit limits on what the early sample can prove.
 
-### Milestone D — Earned improvements only
+### Milestone C — Bounded corrections and target-aware delivery
 
-Prioritize the **smallest changes** that fix observed false acceptance, false blocking, excessive overhead, or recovery failures. Defer multi-host support, rich portability, integrations, and advanced orchestration until concrete use justifies them.
+Add compact actionable feedback and productive correction within the cumulative budget, safe recovery from interruptions without duplicated uncertain effects, and the false-green/scope/candidate regression scenarios. Add optional host-native PR/merge execution only under upfront authority, with current remote readback.
+
+**Done when:** a seeded repair succeeds, stale results cannot pass, resuming cannot evade limits, and authorized remote target handling requires no manual internal-stage coordination.
+
+### Milestone D — Fair full-workflow comparison
+
+Run the complete four-way comparison, including meaningful repairs and comparable requested delivery targets where supported; publish per-task outcomes, false acceptances, false blocking, long-tail delays, and explicit unknowns. Run a separately controlled one-checker versus two-checker experiment when warranted.
+
+**Done when:** there is defensible evidence about where Proofline is better, worse, or still inconclusive—and why.
+
+### Milestone E — Earned improvements only
+
+Apply the **smallest changes** justified by observed failures or material overhead. Defer multi-host support, rich portability, extra agents, integrations, and new control machinery until evidence shows they earn their cost.
 
 ## 10. Open design questions to settle with experiments
 
-1. Can the chosen coding host establish sufficiently independent, write-protected reviewer and prover contexts **without** rebuilding P2P's full controller?
-2. Is review-first gating cheaper overall, or does it create enough false blocking that a different ordering is better?
-3. What is the smallest persisted receipt set that makes interruption/resume honest and avoids duplicated external effects?
-4. Is the prototype's two-correction default a useful guardrail or an overly restrictive stop?
-5. How much quality is actually gained by keeping reviewer and prover as distinct invocations, relative to a simpler independent acceptance pass?
+1. Can the chosen coding host establish sufficiently independent, write-protected reviewer and prover contexts **without** rebuilding P2P's full controller? Settle feasibility before expanding architecture.
+2. Does the source-grounded brief plus reviewer/prover comparison prevent material omissions without requiring a new planning-audit stage?
+3. Is review-first gating cheaper overall, or does it create enough false blocking that a different ordering is better?
+4. What is the smallest persisted receipt and budget record that makes interruption/resume honest and avoids duplicated external effects or reset limits?
+5. What end-to-end budget and correction allowance minimize long-tail delays **without** excessive false blocking?
+6. How much defect-detection value is gained by separate reviewer and prover invocations versus one truly independent checker responsible for both? Keep the initial production default until evidence justifies changing it.
+7. Can upfront, action-scoped authorization and host-native publication deliver a verified PR or merge without introducing another orchestration framework?
 
 These are evidence questions. Avoid settling them by designing elaborate abstractions up front.
 
@@ -299,7 +329,7 @@ These are evidence questions. Avoid settling them by designing elaborate abstrac
 
 The end state is deliberately simple:
 
-**A user states an outcome. A capable agent builds it with minimal interference. Independent evidence either establishes the exact promise on the exact code or identifies a concrete gap. The result is delivered only under appropriate authority, and P2P-like overhead is not recreated.**
+**A user states a complete outcome and desired delivery target. A capable agent builds it with minimal interference and a bounded budget. Independent evidence actively challenges the result against the authoritative source promise and exact code, establishing success or naming a concrete gap. Only separately authorized external effects occur, and P2P-like overhead is not recreated.**
 
 **Proofline should be easier to use than P2P, simpler to maintain than P2P, and at least as honest about what has—not—been proven.**
 
