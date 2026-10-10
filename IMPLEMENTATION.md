@@ -1,10 +1,17 @@
 # Proofline — Implementation plan
 
-**Status:** Execution roadmap v1 · 11 October 2026 (implementation not started)  
+**Status:** Execution roadmap v1 · 11 October 2026 (S0 tooling implemented; live host gate not passed)
+
 **Design authority:** [DESIGN.md v0.5](./DESIGN.md) — the product contract and safety boundaries live there.  
 **Objective:** Make a capable coding agent deliver the *complete authorized promise*, with independently credible evidence, minimal human coordination, and substantially less wasted work than a heavy controller.
 
 > **Build a thin, trustworthy delivery boundary around an autonomous coding agent. Do not build another coding-agent workflow engine.**
+
+**Current execution:** The S0 fixture controls, host diagnostic and deterministic
+failure-path tests are implemented. The current executor cannot initialize the
+native Codex sandbox, so S0 remains **NOT VERIFIED** and S1–S6 have not started.
+See the [observed feasibility result](docs/S0-HOST-FEASIBILITY.md) and
+[runnable commands](README.md#run-the-checks). This status does not change any gate below.
 
 This plan orders engineering work; it is **not** an alternative acceptance agreement and cannot revise the user's promise. The original source and any separately approved acceptance contract remain binding. Where this roadmap and DESIGN.md differ, **DESIGN.md wins** until the product owner authorizes a design change.
 
