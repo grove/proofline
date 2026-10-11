@@ -19,11 +19,14 @@ first and skips proof on a material blocker. The original repository is preserve
 | S0 — Real host boundary | Demonstrated on macOS with seven fresh Codex invocations; correct and alternative implementations pass, seeded defect fails |
 | S1 — Direct local delivery | Demonstrated on two small CLI tasks; source omissions and regressions rejected |
 | S2 — Approved contracts | Real approved delivery and all input/source/regression/parent controls qualified; see the retained failed trials and narrow support boundary |
-| S3–S6 — Comparison, recovery, publication, pilot | Not started; preceding evidence gates remain binding |
+| S3 — Four-way comparison | Native observations complete; P2P host preflight failed, so its quality/throughput comparison is inconclusive |
+| S4–S6 — Recovery, publication, pilot | Deferred; preceding evidence gates remain binding |
 
 Read the [S0 results and failed experiments](docs/S0-CODEX-RUNNER.md),
 [S1 evidence](docs/S1-DIRECT-DELIVERY.md), and
 [S2 live evidence](docs/S2-LIVE-EVIDENCE.md) and [exact support boundary](docs/S2-CONTRACT-INPUT.md).
+The [S3 comparison](docs/S3-COMPARISON.md) records every assignment, failed setup,
+available usage and unknown cost; it makes no P2P performance advantage claim.
 These results establish neither broad correctness nor a performance advantage.
 
 ## Deliver a direct request
@@ -122,6 +125,9 @@ python3 -B checks/s1_judgments.py
 python3 -B checks/s2_live.py /path/to/approved-delivery/report.json \
   --parent-record /path/to/approved-child/report.json \
   --preservation-manifest /path/to/preserved-originals.json
+# S3: predeclared four-way comparison; current P2P checkout required.
+python3 -B checks/s3_compare.py --s2-record .proofline/s2-live/final-audit/report.json \
+  --p2p-repo /path/to/promise-to-proof --output .proofline/s3/new-comparison
 # Native subprocess/permission regressions, no model calls.
 PROOFLINE_NATIVE_TESTS=1 python3 -B -m unittest discover -s tests -v
 ```
