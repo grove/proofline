@@ -213,6 +213,11 @@ def permission_profile(inputs: Path, scratch: Path, private: Path) -> dict:
     # Homebrew framework launchers and Codex helpers traverse symlinks outside their resolved binary.
     if platform.system() == "Darwin" and Path("/opt/homebrew").is_dir():
         profile["filesystem"]["/opt/homebrew"] = "read"
+    if platform.system() == "Darwin":
+        for path in ("/Library/Developer/CommandLineTools/usr/bin",
+                     "/Library/Developer/CommandLineTools/usr/libexec/git-core"):
+            if Path(path).is_dir():
+                profile["filesystem"][path] = "read"
     return profile
 
 

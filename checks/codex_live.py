@@ -70,6 +70,13 @@ def command(codex: str, inputs: Path, scratch: Path, private: Path,
               "shell_environment_policy.set": {"PATH": "/usr/bin:/bin",
                   "TMPDIR": str(scratch), "PYTHONDONTWRITEBYTECODE": "1"},
               **{"features." + key: False for key in DISABLED_FEATURES}}
+    git_directory = Path("/Library/Developer/CommandLineTools/usr/bin")
+    if sys.platform == "darwin" and (git_directory / "git").is_file():
+        # Apple's /usr/bin/git wrapper cannot discover tools inside this sandbox.
+        config["shell_environment_policy.set"].update({"PATH": str(git_directory) + ":/usr/bin:/bin",
+            "GIT_CONFIG_NOSYSTEM": "1", "GIT_CONFIG_GLOBAL": os.devnull,
+            "GIT_ATTR_NOSYSTEM": "1", "GIT_TEMPLATE_DIR": "",
+            "GIT_EXEC_PATH": "/Library/Developer/CommandLineTools/usr/libexec/git-core"})
     argv = [codex, "--no-daemon", "exec", "--ignore-user-config", "--ignore-rules",
             "--strict-config", "--ephemeral", "--skip-git-repo-check", "--json",
             "--color", "never", "--cd", str(scratch),
@@ -272,6 +279,7 @@ def shell_payload(command):
 def run_stage(codex, directory, inputs, identities, role, preferences, timeout,
               make_prompt=stage_prompt, criterion_ids=("U1", "U2", "U3", "U4"), target=None):
     binding = binding_for(identities)
+    budget = f"\nThis stage has at most {timeout:.1f} seconds, including tool runs and the final structured handoff. Bound long subprocesses and reserve time to report before the host deadline. Unobserved material obligations remain NOT VERIFIED; do not claim an unfinished suite passed.\n"
     (inputs / "response.schema.json").write_text(json.dumps(REPORT_SCHEMA))
     product = inputs / "product"
     host.write_diff(product, identities["base_commit"], inputs / "change.diff")
@@ -283,9 +291,11 @@ def run_stage(codex, directory, inputs, identities, role, preferences, timeout,
         private.mkdir()
         protected = {name: host.sha256((inputs / name).read_bytes()) for name in
                      ("source.md", "accepted-input.md", "response.schema.json", "change.diff")}
+        if (inputs / "contract-context.json").exists():
+            protected["contract-context.json"] = host.sha256((inputs / "contract-context.json").read_bytes())
         git_before = host.snapshot(product / ".git")
         result["receipt"] = launch(command(codex, inputs, scratch, private, preferences, True),
-                                       make_prompt(role, inputs, identities), private, timeout)
+                                       make_prompt(role, inputs, identities) + budget, private, timeout)
         unchanged = (git_before == host.snapshot(product / ".git") and all(
             host.sha256((inputs / name).read_bytes()) == digest for name, digest in protected.items()))
     else:
@@ -294,7 +304,7 @@ def run_stage(codex, directory, inputs, identities, role, preferences, timeout,
             canary = shlex.join([str(Path(sys.executable).resolve()), "-I", "-B",
                                  str(inputs / "canary.py"), str(inputs / "canary.json")])
             result["receipt"] = launch(command(codex, inputs, scratch, private, preferences),
-                make_prompt(role, inputs, identities, canary), private, timeout)
+                make_prompt(role, inputs, identities, canary) + budget, private, timeout)
             unchanged = before == host.snapshot(inputs)
             # Host-owned transcript additions are expected; pre-existing receipt canaries are not.
             after_entries = {entry["path"]: entry for entry in host.snapshot(private)["entries"]}

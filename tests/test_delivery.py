@@ -46,11 +46,31 @@ class DeliveryTests(unittest.TestCase):
             delivery.capture_base(self.repo, self.work / "dirty-copy")
         host.git(self.repo, "add", "--all")
         host.git(self.repo, "commit", "--quiet", "-m", "Preserve user work")
-        (self.repo / "link").symlink_to("entry.py")
+        (self.repo / "link").symlink_to("../outside")
         host.git(self.repo, "add", "--all")
         host.git(self.repo, "commit", "--quiet", "-m", "Link")
-        with self.assertRaisesRegex(delivery.InputGap, "symlinks"):
+        with self.assertRaisesRegex(delivery.InputGap, "Symlink"):
             delivery.capture_base(self.repo, self.work / "link-copy")
+
+    def test_relative_internal_aliases_preserve_tree_and_reject_git_or_directory_links(self):
+        (self.repo / "alias.py").symlink_to("entry.py")
+        host.git(self.repo, "add", "--all")
+        host.git(self.repo, "commit", "--quiet", "-m", "Internal alias")
+        product = self.work / "product"
+        _, base = delivery.capture_base(self.repo, product)
+        self.assertTrue((product / "alias.py").is_symlink())
+        self.assertEqual((product / "alias.py").read_bytes(), b"print('original')\n")
+        _, tree = delivery.freeze(product)
+        self.assertEqual(tree, host.git(product, "rev-parse", base + "^{tree}"))
+        outside = self.work / "outside-alias"
+        outside.symlink_to(product / "entry.py")
+        for name, target in (("git-link", ".git/config"), ("dir-link", "."), ("cycle", "cycle"),
+                             ("external-hop", "../outside-alias")):
+            path = product / name
+            path.symlink_to(target)
+            with self.assertRaises(delivery.InputGap):
+                delivery.freeze(product)
+            path.unlink()
 
     def test_candidate_freeze_includes_new_ignored_files_and_rejects_external_links(self):
         product = self.work / "product"
@@ -118,20 +138,25 @@ class DeliveryTests(unittest.TestCase):
             delivery.deliver(self.repo, "source", "| D1 | Outcome |", output)
         self.assertEqual(host.snapshot(output), before)
 
-    def test_material_review_failure_skips_proof_and_retains_candidate(self):
+    def test_material_review_failure_and_input_gap_skip_proof_and_retain_candidate(self):
         calls = []
         def stage(codex, directory, inputs, identity, role, preferences, allowance, **kwargs):
             calls.append(role)
             return {"status": "OBSERVED", "thread_id": role, "report": {
-                "verdict": "READY" if role == "implementer" else "FAIL", "summary": "Material regression found"}}
+                "verdict": "READY" if role == "implementer" else verdict,
+                "findings": [] if role == "implementer" else findings, "summary": "Material gap found"}}
         def boundary(codex, directory, inputs, *args):
             for name in ("canary.py", "canary.json"):
                 (inputs / name).write_text("native test double")
             return {"assessment": {"status": "OBSERVED"}}
-        with patch.object(delivery.platform, "system", return_value="Darwin"), patch.object(host, "find_codex", return_value=sys.executable), patch.object(host, "run_command", return_value={"exit_code": 0, "timed_out": False, "stdout": "codex-cli 0.162.1"}), patch.object(host, "probe_boundary", side_effect=boundary), patch.object(delivery.live, "preferences", return_value={}), patch.object(delivery.live, "run_stage", side_effect=stage):
-            result = delivery.deliver(self.repo, "source", "| D1 | Outcome |", self.work / "result")
-        self.assertEqual(calls, ["implementer", "reviewer"])
-        self.assertEqual(result["status"], "NOT ACCEPTED")
-        self.assertTrue(Path(result["candidate_path"]).exists())
-        self.assertFalse(result["published"])
-        self.assertFalse(result["merged"])
+        for verdict, findings, expected in (("FAIL", ["Material regression"], "NOT ACCEPTED"),
+                ("NOT VERIFIED", ["INPUT NOT READY: Original source promise omitted"], "INPUT NOT READY")):
+            with self.subTest(expected=expected):
+                calls.clear()
+                with patch.object(delivery.platform, "system", return_value="Darwin"), patch.object(host, "find_codex", return_value=sys.executable), patch.object(host, "run_command", return_value={"exit_code": 0, "timed_out": False, "stdout": "codex-cli 0.162.1"}), patch.object(host, "probe_boundary", side_effect=boundary), patch.object(delivery.live, "preferences", return_value={}), patch.object(delivery.live, "run_stage", side_effect=stage):
+                    result = delivery.deliver(self.repo, "source", "| D1 | Outcome |", self.work / expected)
+                self.assertEqual(calls, ["implementer", "reviewer"])
+                self.assertEqual(result["status"], expected)
+                self.assertTrue(Path(result["candidate_path"]).exists())
+                self.assertFalse(result["published"])
+                self.assertFalse(result["merged"])
