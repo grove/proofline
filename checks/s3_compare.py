@@ -15,7 +15,7 @@ import uuid
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 import proofline as p
-from checks import s2_live
+from checks import s2_live, s3_p2p_transport
 from s0_live import oracle_runner
 
 COHORTS = ("ordinary-agent", "agent-plus-review", "p2p", "proofline")
@@ -147,25 +147,31 @@ def p2p_run(repo, brief, source, out, controller, private, codex):
                 pending.append(entry)
             else:
                 blocked.append(entry)
-    profile = '(version 1) (allow default) (deny file-read* ' + " ".join(
-        "(subpath " + json.dumps(str(path.resolve())) + ")" for path in blocked) + ")"
-    canary = p.host.run_command(["/usr/bin/sandbox-exec", "-p", profile, sys.executable, "-I", "-B", "-c",
-        "from pathlib import Path\nimport sys\nfor value in sys.argv[1:]:\n try: Path(value).read_bytes()\n except PermissionError: pass\n else: raise AssertionError('private key readable')\nprint('private keys denied')",
+    scratch = out / "privacy-scratch"
+    scratch.mkdir()
+    profile = s3_p2p_transport.profile(scratch, blocked)
+    canary = p.host.run_command([codex, "--no-daemon", "-c", "permissions.s3_p2p=" + p.host.toml(profile),
+        "sandbox", "-P", "s3_p2p", "--include-managed-config", "-C", str(scratch), "--", sys.executable, "-I", "-B", "-c",
+        "from pathlib import Path\nimport subprocess,sys\nfor i,value in enumerate(sys.argv[1:]):\n link=Path('key-link-'+str(i)); link.symlink_to(value)\n for target in (Path(value),link):\n  try: target.read_bytes()\n  except PermissionError: pass\n  else: raise AssertionError('private key readable')\n child=subprocess.run([sys.executable,'-I','-c','import pathlib,sys;pathlib.Path(sys.argv[1]).read_bytes()',value],capture_output=True)\n assert child.returncode!=0 and b'PermissionError' in child.stderr\nprint('private keys denied: absolute, symlink, subprocess')",
         str(private / "oracle-canary"), str(p.host.FIXTURES / "oracle.py")], out)
     if not p.host.succeeded(canary):
         return {"accepted": False, "candidate": str(repo), "elapsed_seconds": time.monotonic() - started,
                 "model_dispatches": 0, "privacy": canary, "error": "Private oracle boundary unavailable", "stages": []}
     transport = out / "transport"
     transport.mkdir()
+    launches = transport / "launches"
+    launches.mkdir()
     executable = transport / "codex"
-    executable.write_text(f"#!{sys.executable}\nimport os,sys\nexe={codex!r}\nos.execv(exe,[exe,'--no-daemon',*sys.argv[1:]])\n")
+    executable.write_text(f"#!{sys.executable}\nimport sys\nsys.path.insert(0,{str(p.host.ROOT)!r})\n"
+        "from checks.s3_p2p_transport import launch\n"
+        f"launch({codex!r},sys.argv[1:],{[str(path.resolve()) for path in blocked]!r},{str(launches)!r})\n")
     executable.chmod(0o755)
     entry = out / "p2p_entry.py"
     entry.write_text(f"import sys\nfrom pathlib import Path\nsys.path.insert(0,{str(controller.parent)!r})\nimport p2p_delivery as d\n"
         f"stage_root=Path({str(controller.parents[2])!r})\n"
         "def package(name):\n path=(stage_root/name/'SKILL.md').resolve(strict=True)\n return {'path':str(path),'sha256':d.fs.digest(path.read_bytes())}\n"
         "d.installed_skill=package\nraise SystemExit(d.main())\n")
-    receipt = p.host.run_command(["/usr/bin/sandbox-exec", "-p", profile, sys.executable, "-B", str(entry),
+    receipt = p.host.run_command([sys.executable, "-B", str(entry),
         "--repo", str(repo), "run", work, "--comparison-base", base, "--destination", "delivery-target",
         "--authorize-local", "--max-dispatches", "12", "--max-seconds", "900",
         "--max-stage-seconds", "180", "--max-repairs", "1"], out, 915,
@@ -185,6 +191,12 @@ def p2p_run(repo, brief, source, out, controller, private, codex):
             "receipt": json.loads((folder / "exit.json").read_text()) if (folder / "exit.json").exists() else {},
             "attempt_id": attempt["id"], "status": attempt["status"], "path": str(folder)})
         stages[-1]["report_validation"] = attempt.get("report_validation")
+        if (folder / "report.json").exists():
+            raw = (folder / "report.json").read_text()
+            try:
+                stages[-1]["report"] = json.loads(raw)
+            except json.JSONDecodeError:
+                stages[-1]["report"] = raw
     candidate = runtime / "workspace"
     return {"accepted": p.host.succeeded(receipt) and state.get("status") == "REVIEWED_AND_PROVEN",
             "candidate": str(candidate if candidate.exists() else repo), "stages": stages,
@@ -193,7 +205,11 @@ def p2p_run(repo, brief, source, out, controller, private, codex):
             "controller_status": state.get("status"), "skills": state.get("skills"),
             "runtime": str(runtime),
             "autonomy": state.get("autonomy"), "limits": state.get("limits"),
-            "transport": "Original Codex executable with --no-daemon so private-key sandbox is inherited",
+            "transport": "One native named permission profile: unchanged scratch writes/network denial, private-key read denials",
+            "transport_sha256": p.host.sha256(Path(s3_p2p_transport.__file__).read_bytes()),
+            "shim_sha256": p.host.sha256(executable.read_bytes()),
+            "effective_launches": [{"path": str(path), "sha256": p.host.sha256(path.read_bytes())}
+                                   for path in sorted(launches.glob("*.json"))],
             "instruction_lookup": "Unchanged current checkout packages; no host installation",
             "entry_sha256": p.host.sha256(entry.read_bytes())}
 
@@ -203,6 +219,7 @@ def run(s2_record, p2p_repo, output):
     operator = output / "operator"
     operator.mkdir()
     shutil.copyfile(__file__, operator / "runner.py")
+    shutil.copyfile(s3_p2p_transport.__file__, operator / "p2p_transport.py")
     (operator / "oracle-canary").write_text("operator-only")
     started = time.monotonic()
     audit_record = json.loads(s2_record.read_text())
@@ -226,6 +243,8 @@ def run(s2_record, p2p_repo, output):
             "sha256": p.host.sha256((p2p_repo / "skills/productivity" / name / "SKILL.md").read_bytes())}
             for stage, name in current_p2p.STAGES.items()},
         "p2p_controller_sha256": p.host.sha256(controller.read_bytes()),
+        "p2p_transport_sha256": p.host.sha256(Path(s3_p2p_transport.__file__).read_bytes()),
+        "p2p_transport_policy": "One named native profile, scratch writes only, Git read-only, network off, private scoring paths denied",
         "oracle_sha256": p.host.sha256((p.host.FIXTURES / "oracle.py").read_bytes()),
         "runner_sha256": p.host.sha256(Path(__file__).read_bytes()),
         "oracle_criterion_mapping": {f"U{i}": f"R{i}" for i in range(1, 5)},
@@ -320,6 +339,7 @@ def p2p_followup(previous, p2p_repo, output):
     operator = output / "operator"
     operator.mkdir()
     shutil.copyfile(__file__, operator / "runner.py")
+    shutil.copyfile(s3_p2p_transport.__file__, operator / "p2p_transport.py")
     (operator / "oracle-canary").write_text("operator-only")
     spec = importlib.util.spec_from_file_location("s3_followup_oracle", p.host.FIXTURES / "oracle.py")
     oracle = importlib.util.module_from_spec(spec)
