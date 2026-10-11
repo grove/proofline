@@ -1,0 +1,4 @@
+.proofline/
+__pycache__/
+*.py[cod]
+.venv/
