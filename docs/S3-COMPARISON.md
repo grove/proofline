@@ -31,10 +31,10 @@ most 12 dispatches and one repair. Proofline keeps its three-stage path with no
 recovery. Cases run sequentially; do not tune prompts or discard failures after
 seeing scores. A failed current-P2P host invocation stays in the comparison and
 is not replaced by an emulated review/proof pipeline.
-All native transports disable the Codex daemon. For current P2P a recorded
-executable shim adds only `--no-daemon`, so its children inherit the benchmark's
-private-key read denial. Its controller, stage instructions and repair logic are
-unchanged. Shared isolation and structured handoffs are harness overhead, not
+All native transports disable the Codex daemon. The first current-P2P transport
+used an enclosing private-read sandbox; the qualified replacement below moves
+those denials into the native worker profile. Its controller, stage instructions
+and repair logic are unchanged. Shared isolation and structured handoffs are harness overhead, not
 an additional ordinary-agent reviewer or prover.
 
 Score every assignment as accepted correctly, false accepted, false blocked,
@@ -44,9 +44,10 @@ satisfactory delivery. Zero deliveries yields an unavailable ratio, not zero.
 Monetary costs and unobserved usage/attention are unknown. Publish per-case
 results and observed overhead/failure mechanisms without a superiority claim.
 
-Native observations are complete. P2P could not establish its host boundary, so
-its product quality and throughput comparison remains inconclusive. Recovery,
-resume and product publication remain deferred.
+The native single-profile host is qualified and the guarded repeat is complete.
+P2P still produced no accepted delivery within the fixed budgets; its completed
+delivery/verifier-quality comparison remains inconclusive. Recovery, resume and
+product publication remain deferred.
 
 The first setup trial exposed two harness errors: shared `U` IDs are not accepted
 by current P2P, and ordinary-agent handoffs need exact native command citations
@@ -79,7 +80,191 @@ finish, without tuning from their scores. Both transport generations contribute
 to campaign cost; only the supported transport is eligible for the P2P quality
 comparison. The original setup-error campaign is likewise cost-only.
 
-## Recorded results
+## Host qualification and repeat protocol
+
+Before a second full comparison, reproduce the launch failure without a model.
+The exact retained enclosing read-denial profile allows `/usr/bin/true` but a
+second `sandbox-exec` exits 71 with `sandbox_apply: Operation not permitted`.
+A direct Codex named-profile sandbox succeeds; the same invocation inside that
+enclosing sandbox fails. This narrows the failure to that nested boundary on
+this host; the earlier generic allow-default nesting check did not exercise it.
+
+Use one native Codex permission profile instead. The benchmark transport removes
+only P2P's three declared legacy sandbox settings and `--sandbox workspace-write`,
+preserves the remaining arguments/configuration, and adds a named profile with
+root reads, scratch writes, read-only Git metadata, network disabled, and all
+previous private scoring path denials. Unexpected permission configuration fails
+closed. Retain requested and effective argv separately, with transport and shim
+hashes. No original P2P installation, controller, stage, repair or verdict rule
+is changed. Codex documents profiles as an alternative to the legacy sandbox
+settings, which cannot be combined:
+[official permission documentation](https://developers.openai.com/codex/permissions).
+
+Qualify the replacement with protected-input, private-read, mode-change, scratch
+and reachable-loopback network canaries, then an actual P2P pipeline. Record this
+extra qualification in campaign costs but exclude it from paired quality results.
+After it qualifies, repeat all 20 assignments on the same host/model with the
+same source bytes, five seeds, contract rows/omission, oracle, limits, stage
+instructions and cohort prompts. Keep every earlier failure and cost. No oracle
+or prompt adjustment follows inspection of results. Recovery, resume and product
+publication remain deferred.
+
+During the full repeat, inspection found that older P2P executions outside the
+benchmark directory could expose sibling seeds through broad root reads. Before
+the third P2P assignment, add a deny on the execution store and reopen only the
+current disposable execution. A native canary establishes own-input reads and
+denied sibling reads through absolute paths, symlinks and a subprocess. Preserve
+the initial manifest, archived transport and both earlier P2P outcomes as costs;
+declare the guard amendment and fresh repeats of those two P2P assignments. The
+remaining cohorts already exclude that store. No sibling read was observed in
+the earlier native command events, but those two P2P assignments are excluded
+from quality results because their access boundary was incomplete. The change
+affects private-input access only; source, seeds, oracle, host/model, prompts,
+P2P stages, verdict rules and budgets remain fixed.
+
+The subsequent key-access review also covers copies in the operator repository's
+Git objects/bytecode and Codex session state. Before the fourth P2P assignment,
+deny the entire operator repository and Codex state directory, with an explicit
+read exception for the required RTK instruction. Native absolute, symlink and
+subprocess canaries establish denial of repository/Git keys while RTK remains
+readable. The final guard amendment makes the first three P2P assignments
+cost-only and declares their fresh repeats under the complete guard. Preserve
+all three archived transport versions and both amendments; no earlier record
+is overwritten. Remaining P2P worker launches carry this same final profile.
+
+## Qualified host repeat and final paired results
+
+The single-profile transport is now qualified on the unchanged Codex 0.162.1
+host/model. Process canaries establish protected-write and mode-change denial,
+allowed scratch writes, and denied network access with a reachable-loopback
+control. Final guards deny the operator repository (including Git/bytecode key
+copies), Codex state/history except RTK, and sibling P2P executions. Native
+absolute-path, symlink and subprocess canaries verify these read boundaries.
+Two fresh P2P worker contexts independently completed their actual boundary
+probes; the unchanged controller also accepted task readiness. This establishes
+host/transport readiness, not completed P2P delivery.
+
+All 20 repeat assignments finished. The three earlier P2P assignments are
+cost-only; their predeclared final-guard fresh repeats also finished. The paired
+view below selects only the final-guard P2P assignments, without discarding any
+raw record or campaign cost. Source, seeds, oracle, model, current P2P commit,
+instruction packages, prompts and budgets are unchanged. Each generation retains
+its runner/transport hashes and native receipts; the guard amendments preceded
+the affected model calls. No source-oracle or verdict-rule tuning occurred.
+
+| Fixed case | Ordinary agent | Agent plus review | Current P2P, final guard | Proofline |
+| --- | --- | --- | --- | --- |
+| missing-validation | Accepted correctly | Accepted correctly | Failed: readiness IDs | Accepted correctly |
+| correct-alternative | Accepted correctly | Accepted correctly | Failed: readiness IDs | Budget exhausted: prover |
+| green-tests-defect | Accepted correctly | Accepted correctly | Budget exhausted: implementation | Accepted correctly |
+| false-scope-change | Accepted correctly | Accepted correctly | Budget exhausted: implementation | Accepted correctly |
+| source-omission | Failed: omission identified | Failed: omission identified | Failed: readiness IDs; omission unqualified | Failed: INPUT NOT READY |
+
+Ordinary agent and agent plus review each produced four accepted correct
+deliveries; Proofline produced three. All three explicitly identified the
+omitted original exact-preservation promise and rejected the incomplete plan.
+The omission seed remains behaviorally correct. No false acceptance was observed.
+Proofline's correct-alternative candidate passed the private oracle and fresh
+review, but its prover reached 180 seconds without a usable handoff. It is budget
+exhausted, not accepted; its missing usage is unknown. The trimming case passed.
+All three newly accepted Proofline records revalidate as LOCAL ACCEPTED.
+
+Current P2P now establishes real worker boundaries and reaches implementation.
+Three final-guard readiness responses were rejected for invalid requirement IDs:
+`PREFLIGHT` and/or grouped IDs instead of one declared contract ID per check.
+Its unchanged validator rejects them; the schema permits strings and its prompt
+omits an explicit single-ID domain. Two implementations produced oracle-correct
+code but reached the stage limit without usable completion reports. Neither
+review nor proof ran. These are native readiness/handoff and budget failures,
+not continuing nested-sandbox launch failures. P2P produced zero accepted
+deliveries and no qualified omitted-source rejection. Its completed-delivery,
+verifier-quality and throughput comparison remains inconclusive. Do not count
+correct partial code as a completed delivery or a low failure time as speed.
+
+The fixed oracle passed the repeat's four sanity controls and all four follow-up
+controls. Every selected assignment has executed private observations; worker
+inputs exclude the key paths. The full repeat has 38 distinct native threads and
+the isolation follow-up seven more, with no overlap. Guard amendments preserve
+both prior transport versions; these observations do not establish protection
+against arbitrary same-user/controller tampering.
+
+### Final paired costs
+
+Delivery seconds include each selected method's setup and failed assignments.
+This table excludes extra harness generations only from the paired view; the
+cumulative table below includes them all. The view itself is not added to
+campaign costs a second time.
+
+| Cohort | Dispatches | Accepted correct deliveries | Delivery seconds | Seconds per satisfactory delivery | Usage observed / unknown |
+| --- | ---: | ---: | ---: | --- | --- |
+| Ordinary agent | 5 | 4 | 440.385 | 110.096 | 5 / 0 |
+| Agent plus review | 9 | 4 | 801.171 | 200.293 | 9 / 0 |
+| Current P2P | 12 | 0 | 1376.010 | Unavailable: zero deliveries | 10 / 2 |
+| Proofline | 13 | 3 | 1471.712 | 490.571 | 12 / 1 |
+
+The full repeat took 3971.048 seconds and the three-assignment isolation follow-up
+822.853 seconds, including shared setup and private scoring. These times are
+from the same small promise and fixed sequential order, not a representative
+sample or a superiority test. The earlier comparison's four accepted Proofline
+deliveries remain recorded; this repeat's timeout is not replaced by that result.
+
+### Cumulative costs, including every failed generation
+
+| Cohort | Dispatches | Qualified correct deliveries across repeated campaigns | All satisfactory deliveries | Known delivery seconds | Seconds per satisfactory delivery | Known reviewer / prover seconds |
+| --- | ---: | ---: | ---: | ---: | --- | --- |
+| Ordinary agent | 12 | 8 | 8 | 1023.724 | Unknown; known subtotal 127.965 | Not executed / Not executed |
+| Agent plus review | 19 | 8 | 8 | 1750.954 | 218.869 | 784.630 / Not executed |
+| Current P2P | 25 | 0 | 0 | 2317.113 | Unavailable: zero deliveries | Not executed / Not executed |
+| Proofline | 29 | 7 | 8 | 3331.613 | 416.452 | 995.081 / 1390.092 |
+
+Counts across repeated campaigns are deliveries, not independent task samples.
+Proofline's original setup-trial success remains an actual satisfactory delivery
+but is excluded from paired quality counts. Its cumulative cost divided by only
+seven qualified deliveries is 475.945 seconds. Ordinary agent's interrupted
+setup dispatch still has unknown duration/usage, so its complete ratio is unknown.
+
+| Cohort | Usage observed / unknown | Known input tokens | Cached tokens included in input | Known output tokens |
+| --- | --- | ---: | ---: | ---: |
+| Ordinary agent | 11 / 1 | 887619 | 687104 | 28192 |
+| Agent plus review | 19 / 0 | 1758939 | 1352704 | 50224 |
+| Current P2P | 22 / 3 | 1073921 | 765440 | 59501 |
+| Proofline | 28 / 1 | 2902102 | 2311936 | 84829 |
+
+Total: 85 native dispatches, usage observed for 80 and unknown for 5.
+Known usage is 6622581 input tokens (5117184 cached)
+and 222746 output tokens. Known campaign wall/process subtotals are
+at least 8702.051 seconds. Full time remains unknown because
+one startup duration and untimed preparation are unknown. The 3.786-second
+non-overlapping zero-model diagnostic subtotal is included; later guard-canary
+elapsed time overlaps the full repeat and is retained without double counting.
+Monetary cost, human attention and upstream planning cost remain unknown.
+
+The operator diagnosed the launcher, added private-read guards and declared
+fresh P2P isolation repeats without changing prompts, source keys or budgets.
+No P2P installation, upstream controller repair, resume, or product publication
+was performed. The largest working-method overhead remains fresh review/proof;
+current P2P additionally spends calls on readiness, rejects malformed prerequisite
+reports and loses usable handoffs at the cap. Investigate ID schema/prompt
+agreement and bounded evidence/handoff work before expanding automation. Do not
+weaken source promises, extend limits after scoring, infer statistical benefit,
+or claim the 25% pilot target. S4–S6 remain deferred.
+
+Local readback references (native streams remain in their original locations):
+
+| Record | SHA-256 |
+| --- | --- |
+| `.proofline/s3/single-sandbox/operator/report.json` | `0a5a56a1f53a025c36d88380a40beae508acff752fe26e7d6247b92e470846bd` |
+| `.proofline/s3/single-sandbox/operator/audit.json` | `523ab4826179a9a1c17fcf40cc8eeec9f90cc10ce6c70b5859ba6f9d627b83a0` |
+| `.proofline/s3/single-sandbox/operator/host-qualification-final.json` | `5dae30363c2a66202d1e495df4da2b1cc00637a769f47426bbec97cf98ec4f4e` |
+| `.proofline/s3/single-sandbox/operator/guard-amendment.json` | `255bf54b70c5e4103a570d75314c34de2f3772357e38ef08ecbbb4f4cf2d2a5e` |
+| `.proofline/s3/single-sandbox/operator/key-guard-amendment.json` | `6c2bb400b9a00637ae0cff9b022e92c8b6fb58e375b387cbc021ffb3539649c5` |
+| `.proofline/s3/guard-retest/operator/report.json` | `c11905c9735577871c9b87341c7c31e009ecbaebfaf5e5bd81bdd6fb27da0b55` |
+| `.proofline/s3/guard-retest/operator/audit.json` | `adf396be444327a0b0f4bc8be9928bfaf16c5fadbe670169745d417ca080679b` |
+| `.proofline/s3/single-sandbox/operator/paired-view.json` | `e1329ebc6f495298abc1caaf6cedc4b3d8cd68a6f298839fdc1f11b4fb0b1f18` |
+| `.proofline/s3/final-summary/report.json` | `180f74276802d94aff7b16d5547666e6a63de146daec220c689bf3eacd434092` |
+| `.proofline/s3/final-host-s2-readback/report.json` | `19204af9db9cd3f6601ea640c0c7761c7fdf09b7977a10734e14d4d4e26a660f` |
+
+## Earlier recorded results
 
 The original 20 assignments and five supported-source P2P follow-ups all have
 explicit outcomes. The first setup trial retains five attempted assignments
@@ -128,7 +313,7 @@ has no observed false acceptance and no established product false blocking;
 P2P's omitted-source control was not exercised. Its small elapsed time is not a
 successful-delivery speed measurement.
 
-## Costs and limits
+## Earlier costs and limits
 
 These cumulative costs include both setup trials, all unsuccessful invocations,
 and the supported-source follow-up. Delivery time includes each method's own
@@ -187,7 +372,11 @@ python3 -B checks/s3_compare.py --s2-record .proofline/s2-live/final-audit/repor
 ```
 
 The committed runner uses the supported source basename and external-runtime
-collector from the outset. `--p2p-followup` is restricted to the five retained
+collector and final single-profile key guard from the outset. It archives the
+transport alongside the runner and retains requested/effective native argv.
+The recorded full repeat used its archived runner; the current runner differs
+only by the automatic archival copy, with no prompt/key/limit change.
+`--p2p-followup` is restricted to the five retained
 source-location admission failures; it checks unchanged source, seed trees,
 plan, oracle, P2P commit and model preferences before new comparison work.
 `--summary` takes final accounting records and writes a fresh cost summary,
@@ -201,9 +390,12 @@ Classification fixes change accounting copies, never the raw model records.
 | `.proofline/s3/p2p-supported/operator/report.json` | `8443c6a08be40e8ac6993a0f14d8fa3c845f0bff3473f9bd04b739eca68af7a6` |
 | `.proofline/s3/summary/report.json` | `8abd4dcb175a15c9254b82d06700d5fe11e5029a11d0699a192a5039ba948bf6` |
 
-The summary binds four accounting inputs by hash. Native attempt files and
+The earlier summary binds four accounting inputs by hash; the final summary
+binds eight and reproduces byte-for-byte through `--summary`. Native attempt files and
 failed reports remain in the recorded disposable P2P runtimes. Original P2P
 checkout and the original S2 source/approval artifacts remain unchanged; the
 final zero-model S2 readback is OBSERVED. These local artifacts are not shipped
-as product files. Deterministic plus native-enabled regression verification:
-73 tests, 71 passed and two Linux-specific skips.
+as product files. All eight retained accepted Proofline records revalidate;
+S2's original source and approval still pass readback. Final deterministic and
+native-enabled regression verification: 74 tests, 72 passed and two Linux-specific
+skips. The earlier 73-test verification remains historical.

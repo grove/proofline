@@ -1,8 +1,10 @@
 import importlib.util
 import json
+import os
 from pathlib import Path
 import sys
 import tempfile
+import tomllib
 from types import SimpleNamespace
 import unittest
 from unittest.mock import patch
@@ -12,6 +14,35 @@ import s3_compare as s3
 
 
 class ComparisonTests(unittest.TestCase):
+    def test_single_sandbox_transport_preserves_non_permission_arguments(self):
+        t = s3.s3_p2p_transport
+        args = ["exec", "--ignore-user-config", "--sandbox", "workspace-write", "-C", "/scratch",
+                "-c", 'model="configured"', "-c", "sandbox_workspace_write.network_access=false",
+                "-c", "sandbox_workspace_write.exclude_slash_tmp=true",
+                "-c", "sandbox_workspace_write.exclude_tmpdir_env_var=true",
+                "--output-schema", "/schema", "-"]
+        argv = t.command("/codex", args, ["/private"])
+        self.assertNotIn("--sandbox", argv)
+        self.assertIn('model="configured"', argv)
+        self.assertEqual(argv[-1], "-")
+        config = tomllib.loads("profile=" + argv[-2].split("=", 1)[1])["profile"]
+        self.assertEqual(config["filesystem"]["/private"], "deny")
+        self.assertEqual(config["filesystem"]["/scratch"], "write")
+        self.assertEqual(config["filesystem"]["/scratch/.git"], "read")
+        self.assertFalse(config["network"]["enabled"])
+        executions = (Path.home() / ".p2p/executions").resolve()
+        self.assertEqual(config["filesystem"][str(executions)], "deny")
+        self.assertEqual(config["filesystem"][str(s3.p.host.ROOT)], "deny")
+        self.assertEqual(config["filesystem"][str(Path(os.environ.get("CODEX_HOME", Path.home()/".codex")).resolve())], "deny")
+        self.assertEqual(config["filesystem"][str(Path.home()/".codex/RTK.md")], "read")
+        scoped = t.profile(executions / "own/username/runtime/scratch/context", [])
+        self.assertEqual(scoped["filesystem"][str(executions)], "deny")
+        self.assertEqual(scoped["filesystem"][str(executions / "own")], "read")
+        with self.assertRaisesRegex(ValueError, "Unexpected permission"):
+            t.command("/codex", [x.replace("network_access=false", "network_access=true") for x in args], [])
+        with self.assertRaisesRegex(ValueError, "Incomplete"):
+            t.command("/codex", [x for x in args if x != "sandbox_workspace_write.exclude_slash_tmp=true"], [])
+
     def test_transport_followup_refuses_changed_private_oracle_before_dispatch(self):
         with tempfile.TemporaryDirectory() as directory:
             root = Path(directory)

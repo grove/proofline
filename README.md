@@ -19,7 +19,7 @@ first and skips proof on a material blocker. The original repository is preserve
 | S0 — Real host boundary | Demonstrated on macOS with seven fresh Codex invocations; correct and alternative implementations pass, seeded defect fails |
 | S1 — Direct local delivery | Demonstrated on two small CLI tasks; source omissions and regressions rejected |
 | S2 — Approved contracts | Real approved delivery and all input/source/regression/parent controls qualified; see the retained failed trials and narrow support boundary |
-| S3 — Four-way comparison | Native observations complete; P2P host preflight failed, so its quality/throughput comparison is inconclusive |
+| S3 — Four-way comparison | Guarded native repeat complete; P2P host qualified, but readiness/handoff failures leave its delivery comparison inconclusive |
 | S4–S6 — Recovery, publication, pilot | Deferred; preceding evidence gates remain binding |
 
 Read the [S0 results and failed experiments](docs/S0-CODEX-RUNNER.md),
