@@ -1,6 +1,6 @@
 # Proofline — Implementation plan
 
-**Status:** Execution roadmap v1 · 11 October 2026 (S0 and S1 demonstrated on macOS; S2 adapter experimental)
+**Status:** Execution roadmap v1 · 11 October 2026 (S0–S2 demonstrated on macOS; S3 next)
 
 **Design authority:** [DESIGN.md v0.5](./DESIGN.md) — the product contract and safety boundaries live there.  
 **Objective:** Make a capable coding agent deliver the *complete authorized promise*, with independently credible evidence, minimal human coordination, and substantially less wasted work than a heavy controller.
@@ -12,9 +12,11 @@ passed on the recorded macOS host: correct and alternative candidates passed,
 and both verifiers rejected the seeded whitespace defect. See the
 [live evidence and failed experiments](docs/S0-CODEX-RUNNER.md).
 S1 also passed two real direct-delivery tasks and live omission/regression
-controls; see [S1 evidence](docs/S1-DIRECT-DELIVERY.md). S2 has a narrow
-[standalone adapter](docs/S2-CONTRACT-INPUT.md), but its actual approved-contract
-live gate remains pending. S3–S6 have not started; Milestone A is not complete. The original
+controls; see [S1 evidence](docs/S1-DIRECT-DELIVERY.md). S2's narrow
+[contract adapter](docs/S2-CONTRACT-INPUT.md) passed its actual approved-contract
+and full negative-control gate; see [S2 evidence](docs/S2-LIVE-EVIDENCE.md).
+Milestone A's local gates pass within these recorded boundaries. S3 is next;
+S4–S6 remain deferred. The original
 [Linux NO-GO](docs/S0-HOST-FEASIBILITY.md) remains historical evidence.
 This status does not change any gate below.
 

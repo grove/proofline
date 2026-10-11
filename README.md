@@ -18,12 +18,12 @@ first and skips proof on a material blocker. The original repository is preserve
 | --- | --- |
 | S0 — Real host boundary | Demonstrated on macOS with seven fresh Codex invocations; correct and alternative implementations pass, seeded defect fails |
 | S1 — Direct local delivery | Demonstrated on two small CLI tasks; source omissions and regressions rejected |
-| S2 — Approved contracts | Experimental standalone Markdown adapter and input checks; actual approved-contract live qualification pending |
+| S2 — Approved contracts | Real approved delivery and all input/source/regression/parent controls qualified; see the retained failed trials and narrow support boundary |
 | S3–S6 — Comparison, recovery, publication, pilot | Not started; preceding evidence gates remain binding |
 
 Read the [S0 results and failed experiments](docs/S0-CODEX-RUNNER.md),
 [S1 evidence](docs/S1-DIRECT-DELIVERY.md), and
-[contract adapter's exact support boundary](docs/S2-CONTRACT-INPUT.md).
+[S2 live evidence](docs/S2-LIVE-EVIDENCE.md) and [exact support boundary](docs/S2-CONTRACT-INPUT.md).
 These results establish neither broad correctness nor a performance advantage.
 
 ## Deliver a direct request
@@ -34,7 +34,8 @@ existing Codex authentication. Live observations used Apple Silicon, Python
 versions need S0 qualification first. There are no third-party Python dependencies.
 The macOS system Python may be too old; select a supported interpreter explicitly.
 
-Use a clean Git repository with regular tracked files. Save the original request
+Use a clean Git repository with regular tracked files or relative aliases to
+regular files inside the product. Save the original request
 verbatim as `source.md` and a small source-grounded `brief.md` outside that
 repository's tracked changes. A brief indexes every material promise with stable
 IDs; it cannot narrow the source. For example:
@@ -78,7 +79,8 @@ ambient shell credentials, MCP, plugins, web, delegation, and browser/computer
 surfaces are unavailable. The native sandbox must initialize on the host; a
 nested sandbox failure is an explicit gap, never a reason to disable isolation.
 
-The initial boundary does not support symlinks, submodules, ignored local
+The boundary rejects external, directory, missing, cyclic and Git-metadata
+symlinks. It does not support submodules, ignored local
 dependencies, or tests that need to modify their source tree. Such tasks need a
 qualified build/observation path. Supply exact interpreter/tool paths in the map
 when macOS developer-tool discovery is unavailable inside the sandbox.
@@ -116,6 +118,10 @@ python3 -B checks/host_probe.py
 python3 -B checks/s0_live.py --seconds 1500 --stage-seconds 240
 # S1 negative judgment controls: four fresh model calls.
 python3 -B checks/s1_judgments.py
+# S2: actual approved delivery, retained child context, nine readiness and six judgment controls.
+python3 -B checks/s2_live.py /path/to/approved-delivery/report.json \
+  --parent-record /path/to/approved-child/report.json \
+  --preservation-manifest /path/to/preserved-originals.json
 # Native subprocess/permission regressions, no model calls.
 PROOFLINE_NATIVE_TESTS=1 python3 -B -m unittest discover -s tests -v
 ```

@@ -1,70 +1,140 @@
-# Experimental standalone contract adapter
+# Approved-contract input and live qualification
 
-`proofline.py inspect-contract contract.md` reads the current P2P Markdown
-contract shape without importing P2P code, executing product commands, changing
-the contract, or granting approval. It reports the exact UTF-8 byte hashes,
-revision, original-source location/hash and preserved criterion IDs.
+`proofline.py inspect-contract contract.md` reads current P2P Markdown without
+importing its controller, executing product commands, changing the agreement,
+or granting approval. It reports exact UTF-8 hashes, revision, original source
+chain, stable criterion IDs, parent/contribution identities and scope.
 
-The supported subset has one `# Acceptance contract:` heading, one `Contract
-revision: vN`, a single relative Markdown `Source` link, `Parent: None`,
-`Prerequisites: None`, an intended outcome, and the current eight-column
-acceptance matrix. Rows must be complete, uniquely identified, and `planned`.
-Unresolved gaps and open questions must explicitly be `None` or `- None`.
-Exclusions and change notes remain in the exact contract bytes; nothing is
-renumbered or summarized away. CRLF bytes are preserved.
+The adapter requires the current eight-column acceptance matrix, complete unique
+`planned` rows, an intended outcome, exclusions, change notes, and explicit
+absence of unresolved decisions and evidence gaps. Relative `Source` links can
+name Markdown or JSON; linked source contracts are followed to their original
+inputs. Every constituent retains its path and byte hash. Single-source byte
+identities remain unchanged; multiple sources have a length-indexed bundle whose
+hash is reported separately. Cycles and unrecoverable inputs are readiness gaps.
 
-The adapter was derived from the current
-`skills/productivity/plan-acceptance/SKILL.md` output template and the approval
-rules in `docs/acceptance-contract-protocol.md` of the local Promise-to-Proof
-checkout. It deliberately does not import that project's controller, generated
-checkpoint formats, legacy records, or approval parsers.
+## Approval and preserved inputs
 
-## Authority and execution
-
-Inspection is read-only and never says a contract is approved. For this first
-adapter, the invoking user must explicitly adopt the exact contract and original
-source bytes. Only then may the initiating agent invoke:
+The initiating caller must inspect the original source and actual authority.
+Inspection, a file saying `approved`, an issue label, or an agent-authored fixture
+does not authorize delivery. Use either explicit user adoption of the displayed
+exact contract/source bytes, or an actual P2P approval reference whose authority
+the caller has established. Supply both exact input hashes and the reference;
+an inspected P2P reference additionally supplies its file and digest:
 
 ```sh
 python3 -B proofline.py deliver --repo /path/to/product \
   --contract /path/to/contract.md \
-  --adopt-contract-sha256 EXACT_USER_ADOPTED_CONTRACT_HASH \
-  --adopt-source-sha256 EXACT_USER_ADOPTED_SOURCE_HASH \
-  --approval-reference 'Actual user adoption reference' \
+  --adopt-contract-sha256 EXACT_AUTHORIZED_CONTRACT_HASH \
+  --adopt-source-sha256 EXACT_AUTHORIZED_SOURCE_OR_BUNDLE_HASH \
+  --approval-reference 'Actual inspected original approval reference' \
+  --approval-file /path/to/original-approval.md \
+  --approval-sha256 EXACT_INSPECTED_APPROVAL_HASH \
   --map 'Task-specific public interfaces and commands'
 ```
 
-These flags carry the trusted caller's actual user authorization; they do not
-cryptographically authenticate it. An agent must never generate them from a
-generic implementation request, a file saying `approved`, an issue label,
-an agent-created fixture or a planning/audit result. The skill enforces this
-invocation rule. Existing P2P approval receipts need trustworthy inspection or
-new exact adoption, not automatic conversion into authority.
+Omit the last two approval flags for direct exact user adoption. These flags are
+trusted-caller assertions, not cryptographic authentication or automatic P2P
+receipt import. The adapter checks that the inspected reference bytes still
+match and name the exact contract digest. It never interprets arbitrary approval
+prose as authority. Synthetic parser references never authorize a model run.
 
-The runner compares both hashes before host/model dispatch. A mismatch or
-missing adoption yields `INPUT NOT READY`, zero dispatches, and an actionable
-record. It preserves the exact source and complete contract as protected inputs,
-then uses the same implementation/freeze/review/proof functions as direct
-delivery. The record retains the original locations, revision, hashes, stable
-IDs and actual adoption reference. Saved acceptance checks those bindings again.
-Planned tests/oracles are guidance; proof still needs actual observations, and
-the independent prompts require detection of omitted original-source promises.
+Absent/stale approval, changed source, an incomplete matrix or unavailable
+prerequisite produces `INPUT NOT READY` before host/model dispatch. The complete
+source, unchanged contract, approval and parent/contribution snapshots are
+protected inputs. Their context digest joins the same frozen base/candidate
+binding used by S1. Fresh review and proof receive every material criterion ID
+unchanged. Planned checks remain guidance; their presence is not an observation.
+The trusted run record preserves the complete original approval reference bytes.
+Workers receive its inspected reference, path and digest; the raw payload is
+excluded because a P2P state record can contain old peer verdicts. Predecessor
+agreement/review/proof documents required by the source remain available as
+historical preservation context, never as proof of the new candidate.
 
-Parent/child contributions, combined-parent acceptance, prerequisites and remote
-source recovery are currently explicit input gaps. A closed prerequisite or
-successful child cannot become a parent-completion claim. The adapter does not
-rewrite these inputs into a standalone contract or direct brief.
+Successful `status` also rechecks the original contract/source/context and
+inspected approval reference. Changed agreements cannot inherit old acceptance.
+Historical qualification requires a retained, clearly attributed snapshot;
+substituting historical routing for today's routing is not supported.
 
-## Qualification status
+## Parent and prerequisite boundary
 
-Four deterministic tests cover exact bytes, revision/IDs/exclusions, absent and
-stale adoption, unavailable source, ambiguous/incomplete/unsupported matrices,
-unresolved decisions, parent/prerequisite gaps and rejection before dispatch.
-Synthetic test adoption references never authorize a real model run.
+A child requires one linked parent agreement, its exact snapshot digest, a linked
+contribution plan and its exact `## Approved delivery plan` section digest. Each
+child row maps through `Source` to existing qualified parent revision/IDs.
+The source retains the full parent and transitive original promises; both roles
+check the child's complete contribution and inherited constraints. Unrelated
+sibling outcomes stay outside child acceptance. Child local acceptance always
+records `parent_completion: false`.
 
-**S2 is not complete.** No actual approved, source-linked P2P contract has been
-provided for P1's live acceptance run; the contract-path positive and negative
-judgment controls and P4 contribution support remain unqualified. The next step
-is an exact approved/adopted contract and its original source, then the same
-live success/defect/omission checks used for S1. Do not claim Milestone A or
-start S3's comparison gate from parser tests alone.
+A contract with `## Children` is a combined-parent request. Its full matrix and
+original source are checked by all three fresh stages on one assembled candidate;
+only that successful delivery can record parent completion. Historical child
+verdicts and closed tickets cannot compose into a parent verdict.
+
+Runtime prerequisite imports remain unsupported and fail closed. The supported
+child input shape permits `None`, or the selected initial-sizing contract's explicit
+absence of prerequisites beyond its approved parent agreement, backed by its
+captured contribution plan. This does not waive inherited availability or
+constraints: the independent roles still check them. Arbitrary prerequisite
+prose, “issue closed”, a missing outcome, or an unsupported snapshot is an
+actionable input gap. The adapter does not rewrite such inputs into a standalone
+contract or direct brief.
+
+One additional supported shape is the diagnosis correction's preservation-only
+constraint: its source supplies an exact predecessor patch and hashes for the
+predecessor agreement, review, and proof. All three documents must remain
+recoverable with those exact hashes, and both reports must identify the same
+source-bound predecessor candidate. They are captured as protected context;
+their old verdicts cannot prove the new candidate. This supports preservation,
+not importing arbitrary runtime prerequisites or authorizing installation.
+
+## Reproduce the live gate
+
+First deliver the actual approved contract through the ordinary CLI above, then:
+
+```sh
+python3 -B checks/s2_live.py /path/to/delivery/report.json \
+  --parent-record /path/to/retained-approved-child/report.json \
+  --preservation-manifest /path/to/preserved-originals.json \
+  --seconds 3600 --stage-seconds 600
+```
+
+The focused qualification accepts the real diagnosis correction or the original
+initial-sizing child. For the diagnosis case, retain the actual sizing child
+record separately for parent/contribution controls. Its bindings and frozen
+candidate are revalidated, and its actual outcome is recorded without upgrading
+a failed or unverified child run to acceptance. The positive delivery must still
+be locally accepted. Nine zero-dispatch readiness controls cover both contracts;
+six fresh reviewers/provers challenge an omitted source promise, a candidate
+regression, and the complete original parent on the incomplete sizing candidate.
+Altered controls are explicitly unapproved fault
+injections; they do not grant implementation authority. Findings must name the
+challenged obligation. All observations, contexts, elapsed time and available
+usage are retained locally; existing output is never overwritten.
+For the diagnosis replay the preservation manifest contains original attempt and
+agreement file paths and hashes captured before work. The qualifier rechecks all
+of them before and after the live controls. It does not reconcile those attempts.
+
+If a mechanical scoring correction is needed, audit a completed record without
+changing any worker report or rerunning a model:
+
+```sh
+python3 -B checks/s2_live.py /path/to/qualification/report.json --audit
+```
+
+The audit revalidates original positive acceptance, child bindings, every native
+control report and its frozen source/candidate, all nine readiness records, fresh
+thread identities, and preserved original files. It writes a separate record;
+incomplete or changed observations cannot qualify. This is qualification scoring,
+not product recovery, resume, or imported P2P acceptance.
+
+The first sizing replay reached READY and PASS, then returned NOT VERIFIED:
+material planning/slicing and installed-skill behavior had not been observed.
+That result and the earlier environment failures remain in the trial ledger.
+The diagnosis positive and full negative-control gate passed; the separate audit
+revalidated every native receipt and frozen candidate. See
+[actual agreements, failed trials and costs](S2-LIVE-EVIDENCE.md).
+
+**S2's narrow live gate is OBSERVED.** This qualifies the demonstrated input
+shapes, not arbitrary P2P prerequisites or successful child/combined-parent
+delivery. S3 may now start. Recovery, resume and publication remain deferred.

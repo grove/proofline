@@ -186,6 +186,9 @@ class LiveTransportTests(unittest.TestCase):
         for path in ("source.md", "accepted-input.md", "product/username.py", "product/.git/HEAD"):
             (inputs / path).write_text("original")
         def tamper(*args):
+            self.assertIn("1.0 seconds", args[1])
+            self.assertIn("final structured handoff", args[1])
+            self.assertEqual(args[-1], 1)
             (inputs / "source.md").write_text("narrowed promise")
             return {"exit_code": 0, "timed_out": False}
         with patch.object(host, "write_diff"), patch.object(live, "launch", side_effect=tamper):
@@ -203,9 +206,12 @@ class LiveTransportTests(unittest.TestCase):
         protected = private / "receipt"
         protected.write_text("original")
         script = inputs / "probe.py"
+        alias = inputs / "alias.py"
+        alias.symlink_to("probe.py")
         script.write_text("from pathlib import Path\nimport sys,subprocess\n"
                           "subprocess.run([sys.executable, '-I', '-B', '-c', 'print(123)'], check=True)\n"
-                          f"for path in ({str(protected)!r}, __file__):\n"
+                          f"assert Path({str(alias)!r}).read_bytes() == Path(__file__).read_bytes()\n"
+                          f"for path in ({str(protected)!r}, __file__, {str(alias)!r}):\n"
                           " try: Path(path).write_text('tampered')\n"
                           " except PermissionError: pass\n"
                           " else: raise AssertionError('write permitted')\n")
@@ -223,6 +229,35 @@ class LiveTransportTests(unittest.TestCase):
                      cwd=scratch, timeout=10)
         self.assertEqual(result.returncode, 0, result.stderr)
         self.assertEqual(json.loads(result.stdout), "name-\udcff")
+
+    @unittest.skipUnless(sys.platform == "darwin" and os.environ.get("PROOFLINE_NATIVE_TESTS") == "1",
+                         "opt-in macOS native Git helper test")
+    def test_local_git_fetch_works_with_the_actual_worker_tool_environment(self):
+        import tomllib
+        inputs, private, scratch = (self.work / name for name in ("inputs", "private", "scratch"))
+        for path in (inputs, private, scratch):
+            path.mkdir()
+        argv = live.command(host.find_codex(None), inputs.resolve(), scratch.resolve(), private.resolve(), {})
+        setting = next(item.split("=", 1)[1] for item in argv if item.startswith("shell_environment_policy.set="))
+        environment = tomllib.loads("value=" + setting)["value"]
+        script = inputs / "git-probe.py"
+        script.write_text("import os,subprocess\nfrom pathlib import Path\n" +
+            "env = os.environ | " + repr(environment) + "\n" +
+            "def run(*args): subprocess.run(args, env=env, check=True, capture_output=True)\n" +
+            "run('git','init','--quiet','source')\nPath('source/file').write_text('exact bytes')\n" +
+            "run('git','-C','source','add','--all')\n" +
+            "run('git','-C','source','-c','user.name=Probe','-c','user.email=probe@localhost','commit','--quiet','-m','Probe')\n" +
+            "run('git','init','--bare','--quiet','destination.git')\n" +
+            "run('git','-C','destination.git','fetch','--quiet','--depth=1',str(Path('source').resolve()),'HEAD')\n" +
+            "data=subprocess.check_output(['git','--git-dir=destination.git','show','FETCH_HEAD:file'],env=env)\n" +
+            "assert data == b'exact bytes'\nprint('local fetch preserved exact bytes')\n")
+        before = host.snapshot(inputs)
+        receipts = []
+        run = s0_live.oracle_runner(host.find_codex(None), inputs.resolve(), private.resolve(), receipts)
+        result = run([str(Path(sys.executable).resolve()), "-I", "-B", str(script)], cwd=scratch, timeout=15)
+        self.assertEqual(result.returncode, 0, result.stderr)
+        self.assertEqual(result.stdout, "local fetch preserved exact bytes\n")
+        self.assertEqual(host.snapshot(inputs), before)
 
     def test_unavailable_host_never_dispatches(self):
         with patch.object(s0_live.platform, "system", return_value="Unsupported"), patch.object(live, "launch") as launch:

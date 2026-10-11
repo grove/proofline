@@ -1,6 +1,6 @@
 ---
 name: proofline
-description: Implement a repository request with fresh independent review and behavioral proof on one frozen local candidate. Use when the user asks for Proofline delivery or invokes /proofline. Direct delivery is qualified; the narrow contract adapter is experimental. Publication is not supported.
+description: Implement a repository request with fresh independent review and behavioral proof on one frozen local candidate. Use when the user asks for Proofline delivery or invokes /proofline. Direct delivery and narrow approved-contract inputs are qualified. Publication is not supported.
 ---
 
 Use the installed repository's [proofline.py](proofline.py) entry point. Python
@@ -20,8 +20,10 @@ Inspect the task-relevant repository README/conventions and entry points. Supply
 a short inline execution map with known commands, public interfaces, fixtures,
 and environment gaps. Use exact interpreter paths where needed. A clean Git
 source repository is required; preserve unrelated local work rather than
-resetting or discarding it. This initial boundary supports regular tracked files;
-symlinks, submodules, ignored local dependencies, and source-mutating test
+resetting or discarding it. This boundary supports regular tracked files and
+relative aliases to regular files inside the product, preserving exact Git modes
+and link targets. External, directory, missing, cyclic and Git-metadata aliases,
+submodules, ignored local dependencies, and source-mutating test
 harnesses need a separately qualified observation path.
 
 Run one delivery episode:
@@ -50,18 +52,27 @@ or an unsupported host is an explicit capability/input gap,
 not authority to approximate that target or silently convert it to local success.
 
 For a contract, first use `proofline.py inspect-contract <contract.md>` and read
-the exact contract and linked original source. This experimental adapter supports
-the current standalone P2P eight-column Markdown matrix with no unresolved gaps,
-open questions, parent or prerequisites. It does not require P2P installed.
+the exact contract and complete linked original source chain. The narrow adapter
+supports the current P2P eight-column Markdown matrix, transitive local sources,
+and exact parent/contribution snapshots with qualified criterion mapping. There
+must be no unresolved gaps, open decisions, or unavailable prerequisites. Runtime
+prerequisite imports remain unsupported. It does not require P2P installed.
 Inspection and an `approved` label grant no authority. Do not rewrite, renumber,
 replan or convert an unsupported contract into a direct brief to bypass its gate.
 
 Only if the user has explicitly adopted these exact displayed contract/source
-bytes, substitute `--contract <path> --adopt-contract-sha256 <hash>
+bytes, or an actual P2P approval reference's authority and binding have been
+inspected, substitute `--contract <path> --adopt-contract-sha256 <hash>
 --adopt-source-sha256 <hash> --approval-reference '<actual approval reference>'`
 for `--source` and `--brief`. Never supply these flags based on a generic task
 mandate, an agent-authored fixture, or an inferred approval. Saved P2P approval
 formats are not automatically trusted; obtain exact adoption if their authority
-cannot be established. Preserve the actual reference in the record. The adapter's
-full S2 live gate remains pending an actual approved contract; do not claim that
-parser tests establish S2 or parent completion.
+cannot be established. For an inspected existing P2P reference also supply
+`--approval-file <original reference> --approval-sha256 <inspected hash>`.
+Preserve the actual reference in the record. Read
+[the support boundary and live gate](docs/S2-CONTRACT-INPUT.md).
+Child acceptance never establishes parent completion. Combined-parent acceptance
+needs the complete original promise on one assembled candidate. A stale parent or
+plan and a closed prerequisite ticket cannot establish readiness. The narrow S2
+live gate passed; see its actual agreements, failures and limits in
+[S2 evidence](docs/S2-LIVE-EVIDENCE.md). Runtime prerequisite imports remain unsupported.
