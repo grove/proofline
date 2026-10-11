@@ -41,14 +41,14 @@ VALID_CASES = (
 POSIX_VALID_CASES = (("posix_undecodable_argument", "nonblank-\udcff"),)
 
 
-def _probe(script, name, criterion, arguments, kind, expected=None):
+def _probe(script, name, criterion, arguments, kind, expected=None, runner=subprocess.run):
     observation = {
         "name": name, "criterion": criterion, "arguments": arguments,
         "status": "NOT_EXECUTED", "failures": [],
     }
     try:
         with tempfile.TemporaryDirectory(prefix="proofline-s0-oracle-") as scratch:
-            result = subprocess.run(
+            result = runner(
                 [sys.executable, "-I", "-B", str(script), *arguments],
                 cwd=scratch, capture_output=True, text=True, encoding="utf-8",
                 timeout=5, check=False,
@@ -95,11 +95,12 @@ def _probe(script, name, criterion, arguments, kind, expected=None):
     return observation
 
 
-def inspect_candidate(path: Path) -> dict:
+def inspect_candidate(path: Path, runner=subprocess.run) -> dict:
     """Observe the public CLI against fixed expectations, without model calls.
 
     This function executes product code. The caller owns any sandbox, input
     protection, frozen Git identity, and independent host invocation receipts.
+    Supply a sandboxed subprocess-compatible runner for model-generated code.
     """
     candidate = Path(path).resolve()
     script = candidate / "username.py"
@@ -119,18 +120,18 @@ def inspect_candidate(path: Path) -> dict:
 
     observations = report["observations"]
     for name, value in BLANK_CASES:
-        observations.append(_probe(script, name, "U1", ["--", value], "blank"))
+        observations.append(_probe(script, name, "U1", ["--", value], "blank", runner=runner))
     for name, value in VALID_CASES:
-        observations.append(_probe(script, name, "U2", ["--", value], "valid", value))
+        observations.append(_probe(script, name, "U2", ["--", value], "valid", value, runner))
     if os.name == "posix":
         for name, value in POSIX_VALID_CASES:
-            observations.append(_probe(script, name, "U2", ["--", value], "valid", value))
+            observations.append(_probe(script, name, "U2", ["--", value], "valid", value, runner))
     observations.append(_probe(script, "ordinary_without_terminator", "U3",
-                               ["alice"], "valid", "alice"))
+                               ["alice"], "valid", "alice", runner))
     for flag in ("-h", "--help"):
-        observations.append(_probe(script, "help_" + flag, "U3", [flag], "help"))
-    observations.append(_probe(script, "missing_argument", "U3", [], "usage"))
-    observations.append(_probe(script, "extra_argument", "U3", ["alice", "bob"], "usage"))
+        observations.append(_probe(script, "help_" + flag, "U3", [flag], "help", runner=runner))
+    observations.append(_probe(script, "missing_argument", "U3", [], "usage", runner=runner))
+    observations.append(_probe(script, "extra_argument", "U3", ["alice", "bob"], "usage", runner=runner))
     report["matches_expected"] = all(item["status"] == "MATCH" for item in observations)
     return report
 

@@ -81,7 +81,9 @@ execution was unavailable. The defective command above deliberately exits `1`.
 No exit status means live review PASS, proof PROVEN, or host qualification.
 
 For the host probe, load `oracle.py` privately and call
-`inspect_candidate(path: pathlib.Path) -> dict`. The JSON-serializable result
+`inspect_candidate(path: pathlib.Path, runner=subprocess.run) -> dict`. Pass a
+sandboxed subprocess-compatible runner for model-generated code; the default is
+only for the trusted fixed controls. The JSON-serializable result
 contains `scope: "fixture_behavior_only"`, `matches_expected`, raw public-CLI
 observations, and explicit limitations. The caller owns the actual sandbox,
 candidate/input protection, and host invocation evidence.

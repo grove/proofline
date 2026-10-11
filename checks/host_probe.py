@@ -8,6 +8,7 @@ It does not launch models, change authentication, or accept supplied verdicts.
 from __future__ import annotations
 
 import argparse
+from contextlib import contextmanager
 from datetime import datetime, timezone
 import hashlib
 import importlib.util
@@ -122,6 +123,16 @@ def git(product: Path, *args: str) -> str:
     return receipt["stdout"].strip()
 
 
+def write_diff(product: Path, base: str, destination: Path):
+    # Capture complete bytes without diagnostic truncation/redaction or repository diff drivers.
+    with destination.open("wb") as output:
+        subprocess.run(["git", "--no-pager", "diff", "--no-ext-diff", "--no-textconv",
+                        "--no-color", base, "HEAD", "--"], cwd=product, stdout=output,
+                       stderr=subprocess.PIPE, check=True, timeout=30,
+                       env={"PATH": os.defpath, "GIT_CONFIG_NOSYSTEM": "1",
+                            "GIT_CONFIG_GLOBAL": os.devnull, "GIT_OPTIONAL_LOCKS": "0"})
+
+
 def freeze_fixture(destination: Path, variant: str) -> dict:
     """Create a disposable Git base/candidate; never edit the user's repository."""
     destination.mkdir()
@@ -193,18 +204,31 @@ print(json.dumps(result))
 '''
 
 
+def permission_profile(inputs: Path, scratch: Path, private: Path) -> dict:
+    profile = {"filesystem": {":minimal": "read", str(Path(sys.base_prefix).resolve()): "read",
+             sys.base_prefix: "read", sys.executable: "read",
+             str(Path(sys.executable).resolve()): "read",
+             str(inputs): "read", str(scratch): "write", str(private): "deny"},
+            "network": {"enabled": False}}
+    # Homebrew framework launchers and Codex helpers traverse symlinks outside their resolved binary.
+    if platform.system() == "Darwin" and Path("/opt/homebrew").is_dir():
+        profile["filesystem"]["/opt/homebrew"] = "read"
+    return profile
+
+
+def toml(value) -> str:
+    if isinstance(value, dict):
+        return "{" + ",".join(json.dumps(k) + "=" + toml(v) for k, v in value.items()) + "}"
+    return json.dumps(value)
+
+
 def sandbox_argv(codex: str, inputs: Path, scratch: Path, private: Path) -> list[str]:
-    # Native named profiles, documented at learn.chatgpt.com/docs/config-file/config-reference.
     # No user config file is rewritten and managed restrictions remain in force.
     name = "proofline_s0_" + uuid.uuid4().hex
-    paths = {":minimal": "read", str(Path(sys.base_prefix).resolve()): "read",
-             str(inputs): "read", str(scratch): "write", str(private): "deny"}
-    filesystem = ", ".join(json.dumps(key) + " = " + json.dumps(value)
-                           for key, value in paths.items())
-    profile = "{filesystem={" + filesystem + "}, network={enabled=false}}"
-    return [codex, "--no-daemon", "-c", "permissions." + name + "=" + profile,
+    return [codex, "--no-daemon", "-c", "permissions." + name + "=" +
+            toml(permission_profile(inputs, scratch, private)),
             "sandbox", "--permission-profile", name, "--include-managed-config",
-            "--cd", str(scratch), "--", sys.executable, "-I", "-B",
+            "--cd", str(scratch), "--", str(Path(sys.executable).resolve()), "-I", "-B",
             str(inputs / "canary.py"), str(inputs / "canary.json")]
 
 
@@ -229,7 +253,8 @@ def assess_canary(receipt: dict, spec: dict, unchanged: bool) -> dict:
             "scope": "native process canaries only; no model or external-tool qualification"}
 
 
-def probe_boundary(codex: str, output: Path, inputs: Path, timeout: float) -> dict:
+@contextmanager
+def boundary_fixture(output: Path, inputs: Path, target: Path | None = None):
     scratch, private = output / "scratch", output / "private"
     scratch.mkdir()
     private.mkdir()
@@ -238,13 +263,14 @@ def probe_boundary(codex: str, output: Path, inputs: Path, timeout: float) -> di
     spec = {"nonce": uuid.uuid4().hex,
             "writes": {"source": str(inputs / "source.md"),
                        "input": str(inputs / "accepted-input.md"),
-                       "candidate": str(inputs / "product" / "username.py"),
+                       "candidate": str(target or inputs / "product" / "username.py"),
                        "git_head": str(inputs / "product" / ".git" / "HEAD"),
                        "receipt": str(private / "receipt-canary")},
             "reads": {name: str(private / name) for name in
                       ("receipt-canary", "oracle-canary", "other-role-canary")},
-            "mode_target": str(inputs / "product" / "username.py"),
+            "mode_target": str(target or inputs / "product" / "username.py"),
             "scratch_file": str(scratch / "output.txt"), "port": None}
+    spec["reads"]["actual_oracle"] = str(FIXTURES / "oracle.py")
     listener = None
     network_control = "unavailable"
     try:
@@ -261,10 +287,16 @@ def probe_boundary(codex: str, output: Path, inputs: Path, timeout: float) -> di
     before = snapshot(inputs)
     private_before = snapshot(private)
     try:
-        receipt = run_command(sandbox_argv(codex, inputs, scratch, private), scratch, timeout)
+        yield spec, before, private_before, network_control
     finally:
         if listener is not None:
             listener.close()
+
+
+def probe_boundary(codex: str, output: Path, inputs: Path, timeout: float, target: Path | None = None) -> dict:
+    scratch, private = output / "scratch", output / "private"
+    with boundary_fixture(output, inputs, target=target) as (spec, before, private_before, network_control):
+        receipt = run_command(sandbox_argv(codex, inputs, scratch, private), scratch, timeout)
     unchanged = before == snapshot(inputs) and private_before == snapshot(private)
     assessment = assess_canary(receipt, spec, unchanged)
     return {"receipt": receipt, "assessment": assessment, "network_control": network_control}

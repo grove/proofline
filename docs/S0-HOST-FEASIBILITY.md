@@ -1,5 +1,8 @@
 # S0 host feasibility — current executor
 
+Historical result from PR #1's Linux executor. For the subsequent runnable
+Codex experiment and macOS observations, see [S0-CODEX-RUNNER.md](S0-CODEX-RUNNER.md).
+
 **Decision: NO-GO for live S0 on this executor; host NOT QUALIFIED.**
 
 This is an initial feasibility finding, not a completed Proofline implementation.
