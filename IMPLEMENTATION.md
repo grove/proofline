@@ -1,17 +1,22 @@
 # Proofline — Implementation plan
 
-**Status:** Execution roadmap v1 · 11 October 2026 (S0 tooling implemented; live host gate not passed)
+**Status:** Execution roadmap v1 · 11 October 2026 (S0 and S1 demonstrated on macOS; S2 adapter experimental)
 
 **Design authority:** [DESIGN.md v0.5](./DESIGN.md) — the product contract and safety boundaries live there.  
 **Objective:** Make a capable coding agent deliver the *complete authorized promise*, with independently credible evidence, minimal human coordination, and substantially less wasted work than a heavy controller.
 
 > **Build a thin, trustworthy delivery boundary around an autonomous coding agent. Do not build another coding-agent workflow engine.**
 
-**Current execution:** The S0 fixture controls, host diagnostic and deterministic
-failure-path tests are implemented. The current executor cannot initialize the
-native Codex sandbox, so S0 remains **NOT VERIFIED** and S1–S6 have not started.
-See the [observed feasibility result](docs/S0-HOST-FEASIBILITY.md) and
-[runnable commands](README.md#run-the-checks). This status does not change any gate below.
+**Current execution:** S0's native boundary and seven fresh Codex invocations
+passed on the recorded macOS host: correct and alternative candidates passed,
+and both verifiers rejected the seeded whitespace defect. See the
+[live evidence and failed experiments](docs/S0-CODEX-RUNNER.md).
+S1 also passed two real direct-delivery tasks and live omission/regression
+controls; see [S1 evidence](docs/S1-DIRECT-DELIVERY.md). S2 has a narrow
+[standalone adapter](docs/S2-CONTRACT-INPUT.md), but its actual approved-contract
+live gate remains pending. S3–S6 have not started; Milestone A is not complete. The original
+[Linux NO-GO](docs/S0-HOST-FEASIBILITY.md) remains historical evidence.
+This status does not change any gate below.
 
 This plan orders engineering work; it is **not** an alternative acceptance agreement and cannot revise the user's promise. The original source and any separately approved acceptance contract remain binding. Where this roadmap and DESIGN.md differ, **DESIGN.md wins** until the product owner authorizes a design change.
 

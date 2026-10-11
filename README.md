@@ -4,96 +4,127 @@ Let capable coding agents solve problems. Preserve the user's complete promise,
 then independently review and challenge the exact result.
 
 Proofline is an experiment in reducing delivery overhead while retaining
-credible acceptance. The [design](DESIGN.md) defines the product;
-the [implementation roadmap](IMPLEMENTATION.md) orders the evidence gates.
+credible acceptance. [DESIGN.md](DESIGN.md) defines the product;
+[IMPLEMENTATION.md](IMPLEMENTATION.md) orders its evidence gates.
 
-## Current implementation
+## What works now
 
-**S0 host-feasibility workbench; not yet a delivery tool.** The repository now
-contains executable fixtures, an independent fixture oracle, a native host
-diagnostic, and deterministic failure-path tests. The current executor cannot
-initialize Codex's sandbox. See the [observed host-feasibility result](docs/S0-HOST-FEASIBILITY.md).
+**Runnable direct local delivery through Codex.** One autonomous implementer
+produces an isolated candidate; fresh independent review and behavioral proof
+check the same frozen source, brief, comparison base, and candidate. Review runs
+first and skips proof on a material blocker. The original repository is preserved.
 
-| Capability | Status |
+| Slice | Status |
 | --- | --- |
-| Frozen source/input and disposable Git base/candidate fixtures | Implemented |
-| Known-good, alternative-good and seeded-defect oracle controls | Implemented; ordinary tests deliberately miss the seeded defect |
-| Codex version/authentication and native permission diagnostics | Implemented; records observed errors and unknowns |
-| Fresh model review/proof with trusted, protected invocation receipts | Not yet qualified or implemented as a live runner |
-| S1 direct delivery, S2 accepted contracts, comparison, correction and publication | Not started; depend on a demonstrated S0 pass |
+| S0 — Real host boundary | Demonstrated on macOS with seven fresh Codex invocations; correct and alternative implementations pass, seeded defect fails |
+| S1 — Direct local delivery | Demonstrated on two small CLI tasks; source omissions and regressions rejected |
+| S2 — Approved contracts | Experimental standalone Markdown adapter and input checks; actual approved-contract live qualification pending |
+| S3–S6 — Comparison, recovery, publication, pilot | Not started; preceding evidence gates remain binding |
 
-No command in this increment implements a user request or declares a product
-ACCEPTED, PASS or PROVEN. Diagnostic process receipts are **not** model invocation
-receipts. A successful preflight would still need the real S0 judgment experiment.
+Read the [S0 results and failed experiments](docs/S0-CODEX-RUNNER.md),
+[S1 evidence](docs/S1-DIRECT-DELIVERY.md), and
+[contract adapter's exact support boundary](docs/S2-CONTRACT-INPUT.md).
+These results establish neither broad correctness nor a performance advantage.
 
-## Run the checks
+## Deliver a direct request
 
-Requirements: Python **3.11 or later** and Git. There are no third-party Python
-dependencies, and the deterministic tests do not need Codex, P2P, credentials or
-network access.
+The qualified runtime is **macOS, Codex CLI 0.162.1, Python 3.11+, Git**, with
+existing Codex authentication. Live observations used Apple Silicon, Python
+3.14.8, and the user's configured model and reasoning effort. Other hosts/CLI
+versions need S0 qualification first. There are no third-party Python dependencies.
+The macOS system Python may be too old; select a supported interpreter explicitly.
+
+Use a clean Git repository with regular tracked files. Save the original request
+verbatim as `source.md` and a small source-grounded `brief.md` outside that
+repository's tracked changes. A brief indexes every material promise with stable
+IDs; it cannot narrow the source. For example:
+
+```markdown
+| ID | Required observable outcome |
+| --- | --- |
+| D1 | --version prints greet 1.0 and exits successfully without requiring a name. |
+| D2 | Existing positional-name greetings, help, and argument errors are preserved. |
+| D3 | No new dependencies or external effects. |
+```
+
+```sh
+python3 -B /absolute/path/to/proofline/proofline.py deliver \
+  --repo /absolute/path/to/product \
+  --source /absolute/path/to/source.md \
+  --brief /absolute/path/to/brief.md \
+  --map 'Relevant commands, public interfaces, fixtures and environment gaps' \
+  --seconds 900 --stage-seconds 240 --verification-reserve 120
+
+python3 -B /absolute/path/to/proofline/proofline.py status /path/to/run/report.json
+```
+
+This consumes real model usage. A new ignored `.proofline/delivery/<id>/` directory
+contains the candidate, protected role transcripts, and one `report.json` with
+identities, observations, dispatches, elapsed time, and available usage. `--output`
+selects a new directory; existing runs are never overwritten. Successful `status`
+revalidates candidate identity and native receipt evidence before showing the
+candidate path and commit. Exit `0` means local acceptance; `2` means a gap,
+rejection, exhausted budget, stale evidence, or invalid input.
+
+**LOCAL ACCEPTED means not published or merged.** Inspect the retained candidate
+and diff; the tool does not copy changes into your original checkout. There is
+no correction, resume, publication, or receipt-import command yet. A timeout or
+interruption preserves evidence and any active dispatch. Inspect that record;
+do not silently start another episode to reset its budget.
+
+Models run under native permissions with read-only binding inputs and verifier
+candidates, separate writable scratch, and protected host receipts. Network,
+ambient shell credentials, MCP, plugins, web, delegation, and browser/computer
+surfaces are unavailable. The native sandbox must initialize on the host; a
+nested sandbox failure is an explicit gap, never a reason to disable isolation.
+
+The initial boundary does not support symlinks, submodules, ignored local
+dependencies, or tests that need to modify their source tree. Such tasks need a
+qualified build/observation path. Supply exact interpreter/tool paths in the map
+when macOS developer-tool discovery is unavailable inside the sandbox.
+
+## Use as a Codex skill
+
+[SKILL.md](SKILL.md) is the single `/proofline` entry point. Keep it with this
+repository's scripts. To install a personal skill, link the whole checkout into
+your Codex skills directory (choose an unused destination):
+
+```sh
+mkdir -p ~/.codex/skills
+ln -s /absolute/path/to/proofline ~/.codex/skills/proofline
+```
+
+The skill prepares the source and brief in the initiating context, invokes the
+runner, and checks the retained outcome. No P2P controller or planning agent is
+required. Installation is optional; the CLI works directly.
+
+## Check and qualify
+
+Offline checks need only Python 3.11+ and Git:
 
 ```sh
 python3 -B -m unittest discover -s tests -v
 python3 -B checks/fixtures/s0/test_oracle.py
 ```
 
-The oracle exercises each fixture's actual command-line interface. The baseline
-and seeded defect must fail its behavioral expectations; both correct variants
-must match. The fixtures' existing tests are intentionally green on all variants.
-This establishes evaluator controls, not model judgment quality or full product
-acceptance. [Fixture details and limitations](checks/fixtures/s0/README.md).
-
-## Diagnose a prospective host
-
-Use an existing installed Codex CLI:
+Native qualification on an authenticated authorized host:
 
 ```sh
+# Diagnostic only: zero model calls, always leaves S0 unqualified (exit 2).
 python3 -B checks/host_probe.py
-# Or select an explicit executable:
-python3 -B checks/host_probe.py --codex /absolute/path/to/codex
+# Actual S0 qualification: seven fresh model calls.
+python3 -B checks/s0_live.py --seconds 1500 --stage-seconds 240
+# S1 negative judgment controls: four fresh model calls.
+python3 -B checks/s1_judgments.py
+# Native subprocess/permission regressions, no model calls.
+PROOFLINE_NATIVE_TESTS=1 python3 -B -m unittest discover -s tests -v
 ```
 
-The command creates a new ignored `.proofline/s0/<run>/` directory containing
-frozen fixture repositories and one `report.json`. It preserves existing runs.
-Use `--output <new-directory>` to select a different location and `--timeout 15`
-to bound each native diagnostic process.
-
-It checks executable fixture behavior, records source/input hashes and Git
-identities, observes CLI version and authentication status, and attempts native
-sandbox canaries against **disposable** source, candidate, Git metadata and
-receipt files. It checks separately writable scratch, denied reads of private
-canaries, file-mode protection and network denial against a local loopback
-control. Source/receipt changes invalidate the mechanical observation. A
-connection refusal or timeout is not treated as proof of network denial.
-
-The diagnostic invokes no models and changes no authentication or persistent
-Codex configuration. It uses a temporary named permission profile passed on the
-command line and honors managed restrictions. It does not probe arbitrary remote
-services. Its native-process checks cannot establish the tool, MCP, or context
-boundaries of a future model invocation.
-
-Exit codes:
-
-| Code | Meaning |
-| --- | --- |
-| `2` | S0 remains **NOT VERIFIED / NO-GO**. This is the expected diagnostic result, even if mechanical canaries succeed. Argument errors also use argparse's code `2`. |
-| `1` | A new run directory/record could not be created. |
-
-The report retains zero model dispatches, an empty model-receipt list, and
-unknown model usage. It has no option to import a verdict or convert offline
-results into live qualification. Raw records remain local and are ignored by Git.
-
-## Next implementation gate
-
-Finish **S0** on a working authenticated Codex host. Demonstrate fresh independent
-reviewer/prover contexts, protected source/input/base/candidate and receipts,
-usable build/test scratch, denied unauthorized effects, and correct-versus-defect
-judgments with real invocation evidence. Qualify a minimal host-native launch
-configuration before building the S1 delivery path.
-
-The current failure is specific to this executor's unavailable `/proc` paths;
-it is not a finding that Linux cannot work. The design's proposed macOS host is
-also a candidate, not an already qualified implementation.
+Canaries use disposable files and a controlled local listener. Timeout or refused
+connections do not count as network denial. Fixed answer keys stay outside worker
+contexts. Raw evidence remains local and ignored by Git. The original PR's
+[Linux NO-GO](docs/S0-HOST-FEASIBILITY.md) is retained; it describes that executor,
+not all Linux hosts.
 
 ## License
 

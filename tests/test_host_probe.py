@@ -38,7 +38,7 @@ MODULE_SPEC.loader.exec_module(probe)
 class DisposableCase(unittest.TestCase):
     def setUp(self):
         temporary = tempfile.TemporaryDirectory(
-            prefix="proofline-host-test-", dir=ROOT.parent
+            prefix="proofline-host-test-"
         )
         self.addCleanup(temporary.cleanup)
         self.work = Path(temporary.name)
@@ -516,7 +516,9 @@ class DiagnosticTests(DisposableCase):
         self.assertEqual(report["authentication"], "authenticated")
         self.assertTrue(probe.succeeded(report["probes"]["login"]))
         self.assertTrue(probe.succeeded(report["boundary"]["receipt"]))
-        self.assertEqual(report["boundary"]["assessment"]["status"], "OBSERVED")
+        expected = ("OBSERVED" if report["boundary"]["network_control"] != "unavailable"
+                    else "NOT VERIFIED")
+        self.assertEqual(report["boundary"]["assessment"]["status"], expected)
         self.assert_no_qualification(report)
         self.assertEqual(json.loads((output / "report.json").read_text()), report)
 
