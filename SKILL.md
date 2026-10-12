@@ -1,6 +1,6 @@
 ---
 name: proofline
-description: Implement a repository request with fresh independent review and behavioral proof on one frozen local candidate. Use when the user asks for Proofline delivery or invokes /proofline. Direct delivery, bounded recovery/resume and narrow approved-contract inputs are supported. Optional scoped GitHub publication is implemented; its real remote gate is pending.
+description: Implement a repository request with fresh independent review and behavioral proof on one frozen local candidate. Use when the user asks for Proofline delivery or invokes /proofline. Direct delivery, bounded recovery/resume and narrow approved-contract inputs are supported. Optional scoped GitHub PR/merge delivery is qualified within the recorded S5 host and disposable-repository boundary.
 ---
 
 Use the installed repository's [proofline.py](proofline.py) entry point. Python
@@ -82,9 +82,11 @@ requested target and actual partial outcome. Moved bases, changed heads,
 protection failures and unavailable readback cannot inherit local verdicts.
 Use the same `resume` command to reconcile uncertain effects before continuing;
 it cannot enlarge the original grant or reset the budget. `status` reads current
-remote state without remote mutations. S5's real remote gate is pending explicit
-authorization of a disposable test repository; do not claim end-to-end support
-until [S5 qualification](docs/S5-PUBLICATION.md) is observed.
+remote state without remote mutations. S5's real authorized PR/merge and separate-process
+recovery gate passed. Its live case had no required CI or branch protections;
+protection failures and transformed-merge equivalence have deterministic coverage.
+Honor [S5 qualification and limits](docs/S5-PUBLICATION.md); the narrow fixture is
+not a guarantee for every repository or remote policy.
 
 For a contract, first use `proofline.py inspect-contract <contract.md>` and read
 the exact contract and complete linked original source chain. The narrow adapter

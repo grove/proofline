@@ -22,7 +22,7 @@ implementer session; evidence gaps get focused independent rechecks. The origina
 | S2 — Approved contracts | Real approved delivery and all input/source/regression/parent controls qualified; see the retained failed trials and narrow support boundary |
 | S3 — Four-way comparison | Fixed 240-second repeat complete: ordinary/agent + review/Proofline delivered 4/4, P2P 2/4; all four rejected omitted source; earlier failures and costs retained |
 | S4 — Bounded correction and resume | Native repair, unchanged evidence recovery and separate-process resume demonstrated; budget/stopping controls tested; see [S4 evidence](docs/S4-RECOVERY.md) |
-| S5 — Authorized publication | Implemented with disposable Git/fake GitHub controls; real authorized remote qualification pending; see [S5 boundary](docs/S5-PUBLICATION.md) |
+| S5 — Authorized publication | Real PR/merge, separate-process recovery and exact-tree remote readback demonstrated in the authorized disposable repo; see [S5 evidence and limits](docs/S5-PUBLICATION.md) |
 | S6 — Full pilot | Deferred; preceding evidence gates remain binding |
 
 Read the [S0 results and failed experiments](docs/S0-CODEX-RUNNER.md),
@@ -117,10 +117,13 @@ when macOS developer-tool discovery is unavailable inside the sandbox.
 
 ## Authorized PR and merge targets
 
-S5's implementation and fault-injection controls are available; its real remote
-acceptance gate is pending explicit test authorization. GitHub.com, installed
-`gh`, and existing host Git/SSH and GitHub authentication are required for remote
-targets. Local delivery needs neither GitHub nor remote credentials.
+S5's real authorized GitHub gate passed on a disposable repository: independent
+local acceptance, PR publication, interruption/resume and verified merge. The live
+case used an unprotected base with no CI; required-check/protection failures and
+squash/rebase equivalence have deterministic coverage. See [S5 evidence and
+limits](docs/S5-PUBLICATION.md). GitHub.com, installed `gh`, and existing host
+Git/SSH and GitHub authentication are required for remote targets. Local delivery
+needs neither GitHub nor remote credentials.
 
 Only when the initial user request explicitly authorizes these exact effects,
 add the following to `deliver` (direct and approved-contract paths both work):
