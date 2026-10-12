@@ -23,6 +23,7 @@ import codex_live as live
 import host_probe as host
 import contract_input
 import publication
+import intentline_input
 from s0_live import positive_seconds, write_record
 
 
@@ -125,10 +126,18 @@ def identities(inputs, base):
         result["execution_map_sha256"] = host.sha256((inputs / "execution-map.md").read_bytes())
     if (inputs / "contract-context.json").exists():
         result["context_sha256"] = host.sha256((inputs / "contract-context.json").read_bytes())
+    if (inputs / "intentline" / "native-manifest.json").exists():
+        native = intentline_input.parse(intentline_input.read_regular(inputs / "intentline" / "native-manifest.json"))
+        result.update(native_bundle_sha256=host.sha256(intentline_input.read_regular(inputs / "intentline" / "native-manifest.json")),
+                      native_contract_sha256=native["contract_sha256"], native_source_chain_sha256=native["source_chain_sha256"],
+                      execution_map_sha256=host.sha256((inputs / "execution-map.txt").read_bytes()),
+                      permission_map_sha256=host.sha256((inputs / "permissions.json").read_bytes()))
     return result
 
 
 def worker_context(metadata):
+    if metadata.get("format") == "intentline-native":
+        return intentline_input.worker_metadata(metadata)
     # Approval records may contain old peer verdicts; authority is the caller-inspected binding.
     return {**metadata, "approval": {k: v for k, v in metadata["approval"].items() if k != "content"}}
 
@@ -141,6 +150,7 @@ def prompt(role, inputs, identity, canary=None, *, ids, execution_map):
     }[role]
     return f"""You are Proofline's {role}{' in a fresh independent context' if role != 'implementer' else ''}. {duty}
 Original binding source: {inputs / 'source.md'}
+{('Full native contract, chronological original/amendment streams and historical continuity: ' + str(inputs / 'intentline') + '. Read every relevant archived promise; the indexed display is not a verbatim single request. Adoption reference payload remains host-protected.') if (inputs / 'intentline').exists() else ''}
 Accepted input (direct brief or unchanged adopted contract; never permission to omit original promises): {inputs / 'accepted-input.md'}
 {('Binding approval, parent/contribution snapshots and scope: ' + str(inputs / 'contract-context.json')) if (inputs / 'contract-context.json').exists() else ''}
 Product: {inputs / 'product'}
@@ -294,6 +304,8 @@ def run_episode(record, output, codex, save):
     began, consumed = time.monotonic(), elapsed(record)
     while record.get("next_role"):
         role = record["next_role"]
+        if record.get("accepted_contract", {}).get("format") == "intentline-native":
+            confirm_contract(record)
         if binding_inputs(inputs) != record["binding_inputs"]:
             raise InputGap("Binding source or accepted inputs changed; obtain an explicit source/authority decision")
         if role != "implementer" and (host.snapshot(inputs)["sha256"] != record["snapshot"] or
@@ -514,7 +526,7 @@ def resume(path):
 
 def deliver(repo, source, brief, output, seconds=900, stage_seconds=240,
             reserve=120, execution_map="Inspect repository README and relevant entry points; command availability is initially unknown.",
-            contract_request=None, dispatches=12, effect_grant=None):
+            contract_request=None, intentline_request=None, dispatches=12, effect_grant=None):
     output.mkdir(parents=True, exist_ok=False)
     lock = (output / "episode.lock").open("a")
     fcntl.flock(lock, fcntl.LOCK_EX | fcntl.LOCK_NB)
@@ -534,6 +546,8 @@ def deliver(repo, source, brief, output, seconds=900, stage_seconds=240,
         write_record(path, record)
 
     try:
+        if intentline_request is not None and effect_grant is not None:
+            raise InputGap("Experimental native Intentline delivery supports only the local target")
         if effect_grant is not None:
             try:
                 publication.validate_grant(effect_grant)
@@ -543,6 +557,15 @@ def deliver(repo, source, brief, output, seconds=900, stage_seconds=240,
             (output / "effect-grant.json").write_bytes(raw)
             record["effect_grant_sha256"] = host.sha256(raw)
             record["delivery"] = {"grant": effect_grant, "status": "NOT VERIFIED"}
+        if contract_request is not None and intentline_request is not None:
+            raise InputGap("Choose exactly one input adapter; native failure never falls back to direct/P2P")
+        if intentline_request is not None:
+            try:
+                metadata, source, brief = intentline_input.adopted_intentline(**intentline_request)
+                intentline_input.validate_product(metadata, repo, git_bytes)
+            except (OSError, ValueError, KeyError, TypeError) as exc:
+                raise InputGap(str(exc)) from exc
+            record["accepted_contract"] = metadata
         if contract_request is not None:
             try:
                 metadata, source, brief = contract_input.adopted_contract(**contract_request)
@@ -553,7 +576,7 @@ def deliver(repo, source, brief, output, seconds=900, stage_seconds=240,
             raise InputGap("This S1 host boundary requires macOS and Python 3.11+")
         if not source.strip() or not brief.strip():
             raise InputGap("Original source and direct brief must both be present")
-        ids = record["accepted_contract"]["criterion_ids"] if contract_request is not None else criterion_ids(brief)
+        ids = record["accepted_contract"]["criterion_ids"] if record.get("accepted_contract") else criterion_ids(brief)
         codex = host.find_codex(None)
         if not codex:
             raise InputGap("Install/authenticate the supported Codex CLI before delivery")
@@ -571,14 +594,30 @@ def deliver(repo, source, brief, output, seconds=900, stage_seconds=240,
         (inputs / "source.md").write_text(source)
         (inputs / "accepted-input.md").write_text(brief)
         (inputs / "execution-map.md").write_text(execution_map)
-        if contract_request is not None:
+        if record.get("accepted_contract"):
             write_record(inputs / "contract-context.json", worker_context(record["accepted_contract"]))
+        if intentline_request is not None:
+            marker, captured, captured_digest = intentline_input.read_files(intentline_request["path"])
+            if captured_digest != metadata["bundle_sha256"]:
+                raise InputGap("Native input changed before capture")
+            native = inputs / "intentline"
+            native.mkdir()
+            for name, raw in captured.items():
+                (native / name).write_bytes(raw)
+            (native / "native-manifest.json").write_bytes(intentline_input.canonical(marker))
+            (inputs / "execution-map.txt").write_text(execution_map)
+            write_record(inputs / "permissions.json", {"network": False, "publication": False, "merge": False,
+                                                        "candidate_scope": "standalone", "model_dispatch_limit": dispatches})
         source_commit, base = capture_base(repo, inputs / "product")
         record["base_commit"] = base
         record["criterion_ids"] = ids
         record["binding_inputs"] = binding_inputs(inputs)
+        if intentline_request is not None:
+            intentline_input.validate_product(metadata, inputs / "product", git_bytes)
         record["source_repository"] = {"path": str(repo), "commit": source_commit}
         record["candidate_path"] = str(inputs / "product")
+        if intentline_request is not None:
+            confirm_contract(record)
         target = next((p for p in (inputs / "product").rglob("*")
                        if p.is_file() and ".git" not in p.relative_to(inputs / "product").parts), None)
         if target is None:
@@ -615,6 +654,25 @@ def confirm_contract(record):
     if record.get("accepted_contract"):
         inputs = Path(record["candidate_path"]).parent
         contract = record["accepted_contract"]
+        if contract.get("format") == "intentline-native":
+            try:
+                current, source, brief = intentline_input.adopted_intentline(**intentline_input.request_from(contract))
+                intentline_input.validate_product(current, Path(record["source_repository"]["path"]), git_bytes)
+                if (current != contract or
+                        json.loads((inputs / "contract-context.json").read_text()) != worker_context(current) or
+                        (inputs / "source.md").read_bytes() != source.encode("utf-8") or
+                        (inputs / "accepted-input.md").read_bytes() != brief.encode("utf-8")):
+                    raise ValueError("Native contract/source/adoption context changed")
+                captured = intentline_input.inspect_bundle(inputs / "intentline")
+                if captured["bundle_sha256"] != current["bundle_sha256"]:
+                    raise ValueError("Native source-chain differs from frozen acceptance")
+                if record.get("identities") and (
+                        record["identities"]["native_contract_sha256"] != current["contract_sha256"] or
+                        record["identities"]["native_source_chain_sha256"] != current["source_chain_sha256"]):
+                    raise ValueError("Native source-chain differs from frozen acceptance")
+            except (OSError, ValueError, KeyError, TypeError) as exc:
+                raise InputGap(str(exc)) from exc
+            return
         request = {"path": Path(contract["contract_path"]), "contract_sha256": contract["contract_sha256"],
                    "source_sha256": contract["source_sha256"], "approval_reference": contract["approval"]["reference"]}
         if contract["approval"]["kind"] == "inspected-p2p-approval":
@@ -665,6 +723,12 @@ def inspect_record(path, *, remote=True):
             record["next_action"] = "Candidate or binding inputs changed. Obtain fresh review and proof."
             return record
         stages = record["stages"]
+        try:
+            confirm_contract(record)
+        except InputGap as exc:
+            record["status"] = "INPUT NOT READY"
+            record["next_action"] = str(exc)
+            return record
         if record["schema_version"] == 1:
             if len(stages) != 3 or record["model_dispatches"] != 3:
                 raise ValueError("Missing independent stage receipts")
@@ -697,12 +761,6 @@ def inspect_record(path, *, remote=True):
         elif record.get("published") is not False or record.get("merged") is not False:
             raise ValueError("Unexpected external delivery claim")
         ids = record["accepted_contract"]["criterion_ids"] if record.get("accepted_contract") else criterion_ids((inputs / "accepted-input.md").read_text())
-        try:
-            confirm_contract(record)
-        except InputGap as exc:
-            record["status"] = "INPUT NOT READY"
-            record["next_action"] = str(exc)
-            return record
         if record.get("accepted_contract") and record["accepted_contract"].get("parent_completion") != (record["accepted_contract"].get("scope") == "combined-parent"):
             raise ValueError("Contract parent completion differs from its scope")
         threads = []
@@ -746,6 +804,9 @@ def main():
     run.add_argument("--repo", required=True, type=Path)
     run.add_argument("--source", type=Path)
     run.add_argument("--brief", type=Path)
+    run.add_argument("--intentline-bundle", help="Experimental ready native Intentline bundle; requires exact trusted-caller adoption")
+    run.add_argument("--adopt-source-chain-sha256")
+    run.add_argument("--adopt-bundle-sha256")
     run.add_argument("--contract", type=Path, help="Supported source-linked P2P Markdown contract with exact inspected authority")
     run.add_argument("--adopt-contract-sha256")
     run.add_argument("--adopt-source-sha256")
@@ -772,8 +833,14 @@ def main():
     status.add_argument("record", type=Path)
     contract = sub.add_parser("inspect-contract", help="Read supported contract/source identities without approving or executing")
     contract.add_argument("contract", type=Path)
+    native_inspect = sub.add_parser("inspect-intentline", help="Inspect a native candidate input without authorization or model dispatch")
+    native_inspect.add_argument("bundle")
     args = parser.parse_args()
     try:
+        if args.command == "inspect-intentline":
+            metadata, _, _ = intentline_input.inspect_intentline(args.bundle)
+            print(json.dumps({**metadata, "authorization": "not_established", "consumer_execution": "not_observed"}, indent=2))
+            return 0
         if args.command == "inspect-contract":
             metadata, _, _ = contract_input.inspect_contract(args.contract.resolve())
             metadata["context_files"] = [{k: v for k, v in item.items() if k != "content"} for item in metadata["context_files"]]
@@ -784,15 +851,21 @@ def main():
             record = (resume if args.command == "resume" else inspect_record)(args.record.resolve())
             record_path = args.record
         else:
+            if args.intentline_bundle and (args.contract or args.source or args.brief):
+                raise ValueError("Native input is mutually exclusive with direct/P2P input; no fallback")
+            if args.intentline_bundle and args.adopt_source_sha256:
+                raise ValueError("Native input needs its complete source-chain adoption, not P2P source hashes")
+            if not args.intentline_bundle and (args.adopt_source_chain_sha256 or args.adopt_bundle_sha256):
+                raise ValueError("Native adoption flags apply only to --intentline-bundle")
             if args.contract and (args.source or args.brief):
                 raise ValueError("Choose direct source/brief or an adopted contract, not both")
-            if not args.contract and (not args.source or not args.brief):
+            if not args.contract and not args.intentline_bundle and (not args.source or not args.brief):
                 raise ValueError("Direct delivery requires both --source and --brief")
             adoption = {"path": args.contract.resolve(), "contract_sha256": args.adopt_contract_sha256,
                         "source_sha256": args.adopt_source_sha256, "approval_reference": args.approval_reference,
                         "approval_path": args.approval_file.resolve() if args.approval_file else None,
                         "approval_sha256": args.approval_sha256} if args.contract else None
-            if not args.contract and any((args.adopt_contract_sha256, args.adopt_source_sha256, args.approval_reference, args.approval_file, args.approval_sha256)):
+            if not args.contract and not args.intentline_bundle and any((args.adopt_contract_sha256, args.adopt_source_sha256, args.approval_reference, args.approval_file, args.approval_sha256)):
                 raise ValueError("Adoption arguments apply only to --contract")
             effect = None
             if args.target != "local":
@@ -801,11 +874,16 @@ def main():
                     "reference": args.effect_reference, "merge_method": args.merge_method})
             elif any((args.github_repo, args.base, args.branch, args.authorize, args.effect_reference)) or args.merge_method != "merge":
                 raise ValueError("Local delivery cannot carry remote effect arguments")
+            native_adoption = {"path": args.intentline_bundle, "contract_sha256": args.adopt_contract_sha256,
+                               "source_chain_sha256": args.adopt_source_chain_sha256, "bundle_sha256": args.adopt_bundle_sha256,
+                               "approval_reference": args.approval_reference,
+                               "approval_path": args.approval_file, "approval_sha256": args.approval_sha256} if args.intentline_bundle else None
             output = (args.output or host.ROOT / ".proofline" / "delivery" / uuid.uuid4().hex).resolve()
             source = args.source.read_bytes().decode("utf-8") if args.source else ""
             brief = args.brief.read_bytes().decode("utf-8") if args.brief else ""
             record = deliver(args.repo.resolve(), source, brief, output,
-                             args.seconds, args.stage_seconds, args.verification_reserve, args.execution_map, adoption, args.dispatches, effect)
+                             args.seconds, args.stage_seconds, args.verification_reserve, args.execution_map, adoption,
+                             intentline_request=native_adoption, dispatches=args.dispatches, effect_grant=effect)
             record_path = output / "report.json"
         print(record["status"] + (". Not published or merged." if not record.get("delivery") else
             ". Remote target: " + record["delivery"]["grant"]["target"] + "; " + record["delivery"]["status"] + "."))

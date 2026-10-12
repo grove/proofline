@@ -1,0 +1,2 @@
+# Exact producer bundle bytes must survive checkout line-ending settings.
+tests/fixtures/intentline/** -text

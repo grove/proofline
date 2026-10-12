@@ -138,3 +138,38 @@ revalidated every native receipt and frozen candidate. See
 **S2's narrow live gate is OBSERVED.** This qualifies the demonstrated input
 shapes, not arbitrary P2P prerequisites or successful child/combined-parent
 delivery. S3 may now start. Recovery, resume and publication remain deferred.
+
+## Experimental native Intentline input
+
+`proofline.py inspect-intentline BUNDLE` is a dependency-free offline inspection,
+with authorization not_established and consumer_execution not_observed. The
+Proofline-owned validator is adapted from a pinned Apache-2.0 producer inspector;
+its shared ancestry is disclosed in THIRD_PARTY_NOTICES.md, not claimed as an
+independent review. It imports neither Intentline nor P2P and never executes the
+exported inspector. Original direct and P2P S2 paths retain their prior semantics.
+
+Native delivery explicitly selects `--intentline-bundle BUNDLE`, mutually exclusive
+with --source/--brief and --contract, and needs `--adopt-contract-sha256`,
+`--adopt-source-chain-sha256`, `--adopt-bundle-sha256`, and an actual caller-inspected
+`--approval-reference`. Inspection/export/Intentline ADOPTED_ASSERTED, an approval
+label, generated JSON, a hash or ambient credentials cannot populate these grants.
+The trusted initiating caller must establish actual authority to adopt the exact
+displayed contract and complete source chain. These flags record that external
+boundary; they do not authenticate a human. Optional --approval-file/--approval-sha256
+bind actual externally inspected bytes to both identities and are revalidated.
+
+The full current canonical JSON, separate original/amendment streams, constraint
+sources and bounded predecessor records are protected inputs for all three roles.
+The indexed source display is not a verbatim single request. Binding current project
+documents must be exact regular tracked files in a clean product. Raw approval
+payload/reference/path remains host-protected and is replaced by a binding hash
+in worker context. Permission/input-map, bundle, source-chain, contract and candidate
+identities are frozen together; status revalidates original bundle, external
+reference, product documents, candidate and actual independent receipts.
+
+Native input failures return INPUT NOT READY before dispatch with no direct/P2P
+fallback. This route is experimental/offline-qualified only: producer bundles,
+actual parser/admission/status and authored fake-host controls are tested; they
+are not real model judgment, actual human approval or live delivery qualification.
+No task-specific native inference budget/host grant exists. Live end-to-end delivery,
+review and proof remain not_run. P2P S2 live qualification is unchanged.

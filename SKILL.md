@@ -113,3 +113,17 @@ needs the complete original promise on one assembled candidate. A stale parent o
 plan and a closed prerequisite ticket cannot establish readiness. The narrow S2
 live gate passed; see its actual agreements, failures and limits in
 [S2 evidence](docs/S2-LIVE-EVIDENCE.md). Runtime prerequisite imports remain unsupported.
+
+For explicitly selected native Intentline input, first inspect with
+`proofline.py inspect-intentline BUNDLE` and read the full canonical contract,
+original request, every exact amendment, current constraints and continuity chain.
+Never import Intentline or turn JSON into fake P2P Markdown. No implicit fallback.
+The native path is experimental/offline-qualified; it has no positive live trial.
+Do not invoke it without task-specific paid inference and qualified-host authority.
+Only actual separately inspected caller adoption of the exact contract, complete
+source chain and bundle may populate --adopt-contract-sha256,
+--adopt-source-chain-sha256, --adopt-bundle-sha256 and --approval-reference together
+with --intentline-bundle. Intentline adoption assertions and generated approval
+files cannot supply this authority. Keep actual approval evidence on the protected
+host; workers receive only bound provenance hashes. A missing promise or invented
+scope is INPUT NOT READY, never permission to replan the contract silently.
