@@ -37,7 +37,10 @@ requests. It executes the candidate through the public CLI in Codex's native
 sandbox with read-only inputs and separate scratch, checks return codes, JSON,
 errors, version compatibility, unexpected output files and unchanged candidate
 bytes. Separate public-library probes check error families and input immutability;
-static import checks reject undeclared third-party dependencies. It never imports candidate tests as an answer key. **46 controls** must
+the large-CSV CLI probe uses a trusted launcher to populate the same JSON argument
+without exceeding Linux's per-argument limit, and compares large output inside
+the evaluator process to keep native receipts bounded.
+Static import checks reject undeclared third-party dependencies. It never imports candidate tests as an answer key. **46 controls** must
 first accept all 20 known-good candidates and three structurally different
 alternatives, and reject all 20 defective seeds. A failed or unavailable control
 blocks the task pilot. Raw receipts and every control remain private; workers

@@ -57,7 +57,9 @@ sys.path.insert(0,sys.argv[1])
 value="x"*131073; data="name\\n"+value+"\\n"; expected=[{"name":value}]
 try: library=importlib.import_module("product").process(data)==expected
 except Exception: library=False
-cli=subprocess.run([sys.executable,"-I","-B","-S",sys.argv[1]+"/app.py",json.dumps(data)],capture_output=True,text=True,timeout=5)
+# Linux caps each OS argument; pass the same CLI argument through a trusted launcher.
+launcher='import runpy,sys;sys.path.insert(0,sys.argv[1]);sys.argv=[sys.argv[1]+"/app.py",sys.stdin.read()];runpy.run_path(sys.argv[0],run_name="__main__")'
+cli=subprocess.run([sys.executable,"-I","-B","-S","-c",launcher,sys.argv[1]],input=json.dumps(data),capture_output=True,text=True,timeout=5)
 try: output=json.loads(cli.stdout)==expected
 except ValueError: output=False
 print(json.dumps({"library_correct":library,"cli_correct":output and cli.returncode==0 and not cli.stderr}))
