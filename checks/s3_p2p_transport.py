@@ -2,6 +2,7 @@
 import json
 import os
 from pathlib import Path
+import tomllib
 import uuid
 
 from checks.host_probe import ROOT, toml
@@ -55,11 +56,42 @@ def command(executable, args, blocked):
         index += 1
     if not sandbox or removed != expected or scratch is None or result[-1] != "-":
         raise ValueError("Incomplete declared P2P transport")
+    scratch_path = Path(scratch).resolve()
+    runtime = next((parent for parent in scratch_path.parents
+                    if (parent / "repository.git").is_dir()
+                    and (parent / "workspace/.git").is_file()), None)
+    if runtime is not None:
+        # Absolute Git discovery inspects the denied executions ancestor on macOS.
+        for index, value in enumerate(result):
+            if value.startswith("shell_environment_policy.set="):
+                environment = tomllib.loads(value)["shell_environment_policy"]["set"]
+                environment.update(GIT_DIR=os.path.relpath(runtime / "repository.git", scratch_path),
+                                   GIT_WORK_TREE=os.path.relpath(runtime / "workspace", scratch_path))
+                result[index] = "shell_environment_policy.set=" + toml(environment)
+                break
+        else:
+            raise ValueError("Missing declared shell environment")
+        result[-1:-1] = ["-c", "developer_instructions=" + json.dumps(
+            "Git environment paths are relative to the initial worker directory. "
+            "Run Git commands from that directory; after changing directories, rebind "
+            "GIT_DIR and GIT_WORK_TREE to relative paths. Absolute Git discovery may "
+            "fail under the protected executions-root profile.")]
     return [executable, "--no-daemon", *result[:-1], "-c", "default_permissions=s3_p2p",
             "-c", "permissions.s3_p2p=" + toml(profile(scratch, blocked)), "-"]
 
 
-def launch(executable, args, blocked, records):
+def launch(executable, args, blocked, records, preferences=None):
+    if preferences is not None and args != ["--version"]:
+        args = list(args)
+        for key, value in preferences.items():
+            if key not in {"model", "model_reasoning_effort"}:
+                raise ValueError("Only declared model preferences can be overridden")
+            for index, arg in enumerate(args):
+                if arg.startswith(key + "=") and index and args[index - 1] == "-c":
+                    args[index] = key + "=" + toml(value)
+                    break
+            else:
+                args[-1:-1] = ["-c", key + "=" + toml(value)]
     argv = command(executable, args, blocked)
     (Path(records) / (uuid.uuid4().hex + ".json")).write_text(
         json.dumps({"requested_argv": args, "effective_argv": argv}, indent=2) + "\n")

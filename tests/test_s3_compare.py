@@ -43,6 +43,31 @@ class ComparisonTests(unittest.TestCase):
         with self.assertRaisesRegex(ValueError, "Incomplete"):
             t.command("/codex", [x for x in args if x != "sandbox_workspace_write.exclude_slash_tmp=true"], [])
 
+    def test_transport_git_paths_preserve_environment_and_bind_actual_workspace(self):
+        with tempfile.TemporaryDirectory() as directory:
+            runtime = Path(directory).resolve() / "runtime"
+            workspace = runtime / "workspace"
+            workspace.mkdir(parents=True)
+            (workspace / ".git").write_text("gitdir: " + str(runtime / "repository.git"))
+            (runtime / "repository.git").mkdir()
+            readonly = runtime / "scratch/review"
+            readonly.mkdir(parents=True)
+            for scratch in (workspace, readonly):
+                args = ["exec", "--sandbox", "workspace-write", "-C", str(scratch),
+                        "-c", 'shell_environment_policy.set={PATH="original",HOME="unchanged"}',
+                        "-c", "sandbox_workspace_write.network_access=false",
+                        "-c", "sandbox_workspace_write.exclude_slash_tmp=true",
+                        "-c", "sandbox_workspace_write.exclude_tmpdir_env_var=true", "-"]
+                argv = s3.s3_p2p_transport.command("/codex", args, [])
+                value = next(x for x in argv if x.startswith("shell_environment_policy.set="))
+                env = tomllib.loads(value)["shell_environment_policy"]["set"]
+                self.assertEqual(env["PATH"], "original")
+                self.assertEqual(env["HOME"], "unchanged")
+                self.assertFalse(Path(env["GIT_DIR"]).is_absolute())
+                self.assertEqual((scratch / env["GIT_DIR"]).resolve(), runtime / "repository.git")
+                self.assertEqual((scratch / env["GIT_WORK_TREE"]).resolve(), workspace)
+                self.assertTrue(any(x.startswith("developer_instructions=") for x in argv))
+
     def test_transport_followup_refuses_changed_private_oracle_before_dispatch(self):
         with tempfile.TemporaryDirectory() as directory:
             root = Path(directory)
@@ -71,19 +96,35 @@ class ComparisonTests(unittest.TestCase):
             (attempt / "exit.json").write_text('{"elapsed_seconds": 3, "exit_code": 0}')
             (local / "delivery.json").write_text('{"status":"REVIEWED_AND_PROVEN", "attempts":[{"id":"a","stage":"proof","status":"complete","usage":{"input_tokens":7}}]}')
             module = SimpleNamespace(local_directory=lambda *_: local,
-                execution_runtime=lambda *_: runtime)
+                execution_runtime=lambda *_: runtime, autonomy=SimpleNamespace(local=lambda _: {
+                    'policy': {'decisions': ['implementation', 'evidence', 'repair', 'planning'],
+                               'constraints': [], 'effects': [], 'approval_source': 'fixture'}}))
             receipt = {"exit_code": 0, "timed_out": False}
             with patch.dict(sys.modules, {"p2p_delivery": module}), \
                  patch.object(s3.p.host, "ROOT", root), \
                  patch.object(s3.p.host, "git", return_value="base"), \
-                 patch.object(s3.p.host, "run_command", return_value=receipt):
+                 patch.object(s3.p.host, "run_command", return_value=receipt) as run_command:
                 result = s3.p2p_run(repo, s3.contract(), "original", root / "run",
                     root / "skills/productivity/deliver-issue/scripts/p2p_delivery.py",
                     root / "operator", "/real/codex")
+                controller_argv = run_command.call_args_list[-1].args[0]
+                raw_repo = root / 'raw-repo'; raw_repo.mkdir()
+                s3.p2p_run(raw_repo, s3.contract(), "original", root / "raw-run",
+                    root / "skills/productivity/deliver-issue/scripts/p2p_delivery.py",
+                    root / "operator", "/real/codex", fixed_plan=False)
+                raw_argv = run_command.call_args_list[-1].args[0]
             self.assertTrue(result["accepted"])
             self.assertEqual(result["candidate"], str(runtime / "workspace"))
             self.assertEqual(result["model_dispatches"], 1)
             self.assertEqual(result["stages"][0]["path"], str(attempt))
+            self.assertEqual(controller_argv[controller_argv.index('--max-stage-seconds') + 1], '240')
+            mandate = json.loads(Path(controller_argv[controller_argv.index('--mandate') + 1]).read_text())
+            self.assertNotIn('planning', mandate['decisions'])
+            self.assertEqual(mandate['effects'], [])
+            self.assertTrue({'implementation', 'evidence', 'repair'} <= set(mandate['decisions']))
+            raw_mandate = json.loads(Path(raw_argv[raw_argv.index('--mandate') + 1]).read_text())
+            self.assertIn('planning',raw_mandate['decisions'])
+            self.assertTrue(any('complete original source' in value for value in raw_mandate['constraints']))
             self.assertEqual((repo / ".p2p/work/username/source-issue.md").read_text(), "original")
             self.assertIn("(source-issue.md)", (repo / ".p2p/work/username/contract.md").read_text())
 
@@ -114,6 +155,16 @@ class ComparisonTests(unittest.TestCase):
         self.assertFalse(s3.judgment_observed([{"role": "review", "status": "complete"}]))
         self.assertTrue(s3.judgment_observed([{"role": "review", "status": "complete", "report_validation": "accepted"}]))
         self.assertTrue(s3.judgment_observed([{"role": "reviewer", "status": "OBSERVED"}]))
+        diagnosis = {'role': 'diagnosis', 'status': 'complete', 'report_validation': 'accepted',
+                     'report': {'status': 'BLOCKED', 'action': 'plan-acceptance'}}
+        self.assertTrue(s3.judgment_observed([diagnosis]))
+        self.assertTrue(s3.judgment_observed([diagnosis | {
+            'report': {'status': 'ACTIONABLE', 'action': 'plan-acceptance'}}]))
+        self.assertFalse(s3.judgment_observed([diagnosis | {'status': 'failed'}]))
+        self.assertFalse(s3.judgment_observed([diagnosis | {'report_validation': 'rejected'}]))
+        self.assertFalse(s3.judgment_observed([diagnosis | {'report': None}]))
+        self.assertFalse(s3.judgment_observed([diagnosis | {
+            'report': {'status': 'BLOCKED', 'action': 'none'}}]))
 
     def test_scope_change_is_a_real_public_behavior_counterexample(self):
         spec = importlib.util.spec_from_file_location("s3_test_oracle", s3.p.host.FIXTURES / "oracle.py")

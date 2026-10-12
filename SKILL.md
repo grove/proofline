@@ -1,11 +1,12 @@
 ---
 name: proofline
-description: Implement a repository request with fresh independent review and behavioral proof on one frozen local candidate. Use when the user asks for Proofline delivery or invokes /proofline. Direct delivery and narrow approved-contract inputs are qualified. Publication is not supported.
+description: Implement a repository request with fresh independent review and behavioral proof on one frozen local candidate. Use when the user asks for Proofline delivery or invokes /proofline. Direct delivery, bounded recovery/resume and narrow approved-contract inputs are supported. Optional scoped GitHub PR/merge delivery is qualified within the recorded S5 host and disposable-repository boundary.
 ---
 
 Use the installed repository's [proofline.py](proofline.py) entry point. Python
 3.11+, macOS and the qualified Codex CLI 0.162.1 are required. The runner consumes
-real model usage and keeps local evidence; it does not publish or merge.
+real model usage and keeps local evidence. It publishes or merges only under an
+explicit initial repository/action grant; local delivery is the default.
 
 For a direct request, preserve the user's original text and any delegated source
 bytes/revisions in a source file outside product changes. In the initiating
@@ -34,22 +35,58 @@ python3 /absolute/path/to/proofline/proofline.py deliver \
   --source /absolute/path/to/source.md \
   --brief /absolute/path/to/brief.md \
   --map 'Task-specific commands and relevant entry points' \
-  --seconds 900 --stage-seconds 240 --verification-reserve 120
+  --seconds 900 --stage-seconds 240 --verification-reserve 120 --dispatches 12
 ```
 
 The runner owns the isolated implementation, candidate freeze, fresh review,
 and fresh proof. Do not replace a failed receipt with an invented report, reuse
 another candidate's verdict, or start a second episode silently to reset its
-budget. On a failed review it skips proof. Product correction and evidence-only
-recovery are later slices; report the current actionable gap and preserved
-candidate rather than claiming acceptance.
+budget. On a failed review it skips proof. The runner classifies failure before recovery: product defects return a concise
+reproduction and affected obligations to the same implementer session; weak
+evidence gets a focused independent recheck without product edits. Environment
+failures remain environment/evidence gaps; source and authority gaps block
+explicitly. A changed candidate receives fresh review and proof. A still-valid
+review may be retained only for the exact unchanged candidate and inputs.
+Two consecutive correction rounds without independent criterion improvement
+stop early; a productive third round can use remaining authorized capacity.
+All stages share cumulative time/dispatch limits and a verification reserve.
+
+Use `proofline.py resume <report.json>` after interruption. Resume reconciles
+workers, confirms binding inputs and current candidate, and rejects stale
+judgments before redispatch. Never duplicate a running/uncertain worker. Downtime
+and interrupted dispatches consume the original budget; resume does not reset
+or extend limits. The episode lock prevents concurrent controllers. Historical
+S1/S3 records are inspectable, not resumable. Preserve terminal gaps and exhausted
+work with the recorded next action. See [S4 evidence](docs/S4-RECOVERY.md).
 
 Before reporting success, run `proofline.py status <report.json>`. Report the
 confirmed outcome, remaining failed/unknown criteria, exact candidate path and
-commit, and one next action. Local acceptance is **not published or merged**.
-A stale candidate requires fresh judgments. Requested publication, merge,
-or an unsupported host is an explicit capability/input gap,
-not authority to approximate that target or silently convert it to local success.
+commit, and one next action. Local acceptance alone establishes **no publication or merge**.
+A stale candidate requires fresh judgments. An unsupported host or an unqualified
+remote path is an explicit capability gap, never a completed remote target.
+
+For an explicitly authorized initial PR/merge request, record the actual grant
+with `--target pr-created|pr-merged --github-repo OWNER/REPO --base <branch>
+--branch <publication-branch> --authorize push --authorize create-pr
+--effect-reference '<actual user grant reference>'`. A merge target additionally
+requires `--authorize merge`; `--merge-method merge|squash|rebase` selects its
+strategy. Never infer a grant from implementation permission, contract adoption,
+independent acceptance, a tracker label, or publication preview. No deployment,
+comment, force-push, protection bypass, or unrelated write is authorized.
+Do not ask again when the exact initial grant still covers the action.
+
+The runner uses host Git/GitHub CLI after local acceptance, verifies the original
+source ancestry and exact accepted tree, then reads back the current remote
+head/base and merged tree. Local and remote facts are separate; report the
+requested target and actual partial outcome. Moved bases, changed heads,
+protection failures and unavailable readback cannot inherit local verdicts.
+Use the same `resume` command to reconcile uncertain effects before continuing;
+it cannot enlarge the original grant or reset the budget. `status` reads current
+remote state without remote mutations. S5's real authorized PR/merge and separate-process
+recovery gate passed. Its live case had no required CI or branch protections;
+protection failures and transformed-merge equivalence have deterministic coverage.
+Honor [S5 qualification and limits](docs/S5-PUBLICATION.md); the narrow fixture is
+not a guarantee for every repository or remote policy.
 
 For a contract, first use `proofline.py inspect-contract <contract.md>` and read
 the exact contract and complete linked original source chain. The narrow adapter

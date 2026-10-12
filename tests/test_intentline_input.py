@@ -7,6 +7,7 @@ import subprocess
 import sys
 import tempfile
 import unittest
+import uuid
 from unittest.mock import patch
 
 sys.path.insert(0,str(Path(__file__).resolve().parents[1]))
@@ -29,6 +30,29 @@ class NativeInput(unittest.TestCase):
 
     def deliver(self,request=None,name='run'):
         return proofline.deliver(self.repo,'','',self.root/name,intentline_request=self.request if request is None else request)
+
+    def stage_result(self,directory,inputs,identity,role,verdict=None,findings=None):
+        verdict=verdict or {'implementer':'READY','reviewer':'PASS','prover':'PROVEN'}[role]
+        report={'role':role,'binding':proofline.live.binding_for(identity),'verdict':verdict,
+                'findings':findings or [],'summary':'Authored offline transport double, not real model evidence',
+                'criteria':[{'id':key,'status':'NOT VERIFIED' if verdict=='NOT VERIFIED' else 'SATISFIED',
+                             'observation':'Authored mechanical control','commands':['probe'] if role=='prover' else []}
+                            for key in ('R1','R2')]}
+        thread=str(uuid.uuid4());private=directory/'private';private.mkdir()
+        events=[{'type':'thread.started','thread_id':thread},{'type':'turn.started'},
+                {'type':'item.completed','item':{'id':'probe','type':'command_execution','command':'offline probe',
+                                               'exit_code':0,'status':'completed','aggregated_output':'controlled'}},
+                {'type':'item.completed','item':{'id':'handoff','type':'agent_message','text':json.dumps(report)}},
+                {'type':'turn.completed'}]
+        raw='\n'.join(json.dumps(event) for event in events).encode();path=private/'events.jsonl';path.write_bytes(raw)
+        receipt={'kind':'codex_exec','exit_code':0,'timed_out':False,'events_path':str(path),
+                 'events.jsonl_sha256':proofline.host.sha256(raw)}
+        proofline.live.save_worker(private,{'state':'finished','receipt':receipt})
+        result={'role':role,'identities':identity,'binding':report['binding'],'status':'OBSERVED',
+                'thread_id':thread,'report':report,'receipt':receipt,'inputs_unchanged':True,
+                'snapshot':proofline.host.snapshot(inputs)['sha256'],'boundary':{'status':'OBSERVED'},'usage':None}
+        (directory/'stage.json').write_text(json.dumps(result))
+        return result
 
     def test_actual_producer_fixtures_and_dependency_free_inspection(self):
         identity=json.loads((FIXTURES/'identity.json').read_text())
@@ -74,6 +98,9 @@ class NativeInput(unittest.TestCase):
         with patch.object(proofline.platform,'system',return_value='Darwin'),patch.object(proofline.host,'find_codex',return_value=None),patch.object(proofline.live,'run_stage') as stage:
             record=self.deliver()
         stage.assert_not_called();self.assertEqual(record['accepted_contract']['format'],'intentline-native');self.assertEqual(record['model_dispatches'],0)
+        with patch.object(proofline.platform,'system',return_value='Darwin'),patch.object(proofline.host,'find_codex',return_value=None):
+            positional=proofline.deliver(self.repo,'','',self.root/'positional',900,240,120,'Inspect entry.py',None,self.request)
+        self.assertEqual(positional['accepted_contract']['format'],'intentline-native')
         (self.repo/'policy.md').write_text('Changed policy\n')
         with patch.object(proofline.host,'find_codex') as host:
             record=self.deliver(name='changed-policy')
@@ -94,13 +121,18 @@ class NativeInput(unittest.TestCase):
             self.assertEqual(kwargs['criterion_ids'],['R1','R2']);self.assertTrue((inputs/'intentline/source-S2.txt').exists())
             self.assertEqual(native.inspect_bundle(inputs/'intentline')['source_chain_sha256'],self.request['source_chain_sha256'])
             calls.append((role,identity))
-            return {'role':role,'status':'OBSERVED','thread_id':role,'report':{'verdict':{'implementer':'READY','reviewer':'PASS','prover':'PROVEN'}[role],'findings':[],'summary':'Authored offline double, not real model evidence'},'receipt':{'kind':'codex_exec'}}
+            return self.stage_result(directory,inputs,identity,role)
         with patch.object(proofline.platform,'system',return_value='Darwin'),patch.object(proofline.host,'find_codex',return_value=sys.executable),patch.object(proofline.host,'run_command',side_effect=command),patch.object(proofline.host,'probe_boundary',side_effect=boundary),patch.object(proofline.live,'preferences',return_value={}),patch.object(proofline.live,'run_stage',side_effect=stage):
             result=self.deliver()
         self.assertEqual(result['status'],'LOCAL ACCEPTED',result['next_action']);self.assertEqual([role for role,_ in calls],['implementer','reviewer','prover'])
         self.assertEqual(len({identity['native_source_chain_sha256'] for _,identity in calls}),1)
-        # A driver's mocked positive state cannot pass actual native status receipt checks.
-        with self.assertRaises((KeyError,ValueError)):proofline.inspect_record(self.root/'run/report.json')
+        # Synthetic receipts exercise controller mechanics, not live model qualification.
+        self.assertEqual(proofline.inspect_record(self.root/'run/report.json')['status'],'LOCAL ACCEPTED')
+        record_path=self.root/'run/report.json';saved=json.loads(record_path.read_text())
+        original=saved['stages'][0]['receipt']['events.jsonl_sha256']
+        saved['stages'][0]['receipt']['events.jsonl_sha256']='0'*64;record_path.write_text(json.dumps(saved))
+        with self.assertRaises(ValueError):proofline.inspect_record(record_path)
+        saved['stages'][0]['receipt']['events.jsonl_sha256']=original;record_path.write_text(json.dumps(saved))
         (self.bundle/'source-S2.txt').write_text('Altered amendment')
         self.assertEqual(proofline.inspect_record(self.root/'run/report.json')['status'],'INPUT NOT READY')
         candidate=Path(result['candidate_path']);(candidate/'entry.py').write_text('post-proof tamper')
@@ -127,8 +159,8 @@ class NativeInput(unittest.TestCase):
             calls=[]
             def stage(codex,directory,inputs,identity,role,preferences,allowance,**kwargs):
                 calls.append(role)
-                return {'status':'OBSERVED','thread_id':role,'report':{'verdict':'READY' if role=='implementer' else 'NOT VERIFIED',
-                        'findings':[] if role=='implementer' else ['INPUT NOT READY: Authored '+kind+' negative judgment'], 'summary':'Authored mechanical judgment control'}}
+                return self.stage_result(directory,inputs,identity,role,'READY' if role=='implementer' else 'NOT VERIFIED',
+                                         [] if role=='implementer' else ['INPUT NOT READY: Authored '+kind+' negative judgment'])
             with patch.object(proofline.platform,'system',return_value='Darwin'),patch.object(proofline.host,'find_codex',return_value=sys.executable),patch.object(proofline.host,'run_command',side_effect=command),patch.object(proofline.host,'probe_boundary',side_effect=boundary),patch.object(proofline.live,'preferences',return_value={}),patch.object(proofline.live,'run_stage',side_effect=stage):
                 result=self.deliver(name=kind)
             self.assertEqual(result['status'],'INPUT NOT READY');self.assertEqual(calls,['implementer','reviewer'])
@@ -146,3 +178,34 @@ class NativeInput(unittest.TestCase):
         mapping['contract_sha256']=native.sha(native.canonical(draft))
         with self.assertRaisesRegex(ValueError,'False mechanical preservation'):
             native.continuity(mapping,predecessor['history'][-1],draft,manifest,blobs,predecessor['manifest'])
+
+    def test_native_resume_rechecks_changed_authority_before_dispatch(self):
+        from tests import test_recovery
+        transport=test_recovery.RecoveryTests();transport.setUp();self.addCleanup(transport.doCleanups)
+        calls=[]
+        def stage(codex,directory,inputs,identity,role,preferences,allowance,**kwargs):
+            calls.append(role)
+            return self.stage_result(directory,inputs,identity,role,'READY' if role=='implementer' else 'NOT VERIFIED')
+        with transport.patches(stage):
+            result=self.deliver()
+        self.assertEqual(result['status'],'NOT VERIFIED');self.assertEqual(calls,['implementer','reviewer','reviewer','reviewer'])
+        (self.bundle/'source-S2.txt').write_text('Changed after the evidence gap')
+        with transport.patches(stage):
+            result=proofline.resume(self.root/'run/report.json')
+        self.assertEqual(result['status'],'INPUT NOT READY');self.assertEqual(len(calls),4)
+
+    def test_native_adoption_change_between_stages_stops_and_remote_target_is_unavailable(self):
+        from tests import test_recovery
+        transport=test_recovery.RecoveryTests();transport.setUp();self.addCleanup(transport.doCleanups)
+        calls=[]
+        def stage(codex,directory,inputs,identity,role,preferences,allowance,**kwargs):
+            calls.append(role)
+            result=self.stage_result(directory,inputs,identity,role)
+            (self.bundle/'source-S2.txt').write_text('Changed before independent checking')
+            return result
+        with transport.patches(stage):
+            result=self.deliver()
+        self.assertEqual(result['status'],'INPUT NOT READY');self.assertEqual(calls,['implementer'])
+        with patch.object(proofline.publication,'publish') as publish,patch.object(proofline.host,'find_codex') as host:
+            result=proofline.deliver(self.repo,'','',self.root/'remote',intentline_request=self.request,effect_grant={})
+        publish.assert_not_called();host.assert_not_called();self.assertEqual(result['status'],'INPUT NOT READY')

@@ -142,19 +142,24 @@ class DeliveryTests(unittest.TestCase):
         calls = []
         def stage(codex, directory, inputs, identity, role, preferences, allowance, **kwargs):
             calls.append(role)
-            return {"status": "OBSERVED", "thread_id": role, "report": {
+            return {"role": role, "status": "OBSERVED", "thread_id": role, "report": {
                 "verdict": "READY" if role == "implementer" else verdict,
                 "findings": [] if role == "implementer" else findings, "summary": "Material gap found"}}
         def boundary(codex, directory, inputs, *args):
             for name in ("canary.py", "canary.json"):
                 (inputs / name).write_text("native test double")
             return {"assessment": {"status": "OBSERVED"}}
-        for verdict, findings, expected in (("FAIL", ["Material regression"], "NOT ACCEPTED"),
+        original_command = host.run_command
+        def command(argv, *args, **kwargs):
+            if argv == [sys.executable, "--version"]:
+                return {"exit_code": 0, "timed_out": False, "stdout": "codex-cli 0.162.1"}
+            return original_command(argv, *args, **kwargs)
+        for verdict, findings, expected in (("FAIL", ["Material regression"], "BUDGET EXHAUSTED"),
                 ("NOT VERIFIED", ["INPUT NOT READY: Original source promise omitted"], "INPUT NOT READY")):
             with self.subTest(expected=expected):
                 calls.clear()
-                with patch.object(delivery.platform, "system", return_value="Darwin"), patch.object(host, "find_codex", return_value=sys.executable), patch.object(host, "run_command", return_value={"exit_code": 0, "timed_out": False, "stdout": "codex-cli 0.162.1"}), patch.object(host, "probe_boundary", side_effect=boundary), patch.object(delivery.live, "preferences", return_value={}), patch.object(delivery.live, "run_stage", side_effect=stage):
-                    result = delivery.deliver(self.repo, "source", "| D1 | Outcome |", self.work / expected)
+                with patch.object(delivery.platform, "system", return_value="Darwin"), patch.object(host, "find_codex", return_value=sys.executable), patch.object(host, "run_command", side_effect=command), patch.object(host, "probe_boundary", side_effect=boundary), patch.object(delivery.live, "preferences", return_value={}), patch.object(delivery.live, "run_stage", side_effect=stage):
+                    result = delivery.deliver(self.repo, "source", "| D1 | Outcome |", self.work / expected, dispatches=3)
                 self.assertEqual(calls, ["implementer", "reviewer"])
                 self.assertEqual(result["status"], expected)
                 self.assertTrue(Path(result["candidate_path"]).exists())

@@ -4,8 +4,11 @@ import json
 import os
 from pathlib import Path
 import sys
+import signal
+import subprocess
 import tempfile
 import unittest
+import time
 from unittest.mock import patch
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "checks"))
@@ -54,6 +57,51 @@ class LiveTransportTests(unittest.TestCase):
             if i:
                 self.assertNotEqual(previous["invocation_id"], result["invocation_id"])
             previous = result
+
+    @unittest.skipUnless(sys.platform == "darwin" and os.environ.get("PROOFLINE_NATIVE_TESTS") == "1",
+                         "opt-in macOS interrupted worker reconciliation")
+    def test_controller_death_never_redispatches_a_running_worker(self):
+        private = self.work / "private"
+        private.mkdir()
+        controller_code = ("import sys; from pathlib import Path; "
+            f"sys.path.insert(0, {str(Path(live.__file__).parent)!r}); import codex_live; "
+            f"codex_live.launch([sys.executable, '-c', 'import time; time.sleep(30)'], 'input', Path({str(private)!r}), 40)")
+        controller = subprocess.Popen([sys.executable, "-I", "-B", "-c", controller_code])
+        worker = None
+        try:
+            deadline = time.monotonic() + 5
+            while time.monotonic() < deadline:
+                path = private / "worker.json"
+                if path.exists():
+                    value = json.loads(path.read_text())
+                    if value["state"] == "running":
+                        worker = value
+                        break
+                time.sleep(.02)
+            self.assertIsNotNone(worker)
+            controller.kill()
+            controller.wait(timeout=5)
+            with self.assertRaisesRegex(ValueError, "still running"):
+                live.reconcile_worker(private)
+            os.killpg(worker["pid"], signal.SIGKILL)
+            deadline = time.monotonic() + 5
+            while True:
+                try:
+                    live.reconcile_worker(private)
+                    break
+                except ValueError:
+                    if time.monotonic() >= deadline:
+                        raise
+                    time.sleep(.02)
+        finally:
+            if controller.poll() is None:
+                controller.kill()
+            controller.wait(timeout=5)
+            if worker:
+                try:
+                    os.killpg(worker["pid"], signal.SIGKILL)
+                except ProcessLookupError:
+                    pass
 
     def test_timeout_and_missing_executable_cannot_be_receipts(self):
         for i, argv in enumerate(([sys.executable, "-c", "import time; time.sleep(10)"], ["/missing-proofline-executable"])):
@@ -188,6 +236,8 @@ class LiveTransportTests(unittest.TestCase):
         def tamper(*args):
             self.assertIn("1.0 seconds", args[1])
             self.assertIn("final structured handoff", args[1])
+            self.assertIn("reserve the final 30 seconds", args[1])
+            self.assertIn("concrete unresolved risk or binding requirement", args[1])
             self.assertEqual(args[-1], 1)
             (inputs / "source.md").write_text("narrowed promise")
             return {"exit_code": 0, "timed_out": False}

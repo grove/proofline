@@ -19,6 +19,7 @@ from checks import s2_live, s3_p2p_transport
 from s0_live import oracle_runner
 
 COHORTS = ("ordinary-agent", "agent-plus-review", "p2p", "proofline")
+STAGE_SECONDS = 240
 CASES = (("missing-validation", "baseline", False), ("correct-alternative", "alternative", False),
          ("green-tests-defect", "defective", False), ("false-scope-change", "correct", False),
          ("source-omission", "alternative", True))
@@ -74,12 +75,17 @@ def judgment_observed(stages):
     if not stages:
         return False
     last = stages[-1]
+    report = last.get("report")
+    planning_gap = (last.get("role") == "diagnosis" and
+        isinstance(report, dict) and report.get("status") in {"BLOCKED", "ACTIONABLE"} and
+        report.get("action") == "plan-acceptance")
     return last.get("status") == "OBSERVED" or (last.get("status") == "complete" and
-        last.get("role") in {"implementation", "review", "proof", "repair"} and
+        (last.get("role") in {"implementation", "review", "proof", "repair"} or planning_gap) and
         last.get("report_validation") == "accepted")
 
 
-def ordinary(repo, source, brief, out, review, codex, preferences):
+def ordinary(repo, source, brief, out, review, codex, preferences, *,
+             entrypoint="username.py", execution_map=None, seconds=900, stage_seconds=STAGE_SECONDS):
     started = time.monotonic()
     inputs = out / "implementation/inputs"
     inputs.mkdir(parents=True)
@@ -88,7 +94,7 @@ def ordinary(repo, source, brief, out, review, codex, preferences):
     _, base = p.capture_base(repo, inputs / "product")
     boundary = out / "preflight"
     boundary.mkdir()
-    observed = p.host.probe_boundary(codex, boundary, inputs, 15, inputs / "product/username.py")
+    observed = p.host.probe_boundary(codex, boundary, inputs, 15, inputs / "product" / entrypoint)
     if observed["assessment"]["status"] != "OBSERVED":
         return {"accepted": False, "stages": [], "elapsed_seconds": time.monotonic() - started,
                 "candidate": str(inputs / "product"), "error": "Native preflight unavailable"}
@@ -106,15 +112,15 @@ def ordinary(repo, source, brief, out, review, codex, preferences):
         def prompt(role, inputs, identity, canary=None):
             if role == "reviewer":
                 return p.prompt(role, inputs, identity, canary, ids=ids,
-                    execution_map=f"Python {sys.executable} -B. Public entry point username.py; existing unittest checks are available.")
+                    execution_map=execution_map or f"Python {sys.executable} -B. Public entry point username.py; existing unittest checks are available.")
             return f"""Implement the unchanged original request in {inputs / 'product'}.
 Original source: {inputs / 'source.md'}. Shared approved plan: {inputs / 'accepted-input.md'}.
-The original source remains binding. Do not change the plan or claim completion of missing source promises. Report a material agreement gap instead of certifying an incomplete plan. Use your normal coding approach and useful checks. Python {sys.executable} -B; existing unittest checks are available. No dependencies or external effects. Only product is writable; do not commit.
+The original source remains binding. Do not change the plan or claim completion of missing source promises. Report a material agreement gap instead of certifying an incomplete plan. Use your normal coding approach and useful checks. {execution_map or f'Python {sys.executable} -B; existing unittest checks are available.'} No dependencies or external effects. Only product is writable; do not commit.
 Return the supplied schema: role implementer, binding {p.live.binding_for(identity)}, READY if the whole authorized task is complete, otherwise FAIL or NOT VERIFIED. List all criterion IDs {json.dumps(ids)} with observations; findings holds material blockers. Leave commands empty or cite actual host item IDs or EXACT full command strings from your tool events; paraphrased command citations invalidate the handoff. There is no separate checker in this coding stage.
 """
         result = p.live.run_stage(codex, stage_dir, stage_inputs, p.identities(stage_inputs, base), role,
-            preferences, min(180, 900 - (time.monotonic() - started)), make_prompt=prompt,
-            criterion_ids=ids, target=stage_inputs / "product/username.py")
+            preferences, max(.001, min(stage_seconds, seconds - (time.monotonic() - started))), make_prompt=prompt,
+            criterion_ids=ids, target=stage_inputs / "product" / entrypoint)
         stages.append(result)
         if result["status"] != "OBSERVED" or result["report"]["verdict"] != ("READY" if role == "implementer" else "PASS"):
             break
@@ -125,7 +131,8 @@ Return the supplied schema: role implementer, binding {p.live.binding_for(identi
         "elapsed_seconds": time.monotonic() - started, "candidate": str(inputs / "product")}
 
 
-def p2p_run(repo, brief, source, out, controller, private, codex):
+def p2p_run(repo, brief, source, out, controller, private, codex, *, stage_seconds=STAGE_SECONDS,
+            seconds=900, dispatches=12, repairs=1, preferences=None, fixed_plan=True):
     started = time.monotonic()
     out.mkdir(parents=True)
     work = ".p2p/work/username/contract.md"
@@ -164,8 +171,19 @@ def p2p_run(repo, brief, source, out, controller, private, codex):
     executable = transport / "codex"
     executable.write_text(f"#!{sys.executable}\nimport sys\nsys.path.insert(0,{str(p.host.ROOT)!r})\n"
         "from checks.s3_p2p_transport import launch\n"
-        f"launch({codex!r},sys.argv[1:],{[str(path.resolve()) for path in blocked]!r},{str(launches)!r})\n")
+        f"launch({codex!r},sys.argv[1:],{[str(path.resolve()) for path in blocked]!r},{str(launches)!r},{preferences!r})\n")
     executable.chmod(0o755)
+    sys.path.insert(0, str(controller.parent))
+    import p2p_delivery as d
+    policy = d.autonomy.local('Deliver the original source using current P2P planning, verification and recovery.')['policy']
+    if fixed_plan:
+        policy['decisions'].remove('planning')
+        policy['constraints'].append('Report material source gaps for upstream agreement; do not revise the shared plan or binding inputs.')
+    else:
+        policy['constraints'].append('Any planning recovery must preserve the complete original source outcomes. No tracker or remote effects.')
+    policy['approval_source'] = 'User-authorized source-preserving local comparison.'
+    mandate = out / 'mandate.json'
+    p.write_record(mandate, policy)
     entry = out / "p2p_entry.py"
     entry.write_text(f"import sys\nfrom pathlib import Path\nsys.path.insert(0,{str(controller.parent)!r})\nimport p2p_delivery as d\n"
         f"stage_root=Path({str(controller.parents[2])!r})\n"
@@ -173,11 +191,9 @@ def p2p_run(repo, brief, source, out, controller, private, codex):
         "d.installed_skill=package\nraise SystemExit(d.main())\n")
     receipt = p.host.run_command([sys.executable, "-B", str(entry),
         "--repo", str(repo), "run", work, "--comparison-base", base, "--destination", "delivery-target",
-        "--authorize-local", "--max-dispatches", "12", "--max-seconds", "900",
-        "--max-stage-seconds", "180", "--max-repairs", "1"], out, 915,
+        "--authorize-local", "--mandate", str(mandate), "--max-dispatches", str(dispatches), "--max-seconds", str(seconds),
+        "--max-stage-seconds", str(stage_seconds), "--max-repairs", str(repairs)], out, seconds + 15,
         env=os.environ | {"PATH": str(transport) + os.pathsep + os.environ.get("PATH", os.defpath)})
-    sys.path.insert(0, str(controller.parent))
-    import p2p_delivery as d
     local = d.local_directory(repo, work)
     runtime = d.execution_runtime(repo, work)
     state_path = local / "delivery.json"
@@ -220,6 +236,10 @@ def run(s2_record, p2p_repo, output):
     operator.mkdir()
     shutil.copyfile(__file__, operator / "runner.py")
     shutil.copyfile(s3_p2p_transport.__file__, operator / "p2p_transport.py")
+    shutil.copyfile(p.live.__file__, operator / "codex_live.py")
+    shutil.copyfile(p.__file__, operator / "proofline.py")
+    (operator / "p2p.patch").write_bytes(p.git_bytes(p2p_repo, "diff", "--binary", "HEAD"))
+    (operator / "proofline.patch").write_bytes(p.git_bytes(p.host.ROOT, "diff", "--binary", "HEAD"))
     (operator / "oracle-canary").write_text("operator-only")
     started = time.monotonic()
     audit_record = json.loads(s2_record.read_text())
@@ -237,6 +257,12 @@ def run(s2_record, p2p_repo, output):
         "status": "RUNNING", "input_mode": "shared-preplanned", "raw_request_cohort": "not executed",
         "upstream_planning_cost": None, "human_attention_seconds": None, "monetary_cost": None,
         "model_preferences": preferences, "p2p_commit": p.git_bytes(p2p_repo, "rev-parse", "HEAD").decode().strip(),
+        "p2p_patch_sha256": p.host.sha256((operator / "p2p.patch").read_bytes()),
+        "proofline_commit": p.git_bytes(p.host.ROOT, "rev-parse", "HEAD").decode().strip(),
+        "proofline_patch_sha256": p.host.sha256((operator / "proofline.patch").read_bytes()),
+        "proofline_runner_sha256": p.host.sha256((operator / "proofline.py").read_bytes()),
+        "codex_live_sha256": p.host.sha256((operator / "codex_live.py").read_bytes()),
+        "limits": {"seconds": 900, "stage_seconds": STAGE_SECONDS, "p2p_dispatches": 12, "p2p_repairs": 1},
         "host": {"codex": p.host.run_command([codex, "--version"], operator)["stdout"].strip(),
                  "codex_sha256": p.host.sha256(Path(codex).read_bytes()), "python": sys.version},
         "p2p_instruction_packages": {stage: {"path": str(p2p_repo / "skills/productivity" / name / "SKILL.md"),
@@ -285,7 +311,7 @@ def run(s2_record, p2p_repo, output):
             if assignment["cohort"] == "p2p":
                 result = p2p_run(repo, brief, source, directory / "run", controller, operator, codex)
             elif assignment["cohort"] == "proofline":
-                r = p.deliver(repo, source, brief, directory / "run", 900, 180, 120,
+                r = p.deliver(repo, source, brief, directory / "run", 900, STAGE_SECONDS, 120, dispatches=3,
                     execution_map=f"Python {sys.executable} -B. Public entry point username.py; existing unittest checks are available. This is a shared preplanned local benchmark task, not a historical P2P approval.")
                 result = {**r, "accepted": r["status"] == "LOCAL ACCEPTED", "candidate": r.get("candidate_path", str(repo))}
             else:
@@ -374,7 +400,8 @@ def p2p_followup(previous, p2p_repo, output):
         p.write_record(operator / "report.json", record)
         try:
             result = p2p_run(repo, contract(assignment["source_gap"]), source,
-                directory / "run", p2p_repo / SCRIPT, operator, codex)
+                directory / "run", p2p_repo / SCRIPT, operator, codex,
+                stage_seconds=original.get("limits", {}).get("stage_seconds", 180))
             assignment["delivery"] = result
             inputs = operator / uuid.uuid4().hex
             inputs.mkdir()

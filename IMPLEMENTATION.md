@@ -1,6 +1,6 @@
 # Proofline — Implementation plan
 
-**Status:** Execution roadmap v1 · 11 October 2026 (S0–S2 demonstrated; guarded S3 repeat complete, P2P delivery comparison inconclusive)
+**Status:** Execution roadmap v1 · 12 October 2026 (S0–S2 demonstrated; qualified P2P delivery and fixed 240-second S3 comparison complete; S4 local recovery and S5 authorized remote gates demonstrated)
 
 **Design authority:** [DESIGN.md v0.5](./DESIGN.md) — the product contract and safety boundaries live there.  
 **Objective:** Make a capable coding agent deliver the *complete authorized promise*, with independently credible evidence, minimal human coordination, and substantially less wasted work than a heavy controller.
@@ -16,15 +16,25 @@ controls; see [S1 evidence](docs/S1-DIRECT-DELIVERY.md). S2's narrow
 [contract adapter](docs/S2-CONTRACT-INPUT.md) passed its actual approved-contract
 and full negative-control gate; see [S2 evidence](docs/S2-LIVE-EVIDENCE.md).
 Milestone A's local gates pass within these recorded boundaries. S3's
-[four-way native observations](docs/S3-COMPARISON.md) include a qualified P2P host
-and final-guard repeat. Ordinary agent and agent plus review delivered four valid
-cases each; Proofline delivered three and exhausted its prover budget on the
-correct alternative. All three rejected the source omission. Actual P2P reached
-implementation but produced no accepted delivery: readiness-ID errors and stage
-limits leave its completed-delivery/verifier-quality comparison inconclusive.
-All setup failures and unknown costs remain visible. S4–S6 remain deferred. The original
+[fixed 240-second four-way repeat](docs/S3-COMPARISON.md) completed all 20
+assignments. Ordinary agent, agent plus review and Proofline each delivered four
+correct positive cases; P2P delivered two, retaining two on-time handoff failures
+from mislabeling expected exit-2 probes as passed. All four cohorts correctly
+rejected the source omission. P2P's complete native implementation, review and
+proof and its input-gap control qualified before the repeat. Proofline completed
+the alternative whose prover previously timed out. Earlier 180-second failures,
+qualification costs and unknown costs remain visible. The P2P default suite's
+pre-existing packaging failure and corrected macOS temporary-path fixture are
+documented; its suite is not claimed to pass. These are small CLI observations,
+not a statistical advantage claim. S4 demonstrates native product repair, unchanged evidence recovery and separate-process resume, with deterministic budget/progress controls; see [S4 evidence](docs/S4-RECOVERY.md). S5 demonstrates an explicitly authorized real PR/merge with separate-process recovery and exact-tree remote readback on the disposable repository; its protected-CI and transformed-merge limits are recorded in [S5 evidence](docs/S5-PUBLICATION.md). The original
 [Linux NO-GO](docs/S0-HOST-FEASIBILITY.md) remains historical evidence.
-This status does not change any gate below.
+This status does not change any gate below. S6 now has an executable 20-task
+four-way pilot and a separately identified Luna/Sol experiment. Its initial
+campaign stopped at the trust gate: 69/120 assignments executed, one independently
+confirmed Proofline false acceptance, 51 assignments retained as unexecuted.
+The evidence requires stronger verification before expansion and does not prove
+an efficiency advantage. See [S6 measured results](docs/S6-RESULTS.md) and
+[protocol and amendments](docs/S6-PILOT.md).
 
 This plan orders engineering work; it is **not** an alternative acceptance agreement and cannot revise the user's promise. The original source and any separately approved acceptance contract remain binding. Where this roadmap and DESIGN.md differ, **DESIGN.md wins** until the product owner authorizes a design change.
 
@@ -130,7 +140,7 @@ This plan orders engineering work; it is **not** an alternative acceptance agree
 
 **Gate:** Exercise seeded product repair, evidence-only repair, environment failure, non-progress termination, productive third round, and interruption/restart in real and deterministic tests as appropriate. Do not introduce separate recovery agents.
 
-### S5 — Reach the authorized delivery target (later capability)
+### S5 — Reach the authorized delivery target
 
 **Build:** Add optional user-authorized `PR created` and `PR merged` targets using host-native GitHub/Git facilities. Local acceptance remains available without GitHub. Effect grants must be explicit at the initial request and scoped to the relevant repository and action; independent checking never creates effect authority.
 
@@ -145,12 +155,12 @@ This plan orders engineering work; it is **not** an alternative acceptance agree
 
 ### S6 — Fair full pilot, then improve only what earns its cost
 
-**Build:** Predeclare realistic raw-request and shared-preplanned cohorts, keep held-out tasks away from prompt tuning, and run the four-way comparison through comparable authorized delivery targets. Include repair-heavy and long-tail cases and correct implementations using different approaches. Optionally run a separate one-checker-versus-two-checker experiment; keep the production assurance standard meanwhile.
+**Build:** Predeclare realistic raw-request and shared-preplanned cohorts, keep held-out tasks away from prompt tuning, and run the four-way comparison through comparable authorized delivery targets. Include repair-heavy and long-tail cases and correct implementations using different approaches. Run a separately reported weaker/stronger model experiment: Luna alone, Luna with Proofline, Sol alone, and Sol with Proofline on matched tasks and budgets. Reuse overlapping assignments without counting their cost twice. Optionally run a separate one-checker-versus-two-checker experiment; keep the production assurance standard meanwhile.
 
 **Acceptance:**
 
 - **E1:** Independent ground truth and known-good/known-bad evaluator controls are fixed before runs. Every assigned case, failure, false acceptance, false blocking, incomplete target, and unknown cost is visible.
-- **E2:** Report paired per-task quality, end-to-end time, calls, cost where available, human attention, long-tail behavior, and *cost per satisfactory delivery*; count planning and rework in the full-request view.
+- **E2:** Report paired per-task quality, end-to-end time, calls, cost where available, human attention, long-tail behavior, and *cost per satisfactory delivery*, including correct deliveries per dollar and per workflow hour; count planning and rework in the full-request view. Keep model-strength comparisons separate from framework comparisons and prices/usage that are unavailable explicitly unknown.
 - **E3:** Evaluate the DESIGN.md pilot hypothesis of at least **25%** less median time or tokens against full P2P as a *target to investigate*, **not** a proven benefit or sufficient basis for a quality claim.
 - **E4:** Continue, simplify, change host, or abandon the hypothesis based on observed trust and usefulness. Faster false acceptance is failure; chronic false blocking is also failure. Only add stages or infrastructure when a narrower remedy has demonstrably failed.
 
