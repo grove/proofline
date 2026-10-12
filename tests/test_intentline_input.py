@@ -132,3 +132,17 @@ class NativeInput(unittest.TestCase):
             with patch.object(proofline.platform,'system',return_value='Darwin'),patch.object(proofline.host,'find_codex',return_value=sys.executable),patch.object(proofline.host,'run_command',side_effect=command),patch.object(proofline.host,'probe_boundary',side_effect=boundary),patch.object(proofline.live,'preferences',return_value={}),patch.object(proofline.live,'run_stage',side_effect=stage):
                 result=self.deliver(name=kind)
             self.assertEqual(result['status'],'INPUT NOT READY');self.assertEqual(calls,['implementer','reviewer'])
+
+    def test_evidence_refresh_preserves_binding_but_outcome_change_refuses(self):
+        manifest=json.loads((self.bundle/'source-manifest.json').read_bytes())
+        predecessor=json.loads((self.bundle/('archive-'+manifest['predecessor']['snapshot_sha256']+'.json')).read_bytes())
+        draft=json.loads((self.bundle/'initial-contract.json').read_bytes())
+        mapping=json.loads((self.bundle/'continuity.json').read_bytes())
+        blobs={row['source_id']:(self.bundle/('source-'+row['source_id']+'.txt')).read_bytes() for row in manifest['sources']}
+        draft['requirements'][0]['plan_state']='gap';draft['requirements'][0]['planned_evidence']='Await unavailable harness'
+        mapping['contract_sha256']=native.sha(native.canonical(draft))
+        native.continuity(mapping,predecessor['history'][-1],draft,manifest,blobs,predecessor['manifest'])
+        draft['requirements'][0]['statement']='Accept empty usernames'
+        mapping['contract_sha256']=native.sha(native.canonical(draft))
+        with self.assertRaisesRegex(ValueError,'False mechanical preservation'):
+            native.continuity(mapping,predecessor['history'][-1],draft,manifest,blobs,predecessor['manifest'])

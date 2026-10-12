@@ -226,7 +226,9 @@ def continuity(record, old, new, manifest, blobs, old_manifest):
         references(mapping,manifest,blobs)
         if kind == 'preserved':
             origin,destination=mapping['from'][0],mapping['to'][0]
-            require(origin == destination and remap(before[origin]) == after[destination], 'False mechanical preservation')
+            old_binding = {k:v for k,v in remap(before[origin]).items() if k not in ('seam','planned_evidence','plan_state')}
+            new_binding = {k:v for k,v in after[destination].items() if k not in ('seam','planned_evidence','plan_state')}
+            require(origin == destination and old_binding == new_binding, 'False mechanical preservation')
         else:
             changed_support(mapping,[before[i] for i in a]);require(not any(i in before and i not in a for i in b), 'Aliased inherited ID')
         origins |= a;targets |= b
