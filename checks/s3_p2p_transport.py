@@ -80,7 +80,18 @@ def command(executable, args, blocked):
             "-c", "permissions.s3_p2p=" + toml(profile(scratch, blocked)), "-"]
 
 
-def launch(executable, args, blocked, records):
+def launch(executable, args, blocked, records, preferences=None):
+    if preferences is not None and args != ["--version"]:
+        args = list(args)
+        for key, value in preferences.items():
+            if key not in {"model", "model_reasoning_effort"}:
+                raise ValueError("Only declared model preferences can be overridden")
+            for index, arg in enumerate(args):
+                if arg.startswith(key + "=") and index and args[index - 1] == "-c":
+                    args[index] = key + "=" + toml(value)
+                    break
+            else:
+                args[-1:-1] = ["-c", key + "=" + toml(value)]
     argv = command(executable, args, blocked)
     (Path(records) / (uuid.uuid4().hex + ".json")).write_text(
         json.dumps({"requested_argv": args, "effective_argv": argv}, indent=2) + "\n")

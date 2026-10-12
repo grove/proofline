@@ -84,7 +84,8 @@ def judgment_observed(stages):
         last.get("report_validation") == "accepted")
 
 
-def ordinary(repo, source, brief, out, review, codex, preferences):
+def ordinary(repo, source, brief, out, review, codex, preferences, *,
+             entrypoint="username.py", execution_map=None, seconds=900, stage_seconds=STAGE_SECONDS):
     started = time.monotonic()
     inputs = out / "implementation/inputs"
     inputs.mkdir(parents=True)
@@ -93,7 +94,7 @@ def ordinary(repo, source, brief, out, review, codex, preferences):
     _, base = p.capture_base(repo, inputs / "product")
     boundary = out / "preflight"
     boundary.mkdir()
-    observed = p.host.probe_boundary(codex, boundary, inputs, 15, inputs / "product/username.py")
+    observed = p.host.probe_boundary(codex, boundary, inputs, 15, inputs / "product" / entrypoint)
     if observed["assessment"]["status"] != "OBSERVED":
         return {"accepted": False, "stages": [], "elapsed_seconds": time.monotonic() - started,
                 "candidate": str(inputs / "product"), "error": "Native preflight unavailable"}
@@ -111,15 +112,15 @@ def ordinary(repo, source, brief, out, review, codex, preferences):
         def prompt(role, inputs, identity, canary=None):
             if role == "reviewer":
                 return p.prompt(role, inputs, identity, canary, ids=ids,
-                    execution_map=f"Python {sys.executable} -B. Public entry point username.py; existing unittest checks are available.")
+                    execution_map=execution_map or f"Python {sys.executable} -B. Public entry point username.py; existing unittest checks are available.")
             return f"""Implement the unchanged original request in {inputs / 'product'}.
 Original source: {inputs / 'source.md'}. Shared approved plan: {inputs / 'accepted-input.md'}.
-The original source remains binding. Do not change the plan or claim completion of missing source promises. Report a material agreement gap instead of certifying an incomplete plan. Use your normal coding approach and useful checks. Python {sys.executable} -B; existing unittest checks are available. No dependencies or external effects. Only product is writable; do not commit.
+The original source remains binding. Do not change the plan or claim completion of missing source promises. Report a material agreement gap instead of certifying an incomplete plan. Use your normal coding approach and useful checks. {execution_map or f'Python {sys.executable} -B; existing unittest checks are available.'} No dependencies or external effects. Only product is writable; do not commit.
 Return the supplied schema: role implementer, binding {p.live.binding_for(identity)}, READY if the whole authorized task is complete, otherwise FAIL or NOT VERIFIED. List all criterion IDs {json.dumps(ids)} with observations; findings holds material blockers. Leave commands empty or cite actual host item IDs or EXACT full command strings from your tool events; paraphrased command citations invalidate the handoff. There is no separate checker in this coding stage.
 """
         result = p.live.run_stage(codex, stage_dir, stage_inputs, p.identities(stage_inputs, base), role,
-            preferences, min(STAGE_SECONDS, 900 - (time.monotonic() - started)), make_prompt=prompt,
-            criterion_ids=ids, target=stage_inputs / "product/username.py")
+            preferences, max(.001, min(stage_seconds, seconds - (time.monotonic() - started))), make_prompt=prompt,
+            criterion_ids=ids, target=stage_inputs / "product" / entrypoint)
         stages.append(result)
         if result["status"] != "OBSERVED" or result["report"]["verdict"] != ("READY" if role == "implementer" else "PASS"):
             break
@@ -130,7 +131,8 @@ Return the supplied schema: role implementer, binding {p.live.binding_for(identi
         "elapsed_seconds": time.monotonic() - started, "candidate": str(inputs / "product")}
 
 
-def p2p_run(repo, brief, source, out, controller, private, codex, *, stage_seconds=STAGE_SECONDS):
+def p2p_run(repo, brief, source, out, controller, private, codex, *, stage_seconds=STAGE_SECONDS,
+            seconds=900, dispatches=12, repairs=1, preferences=None, fixed_plan=True):
     started = time.monotonic()
     out.mkdir(parents=True)
     work = ".p2p/work/username/contract.md"
@@ -169,14 +171,17 @@ def p2p_run(repo, brief, source, out, controller, private, codex, *, stage_secon
     executable = transport / "codex"
     executable.write_text(f"#!{sys.executable}\nimport sys\nsys.path.insert(0,{str(p.host.ROOT)!r})\n"
         "from checks.s3_p2p_transport import launch\n"
-        f"launch({codex!r},sys.argv[1:],{[str(path.resolve()) for path in blocked]!r},{str(launches)!r})\n")
+        f"launch({codex!r},sys.argv[1:],{[str(path.resolve()) for path in blocked]!r},{str(launches)!r},{preferences!r})\n")
     executable.chmod(0o755)
     sys.path.insert(0, str(controller.parent))
     import p2p_delivery as d
-    policy = d.autonomy.local('Deliver the shared preplanned contract without revising it.')['policy']
-    policy['decisions'].remove('planning')
-    policy['constraints'].append('Report material source gaps for upstream agreement; do not revise the shared plan or binding inputs.')
-    policy['approval_source'] = 'User-authorized fixed-plan local S3 comparison.'
+    policy = d.autonomy.local('Deliver the original source using current P2P planning, verification and recovery.')['policy']
+    if fixed_plan:
+        policy['decisions'].remove('planning')
+        policy['constraints'].append('Report material source gaps for upstream agreement; do not revise the shared plan or binding inputs.')
+    else:
+        policy['constraints'].append('Any planning recovery must preserve the complete original source outcomes. No tracker or remote effects.')
+    policy['approval_source'] = 'User-authorized source-preserving local comparison.'
     mandate = out / 'mandate.json'
     p.write_record(mandate, policy)
     entry = out / "p2p_entry.py"
@@ -186,8 +191,8 @@ def p2p_run(repo, brief, source, out, controller, private, codex, *, stage_secon
         "d.installed_skill=package\nraise SystemExit(d.main())\n")
     receipt = p.host.run_command([sys.executable, "-B", str(entry),
         "--repo", str(repo), "run", work, "--comparison-base", base, "--destination", "delivery-target",
-        "--authorize-local", "--mandate", str(mandate), "--max-dispatches", "12", "--max-seconds", "900",
-        "--max-stage-seconds", str(stage_seconds), "--max-repairs", "1"], out, 915,
+        "--authorize-local", "--mandate", str(mandate), "--max-dispatches", str(dispatches), "--max-seconds", str(seconds),
+        "--max-stage-seconds", str(stage_seconds), "--max-repairs", str(repairs)], out, seconds + 15,
         env=os.environ | {"PATH": str(transport) + os.pathsep + os.environ.get("PATH", os.defpath)})
     local = d.local_directory(repo, work)
     runtime = d.execution_runtime(repo, work)

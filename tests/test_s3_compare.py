@@ -107,16 +107,24 @@ class ComparisonTests(unittest.TestCase):
                 result = s3.p2p_run(repo, s3.contract(), "original", root / "run",
                     root / "skills/productivity/deliver-issue/scripts/p2p_delivery.py",
                     root / "operator", "/real/codex")
+                controller_argv = run_command.call_args_list[-1].args[0]
+                raw_repo = root / 'raw-repo'; raw_repo.mkdir()
+                s3.p2p_run(raw_repo, s3.contract(), "original", root / "raw-run",
+                    root / "skills/productivity/deliver-issue/scripts/p2p_delivery.py",
+                    root / "operator", "/real/codex", fixed_plan=False)
+                raw_argv = run_command.call_args_list[-1].args[0]
             self.assertTrue(result["accepted"])
             self.assertEqual(result["candidate"], str(runtime / "workspace"))
             self.assertEqual(result["model_dispatches"], 1)
             self.assertEqual(result["stages"][0]["path"], str(attempt))
-            controller_argv = run_command.call_args_list[-1].args[0]
             self.assertEqual(controller_argv[controller_argv.index('--max-stage-seconds') + 1], '240')
             mandate = json.loads(Path(controller_argv[controller_argv.index('--mandate') + 1]).read_text())
             self.assertNotIn('planning', mandate['decisions'])
             self.assertEqual(mandate['effects'], [])
             self.assertTrue({'implementation', 'evidence', 'repair'} <= set(mandate['decisions']))
+            raw_mandate = json.loads(Path(raw_argv[raw_argv.index('--mandate') + 1]).read_text())
+            self.assertIn('planning',raw_mandate['decisions'])
+            self.assertTrue(any('complete original source' in value for value in raw_mandate['constraints']))
             self.assertEqual((repo / ".p2p/work/username/source-issue.md").read_text(), "original")
             self.assertIn("(source-issue.md)", (repo / ".p2p/work/username/contract.md").read_text())
 

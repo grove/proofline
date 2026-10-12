@@ -23,7 +23,7 @@ implementer session; evidence gaps get focused independent rechecks. The origina
 | S3 — Four-way comparison | Fixed 240-second repeat complete: ordinary/agent + review/Proofline delivered 4/4, P2P 2/4; all four rejected omitted source; earlier failures and costs retained |
 | S4 — Bounded correction and resume | Native repair, unchanged evidence recovery and separate-process resume demonstrated; budget/stopping controls tested; see [S4 evidence](docs/S4-RECOVERY.md) |
 | S5 — Authorized publication | Real PR/merge, separate-process recovery and exact-tree remote readback demonstrated in the authorized disposable repo; see [S5 evidence and limits](docs/S5-PUBLICATION.md) |
-| S6 — Full pilot | Deferred; preceding evidence gates remain binding |
+| S6 — Full pilot | Implemented: four approaches and Luna/Sol. Initial pilot stopped at the trust gate after a Proofline false acceptance: 69/120 assignments executed. See [measured results](docs/S6-RESULTS.md) and [protocol](docs/S6-PILOT.md) |
 
 Read the [S0 results and failed experiments](docs/S0-CODEX-RUNNER.md),
 [S1 evidence](docs/S1-DIRECT-DELIVERY.md), and
@@ -31,6 +31,9 @@ Read the [S0 results and failed experiments](docs/S0-CODEX-RUNNER.md),
 The [S3 comparison](docs/S3-COMPARISON.md) records every assignment, failed setup,
 available usage and unknown cost; it makes no P2P performance advantage claim.
 These results establish neither broad correctness nor a performance advantage.
+The S6 ledger retains unavailable models, failed handoffs, budget exhaustion,
+unexecuted assignments and unknown costs. The observed false acceptance requires
+stronger verification before expansion; this pilot establishes no advantage.
 
 ## Deliver a direct request
 
@@ -200,6 +203,13 @@ python3 -B checks/s5_live.py --repo /path/to/clean-disposable-checkout \
   --effect-reference 'Actual user grant reference' --output .proofline/s5-live/new-run
 # Native subprocess/permission regressions, no model calls.
 PROOFLINE_NATIVE_TESTS=1 python3 -B -m unittest discover -s tests -v
+# S6: freeze the complete assignment ledger before any task models run.
+python3 -B checks/s6_compare.py declare --p2p-repo /path/to/promise-to-proof \
+  --output .proofline/s6/new-pilot --sol gpt-6.1-sol --luna gpt-6-luna
+python3 -B checks/s6_compare.py run .proofline/s6/new-pilot
+python3 -B checks/s6_compare.py summary .proofline/s6/new-pilot
+# Separate native recovery stresses, excluded from natural pilot quality rates.
+python3 -B checks/s6_challenges.py --output .proofline/s6/new-challenges
 ```
 
 Canaries use disposable files and a controlled local listener. Timeout or refused
