@@ -214,6 +214,10 @@ class LiveTransportTests(unittest.TestCase):
         self.assertIn(sys.executable, profile["filesystem"])
         for feature in live.DISABLED_FEATURES:
             self.assertIn("features." + feature + "=false", argv)
+        import tomllib
+        setting = next(item.split('=', 1)[1] for item in argv if item.startswith('shell_environment_policy.set='))
+        environment = tomllib.loads('value=' + setting)['value']
+        self.assertIn(str(Path(sys.executable).resolve().parent), environment['PATH'].split(os.pathsep))
 
     def test_same_bytes_bind_across_different_candidate_locations(self):
         a = {"source_sha256": "source", "candidate_tree": "tree", "candidate_path": "/one"}

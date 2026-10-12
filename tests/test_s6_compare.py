@@ -10,6 +10,29 @@ from checks import s6_compare as s6
 
 
 class PilotTests(unittest.TestCase):
+    def test_followup_service_controls_and_exposure_are_explicit(self):
+        from checks import s6_followup_corpus as corpus
+        self.assertEqual(len(corpus.TASKS), 24)
+        self.assertEqual(sum('fresh-held-out' in item['tags'] for item in corpus.TASKS), 4)
+        self.assertEqual([s6.corpus.source(item) for item in corpus.TASKS[:20]],
+                         [s6.corpus.source(item) for item in s6.corpus.TASKS])
+        with tempfile.TemporaryDirectory() as temporary:
+            root = Path(temporary)
+            for item in corpus.NEW:
+                for variant, expected in (('good', True), ('seed', False)):
+                    directory = root / item['id'] / variant
+                    s6.seed(directory / 'product', item, variant)
+                    self.assertTrue((directory / 'product/service.py').exists())
+                    result = s6.evaluate(directory / 'product', item, directory=directory / 'evaluation')
+                    self.assertTrue(result['observed'])
+                    self.assertEqual(result['correct'], expected, item['id'])
+
+    def test_corpus_extra_files_cannot_escape_the_product(self):
+        with tempfile.TemporaryDirectory() as temporary:
+            for i, name in enumerate(('../outside', '/absolute', '.git/config', 'app.py')):
+                with self.assertRaisesRegex(ValueError, 'Invalid corpus file'):
+                    s6.seed(Path(temporary) / str(i), {**s6.corpus.TASKS[0], 'files': {name: 'untrusted'}})
+
     def manifest(self):
         return {'models': {'sol': {'model': 'sol'}, 'luna': {'model': 'luna'}},
                 'hypothesis': {'maximum_false_blocking_rate': .1},
@@ -31,7 +54,7 @@ class PilotTests(unittest.TestCase):
         self.assertGreaterEqual(sum('held-out' in t['tags'] for t in s6.corpus.TASKS),8)
         with tempfile.TemporaryDirectory() as temporary:
             controls = s6.controls(s6.corpus.TASKS,Path(temporary))
-        self.assertEqual(len(controls),46)
+        self.assertEqual(len(controls),47)
         self.assertTrue(all(c['evaluation']['observed'] for c in controls))
 
     def test_false_acceptance_overrides_speed_and_quality_gate(self):
@@ -39,6 +62,33 @@ class PilotTests(unittest.TestCase):
         self.assertIn('STRENGTHEN VERIFICATION',result['decision'])
         self.assertFalse(result['hypotheses'][0]['quality_gate'])
         self.assertEqual(result['hypotheses'][0]['25_percent_target'],'INCONCLUSIVE')
+
+    def test_external_trust_stop_overrides_positive_assignment_results(self):
+        result=self.summary([self.assignment(),self.assignment('p2p')],status='TRUST GATE FAILED')
+        self.assertIn('STRENGTHEN VERIFICATION',result['decision'])
+
+    def test_pagination_control_does_not_narrow_scores_to_numbers(self):
+        item=s6.corpus.TASKS[1]
+        defective=item['good'].replace('key=cmp_to_key(compare)',
+                                     'key=lambda r: (-r["score"], r["id"])')
+        with tempfile.TemporaryDirectory() as temporary:
+            root=Path(temporary)
+            s6.seed(root/'product',{**item,'numeric-only':defective},'numeric-only')
+            score=s6.evaluate(root/'product',item,directory=root/'evaluation')
+        self.assertTrue(score['observed'])
+        self.assertFalse(score['correct'])
+
+    def test_library_paging_keeps_non_boolean_integer_subclasses(self):
+        item=s6.corpus.TASKS[1]
+        defective=item['good'].replace('any(not isinstance(v, int) or isinstance(v, bool) or v < 0 for v in (offset, limit))',
+                                     'type(offset) is not int or type(limit) is not int or min(offset, limit) < 0')
+        with tempfile.TemporaryDirectory() as temporary:
+            root=Path(temporary)
+            s6.seed(root/'product',{**item,'plain-int-only':defective},'plain-int-only')
+            score=s6.evaluate(root/'product',item,directory=root/'evaluation')
+        self.assertTrue(score['observed'])
+        self.assertTrue(all(o['status']=='SATISFIED' for o in score['observations']))
+        self.assertFalse(score['library']['correct'])
 
     def test_failed_attempt_costs_are_divided_by_successes(self):
         result=self.summary([self.assignment(),self.assignment(outcome='FAILED',end_to_end_seconds=20)])

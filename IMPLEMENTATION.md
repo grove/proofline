@@ -28,13 +28,18 @@ pre-existing packaging failure and corrected macOS temporary-path fixture are
 documented; its suite is not claimed to pass. These are small CLI observations,
 not a statistical advantage claim. S4 demonstrates native product repair, unchanged evidence recovery and separate-process resume, with deterministic budget/progress controls; see [S4 evidence](docs/S4-RECOVERY.md). S5 demonstrates an explicitly authorized real PR/merge with separate-process recovery and exact-tree remote readback on the disposable repository; its protected-CI and transformed-merge limits are recorded in [S5 evidence](docs/S5-PUBLICATION.md). The original
 [Linux NO-GO](docs/S0-HOST-FEASIBILITY.md) remains historical evidence.
-This status does not change any gate below. S6 now has an executable 20-task
-four-way pilot and a separately identified Luna/Sol experiment. Its initial
-campaign stopped at the trust gate: 69/120 assignments executed, one independently
-confirmed Proofline false acceptance, 51 assignments retained as unexecuted.
-The evidence requires stronger verification before expansion and does not prove
-an efficiency advantage. See [S6 measured results](docs/S6-RESULTS.md) and
-[protocol and amendments](docs/S6-PILOT.md).
+This status does not change any gate below. **S6 remains incomplete.** The initial
+campaign stopped at 69/120 assignments. Uniform follow-up readback found further
+source-domain defects; historical scores remain preserved. A fresh declaration
+included 20 exposed regressions and four unfamiliar multi-module service tasks,
+with matched budgets and separate four-way/model ledgers. It stopped after 4/144
+assignments when native review and proof certified an incorrect pagination
+control. The narrower source-coverage prompt remedy subsequently failed again.
+The P2P transport defect is repaired, but its two delivered qualification
+candidates also fail the expanded independent evaluator. The decision is to
+redesign verification before expanding automation; no efficiency or model
+advantage is established. See [follow-up evidence](docs/S6-FOLLOWUP.md),
+[historical results](docs/S6-RESULTS.md), and [protocol](docs/S6-PILOT.md).
 
 This plan orders engineering work; it is **not** an alternative acceptance agreement and cannot revise the user's promise. The original source and any separately approved acceptance contract remain binding. Where this roadmap and DESIGN.md differ, **DESIGN.md wins** until the product owner authorizes a design change.
 
@@ -154,6 +159,13 @@ This plan orders engineering work; it is **not** an alternative acceptance agree
 **Gate:** Validate with safe disposable repositories/fakes for fault injection and at least one real, explicitly authorized remote test before claiming end-to-end support. No deployment scope is implied.
 
 ### S6 — Fair full pilot, then improve only what earns its cost
+
+**Gate status (12 October 2026): INCOMPLETE / TRUST STOP.** Native isolation,
+candidate binding and bounded recovery work within the recorded boundary.
+Source-domain coverage and evaluator adequacy do not yet support trustworthy
+acceptance or a completed efficacy comparison. The retained follow-up is evidence
+for redesign, not evidence that E1–E3 passed. No stopped campaign may resume under
+the changed runtime, and no new assurance stage has been added speculatively.
 
 **Build:** Predeclare realistic raw-request and shared-preplanned cohorts, keep held-out tasks away from prompt tuning, and run the four-way comparison through comparable authorized delivery targets. Include repair-heavy and long-tail cases and correct implementations using different approaches. Run a separately reported weaker/stronger model experiment: Luna alone, Luna with Proofline, Sol alone, and Sol with Proofline on matched tasks and budgets. Reuse overlapping assignments without counting their cost twice. Optionally run a separate one-checker-versus-two-checker experiment; keep the production assurance standard meanwhile.
 

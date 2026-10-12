@@ -12,18 +12,20 @@ from checks import s6_compare as s6
 p = s6.p
 
 
-def qualify(output, model=s6.MODELS['sol'], seconds=1800, stage_seconds=360):
+def qualify(output, model=s6.MODELS['sol'], seconds=1800, stage_seconds=360, task_id='unicode-usernames'):
+    item = next(item for item in s6.corpus.TASKS if item['id'] == task_id)
+    if item['alternative'] is None:
+        raise ValueError('Recovery calibration requires a valid alternative')
     output.mkdir(parents=True,exist_ok=False)
     record={'kind':'s6_native_challenges','model':model,'status':'NOT VERIFIED',
             'cases':[], 'excluded_from_pilot':True, 'reason':'Controlled host fault injection, not natural coding performance'}
     p.write_record(output/'manifest.json', {'cases':['third-implementation','weak-evidence','valid-alternative'],
-        'model':model,'seconds':seconds,'stage_seconds':stage_seconds,
+        'model':model,'seconds':seconds,'stage_seconds':stage_seconds,'task':task_id,
         'corpus_sha256':p.host.sha256(Path(s6.corpus.__file__).read_bytes()),
         'runner_sha256':p.host.sha256(Path(__file__).read_bytes()),'excluded_from_pilot':True})
     started=time.monotonic()
     native=p.live.run_stage
     for case in ('third-implementation','weak-evidence','valid-alternative'):
-        item=s6.corpus.TASKS[0]
         directory=output/case
         s6.seed(directory/'source',item,'alternative' if case=='valid-alternative' else 'seed')
         implementations=proofs=0
@@ -90,5 +92,6 @@ if __name__=='__main__':
     parser=argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--output',type=Path,required=True)
     parser.add_argument('--model',default=s6.MODELS['sol'])
+    parser.add_argument('--task',default='unicode-usernames')
     args=parser.parse_args()
-    raise SystemExit(0 if qualify(args.output.resolve(),args.model)['status']=='OBSERVED' else 2)
+    raise SystemExit(0 if qualify(args.output.resolve(),args.model,task_id=args.task)['status']=='OBSERVED' else 2)

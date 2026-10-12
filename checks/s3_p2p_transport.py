@@ -2,6 +2,7 @@
 import json
 import os
 from pathlib import Path
+import sys
 import tomllib
 import uuid
 
@@ -61,21 +62,31 @@ def command(executable, args, blocked):
                     if (parent / "repository.git").is_dir()
                     and (parent / "workspace/.git").is_file()), None)
     if runtime is not None:
-        # Absolute Git discovery inspects the denied executions ancestor on macOS.
+        # Git cannot traverse the denied executions ancestor; rebind relative paths per invocation.
+        git = Path('/Library/Developer/CommandLineTools/usr/bin/git')
+        if not git.is_file():
+            git = Path('/usr/bin/git')
+        binaries = runtime / 'scratch/transport-git'
+        binaries.mkdir(parents=True, exist_ok=True)
+        wrapper = binaries / 'git'
+        wrapper.write_text(f'#!{sys.executable}\nimport os,sys\n'
+            f'os.environ["GIT_DIR"]=os.path.relpath({str(runtime / "repository.git")!r})\n'
+            f'os.environ["GIT_WORK_TREE"]=os.path.relpath({str(runtime / "workspace")!r})\n'
+            f'os.execv({str(git)!r},[{str(git)!r},*sys.argv[1:]])\n')
+        wrapper.chmod(0o755)
         for index, value in enumerate(result):
             if value.startswith("shell_environment_policy.set="):
                 environment = tomllib.loads(value)["shell_environment_policy"]["set"]
-                environment.update(GIT_DIR=os.path.relpath(runtime / "repository.git", scratch_path),
-                                   GIT_WORK_TREE=os.path.relpath(runtime / "workspace", scratch_path))
+                environment.pop('GIT_DIR', None)
+                environment.pop('GIT_WORK_TREE', None)
+                environment['PATH'] = os.pathsep.join((str(binaries), str(Path(sys.executable).resolve().parent), environment['PATH']))
                 result[index] = "shell_environment_policy.set=" + toml(environment)
                 break
         else:
             raise ValueError("Missing declared shell environment")
-        result[-1:-1] = ["-c", "developer_instructions=" + json.dumps(
-            "Git environment paths are relative to the initial worker directory. "
-            "Run Git commands from that directory; after changing directories, rebind "
-            "GIT_DIR and GIT_WORK_TREE to relative paths. Absolute Git discovery may "
-            "fail under the protected executions-root profile.")]
+        result[-1:-1] = ["-c", "allow_login_shell=false", "-c", "developer_instructions=" + json.dumps(
+            'Use git from PATH; this transport binds it to the candidate workspace from any cwd. '
+            'Absolute Git discovery may fail under the protected executions-root profile.')]
     return [executable, "--no-daemon", *result[:-1], "-c", "default_permissions=s3_p2p",
             "-c", "permissions.s3_p2p=" + toml(profile(scratch, blocked)), "-"]
 

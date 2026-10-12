@@ -23,7 +23,7 @@ implementer session; evidence gaps get focused independent rechecks. The origina
 | S3 — Four-way comparison | Fixed 240-second repeat complete: ordinary/agent + review/Proofline delivered 4/4, P2P 2/4; all four rejected omitted source; earlier failures and costs retained |
 | S4 — Bounded correction and resume | Native repair, unchanged evidence recovery and separate-process resume demonstrated; budget/stopping controls tested; see [S4 evidence](docs/S4-RECOVERY.md) |
 | S5 — Authorized publication | Real PR/merge, separate-process recovery and exact-tree remote readback demonstrated in the authorized disposable repo; see [S5 evidence and limits](docs/S5-PUBLICATION.md) |
-| S6 — Full pilot | Implemented: four approaches and Luna/Sol. Initial pilot stopped at the trust gate after a Proofline false acceptance: 69/120 assignments executed. See [measured results](docs/S6-RESULTS.md) and [protocol](docs/S6-PILOT.md) |
+| S6 — Full pilot | **Incomplete.** Initial campaign stopped at 69/120; follow-up stopped at 4/144 after native verification again certified a source-valid defect. See [follow-up findings](docs/S6-FOLLOWUP.md), [historical results](docs/S6-RESULTS.md), and [protocol](docs/S6-PILOT.md) |
 
 Read the [S0 results and failed experiments](docs/S0-CODEX-RUNNER.md),
 [S1 evidence](docs/S1-DIRECT-DELIVERY.md), and
@@ -32,8 +32,12 @@ The [S3 comparison](docs/S3-COMPARISON.md) records every assignment, failed setu
 available usage and unknown cost; it makes no P2P performance advantage claim.
 These results establish neither broad correctness nor a performance advantage.
 The S6 ledger retains unavailable models, failed handoffs, budget exhaustion,
-unexecuted assignments and unknown costs. The observed false acceptance requires
-stronger verification before expansion; this pilot establishes no advantage.
+unexecuted assignments and unknown costs. The follow-up repaired a P2P Git adapter
+defect, expanded source-grounded evaluator coverage, and tested a general
+verification prompt remedy. Both native verifiers still certified an incorrect
+pagination candidate. The decision is to redesign verification before further
+comparisons. Neither the 25% hypothesis nor a Luna-with-Proofline advantage is
+established; the stopped campaigns are incomplete.
 
 ## Deliver a direct request
 

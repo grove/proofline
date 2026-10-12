@@ -44,16 +44,37 @@ def task(name, requirement, seed, good, probes, *, alternative=None, tags=()):
 TASKS = [
     task("unicode-usernames", "Reject empty or Unicode whitespace-only username strings with ValueError; return every valid username unchanged, including surrounding whitespace and zero-width spaces.",
          'def process(data):\n    if not data: raise ValueError("blank")\n    return data',
-         'def process(data):\n    if not isinstance(data, str) or not data.strip(): raise ValueError("blank")\n    return data',
-         [("alice", "alice"), ("  Åse  ", "  Åse  "), ("\u200b", "\u200b"), ("\u0085\u2003", {"error": True}), ("", {"error": True})],
-         alternative='def process(data):\n    if not isinstance(data, str) or all(c.isspace() for c in data): raise ValueError("blank")\n    return data', tags=("simple-bug", "alternative")),
+         'WHITE_SPACE = "\\u0009\\u000a\\u000b\\u000c\\u000d\\u0020\\u0085\\u00a0\\u1680\\u2000\\u2001\\u2002\\u2003\\u2004\\u2005\\u2006\\u2007\\u2008\\u2009\\u200a\\u2028\\u2029\\u202f\\u205f\\u3000"\ndef process(data):\n    if not isinstance(data, str) or not data.strip(WHITE_SPACE): raise ValueError("blank")\n    return data',
+         [("alice", "alice"), ("  Åse  ", "  Åse  "), ("\u200b", "\u200b"), ("\u0085\u2003", {"error": True}), ("", {"error": True}), ("\u001c\u001d\u001e\u001f", "\u001c\u001d\u001e\u001f")],
+         alternative='def process(data):\n    if not isinstance(data, str) or not data or all(c.isspace() and c not in "\\u001c\\u001d\\u001e\\u001f" for c in data): raise ValueError("blank")\n    return data', tags=("simple-bug", "alternative")),
     task("stable-pagination", "Input has rows (objects with id and score), offset and limit. Sort score descending then id ascending; return that slice. Offset and limit must be nonnegative integers (booleans invalid). Never drop tied rows; preserve their other fields.",
          'def process(data):\n    return sorted(data["rows"], key=lambda r: -r["score"])[data["offset"]:][:data["limit"]]',
-         '''def process(data):
+         '''from functools import cmp_to_key
+         def process(data):
              offset, limit = data["offset"], data["limit"]
-             if type(offset) is not int or type(limit) is not int or min(offset, limit) < 0: raise ValueError("bad page")
-             return sorted(data["rows"], key=lambda r: (-r["score"], r["id"]))[offset:offset+limit]''',
-         [({"rows": [{"id": "b", "score": 2}, {"id": "a", "score": 2}, {"id": "c", "score": 1}], "offset": 0, "limit": 2}, [{"id": "a", "score": 2}, {"id": "b", "score": 2}]), ({"rows": [], "offset": 0, "limit": 0}, []), ({"rows": [], "offset": -1, "limit": 2}, {"error": True}), ({"rows": [], "offset": True, "limit": 2}, {"error": True})], tags=("multiple-criteria",)),
+             if any(not isinstance(v, int) or isinstance(v, bool) or v < 0 for v in (offset, limit)): raise ValueError("bad page")
+             for row in data["rows"]: row["score"], row["id"]
+             def compare(a, b):
+                 if a["score"] != b["score"]: return -1 if a["score"] > b["score"] else 1
+                 if a["id"] == b["id"]: return 0
+                 return -1 if a["id"] < b["id"] else 1
+             return sorted(data["rows"], key=cmp_to_key(compare))[offset:offset+limit]''',
+         [({"rows": [{"id": "b", "score": 2}, {"id": "a", "score": 2}, {"id": "c", "score": 1}], "offset": 0, "limit": 2}, [{"id": "a", "score": 2}, {"id": "b", "score": 2}]), ({"rows": [], "offset": 0, "limit": 0}, []), ({"rows": [], "offset": -1, "limit": 2}, {"error": True}), ({"rows": [], "offset": True, "limit": 2}, {"error": True}),
+          ({"rows": [{"id": "b", "score": "z", "extra": 1}, {"id": "a", "score": "a"}, {"id": "a", "score": "z"}], "offset": 0, "limit": 3}, [{"id": "a", "score": "z"}, {"id": "b", "score": "z", "extra": 1}, {"id": "a", "score": "a"}]),
+          ({"rows": [{"id": 1, "score": 2}, {"id": "a", "score": 1}], "offset": 0, "limit": 2}, [{"id": 1, "score": 2}, {"id": "a", "score": 1}]),
+          ({"rows": [{"id": "only"}], "offset": 0, "limit": 1}, {"error": True})],
+         alternative='''def process(data):
+             offset, limit = data["offset"], data["limit"]
+             if any(not isinstance(v, int) or isinstance(v, bool) or v < 0 for v in (offset, limit)): raise ValueError("bad page")
+             ordered = []
+             for row in data["rows"]:
+                 row["score"], row["id"]
+                 position = 0
+                 for other in ordered:
+                     if (row["score"] != other["score"] and row["score"] > other["score"]) or (row["score"] == other["score"] and row["id"] != other["id"] and row["id"] < other["id"]): break
+                     position += 1
+                 ordered.insert(position, row)
+             return ordered[offset:offset+limit]''', tags=("multiple-criteria", "alternative")),
     task("quoted-csv", "Parse a CSV string with a header into dictionaries of strings using standard CSV quoting, embedded commas/newlines, CRLF and empty fields. Empty input returns []; reject duplicate header names and ragged data rows with ValueError.",
          'def process(data):\n    lines=data.splitlines()\n    if not lines: return []\n    return [dict(zip(lines[0].split(","), line.split(","))) for line in lines[1:]]',
          '''import csv, io
@@ -145,16 +166,22 @@ TASKS = [
          '''from datetime import datetime, timedelta, timezone
          import re
          def process(data):
-             ordinal = re.fullmatch(r"([0-9]{4})-([0-9]{3})(T.+)", data)
+             if not isinstance(data, str) or "T" not in data: raise ValueError("ISO date/time required")
+             ordinal = re.fullmatch(r"([0-9]{4})-?([0-9]{3})(T.+)", data)
              if ordinal:
                  year, day = int(ordinal[1]), int(ordinal[2])
                  date = datetime(year, 1, 1) + timedelta(days=day - 1)
                  if day < 1 or date.year != year: raise ValueError("invalid ordinal date")
-                 data = date.strftime("%Y-%m-%d") + ordinal[3]
-             value = datetime.fromisoformat(data)
+                 data = date.date().isoformat() + ordinal[3]
+             date, clock = data.split("T")
+             if not re.search(r"(?:Z|[+-](?:[01][0-9]|2[0-3])(?::?[0-5][0-9])?)$", clock): raise ValueError("invalid offset")
+             midnight = re.fullmatch(r"24(?::?00)?(?::?00)?(?:[.,]0+)?(Z|[+-][0-9]{2}(?::?[0-9]{2})?)", clock)
+             if midnight: clock = "00:00:00" + midnight[1]
+             value = datetime.fromisoformat(date + "T" + clock)
+             if midnight: value += timedelta(days=1)
              if value.tzinfo is None: raise ValueError("offset required")
-             return value.astimezone(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")''',
-         [("2026-01-01T00:15:01+01:00", "2025-12-31T23:15:01Z"), ("2026-01-01T12:00:02.999+05:30", "2026-01-01T06:30:02Z"), ("2026-01-01T00:00:00Z", "2026-01-01T00:00:00Z"), ("2026-01-01T00:00:00", {"error": True}), ("bad", {"error": True}), ("2024-061T00:15:30+05:45", "2024-02-29T18:30:30Z")]),
+             return value.astimezone(timezone.utc).isoformat(timespec="seconds").replace("+00:00", "Z")''',
+         [("2026-01-01T00:15:01+01:00", "2025-12-31T23:15:01Z"), ("2026-01-01T12:00:02.999+05:30", "2026-01-01T06:30:02Z"), ("2026-01-01T00:00:00Z", "2026-01-01T00:00:00Z"), ("2026-01-01T00:00:00", {"error": True}), ("bad", {"error": True}), ("2024-061T00:15:30+05:45", "2024-02-29T18:30:30Z"), ("2024061T001530+0545", "2024-02-29T18:30:30Z"), ("2024-02-29T24:00:00Z", "2024-03-01T00:00:00Z"), ("2024-01-01x00:00:00Z", {"error": True}), ("2024-01-01T00:00:00+01:02:03", {"error": True}), ("0001-001T00:00:00Z", "0001-01-01T00:00:00Z")]),
     task("query-multimap", "Parse a URL query string to an ordered list of [key,value] pairs, preserving repeated keys, blank values, Unicode and field order. Percent-decode UTF-8 and interpret plus as space. Empty string returns []; fields without '=' have empty values.",
          'def process(data):\n    return [part.split("=", 1) for part in data.split("&") if part]',
          '''from urllib.parse import parse_qsl
@@ -279,6 +306,36 @@ TASKS = [
              return {"stock": stock, "accepted": accepted}''',
          [({"stock": {"a": 2, "b": 0}, "batches": [[{"sku": "a", "delta": -3}, {"sku": "a", "delta": 2}], [{"sku": "a", "delta": -2}, {"sku": "b", "delta": 9}], [{"sku": "a", "delta": 1}]]}, {"stock": {"a": 2, "b": 0}, "accepted": [True, False, True]}), ({"stock": {"a": 1}, "batches": [[{"sku": "x", "delta": 1}], []]}, {"stock": {"a": 1}, "accepted": [False, True]}), ({"stock": {"a": -1}, "batches": []}, {"error": True})], tags=("held-out", "larger-autonomy", "repair-heavy")),
 ]
+
+# Public standards information is task context for every arm, never private probe inputs/results.
+STANDARD_REFERENCES = {
+    'unicode-usernames': '''Public reference: https://www.unicode.org/Public/18.0.0/ucd/PropList.txt
+Unicode White_Space consists of U+0009 through U+000D, U+0020, U+0085, U+00A0,
+U+1680, U+2000 through U+200A, U+2028, U+2029, U+202F, U+205F and U+3000.
+Python documents its string whitespace predicate using general category Zs or
+bidirectional classes WS, B or S. These definitions need not be identical.
+Python reference: https://docs.python.org/3.14/library/stdtypes.html#str.isspace
+These public facts explain the named domain; the original request remains binding.
+''',
+    'utc-timestamps': '''Public reference: https://science.data.nasa.gov/fits/documentation/iso-time
+ISO date representations include calendar dates (YYYY-MM-DD), compact calendar
+dates (YYYYMMDD), week dates (YYYY-Www-D or YYYYWwwD), and ordinal dates
+(YYYY-DDD or YYYYDDD). Ordinal numbering starts at 001 and follows the Gregorian
+leap-year rules. Combined date/time values use T. Time can omit its colons;
+seconds or minutes can be omitted when less precision is needed. Fractional
+seconds use a dot or comma. Midnight at the end of a date can be written 24:00
+when minutes and seconds are zero; it denotes the next day's 00:00. UTC uses Z;
+offsets use signed hours, hours/minutes, or hours:minutes. A positive offset
+means local time is ahead of UTC. This public overview is not the entire standard
+and does not narrow the original request. It contains no benchmark test inputs
+or expected outputs.
+''',
+}
+for item in TASKS:
+    if item['id'] in STANDARD_REFERENCES:
+        item['files'] = {'REFERENCES.md': STANDARD_REFERENCES[item['id']]}
+    if item['id'] == 'stable-pagination':
+        item['library_integer_fields'] = ['offset', 'limit']
 
 
 def source(item):

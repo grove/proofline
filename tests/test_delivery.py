@@ -14,6 +14,19 @@ host = delivery.host
 
 
 class DeliveryTests(unittest.TestCase):
+    def test_verifiers_challenge_source_domains_without_benchmark_answers(self):
+        inputs = Path('/disposable/inputs')
+        for role in ('reviewer', 'prover'):
+            text = delivery.prompt(role, inputs, {}, ids=('R1',), execution_map='Public interface')
+            self.assertIn('every clause within each criterion', text)
+            self.assertIn('inherited runtime limits', text)
+            self.assertIn('which plausible defect the evidence discriminates', text)
+            self.assertIn('A coverage qualifier cannot excuse a knowingly narrower domain', text)
+            self.assertIn('candidate\'s algorithm, operator, or library', text)
+            self.assertNotIn('2024-061', text)
+        text = delivery.prompt('implementer', inputs, {}, ids=('R1',), execution_map='Public interface')
+        self.assertNotIn('which plausible defect the evidence discriminates', text)
+
     def setUp(self):
         temporary = tempfile.TemporaryDirectory()
         self.addCleanup(temporary.cleanup)

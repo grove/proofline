@@ -27,7 +27,7 @@ from checks import s3_compare as s3, s6_corpus as corpus, s6_baseline as baselin
 from s0_live import oracle_runner, positive_seconds
 
 MODELS = {"sol": "gpt-6.1-sol", "luna": "gpt-6-luna"}
-MAP = f'Use {Path(sys.executable).resolve()} -I -B app.py <JSON> as the public CLI (run from product directory). product.process(data) is the library entry point. Existing tests: {Path(sys.executable).resolve()} -B -m unittest discover. Standard library only. Build output belongs in scratch.'
+MAP = f'Use {Path(sys.executable).resolve().name} (the selected interpreter on PATH) -I -B app.py <JSON> as the public CLI (run from product directory). product.process(data) is the library entry point. Existing tests: {Path(sys.executable).resolve().name} -B -m unittest discover. Read REFERENCES.md when supplied for public standards context. Standard library only. Build output belongs in scratch.'
 
 
 def digest(value):
@@ -50,7 +50,13 @@ def seed(directory, item, variant="seed"):
     directory.mkdir(parents=True)
     (directory / "app.py").write_text(corpus.APP)
     (directory / "product.py").write_text(item[variant])
-    (directory / "README.md").write_text('JSON component CLI. Run app.py with one JSON argument; --version prints pilot-tool 1.0. Fix product.py while preserving the public interface.\n')
+    for name, content in {**item.get('files', {}), **item.get(variant + '_files', {})}.items():
+        path = Path(name)
+        if path.is_absolute() or '..' in path.parts or any(part.startswith('.') for part in path.parts) or name in {'app.py', 'product.py'}:
+            raise ValueError('Invalid corpus file: ' + name)
+        (directory / path).parent.mkdir(parents=True, exist_ok=True)
+        (directory / path).write_text(content)
+    (directory / "README.md").write_text(f'JSON CLI. Use {Path(sys.executable).resolve().name} -B app.py with one JSON argument; --version prints pilot-tool 1.0. Read REFERENCES.md when supplied. Complete the request while preserving the public interfaces; module structure is your choice.\n')
     (directory / "test_app.py").write_text('import subprocess, sys, unittest\nclass Compatibility(unittest.TestCase):\n    def test_version(self):\n        result=subprocess.run([sys.executable,"-B","app.py","--version"],capture_output=True,text=True)\n        self.assertEqual((result.returncode,result.stdout),(0,"pilot-tool 1.0\\n"))\n')
     (directory / ".gitignore").write_text('/.p2p/\n__pycache__/\n*.pyc\n')
     p.host.git(directory, "init", "--quiet", "--template=")
@@ -135,7 +141,7 @@ def controls(tasks, directory, codex=None):
     return results
 
 
-def declare(output, p2p_repo, *, models=MODELS, seconds=900, stage_seconds=240, dispatches=12, jobs=4, repetitions=1, rates=None):
+def declare(output, p2p_repo, *, models=MODELS, seconds=900, stage_seconds=240, dispatches=12, jobs=4, repetitions=1, rates=None, followup=False):
     if (any(type(n) is not int for n in (jobs, repetitions, dispatches)) or
             jobs < 1 or repetitions < 1 or dispatches < 3 or
             not math.isfinite(seconds) or not math.isfinite(stage_seconds) or seconds <= 120 or stage_seconds <= 0):
@@ -149,12 +155,17 @@ def declare(output, p2p_repo, *, models=MODELS, seconds=900, stage_seconds=240, 
     operator = output / 'operator'
     operator.mkdir()
     (operator / 'oracle-canary').write_text('private S6 answers')
-    p.write_record(operator / 'tasks.json', corpus.TASKS)
+    if followup:
+        from checks import s6_followup_corpus
+    tasks = [*s6_followup_corpus.NEW, *s6_followup_corpus.TASKS[:20]] if followup else corpus.TASKS
+    p.write_record(operator / 'tasks.json', tasks)
     p.write_record(operator / 'rates.json', rates)
     packages = [Path(__file__), Path(corpus.__file__), Path(baseline.__file__), Path(s3.__file__), Path(s3.s3_p2p_transport.__file__), Path(p.__file__), Path(p.live.__file__), Path(p.host.__file__), Path(p.contract_input.__file__), Path(p.publication.__file__), Path(__file__).with_name("s6_acceptance_audit.py"), Path(__file__).with_name("s6_regression_audit.py"), p2p_repo / s3.SCRIPT]
     planning = p2p_repo / 'skills/productivity/plan-acceptance'
     packages += [planning / 'SKILL.md', planning / 'references/acceptance-contract-protocol.md']
     packages += [Path(sys.modules[oracle_runner.__module__].__file__)]
+    if followup:
+        packages.append(Path(s6_followup_corpus.__file__))
     packages += list((p2p_repo / 'skills/productivity/deliver-issue/scripts').glob('p2p_*.py'))
     packages += [p2p_repo / 'skills/productivity' / name / 'SKILL.md' for name in ('deliver-issue', 'implement-contract', 'review-implementation', 'prove', 'diagnose-issue', 'fix-implementation') if (p2p_repo / 'skills/productivity' / name / 'SKILL.md').exists()]
     stages = {'plan-acceptance', 'deliver-issue', 'implement-contract', 'review-implementation', 'prove', 'diagnose-issue', 'fix-implementation'}
@@ -173,12 +184,11 @@ def declare(output, p2p_repo, *, models=MODELS, seconds=900, stage_seconds=240, 
             raise ValueError('Runtime changed during declaration: ' + name)
         archives[name] = str(target.relative_to(operator))
     codex = p.host.find_codex(None)
-    preferences = p.live.preferences()
-    effort = preferences.get('model_reasoning_effort', 'high')
+    effort = 'high'
     assignments = []
     # Rotating order prevents one method consistently benefiting from a warm host.
     for repeat in range(repetitions):
-        for index, item in enumerate(corpus.TASKS):
+        for index, item in enumerate(tasks):
             mode = 'raw-request' if index % 2 == 0 else 'shared-preplanned'
             cohorts = list(s3.COHORTS)
             cohorts = cohorts[index % 4:] + cohorts[:index % 4]
@@ -203,6 +213,7 @@ def declare(output, p2p_repo, *, models=MODELS, seconds=900, stage_seconds=240, 
                        'quality_noninferiority': 'no fewer satisfactory deliveries on paired assignments',
                        'minimum_tasks_per_input_mode': 10},
         'assignment_order_seed': 6000, 'assignments': assignments,
+        'task_provenance': {item['id']: item.get('provenance', 'original component corpus') for item in tasks},
         'limits_of_inference': ['Synthetic standard-library component tasks; not large production repositories.',
             'Held-out tags mean excluded from prompt tuning, not unknown to the corpus author.',
             'Single host, fixed declared concurrency; repeated runs are not independent task samples.',
@@ -210,6 +221,9 @@ def declare(output, p2p_repo, *, models=MODELS, seconds=900, stage_seconds=240, 
             'Shared plans are independently authored synthetic agreements; authoring attention/cost is unknown.',
             'Baselines use native Codex with a minimal completion/review response; transport overhead is included.',
             'Standalone coding gets the whole episode; coding plus review reserves one stage for review. P2P/Proofline use their stage limits.']}
+    if followup:
+        manifest['limits_of_inference'][0] = 'Twenty exposed component regressions plus four new multi-module service tasks; synthetic repositories, not production deployment evidence.'
+        manifest['limits_of_inference'][1] = 'Only the four fresh-held-out tasks were unexposed during verification prompt tuning; all original tasks are exposed regressions.'
     p.write_record(operator / 'manifest.json', manifest)
     p.write_record(operator / 'report.json', {'manifest_sha256': p.host.sha256((operator / 'manifest.json').read_bytes()),
         'status': 'DECLARED', 'assignments': assignments, 'setup_seconds': None})
@@ -582,7 +596,7 @@ def summarize(manifest, report, rates=None):
             'reductions': reductions, '25_percent_target': 'SUPPORTED ON PILOT' if target and matched >= 10 else 'NOT SUPPORTED' if finished and quality and matched >= 10 and successes[0]==successes[1] else 'INCONCLUSIVE',
             'interpretation': 'Directional pilot hypothesis only; no statistical superiority claim. Full-request shared planning/human cost remains unknown.'})
     proofline_rows = [row for key,row in rows.items() if key.endswith('/proofline')]
-    if any(row['false_acceptances'] for row in proofline_rows):
+    if report['status'] == 'TRUST GATE FAILED' or any(row['false_acceptances'] for row in proofline_rows):
         decision = 'STRENGTHEN VERIFICATION BEFORE EXPANDING: independently observed false acceptance'
     elif any(row['false_blocked']/row['assigned'] > .10 for row in proofline_rows):
         decision = 'SIMPLIFY OR REPAIR EVIDENCE: chronic false blocking; preserve the promise'
@@ -634,6 +648,7 @@ def main():
     declaration.add_argument('--jobs', type=int, default=4)
     declaration.add_argument('--repetitions', type=int, default=1)
     declaration.add_argument('--rates', type=Path, help='Declared USD per million token category; never infer unknown prices')
+    declaration.add_argument('--followup', action='store_true', help='Disclosed exposed regressions plus unfamiliar multi-module service tasks')
     for name in ('run','summary'):
         commands.add_parser(name).add_argument('output', type=Path)
     internal = commands.add_parser('worker', help=argparse.SUPPRESS)
@@ -644,7 +659,7 @@ def main():
         if args.command == 'declare':
             declare(output, args.p2p_repo.resolve(), models={'sol':args.sol,'luna':args.luna}, seconds=args.seconds,
                     stage_seconds=args.stage_seconds, dispatches=args.dispatches, jobs=args.jobs,
-                    repetitions=args.repetitions, rates=json.loads(args.rates.read_text()) if args.rates else None)
+                    repetitions=args.repetitions, rates=json.loads(args.rates.read_text()) if args.rates else None, followup=args.followup)
             print('DECLARED: ' + str(output / 'operator/manifest.json'))
         elif args.command == 'worker': worker(output,args.assignment)
         elif args.command == 'run':

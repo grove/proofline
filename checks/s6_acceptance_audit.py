@@ -16,8 +16,12 @@ from s0_live import oracle_runner
 p=s6.p
 
 LIBRARY_PROBE='''import copy, importlib, json, sys
+from enum import IntEnum
 sys.path.insert(0,sys.argv[1])
-data=json.loads(sys.argv[2]); before=json.dumps(data,sort_keys=True,ensure_ascii=True)
+data=json.loads(sys.argv[2])
+for field in json.loads(sys.argv[3]):
+    data[field]=IntEnum("Integer", {"operand":data[field]}).operand
+before=json.dumps(data,sort_keys=True,ensure_ascii=True)
 try:
     value=importlib.import_module("product").process(data)
     result={"value":value,"error_type":None,"value_error":False,"handled_error":False}
@@ -46,13 +50,18 @@ def inspect(candidate,item,directory,codex=None):
         except (SyntaxError,UnicodeError) as error:
             foreign.append({'path':str(path),'invalid_python':str(error)})
     observations=[];receipts=[]
-    for probe in item['probes']:
+    cases=[(probe, []) for probe in item['probes']]
+    fields=item.get('library_integer_fields', [])
+    if fields:
+        cases += [(probe, fields) for probe in item['probes'] if isinstance(probe['input'], dict)
+                  and all(type(probe['input'].get(field)) is int for field in fields)]
+    for probe, integer_fields in cases:
         with tempfile.TemporaryDirectory(prefix='proofline-s6-library-') as temporary:
             scratch=Path(temporary).resolve()
             runner=oracle_runner(codex,inputs,directory/'private',receipts) if codex else subprocess.run
-            observation={'input':probe['input'],'status':'NOT VERIFIED'}
+            observation={'input':probe['input'],'integer_subclass_fields':integer_fields,'status':'NOT VERIFIED'}
             try:
-                result=runner([str(Path(sys.executable).resolve()),'-I','-B','-S','-c',LIBRARY_PROBE,str(inputs/'product'),json.dumps(probe['input'],ensure_ascii=True)],cwd=scratch,timeout=8,capture_output=True,text=True,check=False)
+                result=runner([str(Path(sys.executable).resolve()),'-I','-B','-S','-c',LIBRARY_PROBE,str(inputs/'product'),json.dumps(probe['input'],ensure_ascii=True),json.dumps(integer_fields)],cwd=scratch,timeout=8,capture_output=True,text=True,check=False)
                 observation.update(returncode=result.returncode,stdout=result.stdout,stderr=result.stderr)
                 if codex and 'sandbox-exec: sandbox_apply:' in result.stderr: raise OSError('Native sandbox unavailable')
                 try:

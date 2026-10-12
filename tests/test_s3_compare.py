@@ -61,11 +61,14 @@ class ComparisonTests(unittest.TestCase):
                 argv = s3.s3_p2p_transport.command("/codex", args, [])
                 value = next(x for x in argv if x.startswith("shell_environment_policy.set="))
                 env = tomllib.loads(value)["shell_environment_policy"]["set"]
-                self.assertEqual(env["PATH"], "original")
+                self.assertEqual(env["PATH"], os.pathsep.join((str(runtime / 'scratch/transport-git'), str(Path(sys.executable).resolve().parent), 'original')))
                 self.assertEqual(env["HOME"], "unchanged")
-                self.assertFalse(Path(env["GIT_DIR"]).is_absolute())
-                self.assertEqual((scratch / env["GIT_DIR"]).resolve(), runtime / "repository.git")
-                self.assertEqual((scratch / env["GIT_WORK_TREE"]).resolve(), workspace)
+                self.assertNotIn('GIT_DIR', env)
+                self.assertNotIn('GIT_WORK_TREE', env)
+                wrapper = (runtime / 'scratch/transport-git/git').read_text()
+                self.assertIn('os.path.relpath', wrapper)
+                self.assertIn(str(runtime / 'repository.git'), wrapper)
+                self.assertIn('allow_login_shell=false', argv)
                 self.assertTrue(any(x.startswith("developer_instructions=") for x in argv))
 
     def test_transport_followup_refuses_changed_private_oracle_before_dispatch(self):

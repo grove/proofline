@@ -67,13 +67,13 @@ def command(codex: str, inputs: Path, scratch: Path, private: Path,
               "web_search": "disabled", "mcp_servers": {}, "apps._default.enabled": False,
               "project_doc_max_bytes": 0, "allow_login_shell": False,
               "shell_environment_policy.inherit": "none",
-              "shell_environment_policy.set": {"PATH": "/usr/bin:/bin",
+              "shell_environment_policy.set": {"PATH": str(Path(sys.executable).resolve().parent) + ":/usr/bin:/bin",
                   "TMPDIR": str(scratch), "PYTHONDONTWRITEBYTECODE": "1"},
               **{"features." + key: False for key in DISABLED_FEATURES}}
     git_directory = Path("/Library/Developer/CommandLineTools/usr/bin")
     if sys.platform == "darwin" and (git_directory / "git").is_file():
         # Apple's /usr/bin/git wrapper cannot discover tools inside this sandbox.
-        config["shell_environment_policy.set"].update({"PATH": str(git_directory) + ":/usr/bin:/bin",
+        config["shell_environment_policy.set"].update({"PATH": str(git_directory) + ":" + config["shell_environment_policy.set"]["PATH"],
             "GIT_CONFIG_NOSYSTEM": "1", "GIT_CONFIG_GLOBAL": os.devnull,
             "GIT_ATTR_NOSYSTEM": "1", "GIT_TEMPLATE_DIR": "",
             "GIT_EXEC_PATH": "/Library/Developer/CommandLineTools/usr/libexec/git-core"})
