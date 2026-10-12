@@ -188,6 +188,8 @@ class LiveTransportTests(unittest.TestCase):
         def tamper(*args):
             self.assertIn("1.0 seconds", args[1])
             self.assertIn("final structured handoff", args[1])
+            self.assertIn("reserve the final 30 seconds", args[1])
+            self.assertIn("concrete unresolved risk or binding requirement", args[1])
             self.assertEqual(args[-1], 1)
             (inputs / "source.md").write_text("narrowed promise")
             return {"exit_code": 0, "timed_out": False}

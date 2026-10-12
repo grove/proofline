@@ -1,6 +1,170 @@
 # S3 local four-way comparison
 
-Predeclared after S2 passed, before comparison model calls. This is a directional
+## Completed fixed 240-second repeat — 11–12 October 2026
+
+S3's local experiment is complete. All 20 assignments ran with the declared
+versions and limits. Ordinary agent, agent plus review and Proofline each
+correctly delivered four positive cases; P2P delivered two. All four cohorts
+correctly rejected the omitted-source agreement. No false acceptance or timeout
+was observed in this repeat. P2P's two invalid implementation handoffs remain
+failures, with their correct partial candidates and full costs retained.
+Recovery, resume, publication and merge remain deferred.
+
+| Case | Ordinary agent | Agent + review | P2P | Proofline |
+| --- | --- | --- | --- | --- |
+| Missing validation | Accepted correctly | Accepted correctly | Accepted correctly | Accepted correctly |
+| Correct alternative | Accepted correctly | Accepted correctly | Failed handoff | Accepted correctly |
+| Green tests / defect | Accepted correctly | Accepted correctly | Accepted correctly | Accepted correctly |
+| False scope change | Accepted correctly | Accepted correctly | Failed handoff | Accepted correctly |
+| Omitted source promise | Qualified rejection | Qualified rejection | Qualified rejection | Qualified rejection |
+
+The omission's raw outcome is `FAILED` with
+`matched_source_gap_rejection: true`: it is a successful negative workflow
+control, not a satisfactory delivery. The private oracle accepted all observed
+candidate behaviors, including the two candidates whose handoffs failed.
+Working code never certified the deliberately incomplete agreement.
+
+### Versions, limits and evidence
+
+The run began at `2026-10-11T21:31:17.610925+00:00`, used shared preplanned inputs,
+and ran all assignments sequentially. Every cohort had **900 seconds per
+assignment and 240 seconds per stage**; P2P retained 12 dispatches and one repair.
+The configured model was `gpt-6.1-sol`, reasoning `high`, with Codex CLI
+`0.162.1` (binary SHA-256
+`74c6a6d263f40d65f99c27a815275f5b4ed0bcc2baecc396b4cf3255498bdfc0`).
+The host was Apple Silicon macOS 26.6.2 (25G83), Apple Git 2.54.0, and controller
+Python 3.14.8. Ordinary/Proofline observation maps use that interpreter; P2P
+workers used system Python 3.9.6 for product checks. Actual commands are retained.
+That interpreter difference further limits performance comparisons.
+
+| Runtime | Commit | Archived patch SHA-256 |
+| --- | --- | --- |
+| P2P | `7e5e62c8257a1e240ab74d1a12ca3dbdc11154a9` | `39deded453e5a7f9d4273587a98e09a895dcb5b90d65f23c010197cb70749d22` |
+| Proofline | `309c5e4a78386c89e76d20f1ae446d9a40e52be8` | `5094d7d85e4888501b61beccff0fe168c880925c2cea7c8966e8c7eb0d2730b6` |
+
+`repair-comparison-240/operator/manifest.json` archives the declaration before
+model calls, both patches, runners, instruction package hashes, transport and
+oracle identities. The controller hash is
+`1c29f8efdff3ed93b02a01f29caef598dc111c14da3292af2e4585923084d3e7`;
+the transport hash is
+`c2c8d2fd4a0e617f92e6d81ae369d5d7a3c304b7b32bf337330132c323367cbf`.
+The original oracle remains
+`f919e131ee691fcc396c24661bb8e7f4faa214f2ec10690dde39b0d82cd69b2f`.
+No runtime, prompt, source, oracle or limit changed during the repeat.
+Host details observed during the run are separately identified in
+`host-observation.json`. Later documentation edits do not alter archived runtime versions.
+
+The S2 readback gate and four native oracle sanity controls passed before model
+calls. All 20 scores have actual executed observations. All five P2P privacy
+probes denied answer-key reads through absolute paths, symlinks and subprocesses.
+Final readback preserves eight earlier and four new accepted Proofline records;
+see `repair-accepted-readback/report.json`. No model calls were needed for readback.
+Evidence lives under `.proofline/s3/`; original report bytes and scores are unchanged.
+
+Reproduce a fresh current-version run with a new output directory on the qualified
+host (this invokes real models):
+
+```bash
+python3.14 -B checks/s3_compare.py \
+  --s2-record .proofline/s2-live/final-audit/report.json \
+  --p2p-repo /Users/grove/projects/promise-to-proof \
+  --output .proofline/s3/new-comparison-240
+```
+
+### Costs and remaining handoff mechanism
+
+| Cohort | Correct deliveries / 4 | Native calls | Delivery seconds, all five assignments | Seconds per correct delivery |
+| --- | ---: | ---: | ---: | ---: |
+| Ordinary agent | 4 | 5 | 379.941 | 94.985 |
+| Agent + review | 4 | 9 | 740.914 | 185.229 |
+| P2P | 2 | 20 | 2,703.203 | 1,351.602 |
+| Proofline | 4 | 13 | 1,172.056 | 293.014 |
+
+These failure-inclusive delivery subtotals include the negative control and
+exclude separate private scoring/setup. The repeat took 5,089.055 seconds,
+including 17.333 seconds of setup and independent scoring. All 47 model calls
+have reported usage in `repair-comparison-240/operator/cost-accounting.json`.
+
+The fresh `repair-final-summary/report.json` includes the original eight campaign
+inputs, every qualification generation, Git diagnosis and this repeat, without
+adding intermediate summaries again. It retains **188 native model calls**:
+176 have usage and 12 do not. Known native campaign time is at least
+21,429.757 seconds; three campaign durations are unknown. The final P2P offline
+suite separately took 4,613.483 seconds. Superseded interrupted validation logs
+are retained; they are not passes. Monetary cost, human attention and upstream
+planning cost remain unknown. No unknown cost is converted to zero.
+
+Both P2P failures returned on time (171.814 and 210.253 seconds). Their commands
+and output observations matched native evidence, but they labeled an expected
+exit-2 blank-input rejection as `passed`. The unchanged slice validator requires
+exit 0 for `passed`; a direct negative probe must be `observed`, or a wrapper
+must assert the expected rejection and exit 0. The reports were rejected before
+independent review/proof. `repair-failed-handoffs.json` preserves that diagnosis.
+Two extra model preflights and report-format fragility remain observed P2P costs.
+This is one small, repeatedly inspected CLI mechanism experiment; these numbers
+establish neither general correctness nor a statistical performance advantage.
+
+### Repairs, qualification and verification boundary
+
+Readiness schema/prompt now require one exact declared criterion ID per check.
+Existing slice field limits are exposed in the schema, and the Git inspection
+recognizer accepts environment bindings and global Git options while retaining
+host grounding and product relevance. Controller-managed skills and the canonical
+protocol distinguish controller identity/storage duties from independent source,
+scope and product judgment. Stage guidance reserves 30 seconds for handoff.
+No source promise, private oracle, effect authority or trust validator was weakened.
+
+The retained Proofline alternative timeout completed its independent checks,
+including 1,112,063 Unicode scalar checks, then supplied no report. Shared guidance
+now stops redundant work at sufficient evidence and reserves report time. In
+this repeat its alternative prover returned a valid report in 133.514 seconds.
+
+Native probes reproduced P2P's Git denial: absolute discovery inspected the
+protected executions ancestor. Configuration isolation and a relative `.git`
+file did not fix it. Relative `GIT_DIR`/`GIT_WORK_TREE` bindings did. The benchmark
+transport supplies these relative to the initial worker directory and discloses
+rebinding after changing directories. Implementation and read-only proof probes
+passed with private keys still denied; filesystem permissions were unchanged.
+
+The ninth qualification completed actual implementation, review and proof
+(749.338 seconds including scoring) and a valid omitted-source handoff (485.392).
+Its nine calls and 1,249.796-second campaign are additional costs, excluded from
+paired scores. The exact qualified P2P patch was applied to the original checkout
+without a commit or remote effect and verified identical to the tested copy.
+
+| Retained qualification | Stage cap | Outcome / observed blocker |
+| --- | ---: | --- |
+| v1 | 180 | Native startup failed inside enclosing sandbox; no model calls, duration unknown |
+| v2 | 180 | Both implementation handoffs timed out |
+| v3 | 180 | Positive timeout; omission citation invalid |
+| v4 | 240 | Positive timeout after metadata audits; omission citation invalid |
+| v5 | 240 | Git-options recognizer and undisclosed citation-length failures |
+| v6 | 240 | Unattributable scratch-test citation; omission diagnosis timeout |
+| v7 | 240 | Implementation/review accepted, proof timed out; valid planning handoff initially miscounted |
+| v8 | 240 | Positive Git fallback timeout; omission rejection qualified |
+| v9 | 240 | Complete positive delivery and omission rejection qualified |
+
+Each generation retains its pre-call manifest, source patches, native receipts,
+failures and costs. Historical v7 flags are not rewritten after recognizing both
+validated `BLOCKED` and `ACTIONABLE` planning handoffs. The user's new 240-second
+cap is a separate generation; every 180-second failure remains unchanged.
+Detailed declarations are retained in `retained-repair-declarations.md` and the
+per-generation archives.
+
+Proofline's native-enabled suite passed **75 tests**, with two Linux-specific
+skips. The final default P2P suite ran **468 tests: 466 passed, one failure and
+one error**. Both exceptions reproduce on the untouched checkout. The instruction
+storage fixture used macOS's `/var` alias; all four snapshot tests pass with
+canonical `TMPDIR=/private/tmp`, preserving the symlink guard. The packaging check
+first invoked Python 3.9; with supported Python it still exposes missing shared
+files in the pre-existing `publish-pr-review` package. Publication packaging is
+deferred, and the default suite is **not reported as passing**. Checkout-based
+native delivery/control qualified. Logs and hashes are retained in
+`repair-regression-evidence.json` and `repair-regression-baseline.json`.
+
+## Historical 180-second protocol and retained results
+
+Predeclared after S2 passed, before the original comparison model calls. This is a directional
 mechanism experiment on one small CLI promise, not a representative task sample.
 
 All four cohorts receive the same original username source, a shared preplanned
@@ -80,7 +244,7 @@ finish, without tuning from their scores. Both transport generations contribute
 to campaign cost; only the supported transport is eligible for the P2P quality
 comparison. The original setup-error campaign is likewise cost-only.
 
-## Host qualification and repeat protocol
+## Historical host qualification and 180-second repeat protocol
 
 Before a second full comparison, reproduce the launch failure without a model.
 The exact retained enclosing read-denial profile allows `/usr/bin/true` but a
@@ -132,7 +296,7 @@ cost-only and declares their fresh repeats under the complete guard. Preserve
 all three archived transport versions and both amendments; no earlier record
 is overwritten. Remaining P2P worker launches carry this same final profile.
 
-## Qualified host repeat and final paired results
+## Historical qualified 180-second repeat and paired results
 
 The single-profile transport is now qualified on the unchanged Codex 0.162.1
 host/model. Process canaries establish protected-write and mode-change denial,
@@ -188,7 +352,7 @@ the isolation follow-up seven more, with no overlap. Guard amendments preserve
 both prior transport versions; these observations do not establish protection
 against arbitrary same-user/controller tampering.
 
-### Final paired costs
+### Historical 180-second paired costs
 
 Delivery seconds include each selected method's setup and failed assignments.
 This table excludes extra harness generations only from the paired view; the
@@ -208,7 +372,7 @@ from the same small promise and fixed sequential order, not a representative
 sample or a superiority test. The earlier comparison's four accepted Proofline
 deliveries remain recorded; this repeat's timeout is not replaced by that result.
 
-### Cumulative costs, including every failed generation
+### Historical campaign subtotal before the S3 repairs
 
 | Cohort | Dispatches | Qualified correct deliveries across repeated campaigns | All satisfactory deliveries | Known delivery seconds | Seconds per satisfactory delivery | Known reviewer / prover seconds |
 | --- | ---: | ---: | ---: | ---: | --- | --- |
@@ -371,11 +535,12 @@ python3 -B checks/s3_compare.py --s2-record .proofline/s2-live/final-audit/repor
   --p2p-repo /path/to/current/promise-to-proof --output .proofline/s3/new-comparison
 ```
 
-The committed runner uses the supported source basename and external-runtime
-collector and final single-profile key guard from the outset. It archives the
-transport alongside the runner and retains requested/effective native argv.
-The recorded full repeat used its archived runner; the current runner differs
-only by the automatic archival copy, with no prompt/key/limit change.
+The runner uses the supported source basename, external-runtime collector and
+final single-profile key guard. It archives the transport, controller repair,
+Proofline sources and repository patches, and retains requested/effective native
+argv. The historical repeat used its archived 180-second runner. The new
+declaration above records the subsequent handoff guidance and 240-second limit;
+those changes do not alter any historical result.
 `--p2p-followup` is restricted to the five retained
 source-location admission failures; it checks unchanged source, seed trees,
 plan, oracle, P2P commit and model preferences before new comparison work.

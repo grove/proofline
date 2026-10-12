@@ -279,7 +279,7 @@ def shell_payload(command):
 def run_stage(codex, directory, inputs, identities, role, preferences, timeout,
               make_prompt=stage_prompt, criterion_ids=("U1", "U2", "U3", "U4"), target=None):
     binding = binding_for(identities)
-    budget = f"\nThis stage has at most {timeout:.1f} seconds, including tool runs and the final structured handoff. Bound long subprocesses and reserve time to report before the host deadline. Unobserved material obligations remain NOT VERIFIED; do not claim an unfinished suite passed.\n"
+    budget = f"\nThis stage has at most {timeout:.1f} seconds, including tool runs and the final structured handoff. Bound long subprocesses and reserve the final 30 seconds to report before the host deadline. Stop when each material obligation has sufficient evidence; do not add duplicate probes or exhaustive enumeration without a concrete unresolved risk or binding requirement. Keep the handoff concise. Unobserved material obligations remain NOT VERIFIED; do not claim an unfinished suite passed.\n"
     (inputs / "response.schema.json").write_text(json.dumps(REPORT_SCHEMA))
     product = inputs / "product"
     host.write_diff(product, identities["base_commit"], inputs / "change.diff")

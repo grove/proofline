@@ -1,6 +1,6 @@
 # Proofline — Implementation plan
 
-**Status:** Execution roadmap v1 · 11 October 2026 (S0–S2 demonstrated; guarded S3 repeat complete, P2P delivery comparison inconclusive)
+**Status:** Execution roadmap v1 · 12 October 2026 (S0–S2 demonstrated; qualified P2P delivery and fixed 240-second S3 comparison complete)
 
 **Design authority:** [DESIGN.md v0.5](./DESIGN.md) — the product contract and safety boundaries live there.  
 **Objective:** Make a capable coding agent deliver the *complete authorized promise*, with independently credible evidence, minimal human coordination, and substantially less wasted work than a heavy controller.
@@ -16,13 +16,17 @@ controls; see [S1 evidence](docs/S1-DIRECT-DELIVERY.md). S2's narrow
 [contract adapter](docs/S2-CONTRACT-INPUT.md) passed its actual approved-contract
 and full negative-control gate; see [S2 evidence](docs/S2-LIVE-EVIDENCE.md).
 Milestone A's local gates pass within these recorded boundaries. S3's
-[four-way native observations](docs/S3-COMPARISON.md) include a qualified P2P host
-and final-guard repeat. Ordinary agent and agent plus review delivered four valid
-cases each; Proofline delivered three and exhausted its prover budget on the
-correct alternative. All three rejected the source omission. Actual P2P reached
-implementation but produced no accepted delivery: readiness-ID errors and stage
-limits leave its completed-delivery/verifier-quality comparison inconclusive.
-All setup failures and unknown costs remain visible. S4–S6 remain deferred. The original
+[fixed 240-second four-way repeat](docs/S3-COMPARISON.md) completed all 20
+assignments. Ordinary agent, agent plus review and Proofline each delivered four
+correct positive cases; P2P delivered two, retaining two on-time handoff failures
+from mislabeling expected exit-2 probes as passed. All four cohorts correctly
+rejected the source omission. P2P's complete native implementation, review and
+proof and its input-gap control qualified before the repeat. Proofline completed
+the alternative whose prover previously timed out. Earlier 180-second failures,
+qualification costs and unknown costs remain visible. The P2P default suite's
+pre-existing packaging failure and corrected macOS temporary-path fixture are
+documented; its suite is not claimed to pass. These are small CLI observations,
+not a statistical advantage claim. S4–S6 remain deferred. The original
 [Linux NO-GO](docs/S0-HOST-FEASIBILITY.md) remains historical evidence.
 This status does not change any gate below.
 
