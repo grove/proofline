@@ -24,6 +24,7 @@ import host_probe as host
 import contract_input
 import publication
 import intentline_input
+import source_challenges as challenges
 from s0_live import positive_seconds, write_record
 
 
@@ -124,6 +125,8 @@ def identities(inputs, base):
             "candidate_path": str(product)}
     if (inputs / "execution-map.md").exists():
         result["execution_map_sha256"] = host.sha256((inputs / "execution-map.md").read_bytes())
+    if (inputs / "challenges.json").exists():
+        result["challenges_sha256"] = host.sha256((inputs / "challenges.json").read_bytes())
     if (inputs / "contract-context.json").exists():
         result["context_sha256"] = host.sha256((inputs / "contract-context.json").read_bytes())
     if (inputs / "intentline" / "native-manifest.json").exists():
@@ -221,7 +224,8 @@ def validate_stage(stage, ids):
         raise ValueError("Missing independent stage receipts")
     observed = live.read_events(stage["receipt"])
     live.resolve_command_refs(observed["report"], observed["commands"])
-    live.validate_report(observed["report"], stage["role"], stage["binding"], observed["commands"], ids)
+    validator = challenges.validate_report if stage["role"] == "challenger" else live.validate_report
+    validator(observed["report"], stage["role"], stage["binding"], observed["commands"], ids)
     if observed["report"] != stage["report"] or observed["thread_id"] != stage["thread_id"]:
         raise ValueError("Saved verdict differs from native evidence")
     if stage["role"] != "implementer":
@@ -229,7 +233,27 @@ def validate_stage(stage, ids):
         if (host.snapshot(inputs)["sha256"] != stage["snapshot"] or
                 stage.get("boundary", {}).get("status") != "OBSERVED"):
             raise ValueError("Verifier candidate or boundary changed")
+        if stage["role"] == "prover":
+            challenges.validate_execution(observed["report"], observed["commands"], inputs)
     return observed
+
+
+def confirm_challenges(record, *, attached=True):
+    if not record.get("verification_remedy"):
+        return
+    if record["verification_remedy"] != "source-challenges-v1":
+        raise ValueError("Unknown verification remedy")
+    stage = record["stages"][record["challenge_index"]]
+    validate_stage(stage, record["criterion_ids"])
+    inputs = Path(record["candidate_path"]).parent
+    if (stage["role"] != "challenger" or stage["report"]["verdict"] != "PLANNED"
+            or any(stage["identities"][key] != host.sha256((inputs / name).read_bytes())
+                   for key, name in (("source_sha256", "source.md"), ("input_sha256", "accepted-input.md")))
+            or any(row["source_quote"] not in (inputs / "source.md").read_text()
+                   for row in stage["report"]["criteria"])):
+        raise ValueError("Blind challenges do not bind the original promise")
+    if attached and (inputs / "challenges.json").read_bytes() != challenges.encoded(stage["report"]):
+        raise ValueError("Frozen source challenges changed")
 
 
 def accept_stage(record, result, inputs, save):
@@ -237,10 +261,27 @@ def accept_stage(record, result, inputs, save):
     index = len(record["stages"])
     record["stages"].append(result)
     record.pop("active_stage", None)
+    if role == "challenger":
+        if result.get("status") == "OBSERVED" and result["report"]["verdict"] == "PLANNED":
+            record["challenge_index"] = index
+            record["next_role"] = "implementer"
+            record["gap"] = None
+        else:
+            category = classify_failure(result)
+            record["status"] = {"environment failure": "ENVIRONMENT FAILURE",
+                                "authority or source gap": "INPUT NOT READY"}.get(category, "NOT VERIFIED")
+            record["next_role"] = None
+            record["failure_class"] = category
+            record["next_action"] = result.get("error") or result.get("report", {}).get("summary", "Blind challenge design unavailable")
+        save()
+        return
     expected = {"implementer": "READY", "reviewer": "PASS", "prover": "PROVEN"}[role]
     if role == "implementer":
         # Even a failed handoff preserves a reconstructible candidate.
         freeze(inputs / "product")
+        if record.get("verification_remedy"):
+            confirm_challenges(record, attached=False)
+            challenges.attach(inputs, record["stages"][record["challenge_index"]]["report"])
         record["identities"] = identities(inputs, record["base_commit"])
         record["snapshot"] = host.snapshot(inputs)["sha256"]
         if result.get("thread_id"):
@@ -309,18 +350,21 @@ def run_episode(record, output, codex, save):
     began, consumed = time.monotonic(), elapsed(record)
     while record.get("next_role"):
         role = record["next_role"]
+        if record.get("challenge_index") is not None:
+            confirm_challenges(record, attached=role != "implementer")
         if record.get("accepted_contract", {}).get("format") == "intentline-native":
             confirm_contract(record)
         if binding_inputs(inputs) != record["binding_inputs"]:
             raise InputGap("Binding source or accepted inputs changed; obtain an explicit source/authority decision")
-        if role != "implementer" and (host.snapshot(inputs)["sha256"] != record["snapshot"] or
+        if role not in {"implementer", "challenger"} and (host.snapshot(inputs)["sha256"] != record["snapshot"] or
                 identities(inputs, record["base_commit"]) != record["identities"]):
             raise ValueError("Frozen candidate changed; stale judgments cannot be reused")
         record["elapsed_seconds"] = max(elapsed(record), consumed + time.monotonic() - began)
         remaining = record["limits"]["seconds"] - record["elapsed_seconds"]
         slots = record["limits"]["dispatches"] - record["model_dispatches"]
-        required_slots = {"implementer": 3, "reviewer": 2, "prover": 1}[role]
+        required_slots = {"challenger": 4, "implementer": 3, "reviewer": 2, "prover": 1}[role]
         allocation = {"implementer": record["limits"]["verification_reserve"],
+                      "challenger": record["limits"]["verification_reserve"],
                       "reviewer": record["limits"]["verification_reserve"] / 2, "prover": 0}[role]
         allowance = min(record["limits"]["stage_seconds"], remaining - allocation)
         if allowance <= 0 or slots < required_slots:
@@ -336,15 +380,20 @@ def run_episode(record, output, codex, save):
             record["evidence_rechecks"] += 1
         stage_dir = output / ("stage-%02d-%s" % (record["model_dispatches"] + 1, role))
         stage_dir.mkdir()
-        if role == "implementer":
+        if role == "challenger":
+            target_file = next(p for p in (inputs / "product").rglob("*")
+                               if p.is_file() and ".git" not in p.relative_to(inputs / "product").parts)
+            stage_inputs = challenges.prepare(stage_dir, inputs, record["execution_map"])
+        elif role == "implementer":
             stage_inputs = inputs
         else:
             if (inputs / "execution-map.md").read_text() != record["execution_map"]:
                 raise ValueError("Execution guidance changed; retained judgments are no longer applicable")
             stage_inputs = stage_dir / "inputs"
             shutil.copytree(inputs, stage_inputs, symlinks=True)
-        identity = identities(stage_inputs, record["base_commit"])
-        if role != "implementer" and live.binding_for(identity) != live.binding_for(record["identities"]):
+        identity = identities(stage_inputs, host.git(stage_inputs / "product", "rev-parse", "HEAD")
+                              if role == "challenger" else record["base_commit"])
+        if role not in {"implementer", "challenger"} and live.binding_for(identity) != live.binding_for(record["identities"]):
             raise ValueError("Verifier does not have the exact frozen candidate")
         target = next((p for p in (stage_inputs / "product").rglob("*")
                        if p.is_file() and ".git" not in p.relative_to(stage_inputs / "product").parts), None)
@@ -355,21 +404,33 @@ def run_episode(record, output, codex, save):
             host.write_diff(stage_inputs / "product", record["base_commit"], stage_inputs / "change.diff")
         record["active_stage"] = {"role": role, "directory": str(stage_dir), "binding": live.binding_for(identity),
             "protected": {name: host.sha256((inputs / name).read_bytes()) for name in
-                          ("source.md", "accepted-input.md", "response.schema.json", "change.diff")},
+                          ("source.md", "accepted-input.md", "response.schema.json", "change.diff") if (inputs / name).exists()},
             "git_snapshot": host.snapshot(inputs / "product" / ".git")["sha256"]}
         record["model_dispatches"] += 1
         save()
         def make_prompt(role, inputs, identity, canary=None):
+            if role == "challenger":
+                return challenges.prompt(role, inputs, identity, canary, ids=ids, execution_map=record["execution_map"])
             text = prompt(role, inputs, identity, canary, ids=ids, execution_map=record["execution_map"])
+            if role != "implementer":
+                text += challenges.guidance(inputs)
             if gap:
                 text += "\nFocused recovery: " + json.dumps(gap) + "\n"
                 text += ("Repair only the affected original obligations. Choose your own fix and targeted checks.\n" if role == "implementer" else
                          "Remedy the observation gap in scratch. Product code and binding inputs must remain unchanged. Derive your own expectations; this gap is guidance, not a peer verdict.\n")
             return text
         print(f"[{role}] running (dispatch {record['model_dispatches']})", flush=True)
+        extra = {"schema": challenges.SCHEMA, "validator": challenges.validate_report,
+                 "denied_reads": {"implementation": str(target_file)}} if role == "challenger" else {}
         result = live.run_stage(codex, stage_dir, stage_inputs, identity, role, record["model_preferences"],
                                 allowance, make_prompt=make_prompt, criterion_ids=ids, target=target,
-                                session_id=session_id, persist=role == "implementer")
+                                session_id=session_id, persist=role == "implementer", **extra)
+        if role == "prover" and record.get("verification_remedy") and result.get("status") == "OBSERVED":
+            try:
+                challenges.validate_execution(result["report"], result["commands"], stage_inputs)
+            except (OSError, ValueError, KeyError) as exc:
+                result["status"], result["error"] = "NOT VERIFIED", str(exc)
+                write_record(stage_dir / "stage.json", result)
         record["elapsed_seconds"] = max(elapsed(record), consumed + time.monotonic() - began)
         if role == "implementer" and result.get("status") != "OBSERVED":
             exhausted = record["elapsed_seconds"] >= record["limits"]["seconds"]
@@ -399,6 +460,7 @@ def run_episode(record, output, codex, save):
         if len(set(threads)) != 3 or host.snapshot(inputs)["sha256"] != record["snapshot"]:
             record["status"] = "NOT VERIFIED"
             raise ValueError("Changed candidate or reused verifier context invalidates acceptance")
+        confirm_challenges(record)
         # Revalidate the current selection through the same public status boundary.
         save()
         confirmed = inspect_record(output / "report.json", remote=False)
@@ -531,7 +593,8 @@ def resume(path):
 
 def deliver(repo, source, brief, output, seconds=900, stage_seconds=240,
             reserve=120, execution_map="Inspect repository README and relevant entry points; command availability is initially unknown.",
-            contract_request=None, intentline_request=None, dispatches=12, effect_grant=None):
+            contract_request=None, intentline_request=None, dispatches=12, effect_grant=None,
+            source_challenges=False):
     output.mkdir(parents=True, exist_ok=False)
     lock = (output / "episode.lock").open("a")
     fcntl.flock(lock, fcntl.LOCK_EX | fcntl.LOCK_NB)
@@ -543,6 +606,8 @@ def deliver(repo, source, brief, output, seconds=900, stage_seconds=240,
               "execution_map": execution_map, "correction_rounds": 0, "nonprogress_rounds": 0,
               "evidence_rechecks": 0, "next_role": "implementer",
               "next_action": "Inspect the recorded gap."}
+    if source_challenges:
+        record.update(verification_remedy="source-challenges-v1", next_role="challenger")
     path = output / "report.json"
 
     def save():
@@ -730,6 +795,7 @@ def inspect_record(path, *, remote=True):
         stages = record["stages"]
         try:
             confirm_contract(record)
+            confirm_challenges(record)
         except InputGap as exc:
             record["status"] = "INPUT NOT READY"
             record["next_action"] = str(exc)
@@ -825,6 +891,8 @@ def main():
     run.add_argument("--verification-reserve", type=positive_seconds, default=120)
     run.add_argument("--dispatches", type=positive_dispatches, default=12,
                      help="Cumulative host dispatch limit, including corrections (default: 12)")
+    run.add_argument("--source-challenges", action="store_true",
+                     help="Experimental candidate-blind executable source challenges (not trust-qualified)")
     run.add_argument("--target", choices=("local", "pr-created", "pr-merged"), default="local")
     run.add_argument("--github-repo", help="Explicitly authorized OWNER/REPO on github.com")
     run.add_argument("--base", help="Authorized target base branch; must remain at the frozen source commit")
@@ -888,7 +956,8 @@ def main():
             brief = args.brief.read_bytes().decode("utf-8") if args.brief else ""
             record = deliver(args.repo.resolve(), source, brief, output,
                              args.seconds, args.stage_seconds, args.verification_reserve, args.execution_map, adoption,
-                             intentline_request=native_adoption, dispatches=args.dispatches, effect_grant=effect)
+                             intentline_request=native_adoption, dispatches=args.dispatches, effect_grant=effect,
+                             source_challenges=args.source_challenges)
             record_path = output / "report.json"
         print(record["status"] + (". Not published or merged." if not record.get("delivery") else
             ". Remote target: " + record["delivery"]["grant"]["target"] + "; " + record["delivery"]["status"] + "."))

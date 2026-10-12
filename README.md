@@ -23,7 +23,7 @@ implementer session; evidence gaps get focused independent rechecks. The origina
 | S3 — Four-way comparison | Fixed 240-second repeat complete: ordinary/agent + review/Proofline delivered 4/4, P2P 2/4; all four rejected omitted source; earlier failures and costs retained |
 | S4 — Bounded correction and resume | Native repair, unchanged evidence recovery and separate-process resume demonstrated; budget/stopping controls tested; see [S4 evidence](docs/S4-RECOVERY.md) |
 | S5 — Authorized publication | Real PR/merge, separate-process recovery and exact-tree remote readback demonstrated in the authorized disposable repo; see [S5 evidence and limits](docs/S5-PUBLICATION.md) |
-| S6 — Full pilot | **Incomplete.** Initial campaign stopped at 69/120; follow-up stopped at 4/144 after native verification again certified a source-valid defect. See [follow-up findings](docs/S6-FOLLOWUP.md), [historical results](docs/S6-RESULTS.md), and [protocol](docs/S6-PILOT.md) |
+| S6 — Full pilot | **Incomplete.** Initial campaign stopped at 69/120; follow-up stopped at 4/144. The next candidate-blind remedy failed native qualification before product judgments. See [redesign findings](docs/S6-VERIFICATION-REDESIGN.md), [first follow-up](docs/S6-FOLLOWUP.md), [historical results](docs/S6-RESULTS.md), and [protocol](docs/S6-PILOT.md) |
 
 Read the [S0 results and failed experiments](docs/S0-CODEX-RUNNER.md),
 [S1 evidence](docs/S1-DIRECT-DELIVERY.md), and
@@ -38,6 +38,15 @@ verification prompt remedy. Both native verifiers still certified an incorrect
 pagination candidate. The decision is to redesign verification before further
 comparisons. Neither the 25% hypothesis nor a Luna-with-Proofline advantage is
 established; the stopped campaigns are incomplete.
+
+The next [candidate-blind experiment](docs/S6-VERIFICATION-REDESIGN.md) freezes
+executable expectations before implementation and requires their native execution
+for positive proof. Six native author invocations produced zero usable designs;
+24 planned reviewer/prover checks consequently remain unexecuted. Native replay
+also found numeric-only coverage and a wrong expected order in retained probes.
+This remedy is unqualified and disabled by default. No new comparison ran.
+`deliver --source-challenges` exposes it only for explicit experiments; it adds a
+dispatch within the same budget and does not establish trustworthy source coverage.
 
 ## Deliver a direct request
 

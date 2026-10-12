@@ -248,6 +248,20 @@ Keep implementation logs, raw transcripts, scratch, and temporary experiments ou
 
 If a real failure requires a larger capability, first show that a narrower change cannot solve it. A one-off exception must not quietly become the default path.
 
+**S6 verification experiment (12 October 2026).** Repeated native false certification
+of source-domain restrictions survived the narrower prompt remedy. The optional
+`--source-challenges` experiment therefore adds one candidate-blind invocation
+before implementation: source and public interface guidance are visible, while
+base/candidate code, tests, peer verdicts and the private evaluator are inaccessible.
+It freezes executable source-derived expectations outside the product. A positive
+proof must cite successful native execution of each frozen probe; reviewers and
+provers still independently challenge the complete promise. Unsupported probe
+expectations are evidence gaps, never new requirements or permission to modify the
+promise. The added dispatch consumes the same episode budget and is retained in
+the existing stage ledger. This is a qualification experiment, not a new default
+or an established coverage guarantee; comparisons remain gated on native rejection,
+positive acceptance, binding, isolation and bounded recovery.
+
 ## 7. Evaluation: Proofline has to earn its existence
 
 The comparison with P2P is a **product requirement**, not a retrospective marketing exercise. Reuse suitable independent test cases and accounting concepts from [P2P issue #52](https://github.com/grove/promise-to-proof/issues/52), [P2P's live judgment fixtures](https://github.com/grove/promise-to-proof/tree/main/checks/fixtures/live-judgments), and [P2P's delivery measurement work](https://github.com/grove/promise-to-proof/issues/59), **without copying its controller or protocol wholesale**.

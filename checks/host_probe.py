@@ -259,7 +259,7 @@ def assess_canary(receipt: dict, spec: dict, unchanged: bool) -> dict:
 
 
 @contextmanager
-def boundary_fixture(output: Path, inputs: Path, target: Path | None = None):
+def boundary_fixture(output: Path, inputs: Path, target: Path | None = None, denied_reads=None):
     scratch, private = output / "scratch", output / "private"
     scratch.mkdir()
     private.mkdir()
@@ -276,6 +276,7 @@ def boundary_fixture(output: Path, inputs: Path, target: Path | None = None):
             "mode_target": str(target or inputs / "product" / "username.py"),
             "scratch_file": str(scratch / "output.txt"), "port": None}
     spec["reads"]["actual_oracle"] = str(FIXTURES / "oracle.py")
+    spec["reads"].update(denied_reads or {})
     listener = None
     network_control = "unavailable"
     try:

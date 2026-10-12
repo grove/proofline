@@ -41,6 +41,17 @@ redesign verification before expanding automation; no efficiency or model
 advantage is established. See [follow-up evidence](docs/S6-FOLLOWUP.md),
 [historical results](docs/S6-RESULTS.md), and [protocol](docs/S6-PILOT.md).
 
+The next [candidate-blind verification experiment](docs/S6-VERIFICATION-REDESIGN.md)
+adds optional executable source challenges before implementation and requires
+their exact native execution before positive proof. Its frozen Luna/Sol native
+qualification produced zero usable designs in six dispatches, leaving all 24
+planned reviewer/prover invocations unexecuted. Independent replay found both
+numeric-only coverage and an incorrect expected order in authored probes. Native
+regressions passed (164 tests, two platform skips); seven focused mechanics tests
+passed. These checks do not establish judgment quality. The remedy remains
+disabled by default; no new campaign was declared or dispatched, and S6 remains
+incomplete with the trust gate closed.
+
 This plan orders engineering work; it is **not** an alternative acceptance agreement and cannot revise the user's promise. The original source and any separately approved acceptance contract remain binding. Where this roadmap and DESIGN.md differ, **DESIGN.md wins** until the product owner authorizes a design change.
 
 ## 1. Working rules for implementation
@@ -165,7 +176,13 @@ candidate binding and bounded recovery work within the recorded boundary.
 Source-domain coverage and evaluator adequacy do not yet support trustworthy
 acceptance or a completed efficacy comparison. The retained follow-up is evidence
 for redesign, not evidence that E1–E3 passed. No stopped campaign may resume under
-the changed runtime, and no new assurance stage has been added speculatively.
+the changed runtime. Added assurance must earn its cost through qualification.
+
+The optional candidate-blind stage is an evidence-motivated redesign experiment,
+following repeated failure of the narrower prompt remedy. Its native qualification
+failed before product verification and did not qualify positive acceptance,
+rejection or native bounded recovery. It is not the production default and earns
+no new comparison authority. See the [separate redesign report](docs/S6-VERIFICATION-REDESIGN.md).
 
 **Build:** Predeclare realistic raw-request and shared-preplanned cohorts, keep held-out tasks away from prompt tuning, and run the four-way comparison through comparable authorized delivery targets. Include repair-heavy and long-tail cases and correct implementations using different approaches. Run a separately reported weaker/stronger model experiment: Luna alone, Luna with Proofline, Sol alone, and Sol with Proofline on matched tasks and budgets. Reuse overlapping assignments without counting their cost twice. Optionally run a separate one-checker-versus-two-checker experiment; keep the production assurance standard meanwhile.
 

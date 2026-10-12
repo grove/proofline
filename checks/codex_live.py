@@ -333,10 +333,10 @@ def shell_payload(command):
 
 def run_stage(codex, directory, inputs, identities, role, preferences, timeout,
               make_prompt=stage_prompt, criterion_ids=("U1", "U2", "U3", "U4"), target=None,
-              session_id=None, persist=False):
+              session_id=None, persist=False, schema=REPORT_SCHEMA, validator=None, denied_reads=None):
     binding = binding_for(identities)
     budget = f"\nThis stage has at most {timeout:.1f} seconds, including tool runs and the final structured handoff. Bound long subprocesses and reserve the final 30 seconds to report before the host deadline. Stop when each material obligation has sufficient evidence; do not add duplicate probes or exhaustive enumeration without a concrete unresolved risk or binding requirement. Keep the handoff concise. Unobserved material obligations remain NOT VERIFIED; do not claim an unfinished suite passed.\n"
-    (inputs / "response.schema.json").write_text(json.dumps(REPORT_SCHEMA))
+    (inputs / "response.schema.json").write_text(json.dumps(schema))
     product = inputs / "product"
     host.write_diff(product, identities["base_commit"], inputs / "change.diff")
     result = {"role": role, "binding": binding, "identities": identities,
@@ -355,7 +355,7 @@ def run_stage(codex, directory, inputs, identities, role, preferences, timeout,
         unchanged = (git_before == host.snapshot(product / ".git") and all(
             host.sha256((inputs / name).read_bytes()) == digest for name, digest in protected.items()))
     else:
-        with host.boundary_fixture(directory, inputs, target=target) as (spec, before, private_before, network_control):
+        with host.boundary_fixture(directory, inputs, target=target, denied_reads=denied_reads) as (spec, before, private_before, network_control):
             scratch, private = directory / "scratch", directory / "private"
             canary = shlex.join([str(Path(sys.executable).resolve()), "-I", "-B",
                                  str(inputs / "canary.py"), str(inputs / "canary.json")])
@@ -393,7 +393,7 @@ def run_stage(codex, directory, inputs, identities, role, preferences, timeout,
                 raise ValueError("Actual model tool invocation did not demonstrate the boundary canaries")
             result["boundary"] = boundary[0]
         resolve_command_refs(report, commands)
-        validate_report(report, role, binding, commands, criterion_ids)
+        (validator or validate_report)(report, role, binding, commands, criterion_ids)
         result["report"] = report
         result["commands"] = commands
         result["status"] = "OBSERVED"
