@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Direct, local-only Proofline delivery on the qualified macOS Codex host."""
+"""Proofline delivery with independent local acceptance and explicitly scoped publication."""
 from __future__ import annotations
 
 import argparse
@@ -22,6 +22,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parent / "checks"))
 import codex_live as live
 import host_probe as host
 import contract_input
+import publication
 from s0_live import positive_seconds, write_record
 
 
@@ -383,25 +384,33 @@ def run_episode(record, output, codex, save):
             raise ValueError("Changed candidate or reused verifier context invalidates acceptance")
         # Revalidate the current selection through the same public status boundary.
         save()
-        confirmed = inspect_record(output / "report.json")
+        confirmed = inspect_record(output / "report.json", remote=False)
         record["status"] = confirmed["status"]
         record["next_action"] = confirmed["next_action"]
+
+
+def complete_target(record, output, save):
+    if record["status"] == "LOCAL ACCEPTED" and record.get("delivery"):
+        publication.publish(record, output, save, lambda: record["limits"]["seconds"] - elapsed(record))
 
 
 def resume(path):
     output = path.parent
     with episode_lock(output):
-        record = inspect_record(path)
-        if record["status"] == "LOCAL ACCEPTED":
-            return record
+        record = inspect_record(path, remote=False)
         if record["schema_version"] != 2:
+            if record["status"] == "LOCAL ACCEPTED" and not record.get("delivery"):
+                return record
             raise ValueError("S1/S3 records are historical; they cannot reset into a new S4 episode")
         def save():
             record["elapsed_seconds"] = round(elapsed(record), 6)
             record["last_clock_epoch"] = time.time()
             write_record(path, record)
         try:
-            if record["status"] in {"LOCAL ACCEPTED", "INPUT NOT READY"}:
+            if record["status"] == "LOCAL ACCEPTED":
+                complete_target(record, output, save)
+                return record
+            if record["status"] == "INPUT NOT READY":
                 return record
             inputs = Path(record["candidate_path"]).parent
             if binding_inputs(inputs) != record["binding_inputs"]:
@@ -491,6 +500,7 @@ def resume(path):
                 # An explicit resume allows one new check after an environment/evidence fix.
                 record["next_role"] = record["stages"][-1]["role"]
             run_episode(record, output, codex, save)
+            complete_target(record, output, save)
         except InputGap as exc:
             record["status"] = "INPUT NOT READY"
             record["next_action"] = str(exc)
@@ -504,7 +514,7 @@ def resume(path):
 
 def deliver(repo, source, brief, output, seconds=900, stage_seconds=240,
             reserve=120, execution_map="Inspect repository README and relevant entry points; command availability is initially unknown.",
-            contract_request=None, dispatches=12):
+            contract_request=None, dispatches=12, effect_grant=None):
     output.mkdir(parents=True, exist_ok=False)
     lock = (output / "episode.lock").open("a")
     fcntl.flock(lock, fcntl.LOCK_EX | fcntl.LOCK_NB)
@@ -524,6 +534,15 @@ def deliver(repo, source, brief, output, seconds=900, stage_seconds=240,
         write_record(path, record)
 
     try:
+        if effect_grant is not None:
+            try:
+                publication.validate_grant(effect_grant)
+            except ValueError as exc:
+                raise InputGap(str(exc)) from exc
+            raw = json.dumps(effect_grant, sort_keys=True).encode()
+            (output / "effect-grant.json").write_bytes(raw)
+            record["effect_grant_sha256"] = host.sha256(raw)
+            record["delivery"] = {"grant": effect_grant, "status": "NOT VERIFIED"}
         if contract_request is not None:
             try:
                 metadata, source, brief = contract_input.adopted_contract(**contract_request)
@@ -576,6 +595,7 @@ def deliver(repo, source, brief, output, seconds=900, stage_seconds=240,
         record["status"] = "NOT VERIFIED"
         save()
         run_episode(record, output, codex, save)
+        complete_target(record, output, save)
     except InputGap as exc:
         record["status"] = "INPUT NOT READY"
         record["next_action"] = str(exc)
@@ -615,13 +635,16 @@ def confirm_contract(record):
             raise ValueError("Contract context differs from the frozen agreement")
 
 
-def inspect_record(path):
+def inspect_record(path, *, remote=True):
     """A saved success is stale as soon as its original inputs/candidate change."""
     record = json.loads(path.read_text())
     if (not isinstance(record, dict) or record.get("kind") != "direct_local_delivery" or
             record.get("schema_version") not in {1, 2} or record.get("status") not in {
                 "LOCAL ACCEPTED", "NOT ACCEPTED", "NOT VERIFIED", "INPUT NOT READY", "BUDGET EXHAUSTED", "ENVIRONMENT FAILURE"}):
         raise ValueError("Unsupported delivery record")
+    if record.get("delivery"):
+        record["published"], record["merged"] = False, False
+        record["delivery"]["status"] = "NOT VERIFIED"
     if record["schema_version"] == 2:
         limits = record["limits"]
         if (any(type(limits[key]) not in (int, float) or not math.isfinite(limits[key]) or limits[key] <= 0
@@ -636,6 +659,9 @@ def inspect_record(path):
         if (host.snapshot(inputs)["sha256"] != record.get("snapshot") or
                 identities(inputs, record["identities"]["base_commit"]) != record["identities"]):
             record["status"] = "NOT VERIFIED"
+            record["published"], record["merged"] = False, False
+            if record.get("delivery"):
+                record["delivery"]["status"] = "NOT VERIFIED"
             record["next_action"] = "Candidate or binding inputs changed. Obtain fresh review and proof."
             return record
         stages = record["stages"]
@@ -647,7 +673,10 @@ def inspect_record(path):
                 raise ValueError("Execution guidance changed; retained judgments are no longer applicable")
             if record.get("active_stage") or record["model_dispatches"] != len(stages) + len(record.get("reconciled_workers", [])):
                 raise ValueError("Missing independent stage receipts")
-            if record["model_dispatches"] > record["limits"]["dispatches"] or record["elapsed_seconds"] > record["limits"]["seconds"]:
+            accepted_elapsed = record.get("local_acceptance_seconds", record["elapsed_seconds"]) if record.get("delivery") else record["elapsed_seconds"]
+            if (type(accepted_elapsed) not in (int, float) or not math.isfinite(accepted_elapsed) or
+                    accepted_elapsed < 0 or accepted_elapsed > record["elapsed_seconds"] or
+                    record["model_dispatches"] > record["limits"]["dispatches"] or accepted_elapsed > record["limits"]["seconds"]):
                 raise ValueError("Accepted episode exceeded its cumulative budget")
             checks = record.get("current_checks", {})
             if set(checks) != {"implementer", "reviewer", "prover"}:
@@ -661,7 +690,11 @@ def inspect_record(path):
                 raise ValueError("Repair/verifier context identities are invalid")
             stages = [stages[checks[role]] for role in ("implementer", "reviewer", "prover")]
 
-        if record.get("published") is not False or record.get("merged") is not False:
+        if record.get("delivery"):
+            if record["schema_version"] != 2:
+                raise ValueError("Historical records cannot acquire publication authority")
+            publication.confirm_grant(record, path.parent)
+        elif record.get("published") is not False or record.get("merged") is not False:
             raise ValueError("Unexpected external delivery claim")
         ids = record["accepted_contract"]["criterion_ids"] if record.get("accepted_contract") else criterion_ids((inputs / "accepted-input.md").read_text())
         try:
@@ -690,6 +723,12 @@ def inspect_record(path):
                     raise ValueError("Verifier candidate, binding, or boundary changed")
         if len(set(threads)) != 3:
             raise ValueError("Stage contexts are not independent")
+    if record.get("delivery"):
+        if record["status"] != "LOCAL ACCEPTED":
+            record["published"], record["merged"] = False, False
+            record["delivery"]["status"] = "NOT VERIFIED"
+        elif remote:
+            publication.inspect_remote(record, path.parent)
     return record
 
 
@@ -720,9 +759,16 @@ def main():
     run.add_argument("--verification-reserve", type=positive_seconds, default=120)
     run.add_argument("--dispatches", type=positive_dispatches, default=12,
                      help="Cumulative host dispatch limit, including corrections (default: 12)")
-    restart = sub.add_parser("resume", help="Reconcile an interrupted local episode without resetting its budget")
+    run.add_argument("--target", choices=("local", "pr-created", "pr-merged"), default="local")
+    run.add_argument("--github-repo", help="Explicitly authorized OWNER/REPO on github.com")
+    run.add_argument("--base", help="Authorized target base branch; must remain at the frozen source commit")
+    run.add_argument("--branch", help="Authorized publication branch; another candidate is never overwritten")
+    run.add_argument("--authorize", action="append", choices=("push", "create-pr", "merge"), default=[])
+    run.add_argument("--effect-reference", help="Actual initial user grant reference, never inferred from local proof")
+    run.add_argument("--merge-method", choices=("merge", "squash", "rebase"), default="merge")
+    restart = sub.add_parser("resume", help="Reconcile interrupted workers and remote effects without resetting the budget")
     restart.add_argument("record", type=Path)
-    status = sub.add_parser("status", help="Read local outcome and reject a changed candidate")
+    status = sub.add_parser("status", help="Revalidate local acceptance and read current remote outcome")
     status.add_argument("record", type=Path)
     contract = sub.add_parser("inspect-contract", help="Read supported contract/source identities without approving or executing")
     contract.add_argument("contract", type=Path)
@@ -748,13 +794,21 @@ def main():
                         "approval_sha256": args.approval_sha256} if args.contract else None
             if not args.contract and any((args.adopt_contract_sha256, args.adopt_source_sha256, args.approval_reference, args.approval_file, args.approval_sha256)):
                 raise ValueError("Adoption arguments apply only to --contract")
+            effect = None
+            if args.target != "local":
+                effect = publication.validate_grant({"target": args.target, "repository": args.github_repo,
+                    "base": args.base, "branch": args.branch, "actions": args.authorize,
+                    "reference": args.effect_reference, "merge_method": args.merge_method})
+            elif any((args.github_repo, args.base, args.branch, args.authorize, args.effect_reference)) or args.merge_method != "merge":
+                raise ValueError("Local delivery cannot carry remote effect arguments")
             output = (args.output or host.ROOT / ".proofline" / "delivery" / uuid.uuid4().hex).resolve()
             source = args.source.read_bytes().decode("utf-8") if args.source else ""
             brief = args.brief.read_bytes().decode("utf-8") if args.brief else ""
             record = deliver(args.repo.resolve(), source, brief, output,
-                             args.seconds, args.stage_seconds, args.verification_reserve, args.execution_map, adoption, args.dispatches)
+                             args.seconds, args.stage_seconds, args.verification_reserve, args.execution_map, adoption, args.dispatches, effect)
             record_path = output / "report.json"
-        print(record["status"] + ". Not published or merged.")
+        print(record["status"] + (". Not published or merged." if not record.get("delivery") else
+            ". Remote target: " + record["delivery"]["grant"]["target"] + "; " + record["delivery"]["status"] + "."))
         if record.get("accepted_contract", {}).get("scope") == "child":
             print("Scope: Child contribution only. Parent completion is not established.")
         elif record.get("accepted_contract", {}).get("parent_completion") is True:
@@ -765,7 +819,10 @@ def main():
             print("Commit: " + record["identities"]["candidate_commit"])
         print("Next: " + record["next_action"])
         print("Record: " + str(record_path))
-        return 0 if record["status"] == "LOCAL ACCEPTED" else 2
+        target_reached = (not record.get("delivery") or record["delivery"]["status"] ==
+            {"pr-created": "PR CREATED", "pr-merged": "PR MERGED"}[record["delivery"]["grant"]["target"]] or
+            record["delivery"]["grant"]["target"] == "pr-created" and record["merged"])
+        return 0 if record["status"] == "LOCAL ACCEPTED" and target_reached else 2
     except (OSError, ValueError, KeyError, TypeError, subprocess.SubprocessError) as exc:
         print(f"NOT VERIFIED: {exc}", file=sys.stderr)
         return 2

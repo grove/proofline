@@ -22,7 +22,8 @@ implementer session; evidence gaps get focused independent rechecks. The origina
 | S2 — Approved contracts | Real approved delivery and all input/source/regression/parent controls qualified; see the retained failed trials and narrow support boundary |
 | S3 — Four-way comparison | Fixed 240-second repeat complete: ordinary/agent + review/Proofline delivered 4/4, P2P 2/4; all four rejected omitted source; earlier failures and costs retained |
 | S4 — Bounded correction and resume | Native repair, unchanged evidence recovery and separate-process resume demonstrated; budget/stopping controls tested; see [S4 evidence](docs/S4-RECOVERY.md) |
-| S5–S6 — Publication and pilot | Deferred; preceding evidence gates remain binding |
+| S5 — Authorized publication | Implemented with disposable Git/fake GitHub controls; real authorized remote qualification pending; see [S5 boundary](docs/S5-PUBLICATION.md) |
+| S6 — Full pilot | Deferred; preceding evidence gates remain binding |
 
 Read the [S0 results and failed experiments](docs/S0-CODEX-RUNNER.md),
 [S1 evidence](docs/S1-DIRECT-DELIVERY.md), and
@@ -69,12 +70,14 @@ contains the candidate, protected role transcripts, and one `report.json` with
 identities, observations, dispatches, elapsed time, and available usage. `--output`
 selects a new directory; existing runs are never overwritten. Successful `status`
 revalidates candidate identity and native receipt evidence before showing the
-candidate path and commit. Exit `0` means local acceptance; `2` means a gap,
-rejection, exhausted budget, stale evidence, or invalid input.
+candidate path and commit. Exit `0` means the requested target is confirmed
+(local by default); `2` means a gap, rejection, exhausted budget, stale evidence,
+or invalid input.
 
-**LOCAL ACCEPTED means not published or merged.** Inspect the retained candidate
-and diff; the tool does not copy changes into your original checkout. There is
-publication or receipt-import command. Correction and focused verification
+**LOCAL ACCEPTED establishes local proof only.** With the default local target,
+nothing is published or merged. Inspect the retained candidate and diff; the tool
+does not copy changes into your original checkout. Optional GitHub targets require
+an explicit initial repository/action grant; see below. There is no receipt-import command. Correction and focused verification
 share the original time and dispatch limits. Implementation preserves the
 configurable time reserve and two dispatches for independent checking; review
 keeps half that time reserve for proof. Two consecutive correction rounds without
@@ -111,6 +114,39 @@ symlinks. It does not support submodules, ignored local
 dependencies, or tests that need to modify their source tree. Such tasks need a
 qualified build/observation path. Supply exact interpreter/tool paths in the map
 when macOS developer-tool discovery is unavailable inside the sandbox.
+
+## Authorized PR and merge targets
+
+S5's implementation and fault-injection controls are available; its real remote
+acceptance gate is pending explicit test authorization. GitHub.com, installed
+`gh`, and existing host Git/SSH and GitHub authentication are required for remote
+targets. Local delivery needs neither GitHub nor remote credentials.
+
+Only when the initial user request explicitly authorizes these exact effects,
+add the following to `deliver` (direct and approved-contract paths both work):
+
+```sh
+--target pr-merged --github-repo OWNER/REPO --base main --branch proofline/task \
+--authorize push --authorize create-pr --authorize merge \
+--effect-reference 'Actual initial user authorization reference'
+```
+
+For `pr-created`, omit `--authorize merge`. `--merge-method` accepts `merge`
+(default), `squash`, or `rebase`. These flags record a real grant; they cannot
+invent one. No worker receives authority or credentials. There are no comment,
+force-push, administrative bypass, deployment, or branch-deletion actions.
+
+Publication uses the accepted product tree with the original source commit as
+its parent. It never pushes the synthetic local history. The remote base must
+still equal that original commit; moved bases, changed heads, conflicts and
+protection failures preserve a precise partial result. GitHub checks and
+protections must permit the merge. Current PR head/base and fetched Git trees
+establish completion; transformed commits must have the same accepted tree.
+`status` performs fresh read-only remote inspection and fails closed when it is
+unavailable. `resume` reconciles any pending effect before continuing within the
+original grant and cumulative budget. Local acceptance remains separately visible
+if the remote target is incomplete. See [S5's boundary and qualification
+command](docs/S5-PUBLICATION.md).
 
 ## Use as a Codex skill
 
@@ -154,6 +190,11 @@ python3 -B checks/s3_compare.py --s2-record .proofline/s2-live/final-audit/repor
   --p2p-repo /path/to/promise-to-proof --output .proofline/s3/new-comparison
 # S4: real seeded repair, evidence-only recovery and separate-process resume.
 python3 -B checks/s4_live.py --output .proofline/s4-live/new-qualification
+# S5: only in an explicitly authorized disposable remote repository.
+python3 -B checks/s5_live.py --repo /path/to/clean-disposable-checkout \
+  --github-repo OWNER/REPO --base main --branch proofline/s5-test \
+  --authorize push --authorize create-pr --authorize merge \
+  --effect-reference 'Actual user grant reference' --output .proofline/s5-live/new-run
 # Native subprocess/permission regressions, no model calls.
 PROOFLINE_NATIVE_TESTS=1 python3 -B -m unittest discover -s tests -v
 ```

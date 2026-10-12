@@ -26,7 +26,7 @@ the alternative whose prover previously timed out. Earlier 180-second failures,
 qualification costs and unknown costs remain visible. The P2P default suite's
 pre-existing packaging failure and corrected macOS temporary-path fixture are
 documented; its suite is not claimed to pass. These are small CLI observations,
-not a statistical advantage claim. S4 demonstrates native product repair, unchanged evidence recovery and separate-process resume, with deterministic budget/progress controls; see [S4 evidence](docs/S4-RECOVERY.md). S5–S6 remain deferred. The original
+not a statistical advantage claim. S4 demonstrates native product repair, unchanged evidence recovery and separate-process resume, with deterministic budget/progress controls; see [S4 evidence](docs/S4-RECOVERY.md). S5 publication is implemented with disposable Git/fake GitHub fault controls; its real authorized remote gate is pending. S6 remains deferred. See [S5 boundary](docs/S5-PUBLICATION.md). The original
 [Linux NO-GO](docs/S0-HOST-FEASIBILITY.md) remains historical evidence.
 This status does not change any gate below.
 
@@ -134,7 +134,7 @@ This plan orders engineering work; it is **not** an alternative acceptance agree
 
 **Gate:** Exercise seeded product repair, evidence-only repair, environment failure, non-progress termination, productive third round, and interruption/restart in real and deterministic tests as appropriate. Do not introduce separate recovery agents.
 
-### S5 — Reach the authorized delivery target (later capability)
+### S5 — Reach the authorized delivery target
 
 **Build:** Add optional user-authorized `PR created` and `PR merged` targets using host-native GitHub/Git facilities. Local acceptance remains available without GitHub. Effect grants must be explicit at the initial request and scoped to the relevant repository and action; independent checking never creates effect authority.
 

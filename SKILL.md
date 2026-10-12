@@ -1,11 +1,12 @@
 ---
 name: proofline
-description: Implement a repository request with fresh independent review and behavioral proof on one frozen local candidate. Use when the user asks for Proofline delivery or invokes /proofline. Direct delivery, bounded recovery/resume and narrow approved-contract inputs are supported. Publication is not supported.
+description: Implement a repository request with fresh independent review and behavioral proof on one frozen local candidate. Use when the user asks for Proofline delivery or invokes /proofline. Direct delivery, bounded recovery/resume and narrow approved-contract inputs are supported. Optional scoped GitHub publication is implemented; its real remote gate is pending.
 ---
 
 Use the installed repository's [proofline.py](proofline.py) entry point. Python
 3.11+, macOS and the qualified Codex CLI 0.162.1 are required. The runner consumes
-real model usage and keeps local evidence; it does not publish or merge.
+real model usage and keeps local evidence. It publishes or merges only under an
+explicit initial repository/action grant; local delivery is the default.
 
 For a direct request, preserve the user's original text and any delegated source
 bytes/revisions in a source file outside product changes. In the initiating
@@ -60,10 +61,30 @@ work with the recorded next action. See [S4 evidence](docs/S4-RECOVERY.md).
 
 Before reporting success, run `proofline.py status <report.json>`. Report the
 confirmed outcome, remaining failed/unknown criteria, exact candidate path and
-commit, and one next action. Local acceptance is **not published or merged**.
-A stale candidate requires fresh judgments. Requested publication, merge,
-or an unsupported host is an explicit capability/input gap,
-not authority to approximate that target or silently convert it to local success.
+commit, and one next action. Local acceptance alone establishes **no publication or merge**.
+A stale candidate requires fresh judgments. An unsupported host or an unqualified
+remote path is an explicit capability gap, never a completed remote target.
+
+For an explicitly authorized initial PR/merge request, record the actual grant
+with `--target pr-created|pr-merged --github-repo OWNER/REPO --base <branch>
+--branch <publication-branch> --authorize push --authorize create-pr
+--effect-reference '<actual user grant reference>'`. A merge target additionally
+requires `--authorize merge`; `--merge-method merge|squash|rebase` selects its
+strategy. Never infer a grant from implementation permission, contract adoption,
+independent acceptance, a tracker label, or publication preview. No deployment,
+comment, force-push, protection bypass, or unrelated write is authorized.
+Do not ask again when the exact initial grant still covers the action.
+
+The runner uses host Git/GitHub CLI after local acceptance, verifies the original
+source ancestry and exact accepted tree, then reads back the current remote
+head/base and merged tree. Local and remote facts are separate; report the
+requested target and actual partial outcome. Moved bases, changed heads,
+protection failures and unavailable readback cannot inherit local verdicts.
+Use the same `resume` command to reconcile uncertain effects before continuing;
+it cannot enlarge the original grant or reset the budget. `status` reads current
+remote state without remote mutations. S5's real remote gate is pending explicit
+authorization of a disposable test repository; do not claim end-to-end support
+until [S5 qualification](docs/S5-PUBLICATION.md) is observed.
 
 For a contract, first use `proofline.py inspect-contract <contract.md>` and read
 the exact contract and complete linked original source chain. The narrow adapter
