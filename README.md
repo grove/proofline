@@ -141,3 +141,10 @@ not all Linux hosts.
 ## License
 
 [Apache License 2.0](LICENSE).
+
+Experimental native Intentline input is available through `inspect-intentline`
+and explicit `deliver --intentline-bundle`, separately adopted by the trusted caller.
+It is offline-qualified on real producer bundles; positive live delivery remains
+not_run. [Native boundary and authority](docs/S2-CONTRACT-INPUT.md) describe exact
+flags, independent runtime ownership, shared validator ancestry and limitations.
+It changes neither direct delivery nor the qualified P2P S2 path.
