@@ -1,6 +1,6 @@
 # Proofline — Implementation plan
 
-**Status:** Execution roadmap v1 · 12 October 2026 (S0–S2 demonstrated; qualified P2P delivery and fixed 240-second S3 comparison complete)
+**Status:** Execution roadmap v1 · 12 October 2026 (S0–S2 demonstrated; qualified P2P delivery and fixed 240-second S3 comparison complete; S4 local recovery gate demonstrated)
 
 **Design authority:** [DESIGN.md v0.5](./DESIGN.md) — the product contract and safety boundaries live there.  
 **Objective:** Make a capable coding agent deliver the *complete authorized promise*, with independently credible evidence, minimal human coordination, and substantially less wasted work than a heavy controller.
@@ -26,7 +26,7 @@ the alternative whose prover previously timed out. Earlier 180-second failures,
 qualification costs and unknown costs remain visible. The P2P default suite's
 pre-existing packaging failure and corrected macOS temporary-path fixture are
 documented; its suite is not claimed to pass. These are small CLI observations,
-not a statistical advantage claim. S4–S6 remain deferred. The original
+not a statistical advantage claim. S4 demonstrates native product repair, unchanged evidence recovery and separate-process resume, with deterministic budget/progress controls; see [S4 evidence](docs/S4-RECOVERY.md). S5–S6 remain deferred. The original
 [Linux NO-GO](docs/S0-HOST-FEASIBILITY.md) remains historical evidence.
 This status does not change any gate below.
 

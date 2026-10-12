@@ -1,6 +1,6 @@
 ---
 name: proofline
-description: Implement a repository request with fresh independent review and behavioral proof on one frozen local candidate. Use when the user asks for Proofline delivery or invokes /proofline. Direct delivery and narrow approved-contract inputs are qualified. Publication is not supported.
+description: Implement a repository request with fresh independent review and behavioral proof on one frozen local candidate. Use when the user asks for Proofline delivery or invokes /proofline. Direct delivery, bounded recovery/resume and narrow approved-contract inputs are supported. Publication is not supported.
 ---
 
 Use the installed repository's [proofline.py](proofline.py) entry point. Python
@@ -34,15 +34,29 @@ python3 /absolute/path/to/proofline/proofline.py deliver \
   --source /absolute/path/to/source.md \
   --brief /absolute/path/to/brief.md \
   --map 'Task-specific commands and relevant entry points' \
-  --seconds 900 --stage-seconds 240 --verification-reserve 120
+  --seconds 900 --stage-seconds 240 --verification-reserve 120 --dispatches 12
 ```
 
 The runner owns the isolated implementation, candidate freeze, fresh review,
 and fresh proof. Do not replace a failed receipt with an invented report, reuse
 another candidate's verdict, or start a second episode silently to reset its
-budget. On a failed review it skips proof. Product correction and evidence-only
-recovery are later slices; report the current actionable gap and preserved
-candidate rather than claiming acceptance.
+budget. On a failed review it skips proof. The runner classifies failure before recovery: product defects return a concise
+reproduction and affected obligations to the same implementer session; weak
+evidence gets a focused independent recheck without product edits. Environment
+failures remain environment/evidence gaps; source and authority gaps block
+explicitly. A changed candidate receives fresh review and proof. A still-valid
+review may be retained only for the exact unchanged candidate and inputs.
+Two consecutive correction rounds without independent criterion improvement
+stop early; a productive third round can use remaining authorized capacity.
+All stages share cumulative time/dispatch limits and a verification reserve.
+
+Use `proofline.py resume <report.json>` after interruption. Resume reconciles
+workers, confirms binding inputs and current candidate, and rejects stale
+judgments before redispatch. Never duplicate a running/uncertain worker. Downtime
+and interrupted dispatches consume the original budget; resume does not reset
+or extend limits. The episode lock prevents concurrent controllers. Historical
+S1/S3 records are inspectable, not resumable. Preserve terminal gaps and exhausted
+work with the recorded next action. See [S4 evidence](docs/S4-RECOVERY.md).
 
 Before reporting success, run `proofline.py status <report.json>`. Report the
 confirmed outcome, remaining failed/unknown criteria, exact candidate path and

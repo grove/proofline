@@ -56,7 +56,7 @@ def preferences() -> dict:
 
 
 def command(codex: str, inputs: Path, scratch: Path, private: Path,
-            model_preferences: dict, implementer=False) -> list[str]:
+            model_preferences: dict, implementer=False, session_id=None, persist=False) -> list[str]:
     profile = host.permission_profile(inputs, scratch, private)
     profile["filesystem"].update({codex: "read", str(Path(codex).resolve()): "read"})
     if implementer:
@@ -83,7 +83,58 @@ def command(codex: str, inputs: Path, scratch: Path, private: Path,
             "--output-schema", str(inputs / "response.schema.json")]
     for key, value in config.items():
         argv.extend(["-c", key + "=" + host.toml(value)])
+    if persist or session_id:
+        argv.remove("--ephemeral")
+    if session_id:
+        if not implementer:
+            raise ValueError("Only the implementer may resume a context")
+        uuid.UUID(session_id)
+        argv[argv.index("exec") + 1:argv.index("exec") + 1] = ["resume"]
+        for flag in ("--color", "--cd"):
+            index = argv.index(flag)
+            del argv[index:index + 2]
+        argv[1:1] = ["-C", str(scratch)]
+        argv.append(session_id)
     return argv + ["-"]
+
+
+def save_worker(private, value):
+    path = private / "worker.json"
+    temporary = path.with_suffix(".tmp")
+    temporary.write_text(json.dumps(value))
+    temporary.replace(path)
+
+
+def process_start(pid):
+    try:
+        result = subprocess.run(["/bin/ps", "-p", str(pid), "-o", "lstart="],
+                                capture_output=True, text=True, timeout=5)
+    except OSError:
+        return None
+    if result.returncode not in (0, 1):
+        raise ValueError("Cannot inspect unfinished worker")
+    return result.stdout.strip()
+
+
+def reconcile_worker(private):
+    """Never redispatch while a recorded process group may still execute."""
+    worker = json.loads((private / "worker.json").read_text())
+    if worker["state"] == "finished":
+        return worker
+    if worker["state"] != "running" or not worker.get("process_start"):
+        raise ValueError("Uncertain worker launch; reconcile it before resuming")
+    if type(worker["pid"]) is not int or worker["pid"] <= 0:
+        raise ValueError("Invalid unfinished worker identity")
+    current = process_start(worker["pid"])
+    if current is None:
+        raise ValueError("Cannot inspect unfinished worker; no redispatch")
+    if current == worker["process_start"]:
+        raise ValueError("Recorded worker is still running; wait for termination before resuming")
+    try:
+        os.killpg(worker["pid"], 0)
+    except ProcessLookupError:
+        return worker
+    raise ValueError("Unfinished worker group may still execute; reconcile it before resuming")
 
 
 def launch(argv: list[str], prompt: str, private: Path, timeout: float) -> dict:
@@ -93,6 +144,7 @@ def launch(argv: list[str], prompt: str, private: Path, timeout: float) -> dict:
                "prompt_sha256": host.sha256(prompt.encode()), "exit_code": None,
                "timed_out": False, "error": None, "events_path": str(private / "events.jsonl")}
     (private / "prompt.txt").write_text(prompt)
+    save_worker(private, {"state": "launching"})
     with (private / "events.jsonl").open("xb") as events, (private / "stderr.txt").open("xb") as errors:
         process = None
         try:
@@ -101,6 +153,8 @@ def launch(argv: list[str], prompt: str, private: Path, timeout: float) -> dict:
                                        env={key: os.environ[key] for key in
                                             ("HOME", "PATH", "TMPDIR", "CODEX_HOME", "LANG")
                                             if key in os.environ})
+            save_worker(private, {"state": "running", "pid": process.pid,
+                                  "process_start": process_start(process.pid)})
             payload = prompt.encode()
             while True:
                 remaining = timeout - (time.monotonic() - started)
@@ -132,6 +186,7 @@ def launch(argv: list[str], prompt: str, private: Path, timeout: float) -> dict:
             receipt["error"] = "Host output exceeded the evidence limit"
         with path.open("rb") as stream:
             receipt[name + "_sha256"] = host.sha256(stream.read(MAX_EVENTS_BYTES + 1))
+    save_worker(private, {"state": "finished", "receipt": receipt})
     return receipt
 
 
@@ -277,7 +332,8 @@ def shell_payload(command):
 
 
 def run_stage(codex, directory, inputs, identities, role, preferences, timeout,
-              make_prompt=stage_prompt, criterion_ids=("U1", "U2", "U3", "U4"), target=None):
+              make_prompt=stage_prompt, criterion_ids=("U1", "U2", "U3", "U4"), target=None,
+              session_id=None, persist=False):
     binding = binding_for(identities)
     budget = f"\nThis stage has at most {timeout:.1f} seconds, including tool runs and the final structured handoff. Bound long subprocesses and reserve the final 30 seconds to report before the host deadline. Stop when each material obligation has sufficient evidence; do not add duplicate probes or exhaustive enumeration without a concrete unresolved risk or binding requirement. Keep the handoff concise. Unobserved material obligations remain NOT VERIFIED; do not claim an unfinished suite passed.\n"
     (inputs / "response.schema.json").write_text(json.dumps(REPORT_SCHEMA))
@@ -294,7 +350,7 @@ def run_stage(codex, directory, inputs, identities, role, preferences, timeout,
         if (inputs / "contract-context.json").exists():
             protected["contract-context.json"] = host.sha256((inputs / "contract-context.json").read_bytes())
         git_before = host.snapshot(product / ".git")
-        result["receipt"] = launch(command(codex, inputs, scratch, private, preferences, True),
+        result["receipt"] = launch(command(codex, inputs, scratch, private, preferences, True, session_id, persist),
                                        make_prompt(role, inputs, identities) + budget, private, timeout)
         unchanged = (git_before == host.snapshot(product / ".git") and all(
             host.sha256((inputs / name).read_bytes()) == digest for name, digest in protected.items()))
@@ -318,6 +374,8 @@ def run_stage(codex, directory, inputs, identities, role, preferences, timeout,
             raise ValueError("Protected source, candidate, or receipts changed")
         observed = read_events(result["receipt"])
         result["thread_id"] = observed["thread_id"]
+        if session_id and observed["thread_id"] != session_id:
+            raise ValueError("Repair did not resume the original implementer")
         result["usage"] = observed["usage"]
         report, commands = observed["report"], observed["commands"]
         if role != "implementer":
@@ -341,4 +399,7 @@ def run_stage(codex, directory, inputs, identities, role, preferences, timeout,
         result["status"] = "OBSERVED"
     except (ValueError, KeyError, TypeError, OSError) as exc:
         result["error"] = str(exc)
+    temporary = directory / "stage.tmp"
+    temporary.write_text(json.dumps(result, indent=2))
+    temporary.replace(directory / "stage.json")
     return result

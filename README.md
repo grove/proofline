@@ -12,7 +12,8 @@ credible acceptance. [DESIGN.md](DESIGN.md) defines the product;
 **Runnable direct local delivery through Codex.** One autonomous implementer
 produces an isolated candidate; fresh independent review and behavioral proof
 check the same frozen source, brief, comparison base, and candidate. Review runs
-first and skips proof on a material blocker. The original repository is preserved.
+first and skips proof on a material blocker. Product defects return to the same
+implementer session; evidence gaps get focused independent rechecks. The original repository is preserved.
 
 | Slice | Status |
 | --- | --- |
@@ -20,7 +21,8 @@ first and skips proof on a material blocker. The original repository is preserve
 | S1 — Direct local delivery | Demonstrated on two small CLI tasks; source omissions and regressions rejected |
 | S2 — Approved contracts | Real approved delivery and all input/source/regression/parent controls qualified; see the retained failed trials and narrow support boundary |
 | S3 — Four-way comparison | Fixed 240-second repeat complete: ordinary/agent + review/Proofline delivered 4/4, P2P 2/4; all four rejected omitted source; earlier failures and costs retained |
-| S4–S6 — Recovery, publication, pilot | Deferred; preceding evidence gates remain binding |
+| S4 — Bounded correction and resume | Native repair, unchanged evidence recovery and separate-process resume demonstrated; budget/stopping controls tested; see [S4 evidence](docs/S4-RECOVERY.md) |
+| S5–S6 — Publication and pilot | Deferred; preceding evidence gates remain binding |
 
 Read the [S0 results and failed experiments](docs/S0-CODEX-RUNNER.md),
 [S1 evidence](docs/S1-DIRECT-DELIVERY.md), and
@@ -57,7 +59,7 @@ python3 -B /absolute/path/to/proofline/proofline.py deliver \
   --source /absolute/path/to/source.md \
   --brief /absolute/path/to/brief.md \
   --map 'Relevant commands, public interfaces, fixtures and environment gaps' \
-  --seconds 900 --stage-seconds 240 --verification-reserve 120
+  --seconds 900 --stage-seconds 240 --verification-reserve 120 --dispatches 12
 
 python3 -B /absolute/path/to/proofline/proofline.py status /path/to/run/report.json
 ```
@@ -72,9 +74,31 @@ rejection, exhausted budget, stale evidence, or invalid input.
 
 **LOCAL ACCEPTED means not published or merged.** Inspect the retained candidate
 and diff; the tool does not copy changes into your original checkout. There is
-no correction, resume, publication, or receipt-import command yet. A timeout or
-interruption preserves evidence and any active dispatch. Inspect that record;
-do not silently start another episode to reset its budget.
+publication or receipt-import command. Correction and focused verification
+share the original time and dispatch limits. Implementation preserves the
+configurable time reserve and two dispatches for independent checking; review
+keeps half that time reserve for proof. Two consecutive correction rounds without
+independent criterion improvement stop early. A productive third round may run
+when the same episode still has verification capacity. Environment failures and
+source/authority gaps are distinct from product defects.
+
+Resume an interrupted episode with:
+
+```sh
+python3 -B /absolute/path/to/proofline/proofline.py resume /path/to/run/report.json
+```
+
+Resume validates retained receipts, source/contract authority, execution guidance
+and candidate identity before continuing. It recovers a completed worker result
+or confirms termination before replacing an incomplete verifier. A partial
+implementation resumes its exact host-issued implementer session and must still
+produce a valid handoff and fresh independent judgments. A running or uncertain
+worker blocks redispatch; wait for termination and reconcile the recorded worker.
+An episode lock prevents concurrent controllers. Downtime counts toward the
+original elapsed budget, and interrupted dispatches remain consumed. Limits
+cannot be reset or extended through `resume`. Historical S1/S3 records remain
+inspectable but cannot be converted into S4 episodes. Terminal source gaps and
+non-progress stops preserve work for an explicit next decision.
 
 Models run under native permissions with read-only binding inputs and verifier
 candidates, separate writable scratch, and protected host receipts. Network,
@@ -128,6 +152,8 @@ python3 -B checks/s2_live.py /path/to/approved-delivery/report.json \
 # S3: predeclared four-way comparison; current P2P checkout required.
 python3 -B checks/s3_compare.py --s2-record .proofline/s2-live/final-audit/report.json \
   --p2p-repo /path/to/promise-to-proof --output .proofline/s3/new-comparison
+# S4: real seeded repair, evidence-only recovery and separate-process resume.
+python3 -B checks/s4_live.py --output .proofline/s4-live/new-qualification
 # Native subprocess/permission regressions, no model calls.
 PROOFLINE_NATIVE_TESTS=1 python3 -B -m unittest discover -s tests -v
 ```

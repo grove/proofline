@@ -306,7 +306,7 @@ def run(s2_record, p2p_repo, output):
             if assignment["cohort"] == "p2p":
                 result = p2p_run(repo, brief, source, directory / "run", controller, operator, codex)
             elif assignment["cohort"] == "proofline":
-                r = p.deliver(repo, source, brief, directory / "run", 900, STAGE_SECONDS, 120,
+                r = p.deliver(repo, source, brief, directory / "run", 900, STAGE_SECONDS, 120, dispatches=3,
                     execution_map=f"Python {sys.executable} -B. Public entry point username.py; existing unittest checks are available. This is a shared preplanned local benchmark task, not a historical P2P approval.")
                 result = {**r, "accepted": r["status"] == "LOCAL ACCEPTED", "candidate": r.get("candidate_path", str(repo))}
             else:
