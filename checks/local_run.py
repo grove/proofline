@@ -7,9 +7,9 @@ import subprocess
 import sys
 import time
 
-import proofline as p
+from checks import codex_live as live, host_probe as host
 from checks import coding_attempt as coding
-from checks.native_checks import oracle_runner
+from checks.native_checks import oracle_runner, write_record
 
 LAUNCHER='import json,os,sys;os.chdir(sys.argv[1]);os.environ["PYTHONDONTWRITEBYTECODE"]="1";os.execvpe(json.loads(sys.argv[2])[0],json.loads(sys.argv[2]),os.environ)'
 
@@ -42,16 +42,16 @@ def run(repo,source,checks,output,seconds=900,stage_seconds=600,check_seconds=12
             'python':str(Path(sys.executable).resolve())}
     def save():
         record['elapsed_seconds']=time.monotonic()-started
-        p.write_record(output/'report.json',record)
+        write_record(output/'report.json',record)
     save()
     try:
-        codex=p.host.find_codex(None)
+        codex=host.find_codex(None)
         if not codex:raise ValueError('Supported Codex CLI unavailable')
-        version=p.host.run_command([codex,'--version'],output)
+        version=host.run_command([codex,'--version'],output)
         record['version_receipt']=version
-        if not p.host.succeeded(version) or version['stdout'].strip()!='codex-cli 0.162.1':
+        if not host.succeeded(version) or version['stdout'].strip()!='codex-cli 0.162.1':
             raise ValueError('This boundary requires Codex CLI 0.162.1')
-        record['model_preferences']=p.live.preferences()
+        record['model_preferences']=live.preferences()
         allowance=min(stage_seconds,seconds-(time.monotonic()-started)-check_seconds)
         if allowance<=0:raise ValueError('Implementation budget unavailable')
         delivery=coding.run(repo,source,'Caller-selected checks: '+json.dumps(checks),
@@ -63,15 +63,16 @@ def run(repo,source,checks,output,seconds=900,stage_seconds=600,check_seconds=12
             save();return record
         inputs=Path(record['candidate_path']).parent
         (inputs/'checks.json').write_text(json.dumps(checks))
-        record['snapshot']=p.host.snapshot(inputs)['sha256']
-        record['candidate_commit']=p.host.git(inputs/'product','rev-parse','HEAD')
+        record['snapshot']=host.snapshot(inputs)['sha256']
+        record['candidate_commit']=host.git(inputs/'product','rev-parse','HEAD')
         record['status']='RUNNING CHECKS';save()
         for index,argv in enumerate(checks):
             remaining=seconds-(time.monotonic()-started)
-            entry={'argv':argv,'status':'UNAVAILABLE','receipts':[]};record['observations'].append(entry)
+            entry={'argv':argv,'status':'UNAVAILABLE','receipts':[],'elapsed_seconds':0.0};record['observations'].append(entry)
             if remaining<=0:
                 entry['error']='Cumulative budget exhausted';record['status']='CHECKS UNAVAILABLE';break
             scratch=output/('check-'+str(index));scratch.mkdir()
+            check_started=time.monotonic()
             try:
                 result=oracle_runner(codex,inputs,output/'private',entry['receipts'])(
                     check_argv(record['python'],inputs,argv),
@@ -80,7 +81,9 @@ def run(repo,source,checks,output,seconds=900,stage_seconds=600,check_seconds=12
                 entry.update(returncode=result.returncode,status='PASSED' if result.returncode==0 else 'FAILED')
             except (OSError,subprocess.SubprocessError) as error:
                 entry['error']=str(error)
-            if p.host.snapshot(inputs)['sha256']!=record['snapshot']:raise ValueError('Frozen check inputs changed')
+            finally:
+                entry['elapsed_seconds']=max(0.0,time.monotonic()-check_started)
+            if host.snapshot(inputs)['sha256']!=record['snapshot']:raise ValueError('Frozen check inputs changed')
             save()
         if any(x['status']=='UNAVAILABLE' for x in record['observations']):record['status']='CHECKS UNAVAILABLE'
         elif any(x['status']=='FAILED' for x in record['observations']):record['status']='CHECKS FAILED'
@@ -98,12 +101,12 @@ def inspect(path):
     validate_checks(record['checks'])
     if record['status']=='CHECKS PASSED':
         inputs=Path(record['candidate_path']).parent
-        if (p.host.snapshot(inputs)['sha256']!=record['snapshot'] or
+        if (host.snapshot(inputs)['sha256']!=record['snapshot'] or
                 json.loads((inputs/'checks.json').read_text())!=record['checks']):
             record['status']='STALE CHECKS'
         elif (len(record['observations'])!=len(record['checks']) or
               any(entry['argv']!=argv or entry['status']!='PASSED' or entry['returncode']!=0
-                  or len(entry['receipts'])!=1 or not p.host.succeeded(entry['receipts'][0])
+                  or len(entry['receipts'])!=1 or not host.succeeded(entry['receipts'][0])
                   or any(entry['receipts'][0].get(key) for key in ('stdout_truncated','stderr_truncated'))
                   or json.loads(entry['receipts'][0]['argv'][-1])!=check_argv(record['python'],inputs,argv)
                   for entry,argv in zip(record['observations'],record['checks']))):

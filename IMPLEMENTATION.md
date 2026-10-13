@@ -8,8 +8,10 @@ by the current CLI.
 
 ## Minimal active architecture
 
-- `proofline.py`: small public CLI plus the original Git snapshot/freeze
-  helpers. Only `run` and `status` are user-facing.
+- `proofline.py`: small public `run`/`status` CLI. It keeps minimal
+  compatibility exports for already recorded native study tools.
+- `checks/candidate_snapshot.py`: exact clean-source Git snapshot, path
+  validation and frozen candidate identity, without agent/review policy.
 - `checks/local_run.py`: bounded episode orchestration and exact status
   revalidation, retaining distinct check failure/unavailability/staleness.
 - `checks/coding_attempt.py`: one autonomous Codex implementation dispatch,
@@ -17,9 +19,9 @@ by the current CLI.
 - `checks/native_checks.py`: trusted host command receipts and protected
   check execution.
 - `checks/host_probe.py` and `checks/codex_live.py`: existing qualified
-  sandbox, process lifecycle and model transport protections. Some S0
-  diagnostic/test helpers remain pending smaller extraction in #10;
-  security controls must be preserved during that work.
+  sandbox, process lifecycle and model transport protections. S0 diagnostic
+  helpers remain available for offline regressions, but are not called as
+  extra acceptance stages by the supported runner.
 - `tests/test_local_run.py`, `tests/test_supported_cli.py`,
   `tests/test_host_probe.py`, `tests/test_codex_live.py`, and retained
   native S0 fixture controls: the supported runner and its boundary
@@ -64,6 +66,12 @@ reviewer, planner, approval ceremony or automatic GitHub publication. Any
 new mandatory stage needs measured improvement in independent correctness
 worth its cost. Native isolation, source/candidate identity, evidence integrity
 and remote-effect authorization remain essential.
+
+A previously published live baseline pins runtime hashes at commit
+`9c3684d`. Deterministic CI verifies those historical bytes from Git
+history, not from the intentionally evolving active runner; no historical
+manifest or scores are rewritten. Native macOS/Codex qualification is
+still distinct from Linux CI.
 
 The S6 abandon/simplify decision and incomplete comparisons are preserved
 in [S6-DECISION.md](docs/S6-DECISION.md). The later six-task study found no
