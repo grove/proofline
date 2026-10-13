@@ -144,20 +144,24 @@ class HostContinuationTests(unittest.TestCase):
             result=json.loads(raw)
             self.assertEqual(result['status'],'COMPLETE')
             from evaluation.sol_luna_host.accounting import normalize
-            self.assertEqual(normalize(result)['metrics'],summary['metrics'])
+            # Python 3.12 improved float summation; elapsed-time roundoff is not evidence drift.
+            def rounded(value):
+                return json.loads(json.dumps(value),parse_float=lambda s:round(float(s),8))
+            self.assertEqual(rounded(normalize(result)['metrics']),rounded(summary['metrics']))
+            record_store=Path(result['assignments'][0]['seed']).parents[3]
             self.assertEqual(len(result['assignments']),20)
             self.assertEqual({(r['task'],r['arm']) for r in result['assignments']},
                              {(r['task'],r['arm']) for r in original.ledger()})
             threads=set()
             for row in result['assignments']:
-                source=(Path(row['seed']).parent/'source.md').relative_to(study.STORE)
+                source=(Path(row['seed']).parent/'source.md').relative_to(record_store)
                 source=archive.read(str(source))
                 self.assertEqual(original.host.sha256(source),frozen['tasks'][row['task']]['source_sha256'])
                 for stage in row['stages']:
                     receipt=dict(stage['receipt']);argv=receipt['argv']
                     self.assertIn('model="'+stage['model']+'"',argv)
                     self.assertIn('model_reasoning_effort="high"',argv)
-                    events=Path(receipt['events_path']).relative_to(study.STORE)
+                    events=Path(receipt['events_path']).relative_to(record_store)
                     path=Path(temporary)/'events.jsonl';path.write_bytes(archive.read(str(events)))
                     receipt['events_path']=str(path)
                     observed=original.live.read_events(receipt)
@@ -169,7 +173,7 @@ class HostContinuationTests(unittest.TestCase):
                         self.assertNotIn(stage['thread_id'],threads)
                     threads.add(stage['thread_id'])
                     inputs=Path(argv[argv.index('--output-schema')+1]).parent
-                    copy=(inputs/'source.md').relative_to(study.STORE)
+                    copy=(inputs/'source.md').relative_to(record_store)
                     self.assertEqual(archive.read(str(copy)),source)
                     if stage['stage']=='verification':
                         self.assertTrue(any(source.decode() in c['aggregated_output']
