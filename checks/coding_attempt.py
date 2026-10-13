@@ -14,7 +14,7 @@ def run(repo, source, guidance, output, codex, preferences, seconds, execution_m
     started = time.monotonic()
     inputs = output / "implementation" / "inputs"
     inputs.mkdir(parents=True)
-    (inputs / "source.md").write_text(source)
+    (inputs / "source.md").write_bytes(source.encode("utf-8"))
     (inputs / "guidance.md").write_text(guidance)
     _, base = capture_base(repo, inputs / "product")
     boundary = output / "preflight"
