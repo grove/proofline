@@ -1,0 +1,68 @@
+{
+  "host": {
+    "system": "Darwin",
+    "release": "25.6.0",
+    "machine": "arm64",
+    "python": "3.14.8",
+    "codex": "/opt/homebrew/bin/codex",
+    "proc_self_exe_available": false
+  },
+  "model_dispatches": 0,
+  "authentication": "authenticated",
+  "boundary": {
+    "receipt": {
+      "kind": "process_probe",
+      "invocation_id": "b8ea49ca-2e50-445b-add8-f61e34b2aac7",
+      "argv": [
+        "/opt/homebrew/bin/codex",
+        "--no-daemon",
+        "-c",
+        "permissions.proofline_s0_bfe41334376c4e1c9936b0430b5aaec0={\"filesystem\"={\":minimal\"=\"read\",\"/opt/homebrew/Cellar/python@3.14/3.14.8_2/Frameworks/Python.framework/Versions/3.14\"=\"read\",\"/opt/homebrew/opt/python@3.14/Frameworks/Python.framework/Versions/3.14\"=\"read\",\"/opt/homebrew/opt/python@3.14/bin/python3.14\"=\"read\",\"/opt/homebrew/Cellar/python@3.14/3.14.8_2/Frameworks/Python.framework/Versions/3.14/bin/python3.14\"=\"read\",\"/Users/grove/projects/proofline/.proofline/issue32-diagnosis-host/control-correct\"=\"read\",\"/Users/grove/projects/proofline/.proofline/issue32-diagnosis-host/scratch\"=\"write\",\"/Users/grove/projects/proofline/.proofline/issue32-diagnosis-host/private\"=\"deny\",\"/opt/homebrew\"=\"read\",\"/Library/Developer/CommandLineTools/usr/bin\"=\"read\",\"/Library/Developer/CommandLineTools/usr/libexec/git-core\"=\"read\"},\"network\"={\"enabled\"=false}}",
+        "sandbox",
+        "--permission-profile",
+        "proofline_s0_bfe41334376c4e1c9936b0430b5aaec0",
+        "--include-managed-config",
+        "--cd",
+        "/Users/grove/projects/proofline/.proofline/issue32-diagnosis-host/scratch",
+        "--",
+        "/opt/homebrew/Cellar/python@3.14/3.14.8_2/Frameworks/Python.framework/Versions/3.14/bin/python3.14",
+        "-I",
+        "-B",
+        "/Users/grove/projects/proofline/.proofline/issue32-diagnosis-host/control-correct/canary.py",
+        "/Users/grove/projects/proofline/.proofline/issue32-diagnosis-host/control-correct/canary.json"
+      ],
+      "cwd": "/Users/grove/projects/proofline/.proofline/issue32-diagnosis-host/scratch",
+      "exit_code": 0,
+      "timed_out": false,
+      "stdout": "{\"nonce\": \"45c1116f90f24dd78e112380cc4862c0\", \"writes\": {\"source\": \"denied\", \"input\": \"denied\", \"candidate\": \"denied\", \"git_head\": \"denied\", \"receipt\": \"denied\"}, \"reads\": {\"receipt-canary\": \"denied\", \"oracle-canary\": \"denied\", \"other-role-canary\": \"denied\", \"actual_oracle\": \"denied\"}, \"mode_change\": \"denied\", \"scratch\": true, \"network\": \"denied\"}\n",
+      "stderr": "",
+      "elapsed_seconds": 0.079495
+    },
+    "assessment": {
+      "status": "OBSERVED",
+      "observations": {
+        "nonce": "45c1116f90f24dd78e112380cc4862c0",
+        "writes": {
+          "source": "denied",
+          "input": "denied",
+          "candidate": "denied",
+          "git_head": "denied",
+          "receipt": "denied"
+        },
+        "reads": {
+          "receipt-canary": "denied",
+          "oracle-canary": "denied",
+          "other-role-canary": "denied",
+          "actual_oracle": "denied"
+        },
+        "mode_change": "denied",
+        "scratch": true,
+        "network": "denied"
+      },
+      "inputs_unchanged": true,
+      "scope": "native process canaries only; no model or external-tool qualification"
+    },
+    "network_control": "loopback reachable before sandbox"
+  },
+  "elapsed_seconds": 3.264935
+}

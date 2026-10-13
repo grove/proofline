@@ -1,0 +1,383 @@
+{
+  "schema_version": 1,
+  "study_id": "issue32-sol-luna-high-lenient",
+  "status": "PREDECLARED_REQUIRES_SEPARATE_LIVE_AUTHORIZATION",
+  "tasks": [
+    "idempotent-ledger",
+    "path-router",
+    "stable-scheduler",
+    "tiered-invoice"
+  ],
+  "arms": [
+    "luna",
+    "plan",
+    "verify",
+    "hybrid",
+    "sol"
+  ],
+  "order": [
+    [
+      "verify",
+      "sol",
+      "plan",
+      "luna",
+      "hybrid"
+    ],
+    [
+      "sol",
+      "plan",
+      "luna",
+      "hybrid",
+      "verify"
+    ],
+    [
+      "luna",
+      "hybrid",
+      "verify",
+      "sol",
+      "plan"
+    ],
+    [
+      "hybrid",
+      "verify",
+      "sol",
+      "plan",
+      "luna"
+    ]
+  ],
+  "order_method": "Fixed shuffled base order with cyclic offsets 0,1,3,4. Four tasks cannot fill a five-row Latin square: each arm occupies four distinct positions. Serial; one repetition; no shared worker context except one eligible same-Luna repair.",
+  "assignments": 20,
+  "repetitions": 1,
+  "concurrency": 1,
+  "retries": 0,
+  "models": {
+    "sol": {
+      "model": "gpt-6.1-sol",
+      "model_reasoning_effort": "high"
+    },
+    "luna": {
+      "model": "gpt-6-luna",
+      "model_reasoning_effort": "high"
+    }
+  },
+  "catalog": "Exact selected native catalog entries pinned and supplied through model_catalog_json on every invocation. Current official documentation and the native catalog support high. Backend weight revision and provider-internal calls are not exposed. Availability still requires the authorized live canary; never substitute models or effort.",
+  "host": {
+    "versions": [
+      "Darwin",
+      "arm64",
+      "26.6.2",
+      "3.14.8"
+    ],
+    "codex": "codex-cli 0.162.1"
+  },
+  "limits": {
+    "episode_seconds": 1200,
+    "model_seconds": 900,
+    "planning_seconds": 300,
+    "verification_seconds": 300,
+    "correction_seconds": 180,
+    "check_seconds": 30,
+    "grading_seconds": 120,
+    "handoff_seconds": 900,
+    "handoff_model_seconds_per_call": 180,
+    "max_native_dispatches": 44,
+    "max_campaign_seconds": 24000,
+    "verification_model_reserve_seconds": 300
+  },
+  "budget_policy": "Every assignment has the same 1200-second TOTAL deadline and shared 900-second native invocation budget including startup, model tools, structured handoff and CLI shutdown. Planning and verification each cap at 300 seconds; correction remains 180. Verification arms reserve 300 model seconds before initial implementation; correction uses remaining allocation and is never dispatched without the unchanged qualifying immutable assertion failure. Grading/check limits are unchanged. Unspent stage allocations are not spent merely to equalize costs. Wall time is enforceable; token/FLOP caps and subscription dollars are unavailable. Failed activity, missing slots, native lifecycle and original stop rules remain visible. All arms use this policy; no results are pooled with stopped cohorts.",
+  "arms_definition": {
+    "luna": "Luna high implements with normal tests/self-checks.",
+    "plan": "One fresh Sol high Intentline planning pass; Luna high implements with normal tests/self-checks. Invalid advice is recorded; no product handoff blocker.",
+    "verify": "Luna high implements; actual model-free Proofline checks; fresh Sol high independently rereads entire original request and actual candidate/receipt evidence. At most one qualified same-Luna correction, then freeze/recheck.",
+    "hybrid": "Sol high Intentline planning; Luna high implementation; same independent Sol verification and bounded correction policy as verify. Reviewer receives no earlier plan.",
+    "sol": "Fresh Sol high implementation with normal tests/self-checks. Prior #16 results never pooled."
+  },
+  "exposure": "All arms get identical complete original source, product seed bytes, existing public tests and literal public check argv. Public check 0 contains only the source's explicit example and ordinary happy case; these outputs are PUBLIC, distinct from the private grader. Workers cannot read private vectors/controls/grading results, enclosing repository, sibling assignments, other sessions, host receipts or network. Planning gets the pinned offline Intentline CLI/skill. Implementation gets validated advisory rows/oracles/gaps as data. Verification gets actual frozen candidate, captured original-to-candidate diff and receipt-bound Proofline results, never earlier plan or independent grading data. Same-thread Luna correction may retain its own original source/work; all new paths/protected files are requalified. Ordinary A/B/E coding threads are ephemeral; retain only C/D implementer contexts for their one permitted correction. Validated plans include original contract open decisions, constraints and gaps.",
+  "planning": "Only original S1, schema 1 initial revision 1. One semantic pass using existing Intentline prepare/propose/check/render/export JSON. Source identities/quotes, proposed oracles, gaps and decisions retained. No preauthored acceptance inventory, adoption, audit, authenticated-authority claim or mandatory product planning.",
+  "verification": "Sol must reread complete source before trusting code or tests. Advisory findings include verbatim source quotes. No positive Sol verdict is an independent grade or delivery gate. Only actual Proofline statuses gate C/D handoff; invalid advisory artifacts are scored, not infrastructure stops. Invalid plans do not prevent the direct unmapped check path declared for both verifying arms. No R links assert completeness.",
+  "correction": "At most one attempt, Luna high on the original implementer thread, only when existing actionable_failure validates intact executable assertion evidence AND immutable public check 0 failed on the exact candidate. Candidate-authored tests, Sol-authored probes, missing coverage, unchecked expectations, unlinked rows, infrastructure failures and private grades cannot trigger repair. Revalidate before dispatch; preserve initial candidate/checks/grade and corrected candidate/checks/grade. New models/restarts/second correction are forbidden. This conservative policy may miss real defects; that limit is measured, not silently relaxed. Valid source-cited Sol diagnoses linked to failed immutable check 0 are passed to the same Luna as advice, never as the trigger or proof.",
+  "grader": "Reuse the existing isolated finite native behavioral grader with a new independent corpus. Initial and final candidates graded; unchanged finals reuse the bound initial grade. Correct and alternative algorithms must pass, deliberately defective algorithms and omitted batch must fail while all public suites are green. Seventeen controls before dispatch. Finite obligations include positive/negative edges, source examples, compatibility, full batch and immutability; not universal correctness. Grading expectations cannot change after freezing. Post-process those same native receipts with exact JSON type comparison, qualifying a seventeenth green-test float-for-integer defective control without changing the historical grader.",
+  "handoff_qualification": "Reuse the exact completed four-call native control from issue32-sol-luna-high-qualified, frozen and archived before changes. Its three independent plan/implementation/review thread identities and same-Luna correction identity, exact model/high configuration, native isolation, failed immutable assertion and final passing freeze/recheck were observed. Its 343.355 seconds and actual token usage remain separate qualification overhead, counted once. Fresh model-free native boundaries, seventeen grader controls and adapter roundtrip must pass in the new store. No new qualification model calls, primary warmup, interrupted assignment replay, or private grade exposure.",
+  "stop_rules": [
+    "Exact source, seed, grader, corpus, prompt, producer, host, catalog or runtime drift",
+    "Any invalid behavioral reference, alternative or defective control",
+    "Unqualified native worker/read-only/check/grader boundary, model configuration or handoff",
+    "Grader/source/sibling leakage, unsafe product aliases or protected mutation",
+    "Unreconciled or unavailable native worker lifecycle or unavailable model/check/grading execution",
+    "Total assignment budget exhaustion or protocol drift"
+  ],
+  "missing_runs": "Retain all 20 slots and every observed stage/failure/cost on stop. No retry/resume/replacement or oracle amendment. Model-produced invalid advice is an observed artifact failure, not a host failure; it cannot create an ordinary product blocker. A new attempt after infrastructure repair requires a separately frozen and authorized cohort.",
+  "primary": "Independently correct final deliveries over ALL assigned slots; distinguish correct code from completed handoff. C/D also require current receipt-bound CHECKS PASSED. Record initial correctness, final correctness, false handoffs, correct-but-blocked, incorrect-no-handoff, unavailable and missing. A green suite or Sol opinion never grades its own outcome.",
+  "accounting": "Raw native receipts, argv/configuration/prompt hashes, stage/model input/cached/output usage (cached subset never added twice), dispatched native turns, tool executions including file changes, failed activity, initial/final Proofline setup/check time, correction time, total assignment/independent-grading seconds and coordinator processes. Provider-internal calls, backend revisions, subscription dollar billing, host compute dollars and active human/initiating-agent authoring usage are unknown unless externally measured. Public API prices are not Codex subscription bills and will not be applied as invented actual dollars. Report total and cost per independently correct delivery, including null dollar cost; do not claim monetary savings from tokens alone.",
+  "analysis": "Paired initial correctness/final delivery effects and seconds for planning, verification package, interaction, hybrid-vs-Sol and Luna-vs-Sol. Four-task enumerated bootstrap descriptive intervals, explicit small-sample uncertainty and all-first-pass ceiling. Five arms identify the verification package, not isolated Sol review vs Proofline vs correction causal effects. Missing observations prevent efficacy conclusions; unknown prices prevent monetary-effectiveness conclusions. Keep/simplify/remove/inconclusive recommendations preserve optional workflows.",
+  "follow_up": "Luna medium/xhigh excluded. Neither is justified by preparation alone. Consider separately authorized medium only after adequate high reliability and measurable total cost; xhigh only for observed high defects or expensive repair loops. Keep Sol high unchanged; freeze a distinct cohort, do not pool or switch mid-assignment.",
+  "authorization": "Separate explicit authorization must bind this fresh FREEZE.json: twenty fresh assignments, at most 44 native turns, 24000 seconds (6.67 hours) of primary assignment limits. Prior completed qualification is reused without new inference. Observed dollar spending is unknown. Never resume stopped declarations, merge PR #33 or close issue #32 without the required empirical evidence and approval.",
+  "public_checks": {
+    "idempotent-ledger": [
+      {
+        "input": {
+          "balances": {
+            "a": 3
+          },
+          "events": [
+            {
+              "id": "x",
+              "account": "a",
+              "delta": -1
+            }
+          ]
+        },
+        "expected": {
+          "balances": {
+            "a": 2
+          },
+          "applied": [
+            "x"
+          ],
+          "replayed": []
+        }
+      },
+      {
+        "input": {
+          "balances": {
+            "a": 2
+          },
+          "events": [
+            {
+              "id": "x",
+              "account": "a",
+              "delta": -1
+            },
+            {
+              "id": "x",
+              "account": "a",
+              "delta": -1
+            }
+          ]
+        },
+        "expected": {
+          "balances": {
+            "a": 1
+          },
+          "applied": [
+            "x"
+          ],
+          "replayed": [
+            "x"
+          ]
+        }
+      }
+    ],
+    "path-router": [
+      {
+        "input": {
+          "routes": [
+            {
+              "pattern": "/a/:id",
+              "name": "user"
+            }
+          ],
+          "paths": [
+            "/a/x",
+            "/b"
+          ]
+        },
+        "expected": {
+          "matches": [
+            {
+              "name": "user",
+              "params": {
+                "id": "x"
+              }
+            },
+            null
+          ]
+        }
+      },
+      {
+        "input": {
+          "routes": [
+            {
+              "pattern": "/*tail",
+              "name": "wild"
+            },
+            {
+              "pattern": "/:id",
+              "name": "one"
+            }
+          ],
+          "paths": [
+            "/x"
+          ]
+        },
+        "expected": {
+          "matches": [
+            {
+              "name": "one",
+              "params": {
+                "id": "x"
+              }
+            }
+          ]
+        }
+      }
+    ],
+    "stable-scheduler": [
+      {
+        "input": {
+          "workers": 1,
+          "tasks": [
+            {
+              "id": "b",
+              "duration": 2,
+              "requires": []
+            },
+            {
+              "id": "a",
+              "duration": 1,
+              "requires": [
+                "b"
+              ]
+            }
+          ]
+        },
+        "expected": {
+          "schedule": [
+            {
+              "id": "b",
+              "start": 0,
+              "finish": 2,
+              "worker": 0
+            },
+            {
+              "id": "a",
+              "start": 2,
+              "finish": 3,
+              "worker": 0
+            }
+          ]
+        }
+      },
+      {
+        "input": {
+          "workers": 1,
+          "tasks": [
+            {
+              "id": "z",
+              "duration": 0,
+              "requires": []
+            },
+            {
+              "id": "a",
+              "duration": 1,
+              "requires": [
+                "z"
+              ]
+            }
+          ]
+        },
+        "expected": {
+          "schedule": [
+            {
+              "id": "z",
+              "start": 0,
+              "finish": 0,
+              "worker": 0
+            },
+            {
+              "id": "a",
+              "start": 0,
+              "finish": 1,
+              "worker": 0
+            }
+          ]
+        }
+      }
+    ],
+    "tiered-invoice": [
+      {
+        "input": {
+          "tiers": [
+            {
+              "limit": 2,
+              "cents": 3
+            },
+            {
+              "limit": null,
+              "cents": 1
+            }
+          ],
+          "items": [
+            {
+              "id": "a",
+              "units": 4
+            }
+          ],
+          "discount_bps": 0
+        },
+        "expected": {
+          "items": [
+            {
+              "id": "a",
+              "cents": 8
+            }
+          ],
+          "total_cents": 8
+        }
+      },
+      {
+        "input": {
+          "tiers": [
+            {
+              "limit": null,
+              "cents": 1
+            }
+          ],
+          "items": [
+            {
+              "id": "x",
+              "units": 1
+            },
+            {
+              "id": "x",
+              "units": 1
+            },
+            {
+              "id": "x",
+              "units": 1
+            }
+          ],
+          "discount_bps": 5000
+        },
+        "expected": {
+          "items": [
+            {
+              "id": "x",
+              "cents": 1
+            },
+            {
+              "id": "x",
+              "cents": 1
+            },
+            {
+              "id": "x",
+              "cents": 0
+            }
+          ],
+          "total_cents": 2
+        }
+      }
+    ]
+  },
+  "continuation": {
+    "previous_declaration": "issue32-sol-luna-high-qualified",
+    "previous_outcome": "Native four-call qualification passed. First Luna implementation completed and passed public checks. Sol emitted completed-turn review/usage after about 102 seconds, but CLI shutdown was still pending at the frozen 120-second cap. Declaration stopped; 1 assignment dispatched, 0 completed deliveries, 19 unexecuted. Post-stop unchanged finite private grader accepted Luna candidate; no status upgrade or correction.",
+    "changes": [
+      "Primary stage caps 300 seconds, shared native budget 900 seconds and total episode budget 1200 seconds, equal across all five arms; reserve 300 model seconds before verification-arm implementation.",
+      "Reuse completed model qualification rather than paying for another disposable staged control; fresh native model-free boundaries and grader controls still required.",
+      "Post-process same-thread cumulative token totals as deltas; retain usage from host-bound completed-turn events even when CLI shutdown timed out. No receipt or delivery-status upgrade."
+    ],
+    "unchanged": "Original task requests, starting product bytes, public check argv, private grader/expectations, arm order, exact models/high, one qualifying same-Luna correction, no retries and conservative stop rules.",
+    "authorization": "Proposed and frozen for separate explicit authorization; prior approvals do not cover the changed primary budget policy."
+  }
+}

@@ -75,7 +75,8 @@ class SkillDiscovery(unittest.TestCase):
         self.assertIn("proofline.py status", root)
         self.assertNotIn("name: proofline", root)
         manifests = [p for p in ROOT.rglob("SKILL.md")
-                     if FRONTMATTER.match(p.read_text(encoding="utf-8"))]
+                     if ".proofline" not in p.relative_to(ROOT).parts
+                     and FRONTMATTER.match(p.read_text(encoding="utf-8"))]
         self.assertEqual(manifests, [CANONICAL])
 
     def test_canonical_skill_references_do_not_break_when_installed_elsewhere(self):

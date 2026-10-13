@@ -1,0 +1,11 @@
+{
+  "model_dispatches": 0,
+  "scope": "initiating task thread only; not a study assignment",
+  "elapsed_seconds": 40.09037670819089,
+  "response": {
+    "id": 3,
+    "result": {
+      "threadUsage": null
+    }
+  }
+}

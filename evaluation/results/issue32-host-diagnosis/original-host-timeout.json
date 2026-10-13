@@ -1,0 +1,23 @@
+{
+  "status": "NOT VERIFIED",
+  "model_dispatches": 0,
+  "argv": [
+    "/opt/homebrew/bin/codex",
+    "--no-daemon",
+    "app-server",
+    "--strict-config",
+    "-c",
+    "model_catalog_json=\"/Users/grove/projects/proofline/evaluation/sol_luna/model-catalog.json\"",
+    "-c",
+    "sqlite_home=\"/Users/grove/projects/proofline/.proofline/issue32-catalog-host/catalog-state\"",
+    "-c",
+    "mcp_servers={}",
+    "-c",
+    "apps._default.enabled=false"
+  ],
+  "responses": [],
+  "catalog_sha256": "c598f19b06a97efadef1f39758084e5d506e3f1cb80b40ab91d07e048a466f04",
+  "error": "Native pinned model/list unavailable",
+  "elapsed_seconds": 15.010138624813408,
+  "stderr": ""
+}

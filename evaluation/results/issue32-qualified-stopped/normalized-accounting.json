@@ -1,0 +1,498 @@
+{
+  "scope": "Accounting-only deltas and completed-turn observations; raw results and invocation statuses unchanged",
+  "source_result_sha256": "5f4eca0ffd5c46871696256e832441d22600cb3b8bb9c5973d240aa8735ab092",
+  "accounting_source_sha256": "e67f3dd10bff2eab699b49f753a262cceb16ec49857bd172f62fd3a1ff4b38c6",
+  "metrics": {
+    "assigned": 20,
+    "executed": 1,
+    "empirical_acceptance": "INCOMPLETE",
+    "arms": {
+      "luna": {
+        "assigned": 4,
+        "outcomes": {
+          "NOT_EXECUTED": 4
+        },
+        "independently_correct_deliveries": 0,
+        "delivery_rate_over_all_assigned": null,
+        "initial_correct": 0,
+        "corrections": 0,
+        "correction_improvements": 0,
+        "correction_regressions": 0,
+        "total_seconds": null,
+        "workflow_seconds": null,
+        "grading_seconds": null,
+        "total_cost_usd": null,
+        "unknown_cost_assignments": 0,
+        "cost_per_correct_delivery": {
+          "usd": null,
+          "seconds": null
+        },
+        "models": {
+          "gpt-6-luna": {
+            "native_dispatches": 0,
+            "tokens": {
+              "input_tokens": 0,
+              "cached_input_tokens": 0,
+              "output_tokens": 0
+            },
+            "unknown_usage_stages": 0,
+            "seconds": 0,
+            "tool_executions": 0,
+            "cost_usd": 0,
+            "tokens_per_correct_delivery": {
+              "input_tokens": null,
+              "cached_input_tokens": null,
+              "output_tokens": null
+            }
+          },
+          "gpt-6.1-sol": {
+            "native_dispatches": 0,
+            "tokens": {
+              "input_tokens": 0,
+              "cached_input_tokens": 0,
+              "output_tokens": 0
+            },
+            "unknown_usage_stages": 0,
+            "seconds": 0,
+            "tool_executions": 0,
+            "cost_usd": 0,
+            "tokens_per_correct_delivery": {
+              "input_tokens": null,
+              "cached_input_tokens": null,
+              "output_tokens": null
+            }
+          }
+        },
+        "controller_processes": null,
+        "green_test_omissions": 0,
+        "unknown_checks": 0,
+        "advisory_failures": 0
+      },
+      "plan": {
+        "assigned": 4,
+        "outcomes": {
+          "NOT_EXECUTED": 4
+        },
+        "independently_correct_deliveries": 0,
+        "delivery_rate_over_all_assigned": null,
+        "initial_correct": 0,
+        "corrections": 0,
+        "correction_improvements": 0,
+        "correction_regressions": 0,
+        "total_seconds": null,
+        "workflow_seconds": null,
+        "grading_seconds": null,
+        "total_cost_usd": null,
+        "unknown_cost_assignments": 0,
+        "cost_per_correct_delivery": {
+          "usd": null,
+          "seconds": null
+        },
+        "models": {
+          "gpt-6-luna": {
+            "native_dispatches": 0,
+            "tokens": {
+              "input_tokens": 0,
+              "cached_input_tokens": 0,
+              "output_tokens": 0
+            },
+            "unknown_usage_stages": 0,
+            "seconds": 0,
+            "tool_executions": 0,
+            "cost_usd": 0,
+            "tokens_per_correct_delivery": {
+              "input_tokens": null,
+              "cached_input_tokens": null,
+              "output_tokens": null
+            }
+          },
+          "gpt-6.1-sol": {
+            "native_dispatches": 0,
+            "tokens": {
+              "input_tokens": 0,
+              "cached_input_tokens": 0,
+              "output_tokens": 0
+            },
+            "unknown_usage_stages": 0,
+            "seconds": 0,
+            "tool_executions": 0,
+            "cost_usd": 0,
+            "tokens_per_correct_delivery": {
+              "input_tokens": null,
+              "cached_input_tokens": null,
+              "output_tokens": null
+            }
+          }
+        },
+        "controller_processes": null,
+        "green_test_omissions": 0,
+        "unknown_checks": 0,
+        "advisory_failures": 0
+      },
+      "verify": {
+        "assigned": 4,
+        "outcomes": {
+          "UNAVAILABLE": 1,
+          "NOT_EXECUTED": 3
+        },
+        "independently_correct_deliveries": 0,
+        "delivery_rate_over_all_assigned": 0.0,
+        "initial_correct": 0,
+        "corrections": 0,
+        "correction_improvements": 0,
+        "correction_regressions": 0,
+        "total_seconds": 246.7059438340366,
+        "workflow_seconds": 246.70594487525523,
+        "grading_seconds": 0,
+        "total_cost_usd": null,
+        "unknown_cost_assignments": 1,
+        "cost_per_correct_delivery": {
+          "usd": null,
+          "seconds": null
+        },
+        "models": {
+          "gpt-6-luna": {
+            "native_dispatches": 1,
+            "tokens": {
+              "input_tokens": 119654,
+              "cached_input_tokens": 97536,
+              "output_tokens": 4257
+            },
+            "unknown_usage_stages": 0,
+            "seconds": 124.656133,
+            "tool_executions": 7,
+            "cost_usd": null,
+            "tokens_per_correct_delivery": {
+              "input_tokens": null,
+              "cached_input_tokens": null,
+              "output_tokens": null
+            }
+          },
+          "gpt-6.1-sol": {
+            "native_dispatches": 1,
+            "tokens": {
+              "input_tokens": 73976,
+              "cached_input_tokens": 51456,
+              "output_tokens": 2883
+            },
+            "unknown_usage_stages": 0,
+            "seconds": 120.026541,
+            "tool_executions": 7,
+            "cost_usd": null,
+            "tokens_per_correct_delivery": {
+              "input_tokens": null,
+              "cached_input_tokens": null,
+              "output_tokens": null
+            }
+          }
+        },
+        "controller_processes": 62,
+        "green_test_omissions": 0,
+        "unknown_checks": 0,
+        "advisory_failures": 0
+      },
+      "hybrid": {
+        "assigned": 4,
+        "outcomes": {
+          "NOT_EXECUTED": 4
+        },
+        "independently_correct_deliveries": 0,
+        "delivery_rate_over_all_assigned": null,
+        "initial_correct": 0,
+        "corrections": 0,
+        "correction_improvements": 0,
+        "correction_regressions": 0,
+        "total_seconds": null,
+        "workflow_seconds": null,
+        "grading_seconds": null,
+        "total_cost_usd": null,
+        "unknown_cost_assignments": 0,
+        "cost_per_correct_delivery": {
+          "usd": null,
+          "seconds": null
+        },
+        "models": {
+          "gpt-6-luna": {
+            "native_dispatches": 0,
+            "tokens": {
+              "input_tokens": 0,
+              "cached_input_tokens": 0,
+              "output_tokens": 0
+            },
+            "unknown_usage_stages": 0,
+            "seconds": 0,
+            "tool_executions": 0,
+            "cost_usd": 0,
+            "tokens_per_correct_delivery": {
+              "input_tokens": null,
+              "cached_input_tokens": null,
+              "output_tokens": null
+            }
+          },
+          "gpt-6.1-sol": {
+            "native_dispatches": 0,
+            "tokens": {
+              "input_tokens": 0,
+              "cached_input_tokens": 0,
+              "output_tokens": 0
+            },
+            "unknown_usage_stages": 0,
+            "seconds": 0,
+            "tool_executions": 0,
+            "cost_usd": 0,
+            "tokens_per_correct_delivery": {
+              "input_tokens": null,
+              "cached_input_tokens": null,
+              "output_tokens": null
+            }
+          }
+        },
+        "controller_processes": null,
+        "green_test_omissions": 0,
+        "unknown_checks": 0,
+        "advisory_failures": 0
+      },
+      "sol": {
+        "assigned": 4,
+        "outcomes": {
+          "NOT_EXECUTED": 4
+        },
+        "independently_correct_deliveries": 0,
+        "delivery_rate_over_all_assigned": null,
+        "initial_correct": 0,
+        "corrections": 0,
+        "correction_improvements": 0,
+        "correction_regressions": 0,
+        "total_seconds": null,
+        "workflow_seconds": null,
+        "grading_seconds": null,
+        "total_cost_usd": null,
+        "unknown_cost_assignments": 0,
+        "cost_per_correct_delivery": {
+          "usd": null,
+          "seconds": null
+        },
+        "models": {
+          "gpt-6-luna": {
+            "native_dispatches": 0,
+            "tokens": {
+              "input_tokens": 0,
+              "cached_input_tokens": 0,
+              "output_tokens": 0
+            },
+            "unknown_usage_stages": 0,
+            "seconds": 0,
+            "tool_executions": 0,
+            "cost_usd": 0,
+            "tokens_per_correct_delivery": {
+              "input_tokens": null,
+              "cached_input_tokens": null,
+              "output_tokens": null
+            }
+          },
+          "gpt-6.1-sol": {
+            "native_dispatches": 0,
+            "tokens": {
+              "input_tokens": 0,
+              "cached_input_tokens": 0,
+              "output_tokens": 0
+            },
+            "unknown_usage_stages": 0,
+            "seconds": 0,
+            "tool_executions": 0,
+            "cost_usd": 0,
+            "tokens_per_correct_delivery": {
+              "input_tokens": null,
+              "cached_input_tokens": null,
+              "output_tokens": null
+            }
+          }
+        },
+        "controller_processes": null,
+        "green_test_omissions": 0,
+        "unknown_checks": 0,
+        "advisory_failures": 0
+      }
+    },
+    "paired_effects": null,
+    "paired_seconds": null,
+    "provider_internal_model_calls": null,
+    "human_active_seconds": null,
+    "authoring_tokens": null,
+    "authoring_dollars": null,
+    "uncertainty": "Four fixed tasks, one repetition. Bootstrap intervals describe these tasks only; zero variation cannot rule out unseen-task effects.",
+    "identification": "Verification is a package of Proofline checks, Sol review and eligible correction; their separate causal effects are not identified by these five arms.",
+    "ceiling_effect": false,
+    "cost_effectiveness": "INCONCLUSIVE",
+    "recommendations": {
+      "Sol planning": "INCONCLUSIVE",
+      "Sol verification": "INCONCLUSIVE",
+      "Proofline checks": "INCONCLUSIVE",
+      "bounded correction": "INCONCLUSIVE"
+    },
+    "follow_up": "Neither medium nor xhigh is justified by incomplete primary evidence. Each requires a separate frozen, authorized cohort."
+  },
+  "handoff_stages": [
+    {
+      "stage": "planning",
+      "model": "gpt-6.1-sol",
+      "reasoning_effort": "high",
+      "thread_id": "01a13695-8ae8-73b1-926d-8556f84e8c20",
+      "status": "OBSERVED",
+      "elapsed_seconds": 131.840557,
+      "tool_executions": 19,
+      "usage": {
+        "input_tokens": 206998,
+        "cached_input_tokens": 176768,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 3889,
+        "reasoning_output_tokens": 582
+      },
+      "observed_session_usage": {
+        "input_tokens": 206998,
+        "cached_input_tokens": 176768,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 3889,
+        "reasoning_output_tokens": 582
+      },
+      "usage_basis": "Delta of completed native session totals; raw receipt unchanged",
+      "cost_usd": null
+    },
+    {
+      "stage": "implementation",
+      "model": "gpt-6-luna",
+      "reasoning_effort": "high",
+      "thread_id": "01a13697-8fbd-79f3-af5c-e1ab6aedb73e",
+      "status": "OBSERVED",
+      "elapsed_seconds": 47.896304,
+      "tool_executions": 3,
+      "usage": {
+        "input_tokens": 79736,
+        "cached_input_tokens": 59392,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 1493,
+        "reasoning_output_tokens": 729
+      },
+      "observed_session_usage": {
+        "input_tokens": 79736,
+        "cached_input_tokens": 59392,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 1493,
+        "reasoning_output_tokens": 729
+      },
+      "usage_basis": "Delta of completed native session totals; raw receipt unchanged",
+      "cost_usd": null
+    },
+    {
+      "stage": "verification",
+      "model": "gpt-6.1-sol",
+      "reasoning_effort": "high",
+      "thread_id": "01a13698-4eee-72e0-ae15-0e832c8cc6dc",
+      "status": "OBSERVED",
+      "elapsed_seconds": 86.798003,
+      "tool_executions": 9,
+      "usage": {
+        "input_tokens": 58976,
+        "cached_input_tokens": 28928,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 1248,
+        "reasoning_output_tokens": 207
+      },
+      "observed_session_usage": {
+        "input_tokens": 58976,
+        "cached_input_tokens": 28928,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 1248,
+        "reasoning_output_tokens": 207
+      },
+      "usage_basis": "Delta of completed native session totals; raw receipt unchanged",
+      "cost_usd": null
+    },
+    {
+      "stage": "correction",
+      "model": "gpt-6-luna",
+      "reasoning_effort": "high",
+      "thread_id": "01a13697-8fbd-79f3-af5c-e1ab6aedb73e",
+      "status": "OBSERVED",
+      "elapsed_seconds": 73.807508,
+      "tool_executions": 3,
+      "usage": {
+        "input_tokens": 78843,
+        "cached_input_tokens": 73728,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 676,
+        "reasoning_output_tokens": 122
+      },
+      "observed_session_usage": {
+        "input_tokens": 158579,
+        "cached_input_tokens": 133120,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 2169,
+        "reasoning_output_tokens": 851
+      },
+      "usage_basis": "Delta of completed native session totals; raw receipt unchanged",
+      "cost_usd": null
+    }
+  ],
+  "assignment_stages": [
+    {
+      "sequence": 1,
+      "task": "idempotent-ledger",
+      "arm": "verify",
+      "status": "UNAVAILABLE",
+      "stages": [
+        {
+          "stage": "implementation",
+          "model": "gpt-6-luna",
+          "reasoning_effort": "high",
+          "thread_id": "01a1369a-c9e9-7853-a168-fafdf91cd4a7",
+          "status": "OBSERVED",
+          "elapsed_seconds": 124.656133,
+          "tool_executions": 7,
+          "usage": {
+            "input_tokens": 119654,
+            "cached_input_tokens": 97536,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 4257,
+            "reasoning_output_tokens": 1210
+          },
+          "observed_session_usage": {
+            "input_tokens": 119654,
+            "cached_input_tokens": 97536,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 4257,
+            "reasoning_output_tokens": 1210
+          },
+          "usage_basis": "Delta of completed native session totals; raw receipt unchanged",
+          "cost_usd": null
+        },
+        {
+          "stage": "verification",
+          "model": "gpt-6.1-sol",
+          "reasoning_effort": "high",
+          "thread_id": "01a1369c-b607-75d1-834a-aead4398c630",
+          "status": "NOT VERIFIED",
+          "elapsed_seconds": 120.026541,
+          "tool_executions": 7,
+          "usage": {
+            "input_tokens": 73976,
+            "cached_input_tokens": 51456,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 2883,
+            "reasoning_output_tokens": 986
+          },
+          "observed_session_usage": {
+            "input_tokens": 73976,
+            "cached_input_tokens": 51456,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 2883,
+            "reasoning_output_tokens": 986
+          },
+          "usage_basis": "Delta of completed native session totals; raw receipt unchanged",
+          "accounting_observation": "Completed-turn usage; invocation status remains unchanged",
+          "cost_usd": null
+        }
+      ]
+    }
+  ]
+}

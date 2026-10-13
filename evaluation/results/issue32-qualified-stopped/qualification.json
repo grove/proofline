@@ -1,0 +1,121 @@
+{
+  "model_dispatches": 0,
+  "worker": {
+    "assessment": {
+      "status": "OBSERVED",
+      "observations": {
+        "nonce": "776912741f5645b292401e902ed00fc1",
+        "writes": {
+          "source": "denied",
+          "input": "denied",
+          "candidate": "allowed",
+          "git_head": "denied",
+          "receipt": "denied"
+        },
+        "reads": {
+          "receipt-canary": "denied",
+          "oracle-canary": "denied",
+          "other-role-canary": "denied",
+          "actual_oracle": "denied",
+          "matched_oracle": "denied",
+          "grader": "denied",
+          "study_results": "denied",
+          "enclosing_repository": "denied",
+          "sibling": "denied"
+        },
+        "mode_change": "allowed",
+        "scratch": true,
+        "network": "denied"
+      }
+    },
+    "receipt": {
+      "kind": "process_probe",
+      "invocation_id": "97a9f8da-ac9a-4e0b-82ad-0f02981bb663",
+      "argv": [
+        "/opt/homebrew/bin/codex",
+        "--no-daemon",
+        "-c",
+        "permissions.proofline={\"filesystem\"={\":minimal\"=\"read\",\"/opt/homebrew/Cellar/python@3.14/3.14.8_2/Frameworks/Python.framework/Versions/3.14\"=\"read\",\"/opt/homebrew/opt/python@3.14/Frameworks/Python.framework/Versions/3.14\"=\"read\",\"/opt/homebrew/opt/python@3.14/bin/python3.14\"=\"read\",\"/opt/homebrew/Cellar/python@3.14/3.14.8_2/Frameworks/Python.framework/Versions/3.14/bin/python3.14\"=\"read\",\"/Users/grove/projects/proofline/.proofline/issue32-sol-luna-high-qualified/qualification/inputs\"=\"read\",\"/Users/grove/projects/proofline/.proofline/issue32-sol-luna-high-qualified/qualification/worker/scratch\"=\"write\",\"/Users/grove/projects/proofline/.proofline/issue32-sol-luna-high-qualified/qualification/worker/private\"=\"deny\",\"/opt/homebrew\"=\"read\",\"/Library/Developer/CommandLineTools/usr/bin\"=\"read\",\"/Library/Developer/CommandLineTools/usr/libexec/git-core\"=\"read\",\"/opt/homebrew/bin/codex\"=\"read\",\"/opt/homebrew/Caskroom/codex/0.162.1/bin/codex\"=\"read\",\"/Users/grove/projects/proofline/.proofline/issue32-sol-luna-high-qualified/qualification/inputs/product\"=\"write\",\"/Users/grove/projects/proofline/.proofline/issue32-sol-luna-high-qualified/qualification/inputs/product/.git\"=\"read\"},\"network\"={\"enabled\"=false}}",
+        "sandbox",
+        "--permission-profile",
+        "proofline",
+        "--include-managed-config",
+        "--cd",
+        "/Users/grove/projects/proofline/.proofline/issue32-sol-luna-high-qualified/qualification/worker/scratch",
+        "--",
+        "/opt/homebrew/Cellar/python@3.14/3.14.8_2/Frameworks/Python.framework/Versions/3.14/bin/python3.14",
+        "-I",
+        "-B",
+        "/Users/grove/projects/proofline/.proofline/issue32-sol-luna-high-qualified/qualification/inputs/canary.py",
+        "/Users/grove/projects/proofline/.proofline/issue32-sol-luna-high-qualified/qualification/inputs/canary.json"
+      ],
+      "cwd": "/Users/grove/projects/proofline/.proofline/issue32-sol-luna-high-qualified/qualification/worker/scratch",
+      "exit_code": 0,
+      "timed_out": false,
+      "stdout": "{\"nonce\": \"776912741f5645b292401e902ed00fc1\", \"writes\": {\"source\": \"denied\", \"input\": \"denied\", \"candidate\": \"allowed\", \"git_head\": \"denied\", \"receipt\": \"denied\"}, \"reads\": {\"receipt-canary\": \"denied\", \"oracle-canary\": \"denied\", \"other-role-canary\": \"denied\", \"actual_oracle\": \"denied\", \"matched_oracle\": \"denied\", \"grader\": \"denied\", \"study_results\": \"denied\", \"enclosing_repository\": \"denied\", \"sibling\": \"denied\"}, \"mode_change\": \"allowed\", \"scratch\": true, \"network\": \"denied\"}\n",
+      "stderr": "",
+      "elapsed_seconds": 0.142663
+    }
+  },
+  "reader": {
+    "assessment": {
+      "status": "OBSERVED",
+      "observations": {
+        "nonce": "98aa93a222e541e3a7891c4328be1563",
+        "writes": {
+          "source": "denied",
+          "input": "denied",
+          "candidate": "denied",
+          "git_head": "denied",
+          "receipt": "denied"
+        },
+        "reads": {
+          "receipt-canary": "denied",
+          "oracle-canary": "denied",
+          "other-role-canary": "denied",
+          "actual_oracle": "denied",
+          "matched_oracle": "denied",
+          "grader": "denied",
+          "study_results": "denied",
+          "enclosing_repository": "denied",
+          "sibling": "denied"
+        },
+        "mode_change": "denied",
+        "scratch": true,
+        "network": "denied"
+      },
+      "inputs_unchanged": true,
+      "scope": "native process canaries only; no model or external-tool qualification"
+    },
+    "receipt": {
+      "kind": "process_probe",
+      "invocation_id": "5c78704d-ce8d-460a-8239-af0d92e97dbc",
+      "argv": [
+        "/opt/homebrew/bin/codex",
+        "--no-daemon",
+        "-c",
+        "permissions.proofline_s0_44fc091ec8a54ca1a672315d77de8bbd={\"filesystem\"={\":minimal\"=\"read\",\"/opt/homebrew/Cellar/python@3.14/3.14.8_2/Frameworks/Python.framework/Versions/3.14\"=\"read\",\"/opt/homebrew/opt/python@3.14/Frameworks/Python.framework/Versions/3.14\"=\"read\",\"/opt/homebrew/opt/python@3.14/bin/python3.14\"=\"read\",\"/opt/homebrew/Cellar/python@3.14/3.14.8_2/Frameworks/Python.framework/Versions/3.14/bin/python3.14\"=\"read\",\"/Users/grove/projects/proofline/.proofline/issue32-sol-luna-high-qualified/qualification/inputs\"=\"read\",\"/Users/grove/projects/proofline/.proofline/issue32-sol-luna-high-qualified/qualification/reader/scratch\"=\"write\",\"/Users/grove/projects/proofline/.proofline/issue32-sol-luna-high-qualified/qualification/reader/private\"=\"deny\",\"/opt/homebrew\"=\"read\",\"/Library/Developer/CommandLineTools/usr/bin\"=\"read\",\"/Library/Developer/CommandLineTools/usr/libexec/git-core\"=\"read\"},\"network\"={\"enabled\"=false}}",
+        "sandbox",
+        "--permission-profile",
+        "proofline_s0_44fc091ec8a54ca1a672315d77de8bbd",
+        "--include-managed-config",
+        "--cd",
+        "/Users/grove/projects/proofline/.proofline/issue32-sol-luna-high-qualified/qualification/reader/scratch",
+        "--",
+        "/opt/homebrew/Cellar/python@3.14/3.14.8_2/Frameworks/Python.framework/Versions/3.14/bin/python3.14",
+        "-I",
+        "-B",
+        "/Users/grove/projects/proofline/.proofline/issue32-sol-luna-high-qualified/qualification/inputs/canary.py",
+        "/Users/grove/projects/proofline/.proofline/issue32-sol-luna-high-qualified/qualification/inputs/canary.json"
+      ],
+      "cwd": "/Users/grove/projects/proofline/.proofline/issue32-sol-luna-high-qualified/qualification/reader/scratch",
+      "exit_code": 0,
+      "timed_out": false,
+      "stdout": "{\"nonce\": \"98aa93a222e541e3a7891c4328be1563\", \"writes\": {\"source\": \"denied\", \"input\": \"denied\", \"candidate\": \"denied\", \"git_head\": \"denied\", \"receipt\": \"denied\"}, \"reads\": {\"receipt-canary\": \"denied\", \"oracle-canary\": \"denied\", \"other-role-canary\": \"denied\", \"actual_oracle\": \"denied\", \"matched_oracle\": \"denied\", \"grader\": \"denied\", \"study_results\": \"denied\", \"enclosing_repository\": \"denied\", \"sibling\": \"denied\"}, \"mode_change\": \"denied\", \"scratch\": true, \"network\": \"denied\"}\n",
+      "stderr": "",
+      "elapsed_seconds": 0.081954
+    }
+  },
+  "controls_matched": true,
+  "live_handoff": "NOT_EXECUTED: requires explicit spending authorization"
+}
