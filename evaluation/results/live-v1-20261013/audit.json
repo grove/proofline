@@ -1,0 +1,35 @@
+{
+  "commands": {
+    "collision-slugs": {
+      "commands": 6,
+      "nonzero_commands": 0
+    },
+    "form-multimap": {
+      "commands": 4,
+      "nonzero_commands": 0
+    },
+    "four-way-islands": {
+      "commands": 7,
+      "nonzero_commands": 1
+    },
+    "half-open-union": {
+      "commands": 4,
+      "nonzero_commands": 1
+    },
+    "largest-remainder": {
+      "commands": 4,
+      "nonzero_commands": 1
+    },
+    "ordered-inventory": {
+      "commands": 6,
+      "nonzero_commands": 1
+    }
+  },
+  "fresh_invocations": 6,
+  "fresh_threads": 6,
+  "frozen_inputs_unchanged": true,
+  "nonzero_command_explanation": "Four rg searches for absent AGENTS.md files exited 1; no coding/test failure or unsafe retrieval was observed.",
+  "protected_or_external_path_mentions": [],
+  "reconciled_workers": 6,
+  "status": "MATCHED"
+}

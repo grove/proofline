@@ -80,6 +80,9 @@ after repeated false acceptances. The original full pilot remained incomplete;
 **no superiority to an ordinary agent, or Luna/Sol advantage, was established**.
 A later [six-task bounded comparison](docs/BOUNDED-COMPARISON.md) found no extra
 correctness benefit from mandatory review in that small sample.
+The [frozen v1 live ordinary-agent baseline](evaluation/results/live-v1-20261013/README.md)
+then observed six independently correct deliveries in six assigned tasks, with
+finite-check and small-sample limits recorded alongside the native receipts.
 
 Historical S0–S6 experiments, documents, fixtures, experimental `deliver`
 and `resume` implementation, and dependent tests were removed from the

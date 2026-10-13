@@ -1,0 +1,133 @@
+{
+  "assignments": [
+    "collision-slugs",
+    "ordered-inventory",
+    "half-open-union",
+    "form-multimap",
+    "largest-remainder",
+    "four-way-islands"
+  ],
+  "concurrency": 1,
+  "controls_seconds": 66.58061158284545,
+  "declared_at": "2026-10-13T10:38:55.893271+00:00",
+  "frozen_protocol": "../../v1/protocol.json",
+  "historical_evidence": {
+    "docs/S6-FOLLOWUP.md": {
+      "git_blob_sha1": "abe12378ab70348ff4a9be7596e640ccc5aeb69b",
+      "revision": "e46814efce7e2b59adecb4583be60806012b1707",
+      "sha256": "3628382f3266dad4833febad4e26165dd84a8274cc7214159c90b4c920e75838"
+    },
+    "docs/S6-PILOT.md": {
+      "git_blob_sha1": "fa97fd74675c8a0ba7fa34971ac902549f062843",
+      "revision": "e46814efce7e2b59adecb4583be60806012b1707",
+      "sha256": "86c6f45a0ef027ff2c6ac851edfbd13935d76a05429ea3050d6b90fc5468cc8b"
+    },
+    "docs/S6-RESULTS.md": {
+      "git_blob_sha1": "841723c3c8a799ecdab77dd2b6a74c6e7c121b28",
+      "revision": "e46814efce7e2b59adecb4583be60806012b1707",
+      "sha256": "f15149f358b84bc47bdb734715ec025ad0119a76f0ca3e7a42a1780f2646028c"
+    },
+    "docs/S6-VERIFICATION-REDESIGN.md": {
+      "git_blob_sha1": "c765749316c318853ec7c8622f44d93edb46d9bc",
+      "revision": "e46814efce7e2b59adecb4583be60806012b1707",
+      "sha256": "d33e9bcfeb54926c33e89b433711b01f9f480c790e888786e2a4756c6f4abe35"
+    }
+  },
+  "host": {
+    "machine": "arm64",
+    "python": "3.14.8",
+    "release": "25.6.0",
+    "system": "Darwin"
+  },
+  "identities": {
+    "checks/codex_live.py": "8dcf3ea129ad40f2ff17c7d76e1e6ef4ceb4ad4ee6de492eeb17ee5a497e6e2a",
+    "checks/coding_attempt.py": "45c1085cb25bd82fe20a940a1df06a018cc641a1cda478bc835322de2d8b4012",
+    "checks/fixtures/s0/README.md": "a45b29188eb196f707ad529f83a4339aa6748bee7fa25f1b8dd5a6d45dba4ba8",
+    "checks/fixtures/s0/accepted-input.md": "f901d5e86760bd104b011f66f0d24dd555ebb5b66fb28b9404ec0d90a336d1ff",
+    "checks/fixtures/s0/oracle.py": "f919e131ee691fcc396c24661bb8e7f4faa214f2ec10690dde39b0d82cd69b2f",
+    "checks/fixtures/s0/source.md": "679ea432572c0f3f9c577ac749eb7dbbb7ffb93fe7b315367eaac34d88729802",
+    "checks/fixtures/s0/test_oracle.py": "8b241c7d69200ef1ba754e41f1c5a0a8fa99c9913a8112fc3609cfaae8ee84a1",
+    "checks/fixtures/s0/workers/alternative/README.md": "e814542c3e43cacdfaf8fc233e8b363cc84ace19aabd26d9920d45ce1ff3d06d",
+    "checks/fixtures/s0/workers/alternative/test_username.py": "120090b03ee56935e90f4b656f613803b5dc36d0f51f43e0db6d1c19b95f71ed",
+    "checks/fixtures/s0/workers/alternative/username.py": "1bedda69b8fa51ccb22ed854b466be95cf106c8f328693dc096e21428db60d09",
+    "checks/fixtures/s0/workers/baseline/README.md": "e814542c3e43cacdfaf8fc233e8b363cc84ace19aabd26d9920d45ce1ff3d06d",
+    "checks/fixtures/s0/workers/baseline/test_username.py": "120090b03ee56935e90f4b656f613803b5dc36d0f51f43e0db6d1c19b95f71ed",
+    "checks/fixtures/s0/workers/baseline/username.py": "b749436b3acd69b9d6184eeb9fead6e58b7f137ba0fe8a83fd7dc0e6e075082d",
+    "checks/fixtures/s0/workers/correct/README.md": "e814542c3e43cacdfaf8fc233e8b363cc84ace19aabd26d9920d45ce1ff3d06d",
+    "checks/fixtures/s0/workers/correct/test_username.py": "120090b03ee56935e90f4b656f613803b5dc36d0f51f43e0db6d1c19b95f71ed",
+    "checks/fixtures/s0/workers/correct/username.py": "e0baaa70084bbb7aa1646f8a9ce90d5ee8fb689f3c3566c2956642daf2153c99",
+    "checks/fixtures/s0/workers/defective/README.md": "e814542c3e43cacdfaf8fc233e8b363cc84ace19aabd26d9920d45ce1ff3d06d",
+    "checks/fixtures/s0/workers/defective/test_username.py": "120090b03ee56935e90f4b656f613803b5dc36d0f51f43e0db6d1c19b95f71ed",
+    "checks/fixtures/s0/workers/defective/username.py": "91cb558997c163a121599405f590d8ea0317a9977e3a5cbda62d0f0c29d966aa",
+    "checks/host_probe.py": "6f30bd9761454f7eec98e9d0b8112f299f2650f925272f47d24cb4a5cdb6684d",
+    "checks/local_run.py": "87c35390c3d7651d6fa9691d11cc4c0e34f6bf7797284de30d524f9aaf43a4ac",
+    "checks/native_checks.py": "5b11f7aab33cef5eb8eea6c25306a10bb43f58e4e38237d3f698f3e281b5dd80",
+    "checks/s0_live.py": "791dae0870ad1364bfdffadb583f27fa7e8974ffaafb194e787d8cf47ca444a4",
+    "codex": "74c6a6d263f40d65f99c27a815275f5b4ed0bcc2baecc396b4cf3255498bdfc0",
+    "docs/BOUNDED-COMPARISON.md": "de5538f2fe8f0c766db53ed6da241df87c6d50dde60e20003e67ee46f038000d",
+    "docs/RESEARCH-ARCHIVE.md": "f0331100c6adbaf7b24cbd8e87343479ec6fa8bde23c77802985fcc025916497",
+    "docs/S6-DECISION.md": "39b4b513b7b244f8786e31431a4174798f2f0a0d120198e0da7921b557fe457f",
+    "evaluation/v1/FREEZE.json": "60e5d60dc43e266a79b232789925aac9d01d19fdb920d89b46f0e8f0a6e7573a",
+    "evaluation/v1/README.md": "051103a2c24035d84c0b55bd8d64bf09e5f08c0193ef6184bbc465689ab05665",
+    "evaluation/v1/__init__.py": "657b6d46e1c351af7cf359ae5dde73b6f2700b4c76c5303ec44a7b4f4df35f1f",
+    "evaluation/v1/benchmark.py": "e9fa3cb4ca8055263c4b96696799bab6dc5c4485eccbe7e9ca4ede47870d7343",
+    "evaluation/v1/ledger.json": "b9671092539438312df5b7713af1db77059b2d2a4553ec7fea6fe146f43a4e00",
+    "evaluation/v1/oracle.py": "4b83d69ca40331a28bbf9dcdb8688b0b247ca60e30582083543806c95e516776",
+    "evaluation/v1/protocol.json": "8aa4bca12033373f804e418478ad8ea84889b3b77adf527735d0ed02a18dbaab",
+    "evaluation/v1/tasks.py": "0ef969ada04f9869ab9223f7e501ece53ec575b60ebe2d2bf8bd9531109d9652",
+    "evaluation/v1/variants.py": "9b049ca26bd3ea9900c2d7d0a084c7c7ded42b60ca01d6c54cd360bc1fc9584c",
+    "proofline.py": "a154421825d8d9196f0af772828e08a6025c6edfcf0377d1f5c92e94e362233f",
+    "python": "a39ba8658c8955a744ba1e87d2912bb019c5f4e93fcfd8e96263f891d15ec1aa",
+    "runner": "629b15dbcd499feb1b115c61d2716bcb4801f38734ecd6417359a0eac4de3683"
+  },
+  "isolation": "Native protected worker tools; network, external tools, grader, repository, other candidates, private observations and credential directory denied. Host transport uses existing authentication.",
+  "limits": {
+    "coding_seconds": 600,
+    "episode_seconds": 900,
+    "per_probe_seconds": 5,
+    "verification_seconds": 120
+  },
+  "login_receipt": {
+    "argv": [
+      "$CODEX",
+      "login",
+      "status"
+    ],
+    "cwd": "$PRIVATE_RUN/qualification",
+    "elapsed_seconds": 0.045577,
+    "exit_code": 0,
+    "invocation_id": "de24c942-9074-4951-95d6-1f7d958a814e",
+    "kind": "process_probe",
+    "stderr": "Logged in using ChatGPT\n",
+    "stdout": "",
+    "timed_out": false
+  },
+  "model": {
+    "model": "gpt-6.1-sol",
+    "model_reasoning_effort": "high"
+  },
+  "model_availability": "listed in native cache; dispatch capacity not yet observed",
+  "model_metadata_timestamp": "2026-10-13T10:37:34.809455Z",
+  "os_product_version": "26.6.2",
+  "path_placeholders": "$REPOSITORY, $PRIVATE_RUN, $PYTHON, $CODEX, $HOME replace local machine paths in receipts.",
+  "publication": "Redacted execution of the original v1 study, not a revised study.",
+  "qualification_seconds": 67.98336949991062,
+  "raw_manifest_sha256": "44aab09f3df932b836a6f6e99eaf3aa1d1bbcb0fd0d86fe357ce8f28f81f9f6d",
+  "retries": 0,
+  "revision": "6c85055f3159dbc3f334442dd1d7e6782ece51f2",
+  "study_id": "proofline-vnext-baseline-v1-20261013",
+  "version_receipt": {
+    "argv": [
+      "$CODEX",
+      "--version"
+    ],
+    "cwd": "$PRIVATE_RUN/qualification",
+    "elapsed_seconds": 0.026001,
+    "exit_code": 0,
+    "invocation_id": "b772e371-4c6e-419a-9d34-bf10b722e009",
+    "kind": "process_probe",
+    "stderr": "",
+    "stdout": "codex-cli 0.162.1\n",
+    "timed_out": false
+  }
+}
