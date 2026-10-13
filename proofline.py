@@ -83,10 +83,14 @@ def main(argv=None):
         command.add_argument("--seconds", type=positive_seconds, default=900)
         command.add_argument("--check-seconds", type=positive_seconds, default=120)
     run.add_argument("--stage-seconds", type=positive_seconds, default=600)
+    check.add_argument("--promises", type=Path,
+                       help="Optional JSON source-quoted R requirements, check links and advisory gap review")
     status = sub.add_parser("status", help="Read back exact frozen check receipts")
     status.add_argument("record", type=Path)
+    status.add_argument("--show-source", action="store_true",
+                        help="Display the complete verified original request (check-only records)")
     args = parser.parse_args(argv)
-    from checks import local_run, feedback
+    from checks import local_run, feedback, promise_evidence
     try:
         if args.command in ("run", "check"):
             default = (Path(tempfile.gettempdir()) / "proofline-check" if args.command == "check"
@@ -102,10 +106,14 @@ def main(argv=None):
             if args.failure_details is not None:
                 details = json.loads(args.failure_details.read_text(encoding="utf-8"))
                 optional["failure_details"] = feedback.validate_failure_details(details,checks)
+            if args.command == "check" and args.promises is not None:
+                optional["promise_mapping"] = promise_evidence.read_mapping(args.promises)
             record = getattr(local_run, args.command)(args.repo.resolve(), source,
                 checks, output, *budgets, **optional)
             print(record["status"])
             for line in feedback.format_lines(record):
+                print(line)
+            for line in promise_evidence.format_lines(record):
                 print(line)
             print(record["assurance"])
             if record.get("candidate_path"):
@@ -113,11 +121,28 @@ def main(argv=None):
             print("Record: " + str(output / "report.json"))
         else:
             record = local_run.inspect(args.record.resolve())
+            original = None
+            if args.show_source:
+                if record.get("kind") != "bounded_local_check" or (
+                        record["status"] == "STALE CHECKS" or "snapshot" not in record):
+                    raise ValueError("--show-source requires an intact frozen check-only record")
+                source_path = args.record.resolve().parent / "inputs" / "source.md"
+                if source_path.is_symlink():
+                    raise ValueError("Frozen original request is a symbolic link")
+                raw = source_path.read_bytes()
+                if host.sha256(raw) != record.get("source_sha256"):
+                    raise ValueError("Frozen original request differs from the recorded source")
+                original = raw.decode("utf-8")
             print(record["status"])
             for line in feedback.format_lines(record):
                 print(line)
+            for line in promise_evidence.format_lines(record):
+                print(line)
             print(record["assurance"])
             print("Record: " + str(args.record))
+            if original is not None:
+                print("Original request (verbatim UTF-8):")
+                sys.stdout.write(original)
         return 0 if record["status"] == "CHECKS PASSED" else 2
     except (OSError, ValueError, KeyError, TypeError) as error:
         print(str(error), file=sys.stderr)
