@@ -226,10 +226,18 @@ def _stale(record):
 
 
 def inspect(path):
+    path=Path(path).resolve()
     record=json.loads(path.read_text())
     if record.get('kind') not in ('bounded_local_run','bounded_local_check') or record.get('schema_version')!=1:
         raise ValueError('Unsupported bounded run record')
     validate_checks(record['checks'])
+    if record.get('kind')=='bounded_local_check' and 'snapshot' in record:
+        # Reject a record pointing at another checkout before snapshotting any
+        # candidate path. The report's own directory defines its only inputs.
+        fixed_inputs=path.parent/'inputs'
+        if (fixed_inputs.is_symlink() or (fixed_inputs/'product').is_symlink() or
+                Path(record.get('candidate_path','')) != fixed_inputs/'product'):
+            return _stale(record)
     if record.get('feedback_version')==1:
         # A moved or rewritten native receipt is stale, even when the original
         # command reported failure or unavailability. Older reports are unchanged.
@@ -268,12 +276,6 @@ def inspect(path):
                   for entry,argv in zip(record['observations'],record['checks']))):
             raise ValueError('Incomplete successful command observations')
     if record.get('promise_mapping') is not None:
-        if record.get('kind')=='bounded_local_check' and 'snapshot' in record:
-            # Do not follow a candidate path chosen by an untrusted report.
-            fixed_inputs=path.parent/'inputs'
-            if (fixed_inputs.is_symlink() or (fixed_inputs/'product').is_symlink() or
-                    Path(record.get('candidate_path','')) != fixed_inputs/'product'):
-                return _stale(record)
         if (record.get('promise_evidence') != promise_evidence.summarize(record) or
                 ('snapshot' in record and not promise_evidence.readback_intact(
                     record,path.parent/'inputs'))):
