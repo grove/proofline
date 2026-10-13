@@ -1,239 +1,217 @@
 # Proofline
 
-**A small, optional helper to autonomous coding agents.** Proofline preserves
-an original request, freezes an existing working candidate, and executes
-caller-selected checks without another model dispatch. It also offers one
-optional bounded coding attempt. Passing commands are evidence
-**only about those commands**, not proof of every requirement.
+**Know what passed. Know what still needs checking.**
 
-## Agent skill: `proofline-check`
+Proofline is a small, opt-in companion for coding agents. Give it the **original request**, an **existing coding candidate**, and **checks you choose**. It freezes the candidate, runs the commands inside a protected sandbox, and saves evidence you can inspect later—**without another model call**.
 
-Proofline provides **one optional agent skill**, named
-[`proofline-check`](skills/proofline-check/SKILL.md), for an existing
-coding agent to invoke **after implementing code** when it needs to run
-selected checks on a frozen candidate, interpret actual failures, and
-identify evidence gaps. The same instructions also document optional
-Intentline mappings and optional managed `run --correct-once`; they
-are **not separate skills or mandatory stages**. The skill does not
-automatically start a model, install packages, publish code or grant
-permission to modify the user's repository.
+> **A passing check is evidence about that check—not proof that every part of a request is complete.**
 
-The repository keeps **one canonical** `skills/proofline-check/SKILL.md`.
-Codex and Claude Code both support symlinked skill folders, so this
-checkout contains discovery links to that *same* directory:
+Proofline keeps the agent in charge of implementation and fixes. It does not add a mandatory planner or AI reviewer, install dependencies, certify requirements, or publish code.
 
-| Agent | Checked-in repository discovery path | Explicit invocation |
+**Jump to:** [Get started](#get-started) · [Results](#understand-the-results) · [Agent skill](#use-with-codex-or-claude-code) · [Managed coding](#optional-managed-coding) · [CLI reference](#cli-reference) · [Safety](#safety-and-scope)
+
+## What can Proofline do?
+
+| | `check` — recommended starting point | `run` — optional managed coding |
+| --- | --- | --- |
+| Workflow | Existing agent or developer implements; Proofline checks | Proofline starts one Codex implementation turn, then checks |
+| Input Git tree | Accepts staged, unstaged and non-ignored untracked changes | Requires a clean repository |
+| Model calls | **Zero** | One; at most one additional same-thread correction if opted in |
+| Checks | Exactly the selected commands | Exactly the selected commands |
+| Source repository mutation | **None** | **None** |
+| PR, merge or deploy | **Never** | **Never** |
+
+```text
+Original request ──┐
+Working candidate ─┼──► Frozen copy ──► Protected checks ──► Native receipts
+Selected argv ─────┘                                         + report.json
+                                                                   │
+                                                                   ▼
+                                                       status (revalidate)
+```
+
+Proofline captures identities, tests a read-only copy, and reports what happened. The calling agent still owns any corrections, uncovered requirements, and the final handoff.
+
+## Get started
+
+### Requirements
+
+The **supported native execution boundary** is **macOS with Python 3.11+ and Codex CLI 0.162.1** (this exact CLI version is required). You also need a Git repository and the target project's test tools and dependencies already installed.
+
+`check` uses the Codex CLI's **native sandbox only**, **not its model**, so check-only runs require no model authentication. `run` does require an authenticated Codex CLI. Linux CI runs offline regressions, but **Linux and Windows are not supported for native checks**. There is no unprotected fallback.
+
+### 1. Clone Proofline
+
+```sh
+git clone https://github.com/grove/proofline.git
+cd proofline
+python3 -B proofline.py --help
+```
+
+Proofline runs from the checkout; you don't need an acceptance file, a separate planning workflow, or an agent skill installation to use the CLI.
+
+### 2. Check an existing change
+
+After your coding agent has implemented a change, select **real checks in that product repository**. Example for a Python project with a `tests/` directory:
+
+```sh
+# Run from the Proofline checkout; resolved Python must be an absolute path.
+PYTHON="$(python3 -c 'import sys; print(sys.executable)')"
+
+"$PYTHON" -B proofline.py check \
+  --repo /absolute/path/to/your-python-project \
+  --request 'Reject blank usernames while preserving Unicode support.' \
+  --command "$PYTHON -B -m unittest discover -s tests"
+```
+
+Replace the paths, request and command with your project-specific values. `--repo` must point to the **Git repository root**. Repeat `--command` to cover more important behavior, for example `"$PYTHON -B cli.py --version"` **if that interface exists in the target project**.
+
+Proofline copies the current tracked and non-ignored untracked work (including ordinary uncommitted changes), **does not modify your source**, and runs the selected commands without another coding model dispatch.
+
+### 3. Keep and inspect the record
+
+The CLI prints a short summary and the path to `report.json`. Copy that **Record:** path to read the evidence again:
+
+```sh
+"$PYTHON" -B proofline.py status /absolute/path/to/record/report.json
+
+# Only for an intact check-only record: print the verified original request.
+"$PYTHON" -B proofline.py status /absolute/path/to/record/report.json --show-source
+```
+
+By default, `check` creates a unique record under the system temporary directory (`proofline-check/<unique-id>`). If you need a durable record, provide `--output /absolute/new/path/outside/product` and preserve the directory. Output paths must be **new** and outside the source repository.
+
+## Understand the results
+
+| Status | Meaning | Suggested next step |
+| --- | --- | --- |
+| **CHECKS PASSED** | All selected commands succeeded on the frozen candidate | Consider what those checks didn't cover |
+| **CHECKS FAILED** | At least one selected command executed and returned nonzero | Inspect the diagnostic before diagnosing a product defect |
+| **CHECKS UNAVAILABLE** | At least one command didn't yield usable evidence | Look for missing tools, timeouts, or environment problems |
+| **EXECUTION UNAVAILABLE** | A necessary execution boundary or earlier stage couldn't complete | Fix the reported prerequisite or boundary failure |
+| **STALE CHECKS** | Frozen source, candidate, commands, or receipts no longer match | Make a fresh record; don't rely on an old pass |
+
+A failed command is not always a code defect. A timeout, missing executable, truncated receipt, or sandbox failure is **unavailable evidence**, not a made-up implementation diagnosis.
+
+`report.json` records the original source SHA-256, frozen candidate commit/tree and snapshot, selected argv, exit codes, elapsed time, and `feedback.checks` entries that point to bounded native stdout/stderr receipts (e.g. `receipts/check-000.json`). Receipts live outside command-writable scratch and the candidate; the terminal shows concise feedback rather than dumping the full logs. `status` detects changed or missing frozen evidence.
+
+**Exit codes:** `0` means `CHECKS PASSED`; `2` means another recorded status; `1` means a CLI/input/readback error. Later edits to your live project do **not** change the old frozen candidate. Run `check` again to evaluate new work.
+
+## Use with Codex or Claude Code
+
+Proofline includes **one optional agent skill**, [`proofline-check`](skills/proofline-check/SKILL.md), for an existing agent to use *after implementing code*. The skill documents check invocation, failure feedback, evidence gaps, and optional advanced paths; it is **not** a mandatory new agent or stage.
+
+There is **one canonical directory**, `skills/proofline-check`, with two checked-in discovery symlinks pointing to it:
+
+| Agent | Path in this checkout | Explicit invocation |
 | --- | --- | --- |
 | Codex | `.agents/skills/proofline-check` | `$proofline-check` |
 | Claude Code | `.claude/skills/proofline-check` | `/proofline-check` |
 
-These paths make the skill visible **when the agent is working in the
-Proofline repository**. For a coding agent working in **another product
-repository**, install the skill for that agent instead. With Proofline
-already checked out at `/absolute/path/to/proofline`, a user-level
-installation on macOS/Linux can be made once using:
+Those discovery paths work when an agent is **working inside Proofline**. To use the skill while working in a *different* product repository, install it for your chosen agent. User-level symlinks on macOS/Linux:
 
 ```sh
 mkdir -p "$HOME/.agents/skills" "$HOME/.claude/skills"
-ln -s /absolute/path/to/proofline/skills/proofline-check "$HOME/.agents/skills/proofline-check"
-ln -s /absolute/path/to/proofline/skills/proofline-check "$HOME/.claude/skills/proofline-check"
+ln -s /absolute/path/to/proofline/skills/proofline-check \
+  "$HOME/.agents/skills/proofline-check"
+ln -s /absolute/path/to/proofline/skills/proofline-check \
+  "$HOME/.claude/skills/proofline-check"
 ```
 
-Use **only the agent you need**; both commands are shown for convenience.
-To scope it to an individual product repository instead, use
-`/absolute/path/to/product/.agents/skills/proofline-check` for Codex or
-`/absolute/path/to/product/.claude/skills/proofline-check` for Claude
-Code, with the same source directory as the symlink target. Do not use
-both user- and project-level copies unnecessarily. The target must
-continue to exist; a standalone copy of the canonical skill directory
-also works, but its instructions still require an independently
-available Proofline checkout for the Python CLI.
+Replace `/absolute/path/to/proofline` with your actual checkout. **Install only the agent you need.** Project-specific alternatives are `/absolute/path/to/product/.agents/skills/proofline-check` and `/absolute/path/to/product/.claude/skills/proofline-check`. Avoid unnecessary user/project duplicates. The symlink target must continue to exist; a standalone copy of the canonical folder also works, but the **Proofline CLI checkout remains a separate requirement**.
 
-Agents may **discover** installed skills by their descriptions and
-choose to use them when relevant; automatic invocation is **not
-guaranteed**. Explicitly request the skill if desired. Installation
-does not make checks mandatory for trivial work. The Python CLI remains
-usable without any skill installation.
+Installed agents can discover a skill from its description, but automatic invocation is **not** guaranteed. Ask explicitly for `$proofline-check` or `/proofline-check` if you want the agent to use it. The CLI itself works without a skill.
 
-**Migration from the previous name:** The former root
-[`SKILL.md`](SKILL.md) is a compatibility pointer, not a second
-discoverable skill or an alias. Previously installed
-`$proofline` (Codex) and `/proofline` (Claude Code) invocations
-must be changed to `$proofline-check` and `/proofline-check`;
-remove or rename any older user-level `proofline` skill folders
-yourself. The project and CLI are still named **Proofline**.
-No existing skill installation is automatically migrated.
+**Previous skill name?** Root [`SKILL.md`](SKILL.md) is just a compatibility pointer—not a second skill or alias. Replace `$proofline` and `/proofline` with the new invocations and **remove or rename** any older user-level `proofline` skill directories. Installation isn't migrated automatically.
 
-Source: [Codex skill locations](https://learn.chatgpt.com/docs/build-skills)
-and [Claude Code skill locations](https://code.claude.com/docs/en/skills).
+## Optional managed coding
 
-## Quick start — let the existing agent check its work
-
-No planning step, acceptance-contract file, or test-configuration file is needed.
-After implementing a change, the **same coding agent** chooses relevant,
-already-available project checks and calls Proofline directly:
+If you want Proofline to initiate one bounded coding attempt rather than check existing work, use `run` on a **clean Git source** with an **authenticated Codex CLI**:
 
 ```sh
-/opt/homebrew/bin/python3.14 -B proofline.py check \
-  --repo /absolute/path/to/product \
-  --request 'Reject blank usernames while preserving Unicode and CLI compatibility.' \
-  --command '/opt/homebrew/bin/python3.14 -B -m unittest discover -s tests' \
-  --command '/opt/homebrew/bin/python3.14 -B cli.py --version'
-```
-
-This is an example: choose commands and public interfaces that actually exist
-in the target repository. `check` captures the working tree (including ordinary
-uncommitted changes), runs exactly those checks and **dispatches zero coding
-models**. Its returned report names the frozen candidate and any failed or
-unavailable checks, not an automatic assertion that every request was fulfilled.
-
-For a bounded **optional managed coding attempt**, use the same direct inputs:
-
-```sh
-/opt/homebrew/bin/python3.14 -B proofline.py run \
-  --repo /absolute/path/to/clean-product \
+"$PYTHON" -B proofline.py run \
+  --repo /absolute/path/to/clean-python-project \
   --request 'Add a --version flag without changing existing CLI behavior.' \
-  --command '/opt/homebrew/bin/python3.14 -B -m unittest discover -s tests' \
+  --command "$PYTHON -B -m unittest discover -s tests" \
   --stage-seconds 600
 ```
 
-`run` requires an authenticated Codex CLI and a clean Git source, and launches
-one coding attempt. It does **not** add an AI reviewer, prover, planner or PR
-publisher. No extra model is launched by `check`.
+That runs one Codex implementation turn on a separate copy, freezes the result, and checks the selected commands. It adds no AI reviewer, prover, publisher, or external approval.
 
-For one optional correction by that **same implementer**, add `--correct-once`
-to `run`. First-pass success still uses just one dispatch. Only an intact,
-nonzero native check with a Python `AssertionError` diagnostic qualifies;
-every selected check must have usable evidence. Timeouts, missing tools,
-truncated or mismatched receipts, stale candidates, environment-error
-diagnostics, advisory requirements and untested promises never trigger it.
-Other failure formats are reported for the caller to handle; Proofline does
-not infer a product defect from an arbitrary nonzero exit.
+**Want one bounded correction?** Add `--correct-once` to `run`. Only an *intact, nonzero native check* with a Python `AssertionError` diagnostic qualifies—and **every** selected check must have usable evidence. Missing tools, timeouts, truncated/mismatched receipts, stale candidates, environment-error diagnostics, arbitrary nonzero formats, and advisory promise gaps do **not** trigger a new turn.
 
-The correction resumes the original native thread with the **entire original
-request**, exact failed argv, exit codes and bounded stdout/stderr. It edits
-a separate copy of the failed candidate, freezes it, and reruns **all** selected
-checks, including compatibility checks that previously passed. `--seconds`
-is one cumulative episode budget for setup, coding, checks, correction and
-rerun; `--stage-seconds` caps each coding turn within that budget. There is
-at most one correction, even if the defect repeats or the handoff is incomplete.
-No reviewer, prover, supervisor, Intentline dependency or acceptance verdict
-is introduced.
+If eligible, Proofline resumes the **same implementer thread** with the entire original request and exact failed argv, exit codes and bounded output. It corrects a copy and reruns **all** selected checks, including previously passing compatibility checks. There is at most one correction. First-pass success dispatches only once; interruption, incomplete handoff, or a repeated defect doesn't start another turn.
 
-`report.json` records `correction.enabled`, `correction.attempted`, bound worker
-thread and dispatch count. Dispatch slots are journaled before launch; an
-interrupted launch conservatively consumes its slot. Initial candidate/check
-evidence remains at `initial/report.json`, hash-bound to the final report.
-Old passing checks never carry forward to an altered candidate. `status`
-revalidates both candidates, source, commands and receipts; drift makes the
-final evidence stale. Interrupted episodes remain unavailable and cannot
-reuse their output directory. There is **no controller resume or automatic
-restart** to reset the budget or repeat a dispatch; a new explicitly requested
-episode uses a new output directory.
+`--seconds` is a single cumulative budget for setup, implementation, checks, correction and rerun; `--stage-seconds` caps each coding turn. Dispatch slots are journaled before launch; there is **no controller resume or automatic restart** to reset the budget. Initial evidence remains at `initial/report.json`, hash-bound to the final report and rechecked by `status`.
 
-The opt-in [native control](tests/test_correction_live.py) deliberately retains
-a seeded assertion defect on its first handoff, then tests same-thread
-correction, native boundaries and rerun. It is a mechanism qualification,
-not a measurement of improvement on ordinary coding tasks.
-The [13 October 2026 qualification summary](docs/ISSUE15-QUALIFICATION.json)
-records both native boundaries, the failed assertion, same-thread identities,
-corrected check results and exact runtime hashes; raw evidence remains at its
-recorded local path. Reproduce it on the supported authenticated host with:
+The [native correction control](tests/test_correction_live.py) and [qualification summary](docs/ISSUE15-QUALIFICATION.json) validate this mechanism against a deliberately seeded assertion defect, **not** a general performance advantage on ordinary coding work.
 
-```sh
-PROOFLINE_CORRECTION_LIVE=1 /opt/homebrew/bin/python3.14 -B -m unittest tests.test_correction_live -v
-```
+## CLI reference
 
-`--request` is a single **literal** argument: multiline text and terminal
-newlines are preserved if the calling host passes them. For an exact multiline
-request without shell quoting, use `--request-stdin` and pipe the original
-UTF-8 bytes into standard input instead. `--source FILE` remains supported
-for saved original request bytes. These three sources are mutually exclusive.
+### Supported commands
 
-Repeat `--command` for each executable check. Each value is tokenized with
-POSIX quoting into one **argv array**, without executing a shell, expanding
-environment variables, interpreting pipes or performing command substitutions.
-Every executable must have an **absolute path**. For exact complex argv
-(e.g. literal spaces, shell metacharacters or arbitrary arguments), keep using
-the existing `--checks FILE` JSON format. The two check-input forms are
-mutually exclusive. No extra config or dependency installation is performed.
+| Command | Purpose |
+| --- | --- |
+| `python3 -B proofline.py check` | Model-free checks against existing work |
+| `python3 -B proofline.py run` | One managed implementation and selected checks |
+| `python3 -B proofline.py status RECORD` | Revalidate the frozen report (path to `report.json`) |
 
-**Optional Intentline-guided workflow (not an integration requirement):**
-The existing agent may first use
-[Intentline's planning skill](https://github.com/grove/intentline/blob/main/skills/intentline-plan/SKILL.md)
-to identify source-grounded `R` requirements and important checks, then use
-the ordinary Proofline `check` command above against the **original request**.
-That advice is not an independent test result, approval, or replacement for
-original source bytes. If a **completed Intentline JSON export** already exists,
-Proofline can consume it optionally using `--intentline-export` (see below).
-The CLI never installs or imports Intentline.
+### Inputs and options
 
-## Actionable, receipt-grounded feedback
+Both `check` and `run` require a `--repo` Git root, **one original-request input**, and **one set of selected checks**:
 
-Both `check` (zero model calls) and optional managed `run` print a **short**
-summary of the selected commands. Failing commands show their exact argv
-(in the structured report), native exit status, elapsed time, and a bounded
-stderr/stdout excerpt with a concrete next action. An unavailable sandbox,
-timeout, truncated output, stale evidence or missing executable is **not**
-reported as a product defect. Successful commands give one short summary,
-not another AI reviewer pass.
+| Flag | Purpose |
+| --- | --- |
+| `--request TEXT` | Literal, complete original request, including multiline text if passed |
+| `--request-stdin` | Original UTF-8 from stdin, retaining trailing newlines |
+| `--source FILE` | Original UTF-8 request bytes from a file |
+| `--command 'EXEC ARG…'` | One POSIX-quoted argv; repeat for multiple checks |
+| `--checks FILE` | JSON array of argv arrays for complex/exact arguments |
+| `--output DIR` | A new output directory |
+| `--failure-details FILE` | Optional caller-supplied failed-check annotations |
+| `--seconds N` | Cumulative budget (default **900** seconds) |
+| `--check-seconds N` | Each selected check's cap (default **120** seconds) |
 
-`report.json` includes `feedback.checks` with the exact selected argv,
-exit code, elapsed seconds, frozen source SHA-256, candidate commit/tree,
-snapshot identity and `receipts/check-NNN.json#stdout` / `#stderr` references.
-The native host receipts are also retained as separate bounded/redacted files
-**outside the command-writable scratch and the candidate**. `status` validates
-their hashes and the frozen inputs; changed or missing evidence becomes
-`STALE CHECKS`. Full bounded receipts are available on disk; the terminal
-does not dump them by default.
-
-If a checker already provides a specific failure example, a caller can attach
-**optional** `--failure-details /private/failure-details.json`:
+The three request forms are mutually exclusive; so are repeated `--command` and `--checks`. **Every executable must have an absolute path.** `--command` only tokenizes POSIX quoting into argv: it does **not** run a shell, expand variables, evaluate substitutions, or interpret pipes/redirections. For exact complex values, prefer `--checks`:
 
 ```json
 [
-  {
-    "index": 0,
-    "outcome_ids": ["R2"],
-    "expected": "Unicode username accepted",
-    "observed": "Unicode rejected"
-  }
+  ["/opt/homebrew/bin/python3.14", "-B", "-m", "unittest", "discover", "-s", "tests"],
+  ["/opt/homebrew/bin/python3.14", "-B", "cli.py", "--version"]
 ]
 ```
 
-Indexes are zero-based and correspond to the selected commands. The
-`expected` field is **caller-supplied, not an independently established
-oracle**; the `observed` text is displayed only if it literally occurs in
-the bounded native stdout/stderr of a failed check. An unsupported or forged
-observation is withheld rather than presented as fact. An `R2` label without
-an optional `--promises` mapping remains unverified advice; with a mapping,
-its exact command association is validated but a green check still does not
-prove the requirement in full. No unlisted requirement is deemed covered,
-and no failed or missing evidence triggers an AI correction without the
-explicit managed `run --correct-once` option and qualifying native diagnostics.
+These are examples, not built-in tests. You must choose valid checks for your project. Duration flags must be finite, positive, and at most 3,600 seconds.
 
-This file is optional. Ordinary `--command` or `--checks` invocations
-still work unchanged, without Intentline, an acceptance plan, or extra
-model dispatches. Live macOS/Codex sandbox qualification is distinct from
-offline CI.
+**Mode-specific:** `run` has `--stage-seconds` (default **600**) and `--correct-once`. `check` has `--promises FILE` or `--intentline-export DIR`, with optional `--intentline-links FILE` **only** for the export. `status` has `--show-source` for intact check-only records.
 
-## Optional source-linked promise evidence
+For durable inputs (or exact multiline source), save the request in `request.md` and argv arrays in `checks.json`, or pipe source bytes via `--request-stdin`:
 
-Existing `check` works exactly as before with **no planning or metadata**.
-For a complex request, the same existing coding agent can *optionally* reread
-the **full original request**, write a small source-linked JSON mapping,
-and pass `--promises /private/promises.json` to `proofline.py check`.
-Proofline does **not** extract requirements or generate tests on its own.
-A user can also author the file directly.
+```sh
+"$PYTHON" -B proofline.py check \
+  --repo /absolute/path/to/product \
+  --source /absolute/path/to/request.md \
+  --checks /absolute/path/to/checks.json \
+  --output /absolute/new/directory/outside/product \
+  --seconds 900 --check-seconds 120
+```
 
-For example, if `request.md` contains **exactly** these two lines:
+See `python3 -B proofline.py <command> --help` for all options.
+
+## Optional: connect requirements to check evidence
+
+This is **advisory** and applies only to `check`. Proofline does not invent requirements, tests, expected results, or an independent acceptance verdict.
+
+### Source-linked promises
+
+With `--promises /private/promises.json`, you may map exact lines from the **complete original request** to exact selected command argv. Suppose `request.md` contains exactly:
 
 ```text
 Reject blank usernames.
 Support Unicode usernames.
 ```
 
-An advisory mapping can be:
+A sample mapping (replace the hash and interpreter path with real values):
 
 ```json
 {
@@ -245,266 +223,102 @@ An advisory mapping can be:
       "statement": "Reject blank usernames",
       "source_refs": [{"source_id":"S1","line_start":1,"line_end":1,
                        "quote":"Reject blank usernames."}],
-      "checks": [{"index":0,"argv":["/opt/homebrew/bin/python3.14","-B",
-                                  "-m","unittest","discover","-s","tests"]}]
+      "checks": [{"index":0,"argv":["/opt/homebrew/bin/python3.14","-B","-m",
+                                   "unittest","discover","-s","tests"]}]
     },
     {
       "id": "R2",
-      "statement": "Accept valid Unicode usernames",
+      "statement": "Support Unicode usernames",
       "source_refs": [{"source_id":"S1","line_start":2,"line_end":2,
                        "quote":"Support Unicode usernames."}],
-      "oracle": "A valid José username should be accepted (unverified suggestion)",
       "checks": []
     }
   ]
 }
 ```
 
-Compute the SHA-256 from the *exact* original request file bytes
-(`python3 -c 'import hashlib,sys;print(hashlib.sha256(open(sys.argv[1],"rb").read()).hexdigest())' request.md`)
-and replace the placeholder. `--source /absolute/path/request.md` must refer
-to the same bytes. A referenced check has a **zero-based** index and its
-**exact selected argv array**; the example command must actually be among the
-`--command` or `--checks` arguments. An unlinked requirement (`checks: []`)
-is **NOT DEMONSTRATED**, even when every project test is green. An unmatched
-source quote, changed request hash, wrong command, duplicated R ID,
-unsupported field, or optionally pinned wrong `candidate_tree` is rejected.
+Compute the SHA-256 of the **exact source file bytes**, including its final newline:
 
 ```sh
-/opt/homebrew/bin/python3.14 -B proofline.py check \
-  --repo /absolute/path/to/product \
-  --source /absolute/path/request.md \
-  --command '/opt/homebrew/bin/python3.14 -B -m unittest discover -s tests' \
-  --promises /private/promises.json
+python3 -c 'import hashlib,sys; print(hashlib.sha256(open(sys.argv[1],"rb").read()).hexdigest())' request.md
 ```
 
-`report.json` then contains `promise_evidence.requirements` with precise
-check/receipt links and one of **LINKED CHECKS PASSED (limited evidence)**,
-**CHECK FAILED**, **CHECK UNAVAILABLE**, or **NOT DEMONSTRATED**. An untested
-promise is not a product failure. Green commands do not prove a linked
-requirement in full. Requirement inventory completeness is **always UNKNOWN**,
-including when the caller lists only a subset of the original request.
-The original is retained verbatim in `inputs/source.md`; to view its full
-verified content explicitly, use `proofline.py status RECORD --show-source`.
-`status` detects stale source, mapping, candidate, exact check argv and
-native evidence, and withdraws previous linked-pass claims.
+Use `--source` with those bytes; the linked argv must match the actual zero-based selected command *exactly*. Source quote, ID, hash, candidate-tree and argv mismatches are rejected. Unlinked R2 is **NOT DEMONSTRATED**, even if checks pass.
 
-**Optional same-agent gap review:** The *existing* agent may reread every
-original source line and all supplied rows/checks, then add:
+`promise_evidence.requirements` distinguishes **LINKED CHECKS PASSED (limited evidence)**, **CHECK FAILED**, **CHECK UNAVAILABLE**, and **NOT DEMONSTRATED**. A green linked check is **limited evidence**, not proof of the complete requirement; inventory completeness is **always UNKNOWN**. Optional `review.proposals` can record same-agent, source-grounded, **unverified** suggestions for missing tests.
 
-```json
-"review": {
-  "performed": true,
-  "proposals": [{
-    "statement": "Unicode behavior has no targeted test",
-    "source_refs": [{"source_id":"S1","line_start":2,"line_end":2,
-                     "quote":"Support Unicode usernames."}],
-    "suggested_check": "Add a Unicode acceptance example with a separately expected result"
-  }]
-}
-```
+### Intentline handoff (also optional)
 
-This is an optional additional **top-level key** in the example JSON (not a
-standalone JSON file), and is *self-reported, unverified advice*. No completeness
-claim, independent audit, approval, test invention, shell execution or model
-dispatch follows from it. If no such review is performed, Proofline records
-that fact rather than silently asserting coverage. Only `S1` (the exact
-original request) is supported by this direct mapping; the optional
-[Intentline adapter #23](https://github.com/grove/proofline/issues/23)
-now provides a separate, explicit read-only JSON import for one unamended
-request. Intentline remains **optional**, and no original promise may be
-amended by any convenience mapping.
-
-## Optional Intentline → Proofline handoff
-
-When an existing agent (or human) has already used
-[Intentline](https://github.com/grove/intentline) to prepare an acceptance
-agreement, **reuse its existing JSON export** instead of retyping source-linked
-requirements. This is entirely optional; the simple `check` command above
-does not change or gain any new prerequisite.
-
-Export once with Intentline's existing offline CLI (this runs no tests or
-models):
+Already using [Intentline](https://github.com/grove/intentline)? You can reuse its existing **completed JSON export** of one unamended original request, without importing or installing Intentline into Proofline:
 
 ```sh
+# Separate Intentline CLI; offline export, no model or test run:
 python3 -B -m intentline export \
   --work /private/intentline/work \
   --format json --out /private/intentline/json-export --json
-```
 
-Then an existing coding agent checks its implementation, supplying the *exact
-original request bytes* from the export and its own selected executable test
-commands:
-
-```sh
-/opt/homebrew/bin/python3.14 -B proofline.py check \
+# Run from Proofline checkout with the original exported source:
+"$PYTHON" -B proofline.py check \
   --repo /absolute/path/to/product \
   --source /private/intentline/json-export/source-S1.txt \
-  --command '/opt/homebrew/bin/python3.14 -B -m unittest discover -s tests' \
+  --command "$PYTHON -B -m unittest discover -s tests" \
   --intentline-export /private/intentline/json-export
 ```
 
-The adapter **does not infer which tests cover the agreement**. With no explicit
-links, **every imported R requirement is NOT DEMONSTRATED**, even if all
-selected commands happen to pass. For known checks, provide the optional
-`--intentline-links /private/links.json` input:
+Imported requirements begin **NOT DEMONSTRATED**. If you know which chosen check relates to an R ID, `--intentline-links /private/links.json` may contain exact links, for example:
 
 ```json
 {
-  "R1": [
-    {"index":0, "argv":["/opt/homebrew/bin/python3.14","-B",
-                       "-m","unittest","discover","-s","tests"]}
-  ]
+  "R1": [{"index":0,"argv":["/opt/homebrew/bin/python3.14","-B","-m",
+                             "unittest","discover","-s","tests"]}]
 }
 ```
 
-This is an explicit exact-argv link to the *first selected* check, not a
-claim the command fully proves R1. Other requirements remain unlinked.
-Both link files and export paths are read as **untrusted data**, never
-executed. `--intentline-export` and direct `--promises` are mutually
-exclusive; `--intentline-links` is valid only with the export.
+Replace the example Python path with the **exact path** actually used by `--command`. The adapter accepts only a canonical, complete, initial revision 1/schema 1 **single-S1** export, validating manifest hashes, contract, source bytes, quotes and check links. It rejects partial, amended, multi-source, noncanonical, tampered or symlinked exports. Exported data is never executed. Intentline's oracles, constraints, boundaries and `unapproved`/`operator_asserted_unverified` labels remain *advisory*, never external approval or push permission. `--promises` and `--intentline-export` are mutually exclusive. See [issue #23](https://github.com/grove/proofline/issues/23).
 
-**Supported narrow format:** a *complete* `export --format json` with
-canonical `export-manifest.json`, `contract.json`,
-`source-manifest.json`, and `source-S1.txt`, for a **single original
-request, initial acceptance contract revision 1/schema 1**. The adapter
-validates every manifest-listed byte hash, contract ID/revision, original
-source snapshot SHA-256 and byte-for-byte equality with the supplied Proofline
-request, exact source quotes and selected argv links. It refuses partial,
-tampered, noncanonical, symlinked or unexpected files. Amended contracts,
-S2/project-context/multiple-source exports, native scripts, successor bundles,
-and unresolved decisions are **explicitly unsupported**; no silent flattening
-or historical `deliver` fallback occurs. Producer filesystem paths are
-provenance labels, never dereferenced by Proofline.
+### Caller-supplied failure details
 
-The `promise_evidence` report includes Intentline's R IDs, source quotes,
-boundaries, interface/seam, caller-proposed oracles, `planned_evidence`,
-per-R evidence-gap reasons, constraints and out-of-scope exclusions, plus
-export/contract/source hashes. All are **proposed guidance**. `CHECKS PASSED`
-remains about selected commands only, and overall requirement completeness is
-always **UNKNOWN**. The export's `unapproved` or
-`operator_asserted_unverified` status is reported faithfully; neither
-status nor file hashes establish external user approval, permission to
-dispatch models, push/merge/deploy authorization, or independent correctness.
-
-Proofline freezes a protected copy of the validated export outside the
-candidate and check-writable scratch, so `status` can detect stale/tampered
-evidence without reopening the producer's work directory. No additional
-model invocation or approval stage is introduced. Offline regression tests
-do not replace live macOS/Codex sandbox qualification. Intentline's
-[documentation handoff #36](https://github.com/grove/intentline/issues/36)
-tracks replacing obsolete historical Proofline integration instructions.
-
-## Currently supported
-
-The supported commands are `proofline.py check`, `run` and `status`.
-On the qualified **macOS** host (Python 3.11+, Codex CLI **0.162.1**),
-`check` uses only the CLI's native sandbox: **zero model dispatches**, no
-model settings or authentication needed. `run` optionally dispatches **one**
-coding attempt and needs existing authentication and a clean Git source.
-Managed `run --correct-once` optionally permits one same-thread correction
-after a qualifying native assertion failure. Neither mode runs automatic
-reviewers, provers, PRs, merges or deployments. Both leave the source repository
-untouched.
-
-For longer-lived or automated workflows, the existing **file-based**
-interface remains supported: save the exact UTF-8 original request in `source.md`
-outside product changes and selected argv arrays in `checks.json`:
+If a checker already produced a specific case, optionally attach `--failure-details /private/failure-details.json`:
 
 ```json
-[["/opt/homebrew/bin/python3.14", "-B", "-m", "unittest", "discover", "-s", "tests"]]
+[
+  {"index":0,"outcome_ids":["R2"],
+   "expected":"Unicode username accepted",
+   "observed":"Unicode rejected"}
+]
 ```
+
+`expected` is not an independently verified oracle. `observed` appears only if it literally occurs in bounded stdout/stderr of the **failed native check**. R IDs without validated mapping links remain unverified labels. This annotation does not invoke an AI correction.
+
+## Safety and scope
+
+- **Source is untouched.** `check` doesn't reset, stash, stage, commit or write to your repo; `run` also uses an isolated copy.
+- **Snapshots are explicit.** Tracked files include staged and unstaged work; non-ignored untracked files are included, tracked deletions omitted. Ignored untracked files, Git metadata and empty directories aren't copied. Regular file modes and safe relative file symlinks are preserved. Submodules, nested repos, directory or escaping symlinks and special files are unsupported.
+- **Avoid mixed captures.** Proofline checks for changes while copying; pause edits until the candidate freezes.
+- **Checks cannot write product files or use the network.** If a test needs in-tree writes, choose another observation strategy; Proofline installs no dependencies.
+- **Native isolation is mandatory.** Missing/unqualified native boundaries produce unavailable evidence; offline Linux CI does not establish live macOS safety.
+- **Remote actions are out of scope.** No local check, promise map or Intentline export grants permission for PRs, pushes, merges or deployment. The supported CLI has no publisher or full-promise certification command.
+
+## Contributing and background
+
+Contributions are welcome—particularly improvements to helpful failures, native sandbox integrity, tests, and documentation. [DESIGN.md](DESIGN.md) explains the intentionally lightweight contract, [IMPLEMENTATION.md](IMPLEMENTATION.md) the core boundaries, and the [issue tracker](https://github.com/grove/proofline/issues) the current work.
+
+Run deterministic/offline regressions from the Proofline checkout:
 
 ```sh
-/opt/homebrew/bin/python3.14 -B proofline.py check \
-  --repo /absolute/path/to/product \
-  --source /absolute/path/to/source.md \
-  --checks /absolute/path/to/checks.json \
-  --output /absolute/path/outside/product/check-record \
-  --seconds 900 --check-seconds 120
+python3 -B -m unittest discover -s tests -v
 ```
+
+[GitHub Actions](.github/workflows/checks.yml) runs offline checks across Python versions on Linux; that isn't live macOS/Codex qualification. On the qualified authenticated host, you can reproduce the deliberately seeded correction control:
 
 ```sh
-/opt/homebrew/bin/python3.14 -B proofline.py status /absolute/path/to/report.json
+PROOFLINE_CORRECTION_LIVE=1 /opt/homebrew/bin/python3.14 -B -m unittest tests.test_correction_live -v
 ```
 
-`check` selects **current working bytes** of tracked files (including staged
-and unstaged work) plus non-ignored untracked files. Deleted tracked files are
-omitted; ignored untracked files, Git metadata and empty directories are not
-copied. Tracked files remain included even if an ignore rule matches them.
-Regular file bytes and modes, and safe relative symlinks to files inside the
-snapshot, are preserved. Submodules, nested repositories, directory or escaping
-symlinks, FIFOs, sockets and devices are unsupported and rejected when selected;
-ignored untracked files remain excluded. Linux and Windows have no supported
-execution boundary. There is **no unprotected fallback**.
+Proofline's lean design follows the [S6 abandon/simplify decision](docs/S6-DECISION.md) after repeated false acceptances and an incomplete full pilot. A [small bounded comparison](docs/BOUNDED-COMPARISON.md) found no extra correctness benefit from mandatory review in that sample. The [ordinary-agent baseline](evaluation/results/live-v1-20261013/README.md) and [research archive](docs/RESEARCH-ARCHIVE.md) retain important evidence and limitations; retired `deliver` and `resume` experiments remain in Git history, not the supported runtime. No universal delivery advantage is claimed.
 
-Pause edits while the candidate is copied; two reads detect changes during
-capture and refuse a mixed snapshot. `check` never resets, stashes, commits in,
-or writes to the source. Its isolated copy gets its own local Git identity.
-The output directory must be new and outside the source repository; by default
-it is under the system temporary directory (`proofline-check/<unique-id>`).
-Retain that directory if evidence must survive temporary-file cleanup.
-The original request bytes, selected file manifest, candidate identity and exact
-command arrays are bound to the report and separate host evidence. `status`
-detects changed or missing frozen inputs and evidence. Later live-source edits
-do not change the old frozen candidate; checking new work requires a new run.
+**License:** [Apache 2.0](LICENSE).
 
-For optional managed coding, use `run` with the same arguments plus
-`--stage-seconds 600`. It still requires a clean source repository. The total
-`--seconds` budget counts capture, boundary preflight and command execution;
-`--check-seconds` caps each selected command. A timeout or unavailable tool
-produces unavailable evidence, while an executed nonzero command produces a
-failure. No checks run until the native boundary canaries pass.
+---
 
-Checks run against a **frozen, read-only candidate** under native protection,
-without network access or writes to product files. No dependency installation
-takes place; checks requiring in-tree writes need a different observation path.
-A bounded report records exact argv, native execution receipts, usage when
-available, a candidate identity, and distinct `CHECKS PASSED`,
-`CHECKS FAILED`, `CHECKS UNAVAILABLE`, `EXECUTION UNAVAILABLE` and
-`STALE CHECKS` observations. `status` detects candidate/source/check drift
-after an apparent success. Partial or unavailable implementation handoffs do
-not become successful check claims.
-
-**User journey:** An existing coding agent implements a CLI option, supplies
-the complete original request plus selected CLI and regression checks, and
-calls `check`. Proofline freezes that work and returns command evidence without
-launching another model. The same agent owns any fixes and the final handoff,
-including requirements not demonstrated by the selected checks.
-
-The supported runtime keeps separate small modules for CLI, Git snapshots
-(`checks/candidate_snapshot.py`), one coding attempt, native checks,
-and exact receipt readback. Historical host diagnostics remain available
-for offline security testing, not as an extra acceptance stage. Successful
-Linux CI does **not** establish a qualified live macOS/Codex boundary.
-
-## Agent-first scope
-
-The existing agent owns planning, implementation, self-tests and repairs;
-Proofline owns frozen identities, bounded checks, receipts and truthful
-feedback. Direct tasks require neither P2P nor Intentline. Already-authorized
-contracts may inform later optional evidence mapping without replanning or
-silently narrowing the original request. Local checking never authorizes push,
-PR, merge or deployment. New mandatory stages must earn their latency and
-blocking risk through improved *independently correct deliveries*.
-
-See [DESIGN.md](DESIGN.md) for the small product contract and
-[IMPLEMENTATION.md](IMPLEMENTATION.md) for the issue-aligned sequence.
-
-## Research retained without active runtime weight
-
-On 13 October 2026, S6 closed with an [abandon/simplify decision](docs/S6-DECISION.md)
-after repeated false acceptances. The original full pilot remained incomplete;
-**no superiority to an ordinary agent, or Luna/Sol advantage, was established**.
-A later [six-task bounded comparison](docs/BOUNDED-COMPARISON.md) found no extra
-correctness benefit from mandatory review in that small sample.
-The [frozen v1 live ordinary-agent baseline](evaluation/results/live-v1-20261013/README.md)
-then observed six independently correct deliveries in six assigned tasks, with
-finite-check and small-sample limits recorded alongside the native receipts.
-
-Historical S0–S6 experiments, documents, fixtures, experimental `deliver`
-and `resume` implementation, and dependent tests were removed from the
-**active** code path. Their complete original versions remain in Git history,
-indexed in [the research archive](docs/RESEARCH-ARCHIVE.md). Raw local ignored
-`.proofline/` records, where present, were never tracked in Git. The supported
-runtime has **no** remote-mutation or full-promise acceptance command.
+**Build with your favorite agent. Check what matters. Keep the evidence—and the final decision—in your hands.**
