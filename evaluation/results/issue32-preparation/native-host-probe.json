@@ -1,0 +1,907 @@
+{
+  "schema_version": 1,
+  "kind": "s0_preflight",
+  "started_at": "2026-10-13T16:33:46.249347+00:00",
+  "host": {
+    "system": "Darwin",
+    "release": "25.6.0",
+    "machine": "arm64",
+    "python": "3.14.8",
+    "codex": "/opt/homebrew/bin/codex",
+    "proc_self_exe_available": false
+  },
+  "model_dispatches": 0,
+  "model_usage": null,
+  "model_receipts": [],
+  "fixtures": {
+    "correct": {
+      "identities": {
+        "source_sha256": "679ea432572c0f3f9c577ac749eb7dbbb7ffb93fe7b315367eaac34d88729802",
+        "input_sha256": "f901d5e86760bd104b011f66f0d24dd555ebb5b66fb28b9404ec0d90a336d1ff",
+        "base_commit": "838a00539c7046197604505d3383e0975fa4128c",
+        "candidate_commit": "c09e5d25a842d470f6c20235342ff47067068ce0",
+        "candidate_tree": "c3e2711f8dc23f608b4cfaa5478d806fb16c91cc",
+        "candidate_path": "/private/tmp/proofline-issue32-host/control-correct/product"
+      },
+      "oracle": {
+        "oracle": "s0-username-v1",
+        "scope": "fixture_behavior_only",
+        "candidate_path": "/private/tmp/proofline-issue32-host/control-correct/product",
+        "matches_expected": true,
+        "observations": [
+          {
+            "name": "empty",
+            "criterion": "U1",
+            "arguments": [
+              "--",
+              ""
+            ],
+            "status": "MATCH",
+            "failures": [],
+            "returncode": 2,
+            "stdout": "",
+            "stderr": "usage: username.py [-h] username\nusername.py: error: username must not be empty or whitespace-only\n"
+          },
+          {
+            "name": "spaces",
+            "criterion": "U1",
+            "arguments": [
+              "--",
+              "   "
+            ],
+            "status": "MATCH",
+            "failures": [],
+            "returncode": 2,
+            "stdout": "",
+            "stderr": "usage: username.py [-h] username\nusername.py: error: username must not be empty or whitespace-only\n"
+          },
+          {
+            "name": "tab",
+            "criterion": "U1",
+            "arguments": [
+              "--",
+              "\t"
+            ],
+            "status": "MATCH",
+            "failures": [],
+            "returncode": 2,
+            "stdout": "",
+            "stderr": "usage: username.py [-h] username\nusername.py: error: username must not be empty or whitespace-only\n"
+          },
+          {
+            "name": "line_breaks",
+            "criterion": "U1",
+            "arguments": [
+              "--",
+              "\r\n"
+            ],
+            "status": "MATCH",
+            "failures": [],
+            "returncode": 2,
+            "stdout": "",
+            "stderr": "usage: username.py [-h] username\nusername.py: error: username must not be empty or whitespace-only\n"
+          },
+          {
+            "name": "nonbreaking_space",
+            "criterion": "U1",
+            "arguments": [
+              "--",
+              "\u00a0"
+            ],
+            "status": "MATCH",
+            "failures": [],
+            "returncode": 2,
+            "stdout": "",
+            "stderr": "usage: username.py [-h] username\nusername.py: error: username must not be empty or whitespace-only\n"
+          },
+          {
+            "name": "mixed_unicode_whitespace",
+            "criterion": "U1",
+            "arguments": [
+              "--",
+              "\t \u0085\u2003\u2028\u3000\r\n"
+            ],
+            "status": "MATCH",
+            "failures": [],
+            "returncode": 2,
+            "stdout": "",
+            "stderr": "usage: username.py [-h] username\nusername.py: error: username must not be empty or whitespace-only\n"
+          },
+          {
+            "name": "ordinary",
+            "criterion": "U2",
+            "arguments": [
+              "--",
+              "alice"
+            ],
+            "status": "MATCH",
+            "failures": [],
+            "returncode": 0,
+            "stdout": "{\"username\": \"alice\"}\n",
+            "stderr": ""
+          },
+          {
+            "name": "surrounding_spaces",
+            "criterion": "U2",
+            "arguments": [
+              "--",
+              "  Alice  "
+            ],
+            "status": "MATCH",
+            "failures": [],
+            "returncode": 0,
+            "stdout": "{\"username\": \"  Alice  \"}\n",
+            "stderr": ""
+          },
+          {
+            "name": "internal_whitespace",
+            "criterion": "U2",
+            "arguments": [
+              "--",
+              "a\t b\nc"
+            ],
+            "status": "MATCH",
+            "failures": [],
+            "returncode": 0,
+            "stdout": "{\"username\": \"a\\t b\\nc\"}\n",
+            "stderr": ""
+          },
+          {
+            "name": "unicode_name",
+            "criterion": "U2",
+            "arguments": [
+              "--",
+              "\u00c5se\u2603"
+            ],
+            "status": "MATCH",
+            "failures": [],
+            "returncode": 0,
+            "stdout": "{\"username\": \"\\u00c5se\\u2603\"}\n",
+            "stderr": ""
+          },
+          {
+            "name": "decomposed_unicode",
+            "criterion": "U2",
+            "arguments": [
+              "--",
+              "e\u0301"
+            ],
+            "status": "MATCH",
+            "failures": [],
+            "returncode": 0,
+            "stdout": "{\"username\": \"e\\u0301\"}\n",
+            "stderr": ""
+          },
+          {
+            "name": "dash_name",
+            "criterion": "U2",
+            "arguments": [
+              "--",
+              "--help"
+            ],
+            "status": "MATCH",
+            "failures": [],
+            "returncode": 0,
+            "stdout": "{\"username\": \"--help\"}\n",
+            "stderr": ""
+          },
+          {
+            "name": "zero_width_space",
+            "criterion": "U2",
+            "arguments": [
+              "--",
+              "\u200b"
+            ],
+            "status": "MATCH",
+            "failures": [],
+            "returncode": 0,
+            "stdout": "{\"username\": \"\\u200b\"}\n",
+            "stderr": ""
+          },
+          {
+            "name": "posix_undecodable_argument",
+            "criterion": "U2",
+            "arguments": [
+              "--",
+              "nonblank-\udcff"
+            ],
+            "status": "MATCH",
+            "failures": [],
+            "returncode": 0,
+            "stdout": "{\"username\": \"nonblank-\\udcff\"}\n",
+            "stderr": ""
+          },
+          {
+            "name": "ordinary_without_terminator",
+            "criterion": "U3",
+            "arguments": [
+              "alice"
+            ],
+            "status": "MATCH",
+            "failures": [],
+            "returncode": 0,
+            "stdout": "{\"username\": \"alice\"}\n",
+            "stderr": ""
+          },
+          {
+            "name": "help_-h",
+            "criterion": "U3",
+            "arguments": [
+              "-h"
+            ],
+            "status": "MATCH",
+            "failures": [],
+            "returncode": 0,
+            "stdout": "usage: username.py [-h] username\n\nPrint a username as JSON.\n\npositional arguments:\n  username\n\noptions:\n  -h, --help  show this help message and exit\n",
+            "stderr": ""
+          },
+          {
+            "name": "help_--help",
+            "criterion": "U3",
+            "arguments": [
+              "--help"
+            ],
+            "status": "MATCH",
+            "failures": [],
+            "returncode": 0,
+            "stdout": "usage: username.py [-h] username\n\nPrint a username as JSON.\n\npositional arguments:\n  username\n\noptions:\n  -h, --help  show this help message and exit\n",
+            "stderr": ""
+          },
+          {
+            "name": "missing_argument",
+            "criterion": "U3",
+            "arguments": [],
+            "status": "MATCH",
+            "failures": [],
+            "returncode": 2,
+            "stdout": "",
+            "stderr": "usage: username.py [-h] username\nusername.py: error: the following arguments are required: username\n"
+          },
+          {
+            "name": "extra_argument",
+            "criterion": "U3",
+            "arguments": [
+              "alice",
+              "bob"
+            ],
+            "status": "MATCH",
+            "failures": [],
+            "returncode": 2,
+            "stdout": "",
+            "stderr": "usage: username.py [-h] username\nusername.py: error: unrecognized arguments: bob\n"
+          }
+        ],
+        "limitations": [
+          "Offline fixture observations are not live independent review or proof.",
+          "No host isolation, immutable identity, or invocation receipt is established.",
+          "Scratch is inspected; external file and network effects are not qualified."
+        ]
+      },
+      "inputs_unchanged": true
+    },
+    "alternative": {
+      "identities": {
+        "source_sha256": "679ea432572c0f3f9c577ac749eb7dbbb7ffb93fe7b315367eaac34d88729802",
+        "input_sha256": "f901d5e86760bd104b011f66f0d24dd555ebb5b66fb28b9404ec0d90a336d1ff",
+        "base_commit": "838a00539c7046197604505d3383e0975fa4128c",
+        "candidate_commit": "d00329870bf62115cf77cf561487fb3218aa8751",
+        "candidate_tree": "995a5d603130264112087ba24fe5a79cfed0c2fa",
+        "candidate_path": "/private/tmp/proofline-issue32-host/control-alternative/product"
+      },
+      "oracle": {
+        "oracle": "s0-username-v1",
+        "scope": "fixture_behavior_only",
+        "candidate_path": "/private/tmp/proofline-issue32-host/control-alternative/product",
+        "matches_expected": true,
+        "observations": [
+          {
+            "name": "empty",
+            "criterion": "U1",
+            "arguments": [
+              "--",
+              ""
+            ],
+            "status": "MATCH",
+            "failures": [],
+            "returncode": 2,
+            "stdout": "",
+            "stderr": "usage: username.py [-h] username\nusername.py: error: argument username: username must not be empty or whitespace-only\n"
+          },
+          {
+            "name": "spaces",
+            "criterion": "U1",
+            "arguments": [
+              "--",
+              "   "
+            ],
+            "status": "MATCH",
+            "failures": [],
+            "returncode": 2,
+            "stdout": "",
+            "stderr": "usage: username.py [-h] username\nusername.py: error: argument username: username must not be empty or whitespace-only\n"
+          },
+          {
+            "name": "tab",
+            "criterion": "U1",
+            "arguments": [
+              "--",
+              "\t"
+            ],
+            "status": "MATCH",
+            "failures": [],
+            "returncode": 2,
+            "stdout": "",
+            "stderr": "usage: username.py [-h] username\nusername.py: error: argument username: username must not be empty or whitespace-only\n"
+          },
+          {
+            "name": "line_breaks",
+            "criterion": "U1",
+            "arguments": [
+              "--",
+              "\r\n"
+            ],
+            "status": "MATCH",
+            "failures": [],
+            "returncode": 2,
+            "stdout": "",
+            "stderr": "usage: username.py [-h] username\nusername.py: error: argument username: username must not be empty or whitespace-only\n"
+          },
+          {
+            "name": "nonbreaking_space",
+            "criterion": "U1",
+            "arguments": [
+              "--",
+              "\u00a0"
+            ],
+            "status": "MATCH",
+            "failures": [],
+            "returncode": 2,
+            "stdout": "",
+            "stderr": "usage: username.py [-h] username\nusername.py: error: argument username: username must not be empty or whitespace-only\n"
+          },
+          {
+            "name": "mixed_unicode_whitespace",
+            "criterion": "U1",
+            "arguments": [
+              "--",
+              "\t \u0085\u2003\u2028\u3000\r\n"
+            ],
+            "status": "MATCH",
+            "failures": [],
+            "returncode": 2,
+            "stdout": "",
+            "stderr": "usage: username.py [-h] username\nusername.py: error: argument username: username must not be empty or whitespace-only\n"
+          },
+          {
+            "name": "ordinary",
+            "criterion": "U2",
+            "arguments": [
+              "--",
+              "alice"
+            ],
+            "status": "MATCH",
+            "failures": [],
+            "returncode": 0,
+            "stdout": "{\"username\": \"alice\"}\n",
+            "stderr": ""
+          },
+          {
+            "name": "surrounding_spaces",
+            "criterion": "U2",
+            "arguments": [
+              "--",
+              "  Alice  "
+            ],
+            "status": "MATCH",
+            "failures": [],
+            "returncode": 0,
+            "stdout": "{\"username\": \"  Alice  \"}\n",
+            "stderr": ""
+          },
+          {
+            "name": "internal_whitespace",
+            "criterion": "U2",
+            "arguments": [
+              "--",
+              "a\t b\nc"
+            ],
+            "status": "MATCH",
+            "failures": [],
+            "returncode": 0,
+            "stdout": "{\"username\": \"a\\t b\\nc\"}\n",
+            "stderr": ""
+          },
+          {
+            "name": "unicode_name",
+            "criterion": "U2",
+            "arguments": [
+              "--",
+              "\u00c5se\u2603"
+            ],
+            "status": "MATCH",
+            "failures": [],
+            "returncode": 0,
+            "stdout": "{\"username\": \"\\u00c5se\\u2603\"}\n",
+            "stderr": ""
+          },
+          {
+            "name": "decomposed_unicode",
+            "criterion": "U2",
+            "arguments": [
+              "--",
+              "e\u0301"
+            ],
+            "status": "MATCH",
+            "failures": [],
+            "returncode": 0,
+            "stdout": "{\"username\": \"e\\u0301\"}\n",
+            "stderr": ""
+          },
+          {
+            "name": "dash_name",
+            "criterion": "U2",
+            "arguments": [
+              "--",
+              "--help"
+            ],
+            "status": "MATCH",
+            "failures": [],
+            "returncode": 0,
+            "stdout": "{\"username\": \"--help\"}\n",
+            "stderr": ""
+          },
+          {
+            "name": "zero_width_space",
+            "criterion": "U2",
+            "arguments": [
+              "--",
+              "\u200b"
+            ],
+            "status": "MATCH",
+            "failures": [],
+            "returncode": 0,
+            "stdout": "{\"username\": \"\\u200b\"}\n",
+            "stderr": ""
+          },
+          {
+            "name": "posix_undecodable_argument",
+            "criterion": "U2",
+            "arguments": [
+              "--",
+              "nonblank-\udcff"
+            ],
+            "status": "MATCH",
+            "failures": [],
+            "returncode": 0,
+            "stdout": "{\"username\": \"nonblank-\\udcff\"}\n",
+            "stderr": ""
+          },
+          {
+            "name": "ordinary_without_terminator",
+            "criterion": "U3",
+            "arguments": [
+              "alice"
+            ],
+            "status": "MATCH",
+            "failures": [],
+            "returncode": 0,
+            "stdout": "{\"username\": \"alice\"}\n",
+            "stderr": ""
+          },
+          {
+            "name": "help_-h",
+            "criterion": "U3",
+            "arguments": [
+              "-h"
+            ],
+            "status": "MATCH",
+            "failures": [],
+            "returncode": 0,
+            "stdout": "usage: username.py [-h] username\n\nPrint a username as JSON.\n\npositional arguments:\n  username\n\noptions:\n  -h, --help  show this help message and exit\n",
+            "stderr": ""
+          },
+          {
+            "name": "help_--help",
+            "criterion": "U3",
+            "arguments": [
+              "--help"
+            ],
+            "status": "MATCH",
+            "failures": [],
+            "returncode": 0,
+            "stdout": "usage: username.py [-h] username\n\nPrint a username as JSON.\n\npositional arguments:\n  username\n\noptions:\n  -h, --help  show this help message and exit\n",
+            "stderr": ""
+          },
+          {
+            "name": "missing_argument",
+            "criterion": "U3",
+            "arguments": [],
+            "status": "MATCH",
+            "failures": [],
+            "returncode": 2,
+            "stdout": "",
+            "stderr": "usage: username.py [-h] username\nusername.py: error: the following arguments are required: username\n"
+          },
+          {
+            "name": "extra_argument",
+            "criterion": "U3",
+            "arguments": [
+              "alice",
+              "bob"
+            ],
+            "status": "MATCH",
+            "failures": [],
+            "returncode": 2,
+            "stdout": "",
+            "stderr": "usage: username.py [-h] username\nusername.py: error: unrecognized arguments: bob\n"
+          }
+        ],
+        "limitations": [
+          "Offline fixture observations are not live independent review or proof.",
+          "No host isolation, immutable identity, or invocation receipt is established.",
+          "Scratch is inspected; external file and network effects are not qualified."
+        ]
+      },
+      "inputs_unchanged": true
+    },
+    "defective": {
+      "identities": {
+        "source_sha256": "679ea432572c0f3f9c577ac749eb7dbbb7ffb93fe7b315367eaac34d88729802",
+        "input_sha256": "f901d5e86760bd104b011f66f0d24dd555ebb5b66fb28b9404ec0d90a336d1ff",
+        "base_commit": "838a00539c7046197604505d3383e0975fa4128c",
+        "candidate_commit": "e292eb9e5d851a453c12c364b1fb311f9b51beb7",
+        "candidate_tree": "3f35330707c6fefffb255bfb544267c8a557c6fc",
+        "candidate_path": "/private/tmp/proofline-issue32-host/control-defective/product"
+      },
+      "oracle": {
+        "oracle": "s0-username-v1",
+        "scope": "fixture_behavior_only",
+        "candidate_path": "/private/tmp/proofline-issue32-host/control-defective/product",
+        "matches_expected": false,
+        "observations": [
+          {
+            "name": "empty",
+            "criterion": "U1",
+            "arguments": [
+              "--",
+              ""
+            ],
+            "status": "MATCH",
+            "failures": [],
+            "returncode": 2,
+            "stdout": "",
+            "stderr": "usage: username.py [-h] username\nusername.py: error: username must not be empty or whitespace-only\n"
+          },
+          {
+            "name": "spaces",
+            "criterion": "U1",
+            "arguments": [
+              "--",
+              "   "
+            ],
+            "status": "MISMATCH",
+            "failures": [
+              "expected exit status 2",
+              "rejected command wrote success output to stdout",
+              "blank-name error did not explain the validation failure"
+            ],
+            "returncode": 0,
+            "stdout": "{\"username\": \"   \"}\n",
+            "stderr": ""
+          },
+          {
+            "name": "tab",
+            "criterion": "U1",
+            "arguments": [
+              "--",
+              "\t"
+            ],
+            "status": "MISMATCH",
+            "failures": [
+              "expected exit status 2",
+              "rejected command wrote success output to stdout",
+              "blank-name error did not explain the validation failure"
+            ],
+            "returncode": 0,
+            "stdout": "{\"username\": \"\\t\"}\n",
+            "stderr": ""
+          },
+          {
+            "name": "line_breaks",
+            "criterion": "U1",
+            "arguments": [
+              "--",
+              "\r\n"
+            ],
+            "status": "MISMATCH",
+            "failures": [
+              "expected exit status 2",
+              "rejected command wrote success output to stdout",
+              "blank-name error did not explain the validation failure"
+            ],
+            "returncode": 0,
+            "stdout": "{\"username\": \"\\r\\n\"}\n",
+            "stderr": ""
+          },
+          {
+            "name": "nonbreaking_space",
+            "criterion": "U1",
+            "arguments": [
+              "--",
+              "\u00a0"
+            ],
+            "status": "MISMATCH",
+            "failures": [
+              "expected exit status 2",
+              "rejected command wrote success output to stdout",
+              "blank-name error did not explain the validation failure"
+            ],
+            "returncode": 0,
+            "stdout": "{\"username\": \"\\u00a0\"}\n",
+            "stderr": ""
+          },
+          {
+            "name": "mixed_unicode_whitespace",
+            "criterion": "U1",
+            "arguments": [
+              "--",
+              "\t \u0085\u2003\u2028\u3000\r\n"
+            ],
+            "status": "MISMATCH",
+            "failures": [
+              "expected exit status 2",
+              "rejected command wrote success output to stdout",
+              "blank-name error did not explain the validation failure"
+            ],
+            "returncode": 0,
+            "stdout": "{\"username\": \"\\t \\u0085\\u2003\\u2028\\u3000\\r\\n\"}\n",
+            "stderr": ""
+          },
+          {
+            "name": "ordinary",
+            "criterion": "U2",
+            "arguments": [
+              "--",
+              "alice"
+            ],
+            "status": "MATCH",
+            "failures": [],
+            "returncode": 0,
+            "stdout": "{\"username\": \"alice\"}\n",
+            "stderr": ""
+          },
+          {
+            "name": "surrounding_spaces",
+            "criterion": "U2",
+            "arguments": [
+              "--",
+              "  Alice  "
+            ],
+            "status": "MATCH",
+            "failures": [],
+            "returncode": 0,
+            "stdout": "{\"username\": \"  Alice  \"}\n",
+            "stderr": ""
+          },
+          {
+            "name": "internal_whitespace",
+            "criterion": "U2",
+            "arguments": [
+              "--",
+              "a\t b\nc"
+            ],
+            "status": "MATCH",
+            "failures": [],
+            "returncode": 0,
+            "stdout": "{\"username\": \"a\\t b\\nc\"}\n",
+            "stderr": ""
+          },
+          {
+            "name": "unicode_name",
+            "criterion": "U2",
+            "arguments": [
+              "--",
+              "\u00c5se\u2603"
+            ],
+            "status": "MATCH",
+            "failures": [],
+            "returncode": 0,
+            "stdout": "{\"username\": \"\\u00c5se\\u2603\"}\n",
+            "stderr": ""
+          },
+          {
+            "name": "decomposed_unicode",
+            "criterion": "U2",
+            "arguments": [
+              "--",
+              "e\u0301"
+            ],
+            "status": "MATCH",
+            "failures": [],
+            "returncode": 0,
+            "stdout": "{\"username\": \"e\\u0301\"}\n",
+            "stderr": ""
+          },
+          {
+            "name": "dash_name",
+            "criterion": "U2",
+            "arguments": [
+              "--",
+              "--help"
+            ],
+            "status": "MATCH",
+            "failures": [],
+            "returncode": 0,
+            "stdout": "{\"username\": \"--help\"}\n",
+            "stderr": ""
+          },
+          {
+            "name": "zero_width_space",
+            "criterion": "U2",
+            "arguments": [
+              "--",
+              "\u200b"
+            ],
+            "status": "MATCH",
+            "failures": [],
+            "returncode": 0,
+            "stdout": "{\"username\": \"\\u200b\"}\n",
+            "stderr": ""
+          },
+          {
+            "name": "posix_undecodable_argument",
+            "criterion": "U2",
+            "arguments": [
+              "--",
+              "nonblank-\udcff"
+            ],
+            "status": "MATCH",
+            "failures": [],
+            "returncode": 0,
+            "stdout": "{\"username\": \"nonblank-\\udcff\"}\n",
+            "stderr": ""
+          },
+          {
+            "name": "ordinary_without_terminator",
+            "criterion": "U3",
+            "arguments": [
+              "alice"
+            ],
+            "status": "MATCH",
+            "failures": [],
+            "returncode": 0,
+            "stdout": "{\"username\": \"alice\"}\n",
+            "stderr": ""
+          },
+          {
+            "name": "help_-h",
+            "criterion": "U3",
+            "arguments": [
+              "-h"
+            ],
+            "status": "MATCH",
+            "failures": [],
+            "returncode": 0,
+            "stdout": "usage: username.py [-h] username\n\nPrint a username as JSON.\n\npositional arguments:\n  username\n\noptions:\n  -h, --help  show this help message and exit\n",
+            "stderr": ""
+          },
+          {
+            "name": "help_--help",
+            "criterion": "U3",
+            "arguments": [
+              "--help"
+            ],
+            "status": "MATCH",
+            "failures": [],
+            "returncode": 0,
+            "stdout": "usage: username.py [-h] username\n\nPrint a username as JSON.\n\npositional arguments:\n  username\n\noptions:\n  -h, --help  show this help message and exit\n",
+            "stderr": ""
+          },
+          {
+            "name": "missing_argument",
+            "criterion": "U3",
+            "arguments": [],
+            "status": "MATCH",
+            "failures": [],
+            "returncode": 2,
+            "stdout": "",
+            "stderr": "usage: username.py [-h] username\nusername.py: error: the following arguments are required: username\n"
+          },
+          {
+            "name": "extra_argument",
+            "criterion": "U3",
+            "arguments": [
+              "alice",
+              "bob"
+            ],
+            "status": "MATCH",
+            "failures": [],
+            "returncode": 2,
+            "stdout": "",
+            "stderr": "usage: username.py [-h] username\nusername.py: error: unrecognized arguments: bob\n"
+          }
+        ],
+        "limitations": [
+          "Offline fixture observations are not live independent review or proof.",
+          "No host isolation, immutable identity, or invocation receipt is established.",
+          "Scratch is inspected; external file and network effects are not qualified."
+        ]
+      },
+      "inputs_unchanged": true
+    }
+  },
+  "probes": {
+    "version": {
+      "kind": "process_probe",
+      "invocation_id": "9c20ccf7-461c-4e40-883d-27eb8a97b512",
+      "argv": [
+        "/opt/homebrew/bin/codex",
+        "--version"
+      ],
+      "cwd": "/private/tmp/proofline-issue32-host",
+      "exit_code": 0,
+      "timed_out": false,
+      "stdout": "codex-cli 0.162.1\n",
+      "stderr": "WARNING: proceeding, even though we could not create PATH aliases: Operation not permitted (os error 1)\n",
+      "elapsed_seconds": 0.02474
+    },
+    "login": {
+      "kind": "process_probe",
+      "invocation_id": "ee346486-bd25-4891-b9b0-6a31f1adfd54",
+      "argv": [
+        "/opt/homebrew/bin/codex",
+        "login",
+        "status"
+      ],
+      "cwd": "/private/tmp/proofline-issue32-host",
+      "exit_code": 0,
+      "timed_out": false,
+      "stdout": "",
+      "stderr": "WARNING: proceeding, even though we could not create PATH aliases: Operation not permitted (os error 1)\nLogged in using ChatGPT\n",
+      "elapsed_seconds": 0.024733
+    }
+  },
+  "authentication": "authenticated",
+  "boundary": {
+    "receipt": {
+      "kind": "process_probe",
+      "invocation_id": "73d04b91-5699-4ce6-b2d4-7273c1a86f39",
+      "argv": [
+        "/opt/homebrew/bin/codex",
+        "--no-daemon",
+        "-c",
+        "permissions.proofline_s0_7fd3ef3e0d03496680e779d9bec531e5={\"filesystem\"={\":minimal\"=\"read\",\"/opt/homebrew/Cellar/python@3.14/3.14.8_2/Frameworks/Python.framework/Versions/3.14\"=\"read\",\"/opt/homebrew/opt/python@3.14/Frameworks/Python.framework/Versions/3.14\"=\"read\",\"/opt/homebrew/opt/python@3.14/bin/python3.14\"=\"read\",\"/opt/homebrew/Cellar/python@3.14/3.14.8_2/Frameworks/Python.framework/Versions/3.14/bin/python3.14\"=\"read\",\"/private/tmp/proofline-issue32-host/control-correct\"=\"read\",\"/private/tmp/proofline-issue32-host/scratch\"=\"write\",\"/private/tmp/proofline-issue32-host/private\"=\"deny\",\"/opt/homebrew\"=\"read\",\"/Library/Developer/CommandLineTools/usr/bin\"=\"read\",\"/Library/Developer/CommandLineTools/usr/libexec/git-core\"=\"read\"},\"network\"={\"enabled\"=false}}",
+        "sandbox",
+        "--permission-profile",
+        "proofline_s0_7fd3ef3e0d03496680e779d9bec531e5",
+        "--include-managed-config",
+        "--cd",
+        "/private/tmp/proofline-issue32-host/scratch",
+        "--",
+        "/opt/homebrew/Cellar/python@3.14/3.14.8_2/Frameworks/Python.framework/Versions/3.14/bin/python3.14",
+        "-I",
+        "-B",
+        "/private/tmp/proofline-issue32-host/control-correct/canary.py",
+        "/private/tmp/proofline-issue32-host/control-correct/canary.json"
+      ],
+      "cwd": "/private/tmp/proofline-issue32-host/scratch",
+      "exit_code": 71,
+      "timed_out": false,
+      "stdout": "",
+      "stderr": "WARNING: proceeding, even though we could not create PATH aliases: Operation not permitted (os error 1)\nsandbox-exec: sandbox_apply: Operation not permitted\n",
+      "elapsed_seconds": 0.044823
+    },
+    "assessment": {
+      "status": "NOT VERIFIED",
+      "reason": "Native sandbox probe did not complete."
+    },
+    "network_control": "unavailable"
+  },
+  "s0": {
+    "decision": "NO-GO",
+    "status": "NOT VERIFIED",
+    "reason": "Fresh live implementer/reviewer/prover receipts and independent judgment controls have not been obtained.",
+    "next_action": "Run S0 live qualification on a working authenticated Codex host; do not start S1 until H1\u2013H5 are demonstrated."
+  },
+  "elapsed_seconds": 3.174376
+}

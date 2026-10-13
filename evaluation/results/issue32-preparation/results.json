@@ -1,0 +1,619 @@
+{
+  "study": "issue32-sol-luna-high",
+  "status": "STOPPED",
+  "declared_at": "2026-10-13T17:43:27.544647+00:00",
+  "assignments": [
+    {
+      "sequence": 1,
+      "task": "idempotent-ledger",
+      "arm": "verify",
+      "status": "NOT_EXECUTED",
+      "stages": [],
+      "checks": [],
+      "correction": {
+        "attempted": false
+      },
+      "total_seconds": null,
+      "total_cost_usd": null,
+      "seed": "/Users/grove/projects/proofline/.proofline/issue32-sol-luna-high/assignments/01-idempotent-ledger-verify/seed/product"
+    },
+    {
+      "sequence": 2,
+      "task": "idempotent-ledger",
+      "arm": "sol",
+      "status": "NOT_EXECUTED",
+      "stages": [],
+      "checks": [],
+      "correction": {
+        "attempted": false
+      },
+      "total_seconds": null,
+      "total_cost_usd": null,
+      "seed": "/Users/grove/projects/proofline/.proofline/issue32-sol-luna-high/assignments/02-idempotent-ledger-sol/seed/product"
+    },
+    {
+      "sequence": 3,
+      "task": "idempotent-ledger",
+      "arm": "plan",
+      "status": "NOT_EXECUTED",
+      "stages": [],
+      "checks": [],
+      "correction": {
+        "attempted": false
+      },
+      "total_seconds": null,
+      "total_cost_usd": null,
+      "seed": "/Users/grove/projects/proofline/.proofline/issue32-sol-luna-high/assignments/03-idempotent-ledger-plan/seed/product"
+    },
+    {
+      "sequence": 4,
+      "task": "idempotent-ledger",
+      "arm": "luna",
+      "status": "NOT_EXECUTED",
+      "stages": [],
+      "checks": [],
+      "correction": {
+        "attempted": false
+      },
+      "total_seconds": null,
+      "total_cost_usd": null,
+      "seed": "/Users/grove/projects/proofline/.proofline/issue32-sol-luna-high/assignments/04-idempotent-ledger-luna/seed/product"
+    },
+    {
+      "sequence": 5,
+      "task": "idempotent-ledger",
+      "arm": "hybrid",
+      "status": "NOT_EXECUTED",
+      "stages": [],
+      "checks": [],
+      "correction": {
+        "attempted": false
+      },
+      "total_seconds": null,
+      "total_cost_usd": null,
+      "seed": "/Users/grove/projects/proofline/.proofline/issue32-sol-luna-high/assignments/05-idempotent-ledger-hybrid/seed/product"
+    },
+    {
+      "sequence": 6,
+      "task": "path-router",
+      "arm": "sol",
+      "status": "NOT_EXECUTED",
+      "stages": [],
+      "checks": [],
+      "correction": {
+        "attempted": false
+      },
+      "total_seconds": null,
+      "total_cost_usd": null,
+      "seed": "/Users/grove/projects/proofline/.proofline/issue32-sol-luna-high/assignments/06-path-router-sol/seed/product"
+    },
+    {
+      "sequence": 7,
+      "task": "path-router",
+      "arm": "plan",
+      "status": "NOT_EXECUTED",
+      "stages": [],
+      "checks": [],
+      "correction": {
+        "attempted": false
+      },
+      "total_seconds": null,
+      "total_cost_usd": null,
+      "seed": "/Users/grove/projects/proofline/.proofline/issue32-sol-luna-high/assignments/07-path-router-plan/seed/product"
+    },
+    {
+      "sequence": 8,
+      "task": "path-router",
+      "arm": "luna",
+      "status": "NOT_EXECUTED",
+      "stages": [],
+      "checks": [],
+      "correction": {
+        "attempted": false
+      },
+      "total_seconds": null,
+      "total_cost_usd": null,
+      "seed": "/Users/grove/projects/proofline/.proofline/issue32-sol-luna-high/assignments/08-path-router-luna/seed/product"
+    },
+    {
+      "sequence": 9,
+      "task": "path-router",
+      "arm": "hybrid",
+      "status": "NOT_EXECUTED",
+      "stages": [],
+      "checks": [],
+      "correction": {
+        "attempted": false
+      },
+      "total_seconds": null,
+      "total_cost_usd": null,
+      "seed": "/Users/grove/projects/proofline/.proofline/issue32-sol-luna-high/assignments/09-path-router-hybrid/seed/product"
+    },
+    {
+      "sequence": 10,
+      "task": "path-router",
+      "arm": "verify",
+      "status": "NOT_EXECUTED",
+      "stages": [],
+      "checks": [],
+      "correction": {
+        "attempted": false
+      },
+      "total_seconds": null,
+      "total_cost_usd": null,
+      "seed": "/Users/grove/projects/proofline/.proofline/issue32-sol-luna-high/assignments/10-path-router-verify/seed/product"
+    },
+    {
+      "sequence": 11,
+      "task": "stable-scheduler",
+      "arm": "luna",
+      "status": "NOT_EXECUTED",
+      "stages": [],
+      "checks": [],
+      "correction": {
+        "attempted": false
+      },
+      "total_seconds": null,
+      "total_cost_usd": null,
+      "seed": "/Users/grove/projects/proofline/.proofline/issue32-sol-luna-high/assignments/11-stable-scheduler-luna/seed/product"
+    },
+    {
+      "sequence": 12,
+      "task": "stable-scheduler",
+      "arm": "hybrid",
+      "status": "NOT_EXECUTED",
+      "stages": [],
+      "checks": [],
+      "correction": {
+        "attempted": false
+      },
+      "total_seconds": null,
+      "total_cost_usd": null,
+      "seed": "/Users/grove/projects/proofline/.proofline/issue32-sol-luna-high/assignments/12-stable-scheduler-hybrid/seed/product"
+    },
+    {
+      "sequence": 13,
+      "task": "stable-scheduler",
+      "arm": "verify",
+      "status": "NOT_EXECUTED",
+      "stages": [],
+      "checks": [],
+      "correction": {
+        "attempted": false
+      },
+      "total_seconds": null,
+      "total_cost_usd": null,
+      "seed": "/Users/grove/projects/proofline/.proofline/issue32-sol-luna-high/assignments/13-stable-scheduler-verify/seed/product"
+    },
+    {
+      "sequence": 14,
+      "task": "stable-scheduler",
+      "arm": "sol",
+      "status": "NOT_EXECUTED",
+      "stages": [],
+      "checks": [],
+      "correction": {
+        "attempted": false
+      },
+      "total_seconds": null,
+      "total_cost_usd": null,
+      "seed": "/Users/grove/projects/proofline/.proofline/issue32-sol-luna-high/assignments/14-stable-scheduler-sol/seed/product"
+    },
+    {
+      "sequence": 15,
+      "task": "stable-scheduler",
+      "arm": "plan",
+      "status": "NOT_EXECUTED",
+      "stages": [],
+      "checks": [],
+      "correction": {
+        "attempted": false
+      },
+      "total_seconds": null,
+      "total_cost_usd": null,
+      "seed": "/Users/grove/projects/proofline/.proofline/issue32-sol-luna-high/assignments/15-stable-scheduler-plan/seed/product"
+    },
+    {
+      "sequence": 16,
+      "task": "tiered-invoice",
+      "arm": "hybrid",
+      "status": "NOT_EXECUTED",
+      "stages": [],
+      "checks": [],
+      "correction": {
+        "attempted": false
+      },
+      "total_seconds": null,
+      "total_cost_usd": null,
+      "seed": "/Users/grove/projects/proofline/.proofline/issue32-sol-luna-high/assignments/16-tiered-invoice-hybrid/seed/product"
+    },
+    {
+      "sequence": 17,
+      "task": "tiered-invoice",
+      "arm": "verify",
+      "status": "NOT_EXECUTED",
+      "stages": [],
+      "checks": [],
+      "correction": {
+        "attempted": false
+      },
+      "total_seconds": null,
+      "total_cost_usd": null,
+      "seed": "/Users/grove/projects/proofline/.proofline/issue32-sol-luna-high/assignments/17-tiered-invoice-verify/seed/product"
+    },
+    {
+      "sequence": 18,
+      "task": "tiered-invoice",
+      "arm": "sol",
+      "status": "NOT_EXECUTED",
+      "stages": [],
+      "checks": [],
+      "correction": {
+        "attempted": false
+      },
+      "total_seconds": null,
+      "total_cost_usd": null,
+      "seed": "/Users/grove/projects/proofline/.proofline/issue32-sol-luna-high/assignments/18-tiered-invoice-sol/seed/product"
+    },
+    {
+      "sequence": 19,
+      "task": "tiered-invoice",
+      "arm": "plan",
+      "status": "NOT_EXECUTED",
+      "stages": [],
+      "checks": [],
+      "correction": {
+        "attempted": false
+      },
+      "total_seconds": null,
+      "total_cost_usd": null,
+      "seed": "/Users/grove/projects/proofline/.proofline/issue32-sol-luna-high/assignments/19-tiered-invoice-plan/seed/product"
+    },
+    {
+      "sequence": 20,
+      "task": "tiered-invoice",
+      "arm": "luna",
+      "status": "NOT_EXECUTED",
+      "stages": [],
+      "checks": [],
+      "correction": {
+        "attempted": false
+      },
+      "total_seconds": null,
+      "total_cost_usd": null,
+      "seed": "/Users/grove/projects/proofline/.proofline/issue32-sol-luna-high/assignments/20-tiered-invoice-luna/seed/product"
+    }
+  ],
+  "model_dispatches": 0,
+  "blocker": "Native pinned model/list unavailable",
+  "preparation_seconds": 18.797014458104968,
+  "metrics": {
+    "assigned": 20,
+    "executed": 0,
+    "empirical_acceptance": "INCOMPLETE",
+    "arms": {
+      "luna": {
+        "assigned": 4,
+        "outcomes": {
+          "NOT_EXECUTED": 4
+        },
+        "independently_correct_deliveries": 0,
+        "delivery_rate_over_all_assigned": null,
+        "initial_correct": 0,
+        "corrections": 0,
+        "correction_improvements": 0,
+        "correction_regressions": 0,
+        "total_seconds": null,
+        "workflow_seconds": null,
+        "grading_seconds": null,
+        "total_cost_usd": null,
+        "unknown_cost_assignments": 0,
+        "cost_per_correct_delivery": {
+          "usd": null,
+          "seconds": null
+        },
+        "models": {
+          "gpt-6-luna": {
+            "native_dispatches": 0,
+            "tokens": {
+              "input_tokens": 0,
+              "cached_input_tokens": 0,
+              "output_tokens": 0
+            },
+            "unknown_usage_stages": 0,
+            "seconds": 0,
+            "tool_executions": 0,
+            "cost_usd": 0,
+            "tokens_per_correct_delivery": {
+              "input_tokens": null,
+              "cached_input_tokens": null,
+              "output_tokens": null
+            }
+          },
+          "gpt-6.1-sol": {
+            "native_dispatches": 0,
+            "tokens": {
+              "input_tokens": 0,
+              "cached_input_tokens": 0,
+              "output_tokens": 0
+            },
+            "unknown_usage_stages": 0,
+            "seconds": 0,
+            "tool_executions": 0,
+            "cost_usd": 0,
+            "tokens_per_correct_delivery": {
+              "input_tokens": null,
+              "cached_input_tokens": null,
+              "output_tokens": null
+            }
+          }
+        },
+        "controller_processes": null,
+        "green_test_omissions": 0,
+        "unknown_checks": 0,
+        "advisory_failures": 0
+      },
+      "plan": {
+        "assigned": 4,
+        "outcomes": {
+          "NOT_EXECUTED": 4
+        },
+        "independently_correct_deliveries": 0,
+        "delivery_rate_over_all_assigned": null,
+        "initial_correct": 0,
+        "corrections": 0,
+        "correction_improvements": 0,
+        "correction_regressions": 0,
+        "total_seconds": null,
+        "workflow_seconds": null,
+        "grading_seconds": null,
+        "total_cost_usd": null,
+        "unknown_cost_assignments": 0,
+        "cost_per_correct_delivery": {
+          "usd": null,
+          "seconds": null
+        },
+        "models": {
+          "gpt-6-luna": {
+            "native_dispatches": 0,
+            "tokens": {
+              "input_tokens": 0,
+              "cached_input_tokens": 0,
+              "output_tokens": 0
+            },
+            "unknown_usage_stages": 0,
+            "seconds": 0,
+            "tool_executions": 0,
+            "cost_usd": 0,
+            "tokens_per_correct_delivery": {
+              "input_tokens": null,
+              "cached_input_tokens": null,
+              "output_tokens": null
+            }
+          },
+          "gpt-6.1-sol": {
+            "native_dispatches": 0,
+            "tokens": {
+              "input_tokens": 0,
+              "cached_input_tokens": 0,
+              "output_tokens": 0
+            },
+            "unknown_usage_stages": 0,
+            "seconds": 0,
+            "tool_executions": 0,
+            "cost_usd": 0,
+            "tokens_per_correct_delivery": {
+              "input_tokens": null,
+              "cached_input_tokens": null,
+              "output_tokens": null
+            }
+          }
+        },
+        "controller_processes": null,
+        "green_test_omissions": 0,
+        "unknown_checks": 0,
+        "advisory_failures": 0
+      },
+      "verify": {
+        "assigned": 4,
+        "outcomes": {
+          "NOT_EXECUTED": 4
+        },
+        "independently_correct_deliveries": 0,
+        "delivery_rate_over_all_assigned": null,
+        "initial_correct": 0,
+        "corrections": 0,
+        "correction_improvements": 0,
+        "correction_regressions": 0,
+        "total_seconds": null,
+        "workflow_seconds": null,
+        "grading_seconds": null,
+        "total_cost_usd": null,
+        "unknown_cost_assignments": 0,
+        "cost_per_correct_delivery": {
+          "usd": null,
+          "seconds": null
+        },
+        "models": {
+          "gpt-6-luna": {
+            "native_dispatches": 0,
+            "tokens": {
+              "input_tokens": 0,
+              "cached_input_tokens": 0,
+              "output_tokens": 0
+            },
+            "unknown_usage_stages": 0,
+            "seconds": 0,
+            "tool_executions": 0,
+            "cost_usd": 0,
+            "tokens_per_correct_delivery": {
+              "input_tokens": null,
+              "cached_input_tokens": null,
+              "output_tokens": null
+            }
+          },
+          "gpt-6.1-sol": {
+            "native_dispatches": 0,
+            "tokens": {
+              "input_tokens": 0,
+              "cached_input_tokens": 0,
+              "output_tokens": 0
+            },
+            "unknown_usage_stages": 0,
+            "seconds": 0,
+            "tool_executions": 0,
+            "cost_usd": 0,
+            "tokens_per_correct_delivery": {
+              "input_tokens": null,
+              "cached_input_tokens": null,
+              "output_tokens": null
+            }
+          }
+        },
+        "controller_processes": null,
+        "green_test_omissions": 0,
+        "unknown_checks": 0,
+        "advisory_failures": 0
+      },
+      "hybrid": {
+        "assigned": 4,
+        "outcomes": {
+          "NOT_EXECUTED": 4
+        },
+        "independently_correct_deliveries": 0,
+        "delivery_rate_over_all_assigned": null,
+        "initial_correct": 0,
+        "corrections": 0,
+        "correction_improvements": 0,
+        "correction_regressions": 0,
+        "total_seconds": null,
+        "workflow_seconds": null,
+        "grading_seconds": null,
+        "total_cost_usd": null,
+        "unknown_cost_assignments": 0,
+        "cost_per_correct_delivery": {
+          "usd": null,
+          "seconds": null
+        },
+        "models": {
+          "gpt-6-luna": {
+            "native_dispatches": 0,
+            "tokens": {
+              "input_tokens": 0,
+              "cached_input_tokens": 0,
+              "output_tokens": 0
+            },
+            "unknown_usage_stages": 0,
+            "seconds": 0,
+            "tool_executions": 0,
+            "cost_usd": 0,
+            "tokens_per_correct_delivery": {
+              "input_tokens": null,
+              "cached_input_tokens": null,
+              "output_tokens": null
+            }
+          },
+          "gpt-6.1-sol": {
+            "native_dispatches": 0,
+            "tokens": {
+              "input_tokens": 0,
+              "cached_input_tokens": 0,
+              "output_tokens": 0
+            },
+            "unknown_usage_stages": 0,
+            "seconds": 0,
+            "tool_executions": 0,
+            "cost_usd": 0,
+            "tokens_per_correct_delivery": {
+              "input_tokens": null,
+              "cached_input_tokens": null,
+              "output_tokens": null
+            }
+          }
+        },
+        "controller_processes": null,
+        "green_test_omissions": 0,
+        "unknown_checks": 0,
+        "advisory_failures": 0
+      },
+      "sol": {
+        "assigned": 4,
+        "outcomes": {
+          "NOT_EXECUTED": 4
+        },
+        "independently_correct_deliveries": 0,
+        "delivery_rate_over_all_assigned": null,
+        "initial_correct": 0,
+        "corrections": 0,
+        "correction_improvements": 0,
+        "correction_regressions": 0,
+        "total_seconds": null,
+        "workflow_seconds": null,
+        "grading_seconds": null,
+        "total_cost_usd": null,
+        "unknown_cost_assignments": 0,
+        "cost_per_correct_delivery": {
+          "usd": null,
+          "seconds": null
+        },
+        "models": {
+          "gpt-6-luna": {
+            "native_dispatches": 0,
+            "tokens": {
+              "input_tokens": 0,
+              "cached_input_tokens": 0,
+              "output_tokens": 0
+            },
+            "unknown_usage_stages": 0,
+            "seconds": 0,
+            "tool_executions": 0,
+            "cost_usd": 0,
+            "tokens_per_correct_delivery": {
+              "input_tokens": null,
+              "cached_input_tokens": null,
+              "output_tokens": null
+            }
+          },
+          "gpt-6.1-sol": {
+            "native_dispatches": 0,
+            "tokens": {
+              "input_tokens": 0,
+              "cached_input_tokens": 0,
+              "output_tokens": 0
+            },
+            "unknown_usage_stages": 0,
+            "seconds": 0,
+            "tool_executions": 0,
+            "cost_usd": 0,
+            "tokens_per_correct_delivery": {
+              "input_tokens": null,
+              "cached_input_tokens": null,
+              "output_tokens": null
+            }
+          }
+        },
+        "controller_processes": null,
+        "green_test_omissions": 0,
+        "unknown_checks": 0,
+        "advisory_failures": 0
+      }
+    },
+    "paired_effects": null,
+    "paired_seconds": null,
+    "provider_internal_model_calls": null,
+    "human_active_seconds": null,
+    "authoring_tokens": null,
+    "authoring_dollars": null,
+    "uncertainty": "Four fixed tasks, one repetition. Bootstrap intervals describe these tasks only; zero variation cannot rule out unseen-task effects.",
+    "identification": "Verification is a package of Proofline checks, Sol review and eligible correction; their separate causal effects are not identified by these five arms.",
+    "ceiling_effect": false,
+    "cost_effectiveness": "INCONCLUSIVE",
+    "recommendations": {
+      "Sol planning": "INCONCLUSIVE",
+      "Sol verification": "INCONCLUSIVE",
+      "Proofline checks": "INCONCLUSIVE",
+      "bounded correction": "INCONCLUSIVE"
+    },
+    "follow_up": "Neither medium nor xhigh is justified by incomplete primary evidence. Each requires a separate frozen, authorized cohort."
+  }
+}

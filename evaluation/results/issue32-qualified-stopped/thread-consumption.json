@@ -1,0 +1,50 @@
+{
+  "model_dispatches": 0,
+  "scope": "Read-only experimental thread estimates; not observed spending",
+  "argv": [
+    "/opt/homebrew/bin/codex",
+    "--no-daemon",
+    "app-server",
+    "--listen",
+    "stdio://",
+    "--strict-config",
+    "-c",
+    "sqlite_home=\"/Users/grove/projects/proofline/.proofline/issue32-qualified-billing/state\"",
+    "-c",
+    "mcp_servers={}",
+    "-c",
+    "apps._default.enabled=false"
+  ],
+  "threads": [
+    "01a13697-8fbd-79f3-af5c-e1ab6aedb73e",
+    "01a13698-4eee-72e0-ae15-0e832c8cc6dc",
+    "01a13695-8ae8-73b1-926d-8556f84e8c20",
+    "01a1369a-c9e9-7853-a168-fafdf91cd4a7",
+    "01a1369c-b607-75d1-834a-aead4398c630"
+  ],
+  "responses": [
+    {
+      "thread_id": "01a13697-8fbd-79f3-af5c-e1ab6aedb73e",
+      "threadUsage": null
+    },
+    {
+      "thread_id": "01a13698-4eee-72e0-ae15-0e832c8cc6dc",
+      "threadUsage": null
+    },
+    {
+      "thread_id": "01a13695-8ae8-73b1-926d-8556f84e8c20",
+      "threadUsage": null
+    },
+    {
+      "thread_id": "01a1369a-c9e9-7853-a168-fafdf91cd4a7",
+      "threadUsage": null
+    },
+    {
+      "thread_id": "01a1369c-b607-75d1-834a-aead4398c630",
+      "threadUsage": null
+    }
+  ],
+  "status": "OBSERVED",
+  "elapsed_seconds": 42.00363125000149,
+  "stderr": ""
+}

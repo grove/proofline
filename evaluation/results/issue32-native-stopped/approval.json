@@ -1,0 +1,7 @@
+{
+  "study_id": "issue32-sol-luna-high-native",
+  "freeze_sha256": "25486e814d0060a59f48f40eba7eebab76a125dba9998db8e5c0e1cd2bdf1f8f",
+  "max_native_dispatches": 48,
+  "max_seconds": 18360,
+  "user_authorization": "User selected \"Authorize this frozen live study\" in response to the explicit authorization question for this exact freeze, four handoff calls followed by 20 assignments, up to 48 native turns and 18,360 seconds, unknown observed dollar billing, exact gpt-6-luna:high and gpt-6.1-sol:high. Original tasks, grader, budgets and correction unchanged; no retries, substitutions, merge or broader correction comparison authorized."
+}

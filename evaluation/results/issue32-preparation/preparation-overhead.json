@@ -1,0 +1,15 @@
+{
+  "native_model_free_preparation_seconds": 18.797014458104968,
+  "standalone_host_probe_seconds": 3.174376,
+  "offline_control_grading_seconds": 33.572151334024966,
+  "offline_control_scope": "trusted bundled implementations; no native qualification or model efficacy evidence",
+  "live_handoff_seconds": null,
+  "live_assignment_seconds": null,
+  "model_dispatches": 0,
+  "model_experiment_tokens": 0,
+  "authoring_and_test_wall_seconds": null,
+  "authoring_tokens": null,
+  "active_human_seconds": null,
+  "total_preparation_cost_usd": null,
+  "note": "The measured probe/control durations are separate work; aggregate authoring/attention/billing are unmeasured, not zero."
+}

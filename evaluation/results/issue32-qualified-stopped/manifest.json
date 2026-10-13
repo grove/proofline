@@ -1,0 +1,814 @@
+{
+  "identities": {
+    "freeze_sha256": "13403c60f405062941f9d05b3c0a83236ab6034b73ba86a0de80284835429863"
+  },
+  "protocol": {
+    "schema_version": 1,
+    "study_id": "issue32-sol-luna-high-qualified",
+    "status": "PREDECLARED_AUTHORIZED_CONTINUATION_NOT_OBSERVED",
+    "tasks": [
+      "idempotent-ledger",
+      "path-router",
+      "stable-scheduler",
+      "tiered-invoice"
+    ],
+    "arms": [
+      "luna",
+      "plan",
+      "verify",
+      "hybrid",
+      "sol"
+    ],
+    "order": [
+      [
+        "verify",
+        "sol",
+        "plan",
+        "luna",
+        "hybrid"
+      ],
+      [
+        "sol",
+        "plan",
+        "luna",
+        "hybrid",
+        "verify"
+      ],
+      [
+        "luna",
+        "hybrid",
+        "verify",
+        "sol",
+        "plan"
+      ],
+      [
+        "hybrid",
+        "verify",
+        "sol",
+        "plan",
+        "luna"
+      ]
+    ],
+    "order_method": "Fixed shuffled base order with cyclic offsets 0,1,3,4. Four tasks cannot fill a five-row Latin square: each arm occupies four distinct positions. Serial; one repetition; no shared worker context except one eligible same-Luna repair.",
+    "assignments": 20,
+    "repetitions": 1,
+    "concurrency": 1,
+    "retries": 0,
+    "models": {
+      "sol": {
+        "model": "gpt-6.1-sol",
+        "model_reasoning_effort": "high"
+      },
+      "luna": {
+        "model": "gpt-6-luna",
+        "model_reasoning_effort": "high"
+      }
+    },
+    "catalog": "Exact selected native catalog entries pinned and supplied through model_catalog_json on every invocation. Current official documentation and the native catalog support high. Backend weight revision and provider-internal calls are not exposed. Availability still requires the authorized live canary; never substitute models or effort.",
+    "host": {
+      "versions": [
+        "Darwin",
+        "arm64",
+        "26.6.2",
+        "3.14.8"
+      ],
+      "codex": "codex-cli 0.162.1"
+    },
+    "limits": {
+      "episode_seconds": 900,
+      "model_seconds": 600,
+      "planning_seconds": 120,
+      "verification_seconds": 120,
+      "correction_seconds": 180,
+      "check_seconds": 30,
+      "grading_seconds": 120,
+      "handoff_seconds": 900,
+      "handoff_model_seconds_per_call": 180,
+      "max_native_dispatches": 48,
+      "max_campaign_seconds": 18900
+    },
+    "budget_policy": "Every assignment has the same 900-second TOTAL deadline, including setup, failed activity, export, freeze, check/readback, model stages, corrections and independent initial/final grading. A shared 600-second native-model allocation includes model tool execution. Planning/verification each cap at 120 seconds, repair at 180; verifying arms reserve 240 model seconds before initial implementation. Unspent planning time returns to implementation; unused repair budget is not spent merely to equalize cost. This is a wall-time budget, not equal tokens/FLOPs: the transport offers no enforceable token/compute cap. All costs include every model; evaluator grading is also separately reported. Native qualification/authoring are separate study overhead, with unknown attention/tokens/dollars explicit.",
+    "arms_definition": {
+      "luna": "Luna high implements with normal tests/self-checks.",
+      "plan": "One fresh Sol high Intentline planning pass; Luna high implements with normal tests/self-checks. Invalid advice is recorded; no product handoff blocker.",
+      "verify": "Luna high implements; actual model-free Proofline checks; fresh Sol high independently rereads entire original request and actual candidate/receipt evidence. At most one qualified same-Luna correction, then freeze/recheck.",
+      "hybrid": "Sol high Intentline planning; Luna high implementation; same independent Sol verification and bounded correction policy as verify. Reviewer receives no earlier plan.",
+      "sol": "Fresh Sol high implementation with normal tests/self-checks. Prior #16 results never pooled."
+    },
+    "exposure": "All arms get identical complete original source, product seed bytes, existing public tests and literal public check argv. Public check 0 contains only the source's explicit example and ordinary happy case; these outputs are PUBLIC, distinct from the private grader. Workers cannot read private vectors/controls/grading results, enclosing repository, sibling assignments, other sessions, host receipts or network. Planning gets the pinned offline Intentline CLI/skill. Implementation gets validated advisory rows/oracles/gaps as data. Verification gets actual frozen candidate, captured original-to-candidate diff and receipt-bound Proofline results, never earlier plan or independent grading data. Same-thread Luna correction may retain its own original source/work; all new paths/protected files are requalified. Ordinary A/B/E coding threads are ephemeral; retain only C/D implementer contexts for their one permitted correction. Validated plans include original contract open decisions, constraints and gaps.",
+    "planning": "Only original S1, schema 1 initial revision 1. One semantic pass using existing Intentline prepare/propose/check/render/export JSON. Source identities/quotes, proposed oracles, gaps and decisions retained. No preauthored acceptance inventory, adoption, audit, authenticated-authority claim or mandatory product planning.",
+    "verification": "Sol must reread complete source before trusting code or tests. Advisory findings include verbatim source quotes. No positive Sol verdict is an independent grade or delivery gate. Only actual Proofline statuses gate C/D handoff; invalid advisory artifacts are scored, not infrastructure stops. Invalid plans do not prevent the direct unmapped check path declared for both verifying arms. No R links assert completeness.",
+    "correction": "At most one attempt, Luna high on the original implementer thread, only when existing actionable_failure validates intact executable assertion evidence AND immutable public check 0 failed on the exact candidate. Candidate-authored tests, Sol-authored probes, missing coverage, unchecked expectations, unlinked rows, infrastructure failures and private grades cannot trigger repair. Revalidate before dispatch; preserve initial candidate/checks/grade and corrected candidate/checks/grade. New models/restarts/second correction are forbidden. This conservative policy may miss real defects; that limit is measured, not silently relaxed. Valid source-cited Sol diagnoses linked to failed immutable check 0 are passed to the same Luna as advice, never as the trigger or proof.",
+    "grader": "Reuse the existing isolated finite native behavioral grader with a new independent corpus. Initial and final candidates graded; unchanged finals reuse the bound initial grade. Correct and alternative algorithms must pass, deliberately defective algorithms and omitted batch must fail while all public suites are green. Seventeen controls before dispatch. Finite obligations include positive/negative edges, source examples, compatibility, full batch and immutability; not universal correctness. Grading expectations cannot change after freezing. Post-process those same native receipts with exact JSON type comparison, qualifying a seventeenth green-test float-for-integer defective control without changing the historical grader.",
+    "handoff_qualification": "After explicit authorization and successful model-free native controls: at most four 180-second model calls within 900 seconds, on the same unrelated disposable staged return-0/42 control. Sol Intentline plan -> Luna implementation -> failing Proofline check -> fresh Sol source review -> same-Luna correction -> freeze/recheck. Distinct planning/implementation/review native threads; same-Luna correction ID. No primary task warmup or private grading exposure; failed and successful qualification costs retained separately. Primary assignment limits unchanged. No retry or resume of stopped declarations.",
+    "stop_rules": [
+      "Exact source, seed, grader, corpus, prompt, producer, host, catalog or runtime drift",
+      "Any invalid behavioral reference, alternative or defective control",
+      "Unqualified native worker/read-only/check/grader boundary, model configuration or handoff",
+      "Grader/source/sibling leakage, unsafe product aliases or protected mutation",
+      "Unreconciled or unavailable native worker lifecycle or unavailable model/check/grading execution",
+      "Total assignment budget exhaustion or protocol drift"
+    ],
+    "missing_runs": "Retain all 20 slots and every observed stage/failure/cost on stop. No retry/resume/replacement or oracle amendment. Model-produced invalid advice is an observed artifact failure, not a host failure; it cannot create an ordinary product blocker. A new attempt after infrastructure repair requires a separately frozen and authorized cohort.",
+    "primary": "Independently correct final deliveries over ALL assigned slots; distinguish correct code from completed handoff. C/D also require current receipt-bound CHECKS PASSED. Record initial correctness, final correctness, false handoffs, correct-but-blocked, incorrect-no-handoff, unavailable and missing. A green suite or Sol opinion never grades its own outcome.",
+    "accounting": "Raw native receipts, argv/configuration/prompt hashes, stage/model input/cached/output usage (cached subset never added twice), dispatched native turns, tool executions including file changes, failed activity, initial/final Proofline setup/check time, correction time, total assignment/independent-grading seconds and coordinator processes. Provider-internal calls, backend revisions, subscription dollar billing, host compute dollars and active human/initiating-agent authoring usage are unknown unless externally measured. Public API prices are not Codex subscription bills and will not be applied as invented actual dollars. Report total and cost per independently correct delivery, including null dollar cost; do not claim monetary savings from tokens alone.",
+    "analysis": "Paired initial correctness/final delivery effects and seconds for planning, verification package, interaction, hybrid-vs-Sol and Luna-vs-Sol. Four-task enumerated bootstrap descriptive intervals, explicit small-sample uncertainty and all-first-pass ceiling. Five arms identify the verification package, not isolated Sol review vs Proofline vs correction causal effects. Missing observations prevent efficacy conclusions; unknown prices prevent monetary-effectiveness conclusions. Keep/simplify/remove/inconclusive recommendations preserve optional workflows.",
+    "follow_up": "Luna medium/xhigh excluded. Neither is justified by preparation alone. Consider separately authorized medium only after adequate high reliability and measurable total cost; xhigh only for observed high defects or expensive repair loops. Keep Sol high unchanged; freeze a distinct cohort, do not pool or switch mid-assignment.",
+    "authorization": "Preparation and GitHub PR only are currently authorized. execute requires explicit user authorization bound to FREEZE.json, all 20 assignments plus four-call handoff, max 48 native turns / 18360 seconds. No merge or issue closure unless separately authorized and empirical acceptance genuinely complete.",
+    "public_checks": {
+      "idempotent-ledger": [
+        {
+          "input": {
+            "balances": {
+              "a": 3
+            },
+            "events": [
+              {
+                "id": "x",
+                "account": "a",
+                "delta": -1
+              }
+            ]
+          },
+          "expected": {
+            "balances": {
+              "a": 2
+            },
+            "applied": [
+              "x"
+            ],
+            "replayed": []
+          }
+        },
+        {
+          "input": {
+            "balances": {
+              "a": 2
+            },
+            "events": [
+              {
+                "id": "x",
+                "account": "a",
+                "delta": -1
+              },
+              {
+                "id": "x",
+                "account": "a",
+                "delta": -1
+              }
+            ]
+          },
+          "expected": {
+            "balances": {
+              "a": 1
+            },
+            "applied": [
+              "x"
+            ],
+            "replayed": [
+              "x"
+            ]
+          }
+        }
+      ],
+      "path-router": [
+        {
+          "input": {
+            "routes": [
+              {
+                "pattern": "/a/:id",
+                "name": "user"
+              }
+            ],
+            "paths": [
+              "/a/x",
+              "/b"
+            ]
+          },
+          "expected": {
+            "matches": [
+              {
+                "name": "user",
+                "params": {
+                  "id": "x"
+                }
+              },
+              null
+            ]
+          }
+        },
+        {
+          "input": {
+            "routes": [
+              {
+                "pattern": "/*tail",
+                "name": "wild"
+              },
+              {
+                "pattern": "/:id",
+                "name": "one"
+              }
+            ],
+            "paths": [
+              "/x"
+            ]
+          },
+          "expected": {
+            "matches": [
+              {
+                "name": "one",
+                "params": {
+                  "id": "x"
+                }
+              }
+            ]
+          }
+        }
+      ],
+      "stable-scheduler": [
+        {
+          "input": {
+            "workers": 1,
+            "tasks": [
+              {
+                "id": "b",
+                "duration": 2,
+                "requires": []
+              },
+              {
+                "id": "a",
+                "duration": 1,
+                "requires": [
+                  "b"
+                ]
+              }
+            ]
+          },
+          "expected": {
+            "schedule": [
+              {
+                "id": "b",
+                "start": 0,
+                "finish": 2,
+                "worker": 0
+              },
+              {
+                "id": "a",
+                "start": 2,
+                "finish": 3,
+                "worker": 0
+              }
+            ]
+          }
+        },
+        {
+          "input": {
+            "workers": 1,
+            "tasks": [
+              {
+                "id": "z",
+                "duration": 0,
+                "requires": []
+              },
+              {
+                "id": "a",
+                "duration": 1,
+                "requires": [
+                  "z"
+                ]
+              }
+            ]
+          },
+          "expected": {
+            "schedule": [
+              {
+                "id": "z",
+                "start": 0,
+                "finish": 0,
+                "worker": 0
+              },
+              {
+                "id": "a",
+                "start": 0,
+                "finish": 1,
+                "worker": 0
+              }
+            ]
+          }
+        }
+      ],
+      "tiered-invoice": [
+        {
+          "input": {
+            "tiers": [
+              {
+                "limit": 2,
+                "cents": 3
+              },
+              {
+                "limit": null,
+                "cents": 1
+              }
+            ],
+            "items": [
+              {
+                "id": "a",
+                "units": 4
+              }
+            ],
+            "discount_bps": 0
+          },
+          "expected": {
+            "items": [
+              {
+                "id": "a",
+                "cents": 8
+              }
+            ],
+            "total_cents": 8
+          }
+        },
+        {
+          "input": {
+            "tiers": [
+              {
+                "limit": null,
+                "cents": 1
+              }
+            ],
+            "items": [
+              {
+                "id": "x",
+                "units": 1
+              },
+              {
+                "id": "x",
+                "units": 1
+              },
+              {
+                "id": "x",
+                "units": 1
+              }
+            ],
+            "discount_bps": 5000
+          },
+          "expected": {
+            "items": [
+              {
+                "id": "x",
+                "cents": 1
+              },
+              {
+                "id": "x",
+                "cents": 1
+              },
+              {
+                "id": "x",
+                "cents": 0
+              }
+            ],
+            "total_cents": 2
+          }
+        }
+      ]
+    },
+    "continuation": {
+      "previous_declaration": "issue32-sol-luna-high-native",
+      "previous_outcome": "STOPPED during first Sol qualification turn at 75 seconds; 0/20 assignments; plan export completed, no completed turn or usage totals",
+      "changes": [
+        "Host controller launch with unchanged native sandbox profiles; enclosing sandbox cannot apply nested Seatbelt.",
+        "Catalog RPC awaits successful initialize; explicit stdio, 60-second total startup/catalog timeout, pagination and bounded stderr capture.",
+        "Materialize host-owned PREPARING result before probing denial of results.json; missing files do not prove denial.",
+        "User explicitly requested more lenient qualification timeouts and continuation after the 75-second failure: 180 seconds per call, 900 seconds total qualification; primary per-assignment budgets unchanged.",
+        "Pinned corpus alias makes actual advisory private-grader denial path exist; no denial or isolation requirement weakened.",
+        "Qualification checks distinct planning/implementation/review threads and original-Luna correction identity.",
+        "Fresh evidence bundler archives the continuation freeze under its own path, preserving original freeze; approval checks declared campaign limit."
+      ],
+      "unchanged": "All task requests, product seeds, public assertions, private grader, order, budgets, models and correction rules.",
+      "authorization": "User authorized the prior exact live proposal, then instructed \"Be more lenient than that. 75 seconds is not that much. Especially as the OpenAI models have been quite loaded the last 24 hours. Continue.\" This fresh continuation follows that instruction; no primary assignment retries, model substitutions, broader correction comparison or merge."
+    }
+  },
+  "declared_at": "2026-10-13T18:41:34.412053+00:00",
+  "assignments": [
+    {
+      "source_sha256": "9300a67ee9509881bd6faa7fe0d92af4c82b5a4cb4e95d9c7e38df8808a42d44",
+      "seed_tree": "dc7c1b125629647eaf123efe400ecbedaa52396a",
+      "checks": [
+        [
+          "/opt/homebrew/Cellar/python@3.14/3.14.8_2/Frameworks/Python.framework/Versions/3.14/bin/python3.14",
+          "-B",
+          "-c",
+          "import json\nfrom app import process\ntry:\n    value=process({'balances': {'a': 3}, 'events': [{'id': 'x', 'account': 'a', 'delta': -1}]})\n    actual=json.dumps(value,sort_keys=True,allow_nan=False)\nexcept Exception as error:\n    raise AssertionError('public source example raised '+type(error).__name__) from error\nassert actual == json.dumps({'balances': {'a': 2}, 'applied': ['x'], 'replayed': []},sort_keys=True,allow_nan=False)\ntry:\n    value=process({'balances': {'a': 2}, 'events': [{'id': 'x', 'account': 'a', 'delta': -1}, {'id': 'x', 'account': 'a', 'delta': -1}]})\n    actual=json.dumps(value,sort_keys=True,allow_nan=False)\nexcept Exception as error:\n    raise AssertionError('public source example raised '+type(error).__name__) from error\nassert actual == json.dumps({'balances': {'a': 1}, 'applied': ['x'], 'replayed': ['x']},sort_keys=True,allow_nan=False)"
+        ],
+        [
+          "/opt/homebrew/Cellar/python@3.14/3.14.8_2/Frameworks/Python.framework/Versions/3.14/bin/python3.14",
+          "-B",
+          "-m",
+          "unittest",
+          "discover",
+          "-s",
+          "tests"
+        ]
+      ]
+    },
+    {
+      "source_sha256": "9300a67ee9509881bd6faa7fe0d92af4c82b5a4cb4e95d9c7e38df8808a42d44",
+      "seed_tree": "dc7c1b125629647eaf123efe400ecbedaa52396a",
+      "checks": [
+        [
+          "/opt/homebrew/Cellar/python@3.14/3.14.8_2/Frameworks/Python.framework/Versions/3.14/bin/python3.14",
+          "-B",
+          "-c",
+          "import json\nfrom app import process\ntry:\n    value=process({'balances': {'a': 3}, 'events': [{'id': 'x', 'account': 'a', 'delta': -1}]})\n    actual=json.dumps(value,sort_keys=True,allow_nan=False)\nexcept Exception as error:\n    raise AssertionError('public source example raised '+type(error).__name__) from error\nassert actual == json.dumps({'balances': {'a': 2}, 'applied': ['x'], 'replayed': []},sort_keys=True,allow_nan=False)\ntry:\n    value=process({'balances': {'a': 2}, 'events': [{'id': 'x', 'account': 'a', 'delta': -1}, {'id': 'x', 'account': 'a', 'delta': -1}]})\n    actual=json.dumps(value,sort_keys=True,allow_nan=False)\nexcept Exception as error:\n    raise AssertionError('public source example raised '+type(error).__name__) from error\nassert actual == json.dumps({'balances': {'a': 1}, 'applied': ['x'], 'replayed': ['x']},sort_keys=True,allow_nan=False)"
+        ],
+        [
+          "/opt/homebrew/Cellar/python@3.14/3.14.8_2/Frameworks/Python.framework/Versions/3.14/bin/python3.14",
+          "-B",
+          "-m",
+          "unittest",
+          "discover",
+          "-s",
+          "tests"
+        ]
+      ]
+    },
+    {
+      "source_sha256": "9300a67ee9509881bd6faa7fe0d92af4c82b5a4cb4e95d9c7e38df8808a42d44",
+      "seed_tree": "dc7c1b125629647eaf123efe400ecbedaa52396a",
+      "checks": [
+        [
+          "/opt/homebrew/Cellar/python@3.14/3.14.8_2/Frameworks/Python.framework/Versions/3.14/bin/python3.14",
+          "-B",
+          "-c",
+          "import json\nfrom app import process\ntry:\n    value=process({'balances': {'a': 3}, 'events': [{'id': 'x', 'account': 'a', 'delta': -1}]})\n    actual=json.dumps(value,sort_keys=True,allow_nan=False)\nexcept Exception as error:\n    raise AssertionError('public source example raised '+type(error).__name__) from error\nassert actual == json.dumps({'balances': {'a': 2}, 'applied': ['x'], 'replayed': []},sort_keys=True,allow_nan=False)\ntry:\n    value=process({'balances': {'a': 2}, 'events': [{'id': 'x', 'account': 'a', 'delta': -1}, {'id': 'x', 'account': 'a', 'delta': -1}]})\n    actual=json.dumps(value,sort_keys=True,allow_nan=False)\nexcept Exception as error:\n    raise AssertionError('public source example raised '+type(error).__name__) from error\nassert actual == json.dumps({'balances': {'a': 1}, 'applied': ['x'], 'replayed': ['x']},sort_keys=True,allow_nan=False)"
+        ],
+        [
+          "/opt/homebrew/Cellar/python@3.14/3.14.8_2/Frameworks/Python.framework/Versions/3.14/bin/python3.14",
+          "-B",
+          "-m",
+          "unittest",
+          "discover",
+          "-s",
+          "tests"
+        ]
+      ]
+    },
+    {
+      "source_sha256": "9300a67ee9509881bd6faa7fe0d92af4c82b5a4cb4e95d9c7e38df8808a42d44",
+      "seed_tree": "dc7c1b125629647eaf123efe400ecbedaa52396a",
+      "checks": [
+        [
+          "/opt/homebrew/Cellar/python@3.14/3.14.8_2/Frameworks/Python.framework/Versions/3.14/bin/python3.14",
+          "-B",
+          "-c",
+          "import json\nfrom app import process\ntry:\n    value=process({'balances': {'a': 3}, 'events': [{'id': 'x', 'account': 'a', 'delta': -1}]})\n    actual=json.dumps(value,sort_keys=True,allow_nan=False)\nexcept Exception as error:\n    raise AssertionError('public source example raised '+type(error).__name__) from error\nassert actual == json.dumps({'balances': {'a': 2}, 'applied': ['x'], 'replayed': []},sort_keys=True,allow_nan=False)\ntry:\n    value=process({'balances': {'a': 2}, 'events': [{'id': 'x', 'account': 'a', 'delta': -1}, {'id': 'x', 'account': 'a', 'delta': -1}]})\n    actual=json.dumps(value,sort_keys=True,allow_nan=False)\nexcept Exception as error:\n    raise AssertionError('public source example raised '+type(error).__name__) from error\nassert actual == json.dumps({'balances': {'a': 1}, 'applied': ['x'], 'replayed': ['x']},sort_keys=True,allow_nan=False)"
+        ],
+        [
+          "/opt/homebrew/Cellar/python@3.14/3.14.8_2/Frameworks/Python.framework/Versions/3.14/bin/python3.14",
+          "-B",
+          "-m",
+          "unittest",
+          "discover",
+          "-s",
+          "tests"
+        ]
+      ]
+    },
+    {
+      "source_sha256": "9300a67ee9509881bd6faa7fe0d92af4c82b5a4cb4e95d9c7e38df8808a42d44",
+      "seed_tree": "dc7c1b125629647eaf123efe400ecbedaa52396a",
+      "checks": [
+        [
+          "/opt/homebrew/Cellar/python@3.14/3.14.8_2/Frameworks/Python.framework/Versions/3.14/bin/python3.14",
+          "-B",
+          "-c",
+          "import json\nfrom app import process\ntry:\n    value=process({'balances': {'a': 3}, 'events': [{'id': 'x', 'account': 'a', 'delta': -1}]})\n    actual=json.dumps(value,sort_keys=True,allow_nan=False)\nexcept Exception as error:\n    raise AssertionError('public source example raised '+type(error).__name__) from error\nassert actual == json.dumps({'balances': {'a': 2}, 'applied': ['x'], 'replayed': []},sort_keys=True,allow_nan=False)\ntry:\n    value=process({'balances': {'a': 2}, 'events': [{'id': 'x', 'account': 'a', 'delta': -1}, {'id': 'x', 'account': 'a', 'delta': -1}]})\n    actual=json.dumps(value,sort_keys=True,allow_nan=False)\nexcept Exception as error:\n    raise AssertionError('public source example raised '+type(error).__name__) from error\nassert actual == json.dumps({'balances': {'a': 1}, 'applied': ['x'], 'replayed': ['x']},sort_keys=True,allow_nan=False)"
+        ],
+        [
+          "/opt/homebrew/Cellar/python@3.14/3.14.8_2/Frameworks/Python.framework/Versions/3.14/bin/python3.14",
+          "-B",
+          "-m",
+          "unittest",
+          "discover",
+          "-s",
+          "tests"
+        ]
+      ]
+    },
+    {
+      "source_sha256": "a3d7b0a8aae518f6c1e262ad42daec3107c2c38c426c185e889c2c3625007556",
+      "seed_tree": "527346f3841d6336ce550ce2dcfa7440fb3dc8e3",
+      "checks": [
+        [
+          "/opt/homebrew/Cellar/python@3.14/3.14.8_2/Frameworks/Python.framework/Versions/3.14/bin/python3.14",
+          "-B",
+          "-c",
+          "import json\nfrom app import process\ntry:\n    value=process({'routes': [{'pattern': '/a/:id', 'name': 'user'}], 'paths': ['/a/x', '/b']})\n    actual=json.dumps(value,sort_keys=True,allow_nan=False)\nexcept Exception as error:\n    raise AssertionError('public source example raised '+type(error).__name__) from error\nassert actual == json.dumps({'matches': [{'name': 'user', 'params': {'id': 'x'}}, None]},sort_keys=True,allow_nan=False)\ntry:\n    value=process({'routes': [{'pattern': '/*tail', 'name': 'wild'}, {'pattern': '/:id', 'name': 'one'}], 'paths': ['/x']})\n    actual=json.dumps(value,sort_keys=True,allow_nan=False)\nexcept Exception as error:\n    raise AssertionError('public source example raised '+type(error).__name__) from error\nassert actual == json.dumps({'matches': [{'name': 'one', 'params': {'id': 'x'}}]},sort_keys=True,allow_nan=False)"
+        ],
+        [
+          "/opt/homebrew/Cellar/python@3.14/3.14.8_2/Frameworks/Python.framework/Versions/3.14/bin/python3.14",
+          "-B",
+          "-m",
+          "unittest",
+          "discover",
+          "-s",
+          "tests"
+        ]
+      ]
+    },
+    {
+      "source_sha256": "a3d7b0a8aae518f6c1e262ad42daec3107c2c38c426c185e889c2c3625007556",
+      "seed_tree": "527346f3841d6336ce550ce2dcfa7440fb3dc8e3",
+      "checks": [
+        [
+          "/opt/homebrew/Cellar/python@3.14/3.14.8_2/Frameworks/Python.framework/Versions/3.14/bin/python3.14",
+          "-B",
+          "-c",
+          "import json\nfrom app import process\ntry:\n    value=process({'routes': [{'pattern': '/a/:id', 'name': 'user'}], 'paths': ['/a/x', '/b']})\n    actual=json.dumps(value,sort_keys=True,allow_nan=False)\nexcept Exception as error:\n    raise AssertionError('public source example raised '+type(error).__name__) from error\nassert actual == json.dumps({'matches': [{'name': 'user', 'params': {'id': 'x'}}, None]},sort_keys=True,allow_nan=False)\ntry:\n    value=process({'routes': [{'pattern': '/*tail', 'name': 'wild'}, {'pattern': '/:id', 'name': 'one'}], 'paths': ['/x']})\n    actual=json.dumps(value,sort_keys=True,allow_nan=False)\nexcept Exception as error:\n    raise AssertionError('public source example raised '+type(error).__name__) from error\nassert actual == json.dumps({'matches': [{'name': 'one', 'params': {'id': 'x'}}]},sort_keys=True,allow_nan=False)"
+        ],
+        [
+          "/opt/homebrew/Cellar/python@3.14/3.14.8_2/Frameworks/Python.framework/Versions/3.14/bin/python3.14",
+          "-B",
+          "-m",
+          "unittest",
+          "discover",
+          "-s",
+          "tests"
+        ]
+      ]
+    },
+    {
+      "source_sha256": "a3d7b0a8aae518f6c1e262ad42daec3107c2c38c426c185e889c2c3625007556",
+      "seed_tree": "527346f3841d6336ce550ce2dcfa7440fb3dc8e3",
+      "checks": [
+        [
+          "/opt/homebrew/Cellar/python@3.14/3.14.8_2/Frameworks/Python.framework/Versions/3.14/bin/python3.14",
+          "-B",
+          "-c",
+          "import json\nfrom app import process\ntry:\n    value=process({'routes': [{'pattern': '/a/:id', 'name': 'user'}], 'paths': ['/a/x', '/b']})\n    actual=json.dumps(value,sort_keys=True,allow_nan=False)\nexcept Exception as error:\n    raise AssertionError('public source example raised '+type(error).__name__) from error\nassert actual == json.dumps({'matches': [{'name': 'user', 'params': {'id': 'x'}}, None]},sort_keys=True,allow_nan=False)\ntry:\n    value=process({'routes': [{'pattern': '/*tail', 'name': 'wild'}, {'pattern': '/:id', 'name': 'one'}], 'paths': ['/x']})\n    actual=json.dumps(value,sort_keys=True,allow_nan=False)\nexcept Exception as error:\n    raise AssertionError('public source example raised '+type(error).__name__) from error\nassert actual == json.dumps({'matches': [{'name': 'one', 'params': {'id': 'x'}}]},sort_keys=True,allow_nan=False)"
+        ],
+        [
+          "/opt/homebrew/Cellar/python@3.14/3.14.8_2/Frameworks/Python.framework/Versions/3.14/bin/python3.14",
+          "-B",
+          "-m",
+          "unittest",
+          "discover",
+          "-s",
+          "tests"
+        ]
+      ]
+    },
+    {
+      "source_sha256": "a3d7b0a8aae518f6c1e262ad42daec3107c2c38c426c185e889c2c3625007556",
+      "seed_tree": "527346f3841d6336ce550ce2dcfa7440fb3dc8e3",
+      "checks": [
+        [
+          "/opt/homebrew/Cellar/python@3.14/3.14.8_2/Frameworks/Python.framework/Versions/3.14/bin/python3.14",
+          "-B",
+          "-c",
+          "import json\nfrom app import process\ntry:\n    value=process({'routes': [{'pattern': '/a/:id', 'name': 'user'}], 'paths': ['/a/x', '/b']})\n    actual=json.dumps(value,sort_keys=True,allow_nan=False)\nexcept Exception as error:\n    raise AssertionError('public source example raised '+type(error).__name__) from error\nassert actual == json.dumps({'matches': [{'name': 'user', 'params': {'id': 'x'}}, None]},sort_keys=True,allow_nan=False)\ntry:\n    value=process({'routes': [{'pattern': '/*tail', 'name': 'wild'}, {'pattern': '/:id', 'name': 'one'}], 'paths': ['/x']})\n    actual=json.dumps(value,sort_keys=True,allow_nan=False)\nexcept Exception as error:\n    raise AssertionError('public source example raised '+type(error).__name__) from error\nassert actual == json.dumps({'matches': [{'name': 'one', 'params': {'id': 'x'}}]},sort_keys=True,allow_nan=False)"
+        ],
+        [
+          "/opt/homebrew/Cellar/python@3.14/3.14.8_2/Frameworks/Python.framework/Versions/3.14/bin/python3.14",
+          "-B",
+          "-m",
+          "unittest",
+          "discover",
+          "-s",
+          "tests"
+        ]
+      ]
+    },
+    {
+      "source_sha256": "a3d7b0a8aae518f6c1e262ad42daec3107c2c38c426c185e889c2c3625007556",
+      "seed_tree": "527346f3841d6336ce550ce2dcfa7440fb3dc8e3",
+      "checks": [
+        [
+          "/opt/homebrew/Cellar/python@3.14/3.14.8_2/Frameworks/Python.framework/Versions/3.14/bin/python3.14",
+          "-B",
+          "-c",
+          "import json\nfrom app import process\ntry:\n    value=process({'routes': [{'pattern': '/a/:id', 'name': 'user'}], 'paths': ['/a/x', '/b']})\n    actual=json.dumps(value,sort_keys=True,allow_nan=False)\nexcept Exception as error:\n    raise AssertionError('public source example raised '+type(error).__name__) from error\nassert actual == json.dumps({'matches': [{'name': 'user', 'params': {'id': 'x'}}, None]},sort_keys=True,allow_nan=False)\ntry:\n    value=process({'routes': [{'pattern': '/*tail', 'name': 'wild'}, {'pattern': '/:id', 'name': 'one'}], 'paths': ['/x']})\n    actual=json.dumps(value,sort_keys=True,allow_nan=False)\nexcept Exception as error:\n    raise AssertionError('public source example raised '+type(error).__name__) from error\nassert actual == json.dumps({'matches': [{'name': 'one', 'params': {'id': 'x'}}]},sort_keys=True,allow_nan=False)"
+        ],
+        [
+          "/opt/homebrew/Cellar/python@3.14/3.14.8_2/Frameworks/Python.framework/Versions/3.14/bin/python3.14",
+          "-B",
+          "-m",
+          "unittest",
+          "discover",
+          "-s",
+          "tests"
+        ]
+      ]
+    },
+    {
+      "source_sha256": "9573f306bb3076f5f9a4b2e24c89ce7bdd3abd47ba2d78dd09fe59de60c45216",
+      "seed_tree": "0d9ec6da1a95d714ab2a93e90860c2b6ad679604",
+      "checks": [
+        [
+          "/opt/homebrew/Cellar/python@3.14/3.14.8_2/Frameworks/Python.framework/Versions/3.14/bin/python3.14",
+          "-B",
+          "-c",
+          "import json\nfrom app import process\ntry:\n    value=process({'workers': 1, 'tasks': [{'id': 'b', 'duration': 2, 'requires': []}, {'id': 'a', 'duration': 1, 'requires': ['b']}]})\n    actual=json.dumps(value,sort_keys=True,allow_nan=False)\nexcept Exception as error:\n    raise AssertionError('public source example raised '+type(error).__name__) from error\nassert actual == json.dumps({'schedule': [{'id': 'b', 'start': 0, 'finish': 2, 'worker': 0}, {'id': 'a', 'start': 2, 'finish': 3, 'worker': 0}]},sort_keys=True,allow_nan=False)\ntry:\n    value=process({'workers': 1, 'tasks': [{'id': 'z', 'duration': 0, 'requires': []}, {'id': 'a', 'duration': 1, 'requires': ['z']}]})\n    actual=json.dumps(value,sort_keys=True,allow_nan=False)\nexcept Exception as error:\n    raise AssertionError('public source example raised '+type(error).__name__) from error\nassert actual == json.dumps({'schedule': [{'id': 'z', 'start': 0, 'finish': 0, 'worker': 0}, {'id': 'a', 'start': 0, 'finish': 1, 'worker': 0}]},sort_keys=True,allow_nan=False)"
+        ],
+        [
+          "/opt/homebrew/Cellar/python@3.14/3.14.8_2/Frameworks/Python.framework/Versions/3.14/bin/python3.14",
+          "-B",
+          "-m",
+          "unittest",
+          "discover",
+          "-s",
+          "tests"
+        ]
+      ]
+    },
+    {
+      "source_sha256": "9573f306bb3076f5f9a4b2e24c89ce7bdd3abd47ba2d78dd09fe59de60c45216",
+      "seed_tree": "0d9ec6da1a95d714ab2a93e90860c2b6ad679604",
+      "checks": [
+        [
+          "/opt/homebrew/Cellar/python@3.14/3.14.8_2/Frameworks/Python.framework/Versions/3.14/bin/python3.14",
+          "-B",
+          "-c",
+          "import json\nfrom app import process\ntry:\n    value=process({'workers': 1, 'tasks': [{'id': 'b', 'duration': 2, 'requires': []}, {'id': 'a', 'duration': 1, 'requires': ['b']}]})\n    actual=json.dumps(value,sort_keys=True,allow_nan=False)\nexcept Exception as error:\n    raise AssertionError('public source example raised '+type(error).__name__) from error\nassert actual == json.dumps({'schedule': [{'id': 'b', 'start': 0, 'finish': 2, 'worker': 0}, {'id': 'a', 'start': 2, 'finish': 3, 'worker': 0}]},sort_keys=True,allow_nan=False)\ntry:\n    value=process({'workers': 1, 'tasks': [{'id': 'z', 'duration': 0, 'requires': []}, {'id': 'a', 'duration': 1, 'requires': ['z']}]})\n    actual=json.dumps(value,sort_keys=True,allow_nan=False)\nexcept Exception as error:\n    raise AssertionError('public source example raised '+type(error).__name__) from error\nassert actual == json.dumps({'schedule': [{'id': 'z', 'start': 0, 'finish': 0, 'worker': 0}, {'id': 'a', 'start': 0, 'finish': 1, 'worker': 0}]},sort_keys=True,allow_nan=False)"
+        ],
+        [
+          "/opt/homebrew/Cellar/python@3.14/3.14.8_2/Frameworks/Python.framework/Versions/3.14/bin/python3.14",
+          "-B",
+          "-m",
+          "unittest",
+          "discover",
+          "-s",
+          "tests"
+        ]
+      ]
+    },
+    {
+      "source_sha256": "9573f306bb3076f5f9a4b2e24c89ce7bdd3abd47ba2d78dd09fe59de60c45216",
+      "seed_tree": "0d9ec6da1a95d714ab2a93e90860c2b6ad679604",
+      "checks": [
+        [
+          "/opt/homebrew/Cellar/python@3.14/3.14.8_2/Frameworks/Python.framework/Versions/3.14/bin/python3.14",
+          "-B",
+          "-c",
+          "import json\nfrom app import process\ntry:\n    value=process({'workers': 1, 'tasks': [{'id': 'b', 'duration': 2, 'requires': []}, {'id': 'a', 'duration': 1, 'requires': ['b']}]})\n    actual=json.dumps(value,sort_keys=True,allow_nan=False)\nexcept Exception as error:\n    raise AssertionError('public source example raised '+type(error).__name__) from error\nassert actual == json.dumps({'schedule': [{'id': 'b', 'start': 0, 'finish': 2, 'worker': 0}, {'id': 'a', 'start': 2, 'finish': 3, 'worker': 0}]},sort_keys=True,allow_nan=False)\ntry:\n    value=process({'workers': 1, 'tasks': [{'id': 'z', 'duration': 0, 'requires': []}, {'id': 'a', 'duration': 1, 'requires': ['z']}]})\n    actual=json.dumps(value,sort_keys=True,allow_nan=False)\nexcept Exception as error:\n    raise AssertionError('public source example raised '+type(error).__name__) from error\nassert actual == json.dumps({'schedule': [{'id': 'z', 'start': 0, 'finish': 0, 'worker': 0}, {'id': 'a', 'start': 0, 'finish': 1, 'worker': 0}]},sort_keys=True,allow_nan=False)"
+        ],
+        [
+          "/opt/homebrew/Cellar/python@3.14/3.14.8_2/Frameworks/Python.framework/Versions/3.14/bin/python3.14",
+          "-B",
+          "-m",
+          "unittest",
+          "discover",
+          "-s",
+          "tests"
+        ]
+      ]
+    },
+    {
+      "source_sha256": "9573f306bb3076f5f9a4b2e24c89ce7bdd3abd47ba2d78dd09fe59de60c45216",
+      "seed_tree": "0d9ec6da1a95d714ab2a93e90860c2b6ad679604",
+      "checks": [
+        [
+          "/opt/homebrew/Cellar/python@3.14/3.14.8_2/Frameworks/Python.framework/Versions/3.14/bin/python3.14",
+          "-B",
+          "-c",
+          "import json\nfrom app import process\ntry:\n    value=process({'workers': 1, 'tasks': [{'id': 'b', 'duration': 2, 'requires': []}, {'id': 'a', 'duration': 1, 'requires': ['b']}]})\n    actual=json.dumps(value,sort_keys=True,allow_nan=False)\nexcept Exception as error:\n    raise AssertionError('public source example raised '+type(error).__name__) from error\nassert actual == json.dumps({'schedule': [{'id': 'b', 'start': 0, 'finish': 2, 'worker': 0}, {'id': 'a', 'start': 2, 'finish': 3, 'worker': 0}]},sort_keys=True,allow_nan=False)\ntry:\n    value=process({'workers': 1, 'tasks': [{'id': 'z', 'duration': 0, 'requires': []}, {'id': 'a', 'duration': 1, 'requires': ['z']}]})\n    actual=json.dumps(value,sort_keys=True,allow_nan=False)\nexcept Exception as error:\n    raise AssertionError('public source example raised '+type(error).__name__) from error\nassert actual == json.dumps({'schedule': [{'id': 'z', 'start': 0, 'finish': 0, 'worker': 0}, {'id': 'a', 'start': 0, 'finish': 1, 'worker': 0}]},sort_keys=True,allow_nan=False)"
+        ],
+        [
+          "/opt/homebrew/Cellar/python@3.14/3.14.8_2/Frameworks/Python.framework/Versions/3.14/bin/python3.14",
+          "-B",
+          "-m",
+          "unittest",
+          "discover",
+          "-s",
+          "tests"
+        ]
+      ]
+    },
+    {
+      "source_sha256": "9573f306bb3076f5f9a4b2e24c89ce7bdd3abd47ba2d78dd09fe59de60c45216",
+      "seed_tree": "0d9ec6da1a95d714ab2a93e90860c2b6ad679604",
+      "checks": [
+        [
+          "/opt/homebrew/Cellar/python@3.14/3.14.8_2/Frameworks/Python.framework/Versions/3.14/bin/python3.14",
+          "-B",
+          "-c",
+          "import json\nfrom app import process\ntry:\n    value=process({'workers': 1, 'tasks': [{'id': 'b', 'duration': 2, 'requires': []}, {'id': 'a', 'duration': 1, 'requires': ['b']}]})\n    actual=json.dumps(value,sort_keys=True,allow_nan=False)\nexcept Exception as error:\n    raise AssertionError('public source example raised '+type(error).__name__) from error\nassert actual == json.dumps({'schedule': [{'id': 'b', 'start': 0, 'finish': 2, 'worker': 0}, {'id': 'a', 'start': 2, 'finish': 3, 'worker': 0}]},sort_keys=True,allow_nan=False)\ntry:\n    value=process({'workers': 1, 'tasks': [{'id': 'z', 'duration': 0, 'requires': []}, {'id': 'a', 'duration': 1, 'requires': ['z']}]})\n    actual=json.dumps(value,sort_keys=True,allow_nan=False)\nexcept Exception as error:\n    raise AssertionError('public source example raised '+type(error).__name__) from error\nassert actual == json.dumps({'schedule': [{'id': 'z', 'start': 0, 'finish': 0, 'worker': 0}, {'id': 'a', 'start': 0, 'finish': 1, 'worker': 0}]},sort_keys=True,allow_nan=False)"
+        ],
+        [
+          "/opt/homebrew/Cellar/python@3.14/3.14.8_2/Frameworks/Python.framework/Versions/3.14/bin/python3.14",
+          "-B",
+          "-m",
+          "unittest",
+          "discover",
+          "-s",
+          "tests"
+        ]
+      ]
+    },
+    {
+      "source_sha256": "80e5664fd54310a64baf688f4ad5c18aeee2039ab067b955a4fa4b1fd12c081d",
+      "seed_tree": "1bc7bfd48093ff31b428c42e188dcee533989dbe",
+      "checks": [
+        [
+          "/opt/homebrew/Cellar/python@3.14/3.14.8_2/Frameworks/Python.framework/Versions/3.14/bin/python3.14",
+          "-B",
+          "-c",
+          "import json\nfrom app import process\ntry:\n    value=process({'tiers': [{'limit': 2, 'cents': 3}, {'limit': None, 'cents': 1}], 'items': [{'id': 'a', 'units': 4}], 'discount_bps': 0})\n    actual=json.dumps(value,sort_keys=True,allow_nan=False)\nexcept Exception as error:\n    raise AssertionError('public source example raised '+type(error).__name__) from error\nassert actual == json.dumps({'items': [{'id': 'a', 'cents': 8}], 'total_cents': 8},sort_keys=True,allow_nan=False)\ntry:\n    value=process({'tiers': [{'limit': None, 'cents': 1}], 'items': [{'id': 'x', 'units': 1}, {'id': 'x', 'units': 1}, {'id': 'x', 'units': 1}], 'discount_bps': 5000})\n    actual=json.dumps(value,sort_keys=True,allow_nan=False)\nexcept Exception as error:\n    raise AssertionError('public source example raised '+type(error).__name__) from error\nassert actual == json.dumps({'items': [{'id': 'x', 'cents': 1}, {'id': 'x', 'cents': 1}, {'id': 'x', 'cents': 0}], 'total_cents': 2},sort_keys=True,allow_nan=False)"
+        ],
+        [
+          "/opt/homebrew/Cellar/python@3.14/3.14.8_2/Frameworks/Python.framework/Versions/3.14/bin/python3.14",
+          "-B",
+          "-m",
+          "unittest",
+          "discover",
+          "-s",
+          "tests"
+        ]
+      ]
+    },
+    {
+      "source_sha256": "80e5664fd54310a64baf688f4ad5c18aeee2039ab067b955a4fa4b1fd12c081d",
+      "seed_tree": "1bc7bfd48093ff31b428c42e188dcee533989dbe",
+      "checks": [
+        [
+          "/opt/homebrew/Cellar/python@3.14/3.14.8_2/Frameworks/Python.framework/Versions/3.14/bin/python3.14",
+          "-B",
+          "-c",
+          "import json\nfrom app import process\ntry:\n    value=process({'tiers': [{'limit': 2, 'cents': 3}, {'limit': None, 'cents': 1}], 'items': [{'id': 'a', 'units': 4}], 'discount_bps': 0})\n    actual=json.dumps(value,sort_keys=True,allow_nan=False)\nexcept Exception as error:\n    raise AssertionError('public source example raised '+type(error).__name__) from error\nassert actual == json.dumps({'items': [{'id': 'a', 'cents': 8}], 'total_cents': 8},sort_keys=True,allow_nan=False)\ntry:\n    value=process({'tiers': [{'limit': None, 'cents': 1}], 'items': [{'id': 'x', 'units': 1}, {'id': 'x', 'units': 1}, {'id': 'x', 'units': 1}], 'discount_bps': 5000})\n    actual=json.dumps(value,sort_keys=True,allow_nan=False)\nexcept Exception as error:\n    raise AssertionError('public source example raised '+type(error).__name__) from error\nassert actual == json.dumps({'items': [{'id': 'x', 'cents': 1}, {'id': 'x', 'cents': 1}, {'id': 'x', 'cents': 0}], 'total_cents': 2},sort_keys=True,allow_nan=False)"
+        ],
+        [
+          "/opt/homebrew/Cellar/python@3.14/3.14.8_2/Frameworks/Python.framework/Versions/3.14/bin/python3.14",
+          "-B",
+          "-m",
+          "unittest",
+          "discover",
+          "-s",
+          "tests"
+        ]
+      ]
+    },
+    {
+      "source_sha256": "80e5664fd54310a64baf688f4ad5c18aeee2039ab067b955a4fa4b1fd12c081d",
+      "seed_tree": "1bc7bfd48093ff31b428c42e188dcee533989dbe",
+      "checks": [
+        [
+          "/opt/homebrew/Cellar/python@3.14/3.14.8_2/Frameworks/Python.framework/Versions/3.14/bin/python3.14",
+          "-B",
+          "-c",
+          "import json\nfrom app import process\ntry:\n    value=process({'tiers': [{'limit': 2, 'cents': 3}, {'limit': None, 'cents': 1}], 'items': [{'id': 'a', 'units': 4}], 'discount_bps': 0})\n    actual=json.dumps(value,sort_keys=True,allow_nan=False)\nexcept Exception as error:\n    raise AssertionError('public source example raised '+type(error).__name__) from error\nassert actual == json.dumps({'items': [{'id': 'a', 'cents': 8}], 'total_cents': 8},sort_keys=True,allow_nan=False)\ntry:\n    value=process({'tiers': [{'limit': None, 'cents': 1}], 'items': [{'id': 'x', 'units': 1}, {'id': 'x', 'units': 1}, {'id': 'x', 'units': 1}], 'discount_bps': 5000})\n    actual=json.dumps(value,sort_keys=True,allow_nan=False)\nexcept Exception as error:\n    raise AssertionError('public source example raised '+type(error).__name__) from error\nassert actual == json.dumps({'items': [{'id': 'x', 'cents': 1}, {'id': 'x', 'cents': 1}, {'id': 'x', 'cents': 0}], 'total_cents': 2},sort_keys=True,allow_nan=False)"
+        ],
+        [
+          "/opt/homebrew/Cellar/python@3.14/3.14.8_2/Frameworks/Python.framework/Versions/3.14/bin/python3.14",
+          "-B",
+          "-m",
+          "unittest",
+          "discover",
+          "-s",
+          "tests"
+        ]
+      ]
+    },
+    {
+      "source_sha256": "80e5664fd54310a64baf688f4ad5c18aeee2039ab067b955a4fa4b1fd12c081d",
+      "seed_tree": "1bc7bfd48093ff31b428c42e188dcee533989dbe",
+      "checks": [
+        [
+          "/opt/homebrew/Cellar/python@3.14/3.14.8_2/Frameworks/Python.framework/Versions/3.14/bin/python3.14",
+          "-B",
+          "-c",
+          "import json\nfrom app import process\ntry:\n    value=process({'tiers': [{'limit': 2, 'cents': 3}, {'limit': None, 'cents': 1}], 'items': [{'id': 'a', 'units': 4}], 'discount_bps': 0})\n    actual=json.dumps(value,sort_keys=True,allow_nan=False)\nexcept Exception as error:\n    raise AssertionError('public source example raised '+type(error).__name__) from error\nassert actual == json.dumps({'items': [{'id': 'a', 'cents': 8}], 'total_cents': 8},sort_keys=True,allow_nan=False)\ntry:\n    value=process({'tiers': [{'limit': None, 'cents': 1}], 'items': [{'id': 'x', 'units': 1}, {'id': 'x', 'units': 1}, {'id': 'x', 'units': 1}], 'discount_bps': 5000})\n    actual=json.dumps(value,sort_keys=True,allow_nan=False)\nexcept Exception as error:\n    raise AssertionError('public source example raised '+type(error).__name__) from error\nassert actual == json.dumps({'items': [{'id': 'x', 'cents': 1}, {'id': 'x', 'cents': 1}, {'id': 'x', 'cents': 0}], 'total_cents': 2},sort_keys=True,allow_nan=False)"
+        ],
+        [
+          "/opt/homebrew/Cellar/python@3.14/3.14.8_2/Frameworks/Python.framework/Versions/3.14/bin/python3.14",
+          "-B",
+          "-m",
+          "unittest",
+          "discover",
+          "-s",
+          "tests"
+        ]
+      ]
+    },
+    {
+      "source_sha256": "80e5664fd54310a64baf688f4ad5c18aeee2039ab067b955a4fa4b1fd12c081d",
+      "seed_tree": "1bc7bfd48093ff31b428c42e188dcee533989dbe",
+      "checks": [
+        [
+          "/opt/homebrew/Cellar/python@3.14/3.14.8_2/Frameworks/Python.framework/Versions/3.14/bin/python3.14",
+          "-B",
+          "-c",
+          "import json\nfrom app import process\ntry:\n    value=process({'tiers': [{'limit': 2, 'cents': 3}, {'limit': None, 'cents': 1}], 'items': [{'id': 'a', 'units': 4}], 'discount_bps': 0})\n    actual=json.dumps(value,sort_keys=True,allow_nan=False)\nexcept Exception as error:\n    raise AssertionError('public source example raised '+type(error).__name__) from error\nassert actual == json.dumps({'items': [{'id': 'a', 'cents': 8}], 'total_cents': 8},sort_keys=True,allow_nan=False)\ntry:\n    value=process({'tiers': [{'limit': None, 'cents': 1}], 'items': [{'id': 'x', 'units': 1}, {'id': 'x', 'units': 1}, {'id': 'x', 'units': 1}], 'discount_bps': 5000})\n    actual=json.dumps(value,sort_keys=True,allow_nan=False)\nexcept Exception as error:\n    raise AssertionError('public source example raised '+type(error).__name__) from error\nassert actual == json.dumps({'items': [{'id': 'x', 'cents': 1}, {'id': 'x', 'cents': 1}, {'id': 'x', 'cents': 0}], 'total_cents': 2},sort_keys=True,allow_nan=False)"
+        ],
+        [
+          "/opt/homebrew/Cellar/python@3.14/3.14.8_2/Frameworks/Python.framework/Versions/3.14/bin/python3.14",
+          "-B",
+          "-m",
+          "unittest",
+          "discover",
+          "-s",
+          "tests"
+        ]
+      ]
+    }
+  ]
+}

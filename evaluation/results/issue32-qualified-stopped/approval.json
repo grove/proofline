@@ -1,0 +1,8 @@
+{
+  "study_id": "issue32-sol-luna-high-qualified",
+  "freeze_sha256": "13403c60f405062941f9d05b3c0a83236ab6034b73ba86a0de80284835429863",
+  "max_native_dispatches": 48,
+  "max_seconds": 18900,
+  "user_authorization": "The user answered 'Authorize this frozen live study' for prior freeze 25486e814d0060a59f48f40eba7eebab76a125dba9998db8e5c0e1cd2bdf1f8f, authorizing four qualification calls followed by twenty assignments if qualified, exact Sol/Luna high settings, unchanged primary source/grader/budgets/correction, no retries/substitutions and unknown observed dollar billing. After that declaration stopped in the first 75-second qualification call, the user instructed: 'Be more lenient than that. 75 seconds is not that much. Especially as the OpenAI models have been quite loaded the last 24 hours. Continue.' This approval binds that explicit continuation and leniency instruction to the fresh declaration. The controller disclosed 180 seconds per qualification call within 900 seconds, preserved the failed attempt and repaired the absent private-grader canary path. No primary assignment has previously executed. The controller binds this new hash; the user did not independently recite it.",
+  "scope": "Fresh four-call qualification then original twenty primary assignments only if qualified. Up to 48 native dispatches and 18900 seconds. No replay or resume of stopped declarations; no model/effort changes; no broader correction mechanism; no merge or issue closure. Observed dollar billing remains unknown."
+}
