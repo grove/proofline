@@ -67,6 +67,12 @@ new mandatory stage needs measured improvement in independent correctness
 worth its cost. Native isolation, source/candidate identity, evidence integrity
 and remote-effect authorization remain essential.
 
+A previously published live baseline pins runtime hashes at commit
+`9c3684d`. Deterministic CI verifies those historical bytes from Git
+history, not from the intentionally evolving active runner; no historical
+manifest or scores are rewritten. Native macOS/Codex qualification is
+still distinct from Linux CI.
+
 The S6 abandon/simplify decision and incomplete comparisons are preserved
 in [S6-DECISION.md](docs/S6-DECISION.md). The later six-task study found no
 added correctness benefit from routine review; see

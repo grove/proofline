@@ -3,6 +3,7 @@ import hashlib
 import json
 from pathlib import Path
 import shutil
+import subprocess
 import tempfile
 import unittest
 
@@ -10,6 +11,9 @@ from evaluation import live_v1 as live
 from evaluation.v1 import oracle
 
 HERE = live.ROOT / "evaluation/results/live-v1-20261013"
+# Immutable study-publication commit: keep revalidating the exact historical
+# runtime, not mutable code on the current development branch.
+FROZEN_PUBLICATION = "9c3684d22d4ae7ce0c87115ff9f1be7667dd374d"
 
 
 class PublishedLiveV1(unittest.TestCase):
@@ -21,8 +25,15 @@ class PublishedLiveV1(unittest.TestCase):
         for name, expected in manifest["identities"].items():
             if name in ("codex", "python"):
                 continue
-            path = Path(live.__file__) if name == "runner" else live.ROOT / name
-            self.assertEqual(hashlib.sha256(path.read_bytes()).hexdigest(), expected, name)
+            filename = "evaluation/live_v1.py" if name == "runner" else name
+            try:
+                pinned = subprocess.check_output(
+                    ["git", "show", FROZEN_PUBLICATION + ":" + filename],
+                    cwd=live.ROOT, stderr=subprocess.PIPE, timeout=15)
+            except (OSError, subprocess.CalledProcessError, subprocess.TimeoutExpired) as error:
+                self.fail("Frozen study source unavailable; checkout must include the "
+                          "published Git history: " + filename + " (" + str(error) + ")")
+            self.assertEqual(hashlib.sha256(pinned).hexdigest(), expected, name)
         rows = []
         invocation_ids, thread_ids = set(), set()
         for assigned in report["assignments"]:

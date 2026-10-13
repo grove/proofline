@@ -11,7 +11,7 @@ from checks import candidate_snapshot
 
 
 class BoundedRun(unittest.TestCase):
-    def exercise(self,checks,completed=True,unavailable=False,timeout=False,
+    def exercise(self,checks,completed=True,unavailable=False,simulate_timeout=False,
                  mutate_candidate=False,boundary_ready=True,model_usage=None):
         temporary=tempfile.TemporaryDirectory();self.addCleanup(temporary.cleanup)
         root=Path(temporary.name);repo=root/'source';repo.mkdir()
@@ -23,7 +23,7 @@ class BoundedRun(unittest.TestCase):
         def oracle(codex,inputs,private,receipts):
             def execute(argv,*,cwd,timeout):
                 if unavailable:raise OSError('native execution unavailable')
-                if timeout:raise subprocess.TimeoutExpired(argv,timeout)
+                if simulate_timeout:raise subprocess.TimeoutExpired(argv,timeout)
                 if mutate_candidate:
                     (inputs/'product'/'tiny.py').write_text('print("changed")\n')
                 result=subprocess.run(argv,cwd=cwd,timeout=timeout,capture_output=True,text=True)
@@ -77,7 +77,7 @@ class BoundedRun(unittest.TestCase):
         with self.assertRaises(ValueError):runner.inspect(path)
 
     def test_timeout_keeps_unavailable_distinct_from_failure(self):
-        result,_=self.exercise([[sys.executable,'-c','pass']],timeout=True)
+        result,_=self.exercise([[sys.executable,'-c','pass']],simulate_timeout=True)
         self.assertEqual(result['status'],'CHECKS UNAVAILABLE')
         self.assertEqual(result['observations'][0]['status'],'UNAVAILABLE')
         self.assertIn('timed out',result['observations'][0]['error'])
