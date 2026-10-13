@@ -1,0 +1,1254 @@
+{
+  "assurance": "Only the listed command exit statuses are observed; full source correctness is not certified.",
+  "boundary": {
+    "assessment": {
+      "inputs_unchanged": true,
+      "observations": {
+        "mode_change": "denied",
+        "network": "denied",
+        "nonce": "eff86a4c5c3540bcbda9566f1602ae4b",
+        "reads": {
+          "actual_oracle": "denied",
+          "oracle-canary": "denied",
+          "other-role-canary": "denied",
+          "receipt-canary": "denied"
+        },
+        "scratch": true,
+        "writes": {
+          "candidate": "denied",
+          "git_head": "denied",
+          "input": "denied",
+          "receipt": "denied",
+          "source": "denied"
+        }
+      },
+      "scope": "native process canaries only; no model or external-tool qualification",
+      "status": "OBSERVED"
+    },
+    "network_control": "loopback reachable before sandbox",
+    "receipt": {
+      "argv": [
+        "/opt/homebrew/bin/codex",
+        "--no-daemon",
+        "-c",
+        "permissions.proofline_s0_a37c8f2104d044fe92d8dd9ce568240e={\"filesystem\"={\":minimal\"=\"read\",\"/opt/homebrew/Cellar/python@3.14/3.14.8_2/Frameworks/Python.framework/Versions/3.14\"=\"read\",\"/opt/homebrew/opt/python@3.14/Frameworks/Python.framework/Versions/3.14\"=\"read\",\"/opt/homebrew/opt/python@3.14/bin/python3.14\"=\"read\",\"/opt/homebrew/Cellar/python@3.14/3.14.8_2/Frameworks/Python.framework/Versions/3.14/bin/python3.14\"=\"read\",\"/Users/grove/projects/proofline/.proofline/issue16-matched-v5-20261013/assignments/11-dependency-order-combined/check/inputs\"=\"read\",\"/Users/grove/projects/proofline/.proofline/issue16-matched-v5-20261013/assignments/11-dependency-order-combined/check/preflight/scratch\"=\"write\",\"/Users/grove/projects/proofline/.proofline/issue16-matched-v5-20261013/assignments/11-dependency-order-combined/check/preflight/private\"=\"deny\",\"/opt/homebrew\"=\"read\",\"/Library/Developer/CommandLineTools/usr/bin\"=\"read\",\"/Library/Developer/CommandLineTools/usr/libexec/git-core\"=\"read\"},\"network\"={\"enabled\"=false}}",
+        "sandbox",
+        "--permission-profile",
+        "proofline_s0_a37c8f2104d044fe92d8dd9ce568240e",
+        "--include-managed-config",
+        "--cd",
+        "/Users/grove/projects/proofline/.proofline/issue16-matched-v5-20261013/assignments/11-dependency-order-combined/check/preflight/scratch",
+        "--",
+        "/opt/homebrew/Cellar/python@3.14/3.14.8_2/Frameworks/Python.framework/Versions/3.14/bin/python3.14",
+        "-I",
+        "-B",
+        "/Users/grove/projects/proofline/.proofline/issue16-matched-v5-20261013/assignments/11-dependency-order-combined/check/inputs/canary.py",
+        "/Users/grove/projects/proofline/.proofline/issue16-matched-v5-20261013/assignments/11-dependency-order-combined/check/inputs/canary.json"
+      ],
+      "cwd": "/Users/grove/projects/proofline/.proofline/issue16-matched-v5-20261013/assignments/11-dependency-order-combined/check/preflight/scratch",
+      "elapsed_seconds": 0.136785,
+      "exit_code": 0,
+      "invocation_id": "1ce34656-466e-4a32-b12a-d8ff525fa954",
+      "kind": "process_probe",
+      "stderr": "",
+      "stdout": "{\"nonce\": \"eff86a4c5c3540bcbda9566f1602ae4b\", \"writes\": {\"source\": \"denied\", \"input\": \"denied\", \"candidate\": \"denied\", \"git_head\": \"denied\", \"receipt\": \"denied\"}, \"reads\": {\"receipt-canary\": \"denied\", \"oracle-canary\": \"denied\", \"other-role-canary\": \"denied\", \"actual_oracle\": \"denied\"}, \"mode_change\": \"denied\", \"scratch\": true, \"network\": \"denied\"}\n",
+      "timed_out": false
+    }
+  },
+  "candidate_commit": "222c9ebaf39cdec705456db040d0931831d3c830",
+  "candidate_path": "/Users/grove/projects/proofline/.proofline/issue16-matched-v5-20261013/assignments/11-dependency-order-combined/check/inputs/product",
+  "candidate_tree": "bbc364f70aa5e40f134022a65d12d3034ab4f787",
+  "checks": [
+    [
+      "/opt/homebrew/Cellar/python@3.14/3.14.8_2/Frameworks/Python.framework/Versions/3.14/bin/python3.14",
+      "-B",
+      "-c",
+      "from app import process; assert process({'nodes': ['z', 'a'], 'edges': []}) == {'order': ['z', 'a']}"
+    ],
+    [
+      "/opt/homebrew/Cellar/python@3.14/3.14.8_2/Frameworks/Python.framework/Versions/3.14/bin/python3.14",
+      "-B",
+      "-m",
+      "unittest",
+      "discover",
+      "-s",
+      "tests"
+    ]
+  ],
+  "elapsed_seconds": 1.2383900419808924,
+  "evidence_sha256": "0e5b0234faaccebe59456d30f0beea06afbbe9c728275d991d25878f1db6ed25",
+  "failure_details": [],
+  "feedback": {
+    "candidate_commit": "222c9ebaf39cdec705456db040d0931831d3c830",
+    "candidate_tree": "bbc364f70aa5e40f134022a65d12d3034ab4f787",
+    "checks": [
+      {
+        "argv": [
+          "/opt/homebrew/Cellar/python@3.14/3.14.8_2/Frameworks/Python.framework/Versions/3.14/bin/python3.14",
+          "-B",
+          "-c",
+          "from app import process; assert process({'nodes': ['z', 'a'], 'edges': []}) == {'order': ['z', 'a']}"
+        ],
+        "elapsed_seconds": 0.13301495788618922,
+        "exit_code": 0,
+        "index": 0,
+        "outcome_ids": [],
+        "reason": "Selected command exited 0; unselected promises are not demonstrated.",
+        "receipt_ref": "receipts/check-000.json",
+        "status": "PASSED",
+        "stderr_excerpt": "",
+        "stderr_ref": "receipts/check-000.json#stderr",
+        "stdout_excerpt": "",
+        "stdout_ref": "receipts/check-000.json#stdout"
+      },
+      {
+        "argv": [
+          "/opt/homebrew/Cellar/python@3.14/3.14.8_2/Frameworks/Python.framework/Versions/3.14/bin/python3.14",
+          "-B",
+          "-m",
+          "unittest",
+          "discover",
+          "-s",
+          "tests"
+        ],
+        "elapsed_seconds": 0.5901215830817819,
+        "exit_code": 0,
+        "index": 1,
+        "outcome_ids": [],
+        "reason": "Selected command exited 0; unselected promises are not demonstrated.",
+        "receipt_ref": "receipts/check-001.json",
+        "status": "PASSED",
+        "stderr_excerpt": "............ | ---------------------------------------------------------------------- | Ran 12 tests in 0.370s | OK",
+        "stderr_ref": "receipts/check-001.json#stderr",
+        "stdout_excerpt": "",
+        "stdout_ref": "receipts/check-001.json#stdout"
+      }
+    ],
+    "headline": "2/2 selected checks passed",
+    "next_action": "Report only the commands checked; original request coverage remains unknown.",
+    "scope": "Selected executable commands only; completeness of the original user promise is unknown.",
+    "snapshot_sha256": "c9aa0016132135d231d40d7e5d7542386e3fb8a2159fe608d97650cbdb1f4b2a",
+    "source_sha256": "28048df96119c5f6e2fd73c8909ed9424b063cd92cd2de1496d5f11e68c090e3",
+    "status": "CHECKS PASSED"
+  },
+  "feedback_version": 1,
+  "intentline_advisory": {
+    "advisory": true,
+    "check_links": {
+      "R1": [
+        {
+          "argv": [
+            "/opt/homebrew/Cellar/python@3.14/3.14.8_2/Frameworks/Python.framework/Versions/3.14/bin/python3.14",
+            "-B",
+            "-c",
+            "from app import process; assert process({'nodes': ['z', 'a'], 'edges': []}) == {'order': ['z', 'a']}"
+          ],
+          "index": 0
+        },
+        {
+          "argv": [
+            "/opt/homebrew/Cellar/python@3.14/3.14.8_2/Frameworks/Python.framework/Versions/3.14/bin/python3.14",
+            "-B",
+            "-m",
+            "unittest",
+            "discover",
+            "-s",
+            "tests"
+          ],
+          "index": 1
+        }
+      ],
+      "R2": [
+        {
+          "argv": [
+            "/opt/homebrew/Cellar/python@3.14/3.14.8_2/Frameworks/Python.framework/Versions/3.14/bin/python3.14",
+            "-B",
+            "-m",
+            "unittest",
+            "discover",
+            "-s",
+            "tests"
+          ],
+          "index": 1
+        }
+      ],
+      "R3": [
+        {
+          "argv": [
+            "/opt/homebrew/Cellar/python@3.14/3.14.8_2/Frameworks/Python.framework/Versions/3.14/bin/python3.14",
+            "-B",
+            "-m",
+            "unittest",
+            "discover",
+            "-s",
+            "tests"
+          ],
+          "index": 1
+        }
+      ],
+      "R4": [
+        {
+          "argv": [
+            "/opt/homebrew/Cellar/python@3.14/3.14.8_2/Frameworks/Python.framework/Versions/3.14/bin/python3.14",
+            "-B",
+            "-m",
+            "unittest",
+            "discover",
+            "-s",
+            "tests"
+          ],
+          "index": 1
+        }
+      ],
+      "R5": [
+        {
+          "argv": [
+            "/opt/homebrew/Cellar/python@3.14/3.14.8_2/Frameworks/Python.framework/Versions/3.14/bin/python3.14",
+            "-B",
+            "-m",
+            "unittest",
+            "discover",
+            "-s",
+            "tests"
+          ],
+          "index": 1
+        }
+      ],
+      "R6": [
+        {
+          "argv": [
+            "/opt/homebrew/Cellar/python@3.14/3.14.8_2/Frameworks/Python.framework/Versions/3.14/bin/python3.14",
+            "-B",
+            "-m",
+            "unittest",
+            "discover",
+            "-s",
+            "tests"
+          ],
+          "index": 1
+        }
+      ],
+      "R7": [
+        {
+          "argv": [
+            "/opt/homebrew/Cellar/python@3.14/3.14.8_2/Frameworks/Python.framework/Versions/3.14/bin/python3.14",
+            "-B",
+            "-m",
+            "unittest",
+            "discover",
+            "-s",
+            "tests"
+          ],
+          "index": 1
+        }
+      ]
+    },
+    "constraints": [
+      {
+        "basis": "request",
+        "scope": "All implementation changes",
+        "source_refs": [
+          {
+            "line_end": 14,
+            "line_start": 13,
+            "quote": "response and unsupported-argument behavior; keep cli.py unchanged. Extra object\nkeys are allowed. Update a stale test expectation if it contradicts this request.",
+            "source_id": "S1"
+          }
+        ],
+        "statement": "Keep cli.py unchanged."
+      }
+    ],
+    "contract_id": "dependency-order-combined",
+    "contract_sha256": "af7dd3a06a6177c025e1431b5d141e7648c80942875e706626654fde95c92ed0",
+    "coverage_completeness": "UNKNOWN",
+    "evidence_gaps": [],
+    "execution_authority": "not_established",
+    "export_authority": "unapproved",
+    "export_format": "json",
+    "export_manifest_sha256": "546321f396b6e9fe645fd90d761c0c2a37f5841a1fe5cac2882a7043e4bfa159",
+    "external_caller_approval": "not_supplied_or_authenticated",
+    "intended_outcome": "Stable dependency ordering with strict validation, consistent service and CLI behavior, ordered batch processing and immutable inputs.",
+    "out_of_scope": [],
+    "record": "intentline.advisory-input",
+    "requirements": [
+      {
+        "basis": "request",
+        "boundaries": [
+          "Empty nodes and edges yield empty order.",
+          "Repeated edges have no effect.",
+          "Never sort names; newly eligible earlier nodes outrank later waiting nodes."
+        ],
+        "evidence_gap_reasons": [],
+        "id": "R1",
+        "oracle": "For nodes ['a','b','c'] and edge ['b','a'], order is ['b','a','c']; a FIFO queue could wrongly return ['b','c','a'].",
+        "plan_state": "planned",
+        "planned_evidence": "Unit tests with explicit expected orders, duplicate edges, empty graphs and exhaustive small-graph permutation oracle.",
+        "seam": "app.process",
+        "source_refs": [
+          {
+            "line_end": 5,
+            "line_start": 1,
+            "quote": "Implement stable dependency ordering for {\"nodes\": [name, ...],\n\"edges\": [[before, after], ...]}. Names are nonempty strings and nodes unique.\nEdges must reference declared nodes. Repeated identical edges have no effect.\nAt EACH step choose the earliest node in the ORIGINAL nodes list whose\ndependencies are already emitted. Return {\"order\": [names]}.",
+            "source_id": "S1"
+          },
+          {
+            "line_end": 7,
+            "line_start": 7,
+            "quote": "cycles, with ValueError. Empty nodes/edges are allowed. Never sort by name.",
+            "source_id": "S1"
+          }
+        ],
+        "statement": "Return dependency order, choosing the earliest eligible node in the original node list at each step."
+      },
+      {
+        "basis": "request",
+        "boundaries": [
+          "Require object containing list nodes and list edges.",
+          "Node names are unique nonempty strings.",
+          "Each edge has two declared node names.",
+          "Disconnected cycles also fail."
+        ],
+        "evidence_gap_reasons": [],
+        "id": "R2",
+        "oracle": "Missing fields, duplicate/empty/non-string names, dangling or malformed edges and a disconnected cycle all raise ValueError; a graph traversal that only checks one component can miss a cycle.",
+        "plan_state": "planned",
+        "planned_evidence": "Unit tests for invalid record shapes, names, endpoints, self-loops and disconnected cycles.",
+        "seam": "app.process",
+        "source_refs": [
+          {
+            "line_end": 3,
+            "line_start": 1,
+            "quote": "Implement stable dependency ordering for {\"nodes\": [name, ...],\n\"edges\": [[before, after], ...]}. Names are nonempty strings and nodes unique.\nEdges must reference declared nodes. Repeated identical edges have no effect.",
+            "source_id": "S1"
+          },
+          {
+            "line_end": 7,
+            "line_start": 6,
+            "quote": "Reject malformed records, self-loops and ANY cycle, including disconnected\ncycles, with ValueError. Empty nodes/edges are allowed. Never sort by name.",
+            "source_id": "S1"
+          },
+          {
+            "line_end": 14,
+            "line_start": 14,
+            "quote": "keys are allowed. Update a stale test expectation if it contradicts this request.",
+            "source_id": "S1"
+          }
+        ],
+        "statement": "Reject malformed records, self-loops and all cycles with ValueError; allow extra object keys."
+      },
+      {
+        "basis": "request",
+        "boundaries": [
+          "Valid JSON emits the same order.",
+          "Invalid records follow the existing CLI error path."
+        ],
+        "evidence_gap_reasons": [],
+        "id": "R3",
+        "oracle": "The same valid graph returns identical objects through both APIs and decoded CLI output; a bypassing wrapper could drift.",
+        "plan_state": "planned",
+        "planned_evidence": "API parity tests and CLI subprocess success/error checks.",
+        "seam": "service.handle and cli.py subprocess",
+        "source_refs": [
+          {
+            "line_end": 10,
+            "line_start": 9,
+            "quote": "Expose the same behavior through app.process, service.handle and the existing\nJSON stdin/stdout CLI. Add service.batch(payloads): return each process result",
+            "source_id": "S1"
+          }
+        ],
+        "statement": "Expose the same graph processing through service.handle and the existing JSON stdin/stdout CLI."
+      },
+      {
+        "basis": "request",
+        "boundaries": [
+          "Empty list yields empty list.",
+          "Invalid members fail even after valid members.",
+          "Batch keeps member order."
+        ],
+        "evidence_gap_reasons": [],
+        "id": "R4",
+        "oracle": "A two-graph batch yields its two independently expected results in input order; a sorted or partially returned batch violates the request.",
+        "plan_state": "planned",
+        "planned_evidence": "Batch unit tests for empty, ordered, non-list and invalid-member inputs.",
+        "seam": "service.batch",
+        "source_refs": [
+          {
+            "line_end": 11,
+            "line_start": 10,
+            "quote": "JSON stdin/stdout CLI. Add service.batch(payloads): return each process result\nin input order; reject a non-list or any invalid member with ValueError.",
+            "source_id": "S1"
+          }
+        ],
+        "statement": "Add service.batch accepting a list and returning process results in input order; reject non-list payloads or any invalid member with ValueError."
+      },
+      {
+        "basis": "request",
+        "boundaries": [
+          "Covers nested graph data, extra keys, service wrappers and batch members.",
+          "Failures must leave original data intact."
+        ],
+        "evidence_gap_reasons": [],
+        "id": "R5",
+        "oracle": "Deep copies before and after successful and rejected calls are equal; in-place sorting or adjacency edits would violate this.",
+        "plan_state": "planned",
+        "planned_evidence": "Snapshot unit tests for valid graphs and failures, including a batch with an invalid later member.",
+        "seam": "app.process, service.handle, service.batch",
+        "source_refs": [
+          {
+            "line_end": 12,
+            "line_start": 12,
+            "quote": "Do not mutate any input, including on errors. Preserve the exact CLI --version",
+            "source_id": "S1"
+          }
+        ],
+        "statement": "Do not mutate any input, including on errors."
+      },
+      {
+        "basis": "request",
+        "boundaries": [
+          "Version remains stdout api-v1 newline, exit 0 and empty stderr.",
+          "Unsupported arguments remain stderr ERROR: unsupported arguments newline, exit 2 and empty stdout."
+        ],
+        "evidence_gap_reasons": [],
+        "id": "R6",
+        "oracle": "Compare original CLI bytes and fixed subprocess output tuples; general argument parsing changes could alter compatibility.",
+        "plan_state": "planned",
+        "planned_evidence": "Original-byte comparison and subprocess compatibility unit tests.",
+        "seam": "cli.py and its bytes",
+        "source_refs": [
+          {
+            "line_end": 14,
+            "line_start": 12,
+            "quote": "Do not mutate any input, including on errors. Preserve the exact CLI --version\nresponse and unsupported-argument behavior; keep cli.py unchanged. Extra object\nkeys are allowed. Update a stale test expectation if it contradicts this request.",
+            "source_id": "S1"
+          }
+        ],
+        "statement": "Preserve exact CLI --version response and unsupported-argument behavior and keep cli.py unchanged."
+      },
+      {
+        "basis": "request",
+        "boundaries": [
+          "Existing independent-node example must expect ['z','a']."
+        ],
+        "evidence_gap_reasons": [],
+        "id": "R7",
+        "oracle": "The explicit request gives ['z','a'] for nodes ['z','a'] and no edges; the stale test currently asserts name sorting.",
+        "plan_state": "planned",
+        "planned_evidence": "Update the example assertion and run unittest discovery.",
+        "seam": "tests/test_example.py",
+        "source_refs": [
+          {
+            "line_end": 14,
+            "line_start": 14,
+            "quote": "keys are allowed. Update a stale test expectation if it contradicts this request.",
+            "source_id": "S1"
+          }
+        ],
+        "statement": "Update the stale test expectation if it contradicts the requested original-list ordering."
+      }
+    ],
+    "revision": 1,
+    "schema_version": 1,
+    "source_bundle_sha256": "bb57da87b795f8758bc95ea9a0fbf76d444b4d0a70f299c2f48ffb2b64f92aa1",
+    "source_sha256": "28048df96119c5f6e2fd73c8909ed9424b063cd92cd2de1496d5f11e68c090e3"
+  },
+  "kind": "bounded_local_check",
+  "limits": {
+    "check_seconds": 30,
+    "model_dispatches": 0,
+    "seconds": 631.0135359172709
+  },
+  "merged": false,
+  "model_dispatches": 0,
+  "observations": [
+    {
+      "argv": [
+        "/opt/homebrew/Cellar/python@3.14/3.14.8_2/Frameworks/Python.framework/Versions/3.14/bin/python3.14",
+        "-B",
+        "-c",
+        "from app import process; assert process({'nodes': ['z', 'a'], 'edges': []}) == {'order': ['z', 'a']}"
+      ],
+      "elapsed_seconds": 0.13301495788618922,
+      "receipt_ref": "receipts/check-000.json",
+      "receipt_sha256": "3e049653ea421985bb4e61fb21113810fe5c97793d4014b8333200cd428dc87e",
+      "receipts": [
+        {
+          "argv": [
+            "/opt/homebrew/bin/codex",
+            "--no-daemon",
+            "-c",
+            "permissions.proofline_s0_8908541eaa234173873314fdca744998={\"filesystem\"={\":minimal\"=\"read\",\"/opt/homebrew/Cellar/python@3.14/3.14.8_2/Frameworks/Python.framework/Versions/3.14\"=\"read\",\"/opt/homebrew/opt/python@3.14/Frameworks/Python.framework/Versions/3.14\"=\"read\",\"/opt/homebrew/opt/python@3.14/bin/python3.14\"=\"read\",\"/opt/homebrew/Cellar/python@3.14/3.14.8_2/Frameworks/Python.framework/Versions/3.14/bin/python3.14\"=\"read\",\"/Users/grove/projects/proofline/.proofline/issue16-matched-v5-20261013/assignments/11-dependency-order-combined/check/inputs\"=\"read\",\"/Users/grove/projects/proofline/.proofline/issue16-matched-v5-20261013/assignments/11-dependency-order-combined/check/check-0\"=\"write\",\"/Users/grove/projects/proofline/.proofline/issue16-matched-v5-20261013/assignments/11-dependency-order-combined/check/private\"=\"deny\",\"/opt/homebrew\"=\"read\",\"/Library/Developer/CommandLineTools/usr/bin\"=\"read\",\"/Library/Developer/CommandLineTools/usr/libexec/git-core\"=\"read\"},\"network\"={\"enabled\"=false}}",
+            "sandbox",
+            "--permission-profile",
+            "proofline_s0_8908541eaa234173873314fdca744998",
+            "--include-managed-config",
+            "--cd",
+            "/Users/grove/projects/proofline/.proofline/issue16-matched-v5-20261013/assignments/11-dependency-order-combined/check/check-0",
+            "--",
+            "/opt/homebrew/Cellar/python@3.14/3.14.8_2/Frameworks/Python.framework/Versions/3.14/bin/python3.14",
+            "-I",
+            "-B",
+            "-c",
+            "import json,os,sys; a=json.loads(sys.argv[1]); os.execv(a[0],a)",
+            "[\"/opt/homebrew/Cellar/python@3.14/3.14.8_2/Frameworks/Python.framework/Versions/3.14/bin/python3.14\", \"-I\", \"-B\", \"-c\", \"import json,os,sys\\ntry:\\n    os.chdir(sys.argv[1])\\n    os.environ[\\\"PYTHONDONTWRITEBYTECODE\\\"]=\\\"1\\\"\\n    argv=json.loads(sys.argv[2])\\n    os.execvpe(argv[0],argv,os.environ)\\nexcept OSError as error:\\n    print(\\\"Proofline check launch unavailable: \\\"+str(error),file=sys.stderr)\\n    sys.exit(127)\\n\", \"/Users/grove/projects/proofline/.proofline/issue16-matched-v5-20261013/assignments/11-dependency-order-combined/check/inputs/product\", \"[\\\"/opt/homebrew/Cellar/python@3.14/3.14.8_2/Frameworks/Python.framework/Versions/3.14/bin/python3.14\\\", \\\"-B\\\", \\\"-c\\\", \\\"from app import process; assert process({'nodes': ['z', 'a'], 'edges': []}) == {'order': ['z', 'a']}\\\"]\"]"
+          ],
+          "cwd": "/Users/grove/projects/proofline/.proofline/issue16-matched-v5-20261013/assignments/11-dependency-order-combined/check/check-0",
+          "elapsed_seconds": 0.13252,
+          "exit_code": 0,
+          "invocation_id": "b96b5bb7-3179-4c37-8a0a-14075233ed97",
+          "kind": "process_probe",
+          "stderr": "",
+          "stdout": "",
+          "timed_out": false
+        }
+      ],
+      "returncode": 0,
+      "status": "PASSED"
+    },
+    {
+      "argv": [
+        "/opt/homebrew/Cellar/python@3.14/3.14.8_2/Frameworks/Python.framework/Versions/3.14/bin/python3.14",
+        "-B",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "tests"
+      ],
+      "elapsed_seconds": 0.5901215830817819,
+      "receipt_ref": "receipts/check-001.json",
+      "receipt_sha256": "6d355d3775ea21328ef1dcbc8351c32491841a62b76d46ebcead274d4db208b4",
+      "receipts": [
+        {
+          "argv": [
+            "/opt/homebrew/bin/codex",
+            "--no-daemon",
+            "-c",
+            "permissions.proofline_s0_0afc792ab26542f2bac84fa23774488d={\"filesystem\"={\":minimal\"=\"read\",\"/opt/homebrew/Cellar/python@3.14/3.14.8_2/Frameworks/Python.framework/Versions/3.14\"=\"read\",\"/opt/homebrew/opt/python@3.14/Frameworks/Python.framework/Versions/3.14\"=\"read\",\"/opt/homebrew/opt/python@3.14/bin/python3.14\"=\"read\",\"/opt/homebrew/Cellar/python@3.14/3.14.8_2/Frameworks/Python.framework/Versions/3.14/bin/python3.14\"=\"read\",\"/Users/grove/projects/proofline/.proofline/issue16-matched-v5-20261013/assignments/11-dependency-order-combined/check/inputs\"=\"read\",\"/Users/grove/projects/proofline/.proofline/issue16-matched-v5-20261013/assignments/11-dependency-order-combined/check/check-1\"=\"write\",\"/Users/grove/projects/proofline/.proofline/issue16-matched-v5-20261013/assignments/11-dependency-order-combined/check/private\"=\"deny\",\"/opt/homebrew\"=\"read\",\"/Library/Developer/CommandLineTools/usr/bin\"=\"read\",\"/Library/Developer/CommandLineTools/usr/libexec/git-core\"=\"read\"},\"network\"={\"enabled\"=false}}",
+            "sandbox",
+            "--permission-profile",
+            "proofline_s0_0afc792ab26542f2bac84fa23774488d",
+            "--include-managed-config",
+            "--cd",
+            "/Users/grove/projects/proofline/.proofline/issue16-matched-v5-20261013/assignments/11-dependency-order-combined/check/check-1",
+            "--",
+            "/opt/homebrew/Cellar/python@3.14/3.14.8_2/Frameworks/Python.framework/Versions/3.14/bin/python3.14",
+            "-I",
+            "-B",
+            "-c",
+            "import json,os,sys; a=json.loads(sys.argv[1]); os.execv(a[0],a)",
+            "[\"/opt/homebrew/Cellar/python@3.14/3.14.8_2/Frameworks/Python.framework/Versions/3.14/bin/python3.14\", \"-I\", \"-B\", \"-c\", \"import json,os,sys\\ntry:\\n    os.chdir(sys.argv[1])\\n    os.environ[\\\"PYTHONDONTWRITEBYTECODE\\\"]=\\\"1\\\"\\n    argv=json.loads(sys.argv[2])\\n    os.execvpe(argv[0],argv,os.environ)\\nexcept OSError as error:\\n    print(\\\"Proofline check launch unavailable: \\\"+str(error),file=sys.stderr)\\n    sys.exit(127)\\n\", \"/Users/grove/projects/proofline/.proofline/issue16-matched-v5-20261013/assignments/11-dependency-order-combined/check/inputs/product\", \"[\\\"/opt/homebrew/Cellar/python@3.14/3.14.8_2/Frameworks/Python.framework/Versions/3.14/bin/python3.14\\\", \\\"-B\\\", \\\"-m\\\", \\\"unittest\\\", \\\"discover\\\", \\\"-s\\\", \\\"tests\\\"]\"]"
+          ],
+          "cwd": "/Users/grove/projects/proofline/.proofline/issue16-matched-v5-20261013/assignments/11-dependency-order-combined/check/check-1",
+          "elapsed_seconds": 0.58967,
+          "exit_code": 0,
+          "invocation_id": "ed14c10d-3f97-4353-8801-409949ef9cd5",
+          "kind": "process_probe",
+          "stderr": "............\n----------------------------------------------------------------------\nRan 12 tests in 0.370s\n\nOK\n",
+          "stdout": "",
+          "timed_out": false
+        }
+      ],
+      "returncode": 0,
+      "status": "PASSED"
+    }
+  ],
+  "original_source_ref": "inputs/source.md",
+  "promise_evidence": {
+    "candidate_commit": "222c9ebaf39cdec705456db040d0931831d3c830",
+    "candidate_tree": "bbc364f70aa5e40f134022a65d12d3034ab4f787",
+    "coverage_completeness": "UNKNOWN",
+    "intentline": {
+      "constraints": [
+        {
+          "basis": "request",
+          "scope": "All implementation changes",
+          "source_refs": [
+            {
+              "line_end": 14,
+              "line_start": 13,
+              "quote": "response and unsupported-argument behavior; keep cli.py unchanged. Extra object\nkeys are allowed. Update a stale test expectation if it contradicts this request.",
+              "source_id": "S1"
+            }
+          ],
+          "statement": "Keep cli.py unchanged."
+        }
+      ],
+      "contract_id": "dependency-order-combined",
+      "contract_sha256": "af7dd3a06a6177c025e1431b5d141e7648c80942875e706626654fde95c92ed0",
+      "evidence_gaps": [],
+      "execution_authority": "not_established",
+      "export_authority": "unapproved",
+      "export_manifest_sha256": "546321f396b6e9fe645fd90d761c0c2a37f5841a1fe5cac2882a7043e4bfa159",
+      "external_caller_approval": "not_supplied_or_authenticated",
+      "intended_outcome": "Stable dependency ordering with strict validation, consistent service and CLI behavior, ordered batch processing and immutable inputs.",
+      "out_of_scope": [],
+      "revision": 1,
+      "scope": "Untrusted advisory planning data, not executable tests, proof or consent.",
+      "source_bundle_sha256": "bb57da87b795f8758bc95ea9a0fbf76d444b4d0a70f299c2f48ffb2b64f92aa1",
+      "source_sha256": "28048df96119c5f6e2fd73c8909ed9424b063cd92cd2de1496d5f11e68c090e3"
+    },
+    "original_source_ref": "inputs/source.md",
+    "requirements": [
+      {
+        "id": "R1",
+        "intentline_planning": {
+          "authority": "unverified original-source-grounded proposal",
+          "basis": "request",
+          "boundaries": [
+            "Empty nodes and edges yield empty order.",
+            "Repeated edges have no effect.",
+            "Never sort names; newly eligible earlier nodes outrank later waiting nodes."
+          ],
+          "evidence_gap_reasons": [],
+          "plan_state": "planned",
+          "planned_evidence": "Unit tests with explicit expected orders, duplicate edges, empty graphs and exhaustive small-graph permutation oracle.",
+          "seam": "app.process"
+        },
+        "kind": "outcome",
+        "linked_checks": [
+          {
+            "argv": [
+              "/opt/homebrew/Cellar/python@3.14/3.14.8_2/Frameworks/Python.framework/Versions/3.14/bin/python3.14",
+              "-B",
+              "-c",
+              "from app import process; assert process({'nodes': ['z', 'a'], 'edges': []}) == {'order': ['z', 'a']}"
+            ],
+            "index": 0,
+            "observation_status": "PASSED",
+            "receipt_ref": "receipts/check-000.json"
+          },
+          {
+            "argv": [
+              "/opt/homebrew/Cellar/python@3.14/3.14.8_2/Frameworks/Python.framework/Versions/3.14/bin/python3.14",
+              "-B",
+              "-m",
+              "unittest",
+              "discover",
+              "-s",
+              "tests"
+            ],
+            "index": 1,
+            "observation_status": "PASSED",
+            "receipt_ref": "receipts/check-001.json"
+          }
+        ],
+        "oracle_authority": "unverified caller suggestion",
+        "proposed_oracle": "For nodes ['a','b','c'] and edge ['b','a'], order is ['b','a','c']; a FIFO queue could wrongly return ['b','c','a'].",
+        "reason": "Selected commands passed; linked behaviors are not proven in full",
+        "source_refs": [
+          {
+            "line_end": 5,
+            "line_start": 1,
+            "quote": "Implement stable dependency ordering for {\"nodes\": [name, ...],\n\"edges\": [[before, after], ...]}. Names are nonempty strings and nodes unique.\nEdges must reference declared nodes. Repeated identical edges have no effect.\nAt EACH step choose the earliest node in the ORIGINAL nodes list whose\ndependencies are already emitted. Return {\"order\": [names]}.",
+            "source_id": "S1"
+          },
+          {
+            "line_end": 7,
+            "line_start": 7,
+            "quote": "cycles, with ValueError. Empty nodes/edges are allowed. Never sort by name.",
+            "source_id": "S1"
+          }
+        ],
+        "statement": "Return dependency order, choosing the earliest eligible node in the original node list at each step.",
+        "status": "LINKED CHECKS PASSED (limited evidence)"
+      },
+      {
+        "id": "R2",
+        "intentline_planning": {
+          "authority": "unverified original-source-grounded proposal",
+          "basis": "request",
+          "boundaries": [
+            "Require object containing list nodes and list edges.",
+            "Node names are unique nonempty strings.",
+            "Each edge has two declared node names.",
+            "Disconnected cycles also fail."
+          ],
+          "evidence_gap_reasons": [],
+          "plan_state": "planned",
+          "planned_evidence": "Unit tests for invalid record shapes, names, endpoints, self-loops and disconnected cycles.",
+          "seam": "app.process"
+        },
+        "kind": "outcome",
+        "linked_checks": [
+          {
+            "argv": [
+              "/opt/homebrew/Cellar/python@3.14/3.14.8_2/Frameworks/Python.framework/Versions/3.14/bin/python3.14",
+              "-B",
+              "-m",
+              "unittest",
+              "discover",
+              "-s",
+              "tests"
+            ],
+            "index": 1,
+            "observation_status": "PASSED",
+            "receipt_ref": "receipts/check-001.json"
+          }
+        ],
+        "oracle_authority": "unverified caller suggestion",
+        "proposed_oracle": "Missing fields, duplicate/empty/non-string names, dangling or malformed edges and a disconnected cycle all raise ValueError; a graph traversal that only checks one component can miss a cycle.",
+        "reason": "Selected commands passed; linked behaviors are not proven in full",
+        "source_refs": [
+          {
+            "line_end": 3,
+            "line_start": 1,
+            "quote": "Implement stable dependency ordering for {\"nodes\": [name, ...],\n\"edges\": [[before, after], ...]}. Names are nonempty strings and nodes unique.\nEdges must reference declared nodes. Repeated identical edges have no effect.",
+            "source_id": "S1"
+          },
+          {
+            "line_end": 7,
+            "line_start": 6,
+            "quote": "Reject malformed records, self-loops and ANY cycle, including disconnected\ncycles, with ValueError. Empty nodes/edges are allowed. Never sort by name.",
+            "source_id": "S1"
+          },
+          {
+            "line_end": 14,
+            "line_start": 14,
+            "quote": "keys are allowed. Update a stale test expectation if it contradicts this request.",
+            "source_id": "S1"
+          }
+        ],
+        "statement": "Reject malformed records, self-loops and all cycles with ValueError; allow extra object keys.",
+        "status": "LINKED CHECKS PASSED (limited evidence)"
+      },
+      {
+        "id": "R3",
+        "intentline_planning": {
+          "authority": "unverified original-source-grounded proposal",
+          "basis": "request",
+          "boundaries": [
+            "Valid JSON emits the same order.",
+            "Invalid records follow the existing CLI error path."
+          ],
+          "evidence_gap_reasons": [],
+          "plan_state": "planned",
+          "planned_evidence": "API parity tests and CLI subprocess success/error checks.",
+          "seam": "service.handle and cli.py subprocess"
+        },
+        "kind": "outcome",
+        "linked_checks": [
+          {
+            "argv": [
+              "/opt/homebrew/Cellar/python@3.14/3.14.8_2/Frameworks/Python.framework/Versions/3.14/bin/python3.14",
+              "-B",
+              "-m",
+              "unittest",
+              "discover",
+              "-s",
+              "tests"
+            ],
+            "index": 1,
+            "observation_status": "PASSED",
+            "receipt_ref": "receipts/check-001.json"
+          }
+        ],
+        "oracle_authority": "unverified caller suggestion",
+        "proposed_oracle": "The same valid graph returns identical objects through both APIs and decoded CLI output; a bypassing wrapper could drift.",
+        "reason": "Selected commands passed; linked behaviors are not proven in full",
+        "source_refs": [
+          {
+            "line_end": 10,
+            "line_start": 9,
+            "quote": "Expose the same behavior through app.process, service.handle and the existing\nJSON stdin/stdout CLI. Add service.batch(payloads): return each process result",
+            "source_id": "S1"
+          }
+        ],
+        "statement": "Expose the same graph processing through service.handle and the existing JSON stdin/stdout CLI.",
+        "status": "LINKED CHECKS PASSED (limited evidence)"
+      },
+      {
+        "id": "R4",
+        "intentline_planning": {
+          "authority": "unverified original-source-grounded proposal",
+          "basis": "request",
+          "boundaries": [
+            "Empty list yields empty list.",
+            "Invalid members fail even after valid members.",
+            "Batch keeps member order."
+          ],
+          "evidence_gap_reasons": [],
+          "plan_state": "planned",
+          "planned_evidence": "Batch unit tests for empty, ordered, non-list and invalid-member inputs.",
+          "seam": "service.batch"
+        },
+        "kind": "outcome",
+        "linked_checks": [
+          {
+            "argv": [
+              "/opt/homebrew/Cellar/python@3.14/3.14.8_2/Frameworks/Python.framework/Versions/3.14/bin/python3.14",
+              "-B",
+              "-m",
+              "unittest",
+              "discover",
+              "-s",
+              "tests"
+            ],
+            "index": 1,
+            "observation_status": "PASSED",
+            "receipt_ref": "receipts/check-001.json"
+          }
+        ],
+        "oracle_authority": "unverified caller suggestion",
+        "proposed_oracle": "A two-graph batch yields its two independently expected results in input order; a sorted or partially returned batch violates the request.",
+        "reason": "Selected commands passed; linked behaviors are not proven in full",
+        "source_refs": [
+          {
+            "line_end": 11,
+            "line_start": 10,
+            "quote": "JSON stdin/stdout CLI. Add service.batch(payloads): return each process result\nin input order; reject a non-list or any invalid member with ValueError.",
+            "source_id": "S1"
+          }
+        ],
+        "statement": "Add service.batch accepting a list and returning process results in input order; reject non-list payloads or any invalid member with ValueError.",
+        "status": "LINKED CHECKS PASSED (limited evidence)"
+      },
+      {
+        "id": "R5",
+        "intentline_planning": {
+          "authority": "unverified original-source-grounded proposal",
+          "basis": "request",
+          "boundaries": [
+            "Covers nested graph data, extra keys, service wrappers and batch members.",
+            "Failures must leave original data intact."
+          ],
+          "evidence_gap_reasons": [],
+          "plan_state": "planned",
+          "planned_evidence": "Snapshot unit tests for valid graphs and failures, including a batch with an invalid later member.",
+          "seam": "app.process, service.handle, service.batch"
+        },
+        "kind": "outcome",
+        "linked_checks": [
+          {
+            "argv": [
+              "/opt/homebrew/Cellar/python@3.14/3.14.8_2/Frameworks/Python.framework/Versions/3.14/bin/python3.14",
+              "-B",
+              "-m",
+              "unittest",
+              "discover",
+              "-s",
+              "tests"
+            ],
+            "index": 1,
+            "observation_status": "PASSED",
+            "receipt_ref": "receipts/check-001.json"
+          }
+        ],
+        "oracle_authority": "unverified caller suggestion",
+        "proposed_oracle": "Deep copies before and after successful and rejected calls are equal; in-place sorting or adjacency edits would violate this.",
+        "reason": "Selected commands passed; linked behaviors are not proven in full",
+        "source_refs": [
+          {
+            "line_end": 12,
+            "line_start": 12,
+            "quote": "Do not mutate any input, including on errors. Preserve the exact CLI --version",
+            "source_id": "S1"
+          }
+        ],
+        "statement": "Do not mutate any input, including on errors.",
+        "status": "LINKED CHECKS PASSED (limited evidence)"
+      },
+      {
+        "id": "R6",
+        "intentline_planning": {
+          "authority": "unverified original-source-grounded proposal",
+          "basis": "request",
+          "boundaries": [
+            "Version remains stdout api-v1 newline, exit 0 and empty stderr.",
+            "Unsupported arguments remain stderr ERROR: unsupported arguments newline, exit 2 and empty stdout."
+          ],
+          "evidence_gap_reasons": [],
+          "plan_state": "planned",
+          "planned_evidence": "Original-byte comparison and subprocess compatibility unit tests.",
+          "seam": "cli.py and its bytes"
+        },
+        "kind": "outcome",
+        "linked_checks": [
+          {
+            "argv": [
+              "/opt/homebrew/Cellar/python@3.14/3.14.8_2/Frameworks/Python.framework/Versions/3.14/bin/python3.14",
+              "-B",
+              "-m",
+              "unittest",
+              "discover",
+              "-s",
+              "tests"
+            ],
+            "index": 1,
+            "observation_status": "PASSED",
+            "receipt_ref": "receipts/check-001.json"
+          }
+        ],
+        "oracle_authority": "unverified caller suggestion",
+        "proposed_oracle": "Compare original CLI bytes and fixed subprocess output tuples; general argument parsing changes could alter compatibility.",
+        "reason": "Selected commands passed; linked behaviors are not proven in full",
+        "source_refs": [
+          {
+            "line_end": 14,
+            "line_start": 12,
+            "quote": "Do not mutate any input, including on errors. Preserve the exact CLI --version\nresponse and unsupported-argument behavior; keep cli.py unchanged. Extra object\nkeys are allowed. Update a stale test expectation if it contradicts this request.",
+            "source_id": "S1"
+          }
+        ],
+        "statement": "Preserve exact CLI --version response and unsupported-argument behavior and keep cli.py unchanged.",
+        "status": "LINKED CHECKS PASSED (limited evidence)"
+      },
+      {
+        "id": "R7",
+        "intentline_planning": {
+          "authority": "unverified original-source-grounded proposal",
+          "basis": "request",
+          "boundaries": [
+            "Existing independent-node example must expect ['z','a']."
+          ],
+          "evidence_gap_reasons": [],
+          "plan_state": "planned",
+          "planned_evidence": "Update the example assertion and run unittest discovery.",
+          "seam": "tests/test_example.py"
+        },
+        "kind": "outcome",
+        "linked_checks": [
+          {
+            "argv": [
+              "/opt/homebrew/Cellar/python@3.14/3.14.8_2/Frameworks/Python.framework/Versions/3.14/bin/python3.14",
+              "-B",
+              "-m",
+              "unittest",
+              "discover",
+              "-s",
+              "tests"
+            ],
+            "index": 1,
+            "observation_status": "PASSED",
+            "receipt_ref": "receipts/check-001.json"
+          }
+        ],
+        "oracle_authority": "unverified caller suggestion",
+        "proposed_oracle": "The explicit request gives ['z','a'] for nodes ['z','a'] and no edges; the stale test currently asserts name sorting.",
+        "reason": "Selected commands passed; linked behaviors are not proven in full",
+        "source_refs": [
+          {
+            "line_end": 14,
+            "line_start": 14,
+            "quote": "keys are allowed. Update a stale test expectation if it contradicts this request.",
+            "source_id": "S1"
+          }
+        ],
+        "statement": "Update the stale test expectation if it contradicts the requested original-list ordering.",
+        "status": "LINKED CHECKS PASSED (limited evidence)"
+      }
+    ],
+    "same_agent_review": {
+      "authority": "unverified advisory review; may omit original promises",
+      "independent": false,
+      "proposals": [],
+      "reported_performed": false
+    },
+    "scope": "Only explicitly mapped requirements/commands; all original source remains authoritative.",
+    "snapshot_sha256": "c9aa0016132135d231d40d7e5d7542386e3fb8a2159fe608d97650cbdb1f4b2a",
+    "source_sha256": "28048df96119c5f6e2fd73c8909ed9424b063cd92cd2de1496d5f11e68c090e3"
+  },
+  "promise_mapping": {
+    "requirements": [
+      {
+        "checks": [
+          {
+            "argv": [
+              "/opt/homebrew/Cellar/python@3.14/3.14.8_2/Frameworks/Python.framework/Versions/3.14/bin/python3.14",
+              "-B",
+              "-c",
+              "from app import process; assert process({'nodes': ['z', 'a'], 'edges': []}) == {'order': ['z', 'a']}"
+            ],
+            "index": 0
+          },
+          {
+            "argv": [
+              "/opt/homebrew/Cellar/python@3.14/3.14.8_2/Frameworks/Python.framework/Versions/3.14/bin/python3.14",
+              "-B",
+              "-m",
+              "unittest",
+              "discover",
+              "-s",
+              "tests"
+            ],
+            "index": 1
+          }
+        ],
+        "id": "R1",
+        "kind": "outcome",
+        "oracle": "For nodes ['a','b','c'] and edge ['b','a'], order is ['b','a','c']; a FIFO queue could wrongly return ['b','c','a'].",
+        "source_refs": [
+          {
+            "line_end": 5,
+            "line_start": 1,
+            "quote": "Implement stable dependency ordering for {\"nodes\": [name, ...],\n\"edges\": [[before, after], ...]}. Names are nonempty strings and nodes unique.\nEdges must reference declared nodes. Repeated identical edges have no effect.\nAt EACH step choose the earliest node in the ORIGINAL nodes list whose\ndependencies are already emitted. Return {\"order\": [names]}.",
+            "source_id": "S1"
+          },
+          {
+            "line_end": 7,
+            "line_start": 7,
+            "quote": "cycles, with ValueError. Empty nodes/edges are allowed. Never sort by name.",
+            "source_id": "S1"
+          }
+        ],
+        "statement": "Return dependency order, choosing the earliest eligible node in the original node list at each step."
+      },
+      {
+        "checks": [
+          {
+            "argv": [
+              "/opt/homebrew/Cellar/python@3.14/3.14.8_2/Frameworks/Python.framework/Versions/3.14/bin/python3.14",
+              "-B",
+              "-m",
+              "unittest",
+              "discover",
+              "-s",
+              "tests"
+            ],
+            "index": 1
+          }
+        ],
+        "id": "R2",
+        "kind": "outcome",
+        "oracle": "Missing fields, duplicate/empty/non-string names, dangling or malformed edges and a disconnected cycle all raise ValueError; a graph traversal that only checks one component can miss a cycle.",
+        "source_refs": [
+          {
+            "line_end": 3,
+            "line_start": 1,
+            "quote": "Implement stable dependency ordering for {\"nodes\": [name, ...],\n\"edges\": [[before, after], ...]}. Names are nonempty strings and nodes unique.\nEdges must reference declared nodes. Repeated identical edges have no effect.",
+            "source_id": "S1"
+          },
+          {
+            "line_end": 7,
+            "line_start": 6,
+            "quote": "Reject malformed records, self-loops and ANY cycle, including disconnected\ncycles, with ValueError. Empty nodes/edges are allowed. Never sort by name.",
+            "source_id": "S1"
+          },
+          {
+            "line_end": 14,
+            "line_start": 14,
+            "quote": "keys are allowed. Update a stale test expectation if it contradicts this request.",
+            "source_id": "S1"
+          }
+        ],
+        "statement": "Reject malformed records, self-loops and all cycles with ValueError; allow extra object keys."
+      },
+      {
+        "checks": [
+          {
+            "argv": [
+              "/opt/homebrew/Cellar/python@3.14/3.14.8_2/Frameworks/Python.framework/Versions/3.14/bin/python3.14",
+              "-B",
+              "-m",
+              "unittest",
+              "discover",
+              "-s",
+              "tests"
+            ],
+            "index": 1
+          }
+        ],
+        "id": "R3",
+        "kind": "outcome",
+        "oracle": "The same valid graph returns identical objects through both APIs and decoded CLI output; a bypassing wrapper could drift.",
+        "source_refs": [
+          {
+            "line_end": 10,
+            "line_start": 9,
+            "quote": "Expose the same behavior through app.process, service.handle and the existing\nJSON stdin/stdout CLI. Add service.batch(payloads): return each process result",
+            "source_id": "S1"
+          }
+        ],
+        "statement": "Expose the same graph processing through service.handle and the existing JSON stdin/stdout CLI."
+      },
+      {
+        "checks": [
+          {
+            "argv": [
+              "/opt/homebrew/Cellar/python@3.14/3.14.8_2/Frameworks/Python.framework/Versions/3.14/bin/python3.14",
+              "-B",
+              "-m",
+              "unittest",
+              "discover",
+              "-s",
+              "tests"
+            ],
+            "index": 1
+          }
+        ],
+        "id": "R4",
+        "kind": "outcome",
+        "oracle": "A two-graph batch yields its two independently expected results in input order; a sorted or partially returned batch violates the request.",
+        "source_refs": [
+          {
+            "line_end": 11,
+            "line_start": 10,
+            "quote": "JSON stdin/stdout CLI. Add service.batch(payloads): return each process result\nin input order; reject a non-list or any invalid member with ValueError.",
+            "source_id": "S1"
+          }
+        ],
+        "statement": "Add service.batch accepting a list and returning process results in input order; reject non-list payloads or any invalid member with ValueError."
+      },
+      {
+        "checks": [
+          {
+            "argv": [
+              "/opt/homebrew/Cellar/python@3.14/3.14.8_2/Frameworks/Python.framework/Versions/3.14/bin/python3.14",
+              "-B",
+              "-m",
+              "unittest",
+              "discover",
+              "-s",
+              "tests"
+            ],
+            "index": 1
+          }
+        ],
+        "id": "R5",
+        "kind": "outcome",
+        "oracle": "Deep copies before and after successful and rejected calls are equal; in-place sorting or adjacency edits would violate this.",
+        "source_refs": [
+          {
+            "line_end": 12,
+            "line_start": 12,
+            "quote": "Do not mutate any input, including on errors. Preserve the exact CLI --version",
+            "source_id": "S1"
+          }
+        ],
+        "statement": "Do not mutate any input, including on errors."
+      },
+      {
+        "checks": [
+          {
+            "argv": [
+              "/opt/homebrew/Cellar/python@3.14/3.14.8_2/Frameworks/Python.framework/Versions/3.14/bin/python3.14",
+              "-B",
+              "-m",
+              "unittest",
+              "discover",
+              "-s",
+              "tests"
+            ],
+            "index": 1
+          }
+        ],
+        "id": "R6",
+        "kind": "outcome",
+        "oracle": "Compare original CLI bytes and fixed subprocess output tuples; general argument parsing changes could alter compatibility.",
+        "source_refs": [
+          {
+            "line_end": 14,
+            "line_start": 12,
+            "quote": "Do not mutate any input, including on errors. Preserve the exact CLI --version\nresponse and unsupported-argument behavior; keep cli.py unchanged. Extra object\nkeys are allowed. Update a stale test expectation if it contradicts this request.",
+            "source_id": "S1"
+          }
+        ],
+        "statement": "Preserve exact CLI --version response and unsupported-argument behavior and keep cli.py unchanged."
+      },
+      {
+        "checks": [
+          {
+            "argv": [
+              "/opt/homebrew/Cellar/python@3.14/3.14.8_2/Frameworks/Python.framework/Versions/3.14/bin/python3.14",
+              "-B",
+              "-m",
+              "unittest",
+              "discover",
+              "-s",
+              "tests"
+            ],
+            "index": 1
+          }
+        ],
+        "id": "R7",
+        "kind": "outcome",
+        "oracle": "The explicit request gives ['z','a'] for nodes ['z','a'] and no edges; the stale test currently asserts name sorting.",
+        "source_refs": [
+          {
+            "line_end": 14,
+            "line_start": 14,
+            "quote": "keys are allowed. Update a stale test expectation if it contradicts this request.",
+            "source_id": "S1"
+          }
+        ],
+        "statement": "Update the stale test expectation if it contradicts the requested original-list ordering."
+      }
+    ],
+    "review": {
+      "performed": false,
+      "proposals": []
+    },
+    "schema_version": 1,
+    "source_sha256": "28048df96119c5f6e2fd73c8909ed9424b063cd92cd2de1496d5f11e68c090e3"
+  },
+  "published": false,
+  "python": "/opt/homebrew/Cellar/python@3.14/3.14.8_2/Frameworks/Python.framework/Versions/3.14/bin/python3.14",
+  "schema_version": 1,
+  "selection": {
+    "candidate_commit": "222c9ebaf39cdec705456db040d0931831d3c830",
+    "candidate_tree": "bbc364f70aa5e40f134022a65d12d3034ab4f787",
+    "entries": [
+      {
+        "kind": "file",
+        "mode": 420,
+        "path": "README.md",
+        "sha256": "2738a7f46a227dafc72511acb5d84b9bdfbefa4c2501b6897055ccd92590564e"
+      },
+      {
+        "kind": "file",
+        "mode": 420,
+        "path": "app.py",
+        "sha256": "152b949721ae33a6c2bf2e9eb3c1b3f9c7244cd003c52a8cf260ea55960e66e9"
+      },
+      {
+        "kind": "file",
+        "mode": 420,
+        "path": "cli.py",
+        "sha256": "14aea6a3d7acc1d93b80e079fd645b48e4fef2e976df9ef355cc50829a7c74c8"
+      },
+      {
+        "kind": "file",
+        "mode": 420,
+        "path": "service.py",
+        "sha256": "bccc4167b31129db07a9a59d3e7aa9d20d520cabf760ab75e8bcb40db668b927"
+      },
+      {
+        "kind": "file",
+        "mode": 420,
+        "path": "tests/test_compat.py",
+        "sha256": "2432e53eeae0b53103501bb0cdfbd3dab2446d236503df335ea8a5e5e4171703"
+      },
+      {
+        "kind": "file",
+        "mode": 420,
+        "path": "tests/test_dependency_order.py",
+        "sha256": "5bfa7fd27ad99490563909e74cc5ceedf3ff1a081744749fdc04236c4615fa5c"
+      },
+      {
+        "kind": "file",
+        "mode": 420,
+        "path": "tests/test_example.py",
+        "sha256": "6f6a81018afe2b295f9259d9cbb56b1eaf813da13e46aa9964ec3e1672ab3d28"
+      }
+    ],
+    "policy": "current tracked files plus non-ignored untracked files; tracked deletions omitted"
+  },
+  "snapshot": "c9aa0016132135d231d40d7e5d7542386e3fb8a2159fe608d97650cbdb1f4b2a",
+  "source_sha256": "28048df96119c5f6e2fd73c8909ed9424b063cd92cd2de1496d5f11e68c090e3",
+  "stages": [],
+  "status": "CHECKS PASSED",
+  "version_receipt": {
+    "argv": [
+      "/opt/homebrew/bin/codex",
+      "--version"
+    ],
+    "cwd": "/Users/grove/projects/proofline/.proofline/issue16-matched-v5-20261013/assignments/11-dependency-order-combined/check",
+    "elapsed_seconds": 0.024993,
+    "exit_code": 0,
+    "invocation_id": "755dc540-74ad-4de6-808e-afc67653b09e",
+    "kind": "process_probe",
+    "stderr": "",
+    "stdout": "codex-cli 0.162.1\n",
+    "timed_out": false
+  }
+}

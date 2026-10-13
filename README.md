@@ -317,7 +317,7 @@ PROOFLINE_CORRECTION_LIVE=1 /opt/homebrew/bin/python3.14 -B -m unittest tests.te
 
 Proofline's lean design follows the [S6 abandon/simplify decision](docs/S6-DECISION.md) after repeated false acceptances and an incomplete full pilot. A [small bounded comparison](docs/BOUNDED-COMPARISON.md) found no extra correctness benefit from mandatory review in that sample. The [ordinary-agent baseline](evaluation/results/live-v1-20261013/README.md) and [research archive](docs/RESEARCH-ARCHIVE.md) retain important evidence and limitations; retired `deliver` and `resume` experiments remain in Git history, not the supported runtime. No universal delivery advantage is claimed.
 
-The [issue #16 matched 2×2 preparation](docs/ISSUE16-PREPARATION.md) adds four fresh tasks with untested obligations and stale-oracle cases. Native preflight stopped before any model dispatch; all sixteen assignments remain unexecuted and empirical acceptance is incomplete. It supplies no evidence for making Intentline or any new assurance stage mandatory.
+The [issue #16 matched delivery study](evaluation/results/matched-v5-20261013/README.md) observed all sixteen assignments across four fresh tasks with untested obligations and stale-oracle cases. Every arm delivered 4/4 finite-correct products. Planning-only and combined used 72.9% and 89.1% more episode time than ordinary coding, with no observed delivery benefit. Checks, planning and mapping remain optional. Four tasks cannot establish general superiority; [earlier stopped studies](docs/ISSUE16-V5.md) retain their failures, missing slots and costs separately.
 
 **License:** [Apache 2.0](LICENSE).
 

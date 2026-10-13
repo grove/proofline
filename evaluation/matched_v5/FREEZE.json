@@ -1,7 +1,8 @@
 {
+  "live_dispatch_allowed": false,
+  "retired_reason": "All sixteen assignments observed; original approved declaration and exact source retained in evaluation/results/matched-v5-20261013/frozen-source.zip. No retry or resume.",
   "schema_version": 1,
-  "study": "issue16-matched-v5-20261013",
-  "live_dispatch_allowed": true,
+  "scope": "Fresh 16 assignments; explicit declaration-bound approval required; worker artifact failures count without campaign stops; no prior-study resumption, replacement or pooling.",
   "sha256": {
     "checks/__init__.py": "f0cab0051a0d846f75f4212ab1f99dcd27f13ffd0b79fc07915970227a08f032",
     "checks/candidate_snapshot.py": "9a99a9a93ac33078b3b612d51be3d397561c35103ba5a714f9bc25c0441b2b96",
@@ -56,7 +57,7 @@
     "evaluation/matched_v5/__init__.py": "94ff4188d5b96ee78e8cee5b8bbbd5aceea12aa4450d8126151d03b59b0b3aac",
     "evaluation/matched_v5/model-catalog.json": "2505904543ebfc1dcd3a64727a37def4f43d7d4c92f3bea5ec38d33147c2f67f",
     "evaluation/matched_v5/protocol.json": "04804601899972642a7959df1c8f7b3e4a827cc95840f76bc0cd71a05f14aaf7",
-    "evaluation/matched_v5/study.py": "66b352d198e15bf9a1a80410accd9f0264d60d4e0863cd3d3c6d2d4e4bed2827",
+    "evaluation/matched_v5/study.py": "538c3c7a642f3e45bab9e40d1f2a2d519bc781b2854dd82fd1be00999ac68bcb",
     "evaluation/v1/FREEZE.json": "60e5d60dc43e266a79b232789925aac9d01d19fdb920d89b46f0e8f0a6e7573a",
     "evaluation/v1/README.md": "051103a2c24035d84c0b55bd8d64bf09e5f08c0193ef6184bbc465689ab05665",
     "evaluation/v1/__init__.py": "657b6d46e1c351af7cf359ae5dde73b6f2700b4c76c5303ec44a7b4f4df35f1f",
@@ -68,9 +69,9 @@
     "evaluation/v1/variants.py": "9b049ca26bd3ea9900c2d7d0a084c7c7ded42b60ca01d6c54cd360bc1fc9584c",
     "proofline.py": "670ccf241a0a1f89c566f7ec39daa9873ad5bd4cd2531b9e0ec0bf64b089245a",
     "tests/test_matched_artifacts.py": "2158820b48502d6f7ca7bad4ecd89da39eccff088da08d21fec6b9f84fad541f",
-    "tests/test_matched_results.py": "0cfac87990c78a29b3a5354bf2dd2337e93dc87c8227f321f7c6f9ea46048aab",
+    "tests/test_matched_results.py": "7e97e3bcee14c0827de8bb2b53e93b3930705c4b2f70dfb228c0c33bdffe8c17",
     "tests/test_matched_v3.py": "1b8d09b975173da442898200d94a8d7606dcbed174d72b5b0f669f22fa944062",
     "tests/test_matched_v4.py": "bd5e456c186c8a1e8a461788c78e00c8deedd0c6b628bbfe9064d9f472ba9c4e"
   },
-  "scope": "Fresh 16 assignments; explicit declaration-bound approval required; worker artifact failures count without campaign stops; no prior-study resumption, replacement or pooling."
+  "study": "issue16-matched-v5-20261013"
 }

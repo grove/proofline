@@ -1,0 +1,660 @@
+{
+  "advisory_status": "VALID",
+  "agent_completed": true,
+  "arm": "intentline",
+  "base_tree": "f32ee627087f16af8ac3cc693785bfcf517b275e",
+  "candidate_commit": "c004915e7271eb55f279cb0ace9c39d0ff8520ce",
+  "candidate_files": {
+    "README.md": {
+      "kind": "file",
+      "mode": 420,
+      "path": "README.md",
+      "sha256": "4774514d095c022a04b16a43bad405a26c0bec7ff39dff054eb3a0ed71e6ee7c"
+    },
+    "app.py": {
+      "kind": "file",
+      "mode": 420,
+      "path": "app.py",
+      "sha256": "a523bf2148aba4617a9edd6aca588d0cc7628d6dd04f3e2449745c9eb3217a7e"
+    },
+    "cli.py": {
+      "kind": "file",
+      "mode": 420,
+      "path": "cli.py",
+      "sha256": "14aea6a3d7acc1d93b80e079fd645b48e4fef2e976df9ef355cc50829a7c74c8"
+    },
+    "service.py": {
+      "kind": "file",
+      "mode": 420,
+      "path": "service.py",
+      "sha256": "afaba541ba545f2c09ef1c16b31b84cd51ee20e090db4404d540642806974e28"
+    },
+    "tests": {
+      "kind": "directory",
+      "mode": 493,
+      "path": "tests"
+    },
+    "tests/test_compat.py": {
+      "kind": "file",
+      "mode": 420,
+      "path": "tests/test_compat.py",
+      "sha256": "2432e53eeae0b53103501bb0cdfbd3dab2446d236503df335ea8a5e5e4171703"
+    },
+    "tests/test_example.py": {
+      "kind": "file",
+      "mode": 420,
+      "path": "tests/test_example.py",
+      "sha256": "d32ad37bc744bc69e4959180ef66f8e31888e784441e580fec62f7e59f4d76a0"
+    },
+    "tests/test_fifo.py": {
+      "kind": "file",
+      "mode": 420,
+      "path": "tests/test_fifo.py",
+      "sha256": "c58a04853bca581ce8ab5d229d3949f26e537200391d81809f8e1fc1df433a1f"
+    }
+  },
+  "candidate_snapshot_sha256": "69c7d68aa957a381271d6ebd9d28ab48badf6751d112bf04ed06d51c95356445",
+  "candidate_tree": "f37c371a828bcf7ec34e17ced19730210e1b0f84",
+  "controller_episode_processes": 7,
+  "controller_grading_processes": 34,
+  "extra_worker_messages": 0,
+  "finished_at": "2026-10-13T15:56:00.941835+00:00",
+  "grade": {
+    "available": true,
+    "correct": true,
+    "elapsed_seconds": 5.2373432498425245,
+    "failures": [],
+    "receipts": [
+      {
+        "elapsed_seconds": 0.140482,
+        "exit_code": 0,
+        "invocation_id": "dc0693a4-5040-407d-aba1-1d2099d20436",
+        "kind": "process_probe",
+        "native_argv_sha256": "f380f3bbfd3b9dd6dc6bb3fdc0ceebf0074de3261c5adaee1f3984a738790090",
+        "stderr": "",
+        "stdout": "{\"ok\": true, \"unchanged\": true, \"value\": {\"evicted\": [\"a\"], \"items\": [{\"id\": \"b\", \"value\": 2}, {\"id\": \"c\", \"value\": 4}]}}\n",
+        "timed_out": false
+      },
+      {
+        "elapsed_seconds": 0.141476,
+        "exit_code": 0,
+        "invocation_id": "bdbbd80f-943b-46a5-ad90-9ecd12fcafd9",
+        "kind": "process_probe",
+        "native_argv_sha256": "30e6d216c3704ba198d7bc11e379488b702086ebefefd6c9fe5d72c76c4a2d3b",
+        "stderr": "",
+        "stdout": "{\"ok\": true, \"unchanged\": true, \"value\": {\"evicted\": [\"a\"], \"items\": [{\"id\": \"b\", \"value\": 2}, {\"id\": \"c\", \"value\": 4}]}}\n",
+        "timed_out": false
+      },
+      {
+        "elapsed_seconds": 0.146142,
+        "exit_code": 0,
+        "invocation_id": "ed799b43-3a27-442f-8804-d818220cb543",
+        "kind": "process_probe",
+        "native_argv_sha256": "38a606f5a9e901e029ecdfb8d36a4daca25d617ef01c29d6729c1cd584c19990",
+        "stderr": "",
+        "stdout": "{\"evicted\": [\"a\"], \"items\": [{\"id\": \"b\", \"value\": 2}, {\"id\": \"c\", \"value\": 4}]}\n",
+        "timed_out": false
+      },
+      {
+        "elapsed_seconds": 0.143575,
+        "exit_code": 0,
+        "invocation_id": "85da96c1-a5f1-41ff-9f6c-ca5889fe63c6",
+        "kind": "process_probe",
+        "native_argv_sha256": "cf59e3b0a3db90102a669e8cea48f712bdf5f91937661647f078b7980c5981de",
+        "stderr": "",
+        "stdout": "{\"ok\": true, \"unchanged\": true, \"value\": {\"evicted\": [\"a\", \"a\"], \"items\": []}}\n",
+        "timed_out": false
+      },
+      {
+        "elapsed_seconds": 0.147889,
+        "exit_code": 0,
+        "invocation_id": "04f8622b-a7ac-4cf1-b9cf-eed8286c2b6f",
+        "kind": "process_probe",
+        "native_argv_sha256": "4f4e16b7c8c95e6cd71f26b13e6564451a23811569e97b0c6afd559fd04b7f95",
+        "stderr": "",
+        "stdout": "{\"ok\": true, \"unchanged\": true, \"value\": {\"evicted\": [\"a\", \"a\"], \"items\": []}}\n",
+        "timed_out": false
+      },
+      {
+        "elapsed_seconds": 0.14948,
+        "exit_code": 0,
+        "invocation_id": "dade7015-2edb-437f-9e50-3a267ecd2911",
+        "kind": "process_probe",
+        "native_argv_sha256": "d169e9070466af477919cb5833fb20e7a7e1b5fcd284495f6090eec58c9dadc9",
+        "stderr": "",
+        "stdout": "{\"evicted\": [\"a\", \"a\"], \"items\": []}\n",
+        "timed_out": false
+      },
+      {
+        "elapsed_seconds": 0.141384,
+        "exit_code": 0,
+        "invocation_id": "a4ac3feb-c2fa-4731-985d-4b94d89dc0fb",
+        "kind": "process_probe",
+        "native_argv_sha256": "ecbb6ad3f7045a1b4ff9573609ccc3fc4ef602c5eee2363c841692dce2586537",
+        "stderr": "",
+        "stdout": "{\"ok\": true, \"unchanged\": true, \"value\": {\"evicted\": [], \"items\": [{\"id\": \"a\", \"value\": [1, {\"x\": 2}]}]}}\n",
+        "timed_out": false
+      },
+      {
+        "elapsed_seconds": 0.143845,
+        "exit_code": 0,
+        "invocation_id": "293b877e-10b9-4db5-b429-0382b857dd4f",
+        "kind": "process_probe",
+        "native_argv_sha256": "425c54bda85c5d415c9a711a1d892d88ed621189b6ac347b477a811fd4f0d4f2",
+        "stderr": "",
+        "stdout": "{\"ok\": true, \"unchanged\": true, \"value\": {\"evicted\": [], \"items\": [{\"id\": \"a\", \"value\": [1, {\"x\": 2}]}]}}\n",
+        "timed_out": false
+      },
+      {
+        "elapsed_seconds": 0.138607,
+        "exit_code": 0,
+        "invocation_id": "d50911eb-2a22-4d35-a106-082a71741dd0",
+        "kind": "process_probe",
+        "native_argv_sha256": "12f0aa7ba0ea386a2f33de2156a14143097c266e0ce24e5ea65ac25961fa4810",
+        "stderr": "",
+        "stdout": "{\"evicted\": [], \"items\": [{\"id\": \"a\", \"value\": [1, {\"x\": 2}]}]}\n",
+        "timed_out": false
+      },
+      {
+        "elapsed_seconds": 0.141837,
+        "exit_code": 0,
+        "invocation_id": "9a1ae9db-43d3-4018-8206-cae29ebd3a62",
+        "kind": "process_probe",
+        "native_argv_sha256": "cc3877ce40ea6caaebb3b7fe9c432c9d9e599cfe66f25e702e4bc5d8723de4da",
+        "stderr": "",
+        "stdout": "{\"error\": \"ValueError\", \"is_value_error\": true, \"ok\": false, \"unchanged\": true}\n",
+        "timed_out": false
+      },
+      {
+        "elapsed_seconds": 0.140055,
+        "exit_code": 0,
+        "invocation_id": "541574ba-bcfd-402c-97a7-89974ce4626c",
+        "kind": "process_probe",
+        "native_argv_sha256": "fc03e60ecd7784341a48a59abadb532f77ab006b5cfe2baf5c405bfb6612a3f6",
+        "stderr": "",
+        "stdout": "{\"error\": \"ValueError\", \"is_value_error\": true, \"ok\": false, \"unchanged\": true}\n",
+        "timed_out": false
+      },
+      {
+        "elapsed_seconds": 0.150135,
+        "exit_code": 2,
+        "invocation_id": "e6d370fd-adcb-4dcb-91bf-e6e76920a5f7",
+        "kind": "process_probe",
+        "native_argv_sha256": "5422f0abd49637fc7cc1a9e5bad8543fc4c955dcb7fec31e89b9a63417d68c6d",
+        "stderr": "ERROR: capacity must be a nonnegative integer\n",
+        "stdout": "",
+        "timed_out": false
+      },
+      {
+        "elapsed_seconds": 0.14032,
+        "exit_code": 0,
+        "invocation_id": "35c2cda2-060b-4b35-b285-249672e7f470",
+        "kind": "process_probe",
+        "native_argv_sha256": "85c22fd8b71f05798fca8833b32ba40d6fc8b9079a66ee61e4cf2d1c001a791c",
+        "stderr": "",
+        "stdout": "{\"error\": \"ValueError\", \"is_value_error\": true, \"ok\": false, \"unchanged\": true}\n",
+        "timed_out": false
+      },
+      {
+        "elapsed_seconds": 0.143954,
+        "exit_code": 0,
+        "invocation_id": "254495a8-0632-4dcd-9639-cb8e3a4b1f92",
+        "kind": "process_probe",
+        "native_argv_sha256": "2f1aaeb914a50aa98bf8874e560e516402b6af742d6eb5f072c4dc825de6ddcc",
+        "stderr": "",
+        "stdout": "{\"error\": \"ValueError\", \"is_value_error\": true, \"ok\": false, \"unchanged\": true}\n",
+        "timed_out": false
+      },
+      {
+        "elapsed_seconds": 0.140109,
+        "exit_code": 2,
+        "invocation_id": "9424a1c1-1c4c-4659-917e-3ad1a03b89ed",
+        "kind": "process_probe",
+        "native_argv_sha256": "5c3240850bdf8f5e4a1edcf4ef577d495f7b2a80b32598f91a2ca67986308c52",
+        "stderr": "ERROR: each event must be an object containing id and value\n",
+        "stdout": "",
+        "timed_out": false
+      },
+      {
+        "elapsed_seconds": 0.122077,
+        "exit_code": 0,
+        "invocation_id": "d393dece-503e-4dae-97a2-4318349d1226",
+        "kind": "process_probe",
+        "native_argv_sha256": "24c168071539a394f636a85ae8a7f734ebc47ea957720e74b492d055c727c5db",
+        "stderr": "",
+        "stdout": "{\"error\": \"ValueError\", \"is_value_error\": true, \"ok\": false, \"unchanged\": true}\n",
+        "timed_out": false
+      },
+      {
+        "elapsed_seconds": 0.142801,
+        "exit_code": 0,
+        "invocation_id": "aadc5262-3feb-4b3a-8592-185e9f80441d",
+        "kind": "process_probe",
+        "native_argv_sha256": "52c2cd22a160871458c8083dad2d30969a82939403cea0007b8d5799ed091b10",
+        "stderr": "",
+        "stdout": "{\"error\": \"ValueError\", \"is_value_error\": true, \"ok\": false, \"unchanged\": true}\n",
+        "timed_out": false
+      },
+      {
+        "elapsed_seconds": 0.147662,
+        "exit_code": 2,
+        "invocation_id": "74955ab6-c52e-4d48-9cd4-0e2cc70cf6b4",
+        "kind": "process_probe",
+        "native_argv_sha256": "cc546fb3580f45e6babca29bacb37f6fa39c5563192069106679a0624d9167c4",
+        "stderr": "ERROR: capacity must be a nonnegative integer\n",
+        "stdout": "",
+        "timed_out": false
+      },
+      {
+        "elapsed_seconds": 0.138715,
+        "exit_code": 0,
+        "invocation_id": "7ac1e437-32d7-4815-825e-fc8d411da568",
+        "kind": "process_probe",
+        "native_argv_sha256": "0125d7669fefa146492a423cf467099b213497611da51d67485993847d60a8a4",
+        "stderr": "",
+        "stdout": "{\"error\": \"ValueError\", \"is_value_error\": true, \"ok\": false, \"unchanged\": true}\n",
+        "timed_out": false
+      },
+      {
+        "elapsed_seconds": 0.148281,
+        "exit_code": 0,
+        "invocation_id": "aa5cdc9b-d056-45b2-846f-0170dba65a85",
+        "kind": "process_probe",
+        "native_argv_sha256": "e3e3b1427ce63e6b646f08cc1cb8973b0227afd8b88869ed9fdc0121b538a94d",
+        "stderr": "",
+        "stdout": "{\"error\": \"ValueError\", \"is_value_error\": true, \"ok\": false, \"unchanged\": true}\n",
+        "timed_out": false
+      },
+      {
+        "elapsed_seconds": 0.138705,
+        "exit_code": 2,
+        "invocation_id": "cea8299e-269f-4d45-ab16-1e0756567fe8",
+        "kind": "process_probe",
+        "native_argv_sha256": "db84ef4ac37378d818098cb75468d688700ec491d65684f1b471032341e02ba6",
+        "stderr": "ERROR: event id must be a nonempty string\n",
+        "stdout": "",
+        "timed_out": false
+      },
+      {
+        "elapsed_seconds": 0.150942,
+        "exit_code": 0,
+        "invocation_id": "0e4d2d00-06e7-44f7-84bf-d829df2db983",
+        "kind": "process_probe",
+        "native_argv_sha256": "6d64909809b921e079cce6c17eebe229d84c4b5285c6b643c5771f02bf8411f7",
+        "stderr": "",
+        "stdout": "{\"ok\": true, \"unchanged\": true, \"value\": {\"evicted\": [], \"items\": []}}\n",
+        "timed_out": false
+      },
+      {
+        "elapsed_seconds": 0.148528,
+        "exit_code": 0,
+        "invocation_id": "db7d0bed-ffe7-4bf7-8c85-776cfac07a61",
+        "kind": "process_probe",
+        "native_argv_sha256": "37e572330e44298b4f5d6db2abbc0db47b2dbbaf0d511b462ca212d5dba33236",
+        "stderr": "",
+        "stdout": "{\"ok\": true, \"unchanged\": true, \"value\": {\"evicted\": [], \"items\": []}}\n",
+        "timed_out": false
+      },
+      {
+        "elapsed_seconds": 0.142685,
+        "exit_code": 0,
+        "invocation_id": "a14a6780-534d-459b-9bab-f181984124bd",
+        "kind": "process_probe",
+        "native_argv_sha256": "5339c1ef9100238032a07e13c054f32844641c0564778c7ca994af76c9b6cd1e",
+        "stderr": "",
+        "stdout": "{\"evicted\": [], \"items\": []}\n",
+        "timed_out": false
+      },
+      {
+        "elapsed_seconds": 0.143166,
+        "exit_code": 0,
+        "invocation_id": "671cb100-1608-444f-bbb2-7d1ac2999117",
+        "kind": "process_probe",
+        "native_argv_sha256": "b00b5fc5cbca06d9bf1b938426ee2efc34d2a255f0385d30da18e65e7df83c45",
+        "stderr": "",
+        "stdout": "{\"error\": \"ValueError\", \"is_value_error\": true, \"ok\": false, \"unchanged\": true}\n",
+        "timed_out": false
+      },
+      {
+        "elapsed_seconds": 0.136899,
+        "exit_code": 0,
+        "invocation_id": "463ae9e9-cf77-4b29-9bb5-669e50422fdb",
+        "kind": "process_probe",
+        "native_argv_sha256": "f9163a7735f2800856995b8780eb437fd525b8bde689826d483d44ad79ba27c4",
+        "stderr": "",
+        "stdout": "{\"error\": \"ValueError\", \"is_value_error\": true, \"ok\": false, \"unchanged\": true}\n",
+        "timed_out": false
+      },
+      {
+        "elapsed_seconds": 0.148405,
+        "exit_code": 2,
+        "invocation_id": "31bf2758-80a6-4376-82da-9f66729e6fb7",
+        "kind": "process_probe",
+        "native_argv_sha256": "cd92db7204164ef65cf904bea58ae3cdaf8f682cc71d40f04c6a15f4e3810885",
+        "stderr": "ERROR: payload must be an object\n",
+        "stdout": "",
+        "timed_out": false
+      },
+      {
+        "elapsed_seconds": 0.149268,
+        "exit_code": 0,
+        "invocation_id": "3a242dc3-52f2-47d3-92c4-a82829365fb6",
+        "kind": "process_probe",
+        "native_argv_sha256": "44656ba45fcf2ede10a75ee7b31034838e7bd3b3d59c9d8f0b2b3fa2343381f6",
+        "stderr": "",
+        "stdout": "{\"ok\": true, \"unchanged\": true, \"value\": []}\n",
+        "timed_out": false
+      },
+      {
+        "elapsed_seconds": 0.147594,
+        "exit_code": 0,
+        "invocation_id": "6019dd0c-0bcf-4ded-b028-316d1e0467d5",
+        "kind": "process_probe",
+        "native_argv_sha256": "4dede808ed8e55c4758fa1236b2095569d4b97628b3d2293dec3c91880790678",
+        "stderr": "",
+        "stdout": "{\"ok\": true, \"unchanged\": true, \"value\": [{\"evicted\": [\"a\"], \"items\": [{\"id\": \"b\", \"value\": 2}, {\"id\": \"c\", \"value\": 4}]}, {\"evicted\": [\"a\"], \"items\": [{\"id\": \"b\", \"value\": 2}, {\"id\": \"c\", \"value\": 4}]}]}\n",
+        "timed_out": false
+      },
+      {
+        "elapsed_seconds": 0.138938,
+        "exit_code": 0,
+        "invocation_id": "0b155b48-b5ec-4821-906a-5d7aa1c29ba5",
+        "kind": "process_probe",
+        "native_argv_sha256": "188bd152a54bef3c1df868793cff5829c85b962b822253c7f374a6e25dc5fcc1",
+        "stderr": "",
+        "stdout": "{\"error\": \"ValueError\", \"is_value_error\": true, \"ok\": false, \"unchanged\": true}\n",
+        "timed_out": false
+      },
+      {
+        "elapsed_seconds": 0.145504,
+        "exit_code": 0,
+        "invocation_id": "3113327b-94fd-45e8-95ef-3a3302a6660a",
+        "kind": "process_probe",
+        "native_argv_sha256": "abc95b68480c7481672c7a91e7bbc26536cc30e3ed10f549fb646aa6479c099d",
+        "stderr": "",
+        "stdout": "{\"error\": \"ValueError\", \"is_value_error\": true, \"ok\": false, \"unchanged\": true}\n",
+        "timed_out": false
+      },
+      {
+        "elapsed_seconds": 0.146935,
+        "exit_code": 0,
+        "invocation_id": "af832d51-c450-4c8d-935f-c32242734a02",
+        "kind": "process_probe",
+        "native_argv_sha256": "f2aa0e05430d0c23c68fcdd5478acf9e468c7dbb2a3d35e822d35cfd7d2bcf84",
+        "stderr": "",
+        "stdout": "api-v1\n",
+        "timed_out": false
+      },
+      {
+        "elapsed_seconds": 0.131879,
+        "exit_code": 2,
+        "invocation_id": "1a5b0459-f0c3-43d8-83b2-fbb5adc30359",
+        "kind": "process_probe",
+        "native_argv_sha256": "d3e3bcaacc315464af85d0736d65ff91e82cfe829b4ea18d3f61dc58f2b2bdce",
+        "stderr": "ERROR: unsupported arguments\n",
+        "stdout": "",
+        "timed_out": false
+      },
+      {
+        "elapsed_seconds": 0.484689,
+        "exit_code": 0,
+        "invocation_id": "e9bccb8e-f958-4b4f-a4b1-5a9af907d4bb",
+        "kind": "process_probe",
+        "native_argv_sha256": "135b34c92eddba953802873d09010fedfbbdab14214c3e1cf5f12fab681b224a",
+        "stderr": "................\n----------------------------------------------------------------------\nRan 16 tests in 0.265s\n\nOK\n",
+        "stdout": "",
+        "timed_out": false
+      }
+    ],
+    "repository_tests_passed": true,
+    "stale_test_expectation_retained": false,
+    "unavailable": []
+  },
+  "handoff": true,
+  "model_dispatches": 1,
+  "native_available": true,
+  "operator_candidate_edits": 0,
+  "plan_identity": {
+    "advisory": true,
+    "check_links": {},
+    "constraints": [
+      {
+        "basis": "request",
+        "scope": "Implementation and CLI compatibility",
+        "source_refs": [
+          {
+            "line_end": 14,
+            "line_start": 13,
+            "quote": "in input order; reject a non-list or any invalid member with ValueError.\nDo not mutate any input, including on errors. Preserve the exact CLI --version",
+            "source_id": "S1"
+          }
+        ],
+        "statement": "Keep cli.py unchanged."
+      }
+    ],
+    "contract_id": "fifo-record-cache",
+    "contract_sha256": "2595f44bbb933b489b5634456feabdc4117121fba6b661a894a72507591e115d",
+    "coverage_completeness": "UNKNOWN",
+    "evidence_gaps": [],
+    "execution_authority": "not_established",
+    "export_authority": "unapproved",
+    "export_format": "json",
+    "export_manifest_sha256": "1362e95c3bf81a81e70566f03f2fa8cd7d14abe25f0e8c4df954da6933f1db59",
+    "external_caller_approval": "not_supplied_or_authenticated",
+    "intended_outcome": "Expose a validated, non-mutating FIFO cache with stable-position updates, ordered evictions and consistent process, service, batch and CLI behavior.",
+    "out_of_scope": [],
+    "record": "intentline.advisory-input",
+    "requirements": [
+      {
+        "basis": "request",
+        "boundaries": [
+          "Missing fields, non-object records, non-list events, negative/bool capacities and empty/non-string IDs are invalid.",
+          "Null and all JSON value types are valid; extra object keys are allowed and ignored."
+        ],
+        "evidence_gap_reasons": [],
+        "id": "R1",
+        "oracle": "Explicit valid/invalid fixtures establish acceptance; null succeeds, missing value fails.",
+        "plan_state": "planned",
+        "planned_evidence": "tests/test_fifo.py validation cases",
+        "seam": "app.process and service.handle",
+        "source_refs": [
+          {
+            "line_end": 9,
+            "line_start": 1,
+            "quote": "Implement a FIFO record cache for {\"capacity\": integer >= 0,\n\"events\": [{\"id\": nonempty_string, \"value\": any_JSON_value}, ...]}.\nEvery event must contain both id and value. Booleans are invalid capacities.\nUpdate an existing ID in its original insertion position, without promoting it.\nWhen inserting a new ID would exceed capacity, evict the oldest resident ID.\nCapacity zero immediately evicts EVERY event. Return {\"items\": [final records\nin FIFO order], \"evicted\": [IDs in eviction order, retaining repetitions]}.\nOutput records contain only id and value; extra input keys are ignored.\nReject malformed records/containers with ValueError. Input values may be null.",
+            "source_id": "S1"
+          }
+        ],
+        "statement": "Accept a record-cache object with a nonnegative integer capacity excluding booleans, and a list of events with nonempty string IDs and required JSON values; reject malformed inputs with ValueError."
+      },
+      {
+        "basis": "request",
+        "boundaries": [
+          "Updates at full capacity must neither promote an ID nor evict.",
+          "An evicted ID inserted again receives a new position."
+        ],
+        "evidence_gap_reasons": [],
+        "id": "R2",
+        "oracle": "At capacity 2, a=1,b=2,a=3,c=4 leaves b=2,c=4 and evicts a; promoting a falsifies this.",
+        "plan_state": "planned",
+        "planned_evidence": "tests/test_fifo.py FIFO and reinsertion cases",
+        "seam": "app.process",
+        "source_refs": [
+          {
+            "line_end": 5,
+            "line_start": 4,
+            "quote": "Update an existing ID in its original insertion position, without promoting it.\nWhen inserting a new ID would exceed capacity, evict the oldest resident ID.",
+            "source_id": "S1"
+          }
+        ],
+        "statement": "Update resident IDs in their original insertion position and evict the oldest resident on new-ID overflow."
+      },
+      {
+        "basis": "request",
+        "boundaries": [
+          "Repeated IDs at zero capacity repeat in evicted.",
+          "Empty events produce empty items and evicted; extra event keys do not appear in output."
+        ],
+        "evidence_gap_reasons": [],
+        "id": "R3",
+        "oracle": "At zero capacity a,b,a yields no items and evicted [a,b,a].",
+        "plan_state": "planned",
+        "planned_evidence": "tests/test_fifo.py output and zero-capacity cases",
+        "seam": "app.process",
+        "source_refs": [
+          {
+            "line_end": 8,
+            "line_start": 6,
+            "quote": "Capacity zero immediately evicts EVERY event. Return {\"items\": [final records\nin FIFO order], \"evicted\": [IDs in eviction order, retaining repetitions]}.\nOutput records contain only id and value; extra input keys are ignored.",
+            "source_id": "S1"
+          }
+        ],
+        "statement": "Return only id/value records in FIFO order and eviction IDs in order with repetitions; capacity zero evicts every event."
+      },
+      {
+        "basis": "request",
+        "boundaries": [
+          "CLI JSON success matches direct processing.",
+          "Malformed CLI input is rejected through existing error handling."
+        ],
+        "evidence_gap_reasons": [],
+        "id": "R4",
+        "oracle": "A fixed FIFO fixture yields the same expected JSON result at every seam.",
+        "plan_state": "planned",
+        "planned_evidence": "tests/test_fifo.py API and subprocess checks",
+        "seam": "app.process, service.handle, cli.py",
+        "source_refs": [
+          {
+            "line_end": 12,
+            "line_start": 11,
+            "quote": "Expose the same behavior through app.process, service.handle and the existing\nJSON stdin/stdout CLI. Add service.batch(payloads): return each process result",
+            "source_id": "S1"
+          }
+        ],
+        "statement": "Expose the same behavior through app.process, service.handle and the existing JSON stdin/stdout CLI."
+      },
+      {
+        "basis": "request",
+        "boundaries": [
+          "Empty batch succeeds; an invalid member after a valid member rejects the batch.",
+          "Batch result order matches payload order."
+        ],
+        "evidence_gap_reasons": [],
+        "id": "R5",
+        "oracle": "Two distinct fixtures return their independently expected results in the original order; non-list and mixed invalid batches fail.",
+        "plan_state": "planned",
+        "planned_evidence": "tests/test_fifo.py batch cases",
+        "seam": "service.batch",
+        "source_refs": [
+          {
+            "line_end": 12,
+            "line_start": 12,
+            "quote": "JSON stdin/stdout CLI. Add service.batch(payloads): return each process result",
+            "source_id": "S1"
+          }
+        ],
+        "statement": "Provide service.batch(payloads) returning each process result in input order, rejecting a non-list or any invalid member with ValueError."
+      },
+      {
+        "basis": "request",
+        "boundaries": [
+          "Nested input values remain intact.",
+          "A late invalid event or batch member leaves earlier data unchanged."
+        ],
+        "evidence_gap_reasons": [],
+        "id": "R6",
+        "oracle": "Deep snapshots of input before and after success/failure remain equal.",
+        "plan_state": "planned",
+        "planned_evidence": "tests/test_fifo.py mutation cases",
+        "seam": "app.process, service.handle, service.batch",
+        "source_refs": [
+          {
+            "line_end": 13,
+            "line_start": 13,
+            "quote": "in input order; reject a non-list or any invalid member with ValueError.",
+            "source_id": "S1"
+          }
+        ],
+        "statement": "Do not mutate any input, including on errors."
+      },
+      {
+        "basis": "request",
+        "boundaries": [
+          "--version returns api-v1 with its existing newline and exit status.",
+          "Unsupported arguments retain exact stderr and exit status."
+        ],
+        "evidence_gap_reasons": [],
+        "id": "R7",
+        "oracle": "Existing version behavior is (0, api-v1 newline, empty stderr); unsupported arguments are (2, empty stdout, ERROR: unsupported arguments newline).",
+        "plan_state": "planned",
+        "planned_evidence": "tests/test_compat.py and tests/test_fifo.py subprocess checks plus Git diff",
+        "seam": "cli.py",
+        "source_refs": [
+          {
+            "line_end": 14,
+            "line_start": 13,
+            "quote": "in input order; reject a non-list or any invalid member with ValueError.\nDo not mutate any input, including on errors. Preserve the exact CLI --version",
+            "source_id": "S1"
+          }
+        ],
+        "statement": "Preserve the exact CLI --version response and unsupported-argument behavior, leaving cli.py unchanged."
+      },
+      {
+        "basis": "request",
+        "boundaries": [
+          "A contradictory expectation must follow FIFO upserts; compatible expectations remain valid."
+        ],
+        "evidence_gap_reasons": [],
+        "id": "R8",
+        "oracle": "Compare existing assertions against the source-derived fixed FIFO results.",
+        "plan_state": "planned",
+        "planned_evidence": "Review existing tests and run unittest discovery",
+        "seam": "tests/",
+        "source_refs": [
+          {
+            "line_end": 15,
+            "line_start": 15,
+            "quote": "response and unsupported-argument behavior; keep cli.py unchanged. Extra object",
+            "source_id": "S1"
+          }
+        ],
+        "statement": "Update any stale test expectation that contradicts the requested behavior."
+      }
+    ],
+    "revision": 1,
+    "schema_version": 1,
+    "source_bundle_sha256": "cd8b7d50f4a37a01cf3d8f4c74ec234cbfc5e8cc78939abec5b99bf82daaef46",
+    "source_sha256": "ca511e228d32a79e61c1b3c9acc1d49b4359c9dc90f4044a325dbf313226f41e"
+  },
+  "receipt": {
+    "elapsed_seconds": 247.856017,
+    "error": null,
+    "events.jsonl_sha256": "8b8fb853ac68cb588cd651f8d8fa8a8a1c4933688da5ecaca8f6cae42b3f6374",
+    "exit_code": 0,
+    "invocation_id": "bdd1ddc1-7f3f-49b5-8df7-2ed3e914d831",
+    "kind": "codex_exec",
+    "native_argv_sha256": "3a33575baa2b6b1c670b66dfff80c879b3092362a8cec16f2f6b81fd8f17649b",
+    "prompt_sha256": "52e926420bf0990f4f5f801a6972f86c7ceb2266b6b5147efaf3eb9f6c9da2ce",
+    "stderr.txt_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "timed_out": false
+  },
+  "response": {
+    "completed": true,
+    "summary": "Implemented FIFO upserts, ordered evictions, validation, non-mutating processing, and service.batch. All 16 tests and public checks pass. cli.py is unchanged. Advisory plan exported at revision 1. No commits made."
+  },
+  "sequence": 14,
+  "source_sha256": "ca511e228d32a79e61c1b3c9acc1d49b4359c9dc90f4044a325dbf313226f41e",
+  "started_at": "2026-10-13T15:51:47.650014+00:00",
+  "status": "CORRECT_DELIVERY",
+  "task": "fifo-upserts",
+  "thread_id": "01a135f6-79d6-7bf1-b966-8baf8e2af687",
+  "tool_executions": 18,
+  "usage": {
+    "cache_write_input_tokens": 0,
+    "cached_input_tokens": 180224,
+    "input_tokens": 215193,
+    "output_tokens": 8018,
+    "reasoning_output_tokens": 1515
+  },
+  "workflow_seconds": 248.2266088752076
+}

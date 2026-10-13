@@ -1,4 +1,4 @@
-"""Fresh declaration reusing the retired v3 controller with a pinned catalog."""
+"""Read published matched outcomes; live declaration is retired."""
 import json
 from pathlib import Path
 import sys
@@ -9,6 +9,10 @@ HERE = Path(__file__).resolve().parent
 
 
 def main():
+    if sys.argv[1] == 'report':
+        result = json.loads((runner.ROOT / 'evaluation/results/matched-v5-20261013/results.json').read_text())
+        print(json.dumps(runner.report.summarize(result['assignments']), indent=2))
+        return 0
     if sys.argv[1] == 'execute':
         approval = runner.ROOT / '.proofline/issue16-matched-v5-20261013/approval.json'
         if not approval.exists() or json.loads(approval.read_text()).get('freeze_sha256') != runner.p.host.sha256((HERE / 'FREEZE.json').read_bytes()):

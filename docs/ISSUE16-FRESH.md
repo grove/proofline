@@ -1,5 +1,9 @@
 # Fresh matched declaration with a frozen native model catalog
 
+**Retired after four dispatches.** The stopped [v4 report](../evaluation/results/matched-v4-20261013/README.md)
+retains twelve missing slots. The [latest declaration](ISSUE16-V5.md) counts
+worker artifact failures without treating them as infrastructure loss.
+
 The [protocol](../evaluation/matched_v4/protocol.json) and [freeze](../evaluation/matched_v4/FREEZE.json) declare four unchanged
 requests × four arms, one turn per assignment, identical model/host and time
 allocation, no extra planner/reviewer, no retries or correction turns. Planning
@@ -20,7 +24,7 @@ twenty-four-assignment limit does not authorize accumulating multiple declared
 cohorts. The private approval must bind the exact FREEZE.json SHA-256; absence
 or mismatch prevents any dispatch. No original stopped cohort can resume.
 
-Native host commands (Python 3.14.8, macOS 26.6.2, Codex CLI 0.162.1):
+Historical native host commands (retired guards now reject execution; Python 3.14.8, macOS 26.6.2, Codex CLI 0.162.1):
 
 ```sh
 python3.14 -B -m evaluation.matched_v4.study qualify

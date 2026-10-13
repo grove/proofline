@@ -1,0 +1,1109 @@
+{
+  "assurance": "Only the listed command exit statuses are observed; full source correctness is not certified.",
+  "boundary": {
+    "assessment": {
+      "inputs_unchanged": true,
+      "observations": {
+        "mode_change": "denied",
+        "network": "denied",
+        "nonce": "2d186c0c1daa402299b568170120b221",
+        "reads": {
+          "actual_oracle": "denied",
+          "oracle-canary": "denied",
+          "other-role-canary": "denied",
+          "receipt-canary": "denied"
+        },
+        "scratch": true,
+        "writes": {
+          "candidate": "denied",
+          "git_head": "denied",
+          "input": "denied",
+          "receipt": "denied",
+          "source": "denied"
+        }
+      },
+      "scope": "native process canaries only; no model or external-tool qualification",
+      "status": "OBSERVED"
+    },
+    "network_control": "loopback reachable before sandbox",
+    "receipt": {
+      "argv": [
+        "/opt/homebrew/bin/codex",
+        "--no-daemon",
+        "-c",
+        "permissions.proofline_s0_c8599b8ad608429a96f858199dc8359d={\"filesystem\"={\":minimal\"=\"read\",\"/opt/homebrew/Cellar/python@3.14/3.14.8_2/Frameworks/Python.framework/Versions/3.14\"=\"read\",\"/opt/homebrew/opt/python@3.14/Frameworks/Python.framework/Versions/3.14\"=\"read\",\"/opt/homebrew/opt/python@3.14/bin/python3.14\"=\"read\",\"/opt/homebrew/Cellar/python@3.14/3.14.8_2/Frameworks/Python.framework/Versions/3.14/bin/python3.14\"=\"read\",\"/Users/grove/projects/proofline/.proofline/issue16-matched-v5-20261013/assignments/04-atomic-transfers-combined/check/inputs\"=\"read\",\"/Users/grove/projects/proofline/.proofline/issue16-matched-v5-20261013/assignments/04-atomic-transfers-combined/check/preflight/scratch\"=\"write\",\"/Users/grove/projects/proofline/.proofline/issue16-matched-v5-20261013/assignments/04-atomic-transfers-combined/check/preflight/private\"=\"deny\",\"/opt/homebrew\"=\"read\",\"/Library/Developer/CommandLineTools/usr/bin\"=\"read\",\"/Library/Developer/CommandLineTools/usr/libexec/git-core\"=\"read\"},\"network\"={\"enabled\"=false}}",
+        "sandbox",
+        "--permission-profile",
+        "proofline_s0_c8599b8ad608429a96f858199dc8359d",
+        "--include-managed-config",
+        "--cd",
+        "/Users/grove/projects/proofline/.proofline/issue16-matched-v5-20261013/assignments/04-atomic-transfers-combined/check/preflight/scratch",
+        "--",
+        "/opt/homebrew/Cellar/python@3.14/3.14.8_2/Frameworks/Python.framework/Versions/3.14/bin/python3.14",
+        "-I",
+        "-B",
+        "/Users/grove/projects/proofline/.proofline/issue16-matched-v5-20261013/assignments/04-atomic-transfers-combined/check/inputs/canary.py",
+        "/Users/grove/projects/proofline/.proofline/issue16-matched-v5-20261013/assignments/04-atomic-transfers-combined/check/inputs/canary.json"
+      ],
+      "cwd": "/Users/grove/projects/proofline/.proofline/issue16-matched-v5-20261013/assignments/04-atomic-transfers-combined/check/preflight/scratch",
+      "elapsed_seconds": 0.143517,
+      "exit_code": 0,
+      "invocation_id": "2f129ca4-7bc1-46d2-a2b9-c154de7fd5b1",
+      "kind": "process_probe",
+      "stderr": "",
+      "stdout": "{\"nonce\": \"2d186c0c1daa402299b568170120b221\", \"writes\": {\"source\": \"denied\", \"input\": \"denied\", \"candidate\": \"denied\", \"git_head\": \"denied\", \"receipt\": \"denied\"}, \"reads\": {\"receipt-canary\": \"denied\", \"oracle-canary\": \"denied\", \"other-role-canary\": \"denied\", \"actual_oracle\": \"denied\"}, \"mode_change\": \"denied\", \"scratch\": true, \"network\": \"denied\"}\n",
+      "timed_out": false
+    }
+  },
+  "candidate_commit": "54ad6ac6ea19372fadd9d2e02692f4d432825cc0",
+  "candidate_path": "/Users/grove/projects/proofline/.proofline/issue16-matched-v5-20261013/assignments/04-atomic-transfers-combined/check/inputs/product",
+  "candidate_tree": "2055230d497dacc33364a842d59a3172d8e54c7b",
+  "checks": [
+    [
+      "/opt/homebrew/Cellar/python@3.14/3.14.8_2/Frameworks/Python.framework/Versions/3.14/bin/python3.14",
+      "-B",
+      "-c",
+      "from app import process; assert process({'balances': {'a': 5, 'b': 0}, 'transfers': [['a', 'b', 3]]}) == {'balances': {'a': 2, 'b': 3}}"
+    ],
+    [
+      "/opt/homebrew/Cellar/python@3.14/3.14.8_2/Frameworks/Python.framework/Versions/3.14/bin/python3.14",
+      "-B",
+      "-m",
+      "unittest",
+      "discover",
+      "-s",
+      "tests"
+    ]
+  ],
+  "elapsed_seconds": 1.1369624589569867,
+  "evidence_sha256": "be61506a66596b9de916719d60aefb8831513c2b172d4e8922bc40b1b56e4420",
+  "failure_details": [],
+  "feedback": {
+    "candidate_commit": "54ad6ac6ea19372fadd9d2e02692f4d432825cc0",
+    "candidate_tree": "2055230d497dacc33364a842d59a3172d8e54c7b",
+    "checks": [
+      {
+        "argv": [
+          "/opt/homebrew/Cellar/python@3.14/3.14.8_2/Frameworks/Python.framework/Versions/3.14/bin/python3.14",
+          "-B",
+          "-c",
+          "from app import process; assert process({'balances': {'a': 5, 'b': 0}, 'transfers': [['a', 'b', 3]]}) == {'balances': {'a': 2, 'b': 3}}"
+        ],
+        "elapsed_seconds": 0.1419195830821991,
+        "exit_code": 0,
+        "index": 0,
+        "outcome_ids": [],
+        "reason": "Selected command exited 0; unselected promises are not demonstrated.",
+        "receipt_ref": "receipts/check-000.json",
+        "status": "PASSED",
+        "stderr_excerpt": "",
+        "stderr_ref": "receipts/check-000.json#stderr",
+        "stdout_excerpt": "",
+        "stdout_ref": "receipts/check-000.json#stdout"
+      },
+      {
+        "argv": [
+          "/opt/homebrew/Cellar/python@3.14/3.14.8_2/Frameworks/Python.framework/Versions/3.14/bin/python3.14",
+          "-B",
+          "-m",
+          "unittest",
+          "discover",
+          "-s",
+          "tests"
+        ],
+        "elapsed_seconds": 0.4995169169269502,
+        "exit_code": 0,
+        "index": 1,
+        "outcome_ids": [],
+        "reason": "Selected command exited 0; unselected promises are not demonstrated.",
+        "receipt_ref": "receipts/check-001.json",
+        "status": "PASSED",
+        "stderr_excerpt": "..................... | ---------------------------------------------------------------------- | Ran 21 tests in 0.288s | OK",
+        "stderr_ref": "receipts/check-001.json#stderr",
+        "stdout_excerpt": "",
+        "stdout_ref": "receipts/check-001.json#stdout"
+      }
+    ],
+    "headline": "2/2 selected checks passed",
+    "next_action": "Report only the commands checked; original request coverage remains unknown.",
+    "scope": "Selected executable commands only; completeness of the original user promise is unknown.",
+    "snapshot_sha256": "352e15fa472f8b2a189bf8566bc8a4cd3ea54a84fa00cf6161d28c1983f8cac6",
+    "source_sha256": "c9a5c3bc2cc80520431d6fd951a8e2303270d1c390b25ed1f5413391fbc29347",
+    "status": "CHECKS PASSED"
+  },
+  "feedback_version": 1,
+  "intentline_advisory": {
+    "advisory": true,
+    "check_links": {
+      "R1": [
+        {
+          "argv": [
+            "/opt/homebrew/Cellar/python@3.14/3.14.8_2/Frameworks/Python.framework/Versions/3.14/bin/python3.14",
+            "-B",
+            "-m",
+            "unittest",
+            "discover",
+            "-s",
+            "tests"
+          ],
+          "index": 1
+        }
+      ],
+      "R2": [
+        {
+          "argv": [
+            "/opt/homebrew/Cellar/python@3.14/3.14.8_2/Frameworks/Python.framework/Versions/3.14/bin/python3.14",
+            "-B",
+            "-c",
+            "from app import process; assert process({'balances': {'a': 5, 'b': 0}, 'transfers': [['a', 'b', 3]]}) == {'balances': {'a': 2, 'b': 3}}"
+          ],
+          "index": 0
+        },
+        {
+          "argv": [
+            "/opt/homebrew/Cellar/python@3.14/3.14.8_2/Frameworks/Python.framework/Versions/3.14/bin/python3.14",
+            "-B",
+            "-m",
+            "unittest",
+            "discover",
+            "-s",
+            "tests"
+          ],
+          "index": 1
+        }
+      ],
+      "R3": [
+        {
+          "argv": [
+            "/opt/homebrew/Cellar/python@3.14/3.14.8_2/Frameworks/Python.framework/Versions/3.14/bin/python3.14",
+            "-B",
+            "-m",
+            "unittest",
+            "discover",
+            "-s",
+            "tests"
+          ],
+          "index": 1
+        }
+      ],
+      "R4": [
+        {
+          "argv": [
+            "/opt/homebrew/Cellar/python@3.14/3.14.8_2/Frameworks/Python.framework/Versions/3.14/bin/python3.14",
+            "-B",
+            "-m",
+            "unittest",
+            "discover",
+            "-s",
+            "tests"
+          ],
+          "index": 1
+        }
+      ],
+      "R5": [
+        {
+          "argv": [
+            "/opt/homebrew/Cellar/python@3.14/3.14.8_2/Frameworks/Python.framework/Versions/3.14/bin/python3.14",
+            "-B",
+            "-m",
+            "unittest",
+            "discover",
+            "-s",
+            "tests"
+          ],
+          "index": 1
+        }
+      ],
+      "R6": [
+        {
+          "argv": [
+            "/opt/homebrew/Cellar/python@3.14/3.14.8_2/Frameworks/Python.framework/Versions/3.14/bin/python3.14",
+            "-B",
+            "-m",
+            "unittest",
+            "discover",
+            "-s",
+            "tests"
+          ],
+          "index": 1
+        }
+      ]
+    },
+    "constraints": [
+      {
+        "basis": "request",
+        "scope": "Existing product tests; preserve expected behavior grounded in this request.",
+        "source_refs": [
+          {
+            "line_end": 13,
+            "line_start": 13,
+            "quote": "keys are allowed. Update a stale test expectation if it contradicts this request.",
+            "source_id": "S1"
+          }
+        ],
+        "statement": "Update a stale test expectation if it contradicts the original request."
+      }
+    ],
+    "contract_id": "atomic-transfers",
+    "contract_sha256": "6ded8e5a6c9e6552f749d78a4058c7504551e0ca64929f73253fdbc4cdceb308",
+    "coverage_completeness": "UNKNOWN",
+    "evidence_gaps": [],
+    "execution_authority": "not_established",
+    "export_authority": "unapproved",
+    "export_format": "json",
+    "export_manifest_sha256": "1e04c094f0c6a1feee580bc38475a21e953baecb4b5cf4452b11824951147e43",
+    "external_caller_approval": "not_supplied_or_authenticated",
+    "intended_outcome": "Implement validated, atomic ordered transfers with identical process, service and CLI behavior, batch processing and unchanged inputs and CLI compatibility.",
+    "out_of_scope": [],
+    "record": "intentline.advisory-input",
+    "requirements": [
+      {
+        "basis": "request",
+        "boundaries": [
+          "Booleans, negative values, floats, empty names, missing accounts or fields and malformed triples are invalid.",
+          "Empty balances and transfers and zero amounts are valid; extra keys do not invalidate payloads."
+        ],
+        "evidence_gap_reasons": [],
+        "id": "R1",
+        "oracle": "Valid a=5,b=0 transfer 3 yields a=2,b=3; malformed values raise ValueError rather than being coerced.",
+        "plan_state": "planned",
+        "planned_evidence": "Table-driven unittest cases for input validity, ignored extra keys and exact valid outputs.",
+        "seam": "app.process(payload)",
+        "source_refs": [
+          {
+            "line_end": 3,
+            "line_start": 1,
+            "quote": "Implement transfers for {\"balances\": {name: integer >= 0},\n\"transfers\": [[from, to, amount], ...]}. Names are nonempty strings; amount is\na nonnegative integer. Booleans are invalid numbers. Both accounts must exist.",
+            "source_id": "S1"
+          },
+          {
+            "line_end": 13,
+            "line_start": 12,
+            "quote": "response and unsupported-argument behavior; keep cli.py unchanged. Extra object\nkeys are allowed. Update a stale test expectation if it contradicts this request.",
+            "source_id": "S1"
+          }
+        ],
+        "statement": "Accept transfer payloads with nonempty string account names, nonnegative integer balances and amounts, existing endpoints and the specified object/list shapes; reject invalid payloads and allow extra object keys."
+      },
+      {
+        "basis": "request",
+        "boundaries": [
+          "Incoming funds may finance a later transfer.",
+          "A later credit cannot repair an earlier overdraft.",
+          "Self-transfer within available funds leaves the balance unchanged."
+        ],
+        "evidence_gap_reasons": [],
+        "id": "R2",
+        "oracle": "From a=5,b=0, a to b 3 then b to a 2 yields a=4,b=1; a to a 6 raises ValueError.",
+        "plan_state": "planned",
+        "planned_evidence": "Unittest cases with fixed final balances and intermediate and self-transfer rejection.",
+        "seam": "app.process(payload)",
+        "source_refs": [
+          {
+            "line_end": 6,
+            "line_start": 4,
+            "quote": "Apply transfers in order; reject insufficient funds at any intermediate step,\nincluding a self-transfer exceeding that account's balance. Return\n{\"balances\": final_balances}. No partial result on rejection.",
+            "source_id": "S1"
+          }
+        ],
+        "statement": "Apply transfers in order and return only final balances; reject any intermediate insufficient funds including oversized self-transfers without a partial result."
+      },
+      {
+        "basis": "request",
+        "boundaries": [
+          "CLI success emits JSON final balances.",
+          "Invalid CLI input emits error status with no partial JSON output."
+        ],
+        "evidence_gap_reasons": [],
+        "id": "R3",
+        "oracle": "Both Python entry points return the same specified final balances and reject invalid input; CLI JSON agrees with that fixed expected value.",
+        "plan_state": "planned",
+        "planned_evidence": "Python service tests and subprocess CLI success/error tests.",
+        "seam": "app.process, service.handle, cli.py subprocess",
+        "source_refs": [
+          {
+            "line_end": 9,
+            "line_start": 8,
+            "quote": "Expose the same behavior through app.process, service.handle and the existing\nJSON stdin/stdout CLI. Add service.batch(payloads): return each process result",
+            "source_id": "S1"
+          }
+        ],
+        "statement": "Expose identical processing through app.process, service.handle and the existing JSON stdin/stdout CLI."
+      },
+      {
+        "basis": "request",
+        "boundaries": [
+          "Empty batch returns an empty list.",
+          "Invalid member after valid members rejects the whole call.",
+          "Repeated payloads remain independent."
+        ],
+        "evidence_gap_reasons": [],
+        "id": "R4",
+        "oracle": "Two different valid payloads produce their fixed expected outputs in original order; invalid list members and non-list containers raise ValueError.",
+        "plan_state": "planned",
+        "planned_evidence": "Batch unittest cases for order, empty input and invalid containers/members.",
+        "seam": "service.batch(payloads)",
+        "source_refs": [
+          {
+            "line_end": 10,
+            "line_start": 9,
+            "quote": "JSON stdin/stdout CLI. Add service.batch(payloads): return each process result\nin input order; reject a non-list or any invalid member with ValueError.",
+            "source_id": "S1"
+          }
+        ],
+        "statement": "Add service.batch returning each process result in input order and raising ValueError for a non-list or any invalid member."
+      },
+      {
+        "basis": "request",
+        "boundaries": [
+          "Nested balances and transfers remain unchanged.",
+          "Batch members remain unchanged when a later member rejects.",
+          "Returned balances must not alias caller balances."
+        ],
+        "evidence_gap_reasons": [],
+        "id": "R5",
+        "oracle": "Deep-copied original payloads remain equal after success and rejection; editing returned balances leaves inputs unchanged.",
+        "plan_state": "planned",
+        "planned_evidence": "Deep-copy snapshots around public API calls and output alias checks.",
+        "seam": "app.process, service.handle, service.batch",
+        "source_refs": [
+          {
+            "line_end": 11,
+            "line_start": 11,
+            "quote": "Do not mutate any input, including on errors. Preserve the exact CLI --version",
+            "source_id": "S1"
+          }
+        ],
+        "statement": "Do not mutate any input on successful processing or errors."
+      },
+      {
+        "basis": "request",
+        "boundaries": [
+          "--version alone returns existing api-v1 newline with status 0 and empty stderr.",
+          "Other argument lists preserve status 2, empty stdout and existing unsupported-argument error."
+        ],
+        "evidence_gap_reasons": [],
+        "id": "R6",
+        "oracle": "Version remains (0, api-v1 newline, empty stderr); unsupported arguments remain (2, empty stdout, ERROR: unsupported arguments newline).",
+        "plan_state": "planned",
+        "planned_evidence": "Existing compatibility test plus unsupported argument subprocess cases and Git diff inspection of cli.py.",
+        "seam": "cli.py subprocess and source diff",
+        "source_refs": [
+          {
+            "line_end": 12,
+            "line_start": 11,
+            "quote": "Do not mutate any input, including on errors. Preserve the exact CLI --version\nresponse and unsupported-argument behavior; keep cli.py unchanged. Extra object",
+            "source_id": "S1"
+          }
+        ],
+        "statement": "Preserve the exact CLI --version response and unsupported-argument behavior and keep cli.py unchanged."
+      }
+    ],
+    "revision": 1,
+    "schema_version": 1,
+    "source_bundle_sha256": "5fbcb32d1b3591e4c101771216a7dcae85e5bb16d40d253a7aabff19b468c6b9",
+    "source_sha256": "c9a5c3bc2cc80520431d6fd951a8e2303270d1c390b25ed1f5413391fbc29347"
+  },
+  "kind": "bounded_local_check",
+  "limits": {
+    "check_seconds": 30,
+    "model_dispatches": 0,
+    "seconds": 643.4577725422569
+  },
+  "merged": false,
+  "model_dispatches": 0,
+  "observations": [
+    {
+      "argv": [
+        "/opt/homebrew/Cellar/python@3.14/3.14.8_2/Frameworks/Python.framework/Versions/3.14/bin/python3.14",
+        "-B",
+        "-c",
+        "from app import process; assert process({'balances': {'a': 5, 'b': 0}, 'transfers': [['a', 'b', 3]]}) == {'balances': {'a': 2, 'b': 3}}"
+      ],
+      "elapsed_seconds": 0.1419195830821991,
+      "receipt_ref": "receipts/check-000.json",
+      "receipt_sha256": "b982b0372b3e67bcb2e482d30a1e42be5738ba7ab8f40ee5c44f5f30ec3e87a1",
+      "receipts": [
+        {
+          "argv": [
+            "/opt/homebrew/bin/codex",
+            "--no-daemon",
+            "-c",
+            "permissions.proofline_s0_9f8683b7a8eb4d208bddd21ae5482d27={\"filesystem\"={\":minimal\"=\"read\",\"/opt/homebrew/Cellar/python@3.14/3.14.8_2/Frameworks/Python.framework/Versions/3.14\"=\"read\",\"/opt/homebrew/opt/python@3.14/Frameworks/Python.framework/Versions/3.14\"=\"read\",\"/opt/homebrew/opt/python@3.14/bin/python3.14\"=\"read\",\"/opt/homebrew/Cellar/python@3.14/3.14.8_2/Frameworks/Python.framework/Versions/3.14/bin/python3.14\"=\"read\",\"/Users/grove/projects/proofline/.proofline/issue16-matched-v5-20261013/assignments/04-atomic-transfers-combined/check/inputs\"=\"read\",\"/Users/grove/projects/proofline/.proofline/issue16-matched-v5-20261013/assignments/04-atomic-transfers-combined/check/check-0\"=\"write\",\"/Users/grove/projects/proofline/.proofline/issue16-matched-v5-20261013/assignments/04-atomic-transfers-combined/check/private\"=\"deny\",\"/opt/homebrew\"=\"read\",\"/Library/Developer/CommandLineTools/usr/bin\"=\"read\",\"/Library/Developer/CommandLineTools/usr/libexec/git-core\"=\"read\"},\"network\"={\"enabled\"=false}}",
+            "sandbox",
+            "--permission-profile",
+            "proofline_s0_9f8683b7a8eb4d208bddd21ae5482d27",
+            "--include-managed-config",
+            "--cd",
+            "/Users/grove/projects/proofline/.proofline/issue16-matched-v5-20261013/assignments/04-atomic-transfers-combined/check/check-0",
+            "--",
+            "/opt/homebrew/Cellar/python@3.14/3.14.8_2/Frameworks/Python.framework/Versions/3.14/bin/python3.14",
+            "-I",
+            "-B",
+            "-c",
+            "import json,os,sys; a=json.loads(sys.argv[1]); os.execv(a[0],a)",
+            "[\"/opt/homebrew/Cellar/python@3.14/3.14.8_2/Frameworks/Python.framework/Versions/3.14/bin/python3.14\", \"-I\", \"-B\", \"-c\", \"import json,os,sys\\ntry:\\n    os.chdir(sys.argv[1])\\n    os.environ[\\\"PYTHONDONTWRITEBYTECODE\\\"]=\\\"1\\\"\\n    argv=json.loads(sys.argv[2])\\n    os.execvpe(argv[0],argv,os.environ)\\nexcept OSError as error:\\n    print(\\\"Proofline check launch unavailable: \\\"+str(error),file=sys.stderr)\\n    sys.exit(127)\\n\", \"/Users/grove/projects/proofline/.proofline/issue16-matched-v5-20261013/assignments/04-atomic-transfers-combined/check/inputs/product\", \"[\\\"/opt/homebrew/Cellar/python@3.14/3.14.8_2/Frameworks/Python.framework/Versions/3.14/bin/python3.14\\\", \\\"-B\\\", \\\"-c\\\", \\\"from app import process; assert process({'balances': {'a': 5, 'b': 0}, 'transfers': [['a', 'b', 3]]}) == {'balances': {'a': 2, 'b': 3}}\\\"]\"]"
+          ],
+          "cwd": "/Users/grove/projects/proofline/.proofline/issue16-matched-v5-20261013/assignments/04-atomic-transfers-combined/check/check-0",
+          "elapsed_seconds": 0.141455,
+          "exit_code": 0,
+          "invocation_id": "427b4c5a-f59c-44bf-8ca6-67dd93519c1f",
+          "kind": "process_probe",
+          "stderr": "",
+          "stdout": "",
+          "timed_out": false
+        }
+      ],
+      "returncode": 0,
+      "status": "PASSED"
+    },
+    {
+      "argv": [
+        "/opt/homebrew/Cellar/python@3.14/3.14.8_2/Frameworks/Python.framework/Versions/3.14/bin/python3.14",
+        "-B",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "tests"
+      ],
+      "elapsed_seconds": 0.4995169169269502,
+      "receipt_ref": "receipts/check-001.json",
+      "receipt_sha256": "b4fe3a3df0b1108414edcde474f13dfbb7e350828974b77b5517795aa7356f77",
+      "receipts": [
+        {
+          "argv": [
+            "/opt/homebrew/bin/codex",
+            "--no-daemon",
+            "-c",
+            "permissions.proofline_s0_ba04d032a7ce4c119114f83547c75f3b={\"filesystem\"={\":minimal\"=\"read\",\"/opt/homebrew/Cellar/python@3.14/3.14.8_2/Frameworks/Python.framework/Versions/3.14\"=\"read\",\"/opt/homebrew/opt/python@3.14/Frameworks/Python.framework/Versions/3.14\"=\"read\",\"/opt/homebrew/opt/python@3.14/bin/python3.14\"=\"read\",\"/opt/homebrew/Cellar/python@3.14/3.14.8_2/Frameworks/Python.framework/Versions/3.14/bin/python3.14\"=\"read\",\"/Users/grove/projects/proofline/.proofline/issue16-matched-v5-20261013/assignments/04-atomic-transfers-combined/check/inputs\"=\"read\",\"/Users/grove/projects/proofline/.proofline/issue16-matched-v5-20261013/assignments/04-atomic-transfers-combined/check/check-1\"=\"write\",\"/Users/grove/projects/proofline/.proofline/issue16-matched-v5-20261013/assignments/04-atomic-transfers-combined/check/private\"=\"deny\",\"/opt/homebrew\"=\"read\",\"/Library/Developer/CommandLineTools/usr/bin\"=\"read\",\"/Library/Developer/CommandLineTools/usr/libexec/git-core\"=\"read\"},\"network\"={\"enabled\"=false}}",
+            "sandbox",
+            "--permission-profile",
+            "proofline_s0_ba04d032a7ce4c119114f83547c75f3b",
+            "--include-managed-config",
+            "--cd",
+            "/Users/grove/projects/proofline/.proofline/issue16-matched-v5-20261013/assignments/04-atomic-transfers-combined/check/check-1",
+            "--",
+            "/opt/homebrew/Cellar/python@3.14/3.14.8_2/Frameworks/Python.framework/Versions/3.14/bin/python3.14",
+            "-I",
+            "-B",
+            "-c",
+            "import json,os,sys; a=json.loads(sys.argv[1]); os.execv(a[0],a)",
+            "[\"/opt/homebrew/Cellar/python@3.14/3.14.8_2/Frameworks/Python.framework/Versions/3.14/bin/python3.14\", \"-I\", \"-B\", \"-c\", \"import json,os,sys\\ntry:\\n    os.chdir(sys.argv[1])\\n    os.environ[\\\"PYTHONDONTWRITEBYTECODE\\\"]=\\\"1\\\"\\n    argv=json.loads(sys.argv[2])\\n    os.execvpe(argv[0],argv,os.environ)\\nexcept OSError as error:\\n    print(\\\"Proofline check launch unavailable: \\\"+str(error),file=sys.stderr)\\n    sys.exit(127)\\n\", \"/Users/grove/projects/proofline/.proofline/issue16-matched-v5-20261013/assignments/04-atomic-transfers-combined/check/inputs/product\", \"[\\\"/opt/homebrew/Cellar/python@3.14/3.14.8_2/Frameworks/Python.framework/Versions/3.14/bin/python3.14\\\", \\\"-B\\\", \\\"-m\\\", \\\"unittest\\\", \\\"discover\\\", \\\"-s\\\", \\\"tests\\\"]\"]"
+          ],
+          "cwd": "/Users/grove/projects/proofline/.proofline/issue16-matched-v5-20261013/assignments/04-atomic-transfers-combined/check/check-1",
+          "elapsed_seconds": 0.499041,
+          "exit_code": 0,
+          "invocation_id": "09a788dd-1019-4d61-9685-822bc33cc153",
+          "kind": "process_probe",
+          "stderr": ".....................\n----------------------------------------------------------------------\nRan 21 tests in 0.288s\n\nOK\n",
+          "stdout": "",
+          "timed_out": false
+        }
+      ],
+      "returncode": 0,
+      "status": "PASSED"
+    }
+  ],
+  "original_source_ref": "inputs/source.md",
+  "promise_evidence": {
+    "candidate_commit": "54ad6ac6ea19372fadd9d2e02692f4d432825cc0",
+    "candidate_tree": "2055230d497dacc33364a842d59a3172d8e54c7b",
+    "coverage_completeness": "UNKNOWN",
+    "intentline": {
+      "constraints": [
+        {
+          "basis": "request",
+          "scope": "Existing product tests; preserve expected behavior grounded in this request.",
+          "source_refs": [
+            {
+              "line_end": 13,
+              "line_start": 13,
+              "quote": "keys are allowed. Update a stale test expectation if it contradicts this request.",
+              "source_id": "S1"
+            }
+          ],
+          "statement": "Update a stale test expectation if it contradicts the original request."
+        }
+      ],
+      "contract_id": "atomic-transfers",
+      "contract_sha256": "6ded8e5a6c9e6552f749d78a4058c7504551e0ca64929f73253fdbc4cdceb308",
+      "evidence_gaps": [],
+      "execution_authority": "not_established",
+      "export_authority": "unapproved",
+      "export_manifest_sha256": "1e04c094f0c6a1feee580bc38475a21e953baecb4b5cf4452b11824951147e43",
+      "external_caller_approval": "not_supplied_or_authenticated",
+      "intended_outcome": "Implement validated, atomic ordered transfers with identical process, service and CLI behavior, batch processing and unchanged inputs and CLI compatibility.",
+      "out_of_scope": [],
+      "revision": 1,
+      "scope": "Untrusted advisory planning data, not executable tests, proof or consent.",
+      "source_bundle_sha256": "5fbcb32d1b3591e4c101771216a7dcae85e5bb16d40d253a7aabff19b468c6b9",
+      "source_sha256": "c9a5c3bc2cc80520431d6fd951a8e2303270d1c390b25ed1f5413391fbc29347"
+    },
+    "original_source_ref": "inputs/source.md",
+    "requirements": [
+      {
+        "id": "R1",
+        "intentline_planning": {
+          "authority": "unverified original-source-grounded proposal",
+          "basis": "request",
+          "boundaries": [
+            "Booleans, negative values, floats, empty names, missing accounts or fields and malformed triples are invalid.",
+            "Empty balances and transfers and zero amounts are valid; extra keys do not invalidate payloads."
+          ],
+          "evidence_gap_reasons": [],
+          "plan_state": "planned",
+          "planned_evidence": "Table-driven unittest cases for input validity, ignored extra keys and exact valid outputs.",
+          "seam": "app.process(payload)"
+        },
+        "kind": "outcome",
+        "linked_checks": [
+          {
+            "argv": [
+              "/opt/homebrew/Cellar/python@3.14/3.14.8_2/Frameworks/Python.framework/Versions/3.14/bin/python3.14",
+              "-B",
+              "-m",
+              "unittest",
+              "discover",
+              "-s",
+              "tests"
+            ],
+            "index": 1,
+            "observation_status": "PASSED",
+            "receipt_ref": "receipts/check-001.json"
+          }
+        ],
+        "oracle_authority": "unverified caller suggestion",
+        "proposed_oracle": "Valid a=5,b=0 transfer 3 yields a=2,b=3; malformed values raise ValueError rather than being coerced.",
+        "reason": "Selected commands passed; linked behaviors are not proven in full",
+        "source_refs": [
+          {
+            "line_end": 3,
+            "line_start": 1,
+            "quote": "Implement transfers for {\"balances\": {name: integer >= 0},\n\"transfers\": [[from, to, amount], ...]}. Names are nonempty strings; amount is\na nonnegative integer. Booleans are invalid numbers. Both accounts must exist.",
+            "source_id": "S1"
+          },
+          {
+            "line_end": 13,
+            "line_start": 12,
+            "quote": "response and unsupported-argument behavior; keep cli.py unchanged. Extra object\nkeys are allowed. Update a stale test expectation if it contradicts this request.",
+            "source_id": "S1"
+          }
+        ],
+        "statement": "Accept transfer payloads with nonempty string account names, nonnegative integer balances and amounts, existing endpoints and the specified object/list shapes; reject invalid payloads and allow extra object keys.",
+        "status": "LINKED CHECKS PASSED (limited evidence)"
+      },
+      {
+        "id": "R2",
+        "intentline_planning": {
+          "authority": "unverified original-source-grounded proposal",
+          "basis": "request",
+          "boundaries": [
+            "Incoming funds may finance a later transfer.",
+            "A later credit cannot repair an earlier overdraft.",
+            "Self-transfer within available funds leaves the balance unchanged."
+          ],
+          "evidence_gap_reasons": [],
+          "plan_state": "planned",
+          "planned_evidence": "Unittest cases with fixed final balances and intermediate and self-transfer rejection.",
+          "seam": "app.process(payload)"
+        },
+        "kind": "outcome",
+        "linked_checks": [
+          {
+            "argv": [
+              "/opt/homebrew/Cellar/python@3.14/3.14.8_2/Frameworks/Python.framework/Versions/3.14/bin/python3.14",
+              "-B",
+              "-c",
+              "from app import process; assert process({'balances': {'a': 5, 'b': 0}, 'transfers': [['a', 'b', 3]]}) == {'balances': {'a': 2, 'b': 3}}"
+            ],
+            "index": 0,
+            "observation_status": "PASSED",
+            "receipt_ref": "receipts/check-000.json"
+          },
+          {
+            "argv": [
+              "/opt/homebrew/Cellar/python@3.14/3.14.8_2/Frameworks/Python.framework/Versions/3.14/bin/python3.14",
+              "-B",
+              "-m",
+              "unittest",
+              "discover",
+              "-s",
+              "tests"
+            ],
+            "index": 1,
+            "observation_status": "PASSED",
+            "receipt_ref": "receipts/check-001.json"
+          }
+        ],
+        "oracle_authority": "unverified caller suggestion",
+        "proposed_oracle": "From a=5,b=0, a to b 3 then b to a 2 yields a=4,b=1; a to a 6 raises ValueError.",
+        "reason": "Selected commands passed; linked behaviors are not proven in full",
+        "source_refs": [
+          {
+            "line_end": 6,
+            "line_start": 4,
+            "quote": "Apply transfers in order; reject insufficient funds at any intermediate step,\nincluding a self-transfer exceeding that account's balance. Return\n{\"balances\": final_balances}. No partial result on rejection.",
+            "source_id": "S1"
+          }
+        ],
+        "statement": "Apply transfers in order and return only final balances; reject any intermediate insufficient funds including oversized self-transfers without a partial result.",
+        "status": "LINKED CHECKS PASSED (limited evidence)"
+      },
+      {
+        "id": "R3",
+        "intentline_planning": {
+          "authority": "unverified original-source-grounded proposal",
+          "basis": "request",
+          "boundaries": [
+            "CLI success emits JSON final balances.",
+            "Invalid CLI input emits error status with no partial JSON output."
+          ],
+          "evidence_gap_reasons": [],
+          "plan_state": "planned",
+          "planned_evidence": "Python service tests and subprocess CLI success/error tests.",
+          "seam": "app.process, service.handle, cli.py subprocess"
+        },
+        "kind": "outcome",
+        "linked_checks": [
+          {
+            "argv": [
+              "/opt/homebrew/Cellar/python@3.14/3.14.8_2/Frameworks/Python.framework/Versions/3.14/bin/python3.14",
+              "-B",
+              "-m",
+              "unittest",
+              "discover",
+              "-s",
+              "tests"
+            ],
+            "index": 1,
+            "observation_status": "PASSED",
+            "receipt_ref": "receipts/check-001.json"
+          }
+        ],
+        "oracle_authority": "unverified caller suggestion",
+        "proposed_oracle": "Both Python entry points return the same specified final balances and reject invalid input; CLI JSON agrees with that fixed expected value.",
+        "reason": "Selected commands passed; linked behaviors are not proven in full",
+        "source_refs": [
+          {
+            "line_end": 9,
+            "line_start": 8,
+            "quote": "Expose the same behavior through app.process, service.handle and the existing\nJSON stdin/stdout CLI. Add service.batch(payloads): return each process result",
+            "source_id": "S1"
+          }
+        ],
+        "statement": "Expose identical processing through app.process, service.handle and the existing JSON stdin/stdout CLI.",
+        "status": "LINKED CHECKS PASSED (limited evidence)"
+      },
+      {
+        "id": "R4",
+        "intentline_planning": {
+          "authority": "unverified original-source-grounded proposal",
+          "basis": "request",
+          "boundaries": [
+            "Empty batch returns an empty list.",
+            "Invalid member after valid members rejects the whole call.",
+            "Repeated payloads remain independent."
+          ],
+          "evidence_gap_reasons": [],
+          "plan_state": "planned",
+          "planned_evidence": "Batch unittest cases for order, empty input and invalid containers/members.",
+          "seam": "service.batch(payloads)"
+        },
+        "kind": "outcome",
+        "linked_checks": [
+          {
+            "argv": [
+              "/opt/homebrew/Cellar/python@3.14/3.14.8_2/Frameworks/Python.framework/Versions/3.14/bin/python3.14",
+              "-B",
+              "-m",
+              "unittest",
+              "discover",
+              "-s",
+              "tests"
+            ],
+            "index": 1,
+            "observation_status": "PASSED",
+            "receipt_ref": "receipts/check-001.json"
+          }
+        ],
+        "oracle_authority": "unverified caller suggestion",
+        "proposed_oracle": "Two different valid payloads produce their fixed expected outputs in original order; invalid list members and non-list containers raise ValueError.",
+        "reason": "Selected commands passed; linked behaviors are not proven in full",
+        "source_refs": [
+          {
+            "line_end": 10,
+            "line_start": 9,
+            "quote": "JSON stdin/stdout CLI. Add service.batch(payloads): return each process result\nin input order; reject a non-list or any invalid member with ValueError.",
+            "source_id": "S1"
+          }
+        ],
+        "statement": "Add service.batch returning each process result in input order and raising ValueError for a non-list or any invalid member.",
+        "status": "LINKED CHECKS PASSED (limited evidence)"
+      },
+      {
+        "id": "R5",
+        "intentline_planning": {
+          "authority": "unverified original-source-grounded proposal",
+          "basis": "request",
+          "boundaries": [
+            "Nested balances and transfers remain unchanged.",
+            "Batch members remain unchanged when a later member rejects.",
+            "Returned balances must not alias caller balances."
+          ],
+          "evidence_gap_reasons": [],
+          "plan_state": "planned",
+          "planned_evidence": "Deep-copy snapshots around public API calls and output alias checks.",
+          "seam": "app.process, service.handle, service.batch"
+        },
+        "kind": "outcome",
+        "linked_checks": [
+          {
+            "argv": [
+              "/opt/homebrew/Cellar/python@3.14/3.14.8_2/Frameworks/Python.framework/Versions/3.14/bin/python3.14",
+              "-B",
+              "-m",
+              "unittest",
+              "discover",
+              "-s",
+              "tests"
+            ],
+            "index": 1,
+            "observation_status": "PASSED",
+            "receipt_ref": "receipts/check-001.json"
+          }
+        ],
+        "oracle_authority": "unverified caller suggestion",
+        "proposed_oracle": "Deep-copied original payloads remain equal after success and rejection; editing returned balances leaves inputs unchanged.",
+        "reason": "Selected commands passed; linked behaviors are not proven in full",
+        "source_refs": [
+          {
+            "line_end": 11,
+            "line_start": 11,
+            "quote": "Do not mutate any input, including on errors. Preserve the exact CLI --version",
+            "source_id": "S1"
+          }
+        ],
+        "statement": "Do not mutate any input on successful processing or errors.",
+        "status": "LINKED CHECKS PASSED (limited evidence)"
+      },
+      {
+        "id": "R6",
+        "intentline_planning": {
+          "authority": "unverified original-source-grounded proposal",
+          "basis": "request",
+          "boundaries": [
+            "--version alone returns existing api-v1 newline with status 0 and empty stderr.",
+            "Other argument lists preserve status 2, empty stdout and existing unsupported-argument error."
+          ],
+          "evidence_gap_reasons": [],
+          "plan_state": "planned",
+          "planned_evidence": "Existing compatibility test plus unsupported argument subprocess cases and Git diff inspection of cli.py.",
+          "seam": "cli.py subprocess and source diff"
+        },
+        "kind": "outcome",
+        "linked_checks": [
+          {
+            "argv": [
+              "/opt/homebrew/Cellar/python@3.14/3.14.8_2/Frameworks/Python.framework/Versions/3.14/bin/python3.14",
+              "-B",
+              "-m",
+              "unittest",
+              "discover",
+              "-s",
+              "tests"
+            ],
+            "index": 1,
+            "observation_status": "PASSED",
+            "receipt_ref": "receipts/check-001.json"
+          }
+        ],
+        "oracle_authority": "unverified caller suggestion",
+        "proposed_oracle": "Version remains (0, api-v1 newline, empty stderr); unsupported arguments remain (2, empty stdout, ERROR: unsupported arguments newline).",
+        "reason": "Selected commands passed; linked behaviors are not proven in full",
+        "source_refs": [
+          {
+            "line_end": 12,
+            "line_start": 11,
+            "quote": "Do not mutate any input, including on errors. Preserve the exact CLI --version\nresponse and unsupported-argument behavior; keep cli.py unchanged. Extra object",
+            "source_id": "S1"
+          }
+        ],
+        "statement": "Preserve the exact CLI --version response and unsupported-argument behavior and keep cli.py unchanged.",
+        "status": "LINKED CHECKS PASSED (limited evidence)"
+      }
+    ],
+    "same_agent_review": {
+      "authority": "unverified advisory review; may omit original promises",
+      "independent": false,
+      "proposals": [],
+      "reported_performed": false
+    },
+    "scope": "Only explicitly mapped requirements/commands; all original source remains authoritative.",
+    "snapshot_sha256": "352e15fa472f8b2a189bf8566bc8a4cd3ea54a84fa00cf6161d28c1983f8cac6",
+    "source_sha256": "c9a5c3bc2cc80520431d6fd951a8e2303270d1c390b25ed1f5413391fbc29347"
+  },
+  "promise_mapping": {
+    "requirements": [
+      {
+        "checks": [
+          {
+            "argv": [
+              "/opt/homebrew/Cellar/python@3.14/3.14.8_2/Frameworks/Python.framework/Versions/3.14/bin/python3.14",
+              "-B",
+              "-m",
+              "unittest",
+              "discover",
+              "-s",
+              "tests"
+            ],
+            "index": 1
+          }
+        ],
+        "id": "R1",
+        "kind": "outcome",
+        "oracle": "Valid a=5,b=0 transfer 3 yields a=2,b=3; malformed values raise ValueError rather than being coerced.",
+        "source_refs": [
+          {
+            "line_end": 3,
+            "line_start": 1,
+            "quote": "Implement transfers for {\"balances\": {name: integer >= 0},\n\"transfers\": [[from, to, amount], ...]}. Names are nonempty strings; amount is\na nonnegative integer. Booleans are invalid numbers. Both accounts must exist.",
+            "source_id": "S1"
+          },
+          {
+            "line_end": 13,
+            "line_start": 12,
+            "quote": "response and unsupported-argument behavior; keep cli.py unchanged. Extra object\nkeys are allowed. Update a stale test expectation if it contradicts this request.",
+            "source_id": "S1"
+          }
+        ],
+        "statement": "Accept transfer payloads with nonempty string account names, nonnegative integer balances and amounts, existing endpoints and the specified object/list shapes; reject invalid payloads and allow extra object keys."
+      },
+      {
+        "checks": [
+          {
+            "argv": [
+              "/opt/homebrew/Cellar/python@3.14/3.14.8_2/Frameworks/Python.framework/Versions/3.14/bin/python3.14",
+              "-B",
+              "-c",
+              "from app import process; assert process({'balances': {'a': 5, 'b': 0}, 'transfers': [['a', 'b', 3]]}) == {'balances': {'a': 2, 'b': 3}}"
+            ],
+            "index": 0
+          },
+          {
+            "argv": [
+              "/opt/homebrew/Cellar/python@3.14/3.14.8_2/Frameworks/Python.framework/Versions/3.14/bin/python3.14",
+              "-B",
+              "-m",
+              "unittest",
+              "discover",
+              "-s",
+              "tests"
+            ],
+            "index": 1
+          }
+        ],
+        "id": "R2",
+        "kind": "outcome",
+        "oracle": "From a=5,b=0, a to b 3 then b to a 2 yields a=4,b=1; a to a 6 raises ValueError.",
+        "source_refs": [
+          {
+            "line_end": 6,
+            "line_start": 4,
+            "quote": "Apply transfers in order; reject insufficient funds at any intermediate step,\nincluding a self-transfer exceeding that account's balance. Return\n{\"balances\": final_balances}. No partial result on rejection.",
+            "source_id": "S1"
+          }
+        ],
+        "statement": "Apply transfers in order and return only final balances; reject any intermediate insufficient funds including oversized self-transfers without a partial result."
+      },
+      {
+        "checks": [
+          {
+            "argv": [
+              "/opt/homebrew/Cellar/python@3.14/3.14.8_2/Frameworks/Python.framework/Versions/3.14/bin/python3.14",
+              "-B",
+              "-m",
+              "unittest",
+              "discover",
+              "-s",
+              "tests"
+            ],
+            "index": 1
+          }
+        ],
+        "id": "R3",
+        "kind": "outcome",
+        "oracle": "Both Python entry points return the same specified final balances and reject invalid input; CLI JSON agrees with that fixed expected value.",
+        "source_refs": [
+          {
+            "line_end": 9,
+            "line_start": 8,
+            "quote": "Expose the same behavior through app.process, service.handle and the existing\nJSON stdin/stdout CLI. Add service.batch(payloads): return each process result",
+            "source_id": "S1"
+          }
+        ],
+        "statement": "Expose identical processing through app.process, service.handle and the existing JSON stdin/stdout CLI."
+      },
+      {
+        "checks": [
+          {
+            "argv": [
+              "/opt/homebrew/Cellar/python@3.14/3.14.8_2/Frameworks/Python.framework/Versions/3.14/bin/python3.14",
+              "-B",
+              "-m",
+              "unittest",
+              "discover",
+              "-s",
+              "tests"
+            ],
+            "index": 1
+          }
+        ],
+        "id": "R4",
+        "kind": "outcome",
+        "oracle": "Two different valid payloads produce their fixed expected outputs in original order; invalid list members and non-list containers raise ValueError.",
+        "source_refs": [
+          {
+            "line_end": 10,
+            "line_start": 9,
+            "quote": "JSON stdin/stdout CLI. Add service.batch(payloads): return each process result\nin input order; reject a non-list or any invalid member with ValueError.",
+            "source_id": "S1"
+          }
+        ],
+        "statement": "Add service.batch returning each process result in input order and raising ValueError for a non-list or any invalid member."
+      },
+      {
+        "checks": [
+          {
+            "argv": [
+              "/opt/homebrew/Cellar/python@3.14/3.14.8_2/Frameworks/Python.framework/Versions/3.14/bin/python3.14",
+              "-B",
+              "-m",
+              "unittest",
+              "discover",
+              "-s",
+              "tests"
+            ],
+            "index": 1
+          }
+        ],
+        "id": "R5",
+        "kind": "outcome",
+        "oracle": "Deep-copied original payloads remain equal after success and rejection; editing returned balances leaves inputs unchanged.",
+        "source_refs": [
+          {
+            "line_end": 11,
+            "line_start": 11,
+            "quote": "Do not mutate any input, including on errors. Preserve the exact CLI --version",
+            "source_id": "S1"
+          }
+        ],
+        "statement": "Do not mutate any input on successful processing or errors."
+      },
+      {
+        "checks": [
+          {
+            "argv": [
+              "/opt/homebrew/Cellar/python@3.14/3.14.8_2/Frameworks/Python.framework/Versions/3.14/bin/python3.14",
+              "-B",
+              "-m",
+              "unittest",
+              "discover",
+              "-s",
+              "tests"
+            ],
+            "index": 1
+          }
+        ],
+        "id": "R6",
+        "kind": "outcome",
+        "oracle": "Version remains (0, api-v1 newline, empty stderr); unsupported arguments remain (2, empty stdout, ERROR: unsupported arguments newline).",
+        "source_refs": [
+          {
+            "line_end": 12,
+            "line_start": 11,
+            "quote": "Do not mutate any input, including on errors. Preserve the exact CLI --version\nresponse and unsupported-argument behavior; keep cli.py unchanged. Extra object",
+            "source_id": "S1"
+          }
+        ],
+        "statement": "Preserve the exact CLI --version response and unsupported-argument behavior and keep cli.py unchanged."
+      }
+    ],
+    "review": {
+      "performed": false,
+      "proposals": []
+    },
+    "schema_version": 1,
+    "source_sha256": "c9a5c3bc2cc80520431d6fd951a8e2303270d1c390b25ed1f5413391fbc29347"
+  },
+  "published": false,
+  "python": "/opt/homebrew/Cellar/python@3.14/3.14.8_2/Frameworks/Python.framework/Versions/3.14/bin/python3.14",
+  "schema_version": 1,
+  "selection": {
+    "candidate_commit": "54ad6ac6ea19372fadd9d2e02692f4d432825cc0",
+    "candidate_tree": "2055230d497dacc33364a842d59a3172d8e54c7b",
+    "entries": [
+      {
+        "kind": "file",
+        "mode": 420,
+        "path": "README.md",
+        "sha256": "058f74ad72b941559f85ad0222b7f43f24361e54d4dfd7a15f3bdd70622b9c87"
+      },
+      {
+        "kind": "file",
+        "mode": 420,
+        "path": "app.py",
+        "sha256": "54c167deef599c9695b3ffa879019f33d841785efd6fd67a031d3282ed7bc56c"
+      },
+      {
+        "kind": "file",
+        "mode": 420,
+        "path": "cli.py",
+        "sha256": "14aea6a3d7acc1d93b80e079fd645b48e4fef2e976df9ef355cc50829a7c74c8"
+      },
+      {
+        "kind": "file",
+        "mode": 420,
+        "path": "service.py",
+        "sha256": "c327d2d7dd0b9c0bbdc0552e102f9aaa286e84fa6958d23778719f6e3e66bda9"
+      },
+      {
+        "kind": "file",
+        "mode": 420,
+        "path": "tests/test_compat.py",
+        "sha256": "2432e53eeae0b53103501bb0cdfbd3dab2446d236503df335ea8a5e5e4171703"
+      },
+      {
+        "kind": "file",
+        "mode": 420,
+        "path": "tests/test_example.py",
+        "sha256": "68ea843f459775c4502178a8061ba0329f81bef3aec680623b8a1d90f92831ce"
+      },
+      {
+        "kind": "file",
+        "mode": 420,
+        "path": "tests/test_transfers.py",
+        "sha256": "170fcde340f1264d302f1f1d762a8d2d44b12f82db08598b28c31fd9a90a50de"
+      }
+    ],
+    "policy": "current tracked files plus non-ignored untracked files; tracked deletions omitted"
+  },
+  "snapshot": "352e15fa472f8b2a189bf8566bc8a4cd3ea54a84fa00cf6161d28c1983f8cac6",
+  "source_sha256": "c9a5c3bc2cc80520431d6fd951a8e2303270d1c390b25ed1f5413391fbc29347",
+  "stages": [],
+  "status": "CHECKS PASSED",
+  "version_receipt": {
+    "argv": [
+      "/opt/homebrew/bin/codex",
+      "--version"
+    ],
+    "cwd": "/Users/grove/projects/proofline/.proofline/issue16-matched-v5-20261013/assignments/04-atomic-transfers-combined/check",
+    "elapsed_seconds": 0.024467,
+    "exit_code": 0,
+    "invocation_id": "b993f672-555d-403f-8bdb-c2506601d5ed",
+    "kind": "process_probe",
+    "stderr": "",
+    "stdout": "codex-cli 0.162.1\n",
+    "timed_out": false
+  }
+}

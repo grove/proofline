@@ -1,0 +1,109 @@
+{
+  "R1": [
+    {
+      "index": 1,
+      "argv": [
+        "/opt/homebrew/Cellar/python@3.14/3.14.8_2/Frameworks/Python.framework/Versions/3.14/bin/python3.14",
+        "-B",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "tests"
+      ]
+    }
+  ],
+  "R2": [
+    {
+      "index": 0,
+      "argv": [
+        "/opt/homebrew/Cellar/python@3.14/3.14.8_2/Frameworks/Python.framework/Versions/3.14/bin/python3.14",
+        "-B",
+        "-c",
+        "from app import process; assert process({'capacity': 2, 'events': [{'id': 'a', 'value': 1}, {'id': 'b', 'value': 2}, {'id': 'a', 'value': 3}, {'id': 'c', 'value': 4}]}) == {'items': [{'id': 'b', 'value': 2}, {'id': 'c', 'value': 4}], 'evicted': ['a']}"
+      ]
+    },
+    {
+      "index": 1,
+      "argv": [
+        "/opt/homebrew/Cellar/python@3.14/3.14.8_2/Frameworks/Python.framework/Versions/3.14/bin/python3.14",
+        "-B",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "tests"
+      ]
+    }
+  ],
+  "R3": [
+    {
+      "index": 1,
+      "argv": [
+        "/opt/homebrew/Cellar/python@3.14/3.14.8_2/Frameworks/Python.framework/Versions/3.14/bin/python3.14",
+        "-B",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "tests"
+      ]
+    }
+  ],
+  "R4": [
+    {
+      "index": 1,
+      "argv": [
+        "/opt/homebrew/Cellar/python@3.14/3.14.8_2/Frameworks/Python.framework/Versions/3.14/bin/python3.14",
+        "-B",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "tests"
+      ]
+    }
+  ],
+  "R5": [
+    {
+      "index": 1,
+      "argv": [
+        "/opt/homebrew/Cellar/python@3.14/3.14.8_2/Frameworks/Python.framework/Versions/3.14/bin/python3.14",
+        "-B",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "tests"
+      ]
+    }
+  ],
+  "R6": [
+    {
+      "index": 1,
+      "argv": [
+        "/opt/homebrew/Cellar/python@3.14/3.14.8_2/Frameworks/Python.framework/Versions/3.14/bin/python3.14",
+        "-B",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "tests"
+      ]
+    }
+  ],
+  "R7": [
+    {
+      "index": 1,
+      "argv": [
+        "/opt/homebrew/Cellar/python@3.14/3.14.8_2/Frameworks/Python.framework/Versions/3.14/bin/python3.14",
+        "-B",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "tests"
+      ]
+    }
+  ]
+}

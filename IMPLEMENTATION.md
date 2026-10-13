@@ -76,15 +76,15 @@ JSON advisory adapter does not execute peers or grant authority.
    Python assertion failure. Both candidates and their receipts remain bound;
    all selected checks rerun under one cumulative budget. No extra dispatch
    on success, no retry after interruption, no inference from advisory gaps.
-7. [#16 — Compare](https://github.com/grove/proofline/issues/16):
-   report independently correct deliveries against the ordinary-agent
-   baseline, latency, cost, false acceptances and needless blocking. Retain
-   only features that measurably earn their overhead.
-   [Matched 2×2 preparation](docs/ISSUE16-PREPARATION.md) now includes
-   four fresh tasks, twelve independent controls, fixed sixteen-slot
-   accounting and a one-shot native coordinator. Native preflight stopped
-   on an invalid sibling-canary expectation before any model dispatch;
-   empirical acceptance remains incomplete and the frozen study cannot resume.
+7. [#16 — Compare](https://github.com/grove/proofline/issues/16), implemented:
+   the [observed matched study](evaluation/results/matched-v5-20261013/README.md)
+   retains all sixteen assigned native attempts, exact candidates, independent
+   finite grading and twelve pre-dispatch controls. Each arm delivered 4/4.
+   The report separates false acceptance, blocked handoffs, omissions, bad/unknown
+   evidence, time/tokens, paired descriptive effects and unmeasured costs.
+   Planning added overhead without an observed delivery benefit; keep additional
+   stages optional. Four tasks cannot establish general superiority. Earlier
+   stopped declarations retain their separate missing slots and source archives.
 
 ## Stop rules
 

@@ -1,0 +1,39 @@
+{
+  "assessment": {
+    "observations": {
+      "mode_change": "allowed",
+      "network": "denied",
+      "nonce": "4670e402a8044cb1a1f7026e2f953d59",
+      "reads": {
+        "actual_oracle": "denied",
+        "enclosing_repository": "denied",
+        "grader": "denied",
+        "matched_oracle": "denied",
+        "oracle-canary": "denied",
+        "other-role-canary": "denied",
+        "receipt-canary": "denied",
+        "sibling": "denied",
+        "study_results": "denied"
+      },
+      "scratch": true,
+      "writes": {
+        "candidate": "allowed",
+        "git_head": "denied",
+        "input": "denied",
+        "receipt": "denied",
+        "source": "denied"
+      }
+    },
+    "status": "OBSERVED"
+  },
+  "receipt": {
+    "elapsed_seconds": 0.142271,
+    "exit_code": 0,
+    "invocation_id": "95294bfb-2ded-460c-8297-00ada8dee052",
+    "kind": "process_probe",
+    "native_argv_sha256": "800b09e0cec89d0bfa74f22fa96bf757e2d2ab562a597af70a46952d7059a4d2",
+    "stderr": "",
+    "stdout": "{\"nonce\": \"4670e402a8044cb1a1f7026e2f953d59\", \"writes\": {\"source\": \"denied\", \"input\": \"denied\", \"candidate\": \"allowed\", \"git_head\": \"denied\", \"receipt\": \"denied\"}, \"reads\": {\"receipt-canary\": \"denied\", \"oracle-canary\": \"denied\", \"other-role-canary\": \"denied\", \"actual_oracle\": \"denied\", \"matched_oracle\": \"denied\", \"grader\": \"denied\", \"study_results\": \"denied\", \"enclosing_repository\": \"denied\", \"sibling\": \"denied\"}, \"mode_change\": \"allowed\", \"scratch\": true, \"network\": \"denied\"}\n",
+    "timed_out": false
+  }
+}

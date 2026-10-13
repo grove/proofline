@@ -1,0 +1,1220 @@
+{
+  "advisory_status": "VALID",
+  "agent_completed": true,
+  "arm": "combined",
+  "base_tree": "f32ee627087f16af8ac3cc693785bfcf517b275e",
+  "candidate_commit": "94ed13eca037a10a7c06cc5f37ae780a094dc930",
+  "candidate_files": {
+    "README.md": {
+      "kind": "file",
+      "mode": 420,
+      "path": "README.md",
+      "sha256": "4774514d095c022a04b16a43bad405a26c0bec7ff39dff054eb3a0ed71e6ee7c"
+    },
+    "app.py": {
+      "kind": "file",
+      "mode": 420,
+      "path": "app.py",
+      "sha256": "8c4e4d603330b6e39471aa90bae6242c9a243181a80e83271aa5abbadb685947"
+    },
+    "cli.py": {
+      "kind": "file",
+      "mode": 420,
+      "path": "cli.py",
+      "sha256": "14aea6a3d7acc1d93b80e079fd645b48e4fef2e976df9ef355cc50829a7c74c8"
+    },
+    "service.py": {
+      "kind": "file",
+      "mode": 420,
+      "path": "service.py",
+      "sha256": "65946bfc3086b70419765acbbf378c77cb02981847be09294930335d73f77585"
+    },
+    "tests": {
+      "kind": "directory",
+      "mode": 493,
+      "path": "tests"
+    },
+    "tests/test_cache.py": {
+      "kind": "file",
+      "mode": 420,
+      "path": "tests/test_cache.py",
+      "sha256": "14e4870e5aa47762325a5aaeda1acfa0dc2c1be94958b1a255c54531c8aa1f00"
+    },
+    "tests/test_compat.py": {
+      "kind": "file",
+      "mode": 420,
+      "path": "tests/test_compat.py",
+      "sha256": "2432e53eeae0b53103501bb0cdfbd3dab2446d236503df335ea8a5e5e4171703"
+    },
+    "tests/test_example.py": {
+      "kind": "file",
+      "mode": 420,
+      "path": "tests/test_example.py",
+      "sha256": "d32ad37bc744bc69e4959180ef66f8e31888e784441e580fec62f7e59f4d76a0"
+    }
+  },
+  "candidate_snapshot_sha256": "ba300a1863ff20b0f6904f17bd3f7d853dbdef2f47ae55f5f9fa2703576d9991",
+  "candidate_tree": "3a938999ea1da5fada885ac2552ac8c5f609c1dd",
+  "check_elapsed_seconds": 1.1902269166894257,
+  "check_model_dispatches": 0,
+  "check_status": "CHECKS PASSED",
+  "controller_episode_processes": 26,
+  "controller_grading_processes": 34,
+  "extra_worker_messages": 0,
+  "feedback": {
+    "candidate_commit": "d19bbcaac36b0ea403e14767858ee63c6eccc062",
+    "candidate_tree": "3a938999ea1da5fada885ac2552ac8c5f609c1dd",
+    "checks": [
+      {
+        "argv": [
+          "/opt/homebrew/Cellar/python@3.14/3.14.8_2/Frameworks/Python.framework/Versions/3.14/bin/python3.14",
+          "-B",
+          "-c",
+          "from app import process; assert process({'capacity': 2, 'events': [{'id': 'a', 'value': 1}, {'id': 'b', 'value': 2}, {'id': 'a', 'value': 3}, {'id': 'c', 'value': 4}]}) == {'items': [{'id': 'b', 'value': 2}, {'id': 'c', 'value': 4}], 'evicted': ['a']}"
+        ],
+        "elapsed_seconds": 0.1337678749114275,
+        "exit_code": 0,
+        "index": 0,
+        "outcome_ids": [],
+        "reason": "Selected command exited 0; unselected promises are not demonstrated.",
+        "receipt_ref": "receipts/check-000.json",
+        "status": "PASSED",
+        "stderr_excerpt": "",
+        "stderr_ref": "receipts/check-000.json#stderr",
+        "stdout_excerpt": "",
+        "stdout_ref": "receipts/check-000.json#stdout"
+      },
+      {
+        "argv": [
+          "/opt/homebrew/Cellar/python@3.14/3.14.8_2/Frameworks/Python.framework/Versions/3.14/bin/python3.14",
+          "-B",
+          "-m",
+          "unittest",
+          "discover",
+          "-s",
+          "tests"
+        ],
+        "elapsed_seconds": 0.5571881248615682,
+        "exit_code": 0,
+        "index": 1,
+        "outcome_ids": [],
+        "reason": "Selected command exited 0; unselected promises are not demonstrated.",
+        "receipt_ref": "receipts/check-001.json",
+        "status": "PASSED",
+        "stderr_excerpt": "...................... | ---------------------------------------------------------------------- | Ran 22 tests in 0.316s | OK",
+        "stderr_ref": "receipts/check-001.json#stderr",
+        "stdout_excerpt": "",
+        "stdout_ref": "receipts/check-001.json#stdout"
+      }
+    ],
+    "headline": "2/2 selected checks passed",
+    "next_action": "Report only the commands checked; original request coverage remains unknown.",
+    "scope": "Selected executable commands only; completeness of the original user promise is unknown.",
+    "snapshot_sha256": "d5e811b342b103b99c63f7905a13004c36d24f53e671270a7df116f930acfd39",
+    "source_sha256": "ca511e228d32a79e61c1b3c9acc1d49b4359c9dc90f4044a325dbf313226f41e",
+    "status": "CHECKS PASSED"
+  },
+  "finished_at": "2026-10-13T15:51:47.057171+00:00",
+  "grade": {
+    "available": true,
+    "correct": true,
+    "elapsed_seconds": 4.804186000023037,
+    "failures": [],
+    "receipts": [
+      {
+        "elapsed_seconds": 0.132269,
+        "exit_code": 0,
+        "invocation_id": "ba9a06e1-7a22-477f-8493-664a9732b268",
+        "kind": "process_probe",
+        "native_argv_sha256": "3a8161230cfb5ca474510af0fb24fefd0f968a48f127beb0353455aeba5f0cd0",
+        "stderr": "",
+        "stdout": "{\"ok\": true, \"unchanged\": true, \"value\": {\"evicted\": [\"a\"], \"items\": [{\"id\": \"b\", \"value\": 2}, {\"id\": \"c\", \"value\": 4}]}}\n",
+        "timed_out": false
+      },
+      {
+        "elapsed_seconds": 0.128086,
+        "exit_code": 0,
+        "invocation_id": "5641389d-41db-489b-ad0a-1d95b1d70c33",
+        "kind": "process_probe",
+        "native_argv_sha256": "695a38b4b3cbe175674eb58c22681f7d485e639fa02e878bdccbb3060173e1ab",
+        "stderr": "",
+        "stdout": "{\"ok\": true, \"unchanged\": true, \"value\": {\"evicted\": [\"a\"], \"items\": [{\"id\": \"b\", \"value\": 2}, {\"id\": \"c\", \"value\": 4}]}}\n",
+        "timed_out": false
+      },
+      {
+        "elapsed_seconds": 0.129972,
+        "exit_code": 0,
+        "invocation_id": "846947c3-223c-469b-8798-6a2bdbf742d3",
+        "kind": "process_probe",
+        "native_argv_sha256": "202fcd2634f93fab1b93e9209756f907bc1f51988c09d25bdd219496bd65fc7a",
+        "stderr": "",
+        "stdout": "{\"evicted\": [\"a\"], \"items\": [{\"id\": \"b\", \"value\": 2}, {\"id\": \"c\", \"value\": 4}]}\n",
+        "timed_out": false
+      },
+      {
+        "elapsed_seconds": 0.131463,
+        "exit_code": 0,
+        "invocation_id": "51ad184b-f60f-49ee-a198-3dbf52e5b937",
+        "kind": "process_probe",
+        "native_argv_sha256": "0e57437a1900af2ce77059fa862d87657b0cb9aa09505e4559245013080afe45",
+        "stderr": "",
+        "stdout": "{\"ok\": true, \"unchanged\": true, \"value\": {\"evicted\": [\"a\", \"a\"], \"items\": []}}\n",
+        "timed_out": false
+      },
+      {
+        "elapsed_seconds": 0.123785,
+        "exit_code": 0,
+        "invocation_id": "96c4246c-6f7f-468b-9134-d33b5d7c1b8b",
+        "kind": "process_probe",
+        "native_argv_sha256": "77d493ca6a76f6458f34e113763b6ced35733c826b8ca3b552183bbc0677d605",
+        "stderr": "",
+        "stdout": "{\"ok\": true, \"unchanged\": true, \"value\": {\"evicted\": [\"a\", \"a\"], \"items\": []}}\n",
+        "timed_out": false
+      },
+      {
+        "elapsed_seconds": 0.128262,
+        "exit_code": 0,
+        "invocation_id": "b274ccbd-a3ba-46c8-97d1-f5f7714f3655",
+        "kind": "process_probe",
+        "native_argv_sha256": "bac09e9e24510a9396e07039c3dd14b07b544ecf7732c0d85e1734a11e6c994b",
+        "stderr": "",
+        "stdout": "{\"evicted\": [\"a\", \"a\"], \"items\": []}\n",
+        "timed_out": false
+      },
+      {
+        "elapsed_seconds": 0.132028,
+        "exit_code": 0,
+        "invocation_id": "1a950853-2294-4db6-b152-623078ed8517",
+        "kind": "process_probe",
+        "native_argv_sha256": "bea0a37369263155e1b469f9263ec2fa6a1739e6e0f7f72436aba0dbaa30b59d",
+        "stderr": "",
+        "stdout": "{\"ok\": true, \"unchanged\": true, \"value\": {\"evicted\": [], \"items\": [{\"id\": \"a\", \"value\": [1, {\"x\": 2}]}]}}\n",
+        "timed_out": false
+      },
+      {
+        "elapsed_seconds": 0.130578,
+        "exit_code": 0,
+        "invocation_id": "ec1a3b48-9fd8-48fb-b5c8-05695b205b13",
+        "kind": "process_probe",
+        "native_argv_sha256": "1de3e4faa6013b0e7ec0dcc8a86370e1ec6b29545d71c4b631afa3a49efbf3e7",
+        "stderr": "",
+        "stdout": "{\"ok\": true, \"unchanged\": true, \"value\": {\"evicted\": [], \"items\": [{\"id\": \"a\", \"value\": [1, {\"x\": 2}]}]}}\n",
+        "timed_out": false
+      },
+      {
+        "elapsed_seconds": 0.130487,
+        "exit_code": 0,
+        "invocation_id": "83e59112-e35c-4342-a310-8d9a77894c85",
+        "kind": "process_probe",
+        "native_argv_sha256": "a5637d78a7c7ebddfec91c1a78d4b6d5476ca9b9471bf5b28b73236363c25ce7",
+        "stderr": "",
+        "stdout": "{\"evicted\": [], \"items\": [{\"id\": \"a\", \"value\": [1, {\"x\": 2}]}]}\n",
+        "timed_out": false
+      },
+      {
+        "elapsed_seconds": 0.127714,
+        "exit_code": 0,
+        "invocation_id": "fd02704f-c405-4980-a26c-8f2f55a80896",
+        "kind": "process_probe",
+        "native_argv_sha256": "6bf4614f513538fa6726196c3f6a9e522ebdcd94d2bf97b8b9504dbbe95aacf1",
+        "stderr": "",
+        "stdout": "{\"error\": \"ValueError\", \"is_value_error\": true, \"ok\": false, \"unchanged\": true}\n",
+        "timed_out": false
+      },
+      {
+        "elapsed_seconds": 0.13019,
+        "exit_code": 0,
+        "invocation_id": "090612c0-1647-41c7-be89-4ddd7b08eb1d",
+        "kind": "process_probe",
+        "native_argv_sha256": "37c2391e9dffbaec25725e110878465a4cd281eb7a0cc157f269a8cdc393ea15",
+        "stderr": "",
+        "stdout": "{\"error\": \"ValueError\", \"is_value_error\": true, \"ok\": false, \"unchanged\": true}\n",
+        "timed_out": false
+      },
+      {
+        "elapsed_seconds": 0.124064,
+        "exit_code": 2,
+        "invocation_id": "c1dd4eed-68b9-464d-96fe-79e30480cf42",
+        "kind": "process_probe",
+        "native_argv_sha256": "29b32a9706c2f7ff9023befc98ac3f640a861f9e7503c7837300bc21e647a440",
+        "stderr": "ERROR: capacity must be a nonnegative integer\n",
+        "stdout": "",
+        "timed_out": false
+      },
+      {
+        "elapsed_seconds": 0.128039,
+        "exit_code": 0,
+        "invocation_id": "2b330f7a-c904-418f-a367-f9d6989a8cfc",
+        "kind": "process_probe",
+        "native_argv_sha256": "bee413d6af9db618c8b09372108144a0f38ed95587ef3187cdc042a42b7bacdf",
+        "stderr": "",
+        "stdout": "{\"error\": \"ValueError\", \"is_value_error\": true, \"ok\": false, \"unchanged\": true}\n",
+        "timed_out": false
+      },
+      {
+        "elapsed_seconds": 0.128827,
+        "exit_code": 0,
+        "invocation_id": "3bab3a37-fc54-4bf5-a602-05769f834b5e",
+        "kind": "process_probe",
+        "native_argv_sha256": "8f06057e7e2c08f14b3fa34adb9f865c584fd29f532c69204309753ce71541df",
+        "stderr": "",
+        "stdout": "{\"error\": \"ValueError\", \"is_value_error\": true, \"ok\": false, \"unchanged\": true}\n",
+        "timed_out": false
+      },
+      {
+        "elapsed_seconds": 0.133574,
+        "exit_code": 2,
+        "invocation_id": "5ccd9925-e846-476b-9eeb-a2a456ee2854",
+        "kind": "process_probe",
+        "native_argv_sha256": "407d48a74f11f564063ef3ea779d593eba02f85ba7d83aaa6deba3c18593bedf",
+        "stderr": "ERROR: each event must contain value\n",
+        "stdout": "",
+        "timed_out": false
+      },
+      {
+        "elapsed_seconds": 0.128253,
+        "exit_code": 0,
+        "invocation_id": "9bcf45bc-e3d2-4f11-bca2-f46e25a4fd7c",
+        "kind": "process_probe",
+        "native_argv_sha256": "37c59454ac1f578059dfb9a4b6362a43405d6854e8215501ae63102037091b9b",
+        "stderr": "",
+        "stdout": "{\"error\": \"ValueError\", \"is_value_error\": true, \"ok\": false, \"unchanged\": true}\n",
+        "timed_out": false
+      },
+      {
+        "elapsed_seconds": 0.129435,
+        "exit_code": 0,
+        "invocation_id": "cb041635-5200-4461-aed4-df7e7117c718",
+        "kind": "process_probe",
+        "native_argv_sha256": "6cea00ce90ff9912325f8cbc974501ac5a52d3b2e61ff4f64a860f5b0174839e",
+        "stderr": "",
+        "stdout": "{\"error\": \"ValueError\", \"is_value_error\": true, \"ok\": false, \"unchanged\": true}\n",
+        "timed_out": false
+      },
+      {
+        "elapsed_seconds": 0.127823,
+        "exit_code": 2,
+        "invocation_id": "459442f5-0840-4be5-b272-1b585fa55b22",
+        "kind": "process_probe",
+        "native_argv_sha256": "46e727ed21c687326baaa2ab24375e19919d7e62cea5c60852fc0a509ff320cf",
+        "stderr": "ERROR: capacity must be a nonnegative integer\n",
+        "stdout": "",
+        "timed_out": false
+      },
+      {
+        "elapsed_seconds": 0.130964,
+        "exit_code": 0,
+        "invocation_id": "ba0f3086-7b0b-4bc8-8a19-45ee07caa48b",
+        "kind": "process_probe",
+        "native_argv_sha256": "94647e1424b3ff92278abf7720ac78e799dbc0e614a228f1f9b68c907d4b691f",
+        "stderr": "",
+        "stdout": "{\"error\": \"ValueError\", \"is_value_error\": true, \"ok\": false, \"unchanged\": true}\n",
+        "timed_out": false
+      },
+      {
+        "elapsed_seconds": 0.133796,
+        "exit_code": 0,
+        "invocation_id": "cf4e646b-fc6e-4e17-9293-58c8a2cf7f7c",
+        "kind": "process_probe",
+        "native_argv_sha256": "4759c001221fe7bb55bd271d115f1131e618f87cc27924cab83ecf30a06a5b6b",
+        "stderr": "",
+        "stdout": "{\"error\": \"ValueError\", \"is_value_error\": true, \"ok\": false, \"unchanged\": true}\n",
+        "timed_out": false
+      },
+      {
+        "elapsed_seconds": 0.127284,
+        "exit_code": 2,
+        "invocation_id": "7ade745f-9f22-4d03-9145-16f436f1fd0b",
+        "kind": "process_probe",
+        "native_argv_sha256": "9a82e3fdb9c834b0b3fa83868b9aa22c731c3482ba24fe31d144cb3e4a658753",
+        "stderr": "ERROR: each event must have a nonempty string id\n",
+        "stdout": "",
+        "timed_out": false
+      },
+      {
+        "elapsed_seconds": 0.126031,
+        "exit_code": 0,
+        "invocation_id": "a625a0dc-bec9-4172-a6b6-11c462319ae1",
+        "kind": "process_probe",
+        "native_argv_sha256": "cc6f5578da87870b85aabea614ff89c88d1526463367c17bef36afe1f1177331",
+        "stderr": "",
+        "stdout": "{\"ok\": true, \"unchanged\": true, \"value\": {\"evicted\": [], \"items\": []}}\n",
+        "timed_out": false
+      },
+      {
+        "elapsed_seconds": 0.12251,
+        "exit_code": 0,
+        "invocation_id": "d861cc9d-edc4-4b58-b02f-291550d427e6",
+        "kind": "process_probe",
+        "native_argv_sha256": "418981c19e3baee454c09b6a88b1d3c3e731f483bb65f3584bfc9a9990396a99",
+        "stderr": "",
+        "stdout": "{\"ok\": true, \"unchanged\": true, \"value\": {\"evicted\": [], \"items\": []}}\n",
+        "timed_out": false
+      },
+      {
+        "elapsed_seconds": 0.122565,
+        "exit_code": 0,
+        "invocation_id": "3ad3ebf4-ffc7-4259-ab06-bca35c47b1cf",
+        "kind": "process_probe",
+        "native_argv_sha256": "983054069640badc5f34e9d5c9113f44b31a9627cee003efb900dbc2c7f7867f",
+        "stderr": "",
+        "stdout": "{\"evicted\": [], \"items\": []}\n",
+        "timed_out": false
+      },
+      {
+        "elapsed_seconds": 0.130467,
+        "exit_code": 0,
+        "invocation_id": "8ca89399-480b-4158-b688-894f138c317f",
+        "kind": "process_probe",
+        "native_argv_sha256": "51889fbb34a8acb0b22dcb7ee7e67ef1c5f7add5ba25f1702e137dc8a4dd5050",
+        "stderr": "",
+        "stdout": "{\"error\": \"ValueError\", \"is_value_error\": true, \"ok\": false, \"unchanged\": true}\n",
+        "timed_out": false
+      },
+      {
+        "elapsed_seconds": 0.125365,
+        "exit_code": 0,
+        "invocation_id": "8a0a6a8a-e25e-4cee-859e-f78f2886b49b",
+        "kind": "process_probe",
+        "native_argv_sha256": "c21998109033e430a030c84576f63898e96aa2bb161969dafec7c9a7acb57ae6",
+        "stderr": "",
+        "stdout": "{\"error\": \"ValueError\", \"is_value_error\": true, \"ok\": false, \"unchanged\": true}\n",
+        "timed_out": false
+      },
+      {
+        "elapsed_seconds": 0.129328,
+        "exit_code": 2,
+        "invocation_id": "fe275fec-d33d-47b7-8640-8f4f4f36ab73",
+        "kind": "process_probe",
+        "native_argv_sha256": "b981531090a60f92228ba355db08f2ce9a6e3512db28f4ef9422abf08b2a56a8",
+        "stderr": "ERROR: payload must be an object\n",
+        "stdout": "",
+        "timed_out": false
+      },
+      {
+        "elapsed_seconds": 0.13116,
+        "exit_code": 0,
+        "invocation_id": "56bc76a1-bb2e-4aff-a91c-71ddeae2ef36",
+        "kind": "process_probe",
+        "native_argv_sha256": "1b45daac7deec682f18fb56ddea372cb7aa653434aab102fab50e9c2fe6a1022",
+        "stderr": "",
+        "stdout": "{\"ok\": true, \"unchanged\": true, \"value\": []}\n",
+        "timed_out": false
+      },
+      {
+        "elapsed_seconds": 0.133739,
+        "exit_code": 0,
+        "invocation_id": "68d180d8-b95d-4da7-b87c-5edbe9e8e4ed",
+        "kind": "process_probe",
+        "native_argv_sha256": "bb38253c8570ed5993e2ba89c514058e9b899e34c143a35b3113587ca6f8c6cb",
+        "stderr": "",
+        "stdout": "{\"ok\": true, \"unchanged\": true, \"value\": [{\"evicted\": [\"a\"], \"items\": [{\"id\": \"b\", \"value\": 2}, {\"id\": \"c\", \"value\": 4}]}, {\"evicted\": [\"a\"], \"items\": [{\"id\": \"b\", \"value\": 2}, {\"id\": \"c\", \"value\": 4}]}]}\n",
+        "timed_out": false
+      },
+      {
+        "elapsed_seconds": 0.133698,
+        "exit_code": 0,
+        "invocation_id": "84a9f0c4-39d5-41a5-88ff-bff657b8c07f",
+        "kind": "process_probe",
+        "native_argv_sha256": "cc82a6c6a7edc17dbd7e731ae530b3186e6a0e43a4b3776a844b23737a0103ba",
+        "stderr": "",
+        "stdout": "{\"error\": \"ValueError\", \"is_value_error\": true, \"ok\": false, \"unchanged\": true}\n",
+        "timed_out": false
+      },
+      {
+        "elapsed_seconds": 0.129827,
+        "exit_code": 0,
+        "invocation_id": "5c69ec03-dcc4-46be-a4b1-0fc47c18da15",
+        "kind": "process_probe",
+        "native_argv_sha256": "55150cbfac99f60aaa59653c78daa8137f179ca0816a49b51645443a22e51a46",
+        "stderr": "",
+        "stdout": "{\"error\": \"ValueError\", \"is_value_error\": true, \"ok\": false, \"unchanged\": true}\n",
+        "timed_out": false
+      },
+      {
+        "elapsed_seconds": 0.133532,
+        "exit_code": 0,
+        "invocation_id": "43a4adbc-ed27-4442-9e9e-9d7f11517955",
+        "kind": "process_probe",
+        "native_argv_sha256": "944be9242e102db8fce4017d6e0e259019576e6d189e982cfca9d7e7c5b6c9ca",
+        "stderr": "",
+        "stdout": "api-v1\n",
+        "timed_out": false
+      },
+      {
+        "elapsed_seconds": 0.128031,
+        "exit_code": 2,
+        "invocation_id": "3c071800-eee8-48c0-90ab-71f7a25b0d86",
+        "kind": "process_probe",
+        "native_argv_sha256": "613805db4dbc7cbf3a34dfe653d9decb3cd86f2f24af1bff0c1bd696ccdc5453",
+        "stderr": "ERROR: unsupported arguments\n",
+        "stdout": "",
+        "timed_out": false
+      },
+      {
+        "elapsed_seconds": 0.508092,
+        "exit_code": 0,
+        "invocation_id": "e4b2f317-7517-45f8-9d34-75bb78b6a5c6",
+        "kind": "process_probe",
+        "native_argv_sha256": "4786bd7403f3c21424d8bf5a8cf59bcab88404e751027e398307ffeda4a917c7",
+        "stderr": "......................\n----------------------------------------------------------------------\nRan 22 tests in 0.301s\n\nOK\n",
+        "stdout": "",
+        "timed_out": false
+      }
+    ],
+    "repository_tests_passed": true,
+    "stale_test_expectation_retained": false,
+    "unavailable": []
+  },
+  "handoff": true,
+  "model_dispatches": 1,
+  "native_available": true,
+  "operator_candidate_edits": 0,
+  "plan_identity": {
+    "advisory": true,
+    "check_links": {
+      "R1": [
+        {
+          "argv": [
+            "/opt/homebrew/Cellar/python@3.14/3.14.8_2/Frameworks/Python.framework/Versions/3.14/bin/python3.14",
+            "-B",
+            "-m",
+            "unittest",
+            "discover",
+            "-s",
+            "tests"
+          ],
+          "index": 1
+        }
+      ],
+      "R2": [
+        {
+          "argv": [
+            "/opt/homebrew/Cellar/python@3.14/3.14.8_2/Frameworks/Python.framework/Versions/3.14/bin/python3.14",
+            "-B",
+            "-c",
+            "from app import process; assert process({'capacity': 2, 'events': [{'id': 'a', 'value': 1}, {'id': 'b', 'value': 2}, {'id': 'a', 'value': 3}, {'id': 'c', 'value': 4}]}) == {'items': [{'id': 'b', 'value': 2}, {'id': 'c', 'value': 4}], 'evicted': ['a']}"
+          ],
+          "index": 0
+        },
+        {
+          "argv": [
+            "/opt/homebrew/Cellar/python@3.14/3.14.8_2/Frameworks/Python.framework/Versions/3.14/bin/python3.14",
+            "-B",
+            "-m",
+            "unittest",
+            "discover",
+            "-s",
+            "tests"
+          ],
+          "index": 1
+        }
+      ],
+      "R3": [
+        {
+          "argv": [
+            "/opt/homebrew/Cellar/python@3.14/3.14.8_2/Frameworks/Python.framework/Versions/3.14/bin/python3.14",
+            "-B",
+            "-m",
+            "unittest",
+            "discover",
+            "-s",
+            "tests"
+          ],
+          "index": 1
+        }
+      ],
+      "R4": [
+        {
+          "argv": [
+            "/opt/homebrew/Cellar/python@3.14/3.14.8_2/Frameworks/Python.framework/Versions/3.14/bin/python3.14",
+            "-B",
+            "-m",
+            "unittest",
+            "discover",
+            "-s",
+            "tests"
+          ],
+          "index": 1
+        }
+      ],
+      "R5": [
+        {
+          "argv": [
+            "/opt/homebrew/Cellar/python@3.14/3.14.8_2/Frameworks/Python.framework/Versions/3.14/bin/python3.14",
+            "-B",
+            "-m",
+            "unittest",
+            "discover",
+            "-s",
+            "tests"
+          ],
+          "index": 1
+        }
+      ],
+      "R6": [
+        {
+          "argv": [
+            "/opt/homebrew/Cellar/python@3.14/3.14.8_2/Frameworks/Python.framework/Versions/3.14/bin/python3.14",
+            "-B",
+            "-m",
+            "unittest",
+            "discover",
+            "-s",
+            "tests"
+          ],
+          "index": 1
+        }
+      ],
+      "R7": [
+        {
+          "argv": [
+            "/opt/homebrew/Cellar/python@3.14/3.14.8_2/Frameworks/Python.framework/Versions/3.14/bin/python3.14",
+            "-B",
+            "-m",
+            "unittest",
+            "discover",
+            "-s",
+            "tests"
+          ],
+          "index": 1
+        }
+      ]
+    },
+    "constraints": [
+      {
+        "basis": "request",
+        "scope": "Implementation files and CLI compatibility",
+        "source_refs": [
+          {
+            "line_end": 16,
+            "line_start": 14,
+            "quote": "Do not mutate any input, including on errors. Preserve the exact CLI --version\nresponse and unsupported-argument behavior; keep cli.py unchanged. Extra object\nkeys are allowed. Update a stale test expectation if it contradicts this request.",
+            "source_id": "S1"
+          }
+        ],
+        "statement": "Keep cli.py unchanged."
+      }
+    ],
+    "contract_id": "fifo-upserts-combined",
+    "contract_sha256": "3938162aa0439c8ff20db62344c5b3905e52df6098922fbc796c34b05fce01bf",
+    "coverage_completeness": "UNKNOWN",
+    "evidence_gaps": [],
+    "execution_authority": "not_established",
+    "export_authority": "unapproved",
+    "export_format": "json",
+    "export_manifest_sha256": "6a96e38590c10ad032e2c4ddf922899cf7f0b1d8aa97b8eef84a91076bc45fee",
+    "external_caller_approval": "not_supplied_or_authenticated",
+    "intended_outcome": "Implement the validated FIFO record cache consistently across the existing API, service, batch and JSON CLI, preserving inputs and CLI compatibility.",
+    "out_of_scope": [],
+    "record": "intentline.advisory-input",
+    "requirements": [
+      {
+        "basis": "request",
+        "boundaries": [
+          "Missing id/value or capacity/events",
+          "Negative, boolean, noninteger capacity",
+          "Non-object payload/event, non-list events, empty/nonstring id",
+          "Null and nested JSON values; extra object keys"
+        ],
+        "evidence_gap_reasons": [],
+        "id": "R1",
+        "oracle": "Malformed inputs raise ValueError; null values and extra keys are accepted. A missing value silently treated as null would falsify this.",
+        "plan_state": "planned",
+        "planned_evidence": "Targeted unittest validation matrix with explicit valid/invalid examples",
+        "seam": "app.process and service entry points",
+        "source_refs": [
+          {
+            "line_end": 3,
+            "line_start": 1,
+            "quote": "Implement a FIFO record cache for {\"capacity\": integer >= 0,\n\"events\": [{\"id\": nonempty_string, \"value\": any_JSON_value}, ...]}.\nEvery event must contain both id and value. Booleans are invalid capacities.",
+            "source_id": "S1"
+          },
+          {
+            "line_end": 9,
+            "line_start": 8,
+            "quote": "Output records contain only id and value; extra input keys are ignored.\nReject malformed records/containers with ValueError. Input values may be null.",
+            "source_id": "S1"
+          },
+          {
+            "line_end": 16,
+            "line_start": 15,
+            "quote": "response and unsupported-argument behavior; keep cli.py unchanged. Extra object\nkeys are allowed. Update a stale test expectation if it contradicts this request.",
+            "source_id": "S1"
+          }
+        ],
+        "statement": "Accept objects with nonnegative integer capacity (excluding bool) and a list of records containing a nonempty string id and a value; allow null/any JSON value and extra object keys, and reject malformed records or containers with ValueError."
+      },
+      {
+        "basis": "request",
+        "boundaries": [
+          "Existing ID updated when at capacity",
+          "Reinsert an evicted ID at the newest position",
+          "Multiple evictions"
+        ],
+        "evidence_gap_reasons": [],
+        "id": "R2",
+        "oracle": "For capacity 2 and a1,b2,a3,c4, final items are b2,c4 and evicted is [a]. Promoting a would instead evict b.",
+        "plan_state": "planned",
+        "planned_evidence": "Public check index 0 and explicit FIFO update/reinsertion unit tests",
+        "seam": "app.process",
+        "source_refs": [
+          {
+            "line_end": 5,
+            "line_start": 4,
+            "quote": "Update an existing ID in its original insertion position, without promoting it.\nWhen inserting a new ID would exceed capacity, evict the oldest resident ID.",
+            "source_id": "S1"
+          }
+        ],
+        "statement": "Update resident IDs in their original insertion position without promotion; new IDs evict the oldest resident when capacity would be exceeded."
+      },
+      {
+        "basis": "request",
+        "boundaries": [
+          "Empty events",
+          "Zero capacity with repeated IDs",
+          "Repeated evictions of reinserted IDs",
+          "Extra record keys omitted"
+        ],
+        "evidence_gap_reasons": [],
+        "id": "R3",
+        "oracle": "Zero capacity with a1,a2,b3 yields empty items and [a,a,b]; a set of evictions or retained zero-capacity item would falsify this.",
+        "plan_state": "planned",
+        "planned_evidence": "Explicit output assertions in unittest cases",
+        "seam": "app.process output",
+        "source_refs": [
+          {
+            "line_end": 8,
+            "line_start": 6,
+            "quote": "Capacity zero immediately evicts EVERY event. Return {\"items\": [final records\nin FIFO order], \"evicted\": [IDs in eviction order, retaining repetitions]}.\nOutput records contain only id and value; extra input keys are ignored.",
+            "source_id": "S1"
+          }
+        ],
+        "statement": "Return final items in FIFO order with only id/value and all evicted IDs in chronological order retaining repetitions; capacity zero immediately evicts every event."
+      },
+      {
+        "basis": "request",
+        "boundaries": [
+          "Successful cache request through all three seams",
+          "Malformed CLI request follows existing error handling"
+        ],
+        "evidence_gap_reasons": [],
+        "id": "R4",
+        "oracle": "The same explicit request yields the same parsed cache result through all three entry points; a service wrapper retaining old transformation would falsify this.",
+        "plan_state": "planned",
+        "planned_evidence": "API parity and subprocess JSON CLI unittest cases",
+        "seam": "app.process, service.handle, cli.py subprocess",
+        "source_refs": [
+          {
+            "line_end": 12,
+            "line_start": 11,
+            "quote": "Expose the same behavior through app.process, service.handle and the existing\nJSON stdin/stdout CLI. Add service.batch(payloads): return each process result",
+            "source_id": "S1"
+          }
+        ],
+        "statement": "Expose the same FIFO behavior through app.process, service.handle and the existing JSON stdin/stdout CLI."
+      },
+      {
+        "basis": "request",
+        "boundaries": [
+          "Empty batch",
+          "Multiple different capacities",
+          "Invalid later member",
+          "Non-list iterable rejected"
+        ],
+        "evidence_gap_reasons": [],
+        "id": "R5",
+        "oracle": "A two-payload batch yields two independently expected cache results in order; an invalid later member raises ValueError.",
+        "plan_state": "planned",
+        "planned_evidence": "Batch unittest cases with independently written expected results",
+        "seam": "service.batch",
+        "source_refs": [
+          {
+            "line_end": 13,
+            "line_start": 12,
+            "quote": "JSON stdin/stdout CLI. Add service.batch(payloads): return each process result\nin input order; reject a non-list or any invalid member with ValueError.",
+            "source_id": "S1"
+          }
+        ],
+        "statement": "Add service.batch(payloads) returning each process result in input order, rejecting a non-list or any invalid member with ValueError."
+      },
+      {
+        "basis": "request",
+        "boundaries": [
+          "Valid request",
+          "Invalid event after valid events",
+          "Invalid later batch member",
+          "Nested lists/dicts as values"
+        ],
+        "evidence_gap_reasons": [],
+        "id": "R6",
+        "oracle": "Deep snapshots compare equal before and after success or ValueError; deleting an extra key or changing an earlier event falsifies this.",
+        "plan_state": "planned",
+        "planned_evidence": "Snapshot-based unittest assertions for successful and failed calls",
+        "seam": "app.process, service.handle, service.batch",
+        "source_refs": [
+          {
+            "line_end": 14,
+            "line_start": 14,
+            "quote": "Do not mutate any input, including on errors. Preserve the exact CLI --version",
+            "source_id": "S1"
+          }
+        ],
+        "statement": "Do not mutate any input, including nested values or inputs processed before an error."
+      },
+      {
+        "basis": "request",
+        "boundaries": [
+          "Version response bytes and exit status",
+          "Unsupported argument output and exit status",
+          "Conflicting legacy cache expectation"
+        ],
+        "evidence_gap_reasons": [],
+        "id": "R7",
+        "oracle": "Existing CLI compatibility assertions remain satisfied and cli.py bytes remain identical; behavior-changing CLI edits would falsify this.",
+        "plan_state": "planned",
+        "planned_evidence": "Existing compatibility tests, targeted subprocess assertions and Git diff inspection",
+        "seam": "cli.py and existing tests",
+        "source_refs": [
+          {
+            "line_end": 16,
+            "line_start": 14,
+            "quote": "Do not mutate any input, including on errors. Preserve the exact CLI --version\nresponse and unsupported-argument behavior; keep cli.py unchanged. Extra object\nkeys are allowed. Update a stale test expectation if it contradicts this request.",
+            "source_id": "S1"
+          }
+        ],
+        "statement": "Preserve the exact CLI --version response and unsupported-argument behavior, keep cli.py unchanged, and update stale test expectations that contradict the request."
+      }
+    ],
+    "revision": 1,
+    "schema_version": 1,
+    "source_bundle_sha256": "0d7368fba676008bded01b4e6da4fd722b66bb8c102bce9889aab8cde31e0c43",
+    "source_sha256": "ca511e228d32a79e61c1b3c9acc1d49b4359c9dc90f4044a325dbf313226f41e"
+  },
+  "promise_evidence": {
+    "candidate_commit": "d19bbcaac36b0ea403e14767858ee63c6eccc062",
+    "candidate_tree": "3a938999ea1da5fada885ac2552ac8c5f609c1dd",
+    "coverage_completeness": "UNKNOWN",
+    "intentline": {
+      "constraints": [
+        {
+          "basis": "request",
+          "scope": "Implementation files and CLI compatibility",
+          "source_refs": [
+            {
+              "line_end": 16,
+              "line_start": 14,
+              "quote": "Do not mutate any input, including on errors. Preserve the exact CLI --version\nresponse and unsupported-argument behavior; keep cli.py unchanged. Extra object\nkeys are allowed. Update a stale test expectation if it contradicts this request.",
+              "source_id": "S1"
+            }
+          ],
+          "statement": "Keep cli.py unchanged."
+        }
+      ],
+      "contract_id": "fifo-upserts-combined",
+      "contract_sha256": "3938162aa0439c8ff20db62344c5b3905e52df6098922fbc796c34b05fce01bf",
+      "evidence_gaps": [],
+      "execution_authority": "not_established",
+      "export_authority": "unapproved",
+      "export_manifest_sha256": "6a96e38590c10ad032e2c4ddf922899cf7f0b1d8aa97b8eef84a91076bc45fee",
+      "external_caller_approval": "not_supplied_or_authenticated",
+      "intended_outcome": "Implement the validated FIFO record cache consistently across the existing API, service, batch and JSON CLI, preserving inputs and CLI compatibility.",
+      "out_of_scope": [],
+      "revision": 1,
+      "scope": "Untrusted advisory planning data, not executable tests, proof or consent.",
+      "source_bundle_sha256": "0d7368fba676008bded01b4e6da4fd722b66bb8c102bce9889aab8cde31e0c43",
+      "source_sha256": "ca511e228d32a79e61c1b3c9acc1d49b4359c9dc90f4044a325dbf313226f41e"
+    },
+    "original_source_ref": "inputs/source.md",
+    "requirements": [
+      {
+        "id": "R1",
+        "intentline_planning": {
+          "authority": "unverified original-source-grounded proposal",
+          "basis": "request",
+          "boundaries": [
+            "Missing id/value or capacity/events",
+            "Negative, boolean, noninteger capacity",
+            "Non-object payload/event, non-list events, empty/nonstring id",
+            "Null and nested JSON values; extra object keys"
+          ],
+          "evidence_gap_reasons": [],
+          "plan_state": "planned",
+          "planned_evidence": "Targeted unittest validation matrix with explicit valid/invalid examples",
+          "seam": "app.process and service entry points"
+        },
+        "kind": "outcome",
+        "linked_checks": [
+          {
+            "argv": [
+              "/opt/homebrew/Cellar/python@3.14/3.14.8_2/Frameworks/Python.framework/Versions/3.14/bin/python3.14",
+              "-B",
+              "-m",
+              "unittest",
+              "discover",
+              "-s",
+              "tests"
+            ],
+            "index": 1,
+            "observation_status": "PASSED",
+            "receipt_ref": "receipts/check-001.json"
+          }
+        ],
+        "oracle_authority": "unverified caller suggestion",
+        "proposed_oracle": "Malformed inputs raise ValueError; null values and extra keys are accepted. A missing value silently treated as null would falsify this.",
+        "reason": "Selected commands passed; linked behaviors are not proven in full",
+        "source_refs": [
+          {
+            "line_end": 3,
+            "line_start": 1,
+            "quote": "Implement a FIFO record cache for {\"capacity\": integer >= 0,\n\"events\": [{\"id\": nonempty_string, \"value\": any_JSON_value}, ...]}.\nEvery event must contain both id and value. Booleans are invalid capacities.",
+            "source_id": "S1"
+          },
+          {
+            "line_end": 9,
+            "line_start": 8,
+            "quote": "Output records contain only id and value; extra input keys are ignored.\nReject malformed records/containers with ValueError. Input values may be null.",
+            "source_id": "S1"
+          },
+          {
+            "line_end": 16,
+            "line_start": 15,
+            "quote": "response and unsupported-argument behavior; keep cli.py unchanged. Extra object\nkeys are allowed. Update a stale test expectation if it contradicts this request.",
+            "source_id": "S1"
+          }
+        ],
+        "statement": "Accept objects with nonnegative integer capacity (excluding bool) and a list of records containing a nonempty string id and a value; allow null/any JSON value and extra object keys, and reject malformed records or containers with ValueError.",
+        "status": "LINKED CHECKS PASSED (limited evidence)"
+      },
+      {
+        "id": "R2",
+        "intentline_planning": {
+          "authority": "unverified original-source-grounded proposal",
+          "basis": "request",
+          "boundaries": [
+            "Existing ID updated when at capacity",
+            "Reinsert an evicted ID at the newest position",
+            "Multiple evictions"
+          ],
+          "evidence_gap_reasons": [],
+          "plan_state": "planned",
+          "planned_evidence": "Public check index 0 and explicit FIFO update/reinsertion unit tests",
+          "seam": "app.process"
+        },
+        "kind": "outcome",
+        "linked_checks": [
+          {
+            "argv": [
+              "/opt/homebrew/Cellar/python@3.14/3.14.8_2/Frameworks/Python.framework/Versions/3.14/bin/python3.14",
+              "-B",
+              "-c",
+              "from app import process; assert process({'capacity': 2, 'events': [{'id': 'a', 'value': 1}, {'id': 'b', 'value': 2}, {'id': 'a', 'value': 3}, {'id': 'c', 'value': 4}]}) == {'items': [{'id': 'b', 'value': 2}, {'id': 'c', 'value': 4}], 'evicted': ['a']}"
+            ],
+            "index": 0,
+            "observation_status": "PASSED",
+            "receipt_ref": "receipts/check-000.json"
+          },
+          {
+            "argv": [
+              "/opt/homebrew/Cellar/python@3.14/3.14.8_2/Frameworks/Python.framework/Versions/3.14/bin/python3.14",
+              "-B",
+              "-m",
+              "unittest",
+              "discover",
+              "-s",
+              "tests"
+            ],
+            "index": 1,
+            "observation_status": "PASSED",
+            "receipt_ref": "receipts/check-001.json"
+          }
+        ],
+        "oracle_authority": "unverified caller suggestion",
+        "proposed_oracle": "For capacity 2 and a1,b2,a3,c4, final items are b2,c4 and evicted is [a]. Promoting a would instead evict b.",
+        "reason": "Selected commands passed; linked behaviors are not proven in full",
+        "source_refs": [
+          {
+            "line_end": 5,
+            "line_start": 4,
+            "quote": "Update an existing ID in its original insertion position, without promoting it.\nWhen inserting a new ID would exceed capacity, evict the oldest resident ID.",
+            "source_id": "S1"
+          }
+        ],
+        "statement": "Update resident IDs in their original insertion position without promotion; new IDs evict the oldest resident when capacity would be exceeded.",
+        "status": "LINKED CHECKS PASSED (limited evidence)"
+      },
+      {
+        "id": "R3",
+        "intentline_planning": {
+          "authority": "unverified original-source-grounded proposal",
+          "basis": "request",
+          "boundaries": [
+            "Empty events",
+            "Zero capacity with repeated IDs",
+            "Repeated evictions of reinserted IDs",
+            "Extra record keys omitted"
+          ],
+          "evidence_gap_reasons": [],
+          "plan_state": "planned",
+          "planned_evidence": "Explicit output assertions in unittest cases",
+          "seam": "app.process output"
+        },
+        "kind": "outcome",
+        "linked_checks": [
+          {
+            "argv": [
+              "/opt/homebrew/Cellar/python@3.14/3.14.8_2/Frameworks/Python.framework/Versions/3.14/bin/python3.14",
+              "-B",
+              "-m",
+              "unittest",
+              "discover",
+              "-s",
+              "tests"
+            ],
+            "index": 1,
+            "observation_status": "PASSED",
+            "receipt_ref": "receipts/check-001.json"
+          }
+        ],
+        "oracle_authority": "unverified caller suggestion",
+        "proposed_oracle": "Zero capacity with a1,a2,b3 yields empty items and [a,a,b]; a set of evictions or retained zero-capacity item would falsify this.",
+        "reason": "Selected commands passed; linked behaviors are not proven in full",
+        "source_refs": [
+          {
+            "line_end": 8,
+            "line_start": 6,
+            "quote": "Capacity zero immediately evicts EVERY event. Return {\"items\": [final records\nin FIFO order], \"evicted\": [IDs in eviction order, retaining repetitions]}.\nOutput records contain only id and value; extra input keys are ignored.",
+            "source_id": "S1"
+          }
+        ],
+        "statement": "Return final items in FIFO order with only id/value and all evicted IDs in chronological order retaining repetitions; capacity zero immediately evicts every event.",
+        "status": "LINKED CHECKS PASSED (limited evidence)"
+      },
+      {
+        "id": "R4",
+        "intentline_planning": {
+          "authority": "unverified original-source-grounded proposal",
+          "basis": "request",
+          "boundaries": [
+            "Successful cache request through all three seams",
+            "Malformed CLI request follows existing error handling"
+          ],
+          "evidence_gap_reasons": [],
+          "plan_state": "planned",
+          "planned_evidence": "API parity and subprocess JSON CLI unittest cases",
+          "seam": "app.process, service.handle, cli.py subprocess"
+        },
+        "kind": "outcome",
+        "linked_checks": [
+          {
+            "argv": [
+              "/opt/homebrew/Cellar/python@3.14/3.14.8_2/Frameworks/Python.framework/Versions/3.14/bin/python3.14",
+              "-B",
+              "-m",
+              "unittest",
+              "discover",
+              "-s",
+              "tests"
+            ],
+            "index": 1,
+            "observation_status": "PASSED",
+            "receipt_ref": "receipts/check-001.json"
+          }
+        ],
+        "oracle_authority": "unverified caller suggestion",
+        "proposed_oracle": "The same explicit request yields the same parsed cache result through all three entry points; a service wrapper retaining old transformation would falsify this.",
+        "reason": "Selected commands passed; linked behaviors are not proven in full",
+        "source_refs": [
+          {
+            "line_end": 12,
+            "line_start": 11,
+            "quote": "Expose the same behavior through app.process, service.handle and the existing\nJSON stdin/stdout CLI. Add service.batch(payloads): return each process result",
+            "source_id": "S1"
+          }
+        ],
+        "statement": "Expose the same FIFO behavior through app.process, service.handle and the existing JSON stdin/stdout CLI.",
+        "status": "LINKED CHECKS PASSED (limited evidence)"
+      },
+      {
+        "id": "R5",
+        "intentline_planning": {
+          "authority": "unverified original-source-grounded proposal",
+          "basis": "request",
+          "boundaries": [
+            "Empty batch",
+            "Multiple different capacities",
+            "Invalid later member",
+            "Non-list iterable rejected"
+          ],
+          "evidence_gap_reasons": [],
+          "plan_state": "planned",
+          "planned_evidence": "Batch unittest cases with independently written expected results",
+          "seam": "service.batch"
+        },
+        "kind": "outcome",
+        "linked_checks": [
+          {
+            "argv": [
+              "/opt/homebrew/Cellar/python@3.14/3.14.8_2/Frameworks/Python.framework/Versions/3.14/bin/python3.14",
+              "-B",
+              "-m",
+              "unittest",
+              "discover",
+              "-s",
+              "tests"
+            ],
+            "index": 1,
+            "observation_status": "PASSED",
+            "receipt_ref": "receipts/check-001.json"
+          }
+        ],
+        "oracle_authority": "unverified caller suggestion",
+        "proposed_oracle": "A two-payload batch yields two independently expected cache results in order; an invalid later member raises ValueError.",
+        "reason": "Selected commands passed; linked behaviors are not proven in full",
+        "source_refs": [
+          {
+            "line_end": 13,
+            "line_start": 12,
+            "quote": "JSON stdin/stdout CLI. Add service.batch(payloads): return each process result\nin input order; reject a non-list or any invalid member with ValueError.",
+            "source_id": "S1"
+          }
+        ],
+        "statement": "Add service.batch(payloads) returning each process result in input order, rejecting a non-list or any invalid member with ValueError.",
+        "status": "LINKED CHECKS PASSED (limited evidence)"
+      },
+      {
+        "id": "R6",
+        "intentline_planning": {
+          "authority": "unverified original-source-grounded proposal",
+          "basis": "request",
+          "boundaries": [
+            "Valid request",
+            "Invalid event after valid events",
+            "Invalid later batch member",
+            "Nested lists/dicts as values"
+          ],
+          "evidence_gap_reasons": [],
+          "plan_state": "planned",
+          "planned_evidence": "Snapshot-based unittest assertions for successful and failed calls",
+          "seam": "app.process, service.handle, service.batch"
+        },
+        "kind": "outcome",
+        "linked_checks": [
+          {
+            "argv": [
+              "/opt/homebrew/Cellar/python@3.14/3.14.8_2/Frameworks/Python.framework/Versions/3.14/bin/python3.14",
+              "-B",
+              "-m",
+              "unittest",
+              "discover",
+              "-s",
+              "tests"
+            ],
+            "index": 1,
+            "observation_status": "PASSED",
+            "receipt_ref": "receipts/check-001.json"
+          }
+        ],
+        "oracle_authority": "unverified caller suggestion",
+        "proposed_oracle": "Deep snapshots compare equal before and after success or ValueError; deleting an extra key or changing an earlier event falsifies this.",
+        "reason": "Selected commands passed; linked behaviors are not proven in full",
+        "source_refs": [
+          {
+            "line_end": 14,
+            "line_start": 14,
+            "quote": "Do not mutate any input, including on errors. Preserve the exact CLI --version",
+            "source_id": "S1"
+          }
+        ],
+        "statement": "Do not mutate any input, including nested values or inputs processed before an error.",
+        "status": "LINKED CHECKS PASSED (limited evidence)"
+      },
+      {
+        "id": "R7",
+        "intentline_planning": {
+          "authority": "unverified original-source-grounded proposal",
+          "basis": "request",
+          "boundaries": [
+            "Version response bytes and exit status",
+            "Unsupported argument output and exit status",
+            "Conflicting legacy cache expectation"
+          ],
+          "evidence_gap_reasons": [],
+          "plan_state": "planned",
+          "planned_evidence": "Existing compatibility tests, targeted subprocess assertions and Git diff inspection",
+          "seam": "cli.py and existing tests"
+        },
+        "kind": "outcome",
+        "linked_checks": [
+          {
+            "argv": [
+              "/opt/homebrew/Cellar/python@3.14/3.14.8_2/Frameworks/Python.framework/Versions/3.14/bin/python3.14",
+              "-B",
+              "-m",
+              "unittest",
+              "discover",
+              "-s",
+              "tests"
+            ],
+            "index": 1,
+            "observation_status": "PASSED",
+            "receipt_ref": "receipts/check-001.json"
+          }
+        ],
+        "oracle_authority": "unverified caller suggestion",
+        "proposed_oracle": "Existing CLI compatibility assertions remain satisfied and cli.py bytes remain identical; behavior-changing CLI edits would falsify this.",
+        "reason": "Selected commands passed; linked behaviors are not proven in full",
+        "source_refs": [
+          {
+            "line_end": 16,
+            "line_start": 14,
+            "quote": "Do not mutate any input, including on errors. Preserve the exact CLI --version\nresponse and unsupported-argument behavior; keep cli.py unchanged. Extra object\nkeys are allowed. Update a stale test expectation if it contradicts this request.",
+            "source_id": "S1"
+          }
+        ],
+        "statement": "Preserve the exact CLI --version response and unsupported-argument behavior, keep cli.py unchanged, and update stale test expectations that contradict the request.",
+        "status": "LINKED CHECKS PASSED (limited evidence)"
+      }
+    ],
+    "same_agent_review": {
+      "authority": "unverified advisory review; may omit original promises",
+      "independent": false,
+      "proposals": [],
+      "reported_performed": false
+    },
+    "scope": "Only explicitly mapped requirements/commands; all original source remains authoritative.",
+    "snapshot_sha256": "d5e811b342b103b99c63f7905a13004c36d24f53e671270a7df116f930acfd39",
+    "source_sha256": "ca511e228d32a79e61c1b3c9acc1d49b4359c9dc90f4044a325dbf313226f41e"
+  },
+  "receipt": {
+    "elapsed_seconds": 278.461265,
+    "error": null,
+    "events.jsonl_sha256": "d47788d6408939f5d062fa0dc18d5763d1ee595e03bc2637b4e5864b911aafc3",
+    "exit_code": 0,
+    "invocation_id": "c65dae82-670e-45af-8b8b-fa0886512491",
+    "kind": "codex_exec",
+    "native_argv_sha256": "1a12f8d815adcfb3bfec47fb83598f9f2a10d0fa64d852623b87c28dd69a116f",
+    "prompt_sha256": "a783a096dd450b6fa493ccd6fa64d8aabbcf2f52efdbbe44c4143496132a4de0",
+    "stderr.txt_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "timed_out": false
+  },
+  "response": {
+    "completed": true,
+    "summary": "Implemented FIFO upserts, ordered evictions, validation, input preservation, and service.batch. CLI behavior is preserved and cli.py is unchanged. Both public checks passed, including 22 tests. Advisory planning export remains at revision 1. No commit made."
+  },
+  "sequence": 13,
+  "source_sha256": "ca511e228d32a79e61c1b3c9acc1d49b4359c9dc90f4044a325dbf313226f41e",
+  "started_at": "2026-10-13T15:47:02.376403+00:00",
+  "status": "CORRECT_DELIVERY",
+  "task": "fifo-upserts",
+  "thread_id": "01a135f2-1f9e-7f51-886e-88d7803a1786",
+  "tool_executions": 19,
+  "usage": {
+    "cache_write_input_tokens": 0,
+    "cached_input_tokens": 294400,
+    "input_tokens": 332345,
+    "output_tokens": 8865,
+    "reasoning_output_tokens": 1241
+  },
+  "workflow_seconds": 280.02004958316684
+}

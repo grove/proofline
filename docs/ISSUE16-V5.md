@@ -1,4 +1,11 @@
-# Final matched declaration: distinguish worker failures from infrastructure
+# Completed matched study: delivery outcomes and optional stages
+
+**All sixteen assignments observed; 4/4 correct deliveries in every arm.**
+The [published report](../evaluation/results/matched-v5-20261013/README.md) retains
+exact candidates, plans, native observations, costs and paired descriptive effects.
+Planning added time/tokens without an observed correctness benefit; additional
+stages remain optional. This completes the bounded empirical acceptance of #16,
+with no general superiority or semantic completeness claim.
 
 The [protocol](../evaluation/matched_v5/protocol.json) declares four unchanged
 tasks × ordinary / Proofline-only / Intentline-only / combined arms. Every arm
@@ -28,12 +35,19 @@ stopped declarations, observed failures, missing slots and original source
 archives. None resumes, replaces cases or contributes observations to this
 fresh cohort. All stopped costs remain separately visible.
 
-Live execution requires explicit approval of this new sixteen-assignment
-declaration, bound to the exact [FREEZE.json](../evaluation/matched_v5/FREEZE.json)
-hash in private study storage. Preparation alone makes no benefit claim and
-does not resolve #16. Native commands, once qualified and approved:
+The user explicitly approved this fresh sixteen-assignment declaration before
+live dispatch. The [archived approval](../evaluation/results/matched-v5-20261013/approval.json)
+binds the original FREEZE.json bytes retained in the source archive. After all
+sixteen observations and source archival, the active declaration was retired;
+qualification/execution cannot retry or resume this completed study. The corpus,
+oracle, prompts and actual native runtime remain exactly as archived. The only
+later runner change reads the public results without any model dispatch:
 
 ```sh
-python3.14 -B -m evaluation.matched_v5.study qualify
-python3.14 -B -m evaluation.matched_v5.study execute
+python3.14 -B -m evaluation.matched_v5.study report
 ```
+
+The report and artifact tests recompute all-assigned metrics and independently
+reconstruct candidate Git trees. Unknown prices, initiating-agent/human costs
+and backend revisions remain unknown. Sixteen observations across four fixed
+tasks do not establish behavior on unseen requests or another model/run.

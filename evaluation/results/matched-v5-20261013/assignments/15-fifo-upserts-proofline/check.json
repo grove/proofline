@@ -1,0 +1,306 @@
+{
+  "assurance": "Only the listed command exit statuses are observed; full source correctness is not certified.",
+  "boundary": {
+    "assessment": {
+      "inputs_unchanged": true,
+      "observations": {
+        "mode_change": "denied",
+        "network": "denied",
+        "nonce": "37a8eebd7b934457a82f41daf2edb433",
+        "reads": {
+          "actual_oracle": "denied",
+          "oracle-canary": "denied",
+          "other-role-canary": "denied",
+          "receipt-canary": "denied"
+        },
+        "scratch": true,
+        "writes": {
+          "candidate": "denied",
+          "git_head": "denied",
+          "input": "denied",
+          "receipt": "denied",
+          "source": "denied"
+        }
+      },
+      "scope": "native process canaries only; no model or external-tool qualification",
+      "status": "OBSERVED"
+    },
+    "network_control": "loopback reachable before sandbox",
+    "receipt": {
+      "argv": [
+        "/opt/homebrew/bin/codex",
+        "--no-daemon",
+        "-c",
+        "permissions.proofline_s0_ff4c6ed5ffd3466c92a37d9c7ac2cbe8={\"filesystem\"={\":minimal\"=\"read\",\"/opt/homebrew/Cellar/python@3.14/3.14.8_2/Frameworks/Python.framework/Versions/3.14\"=\"read\",\"/opt/homebrew/opt/python@3.14/Frameworks/Python.framework/Versions/3.14\"=\"read\",\"/opt/homebrew/opt/python@3.14/bin/python3.14\"=\"read\",\"/opt/homebrew/Cellar/python@3.14/3.14.8_2/Frameworks/Python.framework/Versions/3.14/bin/python3.14\"=\"read\",\"/Users/grove/projects/proofline/.proofline/issue16-matched-v5-20261013/assignments/15-fifo-upserts-proofline/check/inputs\"=\"read\",\"/Users/grove/projects/proofline/.proofline/issue16-matched-v5-20261013/assignments/15-fifo-upserts-proofline/check/preflight/scratch\"=\"write\",\"/Users/grove/projects/proofline/.proofline/issue16-matched-v5-20261013/assignments/15-fifo-upserts-proofline/check/preflight/private\"=\"deny\",\"/opt/homebrew\"=\"read\",\"/Library/Developer/CommandLineTools/usr/bin\"=\"read\",\"/Library/Developer/CommandLineTools/usr/libexec/git-core\"=\"read\"},\"network\"={\"enabled\"=false}}",
+        "sandbox",
+        "--permission-profile",
+        "proofline_s0_ff4c6ed5ffd3466c92a37d9c7ac2cbe8",
+        "--include-managed-config",
+        "--cd",
+        "/Users/grove/projects/proofline/.proofline/issue16-matched-v5-20261013/assignments/15-fifo-upserts-proofline/check/preflight/scratch",
+        "--",
+        "/opt/homebrew/Cellar/python@3.14/3.14.8_2/Frameworks/Python.framework/Versions/3.14/bin/python3.14",
+        "-I",
+        "-B",
+        "/Users/grove/projects/proofline/.proofline/issue16-matched-v5-20261013/assignments/15-fifo-upserts-proofline/check/inputs/canary.py",
+        "/Users/grove/projects/proofline/.proofline/issue16-matched-v5-20261013/assignments/15-fifo-upserts-proofline/check/inputs/canary.json"
+      ],
+      "cwd": "/Users/grove/projects/proofline/.proofline/issue16-matched-v5-20261013/assignments/15-fifo-upserts-proofline/check/preflight/scratch",
+      "elapsed_seconds": 0.130729,
+      "exit_code": 0,
+      "invocation_id": "8d7c66a1-1223-426f-be5e-bcf6b93e9e2f",
+      "kind": "process_probe",
+      "stderr": "",
+      "stdout": "{\"nonce\": \"37a8eebd7b934457a82f41daf2edb433\", \"writes\": {\"source\": \"denied\", \"input\": \"denied\", \"candidate\": \"denied\", \"git_head\": \"denied\", \"receipt\": \"denied\"}, \"reads\": {\"receipt-canary\": \"denied\", \"oracle-canary\": \"denied\", \"other-role-canary\": \"denied\", \"actual_oracle\": \"denied\"}, \"mode_change\": \"denied\", \"scratch\": true, \"network\": \"denied\"}\n",
+      "timed_out": false
+    }
+  },
+  "candidate_commit": "f505616fd1026c37884609875092e543be4df8f0",
+  "candidate_path": "/Users/grove/projects/proofline/.proofline/issue16-matched-v5-20261013/assignments/15-fifo-upserts-proofline/check/inputs/product",
+  "candidate_tree": "a1ae03dff1b48259e8629adea9302fc856e5bd4c",
+  "checks": [
+    [
+      "/opt/homebrew/Cellar/python@3.14/3.14.8_2/Frameworks/Python.framework/Versions/3.14/bin/python3.14",
+      "-B",
+      "-c",
+      "from app import process; assert process({'capacity': 2, 'events': [{'id': 'a', 'value': 1}, {'id': 'b', 'value': 2}, {'id': 'a', 'value': 3}, {'id': 'c', 'value': 4}]}) == {'items': [{'id': 'b', 'value': 2}, {'id': 'c', 'value': 4}], 'evicted': ['a']}"
+    ],
+    [
+      "/opt/homebrew/Cellar/python@3.14/3.14.8_2/Frameworks/Python.framework/Versions/3.14/bin/python3.14",
+      "-B",
+      "-m",
+      "unittest",
+      "discover",
+      "-s",
+      "tests"
+    ]
+  ],
+  "elapsed_seconds": 1.0768833751790226,
+  "evidence_sha256": "5384d91c3c9b3c1767e1bdf1c2122507f2efcccdf858accc672c9554374733c1",
+  "failure_details": [],
+  "feedback": {
+    "candidate_commit": "f505616fd1026c37884609875092e543be4df8f0",
+    "candidate_tree": "a1ae03dff1b48259e8629adea9302fc856e5bd4c",
+    "checks": [
+      {
+        "argv": [
+          "/opt/homebrew/Cellar/python@3.14/3.14.8_2/Frameworks/Python.framework/Versions/3.14/bin/python3.14",
+          "-B",
+          "-c",
+          "from app import process; assert process({'capacity': 2, 'events': [{'id': 'a', 'value': 1}, {'id': 'b', 'value': 2}, {'id': 'a', 'value': 3}, {'id': 'c', 'value': 4}]}) == {'items': [{'id': 'b', 'value': 2}, {'id': 'c', 'value': 4}], 'evicted': ['a']}"
+        ],
+        "elapsed_seconds": 0.133092958945781,
+        "exit_code": 0,
+        "index": 0,
+        "outcome_ids": [],
+        "reason": "Selected command exited 0; unselected promises are not demonstrated.",
+        "receipt_ref": "receipts/check-000.json",
+        "status": "PASSED",
+        "stderr_excerpt": "",
+        "stderr_ref": "receipts/check-000.json#stderr",
+        "stdout_excerpt": "",
+        "stdout_ref": "receipts/check-000.json#stdout"
+      },
+      {
+        "argv": [
+          "/opt/homebrew/Cellar/python@3.14/3.14.8_2/Frameworks/Python.framework/Versions/3.14/bin/python3.14",
+          "-B",
+          "-m",
+          "unittest",
+          "discover",
+          "-s",
+          "tests"
+        ],
+        "elapsed_seconds": 0.45489066606387496,
+        "exit_code": 0,
+        "index": 1,
+        "outcome_ids": [],
+        "reason": "Selected command exited 0; unselected promises are not demonstrated.",
+        "receipt_ref": "receipts/check-001.json",
+        "status": "PASSED",
+        "stderr_excerpt": "............. | ---------------------------------------------------------------------- | Ran 13 tests in 0.243s | OK",
+        "stderr_ref": "receipts/check-001.json#stderr",
+        "stdout_excerpt": "",
+        "stdout_ref": "receipts/check-001.json#stdout"
+      }
+    ],
+    "headline": "2/2 selected checks passed",
+    "next_action": "Report only the commands checked; original request coverage remains unknown.",
+    "scope": "Selected executable commands only; completeness of the original user promise is unknown.",
+    "snapshot_sha256": "ccd4dcef51599fe8612814de90b6ada195135b051442a114d86f5d9744479b9b",
+    "source_sha256": "ca511e228d32a79e61c1b3c9acc1d49b4359c9dc90f4044a325dbf313226f41e",
+    "status": "CHECKS PASSED"
+  },
+  "feedback_version": 1,
+  "kind": "bounded_local_check",
+  "limits": {
+    "check_seconds": 30,
+    "model_dispatches": 0,
+    "seconds": 710.5752938748337
+  },
+  "merged": false,
+  "model_dispatches": 0,
+  "observations": [
+    {
+      "argv": [
+        "/opt/homebrew/Cellar/python@3.14/3.14.8_2/Frameworks/Python.framework/Versions/3.14/bin/python3.14",
+        "-B",
+        "-c",
+        "from app import process; assert process({'capacity': 2, 'events': [{'id': 'a', 'value': 1}, {'id': 'b', 'value': 2}, {'id': 'a', 'value': 3}, {'id': 'c', 'value': 4}]}) == {'items': [{'id': 'b', 'value': 2}, {'id': 'c', 'value': 4}], 'evicted': ['a']}"
+      ],
+      "elapsed_seconds": 0.133092958945781,
+      "receipt_ref": "receipts/check-000.json",
+      "receipt_sha256": "1e4d5d24098fa9414dfe7fc21c922dceb38753b21cf46568aae9b83238f3ed3e",
+      "receipts": [
+        {
+          "argv": [
+            "/opt/homebrew/bin/codex",
+            "--no-daemon",
+            "-c",
+            "permissions.proofline_s0_f9d0eb572cc148339e3d4836e88b1f75={\"filesystem\"={\":minimal\"=\"read\",\"/opt/homebrew/Cellar/python@3.14/3.14.8_2/Frameworks/Python.framework/Versions/3.14\"=\"read\",\"/opt/homebrew/opt/python@3.14/Frameworks/Python.framework/Versions/3.14\"=\"read\",\"/opt/homebrew/opt/python@3.14/bin/python3.14\"=\"read\",\"/opt/homebrew/Cellar/python@3.14/3.14.8_2/Frameworks/Python.framework/Versions/3.14/bin/python3.14\"=\"read\",\"/Users/grove/projects/proofline/.proofline/issue16-matched-v5-20261013/assignments/15-fifo-upserts-proofline/check/inputs\"=\"read\",\"/Users/grove/projects/proofline/.proofline/issue16-matched-v5-20261013/assignments/15-fifo-upserts-proofline/check/check-0\"=\"write\",\"/Users/grove/projects/proofline/.proofline/issue16-matched-v5-20261013/assignments/15-fifo-upserts-proofline/check/private\"=\"deny\",\"/opt/homebrew\"=\"read\",\"/Library/Developer/CommandLineTools/usr/bin\"=\"read\",\"/Library/Developer/CommandLineTools/usr/libexec/git-core\"=\"read\"},\"network\"={\"enabled\"=false}}",
+            "sandbox",
+            "--permission-profile",
+            "proofline_s0_f9d0eb572cc148339e3d4836e88b1f75",
+            "--include-managed-config",
+            "--cd",
+            "/Users/grove/projects/proofline/.proofline/issue16-matched-v5-20261013/assignments/15-fifo-upserts-proofline/check/check-0",
+            "--",
+            "/opt/homebrew/Cellar/python@3.14/3.14.8_2/Frameworks/Python.framework/Versions/3.14/bin/python3.14",
+            "-I",
+            "-B",
+            "-c",
+            "import json,os,sys; a=json.loads(sys.argv[1]); os.execv(a[0],a)",
+            "[\"/opt/homebrew/Cellar/python@3.14/3.14.8_2/Frameworks/Python.framework/Versions/3.14/bin/python3.14\", \"-I\", \"-B\", \"-c\", \"import json,os,sys\\ntry:\\n    os.chdir(sys.argv[1])\\n    os.environ[\\\"PYTHONDONTWRITEBYTECODE\\\"]=\\\"1\\\"\\n    argv=json.loads(sys.argv[2])\\n    os.execvpe(argv[0],argv,os.environ)\\nexcept OSError as error:\\n    print(\\\"Proofline check launch unavailable: \\\"+str(error),file=sys.stderr)\\n    sys.exit(127)\\n\", \"/Users/grove/projects/proofline/.proofline/issue16-matched-v5-20261013/assignments/15-fifo-upserts-proofline/check/inputs/product\", \"[\\\"/opt/homebrew/Cellar/python@3.14/3.14.8_2/Frameworks/Python.framework/Versions/3.14/bin/python3.14\\\", \\\"-B\\\", \\\"-c\\\", \\\"from app import process; assert process({'capacity': 2, 'events': [{'id': 'a', 'value': 1}, {'id': 'b', 'value': 2}, {'id': 'a', 'value': 3}, {'id': 'c', 'value': 4}]}) == {'items': [{'id': 'b', 'value': 2}, {'id': 'c', 'value': 4}], 'evicted': ['a']}\\\"]\"]"
+          ],
+          "cwd": "/Users/grove/projects/proofline/.proofline/issue16-matched-v5-20261013/assignments/15-fifo-upserts-proofline/check/check-0",
+          "elapsed_seconds": 0.132655,
+          "exit_code": 0,
+          "invocation_id": "d126cb2a-1193-4530-93e7-91b23a5dae5f",
+          "kind": "process_probe",
+          "stderr": "",
+          "stdout": "",
+          "timed_out": false
+        }
+      ],
+      "returncode": 0,
+      "status": "PASSED"
+    },
+    {
+      "argv": [
+        "/opt/homebrew/Cellar/python@3.14/3.14.8_2/Frameworks/Python.framework/Versions/3.14/bin/python3.14",
+        "-B",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "tests"
+      ],
+      "elapsed_seconds": 0.45489066606387496,
+      "receipt_ref": "receipts/check-001.json",
+      "receipt_sha256": "53b20ca58473c38bd7064012f9ccb1b396323f87a09a95ebffe21771e855535a",
+      "receipts": [
+        {
+          "argv": [
+            "/opt/homebrew/bin/codex",
+            "--no-daemon",
+            "-c",
+            "permissions.proofline_s0_39fd8b5b3b6446d4a95396b9f3c206a1={\"filesystem\"={\":minimal\"=\"read\",\"/opt/homebrew/Cellar/python@3.14/3.14.8_2/Frameworks/Python.framework/Versions/3.14\"=\"read\",\"/opt/homebrew/opt/python@3.14/Frameworks/Python.framework/Versions/3.14\"=\"read\",\"/opt/homebrew/opt/python@3.14/bin/python3.14\"=\"read\",\"/opt/homebrew/Cellar/python@3.14/3.14.8_2/Frameworks/Python.framework/Versions/3.14/bin/python3.14\"=\"read\",\"/Users/grove/projects/proofline/.proofline/issue16-matched-v5-20261013/assignments/15-fifo-upserts-proofline/check/inputs\"=\"read\",\"/Users/grove/projects/proofline/.proofline/issue16-matched-v5-20261013/assignments/15-fifo-upserts-proofline/check/check-1\"=\"write\",\"/Users/grove/projects/proofline/.proofline/issue16-matched-v5-20261013/assignments/15-fifo-upserts-proofline/check/private\"=\"deny\",\"/opt/homebrew\"=\"read\",\"/Library/Developer/CommandLineTools/usr/bin\"=\"read\",\"/Library/Developer/CommandLineTools/usr/libexec/git-core\"=\"read\"},\"network\"={\"enabled\"=false}}",
+            "sandbox",
+            "--permission-profile",
+            "proofline_s0_39fd8b5b3b6446d4a95396b9f3c206a1",
+            "--include-managed-config",
+            "--cd",
+            "/Users/grove/projects/proofline/.proofline/issue16-matched-v5-20261013/assignments/15-fifo-upserts-proofline/check/check-1",
+            "--",
+            "/opt/homebrew/Cellar/python@3.14/3.14.8_2/Frameworks/Python.framework/Versions/3.14/bin/python3.14",
+            "-I",
+            "-B",
+            "-c",
+            "import json,os,sys; a=json.loads(sys.argv[1]); os.execv(a[0],a)",
+            "[\"/opt/homebrew/Cellar/python@3.14/3.14.8_2/Frameworks/Python.framework/Versions/3.14/bin/python3.14\", \"-I\", \"-B\", \"-c\", \"import json,os,sys\\ntry:\\n    os.chdir(sys.argv[1])\\n    os.environ[\\\"PYTHONDONTWRITEBYTECODE\\\"]=\\\"1\\\"\\n    argv=json.loads(sys.argv[2])\\n    os.execvpe(argv[0],argv,os.environ)\\nexcept OSError as error:\\n    print(\\\"Proofline check launch unavailable: \\\"+str(error),file=sys.stderr)\\n    sys.exit(127)\\n\", \"/Users/grove/projects/proofline/.proofline/issue16-matched-v5-20261013/assignments/15-fifo-upserts-proofline/check/inputs/product\", \"[\\\"/opt/homebrew/Cellar/python@3.14/3.14.8_2/Frameworks/Python.framework/Versions/3.14/bin/python3.14\\\", \\\"-B\\\", \\\"-m\\\", \\\"unittest\\\", \\\"discover\\\", \\\"-s\\\", \\\"tests\\\"]\"]"
+          ],
+          "cwd": "/Users/grove/projects/proofline/.proofline/issue16-matched-v5-20261013/assignments/15-fifo-upserts-proofline/check/check-1",
+          "elapsed_seconds": 0.454456,
+          "exit_code": 0,
+          "invocation_id": "75f9cfd8-3fd9-4d39-b859-1432e43c2ba6",
+          "kind": "process_probe",
+          "stderr": ".............\n----------------------------------------------------------------------\nRan 13 tests in 0.243s\n\nOK\n",
+          "stdout": "",
+          "timed_out": false
+        }
+      ],
+      "returncode": 0,
+      "status": "PASSED"
+    }
+  ],
+  "published": false,
+  "python": "/opt/homebrew/Cellar/python@3.14/3.14.8_2/Frameworks/Python.framework/Versions/3.14/bin/python3.14",
+  "schema_version": 1,
+  "selection": {
+    "candidate_commit": "f505616fd1026c37884609875092e543be4df8f0",
+    "candidate_tree": "a1ae03dff1b48259e8629adea9302fc856e5bd4c",
+    "entries": [
+      {
+        "kind": "file",
+        "mode": 420,
+        "path": "README.md",
+        "sha256": "4774514d095c022a04b16a43bad405a26c0bec7ff39dff054eb3a0ed71e6ee7c"
+      },
+      {
+        "kind": "file",
+        "mode": 420,
+        "path": "app.py",
+        "sha256": "a3352e9d222d1a289acd775c13b524e78a03d012e196905b5b607a7828539bc7"
+      },
+      {
+        "kind": "file",
+        "mode": 420,
+        "path": "cli.py",
+        "sha256": "14aea6a3d7acc1d93b80e079fd645b48e4fef2e976df9ef355cc50829a7c74c8"
+      },
+      {
+        "kind": "file",
+        "mode": 420,
+        "path": "service.py",
+        "sha256": "6b7d0446f9187fe3da4b575bd8e80f6206fd2fc8adbb593d8d0f13c04565324c"
+      },
+      {
+        "kind": "file",
+        "mode": 420,
+        "path": "tests/test_compat.py",
+        "sha256": "2432e53eeae0b53103501bb0cdfbd3dab2446d236503df335ea8a5e5e4171703"
+      },
+      {
+        "kind": "file",
+        "mode": 420,
+        "path": "tests/test_example.py",
+        "sha256": "d32ad37bc744bc69e4959180ef66f8e31888e784441e580fec62f7e59f4d76a0"
+      },
+      {
+        "kind": "file",
+        "mode": 420,
+        "path": "tests/test_fifo.py",
+        "sha256": "38162e028ffaa16ca2aa8668791ffc8d603526800aaa194d52950c33b3866a00"
+      }
+    ],
+    "policy": "current tracked files plus non-ignored untracked files; tracked deletions omitted"
+  },
+  "snapshot": "ccd4dcef51599fe8612814de90b6ada195135b051442a114d86f5d9744479b9b",
+  "source_sha256": "ca511e228d32a79e61c1b3c9acc1d49b4359c9dc90f4044a325dbf313226f41e",
+  "stages": [],
+  "status": "CHECKS PASSED",
+  "version_receipt": {
+    "argv": [
+      "/opt/homebrew/bin/codex",
+      "--version"
+    ],
+    "cwd": "/Users/grove/projects/proofline/.proofline/issue16-matched-v5-20261013/assignments/15-fifo-upserts-proofline/check",
+    "elapsed_seconds": 0.020972,
+    "exit_code": 0,
+    "invocation_id": "eacb0f9d-2a72-41c5-a7a6-7320ea1fa1ac",
+    "kind": "process_probe",
+    "stderr": "",
+    "stdout": "codex-cli 0.162.1\n",
+    "timed_out": false
+  }
+}
