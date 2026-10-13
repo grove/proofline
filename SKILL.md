@@ -80,8 +80,39 @@ attach `--failure-details /private/failure-details.json` containing rows
 `{"index":0,"outcome_ids":["R2"],"expected":"accepted","observed":"rejected"}`.
 The observed text must be present in the host-captured failed-check output;
 otherwise it is **not** reported as observed. Expected text and R IDs remain
-unverified caller claims; #13's future promise mapping is optional. No new
+unverified caller claims; the optional #13 source mapping can validate ID and
+command associations, not semantic completeness. No new
 AI invocation, workflow, or mandatory metadata file is needed.
+
+**Optional promise mapping (no extra model):** When the same agent or
+caller already has a few source-grounded outcomes, provide
+`--promises /private/promises.json` only to `check`. The file is a small
+JSON object with `schema_version: 1`, `source_sha256` of the **entire
+exact original UTF-8 request**, and `requirements` containing unique `R1`,
+`R2` ... entries. Each row needs a short `statement`, a `source_refs` list
+of `{"source_id":"S1","line_start":1,"line_end":1,"quote":"exact original line"}`,
+and `checks` entries of `{"index":0,"argv":[...]}` matching *exactly* the
+selected check at that zero-based index; empty `checks` is allowed and means
+**NOT DEMONSTRATED**. Optional `kind` is outcome/constraint/exception and
+`oracle` is only a **proposed expectation**, never executable proof.
+An optional `candidate_tree` pins one specific frozen Git tree; mismatches
+fail before native checks. Keep the original source unchanged and never
+represent an omitted source clause as approved scope.
+
+To look for overlooked user promises **without another agent**, optionally
+reread the *entire original source* and supplied rows/checks once, then add
+`review: {"performed":true,"proposals":[...]}`. Each advisory proposal
+needs a source-quoted `statement` and `suggested_check` (text only,
+never executed). Do not fabricate source quotes, confidence or authority.
+If no review occurred, omit it: the default is `performed:false`.
+Even if the reviewer found zero gaps, completeness remains **UNKNOWN**.
+The new `promise_evidence` report records linked passes (limited evidence),
+actual failures, unavailable checks and unlinked/not demonstrated R rows,
+plus proposal provenance. Source identity, exact check argv, frozen candidate,
+mapping and receipts are checked again by `status`. To display **all** original
+request text, call `proofline.py status RECORD --show-source`.
+For the exact JSON shape and a concrete example, see [README](README.md).
+No Intentline, planning stage, approval, or second AI model is required.
 
 Use `proofline.py status <report.json>` to revalidate the frozen inputs and receipts.
 New live-source edits require a new `check`; an old record refers to its old snapshot.

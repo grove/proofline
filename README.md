@@ -101,15 +101,114 @@ Indexes are zero-based and correspond to the selected commands. The
 `expected` field is **caller-supplied, not an independently established
 oracle**; the `observed` text is displayed only if it literally occurs in
 the bounded native stdout/stderr of a failed check. An unsupported or forged
-observation is withheld rather than presented as fact. An `R2` label is
-advisory until optional [#13](https://github.com/grove/proofline/issues/13)
-source-to-evidence mapping exists. No unlisted requirement is deemed covered,
+observation is withheld rather than presented as fact. An `R2` label without
+an optional `--promises` mapping remains unverified advice; with a mapping,
+its exact command association is validated but a green check still does not
+prove the requirement in full. No unlisted requirement is deemed covered,
 and no failed or missing evidence triggers an AI correction by itself.
 
 This file is optional. Ordinary `--command` or `--checks` invocations
 still work unchanged, without Intentline, an acceptance plan, or extra
 model dispatches. Live macOS/Codex sandbox qualification is distinct from
 offline CI.
+
+## Optional source-linked promise evidence
+
+Existing `check` works exactly as before with **no planning or metadata**.
+For a complex request, the same existing coding agent can *optionally* reread
+the **full original request**, write a small source-linked JSON mapping,
+and pass `--promises /private/promises.json` to `proofline.py check`.
+Proofline does **not** extract requirements or generate tests on its own.
+A user can also author the file directly.
+
+For example, if `request.md` contains **exactly** these two lines:
+
+```text
+Reject blank usernames.
+Support Unicode usernames.
+```
+
+An advisory mapping can be:
+
+```json
+{
+  "schema_version": 1,
+  "source_sha256": "REPLACE_WITH_SHA256_OF_EXACT_UTF8_REQUEST_BYTES",
+  "requirements": [
+    {
+      "id": "R1",
+      "statement": "Reject blank usernames",
+      "source_refs": [{"source_id":"S1","line_start":1,"line_end":1,
+                       "quote":"Reject blank usernames."}],
+      "checks": [{"index":0,"argv":["/opt/homebrew/bin/python3.14","-B",
+                                  "-m","unittest","discover","-s","tests"]}]
+    },
+    {
+      "id": "R2",
+      "statement": "Accept valid Unicode usernames",
+      "source_refs": [{"source_id":"S1","line_start":2,"line_end":2,
+                       "quote":"Support Unicode usernames."}],
+      "oracle": "A valid José username should be accepted (unverified suggestion)",
+      "checks": []
+    }
+  ]
+}
+```
+
+Compute the SHA-256 from the *exact* original request file bytes
+(`python3 -c 'import hashlib,sys;print(hashlib.sha256(open(sys.argv[1],"rb").read()).hexdigest())' request.md`)
+and replace the placeholder. `--source /absolute/path/request.md` must refer
+to the same bytes. A referenced check has a **zero-based** index and its
+**exact selected argv array**; the example command must actually be among the
+`--command` or `--checks` arguments. An unlinked requirement (`checks: []`)
+is **NOT DEMONSTRATED**, even when every project test is green. An unmatched
+source quote, changed request hash, wrong command, duplicated R ID,
+unsupported field, or optionally pinned wrong `candidate_tree` is rejected.
+
+```sh
+/opt/homebrew/bin/python3.14 -B proofline.py check \
+  --repo /absolute/path/to/product \
+  --source /absolute/path/request.md \
+  --command '/opt/homebrew/bin/python3.14 -B -m unittest discover -s tests' \
+  --promises /private/promises.json
+```
+
+`report.json` then contains `promise_evidence.requirements` with precise
+check/receipt links and one of **LINKED CHECKS PASSED (limited evidence)**,
+**CHECK FAILED**, **CHECK UNAVAILABLE**, or **NOT DEMONSTRATED**. An untested
+promise is not a product failure. Green commands do not prove a linked
+requirement in full. Requirement inventory completeness is **always UNKNOWN**,
+including when the caller lists only a subset of the original request.
+The original is retained verbatim in `inputs/source.md`; to view its full
+verified content explicitly, use `proofline.py status RECORD --show-source`.
+`status` detects stale source, mapping, candidate, exact check argv and
+native evidence, and withdraws previous linked-pass claims.
+
+**Optional same-agent gap review:** The *existing* agent may reread every
+original source line and all supplied rows/checks, then add:
+
+```json
+"review": {
+  "performed": true,
+  "proposals": [{
+    "statement": "Unicode behavior has no targeted test",
+    "source_refs": [{"source_id":"S1","line_start":2,"line_end":2,
+                     "quote":"Support Unicode usernames."}],
+    "suggested_check": "Add a Unicode acceptance example with a separately expected result"
+  }]
+}
+```
+
+This is an optional additional **top-level key** in the example JSON (not a
+standalone JSON file), and is *self-reported, unverified advice*. No completeness
+claim, independent audit, approval, test invention, shell execution or model
+dispatch follows from it. If no such review is performed, Proofline records
+that fact rather than silently asserting coverage. Only `S1` (the exact
+original request) is supported by this direct mapping; the optional
+[Intentline adapter #23](https://github.com/grove/proofline/issues/23)
+may add separately validated producer/source identities later. Intentline is
+**not** a runtime dependency, and no original promise may be amended by this
+convenience mapping.
 
 ## Currently supported
 

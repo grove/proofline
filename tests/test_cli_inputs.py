@@ -5,6 +5,7 @@ qualification or actual delivery correctness.
 """
 import io
 import json
+import hashlib
 from contextlib import redirect_stderr, redirect_stdout
 from pathlib import Path
 import shlex
@@ -194,6 +195,53 @@ class DirectCliInputs(unittest.TestCase):
                              "--failure-details", str(annotation)])
         self.assertEqual(code, 1)
         self.assertEqual(seen, [])
+
+    def test_explicit_optional_promises_are_forwarded_without_peer_installation(self):
+        details = self.root / 'promises.json'
+        mapping = {
+            "schema_version": 1,
+            "source_sha256": hashlib.sha256(self.request.encode("utf-8")).hexdigest(),
+            "requirements": [{"id": "R1", "statement": "Preserve original request",
+                              "source_refs": [{"source_id": "S1", "line_start": 1,
+                                               "line_end": 1, "quote": "Original request:"}],
+                              "checks": [{"index": 0, "argv": self.commands[0]}]}]
+        }
+        details.write_text(json.dumps(mapping, ensure_ascii=False))
+        calls = []
+        def recording(*args, **kwargs):
+            calls.append((args, kwargs))
+            return {"status": "CHECKS PASSED", "assurance": "Mocked check; no native activity."}
+        with patch.object(local_run, "check", side_effect=recording), \
+             redirect_stdout(io.StringIO()), redirect_stderr(io.StringIO()):
+            status = cli.main(["check", "--repo", str(self.repo),
+                               "--request", self.request,
+                               "--command", shlex.join(self.commands[0]),
+                               "--promises", str(details)])
+        self.assertEqual(status, 0)
+        self.assertEqual(calls[0][1]["promise_mapping"], mapping)
+        self.assertEqual(calls[0][0][1], self.request)
+        self.assertEqual(calls[0][0][2], [self.commands[0]])
+        self.assertFalse(self.out.exists())
+
+        # Duplicate-key ambiguity must not reach the runner.
+        details.write_text('{"schema_version":1,"schema_version":2}')
+        calls.clear()
+        with patch.object(local_run, "check", side_effect=recording), \
+             redirect_stdout(io.StringIO()), redirect_stderr(io.StringIO()) as errors:
+            status = cli.main(["check", "--repo", str(self.repo),
+                               "--request", self.request,
+                               "--command", shlex.join(self.commands[0]),
+                               "--promises", str(details)])
+        self.assertEqual(status, 1)
+        self.assertEqual(calls, [])
+        self.assertIn("duplicate", errors.getvalue().lower())
+
+    def test_promises_never_become_a_managed_run_requirement(self):
+        with redirect_stderr(io.StringIO()), self.assertRaises(SystemExit) as error:
+            cli.main(["run", "--repo", str(self.repo), "--request", self.request,
+                      "--command", shlex.join(self.commands[0]),
+                      "--promises", str(self.root / "promises.json")])
+        self.assertEqual(error.exception.code, 2)
 
     def test_cli_reports_unavailable_host_without_pretending_success(self):
         with patch.object(local_run, "check",
