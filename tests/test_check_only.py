@@ -11,6 +11,7 @@ from unittest.mock import patch
 
 from checks import candidate_snapshot as snapshot, local_run as runner
 from checks import promise_evidence as promises
+from checks import intentline_advisory as intentline
 
 
 class CheckOnlyTests(unittest.TestCase):
@@ -39,7 +40,8 @@ class CheckOnlyTests(unittest.TestCase):
         self.source = 'Keep the entire original request.\r\nIncluding this line.\r\n'
 
     def execute(self, checks=None, boundary_ready=True, unavailable=False, mutate=False,
-                seconds=30, check_seconds=5, failure_details=None, promise_mapping=None):
+                seconds=30, check_seconds=5, failure_details=None, promise_mapping=None,
+                intentline_package=None):
         checks = checks or [[sys.executable, 'tiny.py']]
         def boundary(codex, output, inputs, timeout, target):
             for name in ('canary.py', 'canary.json'):
@@ -71,7 +73,8 @@ class CheckOnlyTests(unittest.TestCase):
                 {'stdout': 'codex-cli 0.162.1', 'exit_code': 0, 'timed_out': False}
                 if argv == ['/fake/codex', '--version'] else original(argv, *args, **kw))
             result = runner.check(self.repo, self.source, checks, self.output, seconds, check_seconds,
-                                  failure_details=failure_details, promise_mapping=promise_mapping)
+                                  failure_details=failure_details, promise_mapping=promise_mapping,
+                                  intentline_package=intentline_package)
             coding.assert_not_called()
             launch.assert_not_called()
         self.assertEqual(runner.host.snapshot(self.repo), self.before)
@@ -438,6 +441,82 @@ class CheckOnlyTests(unittest.TestCase):
         self.assertEqual(runner.inspect(report)['status'], 'STALE CHECKS')
         self.assertIn('coverage UNKNOWN',
                       '\n'.join(promises.format_lines(runner.inspect(report))))
+
+    def test_optional_intentline_export_maps_actual_receipts_without_extra_models(self):
+        fixture = runner.host.ROOT / 'tests/fixtures/intentline/v1'
+        self.source = (fixture/'source-S1.txt').read_bytes().decode('utf-8')
+        checks = [[sys.executable, '-c', 'pass'],
+                  [sys.executable, '-c', 'raise SystemExit(4)']]
+        links = {'R1': [{'index':0, 'argv':checks[0]}],
+                 'R2': [{'index':1, 'argv':checks[1]}]}
+        package = intentline.load_export(fixture, self.source, checks, links=links)
+        result = self.execute(checks, intentline_package=package)
+        self.assertEqual(result['status'], 'CHECKS FAILED')
+        self.assertEqual(result['model_dispatches'], 0)
+        self.assertEqual(result['stages'], [])
+        self.assertEqual(result['promise_mapping'], package['mapping'])
+        self.assertEqual(result['intentline_advisory'], package['metadata'])
+        self.assertEqual(result['promise_evidence']['coverage_completeness'], 'UNKNOWN')
+        self.assertEqual([x['status'] for x in result['promise_evidence']['requirements']],
+                         ['LINKED CHECKS PASSED (limited evidence)', 'CHECK FAILED'])
+        self.assertEqual(result['promise_evidence']['intentline']['export_authority'], 'unapproved')
+        self.assertEqual(result['promise_evidence']['intentline']['execution_authority'], 'not_established')
+        self.assertEqual(len(result['promise_evidence']['intentline']['constraints']), 1)
+        self.assertEqual(len(result['promise_evidence']['intentline']['out_of_scope']), 1)
+        record = self.output/'report.json'
+        self.assertEqual(runner.inspect(record)['status'], 'CHECKS FAILED')
+        self.assertEqual((self.output/'inputs/source.md').read_bytes(), self.source.encode('utf-8'))
+        self.assertEqual((self.output/'intentline-export/contract.json').read_bytes(),
+                         (fixture/'contract.json').read_bytes())
+        self.assertEqual(runner.host.snapshot(self.repo), self.before)
+
+    def test_intentline_import_is_frozen_independent_of_producer_and_detects_tamper(self):
+        fixture = runner.host.ROOT/'tests/fixtures/intentline/v1'
+        self.source = (fixture/'source-S1.txt').read_bytes().decode('utf-8')
+        producer = self.root/'producer'
+        import shutil
+        shutil.copytree(fixture, producer)
+        checks = [[sys.executable, '-c', 'pass']]
+        package = intentline.load_export(producer, self.source, checks)
+        result = self.execute(checks, intentline_package=package)
+        record = self.output/'report.json'
+        self.assertEqual(result['status'], 'CHECKS PASSED')
+        self.assertEqual(result['promise_evidence']['requirements'][0]['status'], 'NOT DEMONSTRATED')
+        shutil.rmtree(producer)
+        self.assertEqual(runner.inspect(record)['status'], 'CHECKS PASSED')
+        frozen = self.output/'intentline-export/contract.json'
+        saved = frozen.read_bytes()
+        frozen.write_bytes(b'{"forged":true}')
+        self.assertEqual(runner.inspect(record)['status'], 'STALE CHECKS')
+        self.assertEqual(runner.inspect(record)['promise_evidence']['requirements'][0]['status'],
+                         'NOT DEMONSTRATED')
+        frozen.write_bytes(saved)
+        self.assertEqual(runner.inspect(record)['status'], 'CHECKS PASSED')
+        candidate = Path(result['candidate_path'])/'tiny.py'
+        candidate.write_text('changed after frozen evidence')
+        self.assertEqual(runner.inspect(record)['status'], 'STALE CHECKS')
+
+    def test_intentline_check_link_conflict_refuses_before_sandbox_dispatch(self):
+        fixture = runner.host.ROOT/'tests/fixtures/intentline/v1'
+        self.source = (fixture/'source-S1.txt').read_bytes().decode('utf-8')
+        checks = [[sys.executable, '-c', 'pass']]
+        package = intentline.load_export(fixture, self.source, checks,
+            links={'R1': [{'index':0,'argv':checks[0]}]})
+        with self.assertRaisesRegex(ValueError, 'not linked'):
+            self.execute(checks, intentline_package=package,
+                         failure_details=[{'index':0,'outcome_ids':['R2']}])
+        self.assertFalse(self.output.exists())
+        self.assertEqual(runner.host.snapshot(self.repo), self.before)
+
+    def test_imported_intentline_cannot_override_direct_promises(self):
+        fixture = runner.host.ROOT/'tests/fixtures/intentline/v1'
+        self.source = (fixture/'source-S1.txt').read_bytes().decode('utf-8')
+        checks = [[sys.executable, '-c', 'pass']]
+        package = intentline.load_export(fixture, self.source, checks)
+        with self.assertRaisesRegex(ValueError, 'either'):
+            self.execute(checks, intentline_package=package,
+                         promise_mapping=package['mapping'])
+        self.assertFalse(self.output.exists())
 
     @unittest.skipUnless(sys.platform == 'darwin' and os.environ.get('PROOFLINE_NATIVE_TESTS') == '1',
                          'opt-in macOS native check-only test')
