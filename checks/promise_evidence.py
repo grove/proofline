@@ -234,7 +234,7 @@ def _summarize_mapping(record, mapping):
                      **({"proposed_oracle": row["oracle"],
                          "oracle_authority": "unverified caller suggestion"}
                         if "oracle" in row else {})})
-    return {"source_sha256": mapping["source_sha256"],
+    result = {"source_sha256": mapping["source_sha256"],
             "original_source_ref": "inputs/source.md",
             "candidate_commit": record.get("candidate_commit"),
             "candidate_tree": record.get("candidate_tree"),
@@ -247,6 +247,37 @@ def _summarize_mapping(record, mapping):
                 "proposals": mapping["review"]["proposals"],
                 "authority": "unverified advisory review; may omit original promises"},
             "scope": "Only explicitly mapped requirements/commands; all original source remains authoritative."}
+    producer = record.get("intentline_advisory")
+    if producer is not None:
+        details = {row["id"]: row for row in producer["requirements"]}
+        for row in result["requirements"]:
+            detail = details[row["id"]]
+            # Intentline authored expectations stay advisory; they never change
+            # linked-pass/failed/unavailable/not-demonstrated receipt states.
+            row["intentline_planning"] = {
+                "basis": detail["basis"], "boundaries": detail["boundaries"],
+                "seam": detail["seam"], "planned_evidence": detail["planned_evidence"],
+                "plan_state": detail["plan_state"],
+                "evidence_gap_reasons": detail["evidence_gap_reasons"],
+                "authority": "unverified original-source-grounded proposal",
+            }
+        result["intentline"] = {
+            "contract_id": producer["contract_id"],
+            "revision": producer["revision"],
+            "contract_sha256": producer["contract_sha256"],
+            "source_bundle_sha256": producer["source_bundle_sha256"],
+            "export_manifest_sha256": producer["export_manifest_sha256"],
+            "source_sha256": producer["source_sha256"],
+            "export_authority": producer["export_authority"],
+            "external_caller_approval": producer["external_caller_approval"],
+            "execution_authority": producer["execution_authority"],
+            "intended_outcome": producer["intended_outcome"],
+            "constraints": producer["constraints"],
+            "out_of_scope": producer["out_of_scope"],
+            "evidence_gaps": producer["evidence_gaps"],
+            "scope": "Untrusted advisory planning data, not executable tests, proof or consent.",
+        }
+    return result
 
 
 def format_lines(record, limit=3):
@@ -260,6 +291,13 @@ def format_lines(record, limit=3):
     passed = len(rows) - len(not_demonstrated)
     lines = [f"Promise evidence: {passed}/{len(rows)} mapped rows have linked passing checks"
              " (limited); overall coverage UNKNOWN"]
+    if "intentline" in evidence:
+        info = evidence["intentline"]
+        lines.append("  Intentline advisory (" + info["export_authority"] +
+                     "): " + str(len(info["evidence_gaps"])) + " plan gap(s); " +
+                     str(len(info["constraints"])) + " constraint(s); " +
+                     str(len(info["out_of_scope"])) +
+                     " exclusion(s) retained; no external approval inferred")
     for row in not_demonstrated[:limit]:
         lines.append(f"  {row['id']} {row['status']}: {row['reason']}")
     if len(not_demonstrated) > limit:

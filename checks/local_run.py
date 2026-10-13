@@ -11,6 +11,7 @@ from checks import codex_live as live, host_probe as host
 from checks import coding_attempt as coding
 from checks import feedback
 from checks import promise_evidence
+from checks import intentline_advisory
 from checks.native_checks import oracle_runner, write_record
 from checks.candidate_snapshot import capture_worktree, git_bytes
 
@@ -124,10 +125,16 @@ def execute_checks(record,inputs,output,codex,started,save):
 
 
 def check(repo,source,checks,output,seconds=900,check_seconds=120,
-          failure_details=None, promise_mapping=None):
+          failure_details=None, promise_mapping=None, intentline_package=None):
     """Freeze an existing working candidate and observe commands without model dispatch."""
     validate_checks(checks)
     failure_details=feedback.validate_failure_details(failure_details,checks)
+    if intentline_package is not None:
+        if promise_mapping is not None:
+            raise ValueError("Choose either an explicit promise map or Intentline export")
+        intentline_package=intentline_advisory.validate_package(
+            intentline_package,source,checks,failure_details)
+        promise_mapping=intentline_package["mapping"]
     if promise_mapping is not None:
         promise_mapping=promise_evidence.validate(promise_mapping,source,checks,failure_details)
     if (not source.strip() or any(type(value) not in (int,float) or not math.isfinite(value)
@@ -147,7 +154,7 @@ def check(repo,source,checks,output,seconds=900,check_seconds=120,
         raise ValueError('--repo must name an existing Git repository root') from error
     if any(output==path or path in output.parents for path in metadata):
         raise ValueError('Check output must be outside source Git metadata')
-    output.mkdir(parents=True,exist_ok=False)
+    output.mkdir(mode=0o700,parents=True,exist_ok=False)
     record={'schema_version':1,'kind':'bounded_local_check','status':'EXECUTION UNAVAILABLE',
             'assurance':'Only the listed command exit statuses are observed; full source correctness is not certified.',
             'limits':{'seconds':seconds,'check_seconds':check_seconds,'model_dispatches':0},
@@ -158,6 +165,8 @@ def check(repo,source,checks,output,seconds=900,check_seconds=120,
     if promise_mapping is not None:
         record['promise_mapping']=promise_mapping
         record['original_source_ref']='inputs/source.md'
+    if intentline_package is not None:
+        record['intentline_advisory']=intentline_package["metadata"]
     def save():
         record['elapsed_seconds']=time.monotonic()-started
         record['feedback']=feedback.summarize(record)
@@ -168,6 +177,8 @@ def check(repo,source,checks,output,seconds=900,check_seconds=120,
     try:
         if platform.system()!='Darwin' or sys.version_info<(3,11):
             raise ValueError('The supported native boundary is macOS with Python 3.11+')
+        if intentline_package is not None:
+            intentline_advisory.freeze(output,intentline_package["files"])
         inputs=output/'inputs';inputs.mkdir()
         (inputs/'source.md').write_bytes(source.encode('utf-8'))
         (inputs/'checks.json').write_text(json.dumps(checks))
@@ -275,6 +286,12 @@ def inspect(path):
                   or json.loads(entry['receipts'][0]['argv'][-1])!=check_argv(record['python'],inputs,argv)
                   for entry,argv in zip(record['observations'],record['checks']))):
             raise ValueError('Incomplete successful command observations')
+    if record.get('intentline_advisory') is not None:
+        if (record.get('kind')!='bounded_local_check' or
+                record.get('promise_mapping') is None or
+                ('snapshot' in record and not intentline_advisory.readback_intact(
+                    record,path.parent))):
+            return _stale(record)
     if record.get('promise_mapping') is not None:
         if (record.get('promise_evidence') != promise_evidence.summarize(record) or
                 ('snapshot' in record and not promise_evidence.readback_intact(

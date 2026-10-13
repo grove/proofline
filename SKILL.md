@@ -126,10 +126,28 @@ full-promise certification or claim a PR/merge occurred.
 agent may use [Intentline's plan skill](https://github.com/grove/intentline/blob/main/skills/intentline-plan/SKILL.md)
 to identify proposed `R` outcomes, edge cases, and candidate checks, then call
 Proofline `check` against the unchanged original request and chosen argv.
-That plan is advisory, not proven behavior or permission. **No Intentline
-installation, contract adoption, extra approval, or model stage is required**.
-The optional export adapter is **not yet implemented**; see
-[#23](https://github.com/grove/proofline/issues/23).
+That plan is advisory, not proven behavior or permission.
+**No Intentline installation, contract adoption, extra approval, or model
+stage is required by Proofline**.
+
+For an already-prepared **single original-request Intentline JSON export**,
+optionally pass `--intentline-export /private/json-export` to `check`
+and `--source /private/json-export/source-S1.txt`. The existing agent still
+selects real commands, and can optionally provide `--intentline-links
+/private/links.json`, e.g. `{"R1":[{"index":0,"argv":["/absolute/python",
+"-m","unittest"]}]}` matching the selected check argv **exactly**. If
+links are absent, every imported R is NOT DEMONSTRATED; planning notes
+alone never execute or certify a test. `--intentline-export` and
+`--promises` are mutually exclusive. Unsupported S2 contexts, amendments,
+native bundles or partial/symlinked exports are refused without fallback.
+See [README](README.md) and [#23](https://github.com/grove/proofline/issues/23).
+
+Preserve Intentline's proposed oracles, boundaries, evidence gaps, constraints
+and exclusions **as advisory data**; do not treat `unapproved` or
+`operator_asserted_unverified` markers as authenticated consent, independent
+acceptance or permission to publish. Never run exported scripts. No Intentline
+Python package is imported by the adapter; ordinary check-only runs work
+without it.
 
 The [vNext contract](DESIGN.md) and [open issues](https://github.com/grove/proofline/issues)
 retain zero-extra-model check-only use and prioritize useful failure feedback.

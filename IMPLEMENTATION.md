@@ -24,6 +24,10 @@ by the current CLI.
 - `checks/promise_evidence.py`: optional exact-source S1/R-id mapping and
   deterministic link-to-receipt reporting, including self-reported gaps and
   explicit coverage UNKNOWN. No additional model, source rewriting or peer.
+- `checks/intentline_advisory.py`: optional **data-only** reader for completed
+  single-S1 initial Intentline JSON exports, with exact source, file, contract
+  and revision digests, preserved advisory constraints/gaps, explicit argv links
+  and frozen local readback. No producer import, lineage flattening or approval.
 - `checks/host_probe.py` and `checks/codex_live.py`: existing qualified
   sandbox, process lifecycle and model transport protections. S0 diagnostic
   helpers remain available for offline regressions, but are not called as
@@ -33,11 +37,10 @@ by the current CLI.
   native S0 fixture controls: the supported runner and its boundary
   regressions.
 
-No old delivery/recovery/publisher runtime, source-contract evaluator,
-Intentline bundle consumer, S3–S6 corpus generator or benchmark controller
-belongs on the supported runtime import path. Any future upstream
-contract use must be a new narrow, approved adapter, not an automatic
-reinstatement of retired certification.
+No old delivery/recovery/publisher runtime, source-contract certifier,
+historical native Intentline `deliver` controller, S3–S6 corpus generator,
+or benchmark coordinator is imported by the supported runner. The optional
+JSON advisory adapter does not execute peers or grant authority.
 
 ## Small issue-ordered next steps
 
@@ -60,8 +63,9 @@ reinstatement of retired certification.
 5. [#13 — Promise/evidence](https://github.com/grove/proofline/issues/13):
    implemented as optional check-only source-linked rows, receipt-bound status,
    untested clauses and unverified gap proposals, never certification.
-   [#23](https://github.com/grove/proofline/issues/23) is a separate future
-   optional adapter for Intentline exports.
+   [#23](https://github.com/grove/proofline/issues/23) adds a separate
+   **opt-in** reader of completed initial Intentline JSON exports and their
+   unverified promises/gaps; no mandatory installation or adoption.
 6. [#15 — Correction](https://github.com/grove/proofline/issues/15):
    an optional single same-agent repair after observed failures; one
    cumulative budget and no extra model dispatch on success.
