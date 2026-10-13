@@ -40,6 +40,49 @@ For a bounded **optional managed coding attempt**, use the same direct inputs:
 one coding attempt. It does **not** add an AI reviewer, prover, planner or PR
 publisher. No extra model is launched by `check`.
 
+For one optional correction by that **same implementer**, add `--correct-once`
+to `run`. First-pass success still uses just one dispatch. Only an intact,
+nonzero native check with a Python `AssertionError` diagnostic qualifies;
+every selected check must have usable evidence. Timeouts, missing tools,
+truncated or mismatched receipts, stale candidates, environment-error
+diagnostics, advisory requirements and untested promises never trigger it.
+Other failure formats are reported for the caller to handle; Proofline does
+not infer a product defect from an arbitrary nonzero exit.
+
+The correction resumes the original native thread with the **entire original
+request**, exact failed argv, exit codes and bounded stdout/stderr. It edits
+a separate copy of the failed candidate, freezes it, and reruns **all** selected
+checks, including compatibility checks that previously passed. `--seconds`
+is one cumulative episode budget for setup, coding, checks, correction and
+rerun; `--stage-seconds` caps each coding turn within that budget. There is
+at most one correction, even if the defect repeats or the handoff is incomplete.
+No reviewer, prover, supervisor, Intentline dependency or acceptance verdict
+is introduced.
+
+`report.json` records `correction.enabled`, `correction.attempted`, bound worker
+thread and dispatch count. Dispatch slots are journaled before launch; an
+interrupted launch conservatively consumes its slot. Initial candidate/check
+evidence remains at `initial/report.json`, hash-bound to the final report.
+Old passing checks never carry forward to an altered candidate. `status`
+revalidates both candidates, source, commands and receipts; drift makes the
+final evidence stale. Interrupted episodes remain unavailable and cannot
+reuse their output directory. There is **no controller resume or automatic
+restart** to reset the budget or repeat a dispatch; a new explicitly requested
+episode uses a new output directory.
+
+The opt-in [native control](tests/test_correction_live.py) deliberately retains
+a seeded assertion defect on its first handoff, then tests same-thread
+correction, native boundaries and rerun. It is a mechanism qualification,
+not a measurement of improvement on ordinary coding tasks.
+The [13 October 2026 qualification summary](docs/ISSUE15-QUALIFICATION.json)
+records both native boundaries, the failed assertion, same-thread identities,
+corrected check results and exact runtime hashes; raw evidence remains at its
+recorded local path. Reproduce it on the supported authenticated host with:
+
+```sh
+PROOFLINE_CORRECTION_LIVE=1 /opt/homebrew/bin/python3.14 -B -m unittest tests.test_correction_live -v
+```
+
 `--request` is a single **literal** argument: multiline text and terminal
 newlines are preserved if the calling host passes them. For an exact multiline
 request without shell quoting, use `--request-stdin` and pipe the original
@@ -105,7 +148,8 @@ observation is withheld rather than presented as fact. An `R2` label without
 an optional `--promises` mapping remains unverified advice; with a mapping,
 its exact command association is validated but a green check still does not
 prove the requirement in full. No unlisted requirement is deemed covered,
-and no failed or missing evidence triggers an AI correction by itself.
+and no failed or missing evidence triggers an AI correction without the
+explicit managed `run --correct-once` option and qualifying native diagnostics.
 
 This file is optional. Ordinary `--command` or `--checks` invocations
 still work unchanged, without Intentline, an acceptance plan, or extra
@@ -297,8 +341,10 @@ On the qualified **macOS** host (Python 3.11+, Codex CLI **0.162.1**),
 `check` uses only the CLI's native sandbox: **zero model dispatches**, no
 model settings or authentication needed. `run` optionally dispatches **one**
 coding attempt and needs existing authentication and a clean Git source.
-Neither mode runs automatic reviewers, provers, corrections, PRs, merges or
-deployments. Both leave the source repository untouched.
+Managed `run --correct-once` optionally permits one same-thread correction
+after a qualifying native assertion failure. Neither mode runs automatic
+reviewers, provers, PRs, merges or deployments. Both leave the source repository
+untouched.
 
 For longer-lived or automated workflows, the existing **file-based**
 interface remains supported: save the exact UTF-8 original request in `source.md`

@@ -1,0 +1,188 @@
+{
+  "schema_version": 1,
+  "issue": 15,
+  "qualified_at_utc": "2026-10-13T13:23:39.413311+00:00",
+  "scope": "Deliberately staged native same-thread correction control; not a coding-effectiveness benchmark or full-source certification.",
+  "host": {
+    "system": "Darwin",
+    "python": "3.14.8",
+    "codex": "codex-cli 0.162.1"
+  },
+  "runtime_sha256": {
+    "checks/local_run.py": "432b7fc61e839ce8fb5ace1961ebeffe239bc1dff6c596dd73d2fe15d01c2dab",
+    "checks/coding_attempt.py": "2081235d9b15139bb856cb8d3f03ac3c265447aab4f2c007ae1523a7235a69bc",
+    "checks/codex_live.py": "a24c8d98d366296d825238bbc49a6e9e0234b450420c54f080e806c68e2f0888",
+    "checks/host_probe.py": "6f30bd9761454f7eec98e9d0b8112f299f2650f925272f47d24cb4a5cdb6684d",
+    "checks/candidate_snapshot.py": "9a99a9a93ac33078b3b612d51be3d397561c35103ba5a714f9bc25c0441b2b96",
+    "checks/native_checks.py": "fc94848417f3b145b4079966f1e4f3d261dd4f70a9533463059da06f209847f6",
+    "checks/feedback.py": "be733712539c3d2c7230d680692ea2863b54bd2d635ba421a8962a9f946e6533",
+    "tests/test_correction_live.py": "c786aac692dbc5cf32a64732553dac2a118e528be49cb0f824294c8821b44412"
+  },
+  "source": {
+    "sha256": "dd001cb6baef45befb0d22962c40de009cde447df61ea00adef9027e3c430131",
+    "original_request": "This is a deliberate two-turn native qualification control, not an ordinary delivery.\nThe final product must export answer = 42 from tiny.py. Preserve that interface.\nFor the first turn ONLY, retain the seeded answer = 0 defect and create phase.txt containing first handoff. Report completed=true for that first qualification phase so the host can observe the real assertion failure; do not fix answer yet.\nWhen the host resumes you with actual failing check evidence, correct tiny.py to answer = 42 in the NEW product path named by the new prompt. Leave phase.txt intact. This is the only correction turn.\n"
+  },
+  "model_preferences": {
+    "model": "gpt-6.1-sol",
+    "model_reasoning_effort": "high"
+  },
+  "limits": {
+    "seconds": 300,
+    "stage_seconds": 120,
+    "check_seconds": 15,
+    "model_dispatches": 2
+  },
+  "elapsed_seconds": 63.13117045816034,
+  "model_dispatches": 2,
+  "thread_id": "01a1356c-8d01-7072-a166-2477f0423444",
+  "initial": {
+    "status": "CHECKS FAILED",
+    "candidate_commit": "5e8542b007a303ef24532ce8e2f7ce0d0346fd86",
+    "candidate_tree": "759b48ba4af98b89b8c0782f4cb39e477a2fcd51",
+    "snapshot": "88a608cf81a70c39845b44d768e6aeb49f79ed716fa2aaa21884113cb0283cb2"
+  },
+  "corrected": {
+    "status": "CHECKS PASSED",
+    "candidate_commit": "bb57175512349d13ca2a490cb7d4d36dee415555",
+    "candidate_tree": "4c2f2ccd2618847783cacd0302f5465ca4fafdd6",
+    "snapshot": "ca16e1e496926e379b8bfe13b06f522aa3300ad7eb63d1ae5e9c700b726671b1"
+  },
+  "initial_checks": [
+    {
+      "argv": [
+        "/opt/homebrew/Cellar/python@3.14/3.14.8_2/Frameworks/Python.framework/Versions/3.14/bin/python3.14",
+        "-B",
+        "-c",
+        "from tiny import answer; assert answer == 42, \"expected 42; observed %s\" % answer"
+      ],
+      "status": "FAILED",
+      "exit_code": 1,
+      "stdout": "",
+      "stderr": "Traceback (most recent call last):\n  File \"<string>\", line 1, in <module>\n    from tiny import answer; assert answer == 42, \"expected 42; observed %s\" % answer\n                                    ^^^^^^^^^^^^\nAssertionError: expected 42; observed 0\n",
+      "receipt_sha256": "92a626d984b57ec6600ff43dbb976caa61e6a07aab988d234fd022d5f8f05099"
+    },
+    {
+      "argv": [
+        "/opt/homebrew/Cellar/python@3.14/3.14.8_2/Frameworks/Python.framework/Versions/3.14/bin/python3.14",
+        "-B",
+        "-c",
+        "from pathlib import Path; assert Path(\"phase.txt\").read_text().strip() == \"first handoff\""
+      ],
+      "status": "PASSED",
+      "exit_code": 0,
+      "stdout": "",
+      "stderr": "",
+      "receipt_sha256": "2670a826bbb7e20b4f15370454ba6d8c9d82c566d052669ba28906de8274f843"
+    }
+  ],
+  "corrected_checks": [
+    {
+      "argv": [
+        "/opt/homebrew/Cellar/python@3.14/3.14.8_2/Frameworks/Python.framework/Versions/3.14/bin/python3.14",
+        "-B",
+        "-c",
+        "from tiny import answer; assert answer == 42, \"expected 42; observed %s\" % answer"
+      ],
+      "status": "PASSED",
+      "exit_code": 0,
+      "receipt_sha256": "4d98fa60514504c87f9f920c85d37dcf1cd4cef1de398dc1acf0a9a9d3ba3fa0"
+    },
+    {
+      "argv": [
+        "/opt/homebrew/Cellar/python@3.14/3.14.8_2/Frameworks/Python.framework/Versions/3.14/bin/python3.14",
+        "-B",
+        "-c",
+        "from pathlib import Path; assert Path(\"phase.txt\").read_text().strip() == \"first handoff\""
+      ],
+      "status": "PASSED",
+      "exit_code": 0,
+      "receipt_sha256": "a55cc57321a261f04bdb9e4955620f768ac4f6dd079edac5b587ed77849b45a6"
+    }
+  ],
+  "boundaries": {
+    "coding": {
+      "status": "OBSERVED",
+      "observations": {
+        "nonce": "8a67aa5855d94641b80950adb404448f",
+        "writes": {
+          "source": "denied",
+          "input": "denied",
+          "candidate": "denied",
+          "git_head": "denied",
+          "receipt": "denied"
+        },
+        "reads": {
+          "receipt-canary": "denied",
+          "oracle-canary": "denied",
+          "other-role-canary": "denied",
+          "actual_oracle": "denied"
+        },
+        "mode_change": "denied",
+        "scratch": true,
+        "network": "denied"
+      },
+      "inputs_unchanged": true,
+      "scope": "native process canaries only; no model or external-tool qualification"
+    },
+    "correction": {
+      "status": "OBSERVED",
+      "observations": {
+        "nonce": "47e97f5b1add4699a9e59788648c69e2",
+        "writes": {
+          "source": "denied",
+          "input": "denied",
+          "candidate": "denied",
+          "git_head": "denied",
+          "receipt": "denied"
+        },
+        "reads": {
+          "receipt-canary": "denied",
+          "oracle-canary": "denied",
+          "other-role-canary": "denied",
+          "actual_oracle": "denied"
+        },
+        "mode_change": "denied",
+        "scratch": true,
+        "network": "denied"
+      },
+      "inputs_unchanged": true,
+      "scope": "native process canaries only; no model or external-tool qualification"
+    }
+  },
+  "workers": [
+    {
+      "thread_id": "01a1356c-8d01-7072-a166-2477f0423444",
+      "invocation_id": "e62d436e-bee4-4b57-a7b0-41524d5ca7b7",
+      "events_sha256": "4b73f1731061215229adc8bca2eb7f2c9fb9c6dfa002ad35a68afb9faf18c365",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "usage": {
+        "input_tokens": 55002,
+        "cached_input_tokens": 48512,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 676,
+        "reasoning_output_tokens": 44
+      }
+    },
+    {
+      "thread_id": "01a1356c-8d01-7072-a166-2477f0423444",
+      "invocation_id": "45ab5014-f1e5-487f-8434-1f61c917796d",
+      "events_sha256": "be6118769fddd26609610c0e3441c578fb1f9434ecb9afbd9d7936f053614363",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "usage": {
+        "input_tokens": 110551,
+        "cached_input_tokens": 97792,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 1246,
+        "reasoning_output_tokens": 44
+      }
+    }
+  ],
+  "source_repository_unchanged": true,
+  "readback": {
+    "initial": "CHECKS FAILED",
+    "corrected": "CHECKS PASSED"
+  },
+  "retained_local_report": "/private/var/folders/vq/593qxcm57l90w1dlpywl_7nw0000gn/T/proofline-correction-control-vjmpxgvo/run/report.json",
+  "retained_local_report_sha256": "cd9196fa8a07e412810363612c4c568464b97d8420177428d85d93040aac4eff",
+  "raw_evidence_note": "Raw reports, candidates and native transcripts remain at the retained local path; this committed artifact is a bounded summary."
+}

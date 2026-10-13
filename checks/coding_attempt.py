@@ -9,11 +9,13 @@ from checks.candidate_snapshot import capture_base, freeze
 from checks.native_checks import write_record
 
 
-def run(repo, source, guidance, output, codex, preferences, seconds, execution_map=""):
+def run(repo, source, guidance, output, codex, preferences, seconds, execution_map="",
+        *, persist=False, session_id=None, on_dispatch=None, deadline=None):
     """Return a coding handoff, not a verdict that the user promise is fulfilled."""
     started = time.monotonic()
+    deadline = min(started + seconds, deadline) if deadline is not None else started + seconds
     inputs = output / "implementation" / "inputs"
-    inputs.mkdir(parents=True)
+    inputs.mkdir(parents=True, exist_ok=False)
     (inputs / "source.md").write_bytes(source.encode("utf-8"))
     (inputs / "guidance.md").write_text(guidance)
     _, base = capture_base(repo, inputs / "product")
@@ -23,7 +25,10 @@ def run(repo, source, guidance, output, codex, preferences, seconds, execution_m
         if path.is_file() and ".git" not in path.relative_to(inputs / "product").parts), None)
     if target is None:
         raise ValueError("A regular tracked product file is required")
-    observed = host.probe_boundary(codex, boundary, inputs, 15, target)
+    remaining = deadline - time.monotonic()
+    if remaining <= 0:
+        raise ValueError("Coding budget exhausted before preflight")
+    observed = host.probe_boundary(codex, boundary, inputs, min(15, remaining), target)
     write_record(boundary / "report.json", observed)
     if observed["assessment"]["status"] != "OBSERVED":
         return {"accepted": False, "candidate": str(inputs / "product"),
@@ -42,7 +47,7 @@ def run(repo, source, guidance, output, codex, preferences, seconds, execution_m
     protected = {str(path.relative_to(inputs)): host.sha256(path.read_bytes())
                  for path in inputs.iterdir() if path.is_file()}
     git_before = host.snapshot(inputs / "product" / ".git")
-    remaining = seconds - (time.monotonic() - started)
+    remaining = deadline - time.monotonic()
     if remaining <= 0:
         return {"accepted": False, "candidate": str(inputs / "product"),
                 "stages": [], "model_dispatches": 0, "error": "Coding budget exhausted"}
@@ -58,9 +63,17 @@ def run(repo, source, guidance, output, codex, preferences, seconds, execution_m
         "\nYou have at most " + f"{remaining:.1f}" +
         " seconds including self-checks and a final response.\n"
     )
-    receipt = live.launch(live.command(
-        codex, inputs, scratch, private, preferences, implementer=True),
-        prompt, private, remaining)
+    argv = live.command(codex, inputs, scratch, private, preferences,
+                        implementer=True, persist=persist, session_id=session_id)
+    remaining = deadline - time.monotonic()
+    if remaining <= 0:
+        raise ValueError("Coding budget exhausted before dispatch")
+    if on_dispatch is not None:
+        on_dispatch()
+    remaining = deadline - time.monotonic()
+    if remaining <= 0:
+        raise ValueError("Coding deadline exhausted after dispatch reservation; no worker launched")
+    receipt = live.launch(argv, prompt, private, remaining)
     stage = {"role": "implementer", "status": "NOT VERIFIED",
              "receipt": receipt, "usage": None}
     try:
@@ -70,6 +83,8 @@ def run(repo, source, guidance, output, codex, preferences, seconds, execution_m
         if not unchanged:
             raise ValueError("Protected source, guidance, Git or receipt inputs changed")
         native = live.read_events(receipt)
+        if session_id is not None and native["thread_id"] != session_id:
+            raise ValueError("Correction did not resume the original implementer")
         stage.update(usage=native["usage"], thread_id=native["thread_id"],
                      commands=native["commands"])
         report = native["report"]

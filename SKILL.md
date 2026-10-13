@@ -7,6 +7,8 @@ Use the [supported local runner](proofline.py) `check` command for existing
 agent work: **zero model dispatches**, **macOS**, Python 3.11+ and **Codex CLI
 0.162.1** (sandbox only; no model authentication needed). The optional `run`
 command needs authentication and a clean Git source for one coding attempt.
+Only `run --correct-once` opts in to one follow-up correction on that same
+native implementer thread; successful first passes never dispatch another turn.
 Historical `deliver` and `resume` are unsupported. Direct requests need no
 P2P/Intentline workflow.
 
@@ -63,10 +65,27 @@ The coding agent owns strategy, self-checks and repairs. Proofline runs the
 caller-selected commands against its frozen, read-only candidate under native
 protection. The source, selected files, command arrays and separate host receipts
 are bound to the report. All time counts toward the episode budget. No network
-access, dependency installation, AI reviewer/prover, correction, publication,
+access, dependency installation, AI reviewer/prover, publication,
 merge or deployment runs. Linux offline CI does not establish a native macOS
 qualification. Existing authorization rules still apply; local checking never
 permits external mutations.
+
+**Optional managed correction (#15):** Add `--correct-once` only to `run`.
+Require a failed selected executable check with intact bound native evidence
+and a Python `AssertionError` diagnostic. Every selected check must be
+available; environment errors, arbitrary nonzero exits, timeouts, truncated
+logs, stale inputs, caller annotations and advisory promise/Intentline gaps
+cannot trigger a turn. Unsupported failure formats remain for the caller.
+Proofline resumes the bound original implementer once with the unchanged
+full source and exact native observations, copies and freezes a new candidate,
+then reruns all selected checks. One `--seconds` budget covers the whole
+episode; neither correction nor interruption resets it. The initial report
+is retained at `initial/report.json` and checked again by `status`.
+Dispatch slots are reserved before launch and an uncertain interrupted slot
+cannot be reused. Controller resume is unsupported; never silently start a
+new episode. A repeated defect stops with its actual failed/unavailable status,
+not another correction or automatic acceptance certification. `check`
+continues to dispatch zero models and leaves corrections to the existing agent.
 
 For failed checks, read the bounded CLI **Feedback** summary first; consult
 `report.json` -> `feedback.checks` for exact argv, exit status, elapsed

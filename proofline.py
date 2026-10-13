@@ -83,6 +83,8 @@ def main(argv=None):
         command.add_argument("--seconds", type=positive_seconds, default=900)
         command.add_argument("--check-seconds", type=positive_seconds, default=120)
     run.add_argument("--stage-seconds", type=positive_seconds, default=600)
+    run.add_argument("--correct-once", action="store_true",
+                     help="Opt in to one same-thread correction after a trusted assertion failure")
     advisory = check.add_mutually_exclusive_group()
     advisory.add_argument("--promises", type=Path,
                           help="Optional direct source-quoted R requirements and check links")
@@ -108,6 +110,8 @@ def main(argv=None):
                 raise ValueError("Original request is empty; use --request TEXT, --request-stdin or --source FILE")
             checks = explicit_checks(args)
             optional = {}
+            if args.command == "run":
+                optional["correct_once"] = args.correct_once
             if args.failure_details is not None:
                 details = json.loads(args.failure_details.read_text(encoding="utf-8"))
                 optional["failure_details"] = feedback.validate_failure_details(details,checks)
