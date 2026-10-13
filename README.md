@@ -6,6 +6,64 @@ caller-selected checks without another model dispatch. It also offers one
 optional bounded coding attempt. Passing commands are evidence
 **only about those commands**, not proof of every requirement.
 
+## Quick start — let the existing agent check its work
+
+No planning step, acceptance-contract file, or test-configuration file is needed.
+After implementing a change, the **same coding agent** chooses relevant,
+already-available project checks and calls Proofline directly:
+
+```sh
+/opt/homebrew/bin/python3.14 -B proofline.py check \
+  --repo /absolute/path/to/product \
+  --request 'Reject blank usernames while preserving Unicode and CLI compatibility.' \
+  --command '/opt/homebrew/bin/python3.14 -B -m unittest discover -s tests' \
+  --command '/opt/homebrew/bin/python3.14 -B cli.py --version'
+```
+
+This is an example: choose commands and public interfaces that actually exist
+in the target repository. `check` captures the working tree (including ordinary
+uncommitted changes), runs exactly those checks and **dispatches zero coding
+models**. Its returned report names the frozen candidate and any failed or
+unavailable checks, not an automatic assertion that every request was fulfilled.
+
+For a bounded **optional managed coding attempt**, use the same direct inputs:
+
+```sh
+/opt/homebrew/bin/python3.14 -B proofline.py run \
+  --repo /absolute/path/to/clean-product \
+  --request 'Add a --version flag without changing existing CLI behavior.' \
+  --command '/opt/homebrew/bin/python3.14 -B -m unittest discover -s tests' \
+  --stage-seconds 600
+```
+
+`run` requires an authenticated Codex CLI and a clean Git source, and launches
+one coding attempt. It does **not** add an AI reviewer, prover, planner or PR
+publisher. No extra model is launched by `check`.
+
+`--request` is a single **literal** argument: multiline text and terminal
+newlines are preserved if the calling host passes them. For an exact multiline
+request without shell quoting, use `--request-stdin` and pipe the original
+UTF-8 bytes into standard input instead. `--source FILE` remains supported
+for saved original request bytes. These three sources are mutually exclusive.
+
+Repeat `--command` for each executable check. Each value is tokenized with
+POSIX quoting into one **argv array**, without executing a shell, expanding
+environment variables, interpreting pipes or performing command substitutions.
+Every executable must have an **absolute path**. For exact complex argv
+(e.g. literal spaces, shell metacharacters or arbitrary arguments), keep using
+the existing `--checks FILE` JSON format. The two check-input forms are
+mutually exclusive. No extra config or dependency installation is performed.
+
+**Optional Intentline-guided workflow (not an integration requirement):**
+The existing agent may first use
+[Intentline's planning skill](https://github.com/grove/intentline/blob/main/skills/intentline-plan/SKILL.md)
+to identify source-grounded `R` requirements and important checks, then use
+the ordinary Proofline `check` command above against the **original request**.
+That advice is not an independent test result, approval, or replacement for
+original source bytes. Automatic consumption of Intentline exports is
+**future work in [#23](https://github.com/grove/proofline/issues/23)**;
+the CLI does not require or import Intentline.
+
 ## Currently supported
 
 The supported commands are `proofline.py check`, `run` and `status`.
@@ -16,9 +74,9 @@ coding attempt and needs existing authentication and a clean Git source.
 Neither mode runs automatic reviewers, provers, corrections, PRs, merges or
 deployments. Both leave the source repository untouched.
 
-Save the exact original user request in `source.md`, outside the product
-changes. Choose relevant executable checks with **absolute executable paths**
-and store their exact argument arrays in `checks.json`:
+For longer-lived or automated workflows, the existing **file-based**
+interface remains supported: save the exact UTF-8 original request in `source.md`
+outside product changes and selected argv arrays in `checks.json`:
 
 ```json
 [["/opt/homebrew/bin/python3.14", "-B", "-m", "unittest", "discover", "-s", "tests"]]
