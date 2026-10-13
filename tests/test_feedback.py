@@ -125,7 +125,7 @@ class FeedbackTests(unittest.TestCase):
         self.assertNotIn("caller_annotation", view["checks"][0])
         self.assertIn("1/1 selected checks passed", view["headline"])
         self.assertEqual(len(feedback.format_lines(self.record([entry], "CHECKS PASSED"))), 1)
-        self.assertIn("original request", view["scope"])
+        self.assertIn("original user promise", view["scope"])
 
     def test_unavailable_timeout_truncation_and_missing_evidence_are_not_defects(self):
         cases = [

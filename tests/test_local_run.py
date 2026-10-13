@@ -76,7 +76,7 @@ class BoundedRun(unittest.TestCase):
         result,path=self.exercise([[sys.executable,'-c','pass']])
         result['observations'][0]['receipts'][0]['argv'][-1]=json.dumps([sys.executable,'-c','print("different")'])
         path.write_text(json.dumps(result))
-        with self.assertRaises(ValueError):runner.inspect(path)
+        self.assertEqual(runner.inspect(path)['status'],'STALE CHECKS')
 
     def test_timeout_keeps_unavailable_distinct_from_failure(self):
         result,_=self.exercise([[sys.executable,'-c','pass']],simulate_timeout=True)
