@@ -244,9 +244,7 @@ def inspect(path):
                         json.loads((inputs/'checks.json').read_text())!=record['checks']):
                     raise ValueError('Frozen evidence changed')
             except (OSError,ValueError,KeyError,TypeError):
-                record['status']='STALE CHECKS'
-                record['feedback']=feedback.summarize(record)
-                return record
+                return _stale(record)
     if record['kind']=='bounded_local_check':
         try:
             evidence=(path.parent/'evidence.json').read_bytes()
@@ -256,9 +254,7 @@ def inspect(path):
             if 'snapshot' in record and host.snapshot(Path(record['candidate_path']).parent)['sha256']!=record['snapshot']:
                 raise ValueError('Frozen inputs changed')
         except (OSError,ValueError,KeyError,TypeError):
-            record['status']='STALE CHECKS'
-            record['feedback']=feedback.summarize(record)
-            return record
+            return _stale(record)
     if record['status']=='CHECKS PASSED':
         inputs=Path(record['candidate_path']).parent
         if (host.snapshot(inputs)['sha256']!=record['snapshot'] or
