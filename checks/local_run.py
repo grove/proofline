@@ -8,8 +8,8 @@ import sys
 import time
 
 import proofline as p
-from checks import s6_baseline as coding
-from checks.s0_live import oracle_runner
+from checks import coding_attempt as coding
+from checks.native_checks import oracle_runner
 
 LAUNCHER='import json,os,sys;os.chdir(sys.argv[1]);os.environ["PYTHONDONTWRITEBYTECODE"]="1";os.execvpe(json.loads(sys.argv[2])[0],json.loads(sys.argv[2]),os.environ)'
 
@@ -54,8 +54,8 @@ def run(repo,source,checks,output,seconds=900,stage_seconds=600,check_seconds=12
         record['model_preferences']=p.live.preferences()
         allowance=min(stage_seconds,seconds-(time.monotonic()-started)-check_seconds)
         if allowance<=0:raise ValueError('Implementation budget unavailable')
-        delivery=coding.run(repo,source,'Caller-selected checks: '+json.dumps(checks),output/'coding',False,
-                            codex,record['model_preferences'],allowance,0,
+        delivery=coding.run(repo,source,'Caller-selected checks: '+json.dumps(checks),
+                            output/'coding',codex,record['model_preferences'],allowance,
                             'Run useful checks. The host will run the caller-selected commands afterward; their results do not certify the complete request.')
         record.update(stages=delivery['stages'],model_dispatches=delivery['model_dispatches'],candidate_path=delivery['candidate'])
         if not delivery['accepted']:

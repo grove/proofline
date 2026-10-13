@@ -4,7 +4,7 @@
 
 Proofline supplied cheap, frozen command receipts, but showed **no added correctness benefit** in this sample and delivered one fewer candidate. The capacity failure occurred in the shared native coding transport; it does not identify a runner-specific coding defect. Faster consumed time cannot compensate for that missing delivery or establish superiority.
 
-This is the new owner-authorized observed-performance study following [S6’s abandon/simplify decision](S6-DECISION.md). It does not complete the original S6 comparisons or restore full-promise certification. The [historical results](S6-RESULTS.md), [original protocol](S6-PILOT.md), [follow-up](S6-FOLLOWUP.md) and [retired redesign experiments](S6-VERIFICATION-REDESIGN.md) remain unchanged. P2P and Luna/Sol comparisons remain deferred.
+This is the new owner-authorized observed-performance study following [S6’s abandon/simplify decision](S6-DECISION.md). It does not complete the original S6 comparisons or restore full-promise certification. The [historical results](https://github.com/grove/proofline/blob/e46814efce7e2b59adecb4583be60806012b1707/docs/S6-RESULTS.md), [original protocol](https://github.com/grove/proofline/blob/e46814efce7e2b59adecb4583be60806012b1707/docs/S6-PILOT.md), [follow-up](https://github.com/grove/proofline/blob/e46814efce7e2b59adecb4583be60806012b1707/docs/S6-FOLLOWUP.md) and [retired redesign experiments](https://github.com/grove/proofline/blob/e46814efce7e2b59adecb4583be60806012b1707/docs/S6-VERIFICATION-REDESIGN.md) remain unchanged. P2P and Luna/Sol comparisons remain deferred.
 
 ## Frozen design
 
