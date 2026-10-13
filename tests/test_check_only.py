@@ -1,5 +1,6 @@
 """Check existing working candidates; mocked boundaries never qualify a native host."""
 import json
+import hashlib
 import os
 from pathlib import Path
 import subprocess
@@ -9,6 +10,7 @@ import unittest
 from unittest.mock import patch
 
 from checks import candidate_snapshot as snapshot, local_run as runner
+from checks import promise_evidence as promises
 
 
 class CheckOnlyTests(unittest.TestCase):
@@ -37,7 +39,7 @@ class CheckOnlyTests(unittest.TestCase):
         self.source = 'Keep the entire original request.\r\nIncluding this line.\r\n'
 
     def execute(self, checks=None, boundary_ready=True, unavailable=False, mutate=False,
-                seconds=30, check_seconds=5, failure_details=None):
+                seconds=30, check_seconds=5, failure_details=None, promise_mapping=None):
         checks = checks or [[sys.executable, 'tiny.py']]
         def boundary(codex, output, inputs, timeout, target):
             for name in ('canary.py', 'canary.json'):
@@ -69,7 +71,7 @@ class CheckOnlyTests(unittest.TestCase):
                 {'stdout': 'codex-cli 0.162.1', 'exit_code': 0, 'timed_out': False}
                 if argv == ['/fake/codex', '--version'] else original(argv, *args, **kw))
             result = runner.check(self.repo, self.source, checks, self.output, seconds, check_seconds,
-                                  failure_details=failure_details)
+                                  failure_details=failure_details, promise_mapping=promise_mapping)
             coding.assert_not_called()
             launch.assert_not_called()
         self.assertEqual(runner.host.snapshot(self.repo), self.before)
@@ -262,6 +264,155 @@ class CheckOnlyTests(unittest.TestCase):
         self.assertIn('could not be observed', result['feedback']['checks'][0]['reason'])
         self.assertIn('unavailable', runner.feedback.format_lines(result)[0].lower())
         self.assertEqual(runner.inspect(self.output / 'report.json')['status'], 'CHECKS UNAVAILABLE')
+
+    def mapped(self, checks):
+        self.source = ("Reject blank usernames.\r\nSupport Unicode usernames.\r\n"
+                       "Preserve the existing API.\r\n")
+        return {
+            'schema_version': 1,
+            'source_sha256': hashlib.sha256(self.source.encode('utf-8')).hexdigest(),
+            'requirements': [
+                {'id': 'R1', 'statement': 'Reject blanks', 'source_refs': [
+                    {'source_id': 'S1', 'line_start': 1, 'line_end': 1,
+                     'quote': 'Reject blank usernames.'}],
+                 'checks': [{'index': 0, 'argv': checks[0]}]},
+                {'id': 'R2', 'statement': 'Accept Unicode', 'source_refs': [
+                    {'source_id': 'S1', 'line_start': 2, 'line_end': 2,
+                     'quote': 'Support Unicode usernames.'}],
+                 'oracle': 'José should work (caller idea)', 'checks': []},
+                {'id': 'R3', 'statement': 'Preserve compatibility', 'kind': 'constraint',
+                 'source_refs': [{'source_id': 'S1', 'line_start': 3, 'line_end': 3,
+                                  'quote': 'Preserve the existing API.'}],
+                 'checks': ([{'index': 1, 'argv': checks[1]}]
+                            if len(checks) > 1 else [])},
+            ]}
+
+    def test_mapping_pass_failure_and_unlinked_unicode_are_independently_distinguished(self):
+        checks = [[sys.executable, '-c', 'pass'],
+                  [sys.executable, '-c', 'raise SystemExit(7)']]
+        mapping = self.mapped(checks)
+        result = self.execute(checks, promise_mapping=mapping)
+        self.assertEqual(result['status'], 'CHECKS FAILED')
+        self.assertEqual(result['model_dispatches'], 0)
+        evidence = result['promise_evidence']
+        self.assertEqual(evidence['source_sha256'], mapping['source_sha256'])
+        self.assertEqual(evidence['candidate_tree'], result['candidate_tree'])
+        self.assertEqual(evidence['snapshot_sha256'], result['snapshot'])
+        self.assertEqual(evidence['coverage_completeness'], 'UNKNOWN')
+        self.assertEqual([row['status'] for row in evidence['requirements']], [
+            'LINKED CHECKS PASSED (limited evidence)', 'NOT DEMONSTRATED', 'CHECK FAILED'])
+        self.assertEqual(evidence['requirements'][0]['linked_checks'][0]['argv'], checks[0])
+        self.assertEqual(evidence['requirements'][2]['linked_checks'][0]['argv'], checks[1])
+        self.assertEqual(runner.inspect(self.output/'report.json')['promise_evidence'], evidence)
+        self.assertEqual((self.output/'inputs/source.md').read_bytes(), self.source.encode('utf-8'))
+        self.assertEqual(runner.host.snapshot(self.repo), self.before)
+
+    def test_green_existing_suite_with_omitted_unicode_is_never_marked_complete(self):
+        checks = [[sys.executable, '-c', 'pass']]
+        mapping = self.mapped(checks)
+        mapping['requirements'].pop(1)  # Agent overlooked original Unicode promise.
+        result = self.execute(checks, promise_mapping=mapping)
+        self.assertEqual(result['status'], 'CHECKS PASSED')
+        self.assertEqual(len(result['promise_evidence']['requirements']), 2)
+        self.assertEqual(result['promise_evidence']['coverage_completeness'], 'UNKNOWN')
+        self.assertNotIn('Unicode', [r['statement'] for r in result['promise_evidence']['requirements']])
+        self.assertFalse(result['promise_evidence']['same_agent_review']['reported_performed'])
+        self.assertIn('coverage UNKNOWN', '\n'.join(promises.format_lines(result)))
+
+    def test_same_agent_can_record_specific_unverified_source_gap(self):
+        checks = [[sys.executable, '-c', 'pass']]
+        mapping = self.mapped(checks)
+        mapping['requirements'].pop(1)
+        mapping['review'] = {'performed': True, 'proposals': [
+            {'statement': 'Unicode claim has no corresponding test',
+             'source_refs': [{'source_id': 'S1', 'line_start': 2, 'line_end': 2,
+                              'quote': 'Support Unicode usernames.'}],
+             'suggested_check': 'Add Unicode acceptance examples to the existing test suite'}]}
+        result = self.execute(checks, promise_mapping=mapping)
+        self.assertEqual(result['status'], 'CHECKS PASSED')
+        self.assertEqual(len(result['promise_evidence']['same_agent_review']['proposals']), 1)
+        self.assertFalse(result['promise_evidence']['same_agent_review']['independent'])
+        self.assertEqual(result['promise_evidence']['coverage_completeness'], 'UNKNOWN')
+        self.assertIn('unverified proposal', '\n'.join(promises.format_lines(result)))
+
+    def test_wrong_candidate_id_stops_before_native_execution(self):
+        checks = [[sys.executable, '-c', 'pass']]
+        mapping = self.mapped(checks)
+        mapping['candidate_tree'] = 'f' * 40
+        result = self.execute(checks, promise_mapping=mapping)
+        self.assertEqual(result['status'], 'EXECUTION UNAVAILABLE')
+        self.assertIn('candidate_tree', result['error'])
+        self.assertEqual(result['observations'], [])
+        self.assertEqual(result['model_dispatches'], 0)
+        self.assertEqual(result['promise_evidence']['coverage_completeness'], 'UNKNOWN')
+
+    def test_wrong_request_or_command_link_refuses_before_output_or_model(self):
+        checks = [[sys.executable, '-c', 'pass']]
+        mapping = self.mapped(checks)
+        mapping['requirements'][0]['checks'][0]['argv'] = [sys.executable, '-c', 'print("fake")']
+        with self.assertRaisesRegex(ValueError, 'selected checks'):
+            self.execute(checks, promise_mapping=mapping)
+        self.assertFalse(self.output.exists())
+        mapping = self.mapped(checks)
+        self.source += 'Extra original promise not in the optional plan!\n'
+        with self.assertRaisesRegex(ValueError, 'source_sha256'):
+            self.execute(checks, promise_mapping=mapping)
+        self.assertFalse(self.output.exists())
+
+    def test_conflicting_failure_metadata_cannot_claim_unlinked_source(self):
+        checks = [[sys.executable, '-c', 'raise SystemExit(3)']]
+        mapping = self.mapped(checks)
+        with self.assertRaisesRegex(ValueError, 'not linked'):
+            self.execute(checks, promise_mapping=mapping,
+                         failure_details=[{'index': 0, 'outcome_ids': ['R2']}])
+        self.assertFalse(self.output.exists())
+
+    def test_tampered_mapping_receipt_and_candidate_never_reuse_passing_promise(self):
+        checks = [[sys.executable, '-c', 'pass']]
+        mapping = self.mapped(checks)
+        result = self.execute(checks, promise_mapping=mapping)
+        path = self.output / 'report.json'
+        self.assertEqual(runner.inspect(path)['status'], 'CHECKS PASSED')
+        source = self.output/'inputs/promises.json'
+        original = source.read_bytes()
+        source.write_text('{"malicious":"replaced"}')
+        stale = runner.inspect(path)
+        self.assertEqual(stale['status'], 'STALE CHECKS')
+        self.assertEqual(stale['promise_evidence']['coverage_completeness'], 'UNKNOWN')
+        self.assertTrue(all(row['status'] == 'NOT DEMONSTRATED'
+                            for row in stale['promise_evidence']['requirements']))
+        source.write_bytes(original)
+        self.assertEqual(runner.inspect(path)['status'], 'CHECKS PASSED')
+        candidate = Path(result['candidate_path'])/'tiny.py'
+        old = candidate.read_bytes()
+        candidate.write_text('changed after checks')
+        self.assertEqual(runner.inspect(path)['status'], 'STALE CHECKS')
+        candidate.write_bytes(old)
+        self.assertEqual(runner.inspect(path)['status'], 'CHECKS PASSED')
+        report = json.loads(path.read_text())
+        report['promise_mapping']['requirements'][0]['checks'] = []
+        path.write_text(json.dumps(report))
+        self.assertEqual(runner.inspect(path)['status'], 'STALE CHECKS')
+
+    def test_cli_status_can_display_unabridged_frozen_original_by_request(self):
+        checks = [[sys.executable, '-c', 'pass']]
+        mapping = self.mapped(checks)
+        self.execute(checks, promise_mapping=mapping)
+        proc = subprocess.run([sys.executable, '-B',
+                               str(runner.host.ROOT/'proofline.py'),
+                               'status', str(self.output/'report.json'), '--show-source'],
+                              capture_output=True, timeout=15)
+        self.assertEqual(proc.returncode, 0, proc.stderr)
+        self.assertIn(self.source.encode('utf-8'), proc.stdout)
+        self.assertIn(b'coverage UNKNOWN', proc.stdout)
+        frozen = self.output/'inputs/source.md'
+        frozen.write_bytes(b'Tampered original')
+        proc = subprocess.run([sys.executable, '-B',
+                               str(runner.host.ROOT/'proofline.py'),
+                               'status', str(self.output/'report.json'), '--show-source'],
+                              capture_output=True, timeout=15)
+        self.assertNotEqual(proc.returncode, 0)
+        self.assertNotIn(self.source.encode('utf-8'), proc.stdout)
 
     @unittest.skipUnless(sys.platform == 'darwin' and os.environ.get('PROOFLINE_NATIVE_TESTS') == '1',
                          'opt-in macOS native check-only test')
