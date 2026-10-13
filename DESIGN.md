@@ -1,3 +1,112 @@
+# Proofline vNext — agent-first product contract (proposed, 13 October 2026)
+
+**Status: design only; scope of [issue #8](https://github.com/grove/proofline/issues/8).**
+The supported runtime is still the bounded, local `proofline.py run` described
+in the [README](README.md). The historical S6 abandon/simplify decision below
+remains operative; full-promise certification has not been established and its
+comparisons are incomplete. The retained S0–S6 design and reports are historical,
+**not a mandate to reactivate old acceptance machinery**.
+
+**Purpose:** Make an autonomous coding agent more dependable with a complete
+original request, useful executable feedback, exact candidate identity, and
+honest results. Proofline is an **optional helper**—not another coding-agent
+workflow engine, universal verifier, or publishing authority.
+
+## Two modes: current versus proposed
+
+| Journey | Proofline responsibility | Availability |
+| --- | --- | --- |
+| **Existing agent → check-only → handoff** | Check the agent's existing candidate with explicit commands in a frozen, bounded environment and report actual results; **zero additional model dispatches**. The agent owns any fix. | **Proposed** in [#11](https://github.com/grove/proofline/issues/11); there is no supported `proofline check` command yet. |
+| **Optional managed run → checks → handoff** | Dispatch one coding attempt on an isolated candidate; freeze it, run caller-selected commands, and report evidence, not full acceptance. | **Supported now** via `proofline.py run --repo ... --source ... --checks ...` on the qualified macOS/Codex host. No automatic reviewer, prover, correction, PR or merge. |
+
+**Concrete journey A (future check-only, not a runnable command):** The user
+asks: "Reject blank usernames without rejecting Unicode or changing the old
+CLI." The ordinary agent plans, edits and self-tests. It passes its existing
+candidate, full original request and selected checks to Proofline. Proofline
+runs checks on a frozen copy without launching another model. If validation
+passes but Unicode has not been exercised, the agent reports: "Named checks
+passed on candidate X; Unicode behavior is **not demonstrated**. No change
+was published." The same agent decides whether to add tests or correct code.
+
+**Concrete journey B (managed run, available now):** The user asks: "Add
+`--version` without changing other CLI output." The caller saves the entire
+request as `source.md`, selects executable `checks.json` argv arrays and
+calls `proofline.py run`. One coding attempt produces a frozen candidate;
+Proofline executes exactly those commands. On successful `status` readback,
+the report says: "Selected commands passed on candidate Y; complete source
+correctness is not certified. Candidate is local, not pushed or merged."
+Failed or unavailable checks must not be described as accepted delivery.
+See [current CLI usage](README.md#run-a-request).
+
+## Ownership, source, and authority
+
+- **User/product owner** defines the original promise and grants any external
+  authority. Changes to material requirements or effects need user authority.
+- **Coding agent** owns planning, exploration, implementation, self-testing,
+  choice of meaningful checks and how to fix defects. Proofline does not
+  prescribe an internal sequence or launch supervisory agents.
+- **Proofline** owns source/candidate/check identity, bounded execution,
+  frozen native receipts, concise observations and evidence limitations.
+  Passing executable checks never grants correctness certification.
+- **Optional upstream contracts** from P2P or Intentline may express an
+  *already-authorized* request without replanning; producer claims, file labels
+  and model approval statements do not independently authorize adoption.
+  Preserve the complete original source and exact accepted revision; never
+  silently narrow or reinterpret a promise. Direct requests must work without
+  P2P, Intentline, planning, parent issues or slicing.
+
+Local code/check permission does **not** grant authority to push, create PRs,
+merge, deploy, post comments or mutate other external systems. These actions
+remain outside both supported local modes; any external agent or future
+separately scoped publisher needs an explicit authorization for the action.
+Historical `deliver` and `resume` are experimental and not a route around
+those limits.
+
+## Outcome vocabulary: claims must match evidence
+
+| Observation | What it establishes | What it does **not** establish |
+| --- | --- | --- |
+| **Checks passed** | The listed commands completed successfully for the *exact frozen candidate* with valid receipts. | Every original requirement is fulfilled. |
+| **Checks failed** | One or more selected commands returned a failing result, with actual reproducible observations. | A universal root-cause explanation or failure outside observed behavior. |
+| **Checks unavailable** | A selected check did not yield a trustworthy result (tool, sandbox, timeout or evidence gap). | That the check passed or failed. |
+| **Requirement with evidence** *(proposed, #13)* | An identified source-linked obligation has specific observed checks and declared coverage limits. | That the entire input domain is proven or all requirements were identified. |
+| **Requirement without demonstrated evidence** *(proposed, #13)* | An identified outcome lacks adequate observed checks. | That the outcome failed or can be removed from the promise. |
+| **Changed candidate / stale checks** | Candidate, source, commands or native binding no longer match the recorded checks. | That past success applies to modified work. |
+
+Today `run` can report `CHECKS PASSED`, `CHECKS FAILED`,
+`CHECKS UNAVAILABLE`, or `EXECUTION UNAVAILABLE`; `status` can report
+`STALE CHECKS`. Requirement-level coverage is **proposed, not implemented**.
+Finite tests prove only what they exercise. Keep product failures,
+infrastructure unavailability and uncovered requirements distinct.
+
+## Explicit non-goals and admission rule
+
+No **mandatory** independent AI reviewer or prover, universal-certification
+claim, automated planning/slicing, new approval ceremony, separate risk-rating
+agent, new mandatory configuration file, correction supervisor, or automatic
+GitHub publication. Task-specific extra review or checks may be optional when
+a concrete risk merits them, never a default ceremony.
+
+**Admission rule:** Before introducing any *new mandatory workflow step*,
+show, against a declared ordinary-agent baseline, a worthwhile improvement in
+**independently correct deliveries**, taking into account added latency,
+model/tool cost, false acceptance, needless blocking and unavailable attempts.
+If the evidence is inconclusive, keep the step optional or do not ship it.
+Security, source identity and explicit authorization safeguards remain
+mandatory even when they are not throughput optimizations.
+
+The rest of the vNext backlog is [#9 baseline](https://github.com/grove/proofline/issues/9),
+[#10 lean core](https://github.com/grove/proofline/issues/10),
+[#11 check-only](https://github.com/grove/proofline/issues/11),
+[#12 usability](https://github.com/grove/proofline/issues/12),
+[#13 evidence mapping](https://github.com/grove/proofline/issues/13),
+[#14 actionable feedback](https://github.com/grove/proofline/issues/14),
+[#15 optional correction](https://github.com/grove/proofline/issues/15), and
+[#16 independently measured decision](https://github.com/grove/proofline/issues/16).
+**Issue #8 changes documentation only**, not the CLI, runtime, checks or S6 study.
+
+---
+
 # Current decision — 13 October 2026
 
 The owner explicitly closed S6 with an abandon/simplify decision and waived the
