@@ -460,6 +460,9 @@ class CheckOnlyTests(unittest.TestCase):
         self.assertEqual([x['status'] for x in result['promise_evidence']['requirements']],
                          ['LINKED CHECKS PASSED (limited evidence)', 'CHECK FAILED'])
         self.assertEqual(result['promise_evidence']['intentline']['export_authority'], 'unapproved')
+        self.assertEqual(self.output.stat().st_mode & 0o077, 0)
+        self.assertEqual((self.output/'intentline-export').stat().st_mode & 0o077, 0)
+        self.assertEqual((self.output/'intentline-export/contract.json').stat().st_mode & 0o077, 0)
         self.assertEqual(result['promise_evidence']['intentline']['execution_authority'], 'not_established')
         self.assertEqual(len(result['promise_evidence']['intentline']['constraints']), 1)
         self.assertEqual(len(result['promise_evidence']['intentline']['out_of_scope']), 1)

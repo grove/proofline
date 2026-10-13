@@ -359,9 +359,10 @@ def validate_package(package, request, checks, details=()):
 
 def freeze(output, files):
     folder = Path(output) / "intentline-export"
-    folder.mkdir(exist_ok=False)
+    folder.mkdir(mode=0o700, exist_ok=False)
     for name in (MARKER, *FILES):
-        with (folder / name).open("xb") as stream:
+        fd = os.open(folder / name, os.O_WRONLY | os.O_CREAT | os.O_EXCL | os.O_NOFOLLOW, 0o600)
+        with os.fdopen(fd, "wb") as stream:
             stream.write(files[name])
 
 

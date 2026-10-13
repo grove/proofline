@@ -154,7 +154,7 @@ def check(repo,source,checks,output,seconds=900,check_seconds=120,
         raise ValueError('--repo must name an existing Git repository root') from error
     if any(output==path or path in output.parents for path in metadata):
         raise ValueError('Check output must be outside source Git metadata')
-    output.mkdir(parents=True,exist_ok=False)
+    output.mkdir(mode=0o700,parents=True,exist_ok=False)
     record={'schema_version':1,'kind':'bounded_local_check','status':'EXECUTION UNAVAILABLE',
             'assurance':'Only the listed command exit statuses are observed; full source correctness is not certified.',
             'limits':{'seconds':seconds,'check_seconds':check_seconds,'model_dispatches':0},
