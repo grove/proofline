@@ -11,10 +11,7 @@ import unittest
 import time
 from unittest.mock import patch
 
-sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "checks"))
-import codex_live as live
-import host_probe as host
-import s0_live
+from checks import codex_live as live, host_probe as host, s0_live
 
 
 def report(role="prover"):

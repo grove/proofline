@@ -4,7 +4,9 @@ import json
 from pathlib import Path
 import time
 
-import proofline as p
+from checks import codex_live as live, host_probe as host
+from checks.candidate_snapshot import capture_base, freeze
+from checks.native_checks import write_record
 
 
 def run(repo, source, guidance, output, codex, preferences, seconds, execution_map=""):
@@ -14,15 +16,15 @@ def run(repo, source, guidance, output, codex, preferences, seconds, execution_m
     inputs.mkdir(parents=True)
     (inputs / "source.md").write_text(source)
     (inputs / "guidance.md").write_text(guidance)
-    _, base = p.capture_base(repo, inputs / "product")
+    _, base = capture_base(repo, inputs / "product")
     boundary = output / "preflight"
     boundary.mkdir()
     target = next((path for path in (inputs / "product").rglob("*")
         if path.is_file() and ".git" not in path.relative_to(inputs / "product").parts), None)
     if target is None:
         raise ValueError("A regular tracked product file is required")
-    observed = p.host.probe_boundary(codex, boundary, inputs, 15, target)
-    p.write_record(boundary / "report.json", observed)
+    observed = host.probe_boundary(codex, boundary, inputs, 15, target)
+    write_record(boundary / "report.json", observed)
     if observed["assessment"]["status"] != "OBSERVED":
         return {"accepted": False, "candidate": str(inputs / "product"),
                 "stages": [], "model_dispatches": 0,
@@ -34,12 +36,12 @@ def run(repo, source, guidance, output, codex, preferences, seconds, execution_m
     scratch, private = directory / "scratch", directory / "private"
     scratch.mkdir()
     private.mkdir()
-    (inputs / "response.schema.json").write_text(json.dumps(p.live.object_schema({
-        "completed": {"type": "boolean"}, "summary": p.live.STRING})))
-    p.host.write_diff(inputs / "product", base, inputs / "change.diff")
-    protected = {str(path.relative_to(inputs)): p.host.sha256(path.read_bytes())
+    (inputs / "response.schema.json").write_text(json.dumps(live.object_schema({
+        "completed": {"type": "boolean"}, "summary": live.STRING})))
+    host.write_diff(inputs / "product", base, inputs / "change.diff")
+    protected = {str(path.relative_to(inputs)): host.sha256(path.read_bytes())
                  for path in inputs.iterdir() if path.is_file()}
-    git_before = p.host.snapshot(inputs / "product" / ".git")
+    git_before = host.snapshot(inputs / "product" / ".git")
     remaining = seconds - (time.monotonic() - started)
     if remaining <= 0:
         return {"accepted": False, "candidate": str(inputs / "product"),
@@ -56,18 +58,18 @@ def run(repo, source, guidance, output, codex, preferences, seconds, execution_m
         "\nYou have at most " + f"{remaining:.1f}" +
         " seconds including self-checks and a final response.\n"
     )
-    receipt = p.live.launch(p.live.command(
+    receipt = live.launch(live.command(
         codex, inputs, scratch, private, preferences, implementer=True),
         prompt, private, remaining)
     stage = {"role": "implementer", "status": "NOT VERIFIED",
              "receipt": receipt, "usage": None}
     try:
-        unchanged = (git_before == p.host.snapshot(inputs / "product" / ".git")
-            and all(p.host.sha256((inputs / name).read_bytes()) == expected
+        unchanged = (git_before == host.snapshot(inputs / "product" / ".git")
+            and all(host.sha256((inputs / name).read_bytes()) == expected
                     for name, expected in protected.items()))
         if not unchanged:
             raise ValueError("Protected source, guidance, Git or receipt inputs changed")
-        native = p.live.read_events(receipt)
+        native = live.read_events(receipt)
         stage.update(usage=native["usage"], thread_id=native["thread_id"],
                      commands=native["commands"])
         report = native["report"]
@@ -78,10 +80,10 @@ def run(repo, source, guidance, output, codex, preferences, seconds, execution_m
         stage.update(status="OBSERVED", report=report)
     except (OSError, ValueError, KeyError, TypeError) as error:
         stage["error"] = str(error)
-    p.write_record(directory / "stage.json", stage)
+    write_record(directory / "stage.json", stage)
     accepted = stage["status"] == "OBSERVED" and stage["report"]["completed"] is True
     if accepted:
-        p.freeze(inputs / "product")
+        freeze(inputs / "product")
     return {"accepted": accepted, "candidate": str(inputs / "product"),
             "stages": [stage], "model_dispatches": 1, "status": "FINISHED",
             "elapsed_seconds": time.monotonic() - started,

@@ -8,8 +8,10 @@ by the current CLI.
 
 ## Minimal active architecture
 
-- `proofline.py`: small public CLI plus the original Git snapshot/freeze
-  helpers. Only `run` and `status` are user-facing.
+- `proofline.py`: small public `run`/`status` CLI. It keeps minimal
+  compatibility exports for already recorded native study tools.
+- `checks/candidate_snapshot.py`: exact clean-source Git snapshot, path
+  validation and frozen candidate identity, without agent/review policy.
 - `checks/local_run.py`: bounded episode orchestration and exact status
   revalidation, retaining distinct check failure/unavailability/staleness.
 - `checks/coding_attempt.py`: one autonomous Codex implementation dispatch,
@@ -17,9 +19,9 @@ by the current CLI.
 - `checks/native_checks.py`: trusted host command receipts and protected
   check execution.
 - `checks/host_probe.py` and `checks/codex_live.py`: existing qualified
-  sandbox, process lifecycle and model transport protections. Some S0
-  diagnostic/test helpers remain pending smaller extraction in #10;
-  security controls must be preserved during that work.
+  sandbox, process lifecycle and model transport protections. S0 diagnostic
+  helpers remain available for offline regressions, but are not called as
+  extra acceptance stages by the supported runner.
 - `tests/test_local_run.py`, `tests/test_supported_cli.py`,
   `tests/test_host_probe.py`, `tests/test_codex_live.py`, and retained
   native S0 fixture controls: the supported runner and its boundary

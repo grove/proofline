@@ -7,7 +7,7 @@ from pathlib import Path
 import subprocess
 import sys
 
-import host_probe as host
+from checks import host_probe as host
 
 
 def write_record(path, record):

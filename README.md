@@ -49,6 +49,12 @@ regression checks; Proofline codes once and runs those commands on its frozen
 candidate. The handoff says exactly which commands passed, notes any untested
 requirements, and confirms **no PR or merge occurred**.
 
+The supported runtime keeps separate small modules for CLI, Git snapshots
+(`checks/candidate_snapshot.py`), one coding attempt, native checks,
+and exact receipt readback. Historical host diagnostics remain available
+for offline security testing, not as an extra acceptance stage. Successful
+Linux CI does **not** establish a qualified live macOS/Codex boundary.
+
 ## Planned vNext: help existing agents, don't supervise them
 
 [Issue #11](https://github.com/grove/proofline/issues/11) proposes model-free

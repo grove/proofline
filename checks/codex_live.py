@@ -13,7 +13,7 @@ import time
 import tomllib
 import uuid
 
-import host_probe as host
+from checks import host_probe as host
 
 MAX_EVENTS_BYTES = 4 * 1024 * 1024
 DISABLED_FEATURES = (

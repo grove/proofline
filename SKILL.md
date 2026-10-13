@@ -13,8 +13,8 @@ Preserve the user's **entire original request** in a file outside product
 changes. Select relevant project-native executable checks and store each
 exact argv list in `checks.json`, also outside product changes. Do not
 fabricate expectations, silently narrow requested behavior, or modify
-unrelated user work. The runner creates an isolated candidate; the source
-repository stays untouched.
+unrelated user work. The runner creates an isolated candidate with the Git snapshot helper;
+the source repository stays untouched.
 
 ```sh
 /opt/homebrew/bin/python3.14 -B /absolute/path/to/proofline/proofline.py run \
@@ -27,7 +27,8 @@ repository stays untouched.
 The coding agent owns strategy and self-checks. Proofline dispatches one
 model attempt and runs the caller-selected commands against its frozen,
 read-only candidate under native protection. All time counts toward the
-episode budget. No automatic AI reviewer/prover, correction, publication,
+episode budget. Linux offline CI does not establish a native macOS/Codex qualification.
+No automatic AI reviewer/prover, correction, publication,
 merge or deployment runs. Existing authorization rules still apply;
 local checking never permits external mutations.
 

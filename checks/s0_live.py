@@ -18,9 +18,12 @@ import sys
 import time
 import uuid
 
-import codex_live as live
-from codex_live import run_stage
-import host_probe as host
+# Preserve direct invocation of the historical S0 diagnostic as well as
+# package imports used by offline boundary regression tests.
+if __package__ in (None, ""):
+    sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
+from checks import codex_live as live, host_probe as host
+from checks.codex_live import run_stage
 
 
 def write_record(path, record):
