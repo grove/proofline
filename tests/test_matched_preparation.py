@@ -1,8 +1,8 @@
 """Reconcile preparation provenance without executing any worker or candidate."""
 import hashlib
 import json
-import subprocess
 import unittest
+import zipfile
 
 from evaluation.matched import corpus, report, study
 
@@ -10,11 +10,15 @@ from evaluation.matched import corpus, report, study
 class PublishedPreparation(unittest.TestCase):
     def test_original_failed_freeze_and_oracle_bytes_remain_reproducible(self):
         preflight = json.loads((study.HERE / "preflight.json").read_text())
-        for name, expected in preflight["original_freeze"]["sha256"].items():
-            data = subprocess.check_output(["git", "show", preflight["original_revision"] + ":" + name], cwd=study.ROOT)
-            self.assertEqual(hashlib.sha256(data).hexdigest(), expected, name)
-            if name.endswith(("corpus.py", "grader.py", "protocol.json")):
-                self.assertEqual((study.ROOT / name).read_bytes(), data)
+        archive = study.HERE / "preflight-source.zip"
+        self.assertEqual(hashlib.sha256(archive.read_bytes()).hexdigest(), preflight["original_source_archive_sha256"])
+        with zipfile.ZipFile(archive) as original:
+            self.assertEqual(set(original.namelist()), set(preflight["original_freeze"]["sha256"]))
+            for name, expected in preflight["original_freeze"]["sha256"].items():
+                data = original.read(name)
+                self.assertEqual(hashlib.sha256(data).hexdigest(), expected, name)
+                if name.endswith(("corpus.py", "grader.py", "protocol.json")):
+                    self.assertEqual((study.ROOT / name).read_bytes(), data)
         self.assertEqual(preflight["model_dispatches"], 0)
         self.assertEqual(preflight["native_grading_controls_executed"], 0)
         self.assertEqual(preflight["worker_boundary"]["assessment"]["status"], "NOT VERIFIED")

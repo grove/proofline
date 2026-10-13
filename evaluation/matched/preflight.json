@@ -127,6 +127,7 @@
     "proofline.py": "670ccf241a0a1f89c566f7ec39daa9873ad5bd4cd2531b9e0ec0bf64b089245a",
     "python": "a39ba8658c8955a744ba1e87d2912bb019c5f4e93fcfd8e96263f891d15ec1aa"
   },
+  "original_source_archive_sha256": "b4481f3b411f9867696020bac07636623bd34ef560a3ca4e6028bcf1fe945511",
   "producer_revision": "06ae147099efda7c276469c948bf0ac60fc5de2e",
   "qualification_seconds": 2.7575244586914778,
   "reason": "Sibling read canary accidentally targeted the worker own allowed candidate; no native isolation-breach claim.",

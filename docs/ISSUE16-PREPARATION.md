@@ -32,7 +32,9 @@ checking; it does not estimate the qualified optional #15 correction path.
 
 The original freeze is retained at commit
 `4ae912fafeb5f9203257b2efda48045593a335a8` and in
-[preflight.json](../evaluation/matched/preflight.json). Qualification observed
+[preflight.json](../evaluation/matched/preflight.json), with all original frozen
+study sources retained in [preflight-source.zip](../evaluation/matched/preflight-source.zip)
+so provenance also survives a squash merge. Qualification observed
 denials for source/Git/receipt writes, actual grader/root/private reads and
 network, with candidate/scratch writes allowed. However its `sibling` read
 target was mistakenly the **same allowed worker candidate**. Reading it
@@ -90,3 +92,9 @@ Offline preparation is reproducible using the commands in the
 [study guide](../evaluation/matched/README.md). Historical v1/S6 reports,
 oracles, runtime pins and results are unchanged. This preparation does **not**
 complete or close issue #16's empirical acceptance criteria.
+
+Validation: 186 tests passed their suite with eight opt-in tests skipped in a
+clean checkout. Fourteen new offline tests cover trusted controls, all four
+simulated arm interfaces, missing-run accounting, provenance and retired-study
+guards. The standalone corrected native canary passed separately, without a
+model dispatch. Relative documentation links and whitespace were checked.

@@ -303,7 +303,7 @@
     "provider_internal_calls": null
   },
   "model_dispatches": 0,
-  "original_preflight_sha256": "4adf494d1118e66d41b25458ee4f315e8fa37e9c8707e09f2f38ba803299358f",
+  "original_preflight_sha256": "4b201c33de7754555bdf9b76d4f287d1534c333f774beb04c1c2607ca19dbfcf",
   "resumption": "Forbidden; fresh authorized declaration required; no case replacement or frozen-oracle repair.",
   "schema_version": 1,
   "separate_model_stages": {
