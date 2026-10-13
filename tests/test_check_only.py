@@ -37,7 +37,7 @@ class CheckOnlyTests(unittest.TestCase):
         self.source = 'Keep the entire original request.\r\nIncluding this line.\r\n'
 
     def execute(self, checks=None, boundary_ready=True, unavailable=False, mutate=False,
-                seconds=30, check_seconds=5):
+                seconds=30, check_seconds=5, failure_details=None):
         checks = checks or [[sys.executable, 'tiny.py']]
         def boundary(codex, output, inputs, timeout, target):
             for name in ('canary.py', 'canary.json'):
@@ -51,7 +51,8 @@ class CheckOnlyTests(unittest.TestCase):
                     (inputs / 'product' / 'tiny.py').write_text('changed')
                 result = subprocess.run(argv, cwd=cwd, timeout=timeout, capture_output=True, text=True)
                 receipts.append({'kind': 'process_probe', 'argv': ['sandbox', json.dumps(argv)],
-                                 'exit_code': result.returncode, 'timed_out': False})
+                                 'exit_code': result.returncode, 'timed_out': False,
+                                 'stdout': result.stdout, 'stderr': result.stderr})
                 return result
             return execute
         with patch.object(runner.platform, 'system', return_value='Darwin'), \
@@ -67,7 +68,8 @@ class CheckOnlyTests(unittest.TestCase):
             command.side_effect = lambda argv, *args, **kw: (
                 {'stdout': 'codex-cli 0.162.1', 'exit_code': 0, 'timed_out': False}
                 if argv == ['/fake/codex', '--version'] else original(argv, *args, **kw))
-            result = runner.check(self.repo, self.source, checks, self.output, seconds, check_seconds)
+            result = runner.check(self.repo, self.source, checks, self.output, seconds, check_seconds,
+                                  failure_details=failure_details)
             coding.assert_not_called()
             launch.assert_not_called()
         self.assertEqual(runner.host.snapshot(self.repo), self.before)
@@ -201,6 +203,65 @@ class CheckOnlyTests(unittest.TestCase):
             result = self.execute(seconds=0.001)
         self.assertEqual(result['status'], 'EXECUTION UNAVAILABLE')
         self.assertEqual(result['observations'], [])
+
+    def test_failed_check_has_actionable_feedback_and_host_receipt(self):
+        argv = [sys.executable, '-c',
+                'import sys;print("Unicode rejected",file=sys.stderr);sys.exit(5)']
+        meta = [{'index': 0, 'outcome_ids': ['R2'],
+                 'expected': 'Unicode accepted', 'observed': 'Unicode rejected'}]
+        result = self.execute([argv], failure_details=meta)
+        self.assertEqual(result['status'], 'CHECKS FAILED')
+        self.assertEqual(result['model_dispatches'], 0)
+        self.assertEqual(result['failure_details'], meta)
+        self.assertEqual(result['feedback']['source_sha256'],
+                         runner.host.sha256(self.source.encode('utf-8')))
+        self.assertEqual(result['feedback']['candidate_commit'], result['candidate_commit'])
+        row = result['feedback']['checks'][0]
+        self.assertEqual(row['argv'], argv)
+        self.assertEqual(row['exit_code'], 5)
+        self.assertGreaterEqual(row['elapsed_seconds'], 0.0)
+        self.assertIn('Unicode rejected', row['stderr_excerpt'])
+        self.assertEqual(row['outcome_ids'], ['R2'])
+        self.assertEqual(row['caller_annotation']['expected'], 'Unicode accepted')
+        receipt = self.output / row['receipt_ref']
+        self.assertTrue(receipt.is_file())
+        self.assertEqual(runner.host.sha256(receipt.read_bytes()),
+                         result['observations'][0]['receipt_sha256'])
+        self.assertEqual(runner.inspect(self.output / 'report.json')['status'], 'CHECKS FAILED')
+        self.assertTrue((self.output / 'inputs/failure-details.json').read_text())
+        receipt.write_text('{"faked": true}')
+        reread = runner.inspect(self.output / 'report.json')
+        self.assertEqual(reread['status'], 'STALE CHECKS')
+        self.assertIn('stale', reread['feedback']['headline'].lower())
+
+    def test_spoofed_expected_observed_never_becomes_native_evidence(self):
+        argv = [sys.executable, '-c',
+                'import sys;print("actual assertion failed",file=sys.stderr);sys.exit(3)']
+        meta = [{'index': 0, 'outcome_ids': ['R7'],
+                 'expected': 'made up expected', 'observed': 'fake observed'}]
+        result = self.execute([argv], failure_details=meta)
+        self.assertEqual(result['status'], 'CHECKS FAILED')
+        self.assertEqual(result['feedback']['checks'][0]['outcome_ids'], ['R7'])
+        self.assertNotIn('caller_annotation', result['feedback']['checks'][0])
+        self.assertIn('not corroborated', result['feedback']['checks'][0]['annotation_warning'])
+        self.assertNotIn('made up expected', '\n'.join(runner.feedback.format_lines(result)))
+        self.assertIn('actual assertion failed',
+                      result['feedback']['checks'][0]['stderr_excerpt'])
+
+    def test_invalid_metadata_is_refused_before_any_native_or_model_call(self):
+        with self.assertRaisesRegex(ValueError, 'Expected and observed'):
+            self.execute(failure_details=[{'index': 0, 'expected': 'only one'}])
+        self.assertFalse(self.output.exists())
+        self.assertEqual(runner.host.snapshot(self.repo), self.before)
+
+    def test_missing_tool_unavailable_feedback_is_not_product_failure(self):
+        missing = str(self.root / 'no-such-test-executable')
+        result = self.execute([[missing]])
+        self.assertEqual(result['status'], 'CHECKS UNAVAILABLE')
+        self.assertEqual(result['feedback']['checks'][0]['status'], 'UNAVAILABLE')
+        self.assertIn('could not be observed', result['feedback']['checks'][0]['reason'])
+        self.assertIn('unavailable', runner.feedback.format_lines(result)[0].lower())
+        self.assertEqual(runner.inspect(self.output / 'report.json')['status'], 'CHECKS UNAVAILABLE')
 
     @unittest.skipUnless(sys.platform == 'darwin' and os.environ.get('PROOFLINE_NATIVE_TESTS') == '1',
                          'opt-in macOS native check-only test')

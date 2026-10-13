@@ -68,6 +68,21 @@ merge or deployment runs. Linux offline CI does not establish a native macOS
 qualification. Existing authorization rules still apply; local checking never
 permits external mutations.
 
+For failed checks, read the bounded CLI **Feedback** summary first; consult
+`report.json` -> `feedback.checks` for exact argv, exit status, elapsed
+time, candidate/source identity, and `receipts/check-NNN.json` for the native
+bounded stdout/stderr. Treat timeouts, missing executables, truncated logs,
+sandbox failure and stale evidence as **unavailable**, not implementation
+failures. Do not invent a failure's expected/observed behavior.
+
+When the caller already knows a specific expected/observed case, optionally
+attach `--failure-details /private/failure-details.json` containing rows
+`{"index":0,"outcome_ids":["R2"],"expected":"accepted","observed":"rejected"}`.
+The observed text must be present in the host-captured failed-check output;
+otherwise it is **not** reported as observed. Expected text and R IDs remain
+unverified caller claims; #13's future promise mapping is optional. No new
+AI invocation, workflow, or mandatory metadata file is needed.
+
 Use `proofline.py status <report.json>` to revalidate the frozen inputs and receipts.
 New live-source edits require a new `check`; an old record refers to its old snapshot.
 Report the exact candidate, actual named check results and uncovered

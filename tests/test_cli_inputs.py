@@ -37,7 +37,7 @@ class DirectCliInputs(unittest.TestCase):
 
     def invoke(self, *arguments, mode="check", stdin=None):
         calls = []
-        def recording(*args):
+        def recording(*args, **kwargs):
             calls.append(args)
             return {
                 "status": "CHECKS PASSED",
@@ -166,6 +166,34 @@ class DirectCliInputs(unittest.TestCase):
                     with self.assertRaises(SystemExit) as caught:
                         cli.main(["check", "--repo", str(self.repo), *case])
                 self.assertEqual(caught.exception.code, 2)
+
+    def test_failure_details_are_optional_and_invalid_pair_refuses_dispatch(self):
+        annotation = self.root / "failure-details.json"
+        annotation.write_text(json.dumps([
+            {"index": 0, "outcome_ids": ["R2"],
+             "expected": "Unicode accepted", "observed": "Unicode rejected"}]))
+        seen = []
+        def recorder(*args, **kwargs):
+            seen.append((args, kwargs))
+            return {"status": "CHECKS FAILED", "assurance": "Selected checks only."}
+        with patch.object(local_run, "check", side_effect=recorder), \
+             redirect_stdout(io.StringIO()), redirect_stderr(io.StringIO()):
+            code = cli.main(["check", "--repo", str(self.repo),
+                             "--request", self.request,
+                             "--command", shlex.join(self.commands[0]),
+                             "--failure-details", str(annotation)])
+        self.assertEqual(code, 2)
+        self.assertEqual(seen[0][1]["failure_details"][0]["outcome_ids"], ["R2"])
+        annotation.write_text('[{"index":0,"expected":"incomplete"}]')
+        seen.clear()
+        with patch.object(local_run, "check", side_effect=recorder), \
+             redirect_stdout(io.StringIO()), redirect_stderr(io.StringIO()):
+            code = cli.main(["check", "--repo", str(self.repo),
+                             "--request", self.request,
+                             "--command", shlex.join(self.commands[0]),
+                             "--failure-details", str(annotation)])
+        self.assertEqual(code, 1)
+        self.assertEqual(seen, [])
 
     def test_cli_reports_unavailable_host_without_pretending_success(self):
         with patch.object(local_run, "check",

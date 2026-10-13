@@ -64,6 +64,53 @@ original source bytes. Automatic consumption of Intentline exports is
 **future work in [#23](https://github.com/grove/proofline/issues/23)**;
 the CLI does not require or import Intentline.
 
+## Actionable, receipt-grounded feedback
+
+Both `check` (zero model calls) and optional managed `run` print a **short**
+summary of the selected commands. Failing commands show their exact argv
+(in the structured report), native exit status, elapsed time, and a bounded
+stderr/stdout excerpt with a concrete next action. An unavailable sandbox,
+timeout, truncated output, stale evidence or missing executable is **not**
+reported as a product defect. Successful commands give one short summary,
+not another AI reviewer pass.
+
+`report.json` includes `feedback.checks` with the exact selected argv,
+exit code, elapsed seconds, frozen source SHA-256, candidate commit/tree,
+snapshot identity and `receipts/check-NNN.json#stdout` / `#stderr` references.
+The native host receipts are also retained as separate bounded/redacted files
+**outside the command-writable scratch and the candidate**. `status` validates
+their hashes and the frozen inputs; changed or missing evidence becomes
+`STALE CHECKS`. Full bounded receipts are available on disk; the terminal
+does not dump them by default.
+
+If a checker already provides a specific failure example, a caller can attach
+**optional** `--failure-details /private/failure-details.json`:
+
+```json
+[
+  {
+    "index": 0,
+    "outcome_ids": ["R2"],
+    "expected": "Unicode username accepted",
+    "observed": "Unicode rejected"
+  }
+]
+```
+
+Indexes are zero-based and correspond to the selected commands. The
+`expected` field is **caller-supplied, not an independently established
+oracle**; the `observed` text is displayed only if it literally occurs in
+the bounded native stdout/stderr of a failed check. An unsupported or forged
+observation is withheld rather than presented as fact. An `R2` label is
+advisory until optional [#13](https://github.com/grove/proofline/issues/13)
+source-to-evidence mapping exists. No unlisted requirement is deemed covered,
+and no failed or missing evidence triggers an AI correction by itself.
+
+This file is optional. Ordinary `--command` or `--checks` invocations
+still work unchanged, without Intentline, an acceptance plan, or extra
+model dispatches. Live macOS/Codex sandbox qualification is distinct from
+offline CI.
+
 ## Currently supported
 
 The supported commands are `proofline.py check`, `run` and `status`.
