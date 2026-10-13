@@ -23,6 +23,58 @@ checked candidate and showed no added correctness benefit in this sample.
 Keep the runner optional for frozen command receipts; this establishes no
 superiority or full-promise certification.
 
+## Agent-first direction (proposed vNext; not yet shipped)
+
+The [vNext design contract](DESIGN.md#proofline-vnext--agent-first-product-contract-proposed-13-october-2026)
+positions Proofline as a small, optional assistant to an autonomous coding
+agent: keep the whole request, check the **exact** candidate, give useful
+feedback and leave planning/implementation to the agent. **No universal
+correctness certification.**
+
+| Workflow | Availability | Model dispatches inside Proofline |
+| --- | --- | --- |
+| Existing coding agent → **check-only** → truthful handoff | **Proposed** in [#11](https://github.com/grove/proofline/issues/11). The `proofline check` command does **not** exist yet. | **Zero additional** (design requirement) |
+| Optional managed run → checks → truthful handoff | **Supported now** as `proofline.py run` below, on the documented macOS/Codex host | One coding attempt; no reviewer/prover |
+
+**Journey A (future check-only; conceptual, not runnable today):** A user asks
+their ordinary coding agent to "Reject whitespace-only usernames but preserve
+Unicode usernames and CLI compatibility." The agent implements and self-tests,
+then gives Proofline the existing candidate, original request and selected
+commands. Proofline freezes and checks it, without starting another model. A
+truthful handoff might say:
+
+> Selected validation and compatibility checks passed on candidate X. Unicode
+> behavior is **not demonstrated** by the selected checks. Nothing was pushed,
+> merged, or deployed by Proofline.
+
+The same agent decides whether to add a check or fix the code. Optional
+requirement-to-evidence mapping ([#13](https://github.com/grove/proofline/issues/13))
+is proposed, not an existing CLI status.
+
+**Journey B (supported managed run):** The user asks "Add `--version` while
+preserving the old CLI output." The caller saves the *entire* request in
+`source.md`, supplies concrete CLI/regression argv in `checks.json`, and
+runs the command shown below. Proofline makes one coding dispatch, freezes
+its candidate and executes those commands. After `status` revalidates the
+report, a truthful handoff might say:
+
+> Named CLI and regression commands passed on candidate Y. All original
+> requirements have **not** been certified. This is a local candidate only;
+> no PR or merge was performed by Proofline.
+
+A failing command, an unavailable execution or stale checks must be reported
+as such, never silently turned into success. The coding agent owns its
+implementation, tests and fixes; Proofline owns bound checks, candidate
+identity and concise observations. Direct requests do **not** require P2P,
+Intentline or upstream planning. Authorized upstream contracts can be
+reused without silently narrowing the source or inventing user approval.
+Local checks never grant permission to push, create a PR, merge or deploy.
+
+No mandatory reviewer/prover, automatic planning/slicing, publication,
+extra approval ceremony, or new config is part of vNext. Any additional
+mandatory stage must show enough improvement in **independently correct
+delivery** to justify its extra latency, cost and blocking risk.
+
 ## Run a request
 
 The supported host is macOS, Python 3.11+ and Codex CLI 0.162.1 with existing
