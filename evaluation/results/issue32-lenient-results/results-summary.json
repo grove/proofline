@@ -1,0 +1,2374 @@
+{
+  "study": "issue32-sol-luna-high-lenient",
+  "status": "COMPLETE",
+  "freeze_sha256": "c8ea1f9b55ce5f8319e3c77090caf6c8038c597c0bc610348751382dc011da4e",
+  "source_result_sha256": "8dd894e51f60ba1233a7acefec9d4d6838a0f07cee24784cd8644aa1047dcd46",
+  "analysis_source_sha256": "5516a8195c9063c057f5fb2faddda60e8e276ea7e51173d541aa5d301614931c",
+  "accounting_source_sha256": "e67f3dd10bff2eab699b49f753a262cceb16ec49857bd172f62fd3a1ff4b38c6",
+  "started_at": "2026-10-13T19:15:47.068732+00:00",
+  "finished_at": "2026-10-13T20:38:58.693032+00:00",
+  "campaign_seconds": 4991.6243,
+  "preparation_seconds": 201.51321549993008,
+  "native_dispatches": 36,
+  "reused_qualification_new_dispatches": 0,
+  "observed_dollars": null,
+  "observed_credit_debit": null,
+  "metrics": {
+    "assigned": 20,
+    "executed": 20,
+    "empirical_acceptance": "OBSERVED_FINITE_STUDY",
+    "arms": {
+      "luna": {
+        "assigned": 4,
+        "outcomes": {
+          "CORRECT_DELIVERY": 4
+        },
+        "independently_correct_deliveries": 4,
+        "delivery_rate_over_all_assigned": 1.0,
+        "initial_correct": 4,
+        "corrections": 0,
+        "correction_improvements": 0,
+        "correction_regressions": 0,
+        "total_seconds": 410.39161308389157,
+        "workflow_seconds": 374.67346812505275,
+        "grading_seconds": 35.71814608387649,
+        "total_cost_usd": null,
+        "unknown_cost_assignments": 4,
+        "cost_per_correct_delivery": {
+          "usd": null,
+          "seconds": 102.59790327097289
+        },
+        "models": {
+          "gpt-6-luna": {
+            "native_dispatches": 4,
+            "tokens": {
+              "input_tokens": 728284,
+              "cached_input_tokens": 627712,
+              "output_tokens": 27685
+            },
+            "unknown_usage_stages": 0,
+            "seconds": 370.27781500000003,
+            "tool_executions": 82,
+            "cost_usd": null,
+            "tokens_per_correct_delivery": {
+              "input_tokens": 182071.0,
+              "cached_input_tokens": 156928.0,
+              "output_tokens": 6921.25
+            }
+          },
+          "gpt-6.1-sol": {
+            "native_dispatches": 0,
+            "tokens": {
+              "input_tokens": 0,
+              "cached_input_tokens": 0,
+              "output_tokens": 0
+            },
+            "unknown_usage_stages": 0,
+            "seconds": 0,
+            "tool_executions": 0,
+            "cost_usd": 0,
+            "tokens_per_correct_delivery": {
+              "input_tokens": 0.0,
+              "cached_input_tokens": 0.0,
+              "output_tokens": 0.0
+            }
+          }
+        },
+        "controller_processes": 351,
+        "green_test_omissions": 0,
+        "unknown_checks": 0,
+        "advisory_failures": 0
+      },
+      "plan": {
+        "assigned": 4,
+        "outcomes": {
+          "CORRECT_DELIVERY": 4
+        },
+        "independently_correct_deliveries": 4,
+        "delivery_rate_over_all_assigned": 1.0,
+        "initial_correct": 4,
+        "corrections": 0,
+        "correction_improvements": 0,
+        "correction_regressions": 0,
+        "total_seconds": 1289.4885606234893,
+        "workflow_seconds": 1252.4458219129592,
+        "grading_seconds": 37.04273987701163,
+        "total_cost_usd": null,
+        "unknown_cost_assignments": 4,
+        "cost_per_correct_delivery": {
+          "usd": null,
+          "seconds": 322.37214015587233
+        },
+        "models": {
+          "gpt-6-luna": {
+            "native_dispatches": 4,
+            "tokens": {
+              "input_tokens": 707292,
+              "cached_input_tokens": 584704,
+              "output_tokens": 22685
+            },
+            "unknown_usage_stages": 0,
+            "seconds": 345.540116,
+            "tool_executions": 60,
+            "cost_usd": null,
+            "tokens_per_correct_delivery": {
+              "input_tokens": 176823.0,
+              "cached_input_tokens": 146176.0,
+              "output_tokens": 5671.25
+            }
+          },
+          "gpt-6.1-sol": {
+            "native_dispatches": 4,
+            "tokens": {
+              "input_tokens": 1292048,
+              "cached_input_tokens": 1146368,
+              "output_tokens": 25312
+            },
+            "unknown_usage_stages": 0,
+            "seconds": 900.628208,
+            "tool_executions": 75,
+            "cost_usd": null,
+            "tokens_per_correct_delivery": {
+              "input_tokens": 323012.0,
+              "cached_input_tokens": 286592.0,
+              "output_tokens": 6328.0
+            }
+          }
+        },
+        "controller_processes": 411,
+        "green_test_omissions": 0,
+        "unknown_checks": 0,
+        "advisory_failures": 0
+      },
+      "verify": {
+        "assigned": 4,
+        "outcomes": {
+          "CORRECT_DELIVERY": 4
+        },
+        "independently_correct_deliveries": 4,
+        "delivery_rate_over_all_assigned": 1.0,
+        "initial_correct": 4,
+        "corrections": 0,
+        "correction_improvements": 0,
+        "correction_regressions": 0,
+        "total_seconds": 829.6145477495156,
+        "workflow_seconds": 793.9236127529293,
+        "grading_seconds": 35.69093637354672,
+        "total_cost_usd": null,
+        "unknown_cost_assignments": 4,
+        "cost_per_correct_delivery": {
+          "usd": null,
+          "seconds": 207.4036369373789
+        },
+        "models": {
+          "gpt-6-luna": {
+            "native_dispatches": 4,
+            "tokens": {
+              "input_tokens": 514649,
+              "cached_input_tokens": 392448,
+              "output_tokens": 20683
+            },
+            "unknown_usage_stages": 0,
+            "seconds": 294.914069,
+            "tool_executions": 63,
+            "cost_usd": null,
+            "tokens_per_correct_delivery": {
+              "input_tokens": 128662.25,
+              "cached_input_tokens": 98112.0,
+              "output_tokens": 5170.75
+            }
+          },
+          "gpt-6.1-sol": {
+            "native_dispatches": 4,
+            "tokens": {
+              "input_tokens": 471783,
+              "cached_input_tokens": 321408,
+              "output_tokens": 15073
+            },
+            "unknown_usage_stages": 0,
+            "seconds": 487.19010000000003,
+            "tool_executions": 42,
+            "cost_usd": null,
+            "tokens_per_correct_delivery": {
+              "input_tokens": 117945.75,
+              "cached_input_tokens": 80352.0,
+              "output_tokens": 3768.25
+            }
+          }
+        },
+        "controller_processes": 503,
+        "green_test_omissions": 0,
+        "unknown_checks": 0,
+        "advisory_failures": 0
+      },
+      "hybrid": {
+        "assigned": 4,
+        "outcomes": {
+          "CORRECT_DELIVERY": 4
+        },
+        "independently_correct_deliveries": 4,
+        "delivery_rate_over_all_assigned": 1.0,
+        "initial_correct": 4,
+        "corrections": 0,
+        "correction_improvements": 0,
+        "correction_regressions": 0,
+        "total_seconds": 1853.8002442084253,
+        "workflow_seconds": 1814.6615759581327,
+        "grading_seconds": 39.13866941770539,
+        "total_cost_usd": null,
+        "unknown_cost_assignments": 4,
+        "cost_per_correct_delivery": {
+          "usd": null,
+          "seconds": 463.4500610521063
+        },
+        "models": {
+          "gpt-6-luna": {
+            "native_dispatches": 4,
+            "tokens": {
+              "input_tokens": 780775,
+              "cached_input_tokens": 653312,
+              "output_tokens": 21439
+            },
+            "unknown_usage_stages": 0,
+            "seconds": 493.73425,
+            "tool_executions": 47,
+            "cost_usd": null,
+            "tokens_per_correct_delivery": {
+              "input_tokens": 195193.75,
+              "cached_input_tokens": 163328.0,
+              "output_tokens": 5359.75
+            }
+          },
+          "gpt-6.1-sol": {
+            "native_dispatches": 8,
+            "tokens": {
+              "input_tokens": 1459722,
+              "cached_input_tokens": 1161728,
+              "output_tokens": 40220
+            },
+            "unknown_usage_stages": 0,
+            "seconds": 1309.41523,
+            "tool_executions": 103,
+            "cost_usd": null,
+            "tokens_per_correct_delivery": {
+              "input_tokens": 364930.5,
+              "cached_input_tokens": 290432.0,
+              "output_tokens": 10055.0
+            }
+          }
+        },
+        "controller_processes": 563,
+        "green_test_omissions": 0,
+        "unknown_checks": 0,
+        "advisory_failures": 0
+      },
+      "sol": {
+        "assigned": 4,
+        "outcomes": {
+          "CORRECT_DELIVERY": 4
+        },
+        "independently_correct_deliveries": 4,
+        "delivery_rate_over_all_assigned": 1.0,
+        "initial_correct": 4,
+        "corrections": 0,
+        "correction_improvements": 0,
+        "correction_regressions": 0,
+        "total_seconds": 607.3379075000994,
+        "workflow_seconds": 570.9811577931978,
+        "grading_seconds": 36.35675091622397,
+        "total_cost_usd": null,
+        "unknown_cost_assignments": 4,
+        "cost_per_correct_delivery": {
+          "usd": null,
+          "seconds": 151.83447687502485
+        },
+        "models": {
+          "gpt-6-luna": {
+            "native_dispatches": 0,
+            "tokens": {
+              "input_tokens": 0,
+              "cached_input_tokens": 0,
+              "output_tokens": 0
+            },
+            "unknown_usage_stages": 0,
+            "seconds": 0,
+            "tool_executions": 0,
+            "cost_usd": 0,
+            "tokens_per_correct_delivery": {
+              "input_tokens": 0.0,
+              "cached_input_tokens": 0.0,
+              "output_tokens": 0.0
+            }
+          },
+          "gpt-6.1-sol": {
+            "native_dispatches": 4,
+            "tokens": {
+              "input_tokens": 462928,
+              "cached_input_tokens": 359424,
+              "output_tokens": 19619
+            },
+            "unknown_usage_stages": 0,
+            "seconds": 566.516162,
+            "tool_executions": 41,
+            "cost_usd": null,
+            "tokens_per_correct_delivery": {
+              "input_tokens": 115732.0,
+              "cached_input_tokens": 89856.0,
+              "output_tokens": 4904.75
+            }
+          }
+        },
+        "controller_processes": 351,
+        "green_test_omissions": 0,
+        "unknown_checks": 0,
+        "advisory_failures": 0
+      }
+    },
+    "paired_effects": {
+      "planning_without_verification": {
+        "initial": {
+          "percentage_points": 0.0,
+          "task_bootstrap_95_percent_descriptive_interval": [
+            0.0,
+            0.0
+          ]
+        },
+        "final_delivery": {
+          "percentage_points": 0.0,
+          "task_bootstrap_95_percent_descriptive_interval": [
+            0.0,
+            0.0
+          ]
+        }
+      },
+      "planning_with_verification": {
+        "initial": {
+          "percentage_points": 0.0,
+          "task_bootstrap_95_percent_descriptive_interval": [
+            0.0,
+            0.0
+          ]
+        },
+        "final_delivery": {
+          "percentage_points": 0.0,
+          "task_bootstrap_95_percent_descriptive_interval": [
+            0.0,
+            0.0
+          ]
+        }
+      },
+      "verification_without_planning": {
+        "initial": {
+          "percentage_points": 0.0,
+          "task_bootstrap_95_percent_descriptive_interval": [
+            0.0,
+            0.0
+          ]
+        },
+        "final_delivery": {
+          "percentage_points": 0.0,
+          "task_bootstrap_95_percent_descriptive_interval": [
+            0.0,
+            0.0
+          ]
+        }
+      },
+      "verification_with_planning": {
+        "initial": {
+          "percentage_points": 0.0,
+          "task_bootstrap_95_percent_descriptive_interval": [
+            0.0,
+            0.0
+          ]
+        },
+        "final_delivery": {
+          "percentage_points": 0.0,
+          "task_bootstrap_95_percent_descriptive_interval": [
+            0.0,
+            0.0
+          ]
+        }
+      },
+      "interaction": {
+        "initial": {
+          "percentage_points": 0.0,
+          "task_bootstrap_95_percent_descriptive_interval": [
+            0.0,
+            0.0
+          ]
+        },
+        "final_delivery": {
+          "percentage_points": 0.0,
+          "task_bootstrap_95_percent_descriptive_interval": [
+            0.0,
+            0.0
+          ]
+        }
+      },
+      "hybrid_vs_sol": {
+        "initial": {
+          "percentage_points": 0.0,
+          "task_bootstrap_95_percent_descriptive_interval": [
+            0.0,
+            0.0
+          ]
+        },
+        "final_delivery": {
+          "percentage_points": 0.0,
+          "task_bootstrap_95_percent_descriptive_interval": [
+            0.0,
+            0.0
+          ]
+        }
+      },
+      "luna_vs_sol": {
+        "initial": {
+          "percentage_points": 0.0,
+          "task_bootstrap_95_percent_descriptive_interval": [
+            0.0,
+            0.0
+          ]
+        },
+        "final_delivery": {
+          "percentage_points": 0.0,
+          "task_bootstrap_95_percent_descriptive_interval": [
+            0.0,
+            0.0
+          ]
+        }
+      }
+    },
+    "paired_seconds": {
+      "planning_without_verification": 219.77423688489944,
+      "planning_with_verification": 256.0464241147274,
+      "verification_without_planning": 104.80573366640601,
+      "verification_with_planning": 141.077920896234,
+      "interaction": 36.27218722982798,
+      "hybrid_vs_sol": 311.6155841770815,
+      "luna_vs_sol": -49.236573604051955
+    },
+    "provider_internal_model_calls": null,
+    "human_active_seconds": null,
+    "authoring_tokens": null,
+    "authoring_dollars": null,
+    "uncertainty": "Four fixed tasks, one repetition. Bootstrap intervals describe these tasks only; zero variation cannot rule out unseen-task effects.",
+    "identification": "Verification is a package of Proofline checks, Sol review and eligible correction; their separate causal effects are not identified by these five arms.",
+    "ceiling_effect": true,
+    "cost_effectiveness": "INCONCLUSIVE",
+    "recommendations": {
+      "Sol planning": "SIMPLIFY: keep optional; no observed first-pass correctness gain",
+      "Sol verification": "SIMPLIFY: keep optional; no observed first-pass correctness gain",
+      "Proofline checks": "SIMPLIFY: keep optional; no observed first-pass correctness gain",
+      "bounded correction": "SIMPLIFY: keep optional; no observed first-pass correctness gain"
+    },
+    "follow_up": "Consider medium only if high is reliable and total costs can be measured; consider xhigh only for observed high-effort defects or costly repairs. No follow-up is authorized here."
+  },
+  "phase_seconds": {
+    "luna": {
+      "planning": 0,
+      "implementation": 370.27781500000003,
+      "verification": 0,
+      "correction": 0,
+      "checking": 0,
+      "grading": 35.71814608387649,
+      "setup_freezing_and_other": 4.395652000015048
+    },
+    "plan": {
+      "planning": 900.628208,
+      "implementation": 345.540116,
+      "verification": 0,
+      "correction": 0,
+      "checking": 0,
+      "grading": 37.04273987701163,
+      "setup_freezing_and_other": 6.277496746477709
+    },
+    "verify": {
+      "planning": 0,
+      "implementation": 294.914069,
+      "verification": 487.19010000000003,
+      "correction": 0,
+      "checking": 4.615969874430448,
+      "grading": 35.69093637354672,
+      "setup_freezing_and_other": 7.203472501538499
+    },
+    "hybrid": {
+      "planning": 816.454717,
+      "implementation": 493.73425,
+      "verification": 492.960513,
+      "correction": 0,
+      "checking": 3.549781832844019,
+      "grading": 39.13866941770539,
+      "setup_freezing_and_other": 7.962312957875838
+    },
+    "sol": {
+      "planning": 0,
+      "implementation": 566.516162,
+      "verification": 0,
+      "correction": 0,
+      "checking": 0,
+      "grading": 36.35675091622397,
+      "setup_freezing_and_other": 4.464994583875409
+    }
+  },
+  "assignments": [
+    {
+      "sequence": 1,
+      "task": "idempotent-ledger",
+      "arm": "verify",
+      "status": "CORRECT_DELIVERY",
+      "total_seconds": 206.9272910831496,
+      "workflow_seconds": 198.77309783408418,
+      "grading_seconds": 8.154193833004683,
+      "model_seconds": 195.984024,
+      "plan_status": null,
+      "review_status": "VALID_ADVISORY",
+      "initial_candidate": {
+        "path": "/Users/grove/projects/proofline/.proofline/issue32-sol-luna-high-lenient/assignments/01-idempotent-ledger-verify/coding/implementation/inputs/product",
+        "tree": "d82813f17310f7de759f1a0fa3c3cd2998d29137"
+      },
+      "final_candidate": {
+        "path": "/Users/grove/projects/proofline/.proofline/issue32-sol-luna-high-lenient/assignments/01-idempotent-ledger-verify/coding/implementation/inputs/product",
+        "tree": "d82813f17310f7de759f1a0fa3c3cd2998d29137"
+      },
+      "correction": {
+        "attempted": false,
+        "reason": "No qualified immutable assertion defect; review observations alone cannot trigger repair"
+      },
+      "controller_processes": 119,
+      "operator_candidate_edits": 0,
+      "extra_worker_messages": 0,
+      "stages": [
+        {
+          "stage": "implementation",
+          "model": "gpt-6-luna",
+          "reasoning_effort": "high",
+          "status": "OBSERVED",
+          "thread_id": "01a136b1-40fd-7423-9a61-3788961b8f13",
+          "elapsed_seconds": 68.604701,
+          "usage": {
+            "input_tokens": 106266,
+            "cached_input_tokens": 85504,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 3333,
+            "reasoning_output_tokens": 736
+          },
+          "observed_session_usage": {
+            "input_tokens": 106266,
+            "cached_input_tokens": 85504,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 3333,
+            "reasoning_output_tokens": 736
+          },
+          "tool_executions": 16,
+          "failed_commands": 0
+        },
+        {
+          "stage": "verification",
+          "model": "gpt-6.1-sol",
+          "reasoning_effort": "high",
+          "status": "OBSERVED",
+          "thread_id": "01a136b2-5225-7d22-a0ab-c185bf292557",
+          "elapsed_seconds": 127.379323,
+          "usage": {
+            "input_tokens": 109982,
+            "cached_input_tokens": 86144,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 3563,
+            "reasoning_output_tokens": 1261
+          },
+          "observed_session_usage": {
+            "input_tokens": 109982,
+            "cached_input_tokens": 86144,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 3563,
+            "reasoning_output_tokens": 1261
+          },
+          "tool_executions": 8,
+          "failed_commands": 0,
+          "findings": []
+        }
+      ],
+      "check_seconds": 0.8120589172467589,
+      "check_statuses": [
+        "CHECKS PASSED"
+      ],
+      "initial_grade": {
+        "available": true,
+        "correct": true,
+        "failures": [],
+        "repository_tests_passed": true,
+        "elapsed_seconds": 8.154155416879803
+      },
+      "final_grade": {
+        "available": true,
+        "correct": true,
+        "failures": [],
+        "repository_tests_passed": true,
+        "elapsed_seconds": 8.154155416879803
+      }
+    },
+    {
+      "sequence": 2,
+      "task": "idempotent-ledger",
+      "arm": "sol",
+      "status": "CORRECT_DELIVERY",
+      "total_seconds": 114.72960637509823,
+      "workflow_seconds": 106.45099370880052,
+      "grading_seconds": 8.278613000176847,
+      "model_seconds": 105.40196,
+      "plan_status": null,
+      "review_status": null,
+      "initial_candidate": {
+        "path": "/Users/grove/projects/proofline/.proofline/issue32-sol-luna-high-lenient/assignments/02-idempotent-ledger-sol/coding/implementation/inputs/product",
+        "tree": "dcd54229d0b412b6e00428cff04273e85a4685ce"
+      },
+      "final_candidate": {
+        "path": "/Users/grove/projects/proofline/.proofline/issue32-sol-luna-high-lenient/assignments/02-idempotent-ledger-sol/coding/implementation/inputs/product",
+        "tree": "dcd54229d0b412b6e00428cff04273e85a4685ce"
+      },
+      "correction": {
+        "attempted": false,
+        "reason": "No qualified immutable assertion defect; review observations alone cannot trigger repair"
+      },
+      "controller_processes": 81,
+      "operator_candidate_edits": 0,
+      "extra_worker_messages": 0,
+      "stages": [
+        {
+          "stage": "implementation",
+          "model": "gpt-6.1-sol",
+          "reasoning_effort": "high",
+          "status": "OBSERVED",
+          "thread_id": "01a136b4-67b0-7a81-b202-c092d1b237cb",
+          "elapsed_seconds": 105.40196,
+          "usage": {
+            "input_tokens": 109792,
+            "cached_input_tokens": 89088,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 3817,
+            "reasoning_output_tokens": 375
+          },
+          "observed_session_usage": {
+            "input_tokens": 109792,
+            "cached_input_tokens": 89088,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 3817,
+            "reasoning_output_tokens": 375
+          },
+          "tool_executions": 10,
+          "failed_commands": 0
+        }
+      ],
+      "check_seconds": 0,
+      "check_statuses": [],
+      "initial_grade": {
+        "available": true,
+        "correct": true,
+        "failures": [],
+        "repository_tests_passed": true,
+        "elapsed_seconds": 8.278575458098203
+      },
+      "final_grade": {
+        "available": true,
+        "correct": true,
+        "failures": [],
+        "repository_tests_passed": true,
+        "elapsed_seconds": 8.278575458098203
+      }
+    },
+    {
+      "sequence": 3,
+      "task": "idempotent-ledger",
+      "arm": "plan",
+      "status": "CORRECT_DELIVERY",
+      "total_seconds": 316.6037645000033,
+      "workflow_seconds": 308.41389887360856,
+      "grading_seconds": 8.189865917433053,
+      "model_seconds": 306.88928699999997,
+      "plan_status": "VALID_ADVISORY",
+      "review_status": null,
+      "initial_candidate": {
+        "path": "/Users/grove/projects/proofline/.proofline/issue32-sol-luna-high-lenient/assignments/03-idempotent-ledger-plan/coding/implementation/inputs/product",
+        "tree": "9d7ddd75ae9296f110e32af17fa1a864c7315341"
+      },
+      "final_candidate": {
+        "path": "/Users/grove/projects/proofline/.proofline/issue32-sol-luna-high-lenient/assignments/03-idempotent-ledger-plan/coding/implementation/inputs/product",
+        "tree": "9d7ddd75ae9296f110e32af17fa1a864c7315341"
+      },
+      "correction": {
+        "attempted": false,
+        "reason": "No qualified immutable assertion defect; review observations alone cannot trigger repair"
+      },
+      "controller_processes": 96,
+      "operator_candidate_edits": 0,
+      "extra_worker_messages": 0,
+      "stages": [
+        {
+          "stage": "planning",
+          "model": "gpt-6.1-sol",
+          "reasoning_effort": "high",
+          "status": "OBSERVED",
+          "thread_id": "01a136b6-271f-7c12-a3fa-c9e7b46d211f",
+          "elapsed_seconds": 230.920369,
+          "usage": {
+            "input_tokens": 309450,
+            "cached_input_tokens": 275328,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 6365,
+            "reasoning_output_tokens": 1211
+          },
+          "observed_session_usage": {
+            "input_tokens": 309450,
+            "cached_input_tokens": 275328,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 6365,
+            "reasoning_output_tokens": 1211
+          },
+          "tool_executions": 17,
+          "failed_commands": 1
+        },
+        {
+          "stage": "implementation",
+          "model": "gpt-6-luna",
+          "reasoning_effort": "high",
+          "status": "OBSERVED",
+          "thread_id": "01a136b9-af4f-7f83-84c1-b9e8cf0c5995",
+          "elapsed_seconds": 75.968918,
+          "usage": {
+            "input_tokens": 128184,
+            "cached_input_tokens": 92672,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 3837,
+            "reasoning_output_tokens": 979
+          },
+          "observed_session_usage": {
+            "input_tokens": 128184,
+            "cached_input_tokens": 92672,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 3837,
+            "reasoning_output_tokens": 979
+          },
+          "tool_executions": 18,
+          "failed_commands": 1
+        }
+      ],
+      "check_seconds": 0,
+      "check_statuses": [],
+      "initial_grade": {
+        "available": true,
+        "correct": true,
+        "failures": [],
+        "repository_tests_passed": true,
+        "elapsed_seconds": 8.18982066726312
+      },
+      "final_grade": {
+        "available": true,
+        "correct": true,
+        "failures": [],
+        "repository_tests_passed": true,
+        "elapsed_seconds": 8.18982066726312
+      }
+    },
+    {
+      "sequence": 4,
+      "task": "idempotent-ledger",
+      "arm": "luna",
+      "status": "CORRECT_DELIVERY",
+      "total_seconds": 89.58349079173058,
+      "workflow_seconds": 81.40430987486616,
+      "grading_seconds": 8.179181166924536,
+      "model_seconds": 80.381818,
+      "plan_status": null,
+      "review_status": null,
+      "initial_candidate": {
+        "path": "/Users/grove/projects/proofline/.proofline/issue32-sol-luna-high-lenient/assignments/04-idempotent-ledger-luna/coding/implementation/inputs/product",
+        "tree": "2bc43fd0ce673523eee7622d002f52975f71a7cd"
+      },
+      "final_candidate": {
+        "path": "/Users/grove/projects/proofline/.proofline/issue32-sol-luna-high-lenient/assignments/04-idempotent-ledger-luna/coding/implementation/inputs/product",
+        "tree": "2bc43fd0ce673523eee7622d002f52975f71a7cd"
+      },
+      "correction": {
+        "attempted": false,
+        "reason": "No qualified immutable assertion defect; review observations alone cannot trigger repair"
+      },
+      "controller_processes": 81,
+      "operator_candidate_edits": 0,
+      "extra_worker_messages": 0,
+      "stages": [
+        {
+          "stage": "implementation",
+          "model": "gpt-6-luna",
+          "reasoning_effort": "high",
+          "status": "OBSERVED",
+          "thread_id": "01a136ba-fc6a-7723-be5b-ed092ffd6f9f",
+          "elapsed_seconds": 80.381818,
+          "usage": {
+            "input_tokens": 126625,
+            "cached_input_tokens": 103424,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 4819,
+            "reasoning_output_tokens": 1458
+          },
+          "observed_session_usage": {
+            "input_tokens": 126625,
+            "cached_input_tokens": 103424,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 4819,
+            "reasoning_output_tokens": 1458
+          },
+          "tool_executions": 15,
+          "failed_commands": 1
+        }
+      ],
+      "check_seconds": 0,
+      "check_statuses": [],
+      "initial_grade": {
+        "available": true,
+        "correct": true,
+        "failures": [],
+        "repository_tests_passed": true,
+        "elapsed_seconds": 8.17914625024423
+      },
+      "final_grade": {
+        "available": true,
+        "correct": true,
+        "failures": [],
+        "repository_tests_passed": true,
+        "elapsed_seconds": 8.17914625024423
+      }
+    },
+    {
+      "sequence": 5,
+      "task": "idempotent-ledger",
+      "arm": "hybrid",
+      "status": "CORRECT_DELIVERY",
+      "total_seconds": 491.5650623328984,
+      "workflow_seconds": 479.988217999693,
+      "grading_seconds": 11.576844750437886,
+      "model_seconds": 477.19729700000005,
+      "plan_status": "VALID_ADVISORY",
+      "review_status": "VALID_ADVISORY",
+      "initial_candidate": {
+        "path": "/Users/grove/projects/proofline/.proofline/issue32-sol-luna-high-lenient/assignments/05-idempotent-ledger-hybrid/coding/implementation/inputs/product",
+        "tree": "be78fb8682ea8360d5809caa9d2ff61010ec458c"
+      },
+      "final_candidate": {
+        "path": "/Users/grove/projects/proofline/.proofline/issue32-sol-luna-high-lenient/assignments/05-idempotent-ledger-hybrid/coding/implementation/inputs/product",
+        "tree": "be78fb8682ea8360d5809caa9d2ff61010ec458c"
+      },
+      "correction": {
+        "attempted": false,
+        "reason": "No qualified immutable assertion defect; review observations alone cannot trigger repair"
+      },
+      "controller_processes": 134,
+      "operator_candidate_edits": 0,
+      "extra_worker_messages": 0,
+      "stages": [
+        {
+          "stage": "planning",
+          "model": "gpt-6.1-sol",
+          "reasoning_effort": "high",
+          "status": "OBSERVED",
+          "thread_id": "01a136bc-59fa-7d40-b79f-0ad225233b88",
+          "elapsed_seconds": 235.974149,
+          "usage": {
+            "input_tokens": 311353,
+            "cached_input_tokens": 261120,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 6176,
+            "reasoning_output_tokens": 729
+          },
+          "observed_session_usage": {
+            "input_tokens": 311353,
+            "cached_input_tokens": 261120,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 6176,
+            "reasoning_output_tokens": 729
+          },
+          "tool_executions": 19,
+          "failed_commands": 1
+        },
+        {
+          "stage": "implementation",
+          "model": "gpt-6-luna",
+          "reasoning_effort": "high",
+          "status": "OBSERVED",
+          "thread_id": "01a136bf-f5dd-70d1-8c2e-bde2fc63ffbd",
+          "elapsed_seconds": 126.212262,
+          "usage": {
+            "input_tokens": 131474,
+            "cached_input_tokens": 102144,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 3679,
+            "reasoning_output_tokens": 1061
+          },
+          "observed_session_usage": {
+            "input_tokens": 131474,
+            "cached_input_tokens": 102144,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 3679,
+            "reasoning_output_tokens": 1061
+          },
+          "tool_executions": 11,
+          "failed_commands": 0
+        },
+        {
+          "stage": "verification",
+          "model": "gpt-6.1-sol",
+          "reasoning_effort": "high",
+          "status": "OBSERVED",
+          "thread_id": "01a136c1-e883-75e3-8d1c-ad8370648c11",
+          "elapsed_seconds": 115.010886,
+          "usage": {
+            "input_tokens": 124837,
+            "cached_input_tokens": 78336,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 3618,
+            "reasoning_output_tokens": 977
+          },
+          "observed_session_usage": {
+            "input_tokens": 124837,
+            "cached_input_tokens": 78336,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 3618,
+            "reasoning_output_tokens": 977
+          },
+          "tool_executions": 7,
+          "failed_commands": 0,
+          "findings": []
+        }
+      ],
+      "check_seconds": 0.9150503342971206,
+      "check_statuses": [
+        "CHECKS PASSED"
+      ],
+      "initial_grade": {
+        "available": true,
+        "correct": true,
+        "failures": [],
+        "repository_tests_passed": true,
+        "elapsed_seconds": 11.576818000059575
+      },
+      "final_grade": {
+        "available": true,
+        "correct": true,
+        "failures": [],
+        "repository_tests_passed": true,
+        "elapsed_seconds": 11.576818000059575
+      }
+    },
+    {
+      "sequence": 6,
+      "task": "path-router",
+      "arm": "sol",
+      "status": "CORRECT_DELIVERY",
+      "total_seconds": 172.7350055826828,
+      "workflow_seconds": 162.92503629205748,
+      "grading_seconds": 9.809969624970108,
+      "model_seconds": 161.765804,
+      "plan_status": null,
+      "review_status": null,
+      "initial_candidate": {
+        "path": "/Users/grove/projects/proofline/.proofline/issue32-sol-luna-high-lenient/assignments/06-path-router-sol/coding/implementation/inputs/product",
+        "tree": "d9debc685f98b5b329f9317101096e78e020df41"
+      },
+      "final_candidate": {
+        "path": "/Users/grove/projects/proofline/.proofline/issue32-sol-luna-high-lenient/assignments/06-path-router-sol/coding/implementation/inputs/product",
+        "tree": "d9debc685f98b5b329f9317101096e78e020df41"
+      },
+      "correction": {
+        "attempted": false,
+        "reason": "No qualified immutable assertion defect; review observations alone cannot trigger repair"
+      },
+      "controller_processes": 93,
+      "operator_candidate_edits": 0,
+      "extra_worker_messages": 0,
+      "stages": [
+        {
+          "stage": "implementation",
+          "model": "gpt-6.1-sol",
+          "reasoning_effort": "high",
+          "status": "OBSERVED",
+          "thread_id": "01a136c3-db1d-7541-9fce-f6ec4386d1d0",
+          "elapsed_seconds": 161.765804,
+          "usage": {
+            "input_tokens": 137188,
+            "cached_input_tokens": 98688,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 5956,
+            "reasoning_output_tokens": 912
+          },
+          "observed_session_usage": {
+            "input_tokens": 137188,
+            "cached_input_tokens": 98688,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 5956,
+            "reasoning_output_tokens": 912
+          },
+          "tool_executions": 14,
+          "failed_commands": 0
+        }
+      ],
+      "check_seconds": 0,
+      "check_statuses": [],
+      "initial_grade": {
+        "available": true,
+        "correct": true,
+        "failures": [],
+        "repository_tests_passed": true,
+        "elapsed_seconds": 9.809920916799456
+      },
+      "final_grade": {
+        "available": true,
+        "correct": true,
+        "failures": [],
+        "repository_tests_passed": true,
+        "elapsed_seconds": 9.809920916799456
+      }
+    },
+    {
+      "sequence": 7,
+      "task": "path-router",
+      "arm": "plan",
+      "status": "CORRECT_DELIVERY",
+      "total_seconds": 306.88584583299235,
+      "workflow_seconds": 297.2369620408863,
+      "grading_seconds": 9.648884042166173,
+      "model_seconds": 295.767479,
+      "plan_status": "VALID_ADVISORY",
+      "review_status": null,
+      "initial_candidate": {
+        "path": "/Users/grove/projects/proofline/.proofline/issue32-sol-luna-high-lenient/assignments/07-path-router-plan/coding/implementation/inputs/product",
+        "tree": "9bd8549a04dce1ea26139fd3be8ad54de3a1fe9f"
+      },
+      "final_candidate": {
+        "path": "/Users/grove/projects/proofline/.proofline/issue32-sol-luna-high-lenient/assignments/07-path-router-plan/coding/implementation/inputs/product",
+        "tree": "9bd8549a04dce1ea26139fd3be8ad54de3a1fe9f"
+      },
+      "correction": {
+        "attempted": false,
+        "reason": "No qualified immutable assertion defect; review observations alone cannot trigger repair"
+      },
+      "controller_processes": 108,
+      "operator_candidate_edits": 0,
+      "extra_worker_messages": 0,
+      "stages": [
+        {
+          "stage": "planning",
+          "model": "gpt-6.1-sol",
+          "reasoning_effort": "high",
+          "status": "OBSERVED",
+          "thread_id": "01a136c6-7cef-7291-93f8-2168852d3aba",
+          "elapsed_seconds": 228.371608,
+          "usage": {
+            "input_tokens": 322720,
+            "cached_input_tokens": 284544,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 6369,
+            "reasoning_output_tokens": 809
+          },
+          "observed_session_usage": {
+            "input_tokens": 322720,
+            "cached_input_tokens": 284544,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 6369,
+            "reasoning_output_tokens": 809
+          },
+          "tool_executions": 20,
+          "failed_commands": 2
+        },
+        {
+          "stage": "implementation",
+          "model": "gpt-6-luna",
+          "reasoning_effort": "high",
+          "status": "OBSERVED",
+          "thread_id": "01a136c9-fb68-7f93-9988-e517952c497a",
+          "elapsed_seconds": 67.395871,
+          "usage": {
+            "input_tokens": 180339,
+            "cached_input_tokens": 157696,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 5344,
+            "reasoning_output_tokens": 1563
+          },
+          "observed_session_usage": {
+            "input_tokens": 180339,
+            "cached_input_tokens": 157696,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 5344,
+            "reasoning_output_tokens": 1563
+          },
+          "tool_executions": 7,
+          "failed_commands": 0
+        }
+      ],
+      "check_seconds": 0,
+      "check_statuses": [],
+      "initial_grade": {
+        "available": true,
+        "correct": true,
+        "failures": [],
+        "repository_tests_passed": true,
+        "elapsed_seconds": 9.64884370798245
+      },
+      "final_grade": {
+        "available": true,
+        "correct": true,
+        "failures": [],
+        "repository_tests_passed": true,
+        "elapsed_seconds": 9.64884370798245
+      }
+    },
+    {
+      "sequence": 8,
+      "task": "path-router",
+      "arm": "luna",
+      "status": "CORRECT_DELIVERY",
+      "total_seconds": 92.44651133427396,
+      "workflow_seconds": 82.88077300041914,
+      "grading_seconds": 9.565738624893129,
+      "model_seconds": 81.848681,
+      "plan_status": null,
+      "review_status": null,
+      "initial_candidate": {
+        "path": "/Users/grove/projects/proofline/.proofline/issue32-sol-luna-high-lenient/assignments/08-path-router-luna/coding/implementation/inputs/product",
+        "tree": "58ccf0fd35901f786227c2d72b06ef1a3c50e048"
+      },
+      "final_candidate": {
+        "path": "/Users/grove/projects/proofline/.proofline/issue32-sol-luna-high-lenient/assignments/08-path-router-luna/coding/implementation/inputs/product",
+        "tree": "58ccf0fd35901f786227c2d72b06ef1a3c50e048"
+      },
+      "correction": {
+        "attempted": false,
+        "reason": "No qualified immutable assertion defect; review observations alone cannot trigger repair"
+      },
+      "controller_processes": 93,
+      "operator_candidate_edits": 0,
+      "extra_worker_messages": 0,
+      "stages": [
+        {
+          "stage": "implementation",
+          "model": "gpt-6-luna",
+          "reasoning_effort": "high",
+          "status": "OBSERVED",
+          "thread_id": "01a136cb-2c79-7aa2-82d8-585d80650be7",
+          "elapsed_seconds": 81.848681,
+          "usage": {
+            "input_tokens": 171977,
+            "cached_input_tokens": 144128,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 6839,
+            "reasoning_output_tokens": 2317
+          },
+          "observed_session_usage": {
+            "input_tokens": 171977,
+            "cached_input_tokens": 144128,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 6839,
+            "reasoning_output_tokens": 2317
+          },
+          "tool_executions": 22,
+          "failed_commands": 3
+        }
+      ],
+      "check_seconds": 0,
+      "check_statuses": [],
+      "initial_grade": {
+        "available": true,
+        "correct": true,
+        "failures": [],
+        "repository_tests_passed": true,
+        "elapsed_seconds": 9.565698875114322
+      },
+      "final_grade": {
+        "available": true,
+        "correct": true,
+        "failures": [],
+        "repository_tests_passed": true,
+        "elapsed_seconds": 9.565698875114322
+      }
+    },
+    {
+      "sequence": 9,
+      "task": "path-router",
+      "arm": "hybrid",
+      "status": "CORRECT_DELIVERY",
+      "total_seconds": 486.6399847078137,
+      "workflow_seconds": 477.0441824165173,
+      "grading_seconds": 9.59580258326605,
+      "model_seconds": 474.20732499999997,
+      "plan_status": "VALID_ADVISORY",
+      "review_status": "VALID_ADVISORY",
+      "initial_candidate": {
+        "path": "/Users/grove/projects/proofline/.proofline/issue32-sol-luna-high-lenient/assignments/09-path-router-hybrid/coding/implementation/inputs/product",
+        "tree": "80710f6475f4913027534fa7cd5105d2924cae7d"
+      },
+      "final_candidate": {
+        "path": "/Users/grove/projects/proofline/.proofline/issue32-sol-luna-high-lenient/assignments/09-path-router-hybrid/coding/implementation/inputs/product",
+        "tree": "80710f6475f4913027534fa7cd5105d2924cae7d"
+      },
+      "correction": {
+        "attempted": false,
+        "reason": "No qualified immutable assertion defect; review observations alone cannot trigger repair"
+      },
+      "controller_processes": 146,
+      "operator_candidate_edits": 0,
+      "extra_worker_messages": 0,
+      "stages": [
+        {
+          "stage": "planning",
+          "model": "gpt-6.1-sol",
+          "reasoning_effort": "high",
+          "status": "OBSERVED",
+          "thread_id": "01a136cc-957c-7ea1-b5ee-0c2d39a20fd4",
+          "elapsed_seconds": 195.407674,
+          "usage": {
+            "input_tokens": 251102,
+            "cached_input_tokens": 191104,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 6003,
+            "reasoning_output_tokens": 829
+          },
+          "observed_session_usage": {
+            "input_tokens": 251102,
+            "cached_input_tokens": 191104,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 6003,
+            "reasoning_output_tokens": 829
+          },
+          "tool_executions": 19,
+          "failed_commands": 1
+        },
+        {
+          "stage": "implementation",
+          "model": "gpt-6-luna",
+          "reasoning_effort": "high",
+          "status": "OBSERVED",
+          "thread_id": "01a136cf-92dc-75b2-a49a-8e23c9003822",
+          "elapsed_seconds": 141.379293,
+          "usage": {
+            "input_tokens": 194985,
+            "cached_input_tokens": 153600,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 5798,
+            "reasoning_output_tokens": 1138
+          },
+          "observed_session_usage": {
+            "input_tokens": 194985,
+            "cached_input_tokens": 153600,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 5798,
+            "reasoning_output_tokens": 1138
+          },
+          "tool_executions": 13,
+          "failed_commands": 1
+        },
+        {
+          "stage": "verification",
+          "model": "gpt-6.1-sol",
+          "reasoning_effort": "high",
+          "status": "OBSERVED",
+          "thread_id": "01a136d1-c0ee-7e80-b8dc-1e5ff6c55495",
+          "elapsed_seconds": 137.420358,
+          "usage": {
+            "input_tokens": 132595,
+            "cached_input_tokens": 106112,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 4323,
+            "reasoning_output_tokens": 1218
+          },
+          "observed_session_usage": {
+            "input_tokens": 132595,
+            "cached_input_tokens": 106112,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 4323,
+            "reasoning_output_tokens": 1218
+          },
+          "tool_executions": 9,
+          "failed_commands": 0,
+          "findings": []
+        }
+      ],
+      "check_seconds": 0.8909982079640031,
+      "check_statuses": [
+        "CHECKS PASSED"
+      ],
+      "initial_grade": {
+        "available": true,
+        "correct": true,
+        "failures": [],
+        "repository_tests_passed": true,
+        "elapsed_seconds": 9.595775415655226
+      },
+      "final_grade": {
+        "available": true,
+        "correct": true,
+        "failures": [],
+        "repository_tests_passed": true,
+        "elapsed_seconds": 9.595775415655226
+      }
+    },
+    {
+      "sequence": 10,
+      "task": "path-router",
+      "arm": "verify",
+      "status": "CORRECT_DELIVERY",
+      "total_seconds": 208.07086604228243,
+      "workflow_seconds": 198.463102793321,
+      "grading_seconds": 9.607763540931046,
+      "model_seconds": 194.427267,
+      "plan_status": null,
+      "review_status": "VALID_ADVISORY",
+      "initial_candidate": {
+        "path": "/Users/grove/projects/proofline/.proofline/issue32-sol-luna-high-lenient/assignments/10-path-router-verify/coding/implementation/inputs/product",
+        "tree": "2c50ff2611ca03a6c265d101d79447621a0f3aac"
+      },
+      "final_candidate": {
+        "path": "/Users/grove/projects/proofline/.proofline/issue32-sol-luna-high-lenient/assignments/10-path-router-verify/coding/implementation/inputs/product",
+        "tree": "2c50ff2611ca03a6c265d101d79447621a0f3aac"
+      },
+      "correction": {
+        "attempted": false,
+        "reason": "No qualified immutable assertion defect; review observations alone cannot trigger repair"
+      },
+      "controller_processes": 131,
+      "operator_candidate_edits": 0,
+      "extra_worker_messages": 0,
+      "stages": [
+        {
+          "stage": "implementation",
+          "model": "gpt-6-luna",
+          "reasoning_effort": "high",
+          "status": "OBSERVED",
+          "thread_id": "01a136d4-02d4-7c93-be18-a9a0e4dccdc7",
+          "elapsed_seconds": 71.632083,
+          "usage": {
+            "input_tokens": 110097,
+            "cached_input_tokens": 79360,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 5144,
+            "reasoning_output_tokens": 1675
+          },
+          "observed_session_usage": {
+            "input_tokens": 110097,
+            "cached_input_tokens": 79360,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 5144,
+            "reasoning_output_tokens": 1675
+          },
+          "tool_executions": 18,
+          "failed_commands": 0
+        },
+        {
+          "stage": "verification",
+          "model": "gpt-6.1-sol",
+          "reasoning_effort": "high",
+          "status": "OBSERVED",
+          "thread_id": "01a136d5-298f-73e2-9484-da6721dfae75",
+          "elapsed_seconds": 122.795184,
+          "usage": {
+            "input_tokens": 133664,
+            "cached_input_tokens": 106880,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 4070,
+            "reasoning_output_tokens": 1021
+          },
+          "observed_session_usage": {
+            "input_tokens": 133664,
+            "cached_input_tokens": 106880,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 4070,
+            "reasoning_output_tokens": 1021
+          },
+          "tool_executions": 12,
+          "failed_commands": 1,
+          "findings": []
+        }
+      ],
+      "check_seconds": 1.9761090828105807,
+      "check_statuses": [
+        "CHECKS PASSED"
+      ],
+      "initial_grade": {
+        "available": true,
+        "correct": true,
+        "failures": [],
+        "repository_tests_passed": true,
+        "elapsed_seconds": 9.607737250160426
+      },
+      "final_grade": {
+        "available": true,
+        "correct": true,
+        "failures": [],
+        "repository_tests_passed": true,
+        "elapsed_seconds": 9.607737250160426
+      }
+    },
+    {
+      "sequence": 11,
+      "task": "stable-scheduler",
+      "arm": "luna",
+      "status": "CORRECT_DELIVERY",
+      "total_seconds": 138.44214987475425,
+      "workflow_seconds": 130.08973549958318,
+      "grading_seconds": 8.352414667140692,
+      "model_seconds": 128.935773,
+      "plan_status": null,
+      "review_status": null,
+      "initial_candidate": {
+        "path": "/Users/grove/projects/proofline/.proofline/issue32-sol-luna-high-lenient/assignments/11-stable-scheduler-luna/coding/implementation/inputs/product",
+        "tree": "80b385401e0d774f6dda553ae8d2efec81c76b49"
+      },
+      "final_candidate": {
+        "path": "/Users/grove/projects/proofline/.proofline/issue32-sol-luna-high-lenient/assignments/11-stable-scheduler-luna/coding/implementation/inputs/product",
+        "tree": "80b385401e0d774f6dda553ae8d2efec81c76b49"
+      },
+      "correction": {
+        "attempted": false,
+        "reason": "No qualified immutable assertion defect; review observations alone cannot trigger repair"
+      },
+      "controller_processes": 84,
+      "operator_candidate_edits": 0,
+      "extra_worker_messages": 0,
+      "stages": [
+        {
+          "stage": "implementation",
+          "model": "gpt-6-luna",
+          "reasoning_effort": "high",
+          "status": "OBSERVED",
+          "thread_id": "01a136d7-2fe2-73d3-97d7-4491f0025f92",
+          "elapsed_seconds": 128.935773,
+          "usage": {
+            "input_tokens": 261830,
+            "cached_input_tokens": 238080,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 9707,
+            "reasoning_output_tokens": 2687
+          },
+          "observed_session_usage": {
+            "input_tokens": 261830,
+            "cached_input_tokens": 238080,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 9707,
+            "reasoning_output_tokens": 2687
+          },
+          "tool_executions": 21,
+          "failed_commands": 2
+        }
+      ],
+      "check_seconds": 0,
+      "check_statuses": [],
+      "initial_grade": {
+        "available": true,
+        "correct": true,
+        "failures": [],
+        "repository_tests_passed": true,
+        "elapsed_seconds": 8.352378000039607
+      },
+      "final_grade": {
+        "available": true,
+        "correct": true,
+        "failures": [],
+        "repository_tests_passed": true,
+        "elapsed_seconds": 8.352378000039607
+      }
+    },
+    {
+      "sequence": 12,
+      "task": "stable-scheduler",
+      "arm": "hybrid",
+      "status": "CORRECT_DELIVERY",
+      "total_seconds": 480.92666633380577,
+      "workflow_seconds": 472.59082220774144,
+      "grading_seconds": 8.335844334214926,
+      "model_seconds": 469.639597,
+      "plan_status": "VALID_ADVISORY",
+      "review_status": "VALID_ADVISORY",
+      "initial_candidate": {
+        "path": "/Users/grove/projects/proofline/.proofline/issue32-sol-luna-high-lenient/assignments/12-stable-scheduler-hybrid/coding/implementation/inputs/product",
+        "tree": "b033214183232f6e40cf11982026e0b1936adc85"
+      },
+      "final_candidate": {
+        "path": "/Users/grove/projects/proofline/.proofline/issue32-sol-luna-high-lenient/assignments/12-stable-scheduler-hybrid/coding/implementation/inputs/product",
+        "tree": "b033214183232f6e40cf11982026e0b1936adc85"
+      },
+      "correction": {
+        "attempted": false,
+        "reason": "No qualified immutable assertion defect; review observations alone cannot trigger repair"
+      },
+      "controller_processes": 137,
+      "operator_candidate_edits": 0,
+      "extra_worker_messages": 0,
+      "stages": [
+        {
+          "stage": "planning",
+          "model": "gpt-6.1-sol",
+          "reasoning_effort": "high",
+          "status": "OBSERVED",
+          "thread_id": "01a136d9-4c68-7260-9b8c-1aa306c5790d",
+          "elapsed_seconds": 205.92655,
+          "usage": {
+            "input_tokens": 200141,
+            "cached_input_tokens": 165248,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 6304,
+            "reasoning_output_tokens": 1076
+          },
+          "observed_session_usage": {
+            "input_tokens": 200141,
+            "cached_input_tokens": 165248,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 6304,
+            "reasoning_output_tokens": 1076
+          },
+          "tool_executions": 20,
+          "failed_commands": 2
+        },
+        {
+          "stage": "implementation",
+          "model": "gpt-6-luna",
+          "reasoning_effort": "high",
+          "status": "OBSERVED",
+          "thread_id": "01a136dc-7358-7193-8ebd-d1fcb379639e",
+          "elapsed_seconds": 154.157568,
+          "usage": {
+            "input_tokens": 273652,
+            "cached_input_tokens": 237056,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 6879,
+            "reasoning_output_tokens": 1572
+          },
+          "observed_session_usage": {
+            "input_tokens": 273652,
+            "cached_input_tokens": 237056,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 6879,
+            "reasoning_output_tokens": 1572
+          },
+          "tool_executions": 14,
+          "failed_commands": 2
+        },
+        {
+          "stage": "verification",
+          "model": "gpt-6.1-sol",
+          "reasoning_effort": "high",
+          "status": "OBSERVED",
+          "thread_id": "01a136de-d378-7c10-935e-05550e8a88a8",
+          "elapsed_seconds": 109.555479,
+          "usage": {
+            "input_tokens": 92378,
+            "cached_input_tokens": 66432,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 4082,
+            "reasoning_output_tokens": 749
+          },
+          "observed_session_usage": {
+            "input_tokens": 92378,
+            "cached_input_tokens": 66432,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 4082,
+            "reasoning_output_tokens": 749
+          },
+          "tool_executions": 8,
+          "failed_commands": 0,
+          "findings": []
+        }
+      ],
+      "check_seconds": 0.9110339577309787,
+      "check_statuses": [
+        "CHECKS PASSED"
+      ],
+      "initial_grade": {
+        "available": true,
+        "correct": true,
+        "failures": [],
+        "repository_tests_passed": true,
+        "elapsed_seconds": 8.33581779198721
+      },
+      "final_grade": {
+        "available": true,
+        "correct": true,
+        "failures": [],
+        "repository_tests_passed": true,
+        "elapsed_seconds": 8.33581779198721
+      }
+    },
+    {
+      "sequence": 13,
+      "task": "stable-scheduler",
+      "arm": "verify",
+      "status": "CORRECT_DELIVERY",
+      "total_seconds": 197.61734516592696,
+      "workflow_seconds": 189.3674777080305,
+      "grading_seconds": 8.249867749866098,
+      "model_seconds": 186.933514,
+      "plan_status": null,
+      "review_status": "VALID_ADVISORY",
+      "initial_candidate": {
+        "path": "/Users/grove/projects/proofline/.proofline/issue32-sol-luna-high-lenient/assignments/13-stable-scheduler-verify/coding/implementation/inputs/product",
+        "tree": "c45d7a7c034403d14e89b57dcb5537531f355416"
+      },
+      "final_candidate": {
+        "path": "/Users/grove/projects/proofline/.proofline/issue32-sol-luna-high-lenient/assignments/13-stable-scheduler-verify/coding/implementation/inputs/product",
+        "tree": "c45d7a7c034403d14e89b57dcb5537531f355416"
+      },
+      "correction": {
+        "attempted": false,
+        "reason": "No qualified immutable assertion defect; review observations alone cannot trigger repair"
+      },
+      "controller_processes": 122,
+      "operator_candidate_edits": 0,
+      "extra_worker_messages": 0,
+      "stages": [
+        {
+          "stage": "implementation",
+          "model": "gpt-6-luna",
+          "reasoning_effort": "high",
+          "status": "OBSERVED",
+          "thread_id": "01a136e0-a3e8-7df2-a743-1705fd8c1c75",
+          "elapsed_seconds": 72.109268,
+          "usage": {
+            "input_tokens": 151113,
+            "cached_input_tokens": 104704,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 6543,
+            "reasoning_output_tokens": 1799
+          },
+          "observed_session_usage": {
+            "input_tokens": 151113,
+            "cached_input_tokens": 104704,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 6543,
+            "reasoning_output_tokens": 1799
+          },
+          "tool_executions": 17,
+          "failed_commands": 1
+        },
+        {
+          "stage": "verification",
+          "model": "gpt-6.1-sol",
+          "reasoning_effort": "high",
+          "status": "OBSERVED",
+          "thread_id": "01a136e1-c359-7cc3-9542-c6985480ec79",
+          "elapsed_seconds": 114.824246,
+          "usage": {
+            "input_tokens": 108933,
+            "cached_input_tokens": 60160,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 3406,
+            "reasoning_output_tokens": 1019
+          },
+          "observed_session_usage": {
+            "input_tokens": 108933,
+            "cached_input_tokens": 60160,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 3406,
+            "reasoning_output_tokens": 1019
+          },
+          "tool_executions": 13,
+          "failed_commands": 0,
+          "findings": [
+            {
+              "quote": "Implement {\"workers\": positive integer, \"tasks\": [{\"id\": nonempty string,\n\"duration\": nonnegative integer, \"requires\": [task ID, ...]}, ...]}.",
+              "defect": "app.py materializes list(range(workers)). Valid input {'workers': 9223372036854775808, 'tasks': []} raises OverflowError instead of returning {'schedule': []}. Reproduced through app.process, service.handle, and service.batch, also with one task. The request specifies no worker-count upper bound.",
+              "check_indices": []
+            }
+          ]
+        }
+      ],
+      "check_seconds": 0.9012861661612988,
+      "check_statuses": [
+        "CHECKS PASSED"
+      ],
+      "initial_grade": {
+        "available": true,
+        "correct": true,
+        "failures": [],
+        "repository_tests_passed": true,
+        "elapsed_seconds": 8.249839917290956
+      },
+      "final_grade": {
+        "available": true,
+        "correct": true,
+        "failures": [],
+        "repository_tests_passed": true,
+        "elapsed_seconds": 8.249839917290956
+      }
+    },
+    {
+      "sequence": 14,
+      "task": "stable-scheduler",
+      "arm": "sol",
+      "status": "CORRECT_DELIVERY",
+      "total_seconds": 156.90957979205996,
+      "workflow_seconds": 148.4514834592119,
+      "grading_seconds": 8.458096582908183,
+      "model_seconds": 147.392118,
+      "plan_status": null,
+      "review_status": null,
+      "initial_candidate": {
+        "path": "/Users/grove/projects/proofline/.proofline/issue32-sol-luna-high-lenient/assignments/14-stable-scheduler-sol/coding/implementation/inputs/product",
+        "tree": "e5ee7faf1c2f8f79e6a20119288b2b2d169c5583"
+      },
+      "final_candidate": {
+        "path": "/Users/grove/projects/proofline/.proofline/issue32-sol-luna-high-lenient/assignments/14-stable-scheduler-sol/coding/implementation/inputs/product",
+        "tree": "e5ee7faf1c2f8f79e6a20119288b2b2d169c5583"
+      },
+      "correction": {
+        "attempted": false,
+        "reason": "No qualified immutable assertion defect; review observations alone cannot trigger repair"
+      },
+      "controller_processes": 84,
+      "operator_candidate_edits": 0,
+      "extra_worker_messages": 0,
+      "stages": [
+        {
+          "stage": "implementation",
+          "model": "gpt-6.1-sol",
+          "reasoning_effort": "high",
+          "status": "OBSERVED",
+          "thread_id": "01a136e3-a7b7-7782-858e-9d8b5352567c",
+          "elapsed_seconds": 147.392118,
+          "usage": {
+            "input_tokens": 117945,
+            "cached_input_tokens": 95360,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 5115,
+            "reasoning_output_tokens": 697
+          },
+          "observed_session_usage": {
+            "input_tokens": 117945,
+            "cached_input_tokens": 95360,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 5115,
+            "reasoning_output_tokens": 697
+          },
+          "tool_executions": 9,
+          "failed_commands": 0
+        }
+      ],
+      "check_seconds": 0,
+      "check_statuses": [],
+      "initial_grade": {
+        "available": true,
+        "correct": true,
+        "failures": [],
+        "repository_tests_passed": true,
+        "elapsed_seconds": 8.458055625203997
+      },
+      "final_grade": {
+        "available": true,
+        "correct": true,
+        "failures": [],
+        "repository_tests_passed": true,
+        "elapsed_seconds": 8.458055625203997
+      }
+    },
+    {
+      "sequence": 15,
+      "task": "stable-scheduler",
+      "arm": "plan",
+      "status": "CORRECT_DELIVERY",
+      "total_seconds": 256.7132501658052,
+      "workflow_seconds": 247.06311637489125,
+      "grading_seconds": 9.650134125258774,
+      "model_seconds": 245.359915,
+      "plan_status": "VALID_ADVISORY",
+      "review_status": null,
+      "initial_candidate": {
+        "path": "/Users/grove/projects/proofline/.proofline/issue32-sol-luna-high-lenient/assignments/15-stable-scheduler-plan/coding/implementation/inputs/product",
+        "tree": "684f1782d545d0ffe7b18aeb751de8b712aba88b"
+      },
+      "final_candidate": {
+        "path": "/Users/grove/projects/proofline/.proofline/issue32-sol-luna-high-lenient/assignments/15-stable-scheduler-plan/coding/implementation/inputs/product",
+        "tree": "684f1782d545d0ffe7b18aeb751de8b712aba88b"
+      },
+      "correction": {
+        "attempted": false,
+        "reason": "No qualified immutable assertion defect; review observations alone cannot trigger repair"
+      },
+      "controller_processes": 99,
+      "operator_candidate_edits": 0,
+      "extra_worker_messages": 0,
+      "stages": [
+        {
+          "stage": "planning",
+          "model": "gpt-6.1-sol",
+          "reasoning_effort": "high",
+          "status": "OBSERVED",
+          "thread_id": "01a136e6-0c7e-7de2-afd8-b4eca2a7420e",
+          "elapsed_seconds": 182.878577,
+          "usage": {
+            "input_tokens": 309416,
+            "cached_input_tokens": 274944,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 5982,
+            "reasoning_output_tokens": 584
+          },
+          "observed_session_usage": {
+            "input_tokens": 309416,
+            "cached_input_tokens": 274944,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 5982,
+            "reasoning_output_tokens": 584
+          },
+          "tool_executions": 17,
+          "failed_commands": 1
+        },
+        {
+          "stage": "implementation",
+          "model": "gpt-6-luna",
+          "reasoning_effort": "high",
+          "status": "OBSERVED",
+          "thread_id": "01a136e8-d931-7c82-b473-83ca13f3f882",
+          "elapsed_seconds": 62.481338,
+          "usage": {
+            "input_tokens": 209932,
+            "cached_input_tokens": 177920,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 6125,
+            "reasoning_output_tokens": 1469
+          },
+          "observed_session_usage": {
+            "input_tokens": 209932,
+            "cached_input_tokens": 177920,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 6125,
+            "reasoning_output_tokens": 1469
+          },
+          "tool_executions": 17,
+          "failed_commands": 0
+        }
+      ],
+      "check_seconds": 0,
+      "check_statuses": [],
+      "initial_grade": {
+        "available": true,
+        "correct": true,
+        "failures": [],
+        "repository_tests_passed": true,
+        "elapsed_seconds": 9.650078124832362
+      },
+      "final_grade": {
+        "available": true,
+        "correct": true,
+        "failures": [],
+        "repository_tests_passed": true,
+        "elapsed_seconds": 9.650078124832362
+      }
+    },
+    {
+      "sequence": 16,
+      "task": "tiered-invoice",
+      "arm": "hybrid",
+      "status": "CORRECT_DELIVERY",
+      "total_seconds": 394.6685308339074,
+      "workflow_seconds": 385.038353334181,
+      "grading_seconds": 9.630177749786526,
+      "model_seconds": 382.10526100000004,
+      "plan_status": "VALID_ADVISORY",
+      "review_status": "VALID_ADVISORY",
+      "initial_candidate": {
+        "path": "/Users/grove/projects/proofline/.proofline/issue32-sol-luna-high-lenient/assignments/16-tiered-invoice-hybrid/coding/implementation/inputs/product",
+        "tree": "64d9958d572065ff6d9c0e2c24d0685ffd737e08"
+      },
+      "final_candidate": {
+        "path": "/Users/grove/projects/proofline/.proofline/issue32-sol-luna-high-lenient/assignments/16-tiered-invoice-hybrid/coding/implementation/inputs/product",
+        "tree": "64d9958d572065ff6d9c0e2c24d0685ffd737e08"
+      },
+      "correction": {
+        "attempted": false,
+        "reason": "No qualified immutable assertion defect; review observations alone cannot trigger repair"
+      },
+      "controller_processes": 146,
+      "operator_candidate_edits": 0,
+      "extra_worker_messages": 0,
+      "stages": [
+        {
+          "stage": "planning",
+          "model": "gpt-6.1-sol",
+          "reasoning_effort": "high",
+          "status": "OBSERVED",
+          "thread_id": "01a136e9-f7c5-7cc0-ba8c-8df6e5b7ef09",
+          "elapsed_seconds": 179.146344,
+          "usage": {
+            "input_tokens": 240551,
+            "cached_input_tokens": 203648,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 6012,
+            "reasoning_output_tokens": 896
+          },
+          "observed_session_usage": {
+            "input_tokens": 240551,
+            "cached_input_tokens": 203648,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 6012,
+            "reasoning_output_tokens": 896
+          },
+          "tool_executions": 15,
+          "failed_commands": 1
+        },
+        {
+          "stage": "implementation",
+          "model": "gpt-6-luna",
+          "reasoning_effort": "high",
+          "status": "OBSERVED",
+          "thread_id": "01a136ec-b5e0-7903-968c-091d59680819",
+          "elapsed_seconds": 71.985127,
+          "usage": {
+            "input_tokens": 180664,
+            "cached_input_tokens": 160512,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 5083,
+            "reasoning_output_tokens": 1349
+          },
+          "observed_session_usage": {
+            "input_tokens": 180664,
+            "cached_input_tokens": 160512,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 5083,
+            "reasoning_output_tokens": 1349
+          },
+          "tool_executions": 9,
+          "failed_commands": 1
+        },
+        {
+          "stage": "verification",
+          "model": "gpt-6.1-sol",
+          "reasoning_effort": "high",
+          "status": "OBSERVED",
+          "thread_id": "01a136ed-d4a3-7192-83cf-c9fca9ad495f",
+          "elapsed_seconds": 130.97379,
+          "usage": {
+            "input_tokens": 106765,
+            "cached_input_tokens": 89728,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 3702,
+            "reasoning_output_tokens": 943
+          },
+          "observed_session_usage": {
+            "input_tokens": 106765,
+            "cached_input_tokens": 89728,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 3702,
+            "reasoning_output_tokens": 943
+          },
+          "tool_executions": 6,
+          "failed_commands": 0,
+          "findings": []
+        }
+      ],
+      "check_seconds": 0.8326993328519166,
+      "check_statuses": [
+        "CHECKS PASSED"
+      ],
+      "initial_grade": {
+        "available": true,
+        "correct": true,
+        "failures": [],
+        "repository_tests_passed": true,
+        "elapsed_seconds": 9.630149416159838
+      },
+      "final_grade": {
+        "available": true,
+        "correct": true,
+        "failures": [],
+        "repository_tests_passed": true,
+        "elapsed_seconds": 9.630149416159838
+      }
+    },
+    {
+      "sequence": 17,
+      "task": "tiered-invoice",
+      "arm": "verify",
+      "status": "CORRECT_DELIVERY",
+      "total_seconds": 216.99904545815662,
+      "workflow_seconds": 207.31993441749364,
+      "grading_seconds": 9.679111249744892,
+      "model_seconds": 204.759364,
+      "plan_status": null,
+      "review_status": "VALID_ADVISORY",
+      "initial_candidate": {
+        "path": "/Users/grove/projects/proofline/.proofline/issue32-sol-luna-high-lenient/assignments/17-tiered-invoice-verify/coding/implementation/inputs/product",
+        "tree": "6e2e3d4be3eaf18f5d77bcbe0816158306e8fc39"
+      },
+      "final_candidate": {
+        "path": "/Users/grove/projects/proofline/.proofline/issue32-sol-luna-high-lenient/assignments/17-tiered-invoice-verify/coding/implementation/inputs/product",
+        "tree": "6e2e3d4be3eaf18f5d77bcbe0816158306e8fc39"
+      },
+      "correction": {
+        "attempted": false,
+        "reason": "No qualified immutable assertion defect; review observations alone cannot trigger repair"
+      },
+      "controller_processes": 131,
+      "operator_candidate_edits": 0,
+      "extra_worker_messages": 0,
+      "stages": [
+        {
+          "stage": "implementation",
+          "model": "gpt-6-luna",
+          "reasoning_effort": "high",
+          "status": "OBSERVED",
+          "thread_id": "01a136ef-fdf4-7172-a7ee-244a8951ac55",
+          "elapsed_seconds": 82.568017,
+          "usage": {
+            "input_tokens": 147173,
+            "cached_input_tokens": 122880,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 5663,
+            "reasoning_output_tokens": 1505
+          },
+          "observed_session_usage": {
+            "input_tokens": 147173,
+            "cached_input_tokens": 122880,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 5663,
+            "reasoning_output_tokens": 1505
+          },
+          "tool_executions": 12,
+          "failed_commands": 2
+        },
+        {
+          "stage": "verification",
+          "model": "gpt-6.1-sol",
+          "reasoning_effort": "high",
+          "status": "OBSERVED",
+          "thread_id": "01a136f1-468a-7a80-95b2-23863bf487cd",
+          "elapsed_seconds": 122.191347,
+          "usage": {
+            "input_tokens": 119204,
+            "cached_input_tokens": 68224,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 4034,
+            "reasoning_output_tokens": 821
+          },
+          "observed_session_usage": {
+            "input_tokens": 119204,
+            "cached_input_tokens": 68224,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 4034,
+            "reasoning_output_tokens": 821
+          },
+          "tool_executions": 9,
+          "failed_commands": 0,
+          "findings": []
+        }
+      ],
+      "check_seconds": 0.9265157082118094,
+      "check_statuses": [
+        "CHECKS PASSED"
+      ],
+      "initial_grade": {
+        "available": true,
+        "correct": true,
+        "failures": [],
+        "repository_tests_passed": true,
+        "elapsed_seconds": 9.679085958283395
+      },
+      "final_grade": {
+        "available": true,
+        "correct": true,
+        "failures": [],
+        "repository_tests_passed": true,
+        "elapsed_seconds": 9.679085958283395
+      }
+    },
+    {
+      "sequence": 18,
+      "task": "tiered-invoice",
+      "arm": "sol",
+      "status": "CORRECT_DELIVERY",
+      "total_seconds": 162.96371575025842,
+      "workflow_seconds": 153.1536443331279,
+      "grading_seconds": 9.810071708168834,
+      "model_seconds": 151.95628,
+      "plan_status": null,
+      "review_status": null,
+      "initial_candidate": {
+        "path": "/Users/grove/projects/proofline/.proofline/issue32-sol-luna-high-lenient/assignments/18-tiered-invoice-sol/coding/implementation/inputs/product",
+        "tree": "92cddf8afe3b8239563c5e1679d5e04fc2e83018"
+      },
+      "final_candidate": {
+        "path": "/Users/grove/projects/proofline/.proofline/issue32-sol-luna-high-lenient/assignments/18-tiered-invoice-sol/coding/implementation/inputs/product",
+        "tree": "92cddf8afe3b8239563c5e1679d5e04fc2e83018"
+      },
+      "correction": {
+        "attempted": false,
+        "reason": "No qualified immutable assertion defect; review observations alone cannot trigger repair"
+      },
+      "controller_processes": 93,
+      "operator_candidate_edits": 0,
+      "extra_worker_messages": 0,
+      "stages": [
+        {
+          "stage": "implementation",
+          "model": "gpt-6.1-sol",
+          "reasoning_effort": "high",
+          "status": "OBSERVED",
+          "thread_id": "01a136f3-4e07-7990-ac7b-4de9610c36b0",
+          "elapsed_seconds": 151.95628,
+          "usage": {
+            "input_tokens": 98003,
+            "cached_input_tokens": 76288,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 4731,
+            "reasoning_output_tokens": 497
+          },
+          "observed_session_usage": {
+            "input_tokens": 98003,
+            "cached_input_tokens": 76288,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 4731,
+            "reasoning_output_tokens": 497
+          },
+          "tool_executions": 8,
+          "failed_commands": 0
+        }
+      ],
+      "check_seconds": 0,
+      "check_statuses": [],
+      "initial_grade": {
+        "available": true,
+        "correct": true,
+        "failures": [],
+        "repository_tests_passed": true,
+        "elapsed_seconds": 9.810028667096049
+      },
+      "final_grade": {
+        "available": true,
+        "correct": true,
+        "failures": [],
+        "repository_tests_passed": true,
+        "elapsed_seconds": 9.810028667096049
+      }
+    },
+    {
+      "sequence": 19,
+      "task": "tiered-invoice",
+      "arm": "plan",
+      "status": "CORRECT_DELIVERY",
+      "total_seconds": 409.28570012468845,
+      "workflow_seconds": 399.7318446235731,
+      "grading_seconds": 9.553855792153627,
+      "model_seconds": 398.151643,
+      "plan_status": "VALID_ADVISORY",
+      "review_status": null,
+      "initial_candidate": {
+        "path": "/Users/grove/projects/proofline/.proofline/issue32-sol-luna-high-lenient/assignments/19-tiered-invoice-plan/coding/implementation/inputs/product",
+        "tree": "0c77e3586be9e0b999ded1a58d4164ea11ca8a81"
+      },
+      "final_candidate": {
+        "path": "/Users/grove/projects/proofline/.proofline/issue32-sol-luna-high-lenient/assignments/19-tiered-invoice-plan/coding/implementation/inputs/product",
+        "tree": "0c77e3586be9e0b999ded1a58d4164ea11ca8a81"
+      },
+      "correction": {
+        "attempted": false,
+        "reason": "No qualified immutable assertion defect; review observations alone cannot trigger repair"
+      },
+      "controller_processes": 108,
+      "operator_candidate_edits": 0,
+      "extra_worker_messages": 0,
+      "stages": [
+        {
+          "stage": "planning",
+          "model": "gpt-6.1-sol",
+          "reasoning_effort": "high",
+          "status": "OBSERVED",
+          "thread_id": "01a136f5-ca1f-7b42-94e7-14b1cc84e81a",
+          "elapsed_seconds": 258.457654,
+          "usage": {
+            "input_tokens": 350462,
+            "cached_input_tokens": 311552,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 6596,
+            "reasoning_output_tokens": 832
+          },
+          "observed_session_usage": {
+            "input_tokens": 350462,
+            "cached_input_tokens": 311552,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 6596,
+            "reasoning_output_tokens": 832
+          },
+          "tool_executions": 21,
+          "failed_commands": 2
+        },
+        {
+          "stage": "implementation",
+          "model": "gpt-6-luna",
+          "reasoning_effort": "high",
+          "status": "OBSERVED",
+          "thread_id": "01a136f9-be08-7762-8ee9-fb62d7783ac4",
+          "elapsed_seconds": 139.693989,
+          "usage": {
+            "input_tokens": 188837,
+            "cached_input_tokens": 156416,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 7379,
+            "reasoning_output_tokens": 1210
+          },
+          "observed_session_usage": {
+            "input_tokens": 188837,
+            "cached_input_tokens": 156416,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 7379,
+            "reasoning_output_tokens": 1210
+          },
+          "tool_executions": 18,
+          "failed_commands": 5
+        }
+      ],
+      "check_seconds": 0,
+      "check_statuses": [],
+      "initial_grade": {
+        "available": true,
+        "correct": true,
+        "failures": [],
+        "repository_tests_passed": true,
+        "elapsed_seconds": 9.553812708705664
+      },
+      "final_grade": {
+        "available": true,
+        "correct": true,
+        "failures": [],
+        "repository_tests_passed": true,
+        "elapsed_seconds": 9.553812708705664
+      }
+    },
+    {
+      "sequence": 20,
+      "task": "tiered-invoice",
+      "arm": "luna",
+      "status": "CORRECT_DELIVERY",
+      "total_seconds": 89.91946108313277,
+      "workflow_seconds": 80.29864975018427,
+      "grading_seconds": 9.620811624918133,
+      "model_seconds": 79.111543,
+      "plan_status": null,
+      "review_status": null,
+      "initial_candidate": {
+        "path": "/Users/grove/projects/proofline/.proofline/issue32-sol-luna-high-lenient/assignments/20-tiered-invoice-luna/coding/implementation/inputs/product",
+        "tree": "ccbe4c26c867be92c71f28754221954ab270389a"
+      },
+      "final_candidate": {
+        "path": "/Users/grove/projects/proofline/.proofline/issue32-sol-luna-high-lenient/assignments/20-tiered-invoice-luna/coding/implementation/inputs/product",
+        "tree": "ccbe4c26c867be92c71f28754221954ab270389a"
+      },
+      "correction": {
+        "attempted": false,
+        "reason": "No qualified immutable assertion defect; review observations alone cannot trigger repair"
+      },
+      "controller_processes": 93,
+      "operator_candidate_edits": 0,
+      "extra_worker_messages": 0,
+      "stages": [
+        {
+          "stage": "implementation",
+          "model": "gpt-6-luna",
+          "reasoning_effort": "high",
+          "status": "OBSERVED",
+          "thread_id": "01a136fc-09da-7c11-a810-9b0d25b9a888",
+          "elapsed_seconds": 79.111543,
+          "usage": {
+            "input_tokens": 167852,
+            "cached_input_tokens": 142080,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 6320,
+            "reasoning_output_tokens": 1777
+          },
+          "observed_session_usage": {
+            "input_tokens": 167852,
+            "cached_input_tokens": 142080,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 6320,
+            "reasoning_output_tokens": 1777
+          },
+          "tool_executions": 24,
+          "failed_commands": 3
+        }
+      ],
+      "check_seconds": 0,
+      "check_statuses": [],
+      "initial_grade": {
+        "available": true,
+        "correct": true,
+        "failures": [],
+        "repository_tests_passed": true,
+        "elapsed_seconds": 9.620769707951695
+      },
+      "final_grade": {
+        "available": true,
+        "correct": true,
+        "failures": [],
+        "repository_tests_passed": true,
+        "elapsed_seconds": 9.620769707951695
+      }
+    }
+  ],
+  "pricing_sensitivity": {
+    "label": "Hypothetical standard token-rate projection; NOT observed credits or dollars",
+    "source": "https://learn.chatgpt.com/docs/pricing",
+    "accessed": "2026-10-13",
+    "credits_per_million_input_cached_output": {
+      "gpt-6-luna": [
+        "2.5",
+        "0.25",
+        "12.5"
+      ],
+      "gpt-6.1-sol": [
+        "50",
+        "2.5",
+        "250"
+      ]
+    },
+    "projected_credits": {
+      "luna": {
+        "total": 0.7544205,
+        "per_correct_delivery": 0.188605125
+      },
+      "plan": {
+        "total": 17.2141285,
+        "per_correct_delivery": 4.303532125
+      },
+      "verify": {
+        "total": 12.752672,
+        "per_correct_delivery": 3.188168
+      },
+      "hybrid": {
+        "total": 28.608993,
+        "per_correct_delivery": 7.15224825
+      },
+      "sol": {
+        "total": 10.97851,
+        "per_correct_delivery": 2.7446275
+      }
+    },
+    "excludes": "Check compute, preparation/qualification, authoring, human attention and unexposed provider charges",
+    "family": "C(r)=L+r*S per correct delivery. Luna cache/input=.1; Sol cache/input=.05; output/input=5. r=Sol/Luna uncached unit price; published standard credit ratio is 20.",
+    "components": {
+      "luna": {
+        "L": 0.07544205,
+        "S": 0.0
+      },
+      "plan": {
+        "L": 0.07362085,
+        "S": 0.0823896
+      },
+      "verify": {
+        "L": 0.0662152,
+        "S": 0.0604526
+      },
+      "hybrid": {
+        "L": 0.0749973,
+        "S": 0.1392951
+      },
+      "sol": {
+        "L": 0.0,
+        "S": 0.05489255
+      }
+    },
+    "hybrid_cheaper_than_luna_requires_r_below": 0.003192861773314352,
+    "hybrid_vs_sol_positive_break_even_r": null
+  }
+}

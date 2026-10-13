@@ -1,0 +1,205 @@
+{
+  "model_dispatches": 0,
+  "scope": "Read-only experimental thread estimates; not observed spending",
+  "argv": [
+    "/opt/homebrew/bin/codex",
+    "--no-daemon",
+    "app-server",
+    "--listen",
+    "stdio://",
+    "--strict-config",
+    "-c",
+    "sqlite_home=\"/Users/grove/projects/proofline/.proofline/issue32-lenient-billing/state\"",
+    "-c",
+    "mcp_servers={}",
+    "-c",
+    "apps._default.enabled=false"
+  ],
+  "threads": [
+    "01a136b9-af4f-7f83-84c1-b9e8cf0c5995",
+    "01a136b6-271f-7c12-a3fa-c9e7b46d211f",
+    "01a136cb-2c79-7aa2-82d8-585d80650be7",
+    "01a136b4-67b0-7a81-b202-c092d1b237cb",
+    "01a136fc-09da-7c11-a810-9b0d25b9a888",
+    "01a136d4-02d4-7c93-be18-a9a0e4dccdc7",
+    "01a136d5-298f-73e2-9484-da6721dfae75",
+    "01a136ef-fdf4-7172-a7ee-244a8951ac55",
+    "01a136f1-468a-7a80-95b2-23863bf487cd",
+    "01a136cf-92dc-75b2-a49a-8e23c9003822",
+    "01a136d1-c0ee-7e80-b8dc-1e5ff6c55495",
+    "01a136cc-957c-7ea1-b5ee-0c2d39a20fd4",
+    "01a136c9-fb68-7f93-9988-e517952c497a",
+    "01a136c6-7cef-7291-93f8-2168852d3aba",
+    "01a136e8-d931-7c82-b473-83ca13f3f882",
+    "01a136e6-0c7e-7de2-afd8-b4eca2a7420e",
+    "01a136c3-db1d-7541-9fce-f6ec4386d1d0",
+    "01a136b1-40fd-7423-9a61-3788961b8f13",
+    "01a136b2-5225-7d22-a0ab-c185bf292557",
+    "01a136d7-2fe2-73d3-97d7-4491f0025f92",
+    "01a136f3-4e07-7990-ac7b-4de9610c36b0",
+    "01a136ec-b5e0-7903-968c-091d59680819",
+    "01a136ed-d4a3-7192-83cf-c9fca9ad495f",
+    "01a136e9-f7c5-7cc0-ba8c-8df6e5b7ef09",
+    "01a136ba-fc6a-7723-be5b-ed092ffd6f9f",
+    "01a136e3-a7b7-7782-858e-9d8b5352567c",
+    "01a136bf-f5dd-70d1-8c2e-bde2fc63ffbd",
+    "01a136c1-e883-75e3-8d1c-ad8370648c11",
+    "01a136bc-59fa-7d40-b79f-0ad225233b88",
+    "01a136e0-a3e8-7df2-a743-1705fd8c1c75",
+    "01a136e1-c359-7cc3-9542-c6985480ec79",
+    "01a136dc-7358-7193-8ebd-d1fcb379639e",
+    "01a136de-d378-7c10-935e-05550e8a88a8",
+    "01a136d9-4c68-7260-9b8c-1aa306c5790d",
+    "01a136f9-be08-7762-8ee9-fb62d7783ac4",
+    "01a136f5-ca1f-7b42-94e7-14b1cc84e81a"
+  ],
+  "responses": [
+    {
+      "thread_id": "01a136b9-af4f-7f83-84c1-b9e8cf0c5995",
+      "threadUsage": null
+    },
+    {
+      "thread_id": "01a136b6-271f-7c12-a3fa-c9e7b46d211f",
+      "threadUsage": null
+    },
+    {
+      "thread_id": "01a136cb-2c79-7aa2-82d8-585d80650be7",
+      "threadUsage": null
+    },
+    {
+      "thread_id": "01a136b4-67b0-7a81-b202-c092d1b237cb",
+      "threadUsage": null
+    },
+    {
+      "thread_id": "01a136fc-09da-7c11-a810-9b0d25b9a888",
+      "threadUsage": null
+    },
+    {
+      "thread_id": "01a136d4-02d4-7c93-be18-a9a0e4dccdc7",
+      "threadUsage": null
+    },
+    {
+      "thread_id": "01a136d5-298f-73e2-9484-da6721dfae75",
+      "threadUsage": null
+    },
+    {
+      "thread_id": "01a136ef-fdf4-7172-a7ee-244a8951ac55",
+      "threadUsage": null
+    },
+    {
+      "thread_id": "01a136f1-468a-7a80-95b2-23863bf487cd",
+      "threadUsage": null
+    },
+    {
+      "thread_id": "01a136cf-92dc-75b2-a49a-8e23c9003822",
+      "threadUsage": null
+    },
+    {
+      "thread_id": "01a136d1-c0ee-7e80-b8dc-1e5ff6c55495",
+      "threadUsage": null
+    },
+    {
+      "thread_id": "01a136cc-957c-7ea1-b5ee-0c2d39a20fd4",
+      "threadUsage": null
+    },
+    {
+      "thread_id": "01a136c9-fb68-7f93-9988-e517952c497a",
+      "threadUsage": null
+    },
+    {
+      "thread_id": "01a136c6-7cef-7291-93f8-2168852d3aba",
+      "threadUsage": null
+    },
+    {
+      "thread_id": "01a136e8-d931-7c82-b473-83ca13f3f882",
+      "threadUsage": null
+    },
+    {
+      "thread_id": "01a136e6-0c7e-7de2-afd8-b4eca2a7420e",
+      "threadUsage": null
+    },
+    {
+      "thread_id": "01a136c3-db1d-7541-9fce-f6ec4386d1d0",
+      "threadUsage": null
+    },
+    {
+      "thread_id": "01a136b1-40fd-7423-9a61-3788961b8f13",
+      "threadUsage": null
+    },
+    {
+      "thread_id": "01a136b2-5225-7d22-a0ab-c185bf292557",
+      "threadUsage": null
+    },
+    {
+      "thread_id": "01a136d7-2fe2-73d3-97d7-4491f0025f92",
+      "threadUsage": null
+    },
+    {
+      "thread_id": "01a136f3-4e07-7990-ac7b-4de9610c36b0",
+      "threadUsage": null
+    },
+    {
+      "thread_id": "01a136ec-b5e0-7903-968c-091d59680819",
+      "threadUsage": null
+    },
+    {
+      "thread_id": "01a136ed-d4a3-7192-83cf-c9fca9ad495f",
+      "threadUsage": null
+    },
+    {
+      "thread_id": "01a136e9-f7c5-7cc0-ba8c-8df6e5b7ef09",
+      "threadUsage": null
+    },
+    {
+      "thread_id": "01a136ba-fc6a-7723-be5b-ed092ffd6f9f",
+      "threadUsage": null
+    },
+    {
+      "thread_id": "01a136e3-a7b7-7782-858e-9d8b5352567c",
+      "threadUsage": null
+    },
+    {
+      "thread_id": "01a136bf-f5dd-70d1-8c2e-bde2fc63ffbd",
+      "threadUsage": null
+    },
+    {
+      "thread_id": "01a136c1-e883-75e3-8d1c-ad8370648c11",
+      "threadUsage": null
+    },
+    {
+      "thread_id": "01a136bc-59fa-7d40-b79f-0ad225233b88",
+      "threadUsage": null
+    },
+    {
+      "thread_id": "01a136e0-a3e8-7df2-a743-1705fd8c1c75",
+      "threadUsage": null
+    },
+    {
+      "thread_id": "01a136e1-c359-7cc3-9542-c6985480ec79",
+      "threadUsage": null
+    },
+    {
+      "thread_id": "01a136dc-7358-7193-8ebd-d1fcb379639e",
+      "threadUsage": null
+    },
+    {
+      "thread_id": "01a136de-d378-7c10-935e-05550e8a88a8",
+      "threadUsage": null
+    },
+    {
+      "thread_id": "01a136d9-4c68-7260-9b8c-1aa306c5790d",
+      "threadUsage": null
+    },
+    {
+      "thread_id": "01a136f9-be08-7762-8ee9-fb62d7783ac4",
+      "threadUsage": null
+    },
+    {
+      "thread_id": "01a136f5-ca1f-7b42-94e7-14b1cc84e81a",
+      "threadUsage": null
+    }
+  ],
+  "status": "OBSERVED",
+  "elapsed_seconds": 46.317553374916315,
+  "stderr": ""
+}

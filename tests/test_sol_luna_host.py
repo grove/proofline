@@ -125,6 +125,56 @@ class HostContinuationTests(unittest.TestCase):
             self.assertEqual(result['model_dispatches'],0)
             self.assertEqual(result['source_control'],control)
 
+    def test_completed_live_archive_retains_native_receipts_and_original_sources(self):
+        import zipfile
+        directory=original.ROOT/'evaluation/results/issue32-lenient-results'
+        summary=json.loads((directory/'results-summary.json').read_text())
+        for name,digest in json.loads((directory/'hashes.json').read_text()).items():
+            self.assertEqual(original.host.sha256((directory/name).read_bytes()),digest,name)
+        with zipfile.ZipFile(directory/'frozen-source.zip') as archive:
+            name='evaluation/sol_luna_host/FREEZE.json'
+            frozen=json.loads(archive.read(name))
+            self.assertEqual(archive.read(name),(study.HERE/'FREEZE.json').read_bytes())
+            self.assertEqual(original.host.sha256(archive.read(name)),summary['freeze_sha256'])
+            for name,digest in frozen['sha256'].items():
+                self.assertEqual(original.host.sha256(archive.read(name)),digest,name)
+        with zipfile.ZipFile(directory/'raw-evidence.zip') as archive, tempfile.TemporaryDirectory() as temporary:
+            raw=archive.read('results.json')
+            self.assertEqual(original.host.sha256(raw),summary['source_result_sha256'])
+            result=json.loads(raw)
+            self.assertEqual(result['status'],'COMPLETE')
+            from evaluation.sol_luna_host.accounting import normalize
+            self.assertEqual(normalize(result)['metrics'],summary['metrics'])
+            self.assertEqual(len(result['assignments']),20)
+            self.assertEqual({(r['task'],r['arm']) for r in result['assignments']},
+                             {(r['task'],r['arm']) for r in original.ledger()})
+            threads=set()
+            for row in result['assignments']:
+                source=(Path(row['seed']).parent/'source.md').relative_to(study.STORE)
+                source=archive.read(str(source))
+                self.assertEqual(original.host.sha256(source),frozen['tasks'][row['task']]['source_sha256'])
+                for stage in row['stages']:
+                    receipt=dict(stage['receipt']);argv=receipt['argv']
+                    self.assertIn('model="'+stage['model']+'"',argv)
+                    self.assertIn('model_reasoning_effort="high"',argv)
+                    events=Path(receipt['events_path']).relative_to(study.STORE)
+                    path=Path(temporary)/'events.jsonl';path.write_bytes(archive.read(str(events)))
+                    receipt['events_path']=str(path)
+                    observed=original.live.read_events(receipt)
+                    self.assertEqual(observed['thread_id'],stage['thread_id'])
+                    self.assertEqual(observed['usage'],stage['usage'])
+                    if stage['stage']=='correction':
+                        self.assertEqual(stage['thread_id'],row['correction']['thread_id'])
+                    else:
+                        self.assertNotIn(stage['thread_id'],threads)
+                    threads.add(stage['thread_id'])
+                    inputs=Path(argv[argv.index('--output-schema')+1]).parent
+                    copy=(inputs/'source.md').relative_to(study.STORE)
+                    self.assertEqual(archive.read(str(copy)),source)
+                    if stage['stage']=='verification':
+                        self.assertTrue(any(source.decode() in c['aggregated_output']
+                                            for c in observed['commands'].values()))
+
     def test_episode_uses_declared_stage_and_shared_budgets_without_changing_grading_or_repair(self):
         from contextlib import ExitStack
         from tests.test_sol_luna import stage

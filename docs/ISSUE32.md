@@ -1,290 +1,158 @@
-# Sol-guided Luna: native blockers diagnosed, empirical acceptance incomplete
+# Sol-guided Luna: completed native pilot, no observed assistance gain
 
-Issue [#32](https://github.com/grove/proofline/issues/32) asks whether selective
-Sol planning/verification enables Luna to approach Sol implementation quality at
-a lower **total cost per independently correct delivery**. This change implements
-the five-arm runner and freezes twenty assignments. **The complete native
-Sol → Luna → Sol → original-Luna correction is qualified. The first primary
-attempt stopped at its review lifecycle deadline; 19 assignments did not run.
-There is no completed matched comparison, measured correctness gain or monetary
-saving.**
-The issue must remain open until its empirical acceptance is genuinely met.
+Issue [#32](https://github.com/grove/proofline/issues/32) asks whether Sol:high
+planning/verification helps Luna:high deliver independently correct software at
+lower **total cost per correct delivery** than either model alone.
+The separately authorized live comparison completed **20/20 correct deliveries,
+4/4 in every arm, initially and finally**. No managed correction was needed.
+Sol assistance added time without an observed correctness gain on these tasks.
+Observed dollar spending remains unknown, so monetary acceptance is unestablished.
+PR [#33](https://github.com/grove/proofline/pull/33) remains unmerged and the issue
+remains open.
 
-The original declaration stopped at 0/20. Its native sandbox failed inside the
-enclosing execution sandbox (exit 71), and its catalog readback timed out at 15
-seconds. These were qualification failures, not evidence of unavailable models.
-The same native sandbox works from the host, including denial of private reads,
-protected writes and loopback networking. App-server initialization took 37–39
-seconds; a stack sample showed rollout backfill during startup. The repaired
-client awaits successful initialization, uses explicit stdio, reads all catalog
-pages and drains bounded stderr under a 60-second total deadline. Both exact
-models advertise `high`. Catalog support is not completed-inference evidence.
+The [completed report](../evaluation/results/issue32-lenient-results/README.md)
+contains the actual native receipts, independent grades, all twenty outcomes,
+phase times, model-separated tokens, failed commands and pricing sensitivity.
 
-A second no-model preflight exposed a missing denial fixture: `results.json`
-was not written until `finally`, so the canary read an absent file and returned
-unknown. The fresh runner materializes the host-owned PREPARING record before
-qualification. No denial requirement, isolation profile or managed restriction
-was relaxed. All seventeen native grader controls and the existing native
-Intentline/Proofline roundtrip passed independently of model calls.
+| Arm | Correct deliveries | Mean total seconds per correct delivery |
+| --- | --- | ---: |
+| Luna:high alone | 4/4 | 102.60 |
+| Sol plan → Luna | 4/4 | 322.37 |
+| Luna → Sol verification | 4/4 | 207.40 |
+| Sol plan → Luna → Sol verification | 4/4 | 463.45 |
+| Sol:high alone | 4/4 | 151.83 |
 
-The [fresh continuation](../evaluation/sol_luna_host/protocol.json) and its
-[freeze](../evaluation/sol_luna_host/FREEZE.json) reuse the original runner.
-Original requests, product seeds, order, checks, private grading expectations
-and correction policy are unchanged. The proposed primary budgets are explicitly
-changed and require separate authorization; stopped cohorts are not pooled.
-The earlier stopped declaration is never resumed. The additional failed
-no-model preflight and diagnostic receipts are retained in
-[host diagnosis](../evaluation/results/issue32-host-diagnosis/).
-The user authorized the first repaired live freeze. Its 75-second Sol control
-exported an Intentline plan but did not finish its native turn; usage and dollar
-spending are unknown. Its grader-denial canary also named an absent path. The
-[stopped attempt](../evaluation/results/issue32-native-stopped/README.md) retains
-the exact authorized source and all evidence separately. The user then requested
-more lenient timeouts and continuation. The fresh declaration permits 180 seconds
-per qualification call within 900 seconds and pins a real grader-path alias.
-No isolation requirement or primary correction trigger was relaxed. The
-[qualified attempt](../evaluation/results/issue32-qualified-stopped/README.md)
-completed the four native handoffs in 343.355 seconds, with distinct planning,
-implementation and review threads and correction on the original Luna thread.
-The first primary Luna candidate passed public checks and a separately labeled
-post-stop native finite grade. Sol emitted a completed review turn after about
-102 seconds, but CLI shutdown exceeded the 120-second lifecycle cap. The host
-killed and reaped it; that invocation and delivery remain unverified.
+The full hybrid took 4.52× Luna-only time and 3.05× Sol-only time. False
+acceptances, correct-but-blocked deliveries, unavailable assignments and
+finite-grader omissions despite green repository tests were all zero.
+Thirty-six native turns completed: 16 Luna and 20 Sol. All eight advisory plans
+and eight independent reviews were valid; reviews reported no defects. Four
+fixed tasks and one repetition create a correctness ceiling, not evidence of
+reliability on arbitrary software. The verification package does not identify
+checks, review and repair as separate causal contributions.
 
-The new proposal raises planning/review to 300 seconds, shared native allocation
-to 900 seconds and episode time to 1,200 seconds, equally across arms. It reuses
-the exact archived completed native control and reruns model-free native
-qualification. It never replays the interrupted primary assignment in the old
-declaration. Explicit authorization of this fresh budget policy is required.
+## Blockers resolved and history retained
 
-The [correction assessment](ISSUE32_CORRECTIONS.md) proposes a separately
-declared comparison where Sol selects frozen, independently validated public
-probes. It is unimplemented and unauthorized. The primary study never repairs
-from an uncorroborated Sol finding or a Sol-authored expected result.
+The original declaration stopped at 0/20: native sandbox-exec returned exit 71
+inside the enclosing execution sandbox, and model/list timed out at 15 seconds.
+Host execution supports the **same native sandbox**, independently tested for
+private-read, protected-write and loopback-network denial. No permission profile
+or managed restriction was weakened. Actual completed inference now qualifies
+both exact models at `high`.
 
-The [protocol](../evaluation/sol_luna/protocol.json),
-[freeze](../evaluation/sol_luna/FREEZE.json),
-[preparation evidence](../evaluation/results/issue32-preparation/README.md), and
-[runner](../evaluation/sol_luna/study.py) are separate from the completed
-[#16 / PR #31 study](../evaluation/results/matched-v5-20261013/README.md).
-All its frozen files, results, failures and source archives remain unchanged.
+App-server initialization took 37–39 seconds. A stack sample showed rollout
+backfill during startup; removing no-daemon did not shorten it. The repaired
+[catalog client](../checks/codex_catalog.py) awaits successful initialization,
+then sends initialized and model/list using explicit stdio. It handles pagination,
+drains bounded stderr and kills/reaps failed process groups under a 60-second
+total deadline. Tests cover ordering, RPC/EOF/timeout failures, catalog identity,
+reasoning support and bounded output. Catalog advertisement alone is not model
+access qualification.
 
-That study delivered 4/4 in every Sol-implementation arm, a correctness ceiling:
-Intentline-only and combined added 72.9% and 89.1% episode time without an
-observed gain. Its earlier catalog drift and invalid worker-export failures
-motivate this pinned catalog and the distinction between infrastructure stops
-and scored advisory failures. The new tasks and fresh Sol-only arm avoid pooling
-that easy baseline into the Luna comparison.
+The denial fixture also needed a real host-owned results.json before preflight;
+previously it existed only in finally. A grader-path canary required the pinned
+corpus alias rather than an absent file. Both defects were fixed and tested.
+Seventeen native grader controls and the existing model-free
+Intentline/Proofline roundtrip passed before live dispatch.
 
-## What is prepared
+Historical evidence remains separate and immutable:
 
-| Arm | Implementation | Additional stages |
-| --- | --- | --- |
-| A `luna` | GPT-6 Luna:high | Normal tests/self-checks |
-| B `plan` | GPT-6 Luna:high | Sol:high advisory Intentline plan |
-| C `verify` | GPT-6 Luna:high | Actual Proofline checks, fresh Sol:high source review, at most one qualified Luna correction |
-| D `hybrid` | GPT-6 Luna:high | Sol plan plus C's verification/correction |
-| E `sol` | GPT-6.1 Sol:high | Fresh normal tests/self-checks reference |
+- [Original preparation](../evaluation/results/issue32-preparation/README.md)
+  and [host diagnosis](../evaluation/results/issue32-host-diagnosis/README.md).
+- [75-second stopped live qualification](../evaluation/results/issue32-native-stopped/README.md):
+  one Sol dispatch, no completed handoff, 0/20 primary assignments; usage unknown.
+- [180-second qualified handoff and stopped primary attempt](../evaluation/results/issue32-qualified-stopped/README.md):
+  four actual Sol → Luna → Sol → original-Luna turns completed in 343.35 seconds.
+  The first primary Luna candidate passed public checks and a labeled post-stop
+  finite grade. Sol completed inference after about 102 seconds, but CLI shutdown
+  exceeded its 120-second lifecycle cap; the invocation/delivery stayed unverified.
+- [Earlier #16 study](../evaluation/results/matched-v5-20261013/README.md):
+  its 4/4 Sol correctness ceiling and overhead observations are not pooled here.
 
-Exact IDs are `gpt-6-luna` and `gpt-6.1-sol`, both at `high`. The pinned local
-catalog lists support for these settings, as do the official
-[Sol](https://developers.openai.com/api/docs/models/gpt-6.1-sol) and
-[Luna](https://developers.openai.com/api/docs/models/gpt-6-luna) documentation.
-Native `model/list` and isolation passed, and the separately authorized handoff
-completed. The provider's backend weight revision is unobservable.
-Every invocation supplies the pinned catalog and explicit reasoning setting.
+The user requested more lenient timeouts, then explicitly authorized fresh
+`issue32-sol-luna-high-lenient`, freeze
+`c8ea1f9b55ce5f8319e3c77090caf6c8038c597c0bc610348751382dc011da4e`.
+No stopped declaration was resumed. The completed native control was reused
+without new inference; fresh model-free native qualification took 201.51 seconds.
 
-Four new tasks target plausible omissions beyond a green example suite:
+## Frozen workflow and trust boundaries
 
-| Task | Main traps and independently observed obligations |
-| --- | --- |
-| Idempotent ledger | Conflicting/invalid replays, intermediate overdrafts, replay ordering, ignored extra keys |
-| Path router | Precedence, split before strict UTF-8 decoding, decode once, encoded slash, empty wildcard tails, unused invalid routes |
-| Stable scheduler | Simultaneous completions, original-order readiness, immediate zero-duration completion, worker reuse, disconnected cycles |
-| Tiered invoice | Graduated prices, exact large integers, aggregate half-up rounding, remainder ties, repeated rows, unused invalid tiers |
+The [continuation protocol](../evaluation/sol_luna_host/protocol.json) and
+[freeze](../evaluation/sol_luna_host/FREEZE.json) preserve the original requests,
+starting implementations, order, private grading expectations and correction
+policy. Every assignment gets a 1,200-second total / 900-second shared native
+budget. Planning/review cap at 300 seconds, correction at 180; checks and grading
+limits are unchanged. Verifying arms reserve 300 native seconds before
+implementation. These are equal wall-time policies, not identical compute.
+The maximum was 44 native turns / 24,000 seconds; actual execution used 36 turns
+and 83.19 minutes. No retry, substitution, effort change or grader repair occurred.
 
-All include batch, error/input immutability, extra keys and exact CLI compatibility.
-The public tests cover only simple examples. Two immutable public assertions per
-task expose an ordinary case and the **original request's explicit example** to
-every arm. The other literal grading vectors, expected outputs and controls stay
-outside all worker read permissions. Sol never receives independent grading
-results, even during correction. Model-authored tests and claims cannot grade
-their own outcome.
+The four tasks are idempotent ledger, path router, stable scheduler and tiered
+invoice. They exercise replay conflicts, intermediate overdrafts, strict decoding,
+precedence, zero-duration scheduling, disconnected cycles, exact integer rounding,
+repeated rows, validation of unused entries, batch handling, nonmutation and CLI
+compatibility. Private expectations were unavailable to either worker model.
+Four correct and four alternative controls passed; nine defective controls failed
+despite green public suites, including exact JSON-type and omitted-batch defects.
+This qualifies a finite executable grader, not every possible input.
 
-Seventeen offline controls passed: four reference and four alternative
-implementations were accepted; four algorithm defects, one JSON-type defect and four missing-batch
-implementations were rejected despite green public suites. The same seventeen
-native controls also passed during repaired qualification. Exact JSON type checks reject float-for-integer outputs accepted by
-Python equality. This establishes a finite grader control, not correctness on every
-possible input or an empirical model result.
+The existing runner, coding_attempt, candidate snapshots, native canaries,
+local_run.check/inspect, Intentline exporter/adapter and actionable_failure APIs
+are reused. Historical source bytes remain pinned. No production CLI, dependency,
+new orchestration service or mandatory planning/review/approval stage was added.
+`proofline.py check` stays optional and model-free.
 
-## Reuse and trust boundaries
+Sol planning exports one advisory Intentline S1/schema-1/revision-1 plan. Luna
+still receives the complete original request. Fresh Sol verification receives the
+complete source, frozen candidate/diff and actual receipts with earlier-plan
+metadata removed. Native command output confirms a full-source reread in all
+eight reviews. The final audit revalidated all 36 native event/thread identities,
+exact model/high arguments, eight check bindings, source copies, unchanged final
+trees, budgets and frozen inputs. A focused regression validates archived live
+evidence using the existing native parser.
 
-The runner calls the existing `coding_attempt.run`, candidate capture/freezing,
-`codex_live.run_stage`, native isolation canaries, `local_run.check`/`inspect`,
-Intentline exporter/strict adapter and `actionable_failure` APIs. Historical
-grading/canary modules have fixed corpus globals and hash-pinned source. The
-small adapter loads them into separate namespaces bound to this corpus; it does
-not change their historical bytes or copy their grading/execution implementation.
-No production CLI, mandatory stage, dependency or orchestration service is added.
-`proofline.py check` remains model-free.
+One correction requires an intact candidate-bound assertion failure in immutable
+public check 0 plus the existing strict actionable_failure validation. Only the
+original Luna thread can correct; the new candidate is frozen, checked and
+independently graded. Candidate-authored tests, Sol-authored expectations,
+speculative findings, green checks, unchecked requirement links, private grades
+and unavailable isolation cannot trigger repair. Actual same-thread repair was
+qualified on a staged disposable control; no primary defect exercised it.
 
-Planning uses one Sol pass through the pinned existing Intentline skill and
-offline prepare/propose/check/render/export interfaces: only S1, schema 1,
-initial revision 1. Its source identities, proposed oracles, constraints and
-gaps remain advisory. Invalid worker advice is retained and scored; it cannot
-stop remaining assignments or create a product handoff blocker. Both verifying
-arms predeclare direct checks even if an optional plan import fails.
+The [correction assessment](ISSUE32_CORRECTIONS.md) proposes the smallest separate
+comparison: Sol selects a predeclared public probe whose expected result is
+source-grounded and independently validated. Only its observed executable
+failure can authorize repair. A checks-only comparison is needed to distinguish
+Sol selection from better tests. This remains unimplemented and unauthorized;
+the original correction rule and grader were never expanded after results.
 
-Sol verification gets the complete original source, actual frozen candidate,
-captured original-to-candidate diff, and receipt-bound check observations.
-Plan metadata is removed from the verification view. Findings require literal
-source citations. Review judgments, newly proposed probes and missing coverage
-are advisory. Only current executable Proofline results gate C/D handoff.
+## Cost and practical decision
 
-Correction is deliberately conservative. It requires both the existing strict
-receipt validation and failure of immutable public check 0 on the exact candidate.
-Failures only in candidate-authored tests, speculative findings, private grades,
-unchecked expectations, timeouts or missing/unavailable checks do not qualify.
-The original Luna thread gets one attempt with original source and native failure
-evidence and any source-cited Sol diagnosis linked to that failing public check,
-still marked advisory. The new candidate is frozen, all checks rerun, and independently graded.
-Initial and final candidates/checks/grades remain separate. A real defect outside
-this narrow repair oracle may remain uncorrected; do not silently expand it after
-seeing results.
+Actual primary usage was Luna 2,731,000 input / 2,258,176 cached / 92,492 output
+and Sol 3,686,481 input / 2,988,928 cached / 100,224 output tokens. Cached input
+and reasoning output are subsets. The [accounting postprocessor](../evaluation/sol_luna_host/accounting.py)
+preserves raw session totals, derives original-thread correction deltas and
+retains hash-bound completed-turn usage without upgrading a timed-out invocation.
+Earlier unknown consumption is not invented as zero.
 
-## Budgets, measurements and interpretation
+Read-only account/usage/read returned no thread estimate for all 36 actual
+primary threads, as it did for the earlier experimental threads. Its installed
+schema can expose model/effort/speed groups and estimated credits/USD when the
+billing route supports them. No credentials were retrieved; account-wide
+activity was not published. Observed dollars and credit debits stay null; public API prices do not
+establish Codex subscription spending. The API Costs endpoint requires separate
+organization billing authority, which the current ChatGPT login does not establish.
 
-The original/stopped assignments had a 900-second total deadline, shared
-600-second native allocation and 120-second planning/review caps. These proved
-too tight for the observed model-plus-CLI lifecycle. The fresh proposal gives
-each assignment the same 1,200-second total deadline, including setup, model
-tools, Intentline export, Proofline, freeze/readback, corrections and independent
-grading. A shared 900-second native allocation includes all Sol/Luna stages,
-startup and shutdown. Planning and verification cap at 300 seconds each;
-correction remains 180. Verifying arms reserve 300 model seconds before implementation. Unused planning time
-returns to implementation, and an unnecessary correction is never dispatched.
-Token/FLOP caps are not enforceable through this native transport; equal wall
-budgets must not be described as identical compute. The serial arm order gives
-each arm four distinct positions; four tasks cannot fill a five-row Latin square.
+The report's explicitly **hypothetical** published-standard-token-rate projection
+gives credits per correct delivery: Luna .1886, plan 4.3035, verify 3.1882, hybrid
+7.1522, Sol 2.7446. Its break-even family also finds no positive Sol/Luna unit-price
+ratio where hybrid beats Sol alone, and hybrid beats Luna only below .003193,
+versus the published credit ratio of 20. This excludes check compute, preparation,
+qualification, authoring, human attention and unexposed charges. It is not observed
+spending or monetary savings.
 
-Receipts retain actual native input/cached/output tokens, model settings, prompts,
-tool executions, stage time, check overhead, correction time and total assignment
-time. Cached input is a subset, never an additional input charge. The installed
-CLI emits cumulative session usage, so same-thread corrections require deltas.
-The [accounting postprocessor](../evaluation/sol_luna_host/accounting.py) preserves
-raw totals, derives those deltas and retains host-bound completed-turn usage
-even when CLI shutdown times out. It never upgrades invocation/receipt status.
-Raw historical metrics are retained; normalized accounting is separately labeled.
-Native turns
-are distinct from unexposed provider-internal calls. Failed activity and missing
-slots stay in the denominator and cost record. Initial/final independent grading
-is also reported separately; unchanged finals reuse their bound initial grade.
-
-Dollar cost remains **unknown** without reliable native billing and compute
-charges. Public API token rates are not actual Codex subscription spending.
-The installed app-server schema offers `account/usage/read` with a `threadId`:
-its optional `threadUsage.groups` can report model, reasoning effort, speed,
-tokens and estimated consumption in credits/USD. The actual read-only probe
-returned `threadUsage: null` for the active initiating thread and all five
-distinct experimental threads. These estimates, if returned in a later cohort,
-must be labeled provider estimates, not observed spending. No credentials were
-retrieved, and no account-wide usage was included in published evidence.
-The official [Codex pricing](https://learn.chatgpt.com/docs/pricing) page gives
-credit rates and explicitly separates subscription limits from API pricing.
-The [API Costs endpoint](https://developers.openai.com/api/reference/resources/admin/subresources/organization/subresources/usage/methods/costs)
-requires API organization billing access; the current ChatGPT login does not
-establish such access or model-specific invoice attribution.
-Reports therefore retain null total dollars and null dollars per correct delivery;
-they may compare observed seconds and usage but cannot claim monetary savings.
-Study preparation, qualification, initiating-agent usage and active human attention
-are separate overhead; unmeasured quantities remain unknown.
-
-Paired reports cover planning, the verification package, their interaction,
-hybrid versus fresh Sol, and Luna versus fresh Sol, both initially and after repair.
-Four-task bootstrap intervals are descriptive; a zero interval at a correctness
-ceiling cannot rule out effects on unseen tasks. These arms identify **checks +
-Sol review + eligible correction as a package**; they do not identify each
-component's separate causal benefit.
-
-| Capability | Current recommendation |
-| --- | --- |
-| Optional Sol planning | **INCONCLUSIVE**; native advisory export qualified, comparative benefit unobserved |
-| Optional Sol verification | **INCONCLUSIVE**; independent native review qualified, comparative benefit unobserved |
-| Proofline checks | **INCONCLUSIVE** about incremental model correctness; retain existing model-free optional checks |
-| Bounded Luna correction | **INCONCLUSIVE** about efficacy; actual same-thread repair/freeze/recheck qualified on disposable control |
-| Luna:medium / Luna:xhigh follow-up | Neither justified by preparation alone; both require a separate frozen and authorized study |
-
-If high is sufficiently reliable and total billing is measurable, medium is the
-next cost-reduction hypothesis. Xhigh is worth considering only for observed
-high-effort defects or costly repairs. Neither belongs in this primary cohort,
-and neither is authorized here.
-
-## Reproduction and authorization
-
-For the fresh native continuation, use the same Python/Codex binaries from a
-host controller that can create the unchanged native sandbox:
-
-```sh
-/opt/homebrew/bin/python3.14 -B -m evaluation.sol_luna_host.study qualify
-```
-
-This is model-free and one-shot; an existing store cannot be overwritten. Once
-its exact freeze is explicitly authorized and the approval record is present:
-
-```sh
-/opt/homebrew/bin/python3.14 -B -m evaluation.sol_luna_host.study execute
-```
-
-Its approval path is `.proofline/issue32-sol-luna-high-lenient/approval.json`.
-Prior authorization covered the stopped native/qualified declarations. The fresh
-proposal changes primary budgets and requires separate explicit authorization
-bound to its freeze. It permits twenty fresh assignments, at most 44 native
-turns and 24,000 seconds (6.67 hours); completed qualification is reused without
-new model calls. Unknown dollar spending must be accepted
-explicitly. Do not launch a model to establish access before authorization.
-The instructions below describe the **historical stopped declaration**, not a
-request to retry it.
-
-Offline, with Python 3.11+:
-
-```sh
-python -B -m unittest tests.test_sol_luna -v
-python -B -m evaluation.sol_luna.study controls
-python -B -m evaluation.sol_luna.study report
-```
-
-On the frozen native host, `qualify` is a one-shot **no-model** preflight. It
-retains twenty identical-per-task seeds and their identities, verifies exact
-host/runtime/catalog, worker and reader isolation, all seventeen native controls,
-and the existing producer/export/adapter/check/readback path.
-
-```sh
-/opt/homebrew/bin/python3.14 -B -m evaluation.sol_luna.study qualify
-```
-
-Live dispatch additionally requires **explicit user authorization** for this
-exact freeze, twenty assignments plus at most four handoff-control calls, max
-48 native turns and 18,360 seconds of assigned live work. Dollar billing is unknown.
-The ignored `.proofline/issue32-sol-luna-high/approval.json` records `study_id`,
-`freeze_sha256`, `max_native_dispatches: 48`, `max_seconds: 18360`, and the literal
-`user_authorization`. A file records the actual authorization; it cannot create
-authorization or authenticate its author. Preparation/PR publication is not
-model-spending permission.
-
-```sh
-/opt/homebrew/bin/python3.14 -B -m evaluation.sol_luna.study execute
-/opt/homebrew/bin/python3.14 -B -m evaluation.sol_luna.study bundle --output /new/evidence/directory
-```
-
-Before the twenty assignments, the authorized four-call disposable handoff tests
-Sol plan → Luna staged defect → actual failing check → Sol original-source review
-→ same-Luna correction → freeze/recheck. It exposes no primary task or private
-grading data and is never counted as a successful delivery. Its failed/successful
-costs are retained separately. A local bundle archives source, model catalog,
-producer bytes, raw receipts and candidates; it never publishes by itself.
-
-This declaration has stopped during preparation in the current environment.
-There is no replay, retry, denominator reset, oracle repair or silent cohort
-replacement. A repaired native environment needs a separately frozen and
-authorized fresh declaration. Do not merge the PR or close #32 on preparation.
+Use Luna:high alone for this corpus. Keep Sol planning/review and existing
+Proofline checks optional. Receipt mechanics and bounded repair work, but their
+incremental correctness value is unmeasured at this ceiling. No additional
+benchmark framework or mandatory process is warranted. Neither medium nor xhigh
+was tested or authorized; any changed follow-up needs its own frozen comparison.
