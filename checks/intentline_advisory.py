@@ -187,8 +187,9 @@ def source(files, request, marker):
             relative = Path(row["original_location"]).relative_to(Path(manifest["root"])).as_posix()
         except ValueError as exc:
             raise ValueError("Intentline source origin is outside producer root") from exc
-        if relative != row["relative_path"]:
-            raise ValueError("Intentline source path identity mismatch")
+        if (relative != row["relative_path"] or
+                ".." in Path(relative).parts or Path(row["relative_path"]).is_absolute()):
+            raise ValueError("Intentline source path identity mismatch or traversal")
         shape(row["identity"], ("device", "inode"), "source inode")
         if any(type(row["identity"][v]) is not int or row["identity"][v] < 0 for v in ("device", "inode")):
             raise ValueError("Invalid producer inode identity")
