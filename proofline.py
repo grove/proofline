@@ -47,7 +47,7 @@ def explicit_checks(args):
     if args.checks is not None:
         return validate_checks(json.loads(args.checks.read_text(encoding="utf-8")))
     checks = []
-    for number, command in enumerate(args.command, 1):
+    for number, command in enumerate(args.check_commands, 1):
         try:
             argv = shlex.split(command, posix=True)
         except ValueError as error:
@@ -77,7 +77,7 @@ def main(argv=None):
         source_group.add_argument("--request-stdin", action="store_true", help="Read exact UTF-8 original request from stdin")
         checks_group = command.add_mutually_exclusive_group(required=True)
         checks_group.add_argument("--checks", type=Path, help="JSON list of argv arrays (existing interface)")
-        checks_group.add_argument("--command", action="append", help="One quoted executable + arguments; repeat for each check, no shell")
+        checks_group.add_argument("--command", dest="check_commands", action="append", help="One quoted executable + arguments; repeat for each check, no shell")
         command.add_argument("--output", type=Path)
         command.add_argument("--seconds", type=positive_seconds, default=900)
         command.add_argument("--check-seconds", type=positive_seconds, default=120)
