@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "sha256": {
+    "evaluation/matched/README.md": "0f67b26b4e8784cc7f31a8cc336fb413763afdd28177fab96d36e957333d17ba",
+    "evaluation/matched/__init__.py": "8b17f653a868bdeedb027f5bf117036334f822242b81a6ef19397b9414ec88b1",
+    "evaluation/matched/corpus.py": "e135bf58bd44edd9c85f4610559f6dd8f05b5768b100ccc128d76c923e9eccca",
+    "evaluation/matched/grader.py": "c7d38c88a0feaa76820d6277ab357dd2e149ca2ff24831cbace1bc6a52dc1696",
+    "evaluation/matched/protocol.json": "eaf9991626e553368ac11854a3c04271ae4119a269227192cbe440f2cde00e62",
+    "evaluation/matched/report.py": "ee2a718fa767265c7d966c7a6b3765e73ee7b4b4aa24d6c65bf8166c9b44620f",
+    "evaluation/matched/study.py": "f3de9c3aa87f8c127640e56a5da3cbff4f4cad50eacb8cf51f36e6eaef28133a",
+    "tests/test_matched_study.py": "4e1b7eaa1747093703d271cb561f89771439660ba25352c0f843934ec5512470"
+  },
+  "status": "PREDECLARED_NOT_LIVE_RESULTS",
+  "study": "issue16-matched-v2-20261013"
+}
