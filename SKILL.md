@@ -3,6 +3,27 @@ name: proofline
 description: Run one bounded coding attempt on an isolated local candidate, followed by explicit executable checks. Reports check outcomes without certifying the complete source promise.
 ---
 
+## Product direction: agent-first, not new runtime behavior
+
+This skill **currently supports only** the managed `run` workflow below:
+one Codex coding attempt and selected native checks on its frozen candidate.
+The [vNext contract](DESIGN.md#proofline-vnext--agent-first-product-contract-proposed-13-october-2026)
+also proposes a [check-only mode (#11)](https://github.com/grove/proofline/issues/11)
+for existing coding agents, with **zero additional model dispatches**.
+**Do not invoke `proofline check` yet; it is not implemented.**
+
+The coding agent owns strategy, implementation, self-testing and corrections.
+Proofline owns bounded execution, exact source/candidate/check identity,
+native receipts and concise observed outcomes. Preserve the *full* source,
+including source-grounded authorized contracts where supplied; direct tasks
+need neither P2P nor Intentline. Report checks passed/failed/unavailable and
+stale candidate evidence truthfully; requirement coverage mapping is future
+work, and passing commands cannot certify all promises. No local check
+authorizes push, PR, merge or deployment. No mandatory reviewer, prover,
+planner, slicer, extra approval ceremony, config or publication stage is
+introduced by this documentation change. Extra mandatory steps require
+independently measured correctness gains worth their overhead.
+
 Use [proofline.py](proofline.py) `run`. The supported native host is macOS,
 Python 3.11+ and Codex CLI 0.162.1 with existing authentication. Select an exact
 supported interpreter. See the [S6 decision](docs/S6-DECISION.md).

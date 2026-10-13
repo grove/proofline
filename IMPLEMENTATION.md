@@ -1,3 +1,51 @@
+# Proofline vNext — proposed delivery direction (issue #8)
+
+This section is **documentation-only**, not implemented new behavior. The
+[agent-first contract](DESIGN.md#proofline-vnext--agent-first-product-contract-proposed-13-october-2026)
+governs future design. The **currently supported** implementation remains
+`proofline.py run` and `status` as recorded in the S6 decision below.
+**There is no `proofline check` command yet.** S0–S6 evidence and the owner's
+abandon/simplify decision are preserved, not superseded by new performance
+or correctness claims.
+
+## Planned paths and hard boundaries
+
+- **Proposed check-only:** An existing coding agent calls Proofline on its
+  current candidate with the original user request and explicit checks.
+  Proofline freezes/checks and returns receipts with **zero new model
+  dispatches**; the agent owns planning, coding, self-testing and correction.
+- **Supported managed run:** One Codex implementation dispatch followed by
+  bounded, caller-selected executable checks. On the qualified macOS host,
+  `run` currently requires a clean repository, source file and argv JSON.
+  It performs no automatic review, proof, repair, PR creation or merge.
+- **Both:** Preserve the whole user request and any exactly adopted upstream
+  contract without replanning or silent narrowing; retain frozen candidate
+  identity, source/check receipts, cumulative budgets and distinct
+  passed/failed/unavailable/stale observations. Passing commands do **not**
+  certify the complete promise, and local checks do **not** authorize
+  push/PR/merge/deploy.
+- **No added ceremony:** Direct requests need no P2P/Intentline, new mandatory
+  config, approval, planner, slicer, verifier model or extra stage.
+
+## Staged work, with independent stop/go decisions
+
+| Stage | Issues | Evidence for completion |
+| --- | --- | --- |
+| Definition and baseline | [#8](https://github.com/grove/proofline/issues/8), [#9](https://github.com/grove/proofline/issues/9) | Current-vs-proposed contract and small frozen ordinary-agent benchmark. |
+| Lean runtime | [#10](https://github.com/grove/proofline/issues/10) | Existing `run`/`status` still works without research-only S6 dependencies. |
+| Existing-agent MVP | [#11](https://github.com/grove/proofline/issues/11), [#12](https://github.com/grove/proofline/issues/12), [#14](https://github.com/grove/proofline/issues/14) | A model-free check path, simple invocation and concrete failure receipts. |
+| Optional source guidance | [#13](https://github.com/grove/proofline/issues/13) | Source-linked requirement/evidence gaps, without certifying full coverage. |
+| Earned enhancements | [#15](https://github.com/grove/proofline/issues/15), [#16](https://github.com/grove/proofline/issues/16) | Optional bounded correction and matched measurement before keeping any extra mandatory steps. |
+
+Before a new mandatory workflow step is admitted, independently demonstrate
+increased **correctly delivered** work relative to an ordinary agent, enough
+to justify additional latency, tokens/cost and risk of unnecessary blocking.
+Include failed and unavailable cases in the denominator. Keep unproven
+assurance stages off by default. This admission rule does **not** weaken
+required isolation, integrity or authorization controls.
+
+---
+
 # Current decision — 13 October 2026
 
 The owner explicitly closed S6 with an abandon/simplify decision and waived the
