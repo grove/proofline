@@ -1,0 +1,59 @@
+{
+  "assessment": {
+    "observations": {
+      "mode_change": "allowed",
+      "network": "denied",
+      "nonce": "349ec41f60d148baac42ebeb2501c058",
+      "reads": {
+        "actual_oracle": "denied",
+        "enclosing_repository": "denied",
+        "grader": "denied",
+        "matched_oracle": "denied",
+        "oracle-canary": "denied",
+        "other-role-canary": "denied",
+        "receipt-canary": "denied",
+        "sibling": "denied",
+        "study_results": "denied"
+      },
+      "scratch": true,
+      "writes": {
+        "candidate": "allowed",
+        "git_head": "denied",
+        "input": "denied",
+        "receipt": "denied",
+        "source": "denied"
+      }
+    },
+    "status": "OBSERVED"
+  },
+  "model_dispatches": 0,
+  "receipt": {
+    "argv": [
+      "/opt/homebrew/bin/codex",
+      "--no-daemon",
+      "-c",
+      "permissions.proofline={\"filesystem\"={\":minimal\"=\"read\",\"/opt/homebrew/Cellar/python@3.14/3.14.8_2/Frameworks/Python.framework/Versions/3.14\"=\"read\",\"/opt/homebrew/opt/python@3.14/Frameworks/Python.framework/Versions/3.14\"=\"read\",\"/opt/homebrew/opt/python@3.14/bin/python3.14\"=\"read\",\"/opt/homebrew/Cellar/python@3.14/3.14.8_2/Frameworks/Python.framework/Versions/3.14/bin/python3.14\"=\"read\",\"$FIXTURE/qualification/inputs\"=\"read\",\"$FIXTURE/boundary/scratch\"=\"write\",\"$FIXTURE/boundary/private\"=\"deny\",\"/opt/homebrew\"=\"read\",\"/Library/Developer/CommandLineTools/usr/bin\"=\"read\",\"/Library/Developer/CommandLineTools/usr/libexec/git-core\"=\"read\",\"/opt/homebrew/bin/codex\"=\"read\",\"/opt/homebrew/Caskroom/codex/0.162.1/bin/codex\"=\"read\",\"$FIXTURE/qualification/inputs/product\"=\"write\",\"$FIXTURE/qualification/inputs/product/.git\"=\"read\"},\"network\"={\"enabled\"=false}}",
+      "sandbox",
+      "--permission-profile",
+      "proofline",
+      "--include-managed-config",
+      "--cd",
+      "$FIXTURE/boundary/scratch",
+      "--",
+      "/opt/homebrew/Cellar/python@3.14/3.14.8_2/Frameworks/Python.framework/Versions/3.14/bin/python3.14",
+      "-I",
+      "-B",
+      "$FIXTURE/qualification/inputs/canary.py",
+      "$FIXTURE/qualification/inputs/canary.json"
+    ],
+    "cwd": "$FIXTURE/boundary/scratch",
+    "elapsed_seconds": 0.148019,
+    "exit_code": 0,
+    "invocation_id": "365c300e-5922-4933-b3c6-114583398553",
+    "kind": "process_probe",
+    "stderr": "",
+    "stdout": "{\"nonce\": \"349ec41f60d148baac42ebeb2501c058\", \"writes\": {\"source\": \"denied\", \"input\": \"denied\", \"candidate\": \"allowed\", \"git_head\": \"denied\", \"receipt\": \"denied\"}, \"reads\": {\"receipt-canary\": \"denied\", \"oracle-canary\": \"denied\", \"other-role-canary\": \"denied\", \"actual_oracle\": \"denied\", \"matched_oracle\": \"denied\", \"grader\": \"denied\", \"study_results\": \"denied\", \"enclosing_repository\": \"denied\", \"sibling\": \"denied\"}, \"mode_change\": \"allowed\", \"scratch\": true, \"network\": \"denied\"}\n",
+    "timed_out": false
+  },
+  "scope": "Standalone corrected-canary regression in the actual workspace storage boundary; no study resumption, native grading or model dispatch."
+}

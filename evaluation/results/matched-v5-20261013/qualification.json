@@ -1,0 +1,371 @@
+{
+  "catalog_readback": null,
+  "grader": {
+    "assessment": {
+      "inputs_unchanged": true,
+      "observations": {
+        "mode_change": "denied",
+        "network": "denied",
+        "nonce": "e4939a4db6e54880b145b92f890299c5",
+        "reads": {
+          "actual_oracle": "denied",
+          "enclosing_repository": "denied",
+          "grader": "denied",
+          "matched_oracle": "denied",
+          "oracle-canary": "denied",
+          "other-role-canary": "denied",
+          "receipt-canary": "denied",
+          "sibling": "denied",
+          "study_results": "denied"
+        },
+        "scratch": true,
+        "writes": {
+          "candidate": "denied",
+          "git_head": "denied",
+          "input": "denied",
+          "receipt": "denied",
+          "source": "denied"
+        }
+      },
+      "scope": "native process canaries only; no model or external-tool qualification",
+      "status": "OBSERVED"
+    },
+    "receipt": {
+      "elapsed_seconds": 0.130376,
+      "exit_code": 0,
+      "invocation_id": "a4f5750b-21c4-4d32-8b45-9c5e64ab23a6",
+      "kind": "process_probe",
+      "native_argv_sha256": "11124f09898cae54f2e519f45b60554f975dc379374a34bd58a2667184fe9dce",
+      "stderr": "",
+      "stdout": "{\"nonce\": \"e4939a4db6e54880b145b92f890299c5\", \"writes\": {\"source\": \"denied\", \"input\": \"denied\", \"candidate\": \"denied\", \"git_head\": \"denied\", \"receipt\": \"denied\"}, \"reads\": {\"receipt-canary\": \"denied\", \"oracle-canary\": \"denied\", \"other-role-canary\": \"denied\", \"actual_oracle\": \"denied\", \"matched_oracle\": \"denied\", \"grader\": \"denied\", \"study_results\": \"denied\", \"enclosing_repository\": \"denied\", \"sibling\": \"denied\"}, \"mode_change\": \"denied\", \"scratch\": true, \"network\": \"denied\"}\n",
+      "timed_out": false
+    }
+  },
+  "producer_adapter_check": {
+    "check_candidate_tree": "23aa3c88275e82ea8193383deac7983fb5ccbf87",
+    "check_status": "CHECKS PASSED",
+    "model_dispatches": 0,
+    "native_cli_receipts": [
+      {
+        "elapsed_seconds": 0.129566,
+        "exit_code": 0,
+        "invocation_id": "87809100-d1dc-4eae-a751-3c00e34db0cd",
+        "kind": "process_probe",
+        "native_argv_sha256": "a2c3700cb552b65635606e448326ac7a97819dae6abf67f22d5800fb2055dc14",
+        "stderr": "",
+        "stdout": "{\"command\": \"prepare\", \"data\": {\"source_bundle_sha256\": \"50c8990c8f92c04ced26d33d5865f72dcb214ba31c43361ef2be6b221fbf717c\", \"sources\": [{\"bytes\": 896, \"declared_authority\": \"user_request\", \"identity\": {\"device\": 16777230, \"inode\": 131376493}, \"original_location\": \"/Users/grove/projects/proofline/.proofline/issue16-matched-v5-20261013/qualification/adapter/inputs/source.md\", \"relative_path\": \"source.md\", \"role\": \"request\", \"sha256\": \"c9a5c3bc2cc80520431d6fd951a8e2303270d1c390b25ed1f5413391fbc29347\", \"source_id\": \"S1\"}], \"summary\": \"Sources captured; no semantic requirements inferred\", \"work\": \"/Users/grove/projects/proofline/.proofline/issue16-matched-v5-20261013/qualification/adapter/scratch/plan\"}, \"ok\": true, \"result\": \"intentline.result\", \"schema_version\": 1}\n",
+        "timed_out": false
+      },
+      {
+        "elapsed_seconds": 0.133481,
+        "exit_code": 0,
+        "invocation_id": "9a9908f7-acbe-45ac-97eb-230ea9e6a451",
+        "kind": "process_probe",
+        "native_argv_sha256": "b7ae11a4d7dbb94f32cf13eb6400e49bb0af52071739c7e935edbb869af4e66b",
+        "stderr": "",
+        "stdout": "{\"command\": \"propose\", \"data\": {\"contract_id\": \"issue16-control\", \"contract_sha256\": \"6e8296af06c061b07573d231b19002c4aae4adcb1b8b664c4e1b1abe987787ac\", \"revision\": 1, \"source_bundle_sha256\": \"50c8990c8f92c04ced26d33d5865f72dcb214ba31c43361ef2be6b221fbf717c\", \"summary\": \"DRAFT saved; structural validation is not semantic approval\"}, \"ok\": true, \"result\": \"intentline.result\", \"schema_version\": 1}\n",
+        "timed_out": false
+      },
+      {
+        "elapsed_seconds": 0.132058,
+        "exit_code": 0,
+        "invocation_id": "08f5943e-3f51-48bd-b416-53edc90cd060",
+        "kind": "process_probe",
+        "native_argv_sha256": "d1560c80a6e9ee65a4465803e6e63b961c35d7afb9c2472b0a653eb0d6732fd5",
+        "stderr": "",
+        "stdout": "{\"command\": \"check\", \"data\": {\"adoption_records\": 0, \"audit_records\": 0, \"authentication\": \"unverified\", \"contract_id\": \"issue16-control\", \"contract_sha256\": \"6e8296af06c061b07573d231b19002c4aae4adcb1b8b664c4e1b1abe987787ac\", \"current_adoptions\": 0, \"current_audits\": 0, \"evidence_gaps\": [], \"exit_code\": 0, \"flags\": [\"DRAFT\", \"STRUCTURALLY_VALID\"], \"revision\": 1, \"source_bundle_sha256\": \"50c8990c8f92c04ced26d33d5865f72dcb214ba31c43361ef2be6b221fbf717c\", \"stale_sources\": [], \"status\": \"STRUCTURALLY_VALID\", \"summary\": \"STRUCTURALLY_VALID: structural checks do not establish semantic completeness\"}, \"ok\": true, \"result\": \"intentline.result\", \"schema_version\": 1}\n",
+        "timed_out": false
+      },
+      {
+        "elapsed_seconds": 0.133085,
+        "exit_code": 0,
+        "invocation_id": "f49cbf83-c225-4320-be55-f5194d9d6467",
+        "kind": "process_probe",
+        "native_argv_sha256": "93736d7ddb655c9d03bf28ad7ced912195e103380a5a7e4cb7e8775129bab5ef",
+        "stderr": "",
+        "stdout": "{\"command\": \"render\", \"data\": {\"adoption_records\": 0, \"audit_records\": 0, \"authentication\": \"unverified\", \"contract_id\": \"issue16-control\", \"contract_sha256\": \"6e8296af06c061b07573d231b19002c4aae4adcb1b8b664c4e1b1abe987787ac\", \"current_adoptions\": 0, \"current_audits\": 0, \"evidence_gaps\": [], \"exit_code\": 0, \"flags\": [\"DRAFT\", \"STRUCTURALLY_VALID\"], \"markdown\": \"# Intentline: issue16\\\\-control\\n\\nStatus: **STRUCTURALLY\\\\_VALID**. Preview / advisory; not authenticated approval or proof.\\n\\nContract SHA-256: `6e8296af06c061b07573d231b19002c4aae4adcb1b8b664c4e1b1abe987787ac`\\n\\nSource bundle SHA-256: `50c8990c8f92c04ced26d33d5865f72dcb214ba31c43361ef2be6b221fbf717c`\\n\\nRevision: 1\\n\\nEntire atomic transfer request\\n\\n| ID | Required outcome | Basis / source | Boundaries | Seam | Oracle | Planned evidence | Plan state |\\n|---|---|---|---|---|---|---|---|\\n| R1 | Apply valid transfers in order and reject invalid/overdrawn accounts | request: S1:1\\\\-6 \\u2014 Implement transfers for \\\\{&quot;balances&quot;: \\\\{name: integer &gt;= 0\\\\},<br>&quot;transfers&quot;: \\\\[\\\\[from, to, amount\\\\], \\\\.\\\\.\\\\.\\\\]\\\\}\\\\. Names are nonempty strings; amount is<br>a nonnegative integer\\\\. Booleans are invalid numbers\\\\. Both accounts must exist\\\\.<br>Apply transfers in order; reject insufficient funds at any intermediate step,<br>including a self\\\\-transfer exceeding that account&\\\\#x27;s balance\\\\. Return<br>\\\\{&quot;balances&quot;: final\\\\_balances\\\\}\\\\. No partial result on rejection\\\\. | Ordered balances; intermediate/self overdrafts rejected | app\\\\.process | Ordered balances; intermediate/self overdrafts rejected | Chosen project commands and finite independent probes | planned |\\n| R2 | Expose ordered batch processing and reject any invalid member | request: S1:8\\\\-10 \\u2014 Expose the same behavior through app\\\\.process, service\\\\.handle and the existing<br>JSON stdin/stdout CLI\\\\. Add service\\\\.batch\\\\(payloads\\\\): return each process result<br>in input order; reject a non\\\\-list or any invalid member with ValueError\\\\. | One result per input, invalid member rejects batch | service\\\\.batch | One result per input, invalid member rejects batch | Chosen project commands and finite independent probes | planned |\\n| R3 | Preserve inputs, exact CLI compatibility, extra keys and source\\\\-correct tests | request: S1:11\\\\-13 \\u2014 Do not mutate any input, including on errors\\\\. Preserve the exact CLI \\\\-\\\\-version<br>response and unsupported\\\\-argument behavior; keep cli\\\\.py unchanged\\\\. Extra object<br>keys are allowed\\\\. Update a stale test expectation if it contradicts this request\\\\. | No mutation; unchanged CLI bytes; extra keys accepted | CLI and input snapshots | No mutation; unchanged CLI bytes; extra keys accepted | Chosen project commands and finite independent probes | planned |\\n\\n## Constraints\\n\\nNone.\\n\\n## Out of scope\\n\\nNone.\\n\\n## Open decisions\\n\\nNone.\\n\\n## Evidence gaps\\n\\nNone.\\n\\n## Change notes\\n\\n- \\\\{&quot;kind&quot;: &quot;initial&quot;, &quot;revision&quot;: 1\\\\}\\n\\n## Selected sources\\n\\n- S1 request: source\\\\.md; SHA\\\\-256 c9a5c3bc2cc80520431d6fd951a8e2303270d1c390b25ed1f5413391fbc29347; authority: user\\\\_request\\n\", \"revision\": 1, \"source_bundle_sha256\": \"50c8990c8f92c04ced26d33d5865f72dcb214ba31c43361ef2be6b221fbf717c\", \"stale_sources\": [], \"status\": \"STRUCTURALLY_VALID\", \"summary\": \"STRUCTURALLY_VALID: structural checks do not establish semantic completeness\"}, \"ok\": true, \"result\": \"intentline.result\", \"schema_version\": 1}\n",
+        "timed_out": false
+      },
+      {
+        "elapsed_seconds": 0.133622,
+        "exit_code": 0,
+        "invocation_id": "52b8995c-458e-49ca-be96-57268e879e7e",
+        "kind": "process_probe",
+        "native_argv_sha256": "45ce5fd1ab45130643d4f4dfbb9dbec615443894534fb0ee099b03d91351639e",
+        "stderr": "",
+        "stdout": "{\"command\": \"export\", \"data\": {\"advisory\": true, \"authority\": \"unapproved\", \"contract_id\": \"issue16-control\", \"contract_sha256\": \"6e8296af06c061b07573d231b19002c4aae4adcb1b8b664c4e1b1abe987787ac\", \"files\": {\"contract.json\": \"6e8296af06c061b07573d231b19002c4aae4adcb1b8b664c4e1b1abe987787ac\", \"source-S1.txt\": \"c9a5c3bc2cc80520431d6fd951a8e2303270d1c390b25ed1f5413391fbc29347\", \"source-manifest.json\": \"50c8990c8f92c04ced26d33d5865f72dcb214ba31c43361ef2be6b221fbf717c\"}, \"format\": \"json\", \"out\": \"/Users/grove/projects/proofline/.proofline/issue16-matched-v5-20261013/qualification/adapter/scratch/export\", \"record\": \"intentline.export\", \"revision\": 1, \"schema_version\": 1, \"source_bundle_sha256\": \"50c8990c8f92c04ced26d33d5865f72dcb214ba31c43361ef2be6b221fbf717c\", \"summary\": \"Advisory preview exported; no downstream execution or approval granted\"}, \"ok\": true, \"result\": \"intentline.result\", \"schema_version\": 1}\n",
+        "timed_out": false
+      }
+    ],
+    "package_metadata": {
+      "advisory": true,
+      "check_links": {
+        "R1": [
+          {
+            "argv": [
+              "/opt/homebrew/Cellar/python@3.14/3.14.8_2/Frameworks/Python.framework/Versions/3.14/bin/python3.14",
+              "-B",
+              "-c",
+              "from app import process; assert process({'balances': {'a': 5, 'b': 0}, 'transfers': [['a', 'b', 3]]}) == {'balances': {'a': 2, 'b': 3}}"
+            ],
+            "index": 0
+          }
+        ]
+      },
+      "constraints": [],
+      "contract_id": "issue16-control",
+      "contract_sha256": "6e8296af06c061b07573d231b19002c4aae4adcb1b8b664c4e1b1abe987787ac",
+      "coverage_completeness": "UNKNOWN",
+      "evidence_gaps": [],
+      "execution_authority": "not_established",
+      "export_authority": "unapproved",
+      "export_format": "json",
+      "export_manifest_sha256": "e48b445cbaceee5389868fd89dc2dcbc8491d6bd591d3f5892e2787533c751b1",
+      "external_caller_approval": "not_supplied_or_authenticated",
+      "intended_outcome": "Entire atomic transfer request",
+      "out_of_scope": [],
+      "record": "intentline.advisory-input",
+      "requirements": [
+        {
+          "basis": "request",
+          "boundaries": [
+            "Ordered balances; intermediate/self overdrafts rejected"
+          ],
+          "evidence_gap_reasons": [],
+          "id": "R1",
+          "oracle": "Ordered balances; intermediate/self overdrafts rejected",
+          "plan_state": "planned",
+          "planned_evidence": "Chosen project commands and finite independent probes",
+          "seam": "app.process",
+          "source_refs": [
+            {
+              "line_end": 6,
+              "line_start": 1,
+              "quote": "Implement transfers for {\"balances\": {name: integer >= 0},\n\"transfers\": [[from, to, amount], ...]}. Names are nonempty strings; amount is\na nonnegative integer. Booleans are invalid numbers. Both accounts must exist.\nApply transfers in order; reject insufficient funds at any intermediate step,\nincluding a self-transfer exceeding that account's balance. Return\n{\"balances\": final_balances}. No partial result on rejection.",
+              "source_id": "S1"
+            }
+          ],
+          "statement": "Apply valid transfers in order and reject invalid/overdrawn accounts"
+        },
+        {
+          "basis": "request",
+          "boundaries": [
+            "One result per input, invalid member rejects batch"
+          ],
+          "evidence_gap_reasons": [],
+          "id": "R2",
+          "oracle": "One result per input, invalid member rejects batch",
+          "plan_state": "planned",
+          "planned_evidence": "Chosen project commands and finite independent probes",
+          "seam": "service.batch",
+          "source_refs": [
+            {
+              "line_end": 10,
+              "line_start": 8,
+              "quote": "Expose the same behavior through app.process, service.handle and the existing\nJSON stdin/stdout CLI. Add service.batch(payloads): return each process result\nin input order; reject a non-list or any invalid member with ValueError.",
+              "source_id": "S1"
+            }
+          ],
+          "statement": "Expose ordered batch processing and reject any invalid member"
+        },
+        {
+          "basis": "request",
+          "boundaries": [
+            "No mutation; unchanged CLI bytes; extra keys accepted"
+          ],
+          "evidence_gap_reasons": [],
+          "id": "R3",
+          "oracle": "No mutation; unchanged CLI bytes; extra keys accepted",
+          "plan_state": "planned",
+          "planned_evidence": "Chosen project commands and finite independent probes",
+          "seam": "CLI and input snapshots",
+          "source_refs": [
+            {
+              "line_end": 13,
+              "line_start": 11,
+              "quote": "Do not mutate any input, including on errors. Preserve the exact CLI --version\nresponse and unsupported-argument behavior; keep cli.py unchanged. Extra object\nkeys are allowed. Update a stale test expectation if it contradicts this request.",
+              "source_id": "S1"
+            }
+          ],
+          "statement": "Preserve inputs, exact CLI compatibility, extra keys and source-correct tests"
+        }
+      ],
+      "revision": 1,
+      "schema_version": 1,
+      "source_bundle_sha256": "50c8990c8f92c04ced26d33d5865f72dcb214ba31c43361ef2be6b221fbf717c",
+      "source_sha256": "c9a5c3bc2cc80520431d6fd951a8e2303270d1c390b25ed1f5413391fbc29347"
+    },
+    "promise_evidence": {
+      "candidate_commit": "8b634e4ab5424e4e3ad9fcdfe978431a02714314",
+      "candidate_tree": "23aa3c88275e82ea8193383deac7983fb5ccbf87",
+      "coverage_completeness": "UNKNOWN",
+      "intentline": {
+        "constraints": [],
+        "contract_id": "issue16-control",
+        "contract_sha256": "6e8296af06c061b07573d231b19002c4aae4adcb1b8b664c4e1b1abe987787ac",
+        "evidence_gaps": [],
+        "execution_authority": "not_established",
+        "export_authority": "unapproved",
+        "export_manifest_sha256": "e48b445cbaceee5389868fd89dc2dcbc8491d6bd591d3f5892e2787533c751b1",
+        "external_caller_approval": "not_supplied_or_authenticated",
+        "intended_outcome": "Entire atomic transfer request",
+        "out_of_scope": [],
+        "revision": 1,
+        "scope": "Untrusted advisory planning data, not executable tests, proof or consent.",
+        "source_bundle_sha256": "50c8990c8f92c04ced26d33d5865f72dcb214ba31c43361ef2be6b221fbf717c",
+        "source_sha256": "c9a5c3bc2cc80520431d6fd951a8e2303270d1c390b25ed1f5413391fbc29347"
+      },
+      "original_source_ref": "inputs/source.md",
+      "requirements": [
+        {
+          "id": "R1",
+          "intentline_planning": {
+            "authority": "unverified original-source-grounded proposal",
+            "basis": "request",
+            "boundaries": [
+              "Ordered balances; intermediate/self overdrafts rejected"
+            ],
+            "evidence_gap_reasons": [],
+            "plan_state": "planned",
+            "planned_evidence": "Chosen project commands and finite independent probes",
+            "seam": "app.process"
+          },
+          "kind": "outcome",
+          "linked_checks": [
+            {
+              "argv": [
+                "/opt/homebrew/Cellar/python@3.14/3.14.8_2/Frameworks/Python.framework/Versions/3.14/bin/python3.14",
+                "-B",
+                "-c",
+                "from app import process; assert process({'balances': {'a': 5, 'b': 0}, 'transfers': [['a', 'b', 3]]}) == {'balances': {'a': 2, 'b': 3}}"
+              ],
+              "index": 0,
+              "observation_status": "PASSED",
+              "receipt_ref": "receipts/check-000.json"
+            }
+          ],
+          "oracle_authority": "unverified caller suggestion",
+          "proposed_oracle": "Ordered balances; intermediate/self overdrafts rejected",
+          "reason": "Selected commands passed; linked behaviors are not proven in full",
+          "source_refs": [
+            {
+              "line_end": 6,
+              "line_start": 1,
+              "quote": "Implement transfers for {\"balances\": {name: integer >= 0},\n\"transfers\": [[from, to, amount], ...]}. Names are nonempty strings; amount is\na nonnegative integer. Booleans are invalid numbers. Both accounts must exist.\nApply transfers in order; reject insufficient funds at any intermediate step,\nincluding a self-transfer exceeding that account's balance. Return\n{\"balances\": final_balances}. No partial result on rejection.",
+              "source_id": "S1"
+            }
+          ],
+          "statement": "Apply valid transfers in order and reject invalid/overdrawn accounts",
+          "status": "LINKED CHECKS PASSED (limited evidence)"
+        },
+        {
+          "id": "R2",
+          "intentline_planning": {
+            "authority": "unverified original-source-grounded proposal",
+            "basis": "request",
+            "boundaries": [
+              "One result per input, invalid member rejects batch"
+            ],
+            "evidence_gap_reasons": [],
+            "plan_state": "planned",
+            "planned_evidence": "Chosen project commands and finite independent probes",
+            "seam": "service.batch"
+          },
+          "kind": "outcome",
+          "linked_checks": [],
+          "oracle_authority": "unverified caller suggestion",
+          "proposed_oracle": "One result per input, invalid member rejects batch",
+          "reason": "No selected executable check linked",
+          "source_refs": [
+            {
+              "line_end": 10,
+              "line_start": 8,
+              "quote": "Expose the same behavior through app.process, service.handle and the existing\nJSON stdin/stdout CLI. Add service.batch(payloads): return each process result\nin input order; reject a non-list or any invalid member with ValueError.",
+              "source_id": "S1"
+            }
+          ],
+          "statement": "Expose ordered batch processing and reject any invalid member",
+          "status": "NOT DEMONSTRATED"
+        },
+        {
+          "id": "R3",
+          "intentline_planning": {
+            "authority": "unverified original-source-grounded proposal",
+            "basis": "request",
+            "boundaries": [
+              "No mutation; unchanged CLI bytes; extra keys accepted"
+            ],
+            "evidence_gap_reasons": [],
+            "plan_state": "planned",
+            "planned_evidence": "Chosen project commands and finite independent probes",
+            "seam": "CLI and input snapshots"
+          },
+          "kind": "outcome",
+          "linked_checks": [],
+          "oracle_authority": "unverified caller suggestion",
+          "proposed_oracle": "No mutation; unchanged CLI bytes; extra keys accepted",
+          "reason": "No selected executable check linked",
+          "source_refs": [
+            {
+              "line_end": 13,
+              "line_start": 11,
+              "quote": "Do not mutate any input, including on errors. Preserve the exact CLI --version\nresponse and unsupported-argument behavior; keep cli.py unchanged. Extra object\nkeys are allowed. Update a stale test expectation if it contradicts this request.",
+              "source_id": "S1"
+            }
+          ],
+          "statement": "Preserve inputs, exact CLI compatibility, extra keys and source-correct tests",
+          "status": "NOT DEMONSTRATED"
+        }
+      ],
+      "same_agent_review": {
+        "authority": "unverified advisory review; may omit original promises",
+        "independent": false,
+        "proposals": [],
+        "reported_performed": false
+      },
+      "scope": "Only explicitly mapped requirements/commands; all original source remains authoritative.",
+      "snapshot_sha256": "0141a93b6f77cbb922b7a892174b565b8fad7dc7ac95130fe01ea138c3b44bff",
+      "source_sha256": "c9a5c3bc2cc80520431d6fd951a8e2303270d1c390b25ed1f5413391fbc29347"
+    },
+    "status": "OBSERVED"
+  },
+  "worker": {
+    "assessment": {
+      "observations": {
+        "mode_change": "allowed",
+        "network": "denied",
+        "nonce": "400bc05b24544ef28a536f650c60b891",
+        "reads": {
+          "actual_oracle": "denied",
+          "enclosing_repository": "denied",
+          "grader": "denied",
+          "matched_oracle": "denied",
+          "oracle-canary": "denied",
+          "other-role-canary": "denied",
+          "receipt-canary": "denied",
+          "sibling": "denied",
+          "study_results": "denied"
+        },
+        "scratch": true,
+        "writes": {
+          "candidate": "allowed",
+          "git_head": "denied",
+          "input": "denied",
+          "receipt": "denied",
+          "source": "denied"
+        }
+      },
+      "status": "OBSERVED"
+    },
+    "receipt": {
+      "elapsed_seconds": 0.128419,
+      "exit_code": 0,
+      "invocation_id": "d8a4804a-8bf7-4597-8351-db892d8a43ac",
+      "kind": "process_probe",
+      "native_argv_sha256": "3d70e5ba437ca23e7805014dd27b4bcb2c94a578e63550a5f89618053a606422",
+      "stderr": "",
+      "stdout": "{\"nonce\": \"400bc05b24544ef28a536f650c60b891\", \"writes\": {\"source\": \"denied\", \"input\": \"denied\", \"candidate\": \"allowed\", \"git_head\": \"denied\", \"receipt\": \"denied\"}, \"reads\": {\"receipt-canary\": \"denied\", \"oracle-canary\": \"denied\", \"other-role-canary\": \"denied\", \"actual_oracle\": \"denied\", \"matched_oracle\": \"denied\", \"grader\": \"denied\", \"study_results\": \"denied\", \"enclosing_repository\": \"denied\", \"sibling\": \"denied\"}, \"mode_change\": \"allowed\", \"scratch\": true, \"network\": \"denied\"}\n",
+      "timed_out": false
+    }
+  }
+}

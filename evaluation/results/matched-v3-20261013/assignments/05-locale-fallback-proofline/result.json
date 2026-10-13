@@ -1,0 +1,55 @@
+{
+  "arm": "proofline",
+  "base_tree": "9503e952268e34618f20dcc1f87108ee20141ad3",
+  "candidate_files": {
+    "README.md": {
+      "kind": "file",
+      "mode": 420,
+      "path": "README.md",
+      "sha256": "91d664731edf42a9a028b828581385640e10be5d74c573b28f6e3e6f3c81738c"
+    },
+    "app.py": {
+      "kind": "file",
+      "mode": 420,
+      "path": "app.py",
+      "sha256": "aaea00a9b71c288ad289e8aeac007a4168249e69f7efea2fae15b46792deb00d"
+    },
+    "cli.py": {
+      "kind": "file",
+      "mode": 420,
+      "path": "cli.py",
+      "sha256": "14aea6a3d7acc1d93b80e079fd645b48e4fef2e976df9ef355cc50829a7c74c8"
+    },
+    "service.py": {
+      "kind": "file",
+      "mode": 420,
+      "path": "service.py",
+      "sha256": "48db6ebd2d4d56bd71e566d9b43a980cac5956b80bee8944810a5d857bec0ff6"
+    },
+    "tests": {
+      "kind": "directory",
+      "mode": 493,
+      "path": "tests"
+    },
+    "tests/test_compat.py": {
+      "kind": "file",
+      "mode": 420,
+      "path": "tests/test_compat.py",
+      "sha256": "2432e53eeae0b53103501bb0cdfbd3dab2446d236503df335ea8a5e5e4171703"
+    },
+    "tests/test_example.py": {
+      "kind": "file",
+      "mode": 420,
+      "path": "tests/test_example.py",
+      "sha256": "6978b5b7daa1490e0c7ce0e11ee230234953bbaf6f70ba96e04b325b5469ecc4"
+    }
+  },
+  "candidate_snapshot_sha256": null,
+  "model_dispatches": 0,
+  "sequence": 5,
+  "source_sha256": "a916b8eeb9671391cc2bc577c1b6a3a635d54bce356997c3795df8c22bc543ca",
+  "status": "NOT_EXECUTED",
+  "task": "locale-fallback",
+  "usage": null,
+  "workflow_seconds": null
+}

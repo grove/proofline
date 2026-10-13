@@ -1,0 +1,1248 @@
+{
+  "advisory_status": "VALID",
+  "agent_completed": true,
+  "arm": "combined",
+  "base_tree": "977045022a51c9093a8af016a866a7f098bc681c",
+  "candidate_commit": "5862f29aea6f2feabaca1c6bfb1fc47ee12c26ff",
+  "candidate_files": {
+    "README.md": {
+      "kind": "file",
+      "mode": 420,
+      "path": "README.md",
+      "sha256": "2738a7f46a227dafc72511acb5d84b9bdfbefa4c2501b6897055ccd92590564e"
+    },
+    "app.py": {
+      "kind": "file",
+      "mode": 420,
+      "path": "app.py",
+      "sha256": "152b949721ae33a6c2bf2e9eb3c1b3f9c7244cd003c52a8cf260ea55960e66e9"
+    },
+    "cli.py": {
+      "kind": "file",
+      "mode": 420,
+      "path": "cli.py",
+      "sha256": "14aea6a3d7acc1d93b80e079fd645b48e4fef2e976df9ef355cc50829a7c74c8"
+    },
+    "service.py": {
+      "kind": "file",
+      "mode": 420,
+      "path": "service.py",
+      "sha256": "bccc4167b31129db07a9a59d3e7aa9d20d520cabf760ab75e8bcb40db668b927"
+    },
+    "tests": {
+      "kind": "directory",
+      "mode": 493,
+      "path": "tests"
+    },
+    "tests/test_compat.py": {
+      "kind": "file",
+      "mode": 420,
+      "path": "tests/test_compat.py",
+      "sha256": "2432e53eeae0b53103501bb0cdfbd3dab2446d236503df335ea8a5e5e4171703"
+    },
+    "tests/test_dependency_order.py": {
+      "kind": "file",
+      "mode": 420,
+      "path": "tests/test_dependency_order.py",
+      "sha256": "5bfa7fd27ad99490563909e74cc5ceedf3ff1a081744749fdc04236c4615fa5c"
+    },
+    "tests/test_example.py": {
+      "kind": "file",
+      "mode": 420,
+      "path": "tests/test_example.py",
+      "sha256": "6f6a81018afe2b295f9259d9cbb56b1eaf813da13e46aa9964ec3e1672ab3d28"
+    }
+  },
+  "candidate_snapshot_sha256": "35b02e8999cd2a5801c9c8dd3456b25bb708f6f3a53dd7e4478c664985403fc4",
+  "candidate_tree": "bbc364f70aa5e40f134022a65d12d3034ab4f787",
+  "check_elapsed_seconds": 1.2383900419808924,
+  "check_model_dispatches": 0,
+  "check_status": "CHECKS PASSED",
+  "controller_episode_processes": 26,
+  "controller_grading_processes": 37,
+  "extra_worker_messages": 0,
+  "feedback": {
+    "candidate_commit": "222c9ebaf39cdec705456db040d0931831d3c830",
+    "candidate_tree": "bbc364f70aa5e40f134022a65d12d3034ab4f787",
+    "checks": [
+      {
+        "argv": [
+          "/opt/homebrew/Cellar/python@3.14/3.14.8_2/Frameworks/Python.framework/Versions/3.14/bin/python3.14",
+          "-B",
+          "-c",
+          "from app import process; assert process({'nodes': ['z', 'a'], 'edges': []}) == {'order': ['z', 'a']}"
+        ],
+        "elapsed_seconds": 0.13301495788618922,
+        "exit_code": 0,
+        "index": 0,
+        "outcome_ids": [],
+        "reason": "Selected command exited 0; unselected promises are not demonstrated.",
+        "receipt_ref": "receipts/check-000.json",
+        "status": "PASSED",
+        "stderr_excerpt": "",
+        "stderr_ref": "receipts/check-000.json#stderr",
+        "stdout_excerpt": "",
+        "stdout_ref": "receipts/check-000.json#stdout"
+      },
+      {
+        "argv": [
+          "/opt/homebrew/Cellar/python@3.14/3.14.8_2/Frameworks/Python.framework/Versions/3.14/bin/python3.14",
+          "-B",
+          "-m",
+          "unittest",
+          "discover",
+          "-s",
+          "tests"
+        ],
+        "elapsed_seconds": 0.5901215830817819,
+        "exit_code": 0,
+        "index": 1,
+        "outcome_ids": [],
+        "reason": "Selected command exited 0; unselected promises are not demonstrated.",
+        "receipt_ref": "receipts/check-001.json",
+        "status": "PASSED",
+        "stderr_excerpt": "............ | ---------------------------------------------------------------------- | Ran 12 tests in 0.370s | OK",
+        "stderr_ref": "receipts/check-001.json#stderr",
+        "stdout_excerpt": "",
+        "stdout_ref": "receipts/check-001.json#stdout"
+      }
+    ],
+    "headline": "2/2 selected checks passed",
+    "next_action": "Report only the commands checked; original request coverage remains unknown.",
+    "scope": "Selected executable commands only; completeness of the original user promise is unknown.",
+    "snapshot_sha256": "c9aa0016132135d231d40d7e5d7542386e3fb8a2159fe608d97650cbdb1f4b2a",
+    "source_sha256": "28048df96119c5f6e2fd73c8909ed9424b063cd92cd2de1496d5f11e68c090e3",
+    "status": "CHECKS PASSED"
+  },
+  "finished_at": "2026-10-13T15:45:06.226900+00:00",
+  "grade": {
+    "available": true,
+    "correct": true,
+    "elapsed_seconds": 5.756652916315943,
+    "failures": [],
+    "receipts": [
+      {
+        "elapsed_seconds": 0.150894,
+        "exit_code": 0,
+        "invocation_id": "3fbdc1d3-83f2-4945-8b6b-0c1f65334154",
+        "kind": "process_probe",
+        "native_argv_sha256": "ca8db9dae123f83f3b6f2b84f104a706464ef47fe5387fb058d3de0cf15e17c0",
+        "stderr": "",
+        "stdout": "{\"ok\": true, \"unchanged\": true, \"value\": {\"order\": [\"z\", \"a\"]}}\n",
+        "timed_out": false
+      },
+      {
+        "elapsed_seconds": 0.133031,
+        "exit_code": 0,
+        "invocation_id": "f9e72be7-9cdf-4b70-b05b-0018e92725ab",
+        "kind": "process_probe",
+        "native_argv_sha256": "5bb7d45611e0cbbde5d25f2720cdf455e48b12accec46baead147c2f0d0bdf10",
+        "stderr": "",
+        "stdout": "{\"ok\": true, \"unchanged\": true, \"value\": {\"order\": [\"z\", \"a\"]}}\n",
+        "timed_out": false
+      },
+      {
+        "elapsed_seconds": 0.148721,
+        "exit_code": 0,
+        "invocation_id": "fa6aff35-4544-47fb-af50-96daca74c2d6",
+        "kind": "process_probe",
+        "native_argv_sha256": "f3d9143535e9cee4f6e598539a2a93fa428af460b5c43d56d1ffdf68e20e3955",
+        "stderr": "",
+        "stdout": "{\"order\": [\"z\", \"a\"]}\n",
+        "timed_out": false
+      },
+      {
+        "elapsed_seconds": 0.135828,
+        "exit_code": 0,
+        "invocation_id": "9c4d3376-ff5e-44b2-98f0-df1257f0494f",
+        "kind": "process_probe",
+        "native_argv_sha256": "fc3ab5d6c39436a5e4c79feaf4572717b7738a9b3c12acb6da3ce69f83703e58",
+        "stderr": "",
+        "stdout": "{\"ok\": true, \"unchanged\": true, \"value\": {\"order\": [\"b\", \"a\", \"c\"]}}\n",
+        "timed_out": false
+      },
+      {
+        "elapsed_seconds": 0.145996,
+        "exit_code": 0,
+        "invocation_id": "a704eccc-3e02-443d-8fc5-a6f09866b955",
+        "kind": "process_probe",
+        "native_argv_sha256": "544602b9aa8e28057fcfac83b7cd65d3f32e3f8dc181906f0a9294cbe8d22360",
+        "stderr": "",
+        "stdout": "{\"ok\": true, \"unchanged\": true, \"value\": {\"order\": [\"b\", \"a\", \"c\"]}}\n",
+        "timed_out": false
+      },
+      {
+        "elapsed_seconds": 0.143623,
+        "exit_code": 0,
+        "invocation_id": "f67af9da-c968-45ca-a8b4-23e63d773055",
+        "kind": "process_probe",
+        "native_argv_sha256": "33b4e24a3291928d2697f1e3bcd26a1408dcf8a5afef4cc04f51d7a76860890e",
+        "stderr": "",
+        "stdout": "{\"order\": [\"b\", \"a\", \"c\"]}\n",
+        "timed_out": false
+      },
+      {
+        "elapsed_seconds": 0.144472,
+        "exit_code": 0,
+        "invocation_id": "8e309015-23ce-43a3-b30d-b1ad004b7fe2",
+        "kind": "process_probe",
+        "native_argv_sha256": "3ce3f7b766f63f2480cc143a8c6b8d37564cbfa2175a7f4a03b9a04449cf6f7f",
+        "stderr": "",
+        "stdout": "{\"ok\": true, \"unchanged\": true, \"value\": {\"order\": [\"a\", \"b\"]}}\n",
+        "timed_out": false
+      },
+      {
+        "elapsed_seconds": 0.148147,
+        "exit_code": 0,
+        "invocation_id": "3e1bdb2a-bd22-4d35-bc7f-d1493a8d38f7",
+        "kind": "process_probe",
+        "native_argv_sha256": "f8e9dccba36ee3578fcbffa2421d58ef4ad60b00ca3266de3dc2ef953572e3e1",
+        "stderr": "",
+        "stdout": "{\"ok\": true, \"unchanged\": true, \"value\": {\"order\": [\"a\", \"b\"]}}\n",
+        "timed_out": false
+      },
+      {
+        "elapsed_seconds": 0.136776,
+        "exit_code": 0,
+        "invocation_id": "18d8ab6c-a329-4737-8f01-f665c7892c60",
+        "kind": "process_probe",
+        "native_argv_sha256": "0bf4c654d69a729b94e521480e60d3d9f4d78a4783a2c3b018e775ea16c6493c",
+        "stderr": "",
+        "stdout": "{\"order\": [\"a\", \"b\"]}\n",
+        "timed_out": false
+      },
+      {
+        "elapsed_seconds": 0.139253,
+        "exit_code": 0,
+        "invocation_id": "b02b5af6-7501-4efe-8883-fead8a957c2d",
+        "kind": "process_probe",
+        "native_argv_sha256": "99f9367a399f5c4013b5e0bd20e171153a67a807488842b545fbee301503af01",
+        "stderr": "",
+        "stdout": "{\"error\": \"ValueError\", \"is_value_error\": true, \"ok\": false, \"unchanged\": true}\n",
+        "timed_out": false
+      },
+      {
+        "elapsed_seconds": 0.143271,
+        "exit_code": 0,
+        "invocation_id": "ca492c69-288b-4048-931d-96d0c6d2fb2d",
+        "kind": "process_probe",
+        "native_argv_sha256": "deab3a561b8c37ab1be94c29ef62092ef2cccb6ed234b3750b043bac15de83fa",
+        "stderr": "",
+        "stdout": "{\"error\": \"ValueError\", \"is_value_error\": true, \"ok\": false, \"unchanged\": true}\n",
+        "timed_out": false
+      },
+      {
+        "elapsed_seconds": 0.142558,
+        "exit_code": 2,
+        "invocation_id": "e7113c3d-0105-4e07-ad62-e48dfe0d2c0f",
+        "kind": "process_probe",
+        "native_argv_sha256": "462f5e9b461af6a81edad32c302e4f3676bca29bae61f957b059fdbd4f9833e4",
+        "stderr": "ERROR: Graph contains a cycle\n",
+        "stdout": "",
+        "timed_out": false
+      },
+      {
+        "elapsed_seconds": 0.140547,
+        "exit_code": 0,
+        "invocation_id": "9cc52269-4806-47c5-8004-c70ced278a0f",
+        "kind": "process_probe",
+        "native_argv_sha256": "4ca210fe8d7580f1bf888c376c5c3f58b10cc407a934e22a95bf97057da3b898",
+        "stderr": "",
+        "stdout": "{\"error\": \"ValueError\", \"is_value_error\": true, \"ok\": false, \"unchanged\": true}\n",
+        "timed_out": false
+      },
+      {
+        "elapsed_seconds": 0.144789,
+        "exit_code": 0,
+        "invocation_id": "e683412f-59f0-4a6f-a8d9-0f5ed39c0fa6",
+        "kind": "process_probe",
+        "native_argv_sha256": "56a47cbd3236a1cd20a26903774d363ff58ef2dd24f1897679621e222a20516e",
+        "stderr": "",
+        "stdout": "{\"error\": \"ValueError\", \"is_value_error\": true, \"ok\": false, \"unchanged\": true}\n",
+        "timed_out": false
+      },
+      {
+        "elapsed_seconds": 0.145247,
+        "exit_code": 2,
+        "invocation_id": "983eef0a-7455-46fd-af44-b6357ccd7280",
+        "kind": "process_probe",
+        "native_argv_sha256": "fb01c23ba3d2a03058bb9ac7c72f9f8967395d35649454532ea6938f5ec3dfc5",
+        "stderr": "ERROR: Self-loops are not allowed\n",
+        "stdout": "",
+        "timed_out": false
+      },
+      {
+        "elapsed_seconds": 0.146719,
+        "exit_code": 0,
+        "invocation_id": "39489025-6cb1-475d-bebc-79050d672232",
+        "kind": "process_probe",
+        "native_argv_sha256": "841f07b138dac6c7371914f754db99f3c07e5600fe8bc74f7a5fce4db39efb84",
+        "stderr": "",
+        "stdout": "{\"error\": \"ValueError\", \"is_value_error\": true, \"ok\": false, \"unchanged\": true}\n",
+        "timed_out": false
+      },
+      {
+        "elapsed_seconds": 0.149321,
+        "exit_code": 0,
+        "invocation_id": "33e55d3d-ec2b-4ba4-bff0-535360585d3d",
+        "kind": "process_probe",
+        "native_argv_sha256": "3c4b63860ca6f7400029cb59456a3bfe89c1d5f3f0fa43c1cc7116c31f3acd14",
+        "stderr": "",
+        "stdout": "{\"error\": \"ValueError\", \"is_value_error\": true, \"ok\": false, \"unchanged\": true}\n",
+        "timed_out": false
+      },
+      {
+        "elapsed_seconds": 0.148053,
+        "exit_code": 2,
+        "invocation_id": "e14de7d6-c842-4ee7-952b-f9ed2c5598bb",
+        "kind": "process_probe",
+        "native_argv_sha256": "f8db6c911f3301183a1853bf999cd59c451f0abe5cc8dd1c3bd985bdbb0059bf",
+        "stderr": "ERROR: Edges must reference declared nodes\n",
+        "stdout": "",
+        "timed_out": false
+      },
+      {
+        "elapsed_seconds": 0.146181,
+        "exit_code": 0,
+        "invocation_id": "613bd23a-4956-460e-868b-46e0ed3c723e",
+        "kind": "process_probe",
+        "native_argv_sha256": "1e341d980f1f018c204f5e48c1be464671ef273f88208aa921fb0b7b4b889ddb",
+        "stderr": "",
+        "stdout": "{\"error\": \"ValueError\", \"is_value_error\": true, \"ok\": false, \"unchanged\": true}\n",
+        "timed_out": false
+      },
+      {
+        "elapsed_seconds": 0.141266,
+        "exit_code": 0,
+        "invocation_id": "e599110a-a0fb-42cb-b753-d53ae4fb9ae3",
+        "kind": "process_probe",
+        "native_argv_sha256": "147e8554edbed2519660a45b97c090dff63348cde523dc874c61bdec1da1b6b9",
+        "stderr": "",
+        "stdout": "{\"error\": \"ValueError\", \"is_value_error\": true, \"ok\": false, \"unchanged\": true}\n",
+        "timed_out": false
+      },
+      {
+        "elapsed_seconds": 0.148603,
+        "exit_code": 2,
+        "invocation_id": "c96d596b-f8fc-4952-b503-97f171ed2ed3",
+        "kind": "process_probe",
+        "native_argv_sha256": "f3e373ea6de5844e07da07b646e1fd626afbe0f8aef70a5952396689a7c29761",
+        "stderr": "ERROR: Node names must be unique\n",
+        "stdout": "",
+        "timed_out": false
+      },
+      {
+        "elapsed_seconds": 0.147476,
+        "exit_code": 0,
+        "invocation_id": "13d98378-0eb1-4282-952b-f578738dfcaa",
+        "kind": "process_probe",
+        "native_argv_sha256": "849428e723c6799a1f47a2a213f4d231c5b1746199969f140a3dab9093583027",
+        "stderr": "",
+        "stdout": "{\"ok\": true, \"unchanged\": true, \"value\": {\"order\": []}}\n",
+        "timed_out": false
+      },
+      {
+        "elapsed_seconds": 0.143816,
+        "exit_code": 0,
+        "invocation_id": "65826636-54fc-4f8a-95a0-c6c5fa07e3cd",
+        "kind": "process_probe",
+        "native_argv_sha256": "317a88ec5cf8e7f1cb4be2227ee10ebffdf72c2854fc10b3622c8a8ea37083c9",
+        "stderr": "",
+        "stdout": "{\"ok\": true, \"unchanged\": true, \"value\": {\"order\": []}}\n",
+        "timed_out": false
+      },
+      {
+        "elapsed_seconds": 0.144405,
+        "exit_code": 0,
+        "invocation_id": "67676be9-f73f-47b3-9dd1-5f54cd4b4cce",
+        "kind": "process_probe",
+        "native_argv_sha256": "8c35fe99257cae0a650218365322952be05b10341201fe0bf995704f53d7af0b",
+        "stderr": "",
+        "stdout": "{\"order\": []}\n",
+        "timed_out": false
+      },
+      {
+        "elapsed_seconds": 0.14197,
+        "exit_code": 0,
+        "invocation_id": "1206b394-fdf1-449b-ad91-7d686bef4e37",
+        "kind": "process_probe",
+        "native_argv_sha256": "aee18271f897caa89f3b7072f2f0bbedcbe2112d35df4d4a9527937083efe534",
+        "stderr": "",
+        "stdout": "{\"error\": \"ValueError\", \"is_value_error\": true, \"ok\": false, \"unchanged\": true}\n",
+        "timed_out": false
+      },
+      {
+        "elapsed_seconds": 0.138202,
+        "exit_code": 0,
+        "invocation_id": "daf23372-e9f9-480b-8641-827d4cdcd6c6",
+        "kind": "process_probe",
+        "native_argv_sha256": "b5f24dad68a78e1cc029cbfb58e664e95afafb9c87ffb5b977454446b09afe30",
+        "stderr": "",
+        "stdout": "{\"error\": \"ValueError\", \"is_value_error\": true, \"ok\": false, \"unchanged\": true}\n",
+        "timed_out": false
+      },
+      {
+        "elapsed_seconds": 0.150708,
+        "exit_code": 2,
+        "invocation_id": "9bc9b5ba-4b1b-4945-bce5-3030716bfd87",
+        "kind": "process_probe",
+        "native_argv_sha256": "76c1f7b5ce8414c9adf7cd505b46a0c2624604fef44743d1bc4f98e907288bd6",
+        "stderr": "ERROR: Each edge must be a two-element list\n",
+        "stdout": "",
+        "timed_out": false
+      },
+      {
+        "elapsed_seconds": 0.142947,
+        "exit_code": 0,
+        "invocation_id": "be65812e-64d9-4403-8f8a-d93a34ad8da9",
+        "kind": "process_probe",
+        "native_argv_sha256": "119d401e59e2d48ca19f3931f971a571d4109e429108de14a4c51a554da2125a",
+        "stderr": "",
+        "stdout": "{\"error\": \"ValueError\", \"is_value_error\": true, \"ok\": false, \"unchanged\": true}\n",
+        "timed_out": false
+      },
+      {
+        "elapsed_seconds": 0.143991,
+        "exit_code": 0,
+        "invocation_id": "0dd2f51a-1f46-4407-a383-1db12860ffa2",
+        "kind": "process_probe",
+        "native_argv_sha256": "3b0194bd121143978644646b12bd6f71ab10523086f6f68ab59c80250c0068f2",
+        "stderr": "",
+        "stdout": "{\"error\": \"ValueError\", \"is_value_error\": true, \"ok\": false, \"unchanged\": true}\n",
+        "timed_out": false
+      },
+      {
+        "elapsed_seconds": 0.149694,
+        "exit_code": 2,
+        "invocation_id": "81ec7803-6597-4ab2-acd2-f59e7b047805",
+        "kind": "process_probe",
+        "native_argv_sha256": "e1395afce28150af6592c7d6db69c88f60f2a070d729a90db37dbf78e960ed24",
+        "stderr": "ERROR: Expected an object with nodes and edges\n",
+        "stdout": "",
+        "timed_out": false
+      },
+      {
+        "elapsed_seconds": 0.148709,
+        "exit_code": 0,
+        "invocation_id": "54969474-df3a-4da7-bd70-19e0d13627f7",
+        "kind": "process_probe",
+        "native_argv_sha256": "7a4579cfb9a8938c665ac1fa714815f473cb75eba8f75157c9dbeadf39dbdf22",
+        "stderr": "",
+        "stdout": "{\"ok\": true, \"unchanged\": true, \"value\": []}\n",
+        "timed_out": false
+      },
+      {
+        "elapsed_seconds": 0.150983,
+        "exit_code": 0,
+        "invocation_id": "da1e7ee1-de89-4170-a11c-250091ceb05e",
+        "kind": "process_probe",
+        "native_argv_sha256": "3c9aa2bbf7daf63ba103310f8f7d80f03b3f004e56af139a232882c5daf3c524",
+        "stderr": "",
+        "stdout": "{\"ok\": true, \"unchanged\": true, \"value\": [{\"order\": [\"z\", \"a\"]}, {\"order\": [\"z\", \"a\"]}]}\n",
+        "timed_out": false
+      },
+      {
+        "elapsed_seconds": 0.148168,
+        "exit_code": 0,
+        "invocation_id": "6a858096-da2e-453c-ae32-4b16df72b824",
+        "kind": "process_probe",
+        "native_argv_sha256": "129748fb7b2a460b089f5458831dfb3b0070600cebfd8b43fa5a8298ff687947",
+        "stderr": "",
+        "stdout": "{\"error\": \"ValueError\", \"is_value_error\": true, \"ok\": false, \"unchanged\": true}\n",
+        "timed_out": false
+      },
+      {
+        "elapsed_seconds": 0.142265,
+        "exit_code": 0,
+        "invocation_id": "124b3b8e-68ac-443e-9c11-6cd68fb607a4",
+        "kind": "process_probe",
+        "native_argv_sha256": "3ecd1932ad39b13ca2b04cfbf2005e6a724207d8632c2b53dc4ef77b1c6906ce",
+        "stderr": "",
+        "stdout": "{\"error\": \"ValueError\", \"is_value_error\": true, \"ok\": false, \"unchanged\": true}\n",
+        "timed_out": false
+      },
+      {
+        "elapsed_seconds": 0.127655,
+        "exit_code": 0,
+        "invocation_id": "2f8cc0e9-5328-47b6-924f-96b209abbd63",
+        "kind": "process_probe",
+        "native_argv_sha256": "0cb5cbfbb0f24748e0fd58f30e08d4b8011651081ca87715a0735d6ce0e39df4",
+        "stderr": "",
+        "stdout": "api-v1\n",
+        "timed_out": false
+      },
+      {
+        "elapsed_seconds": 0.14704,
+        "exit_code": 2,
+        "invocation_id": "f0cf9ef2-8a45-4aa2-907b-c8c74f7b2037",
+        "kind": "process_probe",
+        "native_argv_sha256": "c23bc2df4379a71c0933525449a26bae8cca3e0cd38a83db7a57bf9d8e333ff6",
+        "stderr": "ERROR: unsupported arguments\n",
+        "stdout": "",
+        "timed_out": false
+      },
+      {
+        "elapsed_seconds": 0.528089,
+        "exit_code": 0,
+        "invocation_id": "b28c628b-44d8-4615-865c-253e516afacf",
+        "kind": "process_probe",
+        "native_argv_sha256": "43cb2c032d3e2b3ada0c9e9250cb15d08a5cfb04886417d50d61351aff0b5f10",
+        "stderr": "............\n----------------------------------------------------------------------\nRan 12 tests in 0.345s\n\nOK\n",
+        "stdout": "",
+        "timed_out": false
+      }
+    ],
+    "repository_tests_passed": true,
+    "stale_test_expectation_retained": false,
+    "unavailable": []
+  },
+  "handoff": true,
+  "model_dispatches": 1,
+  "native_available": true,
+  "operator_candidate_edits": 0,
+  "plan_identity": {
+    "advisory": true,
+    "check_links": {
+      "R1": [
+        {
+          "argv": [
+            "/opt/homebrew/Cellar/python@3.14/3.14.8_2/Frameworks/Python.framework/Versions/3.14/bin/python3.14",
+            "-B",
+            "-c",
+            "from app import process; assert process({'nodes': ['z', 'a'], 'edges': []}) == {'order': ['z', 'a']}"
+          ],
+          "index": 0
+        },
+        {
+          "argv": [
+            "/opt/homebrew/Cellar/python@3.14/3.14.8_2/Frameworks/Python.framework/Versions/3.14/bin/python3.14",
+            "-B",
+            "-m",
+            "unittest",
+            "discover",
+            "-s",
+            "tests"
+          ],
+          "index": 1
+        }
+      ],
+      "R2": [
+        {
+          "argv": [
+            "/opt/homebrew/Cellar/python@3.14/3.14.8_2/Frameworks/Python.framework/Versions/3.14/bin/python3.14",
+            "-B",
+            "-m",
+            "unittest",
+            "discover",
+            "-s",
+            "tests"
+          ],
+          "index": 1
+        }
+      ],
+      "R3": [
+        {
+          "argv": [
+            "/opt/homebrew/Cellar/python@3.14/3.14.8_2/Frameworks/Python.framework/Versions/3.14/bin/python3.14",
+            "-B",
+            "-m",
+            "unittest",
+            "discover",
+            "-s",
+            "tests"
+          ],
+          "index": 1
+        }
+      ],
+      "R4": [
+        {
+          "argv": [
+            "/opt/homebrew/Cellar/python@3.14/3.14.8_2/Frameworks/Python.framework/Versions/3.14/bin/python3.14",
+            "-B",
+            "-m",
+            "unittest",
+            "discover",
+            "-s",
+            "tests"
+          ],
+          "index": 1
+        }
+      ],
+      "R5": [
+        {
+          "argv": [
+            "/opt/homebrew/Cellar/python@3.14/3.14.8_2/Frameworks/Python.framework/Versions/3.14/bin/python3.14",
+            "-B",
+            "-m",
+            "unittest",
+            "discover",
+            "-s",
+            "tests"
+          ],
+          "index": 1
+        }
+      ],
+      "R6": [
+        {
+          "argv": [
+            "/opt/homebrew/Cellar/python@3.14/3.14.8_2/Frameworks/Python.framework/Versions/3.14/bin/python3.14",
+            "-B",
+            "-m",
+            "unittest",
+            "discover",
+            "-s",
+            "tests"
+          ],
+          "index": 1
+        }
+      ],
+      "R7": [
+        {
+          "argv": [
+            "/opt/homebrew/Cellar/python@3.14/3.14.8_2/Frameworks/Python.framework/Versions/3.14/bin/python3.14",
+            "-B",
+            "-m",
+            "unittest",
+            "discover",
+            "-s",
+            "tests"
+          ],
+          "index": 1
+        }
+      ]
+    },
+    "constraints": [
+      {
+        "basis": "request",
+        "scope": "All implementation changes",
+        "source_refs": [
+          {
+            "line_end": 14,
+            "line_start": 13,
+            "quote": "response and unsupported-argument behavior; keep cli.py unchanged. Extra object\nkeys are allowed. Update a stale test expectation if it contradicts this request.",
+            "source_id": "S1"
+          }
+        ],
+        "statement": "Keep cli.py unchanged."
+      }
+    ],
+    "contract_id": "dependency-order-combined",
+    "contract_sha256": "af7dd3a06a6177c025e1431b5d141e7648c80942875e706626654fde95c92ed0",
+    "coverage_completeness": "UNKNOWN",
+    "evidence_gaps": [],
+    "execution_authority": "not_established",
+    "export_authority": "unapproved",
+    "export_format": "json",
+    "export_manifest_sha256": "546321f396b6e9fe645fd90d761c0c2a37f5841a1fe5cac2882a7043e4bfa159",
+    "external_caller_approval": "not_supplied_or_authenticated",
+    "intended_outcome": "Stable dependency ordering with strict validation, consistent service and CLI behavior, ordered batch processing and immutable inputs.",
+    "out_of_scope": [],
+    "record": "intentline.advisory-input",
+    "requirements": [
+      {
+        "basis": "request",
+        "boundaries": [
+          "Empty nodes and edges yield empty order.",
+          "Repeated edges have no effect.",
+          "Never sort names; newly eligible earlier nodes outrank later waiting nodes."
+        ],
+        "evidence_gap_reasons": [],
+        "id": "R1",
+        "oracle": "For nodes ['a','b','c'] and edge ['b','a'], order is ['b','a','c']; a FIFO queue could wrongly return ['b','c','a'].",
+        "plan_state": "planned",
+        "planned_evidence": "Unit tests with explicit expected orders, duplicate edges, empty graphs and exhaustive small-graph permutation oracle.",
+        "seam": "app.process",
+        "source_refs": [
+          {
+            "line_end": 5,
+            "line_start": 1,
+            "quote": "Implement stable dependency ordering for {\"nodes\": [name, ...],\n\"edges\": [[before, after], ...]}. Names are nonempty strings and nodes unique.\nEdges must reference declared nodes. Repeated identical edges have no effect.\nAt EACH step choose the earliest node in the ORIGINAL nodes list whose\ndependencies are already emitted. Return {\"order\": [names]}.",
+            "source_id": "S1"
+          },
+          {
+            "line_end": 7,
+            "line_start": 7,
+            "quote": "cycles, with ValueError. Empty nodes/edges are allowed. Never sort by name.",
+            "source_id": "S1"
+          }
+        ],
+        "statement": "Return dependency order, choosing the earliest eligible node in the original node list at each step."
+      },
+      {
+        "basis": "request",
+        "boundaries": [
+          "Require object containing list nodes and list edges.",
+          "Node names are unique nonempty strings.",
+          "Each edge has two declared node names.",
+          "Disconnected cycles also fail."
+        ],
+        "evidence_gap_reasons": [],
+        "id": "R2",
+        "oracle": "Missing fields, duplicate/empty/non-string names, dangling or malformed edges and a disconnected cycle all raise ValueError; a graph traversal that only checks one component can miss a cycle.",
+        "plan_state": "planned",
+        "planned_evidence": "Unit tests for invalid record shapes, names, endpoints, self-loops and disconnected cycles.",
+        "seam": "app.process",
+        "source_refs": [
+          {
+            "line_end": 3,
+            "line_start": 1,
+            "quote": "Implement stable dependency ordering for {\"nodes\": [name, ...],\n\"edges\": [[before, after], ...]}. Names are nonempty strings and nodes unique.\nEdges must reference declared nodes. Repeated identical edges have no effect.",
+            "source_id": "S1"
+          },
+          {
+            "line_end": 7,
+            "line_start": 6,
+            "quote": "Reject malformed records, self-loops and ANY cycle, including disconnected\ncycles, with ValueError. Empty nodes/edges are allowed. Never sort by name.",
+            "source_id": "S1"
+          },
+          {
+            "line_end": 14,
+            "line_start": 14,
+            "quote": "keys are allowed. Update a stale test expectation if it contradicts this request.",
+            "source_id": "S1"
+          }
+        ],
+        "statement": "Reject malformed records, self-loops and all cycles with ValueError; allow extra object keys."
+      },
+      {
+        "basis": "request",
+        "boundaries": [
+          "Valid JSON emits the same order.",
+          "Invalid records follow the existing CLI error path."
+        ],
+        "evidence_gap_reasons": [],
+        "id": "R3",
+        "oracle": "The same valid graph returns identical objects through both APIs and decoded CLI output; a bypassing wrapper could drift.",
+        "plan_state": "planned",
+        "planned_evidence": "API parity tests and CLI subprocess success/error checks.",
+        "seam": "service.handle and cli.py subprocess",
+        "source_refs": [
+          {
+            "line_end": 10,
+            "line_start": 9,
+            "quote": "Expose the same behavior through app.process, service.handle and the existing\nJSON stdin/stdout CLI. Add service.batch(payloads): return each process result",
+            "source_id": "S1"
+          }
+        ],
+        "statement": "Expose the same graph processing through service.handle and the existing JSON stdin/stdout CLI."
+      },
+      {
+        "basis": "request",
+        "boundaries": [
+          "Empty list yields empty list.",
+          "Invalid members fail even after valid members.",
+          "Batch keeps member order."
+        ],
+        "evidence_gap_reasons": [],
+        "id": "R4",
+        "oracle": "A two-graph batch yields its two independently expected results in input order; a sorted or partially returned batch violates the request.",
+        "plan_state": "planned",
+        "planned_evidence": "Batch unit tests for empty, ordered, non-list and invalid-member inputs.",
+        "seam": "service.batch",
+        "source_refs": [
+          {
+            "line_end": 11,
+            "line_start": 10,
+            "quote": "JSON stdin/stdout CLI. Add service.batch(payloads): return each process result\nin input order; reject a non-list or any invalid member with ValueError.",
+            "source_id": "S1"
+          }
+        ],
+        "statement": "Add service.batch accepting a list and returning process results in input order; reject non-list payloads or any invalid member with ValueError."
+      },
+      {
+        "basis": "request",
+        "boundaries": [
+          "Covers nested graph data, extra keys, service wrappers and batch members.",
+          "Failures must leave original data intact."
+        ],
+        "evidence_gap_reasons": [],
+        "id": "R5",
+        "oracle": "Deep copies before and after successful and rejected calls are equal; in-place sorting or adjacency edits would violate this.",
+        "plan_state": "planned",
+        "planned_evidence": "Snapshot unit tests for valid graphs and failures, including a batch with an invalid later member.",
+        "seam": "app.process, service.handle, service.batch",
+        "source_refs": [
+          {
+            "line_end": 12,
+            "line_start": 12,
+            "quote": "Do not mutate any input, including on errors. Preserve the exact CLI --version",
+            "source_id": "S1"
+          }
+        ],
+        "statement": "Do not mutate any input, including on errors."
+      },
+      {
+        "basis": "request",
+        "boundaries": [
+          "Version remains stdout api-v1 newline, exit 0 and empty stderr.",
+          "Unsupported arguments remain stderr ERROR: unsupported arguments newline, exit 2 and empty stdout."
+        ],
+        "evidence_gap_reasons": [],
+        "id": "R6",
+        "oracle": "Compare original CLI bytes and fixed subprocess output tuples; general argument parsing changes could alter compatibility.",
+        "plan_state": "planned",
+        "planned_evidence": "Original-byte comparison and subprocess compatibility unit tests.",
+        "seam": "cli.py and its bytes",
+        "source_refs": [
+          {
+            "line_end": 14,
+            "line_start": 12,
+            "quote": "Do not mutate any input, including on errors. Preserve the exact CLI --version\nresponse and unsupported-argument behavior; keep cli.py unchanged. Extra object\nkeys are allowed. Update a stale test expectation if it contradicts this request.",
+            "source_id": "S1"
+          }
+        ],
+        "statement": "Preserve exact CLI --version response and unsupported-argument behavior and keep cli.py unchanged."
+      },
+      {
+        "basis": "request",
+        "boundaries": [
+          "Existing independent-node example must expect ['z','a']."
+        ],
+        "evidence_gap_reasons": [],
+        "id": "R7",
+        "oracle": "The explicit request gives ['z','a'] for nodes ['z','a'] and no edges; the stale test currently asserts name sorting.",
+        "plan_state": "planned",
+        "planned_evidence": "Update the example assertion and run unittest discovery.",
+        "seam": "tests/test_example.py",
+        "source_refs": [
+          {
+            "line_end": 14,
+            "line_start": 14,
+            "quote": "keys are allowed. Update a stale test expectation if it contradicts this request.",
+            "source_id": "S1"
+          }
+        ],
+        "statement": "Update the stale test expectation if it contradicts the requested original-list ordering."
+      }
+    ],
+    "revision": 1,
+    "schema_version": 1,
+    "source_bundle_sha256": "bb57da87b795f8758bc95ea9a0fbf76d444b4d0a70f299c2f48ffb2b64f92aa1",
+    "source_sha256": "28048df96119c5f6e2fd73c8909ed9424b063cd92cd2de1496d5f11e68c090e3"
+  },
+  "promise_evidence": {
+    "candidate_commit": "222c9ebaf39cdec705456db040d0931831d3c830",
+    "candidate_tree": "bbc364f70aa5e40f134022a65d12d3034ab4f787",
+    "coverage_completeness": "UNKNOWN",
+    "intentline": {
+      "constraints": [
+        {
+          "basis": "request",
+          "scope": "All implementation changes",
+          "source_refs": [
+            {
+              "line_end": 14,
+              "line_start": 13,
+              "quote": "response and unsupported-argument behavior; keep cli.py unchanged. Extra object\nkeys are allowed. Update a stale test expectation if it contradicts this request.",
+              "source_id": "S1"
+            }
+          ],
+          "statement": "Keep cli.py unchanged."
+        }
+      ],
+      "contract_id": "dependency-order-combined",
+      "contract_sha256": "af7dd3a06a6177c025e1431b5d141e7648c80942875e706626654fde95c92ed0",
+      "evidence_gaps": [],
+      "execution_authority": "not_established",
+      "export_authority": "unapproved",
+      "export_manifest_sha256": "546321f396b6e9fe645fd90d761c0c2a37f5841a1fe5cac2882a7043e4bfa159",
+      "external_caller_approval": "not_supplied_or_authenticated",
+      "intended_outcome": "Stable dependency ordering with strict validation, consistent service and CLI behavior, ordered batch processing and immutable inputs.",
+      "out_of_scope": [],
+      "revision": 1,
+      "scope": "Untrusted advisory planning data, not executable tests, proof or consent.",
+      "source_bundle_sha256": "bb57da87b795f8758bc95ea9a0fbf76d444b4d0a70f299c2f48ffb2b64f92aa1",
+      "source_sha256": "28048df96119c5f6e2fd73c8909ed9424b063cd92cd2de1496d5f11e68c090e3"
+    },
+    "original_source_ref": "inputs/source.md",
+    "requirements": [
+      {
+        "id": "R1",
+        "intentline_planning": {
+          "authority": "unverified original-source-grounded proposal",
+          "basis": "request",
+          "boundaries": [
+            "Empty nodes and edges yield empty order.",
+            "Repeated edges have no effect.",
+            "Never sort names; newly eligible earlier nodes outrank later waiting nodes."
+          ],
+          "evidence_gap_reasons": [],
+          "plan_state": "planned",
+          "planned_evidence": "Unit tests with explicit expected orders, duplicate edges, empty graphs and exhaustive small-graph permutation oracle.",
+          "seam": "app.process"
+        },
+        "kind": "outcome",
+        "linked_checks": [
+          {
+            "argv": [
+              "/opt/homebrew/Cellar/python@3.14/3.14.8_2/Frameworks/Python.framework/Versions/3.14/bin/python3.14",
+              "-B",
+              "-c",
+              "from app import process; assert process({'nodes': ['z', 'a'], 'edges': []}) == {'order': ['z', 'a']}"
+            ],
+            "index": 0,
+            "observation_status": "PASSED",
+            "receipt_ref": "receipts/check-000.json"
+          },
+          {
+            "argv": [
+              "/opt/homebrew/Cellar/python@3.14/3.14.8_2/Frameworks/Python.framework/Versions/3.14/bin/python3.14",
+              "-B",
+              "-m",
+              "unittest",
+              "discover",
+              "-s",
+              "tests"
+            ],
+            "index": 1,
+            "observation_status": "PASSED",
+            "receipt_ref": "receipts/check-001.json"
+          }
+        ],
+        "oracle_authority": "unverified caller suggestion",
+        "proposed_oracle": "For nodes ['a','b','c'] and edge ['b','a'], order is ['b','a','c']; a FIFO queue could wrongly return ['b','c','a'].",
+        "reason": "Selected commands passed; linked behaviors are not proven in full",
+        "source_refs": [
+          {
+            "line_end": 5,
+            "line_start": 1,
+            "quote": "Implement stable dependency ordering for {\"nodes\": [name, ...],\n\"edges\": [[before, after], ...]}. Names are nonempty strings and nodes unique.\nEdges must reference declared nodes. Repeated identical edges have no effect.\nAt EACH step choose the earliest node in the ORIGINAL nodes list whose\ndependencies are already emitted. Return {\"order\": [names]}.",
+            "source_id": "S1"
+          },
+          {
+            "line_end": 7,
+            "line_start": 7,
+            "quote": "cycles, with ValueError. Empty nodes/edges are allowed. Never sort by name.",
+            "source_id": "S1"
+          }
+        ],
+        "statement": "Return dependency order, choosing the earliest eligible node in the original node list at each step.",
+        "status": "LINKED CHECKS PASSED (limited evidence)"
+      },
+      {
+        "id": "R2",
+        "intentline_planning": {
+          "authority": "unverified original-source-grounded proposal",
+          "basis": "request",
+          "boundaries": [
+            "Require object containing list nodes and list edges.",
+            "Node names are unique nonempty strings.",
+            "Each edge has two declared node names.",
+            "Disconnected cycles also fail."
+          ],
+          "evidence_gap_reasons": [],
+          "plan_state": "planned",
+          "planned_evidence": "Unit tests for invalid record shapes, names, endpoints, self-loops and disconnected cycles.",
+          "seam": "app.process"
+        },
+        "kind": "outcome",
+        "linked_checks": [
+          {
+            "argv": [
+              "/opt/homebrew/Cellar/python@3.14/3.14.8_2/Frameworks/Python.framework/Versions/3.14/bin/python3.14",
+              "-B",
+              "-m",
+              "unittest",
+              "discover",
+              "-s",
+              "tests"
+            ],
+            "index": 1,
+            "observation_status": "PASSED",
+            "receipt_ref": "receipts/check-001.json"
+          }
+        ],
+        "oracle_authority": "unverified caller suggestion",
+        "proposed_oracle": "Missing fields, duplicate/empty/non-string names, dangling or malformed edges and a disconnected cycle all raise ValueError; a graph traversal that only checks one component can miss a cycle.",
+        "reason": "Selected commands passed; linked behaviors are not proven in full",
+        "source_refs": [
+          {
+            "line_end": 3,
+            "line_start": 1,
+            "quote": "Implement stable dependency ordering for {\"nodes\": [name, ...],\n\"edges\": [[before, after], ...]}. Names are nonempty strings and nodes unique.\nEdges must reference declared nodes. Repeated identical edges have no effect.",
+            "source_id": "S1"
+          },
+          {
+            "line_end": 7,
+            "line_start": 6,
+            "quote": "Reject malformed records, self-loops and ANY cycle, including disconnected\ncycles, with ValueError. Empty nodes/edges are allowed. Never sort by name.",
+            "source_id": "S1"
+          },
+          {
+            "line_end": 14,
+            "line_start": 14,
+            "quote": "keys are allowed. Update a stale test expectation if it contradicts this request.",
+            "source_id": "S1"
+          }
+        ],
+        "statement": "Reject malformed records, self-loops and all cycles with ValueError; allow extra object keys.",
+        "status": "LINKED CHECKS PASSED (limited evidence)"
+      },
+      {
+        "id": "R3",
+        "intentline_planning": {
+          "authority": "unverified original-source-grounded proposal",
+          "basis": "request",
+          "boundaries": [
+            "Valid JSON emits the same order.",
+            "Invalid records follow the existing CLI error path."
+          ],
+          "evidence_gap_reasons": [],
+          "plan_state": "planned",
+          "planned_evidence": "API parity tests and CLI subprocess success/error checks.",
+          "seam": "service.handle and cli.py subprocess"
+        },
+        "kind": "outcome",
+        "linked_checks": [
+          {
+            "argv": [
+              "/opt/homebrew/Cellar/python@3.14/3.14.8_2/Frameworks/Python.framework/Versions/3.14/bin/python3.14",
+              "-B",
+              "-m",
+              "unittest",
+              "discover",
+              "-s",
+              "tests"
+            ],
+            "index": 1,
+            "observation_status": "PASSED",
+            "receipt_ref": "receipts/check-001.json"
+          }
+        ],
+        "oracle_authority": "unverified caller suggestion",
+        "proposed_oracle": "The same valid graph returns identical objects through both APIs and decoded CLI output; a bypassing wrapper could drift.",
+        "reason": "Selected commands passed; linked behaviors are not proven in full",
+        "source_refs": [
+          {
+            "line_end": 10,
+            "line_start": 9,
+            "quote": "Expose the same behavior through app.process, service.handle and the existing\nJSON stdin/stdout CLI. Add service.batch(payloads): return each process result",
+            "source_id": "S1"
+          }
+        ],
+        "statement": "Expose the same graph processing through service.handle and the existing JSON stdin/stdout CLI.",
+        "status": "LINKED CHECKS PASSED (limited evidence)"
+      },
+      {
+        "id": "R4",
+        "intentline_planning": {
+          "authority": "unverified original-source-grounded proposal",
+          "basis": "request",
+          "boundaries": [
+            "Empty list yields empty list.",
+            "Invalid members fail even after valid members.",
+            "Batch keeps member order."
+          ],
+          "evidence_gap_reasons": [],
+          "plan_state": "planned",
+          "planned_evidence": "Batch unit tests for empty, ordered, non-list and invalid-member inputs.",
+          "seam": "service.batch"
+        },
+        "kind": "outcome",
+        "linked_checks": [
+          {
+            "argv": [
+              "/opt/homebrew/Cellar/python@3.14/3.14.8_2/Frameworks/Python.framework/Versions/3.14/bin/python3.14",
+              "-B",
+              "-m",
+              "unittest",
+              "discover",
+              "-s",
+              "tests"
+            ],
+            "index": 1,
+            "observation_status": "PASSED",
+            "receipt_ref": "receipts/check-001.json"
+          }
+        ],
+        "oracle_authority": "unverified caller suggestion",
+        "proposed_oracle": "A two-graph batch yields its two independently expected results in input order; a sorted or partially returned batch violates the request.",
+        "reason": "Selected commands passed; linked behaviors are not proven in full",
+        "source_refs": [
+          {
+            "line_end": 11,
+            "line_start": 10,
+            "quote": "JSON stdin/stdout CLI. Add service.batch(payloads): return each process result\nin input order; reject a non-list or any invalid member with ValueError.",
+            "source_id": "S1"
+          }
+        ],
+        "statement": "Add service.batch accepting a list and returning process results in input order; reject non-list payloads or any invalid member with ValueError.",
+        "status": "LINKED CHECKS PASSED (limited evidence)"
+      },
+      {
+        "id": "R5",
+        "intentline_planning": {
+          "authority": "unverified original-source-grounded proposal",
+          "basis": "request",
+          "boundaries": [
+            "Covers nested graph data, extra keys, service wrappers and batch members.",
+            "Failures must leave original data intact."
+          ],
+          "evidence_gap_reasons": [],
+          "plan_state": "planned",
+          "planned_evidence": "Snapshot unit tests for valid graphs and failures, including a batch with an invalid later member.",
+          "seam": "app.process, service.handle, service.batch"
+        },
+        "kind": "outcome",
+        "linked_checks": [
+          {
+            "argv": [
+              "/opt/homebrew/Cellar/python@3.14/3.14.8_2/Frameworks/Python.framework/Versions/3.14/bin/python3.14",
+              "-B",
+              "-m",
+              "unittest",
+              "discover",
+              "-s",
+              "tests"
+            ],
+            "index": 1,
+            "observation_status": "PASSED",
+            "receipt_ref": "receipts/check-001.json"
+          }
+        ],
+        "oracle_authority": "unverified caller suggestion",
+        "proposed_oracle": "Deep copies before and after successful and rejected calls are equal; in-place sorting or adjacency edits would violate this.",
+        "reason": "Selected commands passed; linked behaviors are not proven in full",
+        "source_refs": [
+          {
+            "line_end": 12,
+            "line_start": 12,
+            "quote": "Do not mutate any input, including on errors. Preserve the exact CLI --version",
+            "source_id": "S1"
+          }
+        ],
+        "statement": "Do not mutate any input, including on errors.",
+        "status": "LINKED CHECKS PASSED (limited evidence)"
+      },
+      {
+        "id": "R6",
+        "intentline_planning": {
+          "authority": "unverified original-source-grounded proposal",
+          "basis": "request",
+          "boundaries": [
+            "Version remains stdout api-v1 newline, exit 0 and empty stderr.",
+            "Unsupported arguments remain stderr ERROR: unsupported arguments newline, exit 2 and empty stdout."
+          ],
+          "evidence_gap_reasons": [],
+          "plan_state": "planned",
+          "planned_evidence": "Original-byte comparison and subprocess compatibility unit tests.",
+          "seam": "cli.py and its bytes"
+        },
+        "kind": "outcome",
+        "linked_checks": [
+          {
+            "argv": [
+              "/opt/homebrew/Cellar/python@3.14/3.14.8_2/Frameworks/Python.framework/Versions/3.14/bin/python3.14",
+              "-B",
+              "-m",
+              "unittest",
+              "discover",
+              "-s",
+              "tests"
+            ],
+            "index": 1,
+            "observation_status": "PASSED",
+            "receipt_ref": "receipts/check-001.json"
+          }
+        ],
+        "oracle_authority": "unverified caller suggestion",
+        "proposed_oracle": "Compare original CLI bytes and fixed subprocess output tuples; general argument parsing changes could alter compatibility.",
+        "reason": "Selected commands passed; linked behaviors are not proven in full",
+        "source_refs": [
+          {
+            "line_end": 14,
+            "line_start": 12,
+            "quote": "Do not mutate any input, including on errors. Preserve the exact CLI --version\nresponse and unsupported-argument behavior; keep cli.py unchanged. Extra object\nkeys are allowed. Update a stale test expectation if it contradicts this request.",
+            "source_id": "S1"
+          }
+        ],
+        "statement": "Preserve exact CLI --version response and unsupported-argument behavior and keep cli.py unchanged.",
+        "status": "LINKED CHECKS PASSED (limited evidence)"
+      },
+      {
+        "id": "R7",
+        "intentline_planning": {
+          "authority": "unverified original-source-grounded proposal",
+          "basis": "request",
+          "boundaries": [
+            "Existing independent-node example must expect ['z','a']."
+          ],
+          "evidence_gap_reasons": [],
+          "plan_state": "planned",
+          "planned_evidence": "Update the example assertion and run unittest discovery.",
+          "seam": "tests/test_example.py"
+        },
+        "kind": "outcome",
+        "linked_checks": [
+          {
+            "argv": [
+              "/opt/homebrew/Cellar/python@3.14/3.14.8_2/Frameworks/Python.framework/Versions/3.14/bin/python3.14",
+              "-B",
+              "-m",
+              "unittest",
+              "discover",
+              "-s",
+              "tests"
+            ],
+            "index": 1,
+            "observation_status": "PASSED",
+            "receipt_ref": "receipts/check-001.json"
+          }
+        ],
+        "oracle_authority": "unverified caller suggestion",
+        "proposed_oracle": "The explicit request gives ['z','a'] for nodes ['z','a'] and no edges; the stale test currently asserts name sorting.",
+        "reason": "Selected commands passed; linked behaviors are not proven in full",
+        "source_refs": [
+          {
+            "line_end": 14,
+            "line_start": 14,
+            "quote": "keys are allowed. Update a stale test expectation if it contradicts this request.",
+            "source_id": "S1"
+          }
+        ],
+        "statement": "Update the stale test expectation if it contradicts the requested original-list ordering.",
+        "status": "LINKED CHECKS PASSED (limited evidence)"
+      }
+    ],
+    "same_agent_review": {
+      "authority": "unverified advisory review; may omit original promises",
+      "independent": false,
+      "proposals": [],
+      "reported_performed": false
+    },
+    "scope": "Only explicitly mapped requirements/commands; all original source remains authoritative.",
+    "snapshot_sha256": "c9aa0016132135d231d40d7e5d7542386e3fb8a2159fe608d97650cbdb1f4b2a",
+    "source_sha256": "28048df96119c5f6e2fd73c8909ed9424b063cd92cd2de1496d5f11e68c090e3"
+  },
+  "receipt": {
+    "elapsed_seconds": 268.623468,
+    "error": null,
+    "events.jsonl_sha256": "49aa43da6a1b0e34b936565733c533f4c2aef8896db46f98ded3493137a65216",
+    "exit_code": 0,
+    "invocation_id": "51add928-a0aa-4add-8ad9-c71b7c2341ac",
+    "kind": "codex_exec",
+    "native_argv_sha256": "ac8c74b885f8837cd39c3f09c21867a3709de4d16a89bb5bb300d8f7d004aa67",
+    "prompt_sha256": "cd0a5e19a66cd1aa76beba71c17bc8de02b75959c2e0965c6cc4b52b972a3b93",
+    "stderr.txt_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "timed_out": false
+  },
+  "response": {
+    "completed": true,
+    "summary": "Implemented stable dependency ordering, strict validation, cycle detection, and service.batch without mutating inputs. Corrected the stale test; cli.py remains byte-for-byte unchanged. Both supplied checks and all 12 tests pass. Advisory revision-1 plan exported. No commits made."
+  },
+  "sequence": 11,
+  "source_sha256": "28048df96119c5f6e2fd73c8909ed9424b063cd92cd2de1496d5f11e68c090e3",
+  "started_at": "2026-10-13T15:40:30.410252+00:00",
+  "status": "CORRECT_DELIVERY",
+  "task": "dependency-order",
+  "thread_id": "01a135ec-24b1-7db0-8753-6dead95ca3c8",
+  "tool_executions": 20,
+  "usage": {
+    "cache_write_input_tokens": 0,
+    "cached_input_tokens": 167808,
+    "input_tokens": 225921,
+    "output_tokens": 7870,
+    "reasoning_output_tokens": 551
+  },
+  "workflow_seconds": 270.237690041773
+}

@@ -1,0 +1,125 @@
+{
+  "schema_version": 1,
+  "study_id": "issue16-matched-v5-20261013",
+  "status": "PREDECLARED_NOT_OBSERVED",
+  "tasks": [
+    "atomic-transfers",
+    "locale-fallback",
+    "dependency-order",
+    "fifo-upserts"
+  ],
+  "arms": [
+    "ordinary",
+    "proofline",
+    "intentline",
+    "combined"
+  ],
+  "order": [
+    [
+      "ordinary",
+      "proofline",
+      "intentline",
+      "combined"
+    ],
+    [
+      "proofline",
+      "combined",
+      "ordinary",
+      "intentline"
+    ],
+    [
+      "intentline",
+      "ordinary",
+      "combined",
+      "proofline"
+    ],
+    [
+      "combined",
+      "intentline",
+      "proofline",
+      "ordinary"
+    ]
+  ],
+  "assignments": 16,
+  "maximum_assignments_per_model_cohort": 24,
+  "model": {
+    "model": "gpt-6.1-sol",
+    "model_reasoning_effort": "high",
+    "model_catalog_json": "/Users/grove/projects/proofline/evaluation/matched_v5/model-catalog.json"
+  },
+  "host": {
+    "system": "Darwin",
+    "machine": "arm64",
+    "macos": "26.6.2",
+    "python": "3.14.8",
+    "codex": "codex-cli 0.162.1",
+    "backend_revision": "not exposed by transport; selected model identity only"
+  },
+  "limits": {
+    "episode_seconds": 900,
+    "agent_seconds": 600,
+    "grading_seconds": 120,
+    "check_seconds": 30
+  },
+  "repetitions": 1,
+  "concurrency": 1,
+  "retries": 0,
+  "corrections": 0,
+  "exposure": {
+    "common": "Exact original request, identical product seed, existing tests and selected check argv; ordinary self-checking allowed. No grader, expected private outputs, controls, sibling assignments, enclosing repository or network.",
+    "intentline": "Same implementer performs one advisory plan pass using pinned intentline-plan skill and offline producer. No planner/auditor/reviewer/prover dispatch. Structural repairs allowed within the one turn and budget. Explicit JSON export allowed after planning; never adopt. Plan and export retained; no preauthored R inventory. Only the initial revision-1 single-S1 format is qualified. An absent/invalid advisory artifact does not block an independently correct product handoff in this planning-only arm; retain the artifact failure as an intention-to-treat observation.",
+    "proofline": "After the one coding handoff, actual check-only runtime freezes candidate and runs two public commands, displays bounded feedback and revalidates status. No correction model turn. Failed/unavailable checks block the delivery; advisory gaps never block it.",
+    "combined": "Same planning exposure and optional agent-authored exact R-to-command links. Actual check-only uses the qualified initial revision-1 single-S1 export. A missing/invalid worker artifact rejects import, blocks this check handoff, and is graded as an observed attempt; no fallback to unmapped checks and no campaign stop solely for that artifact failure. Unlinked advisory obligations never block."
+  },
+  "selected_checks": "Frozen literal first-case app.process assertion from corpus plus project unittest discovery. Same definitions exposed in every arm; tests may be repaired only if they conflict with original request.",
+  "oracle": "Literal finite positive, negative, compatibility and batch obligations derived independently of worker code. Alternatives use different algorithms with shared validation. Controls include green-test missing-batch defects and a stale alphabetical-order test. Finite correctness includes all frozen source obligations at these seams, never semantic completeness.",
+  "primary_outcome": "Independently correct delivery of entire request at the frozen finite seams, over all 16 assigned attempts (4 per arm). Completion plus finite correct; Proofline additionally requires current CHECKS PASSED. Unknown/unexecuted attempts never become successes or leave the denominator.",
+  "taxonomy": [
+    "CORRECT_DELIVERY",
+    "FALSE_ACCEPTANCE",
+    "CORRECT_BUT_BLOCKED",
+    "INCORRECT_NO_HANDOFF",
+    "UNAVAILABLE",
+    "NOT_EXECUTED"
+  ],
+  "secondary": [
+    "material omitted obligations with green repository tests",
+    "independently source-conflicting stale expectations retained",
+    "invalid/unknown test evidence",
+    "advisory unlinked obligations",
+    "native execution/model unavailability",
+    "missing/invalid advisory artifacts and correct products blocked by rejected combined import"
+  ],
+  "stop_rules": [
+    "source, seed, grader, runtime, skill, tool or model drift",
+    "invalid correct/alternative/defective controls",
+    "unqualified coding/planning/check/grading native boundary",
+    "grader/source/sibling leakage or protected mutation",
+    "unavailable selected model or unreliable/unreconciled worker lifecycle",
+    "budget exhaustion or protocol drift",
+    "unavailable native grading or check execution; deterministic rejection of a worker artifact is an observed failure, not loss of the qualified boundary"
+  ],
+  "missing_runs": "Stop and retain all failures/missing slots on actual qualification/infrastructure/integrity/budget drift. Worker completion/check/plan failures remain scored observations and do not cause replacement or retries. No resume of prior cohorts, no S6 resume or oracle repair.",
+  "accounting": {
+    "episode": "Preparation within each assignment, plan creation/export, agent coding/self-checking, check setup/execution, feedback/status and freezing included. Independent grading/control/study authoring reported separately. All arms share the same allowed total time and agent allocation; planning consumes that allocation.",
+    "tokens": "Native reported input, cached input subset, output; reasoning subset not added. Unknown usage is null and counted. Same time cap, no observable enforceable token cap; report this budget limitation.",
+    "calls": "Native invocation count, observed tool executions, unknown provider-internal model calls; no inferred usage or prices. Coordinator child-process launches counted separately for episodes and independent grading; these are observed launches, not provider-internal calls.",
+    "human": "Task-specific manual edits and extra messages observed; human active attention, initiating-agent tokens and authoring costs unknown unless actually measured. No fake zeros.",
+    "statistics": "Observed delivery rates over assigned, paired percentage-point differences for P-O, I-O, C-O, C-I, C-P and C-I-P+O interaction. Exact enumerated task-bootstrap 95% descriptive intervals when all four tasks observed; no interval or efficacy decision with missing runs. Four tasks cannot establish general superiority."
+  },
+  "decision_rule": "No new mandatory action unless matched independent delivery benefit is observed and added costs/blocking risk justify it. No benefit => keep existing check-only receipts optional, Intentline optional; no new planning/review/adoption stage. Missing runs => INCONCLUSIVE, empirical acceptance incomplete.",
+  "authorization": "PREPARED: fresh 16-assignment study requires explicit approval of frozen declaration, preserving all prior stopped cohorts separately.",
+  "prior_preparation": {
+    "study": "issue16-matched-v4-20261013",
+    "assigned": 16,
+    "executed": 4,
+    "correct_deliveries": 3,
+    "unavailable": 1,
+    "missing": 12,
+    "status": "STOPPED on unsupported worker export revision; all four products finite-correct, no effects or pooling"
+  },
+  "qualification": "Before dispatch: native coding/read-only/network/sibling protection, all 12 unchanged reference/alternative/green-but-incomplete controls, real producer prepare/propose/check/render/export and actual adapter/check/readback with linked and unlinked source obligations. No model calls. Regression: invalid worker exports leave planning-only product handoffs intact, block combined imports without fallback, and never stop remaining assigned attempts.",
+  "authoring": "Initiating-agent preparation observed from 2026-10-13T14:21:15Z; earlier attention/tokens and active human time unknown. No task worker was dispatched in v2 or qualification rehearsals.",
+  "catalog": "The exact selected catalog entry is retained read-only and supplied via native model_catalog_json to EVERY coding invocation. Host-cache refreshes cannot change effective CLI model metadata. Backend revision is still unobservable.",
+  "model_context": "Ephemeral fresh threads. The same atomic request was exposed to two v3 workers; no transcripts/candidates/plans are exposed in v4, no warmup results pooled. All four source tasks/oracle/controls unchanged."
+}

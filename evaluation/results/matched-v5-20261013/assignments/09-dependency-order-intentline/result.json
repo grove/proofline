@@ -1,0 +1,672 @@
+{
+  "advisory_status": "VALID",
+  "agent_completed": true,
+  "arm": "intentline",
+  "base_tree": "977045022a51c9093a8af016a866a7f098bc681c",
+  "candidate_commit": "5ae7b6456032154939f47012980f42366bb9bfd9",
+  "candidate_files": {
+    "README.md": {
+      "kind": "file",
+      "mode": 420,
+      "path": "README.md",
+      "sha256": "2738a7f46a227dafc72511acb5d84b9bdfbefa4c2501b6897055ccd92590564e"
+    },
+    "app.py": {
+      "kind": "file",
+      "mode": 420,
+      "path": "app.py",
+      "sha256": "8a7e639a4bb405557bf61ba9799a7ff2d8ff69408c327b587f85e819b3447d40"
+    },
+    "cli.py": {
+      "kind": "file",
+      "mode": 420,
+      "path": "cli.py",
+      "sha256": "14aea6a3d7acc1d93b80e079fd645b48e4fef2e976df9ef355cc50829a7c74c8"
+    },
+    "service.py": {
+      "kind": "file",
+      "mode": 420,
+      "path": "service.py",
+      "sha256": "60e4b22ffb7b24fae22f4fd6760c711b9a304af413541135a7c68a4379e77d5c"
+    },
+    "tests": {
+      "kind": "directory",
+      "mode": 493,
+      "path": "tests"
+    },
+    "tests/test_compat.py": {
+      "kind": "file",
+      "mode": 420,
+      "path": "tests/test_compat.py",
+      "sha256": "2432e53eeae0b53103501bb0cdfbd3dab2446d236503df335ea8a5e5e4171703"
+    },
+    "tests/test_dependency_order.py": {
+      "kind": "file",
+      "mode": 420,
+      "path": "tests/test_dependency_order.py",
+      "sha256": "2b37aba4227442b03129bdb0fb53ca7e442c6a7c6093049f4387954cd8b74d53"
+    },
+    "tests/test_example.py": {
+      "kind": "file",
+      "mode": 420,
+      "path": "tests/test_example.py",
+      "sha256": "6f6a81018afe2b295f9259d9cbb56b1eaf813da13e46aa9964ec3e1672ab3d28"
+    }
+  },
+  "candidate_snapshot_sha256": "44122a880ad98a49a788056ef51e8dddfc92f3ae778bf065c5406c933216f35d",
+  "candidate_tree": "0ba555b47de553a1da9632dd92988939c64caba6",
+  "controller_episode_processes": 7,
+  "controller_grading_processes": 37,
+  "extra_worker_messages": 0,
+  "finished_at": "2026-10-13T15:38:27.722703+00:00",
+  "grade": {
+    "available": true,
+    "correct": true,
+    "elapsed_seconds": 5.272242332808673,
+    "failures": [],
+    "receipts": [
+      {
+        "elapsed_seconds": 0.130147,
+        "exit_code": 0,
+        "invocation_id": "9180a4f1-4cc8-47b9-a3b0-f9c1c1c88b23",
+        "kind": "process_probe",
+        "native_argv_sha256": "3b32d217efa9c7091fec0d447ec3441319a78c184cdad5ac78780d4d15e40756",
+        "stderr": "",
+        "stdout": "{\"ok\": true, \"unchanged\": true, \"value\": {\"order\": [\"z\", \"a\"]}}\n",
+        "timed_out": false
+      },
+      {
+        "elapsed_seconds": 0.13215,
+        "exit_code": 0,
+        "invocation_id": "43e89215-41ac-4008-a3ca-606cd52f1289",
+        "kind": "process_probe",
+        "native_argv_sha256": "8ce5039baaffa842fef51266dfa73e1fef233f43d511a42534d4f2ca2810026e",
+        "stderr": "",
+        "stdout": "{\"ok\": true, \"unchanged\": true, \"value\": {\"order\": [\"z\", \"a\"]}}\n",
+        "timed_out": false
+      },
+      {
+        "elapsed_seconds": 0.129233,
+        "exit_code": 0,
+        "invocation_id": "e948e404-3725-4255-8852-e261fdcbb784",
+        "kind": "process_probe",
+        "native_argv_sha256": "4c0f965f7ea0e86d152c030e7213afa7b65b81cce05b46c521a28759f51ba206",
+        "stderr": "",
+        "stdout": "{\"order\": [\"z\", \"a\"]}\n",
+        "timed_out": false
+      },
+      {
+        "elapsed_seconds": 0.130812,
+        "exit_code": 0,
+        "invocation_id": "06dc8158-1527-44e4-9cea-5fb91cf42510",
+        "kind": "process_probe",
+        "native_argv_sha256": "5730d7bb4eb9c09a90943079abd02e7accdbdae5cef02f544a8b39ca47a06168",
+        "stderr": "",
+        "stdout": "{\"ok\": true, \"unchanged\": true, \"value\": {\"order\": [\"b\", \"a\", \"c\"]}}\n",
+        "timed_out": false
+      },
+      {
+        "elapsed_seconds": 0.124239,
+        "exit_code": 0,
+        "invocation_id": "7a61abe5-3d92-49c0-93ee-b0fbde8f69ec",
+        "kind": "process_probe",
+        "native_argv_sha256": "72102b6463a27522147ce00216f3d1227035b372508b5b9c49dea67f128b2186",
+        "stderr": "",
+        "stdout": "{\"ok\": true, \"unchanged\": true, \"value\": {\"order\": [\"b\", \"a\", \"c\"]}}\n",
+        "timed_out": false
+      },
+      {
+        "elapsed_seconds": 0.129911,
+        "exit_code": 0,
+        "invocation_id": "485657b2-c836-46f2-ac85-f4857ee3f947",
+        "kind": "process_probe",
+        "native_argv_sha256": "a0726e3f733be4561ae7cbfc4e78ac4ede0623d7d2e658ae6531582974a9a169",
+        "stderr": "",
+        "stdout": "{\"order\": [\"b\", \"a\", \"c\"]}\n",
+        "timed_out": false
+      },
+      {
+        "elapsed_seconds": 0.13248,
+        "exit_code": 0,
+        "invocation_id": "1eb5de80-5f69-47d7-8aed-2be6ffe025e0",
+        "kind": "process_probe",
+        "native_argv_sha256": "4b43f1620aaba88aba887e51512604a4372fd75003254a355f7b33aa030f28fc",
+        "stderr": "",
+        "stdout": "{\"ok\": true, \"unchanged\": true, \"value\": {\"order\": [\"a\", \"b\"]}}\n",
+        "timed_out": false
+      },
+      {
+        "elapsed_seconds": 0.127246,
+        "exit_code": 0,
+        "invocation_id": "61c423a2-f970-43a5-aa26-9d9ea1d6c691",
+        "kind": "process_probe",
+        "native_argv_sha256": "31fc3e147dd5ebb7c22c7d5ef35243732ccb3b6de3fb76a3dea300e31ede415e",
+        "stderr": "",
+        "stdout": "{\"ok\": true, \"unchanged\": true, \"value\": {\"order\": [\"a\", \"b\"]}}\n",
+        "timed_out": false
+      },
+      {
+        "elapsed_seconds": 0.127735,
+        "exit_code": 0,
+        "invocation_id": "e308a6d1-9c09-4087-ab07-50685587ec1e",
+        "kind": "process_probe",
+        "native_argv_sha256": "2cae5b27d8f9b73aa7cca006f74a75f328479d5c4417f90ebe86694a1328ebf6",
+        "stderr": "",
+        "stdout": "{\"order\": [\"a\", \"b\"]}\n",
+        "timed_out": false
+      },
+      {
+        "elapsed_seconds": 0.133827,
+        "exit_code": 0,
+        "invocation_id": "315d4cb0-6b15-420d-9fa8-46be4cbcb113",
+        "kind": "process_probe",
+        "native_argv_sha256": "4b3816bb8211a09c15bbad5f9e924249fe31451284691a5611a227da682b57f9",
+        "stderr": "",
+        "stdout": "{\"error\": \"ValueError\", \"is_value_error\": true, \"ok\": false, \"unchanged\": true}\n",
+        "timed_out": false
+      },
+      {
+        "elapsed_seconds": 0.132994,
+        "exit_code": 0,
+        "invocation_id": "2e6a12ac-72e5-4dbf-a3c6-6f15849db74d",
+        "kind": "process_probe",
+        "native_argv_sha256": "40e93ae2e255a7a3e4ee711549513dd397610e9f778cff8e75427373e566939f",
+        "stderr": "",
+        "stdout": "{\"error\": \"ValueError\", \"is_value_error\": true, \"ok\": false, \"unchanged\": true}\n",
+        "timed_out": false
+      },
+      {
+        "elapsed_seconds": 0.130005,
+        "exit_code": 2,
+        "invocation_id": "68e01216-09de-40b8-adb8-a0f0b0e34e34",
+        "kind": "process_probe",
+        "native_argv_sha256": "d5fc161b42f8f2ac639b0998de78a52df957f44bb85255a81e04fa86d43ca076",
+        "stderr": "ERROR: graph contains a cycle\n",
+        "stdout": "",
+        "timed_out": false
+      },
+      {
+        "elapsed_seconds": 0.132389,
+        "exit_code": 0,
+        "invocation_id": "68e661e5-3889-490a-a70c-5ac85a1010b1",
+        "kind": "process_probe",
+        "native_argv_sha256": "1f087c347af499e4d226ea9eaaf538c6e5d40a73ffcb8bc77becfabdc756f086",
+        "stderr": "",
+        "stdout": "{\"error\": \"ValueError\", \"is_value_error\": true, \"ok\": false, \"unchanged\": true}\n",
+        "timed_out": false
+      },
+      {
+        "elapsed_seconds": 0.130197,
+        "exit_code": 0,
+        "invocation_id": "b8489187-aaba-4e35-a9e1-3e39d2a3e653",
+        "kind": "process_probe",
+        "native_argv_sha256": "efc503722f94e910a14c35752ca4e61217105ee809f2781fe4ff9b06bc71bcc7",
+        "stderr": "",
+        "stdout": "{\"error\": \"ValueError\", \"is_value_error\": true, \"ok\": false, \"unchanged\": true}\n",
+        "timed_out": false
+      },
+      {
+        "elapsed_seconds": 0.131153,
+        "exit_code": 2,
+        "invocation_id": "254f3059-991e-4103-bc01-d48724c71029",
+        "kind": "process_probe",
+        "native_argv_sha256": "a3236c43337af5ed1dc3a019ac17ec206f4a6a83135355a9f0956c873ad59c5b",
+        "stderr": "ERROR: self-loops are not allowed\n",
+        "stdout": "",
+        "timed_out": false
+      },
+      {
+        "elapsed_seconds": 0.133053,
+        "exit_code": 0,
+        "invocation_id": "aa8565c4-0b8d-4248-92ad-836e02deb571",
+        "kind": "process_probe",
+        "native_argv_sha256": "b481997c7ad9fdb366bd1286b9aaa5ddcdd9a50885b88478a0f080f3f32e5a82",
+        "stderr": "",
+        "stdout": "{\"error\": \"ValueError\", \"is_value_error\": true, \"ok\": false, \"unchanged\": true}\n",
+        "timed_out": false
+      },
+      {
+        "elapsed_seconds": 0.129515,
+        "exit_code": 0,
+        "invocation_id": "f70954cc-4c2d-408e-a0a1-707be3fbe3a0",
+        "kind": "process_probe",
+        "native_argv_sha256": "fe525415fbb8cd5412e396820df4954b49ea02e4c63bbfe8d2d55a74705033e3",
+        "stderr": "",
+        "stdout": "{\"error\": \"ValueError\", \"is_value_error\": true, \"ok\": false, \"unchanged\": true}\n",
+        "timed_out": false
+      },
+      {
+        "elapsed_seconds": 0.133448,
+        "exit_code": 2,
+        "invocation_id": "754d8cbc-2bd8-4136-9aa7-a423d6297cdc",
+        "kind": "process_probe",
+        "native_argv_sha256": "4a7a1036f20e340c9a3b9e1c157dbc2cd405d63b079addcbe7686c1c17608bda",
+        "stderr": "ERROR: edges must reference declared nodes\n",
+        "stdout": "",
+        "timed_out": false
+      },
+      {
+        "elapsed_seconds": 0.129261,
+        "exit_code": 0,
+        "invocation_id": "b6d6008c-c595-4bd6-a1d8-330ebfaa1b3f",
+        "kind": "process_probe",
+        "native_argv_sha256": "e46f74b628d7589b316abfee5ac1762da223bb7d3c731c9da44b4aca898be4c6",
+        "stderr": "",
+        "stdout": "{\"error\": \"ValueError\", \"is_value_error\": true, \"ok\": false, \"unchanged\": true}\n",
+        "timed_out": false
+      },
+      {
+        "elapsed_seconds": 0.132735,
+        "exit_code": 0,
+        "invocation_id": "8a60e3f8-624a-41e0-9a2a-96c8360f3fd2",
+        "kind": "process_probe",
+        "native_argv_sha256": "29c8f900d4d3d1b807c9f3f1da78048edb1a0c86e4cb1513cfa3e8262140b479",
+        "stderr": "",
+        "stdout": "{\"error\": \"ValueError\", \"is_value_error\": true, \"ok\": false, \"unchanged\": true}\n",
+        "timed_out": false
+      },
+      {
+        "elapsed_seconds": 0.128239,
+        "exit_code": 2,
+        "invocation_id": "8860456d-bdd9-421a-ab16-465aec5c4627",
+        "kind": "process_probe",
+        "native_argv_sha256": "afb68467e4402b71ef1549a55a4b14bf354f31b5e5032770c256d8f3004204e6",
+        "stderr": "ERROR: node names must be unique\n",
+        "stdout": "",
+        "timed_out": false
+      },
+      {
+        "elapsed_seconds": 0.13035,
+        "exit_code": 0,
+        "invocation_id": "ce0a6bc5-54d9-475f-be91-359bf44f766b",
+        "kind": "process_probe",
+        "native_argv_sha256": "1f9e00671592be53a8d82da32f4771f981b84b982a053df75a4d53151307fa80",
+        "stderr": "",
+        "stdout": "{\"ok\": true, \"unchanged\": true, \"value\": {\"order\": []}}\n",
+        "timed_out": false
+      },
+      {
+        "elapsed_seconds": 0.133927,
+        "exit_code": 0,
+        "invocation_id": "26079556-9808-43eb-8cfe-e8ae95c13ea2",
+        "kind": "process_probe",
+        "native_argv_sha256": "f8d35227295fc3f64991471582556c4f760b84cdf7ace0c4eea8af488bea5d29",
+        "stderr": "",
+        "stdout": "{\"ok\": true, \"unchanged\": true, \"value\": {\"order\": []}}\n",
+        "timed_out": false
+      },
+      {
+        "elapsed_seconds": 0.13277,
+        "exit_code": 0,
+        "invocation_id": "d713a158-2734-4eaf-bc37-be7cd002f7bf",
+        "kind": "process_probe",
+        "native_argv_sha256": "cc49aac5e290f736376d71863aad35b9213659ac199af54164c1806aaad86b2c",
+        "stderr": "",
+        "stdout": "{\"order\": []}\n",
+        "timed_out": false
+      },
+      {
+        "elapsed_seconds": 0.130153,
+        "exit_code": 0,
+        "invocation_id": "5cfb84f3-e4c7-4f15-9e4d-6d347cdf450a",
+        "kind": "process_probe",
+        "native_argv_sha256": "2bf2d8d948f4a664a832d67c79c55c05326fdb7bb0dabd357bbdca7f80416eed",
+        "stderr": "",
+        "stdout": "{\"error\": \"ValueError\", \"is_value_error\": true, \"ok\": false, \"unchanged\": true}\n",
+        "timed_out": false
+      },
+      {
+        "elapsed_seconds": 0.129972,
+        "exit_code": 0,
+        "invocation_id": "d9b45236-bd79-4707-a0f2-cd450b9ed4a3",
+        "kind": "process_probe",
+        "native_argv_sha256": "4b44bef50e1ed993d33c1b92d69f821b2acbf4cdd18824f66c2fb68a7448a800",
+        "stderr": "",
+        "stdout": "{\"error\": \"ValueError\", \"is_value_error\": true, \"ok\": false, \"unchanged\": true}\n",
+        "timed_out": false
+      },
+      {
+        "elapsed_seconds": 0.13049,
+        "exit_code": 2,
+        "invocation_id": "34c9abe4-d7cd-489e-a726-a21945b324b8",
+        "kind": "process_probe",
+        "native_argv_sha256": "01b2e6ee6e7165a5ac30e09aae3f82c017bc8cc28173ec4f086c395f84de658e",
+        "stderr": "ERROR: each edge must be a two-element list\n",
+        "stdout": "",
+        "timed_out": false
+      },
+      {
+        "elapsed_seconds": 0.130838,
+        "exit_code": 0,
+        "invocation_id": "bf539e45-fa6c-4d96-9c8a-93415ee94555",
+        "kind": "process_probe",
+        "native_argv_sha256": "4f5cb10e29ccb2805c864cc30c510fa3f3a7ba1c782274ad20d34d106bb4f7d5",
+        "stderr": "",
+        "stdout": "{\"error\": \"ValueError\", \"is_value_error\": true, \"ok\": false, \"unchanged\": true}\n",
+        "timed_out": false
+      },
+      {
+        "elapsed_seconds": 0.123865,
+        "exit_code": 0,
+        "invocation_id": "cad9851a-3887-4ea5-870b-4fa1b929c2be",
+        "kind": "process_probe",
+        "native_argv_sha256": "00049fbd04e0530d74989da51fe4a6ec3f44e126faaac6533e71cd71d52b0312",
+        "stderr": "",
+        "stdout": "{\"error\": \"ValueError\", \"is_value_error\": true, \"ok\": false, \"unchanged\": true}\n",
+        "timed_out": false
+      },
+      {
+        "elapsed_seconds": 0.13001,
+        "exit_code": 2,
+        "invocation_id": "d9e70e19-52d4-439f-a719-4d1d6aa335b8",
+        "kind": "process_probe",
+        "native_argv_sha256": "c1e40c10a17eaf99de85f11868c8252b3ef197f0db0685c3f2af1868c9357188",
+        "stderr": "ERROR: payload must be an object\n",
+        "stdout": "",
+        "timed_out": false
+      },
+      {
+        "elapsed_seconds": 0.128683,
+        "exit_code": 0,
+        "invocation_id": "acb07a7f-bf1b-4817-baf9-dbeae6960cff",
+        "kind": "process_probe",
+        "native_argv_sha256": "5ee0326b55387f74b3854541a1716238d61f6645c80e86cd71a0142f344c319b",
+        "stderr": "",
+        "stdout": "{\"ok\": true, \"unchanged\": true, \"value\": []}\n",
+        "timed_out": false
+      },
+      {
+        "elapsed_seconds": 0.125129,
+        "exit_code": 0,
+        "invocation_id": "21e4e917-2304-4d58-bf2a-686ecc1520ad",
+        "kind": "process_probe",
+        "native_argv_sha256": "979d1756b3377a5861d6fd62fe205542801caa74855f5e81b0f179789b245345",
+        "stderr": "",
+        "stdout": "{\"ok\": true, \"unchanged\": true, \"value\": [{\"order\": [\"z\", \"a\"]}, {\"order\": [\"z\", \"a\"]}]}\n",
+        "timed_out": false
+      },
+      {
+        "elapsed_seconds": 0.124235,
+        "exit_code": 0,
+        "invocation_id": "ee7f86bb-eb62-467a-b262-d0b4d24f9522",
+        "kind": "process_probe",
+        "native_argv_sha256": "4e61d4e7bdc0ba96b44e07f0d6f8d5ea14fa6753ddb48a097538cb3876be13d6",
+        "stderr": "",
+        "stdout": "{\"error\": \"ValueError\", \"is_value_error\": true, \"ok\": false, \"unchanged\": true}\n",
+        "timed_out": false
+      },
+      {
+        "elapsed_seconds": 0.13368,
+        "exit_code": 0,
+        "invocation_id": "bde33723-443b-4d91-bd53-a27808be4e6a",
+        "kind": "process_probe",
+        "native_argv_sha256": "e17e24110c6cf7333d751efdf38b2bfc689ef16bcaaff8135f3b667b2ff27079",
+        "stderr": "",
+        "stdout": "{\"error\": \"ValueError\", \"is_value_error\": true, \"ok\": false, \"unchanged\": true}\n",
+        "timed_out": false
+      },
+      {
+        "elapsed_seconds": 0.127082,
+        "exit_code": 0,
+        "invocation_id": "92dde543-4044-4763-ad97-b23bcaf4c3e7",
+        "kind": "process_probe",
+        "native_argv_sha256": "c090b38cbe8e5aef7d045a5e10109755744ebc8b1248bfe325812c71e3bad0e0",
+        "stderr": "",
+        "stdout": "api-v1\n",
+        "timed_out": false
+      },
+      {
+        "elapsed_seconds": 0.126555,
+        "exit_code": 2,
+        "invocation_id": "97cdc347-52df-4c52-ae54-182ca8f174a4",
+        "kind": "process_probe",
+        "native_argv_sha256": "9134716c1de7a7657eabff4ecfcc50e9a61cc463693be707d78e46a9fe3d92d5",
+        "stderr": "ERROR: unsupported arguments\n",
+        "stdout": "",
+        "timed_out": false
+      },
+      {
+        "elapsed_seconds": 0.55933,
+        "exit_code": 0,
+        "invocation_id": "d8f84c3d-9adc-43e7-83ab-c2610c043c57",
+        "kind": "process_probe",
+        "native_argv_sha256": "e2eec9ba4981f234481baa31fc27250c2da0e69a377f48dd54b4dde2b990eaed",
+        "stderr": "...........\n----------------------------------------------------------------------\nRan 11 tests in 0.376s\n\nOK\n",
+        "stdout": "",
+        "timed_out": false
+      }
+    ],
+    "repository_tests_passed": true,
+    "stale_test_expectation_retained": false,
+    "unavailable": []
+  },
+  "handoff": true,
+  "model_dispatches": 1,
+  "native_available": true,
+  "operator_candidate_edits": 0,
+  "plan_identity": {
+    "advisory": true,
+    "check_links": {},
+    "constraints": [
+      {
+        "basis": "request",
+        "scope": "All implementation changes",
+        "source_refs": [
+          {
+            "line_end": 13,
+            "line_start": 12,
+            "quote": "Do not mutate any input, including on errors. Preserve the exact CLI --version\nresponse and unsupported-argument behavior; keep cli.py unchanged. Extra object",
+            "source_id": "S1"
+          }
+        ],
+        "statement": "Keep cli.py unchanged."
+      }
+    ],
+    "contract_id": "dependency-order",
+    "contract_sha256": "043131111cfad7afa5ed2625566bbe1fdc185f30f7062685acce3374496bdfac",
+    "coverage_completeness": "UNKNOWN",
+    "evidence_gaps": [],
+    "execution_authority": "not_established",
+    "export_authority": "unapproved",
+    "export_format": "json",
+    "export_manifest_sha256": "bf0567e6f118086d093596677ec36b5b1227c8797c2bc375b96c11735c8a330a",
+    "external_caller_approval": "not_supplied_or_authenticated",
+    "intended_outcome": "Provide validated stable dependency ordering through process, handle, batch and the unchanged JSON CLI.",
+    "out_of_scope": [],
+    "record": "intentline.advisory-input",
+    "requirements": [
+      {
+        "basis": "request",
+        "boundaries": [
+          "Empty graph and isolated nodes",
+          "Newly eligible earlier nodes outrank already eligible later nodes",
+          "Repeated identical edges do not change the result"
+        ],
+        "evidence_gap_reasons": [],
+        "id": "R1",
+        "oracle": "For nodes [a,b,c] and edge b->a, expect [b,a,c]; a FIFO ready queue could incorrectly produce [b,c,a]. For [z,a] with no edges expect [z,a].",
+        "plan_state": "planned",
+        "planned_evidence": "Unit cases with hand-derived orders and small exhaustive graphs compared to the earliest valid permutation.",
+        "seam": "app.process(payload)",
+        "source_refs": [
+          {
+            "line_end": 5,
+            "line_start": 1,
+            "quote": "Implement stable dependency ordering for {\"nodes\": [name, ...],\n\"edges\": [[before, after], ...]}. Names are nonempty strings and nodes unique.\nEdges must reference declared nodes. Repeated identical edges have no effect.\nAt EACH step choose the earliest node in the ORIGINAL nodes list whose\ndependencies are already emitted. Return {\"order\": [names]}.",
+            "source_id": "S1"
+          }
+        ],
+        "statement": "Return an order choosing at every step the earliest eligible node in the original nodes list; never sort by name."
+      },
+      {
+        "basis": "request",
+        "boundaries": [
+          "Missing fields and wrong container or member types",
+          "Cycle disconnected from otherwise orderable nodes",
+          "Extra object keys and duplicate identical edges accepted"
+        ],
+        "evidence_gap_reasons": [],
+        "id": "R2",
+        "oracle": "Invalid structure or graph has ValueError, including an isolated node beside a two-node cycle; empty lists yield {order: []}.",
+        "plan_state": "planned",
+        "planned_evidence": "Table-driven malformed and cyclic cases plus accepted boundary cases.",
+        "seam": "app.process(payload)",
+        "source_refs": [
+          {
+            "line_end": 7,
+            "line_start": 1,
+            "quote": "Implement stable dependency ordering for {\"nodes\": [name, ...],\n\"edges\": [[before, after], ...]}. Names are nonempty strings and nodes unique.\nEdges must reference declared nodes. Repeated identical edges have no effect.\nAt EACH step choose the earliest node in the ORIGINAL nodes list whose\ndependencies are already emitted. Return {\"order\": [names]}.\nReject malformed records, self-loops and ANY cycle, including disconnected\ncycles, with ValueError. Empty nodes/edges are allowed. Never sort by name.",
+            "source_id": "S1"
+          }
+        ],
+        "statement": "Reject malformed records, empty or duplicate node names, undeclared edge endpoints, self-loops and any cycle with ValueError; permit extra keys and empty nodes/edges."
+      },
+      {
+        "basis": "request",
+        "boundaries": [
+          "Valid graph order and invalid graph rejection at each seam",
+          "CLI JSON result and error exit code"
+        ],
+        "evidence_gap_reasons": [],
+        "id": "R3",
+        "oracle": "Hand-derived graph orders match at each seam; invalid CLI input produces exit code 2 and an ERROR diagnostic.",
+        "plan_state": "planned",
+        "planned_evidence": "Direct service tests and subprocess CLI tests with fixed expected outputs.",
+        "seam": "service.handle(payload) and cli.py stdin/stdout",
+        "source_refs": [
+          {
+            "line_end": 10,
+            "line_start": 9,
+            "quote": "Expose the same behavior through app.process, service.handle and the existing\nJSON stdin/stdout CLI. Add service.batch(payloads): return each process result",
+            "source_id": "S1"
+          }
+        ],
+        "statement": "Expose identical dependency-order behavior through service.handle and the existing JSON stdin/stdout CLI."
+      },
+      {
+        "basis": "request",
+        "boundaries": [
+          "Empty batch",
+          "Invalid member after valid members",
+          "Mixed graph orders retain payload sequence"
+        ],
+        "evidence_gap_reasons": [],
+        "id": "R4",
+        "oracle": "Empty list yields []; two fixed graphs yield their hand-derived orders in sequence; a non-list or one invalid member raises ValueError.",
+        "plan_state": "planned",
+        "planned_evidence": "Batch unit tests for accepted and invalid cases.",
+        "seam": "service.batch(payloads)",
+        "source_refs": [
+          {
+            "line_end": 11,
+            "line_start": 10,
+            "quote": "JSON stdin/stdout CLI. Add service.batch(payloads): return each process result\nin input order; reject a non-list or any invalid member with ValueError.",
+            "source_id": "S1"
+          }
+        ],
+        "statement": "Add service.batch(payloads) returning each process result in input order, rejecting non-lists and any invalid member with ValueError."
+      },
+      {
+        "basis": "request",
+        "boundaries": [
+          "Nested nodes and edge lists",
+          "Extra keys",
+          "Invalid member inside batch and partially traversed cyclic graphs"
+        ],
+        "evidence_gap_reasons": [],
+        "id": "R5",
+        "oracle": "Input equals an independent deep copy after success or ValueError.",
+        "plan_state": "planned",
+        "planned_evidence": "Snapshot comparisons before and after valid and invalid calls.",
+        "seam": "app.process, service.handle and service.batch inputs",
+        "source_refs": [
+          {
+            "line_end": 12,
+            "line_start": 12,
+            "quote": "Do not mutate any input, including on errors. Preserve the exact CLI --version",
+            "source_id": "S1"
+          }
+        ],
+        "statement": "Do not mutate any input, including on errors."
+      },
+      {
+        "basis": "request",
+        "boundaries": [
+          "Exact stdout, stderr and exit status",
+          "Extra arguments after --version"
+        ],
+        "evidence_gap_reasons": [],
+        "id": "R6",
+        "oracle": "Existing --version returns (0, api-v1\\n, empty stderr); unsupported args return (2, empty stdout, ERROR: unsupported arguments\\n); CLI bytes remain identical.",
+        "plan_state": "planned",
+        "planned_evidence": "Existing compatibility test, additional subprocess checks and Git diff of cli.py.",
+        "seam": "cli.py command arguments and file bytes",
+        "source_refs": [
+          {
+            "line_end": 13,
+            "line_start": 12,
+            "quote": "Do not mutate any input, including on errors. Preserve the exact CLI --version\nresponse and unsupported-argument behavior; keep cli.py unchanged. Extra object",
+            "source_id": "S1"
+          }
+        ],
+        "statement": "Preserve exact CLI --version response and unsupported-argument behavior, keeping cli.py unchanged."
+      },
+      {
+        "basis": "request",
+        "boundaries": [
+          "Existing [z,a] no-edge test currently expects alphabetical order"
+        ],
+        "evidence_gap_reasons": [],
+        "id": "R7",
+        "oracle": "The no-edge [z,a] case expects {order: [z,a]} by the requested priority rule.",
+        "plan_state": "planned",
+        "planned_evidence": "Inspect the revised expectation and run unittest discovery.",
+        "seam": "tests/test_example.py",
+        "source_refs": [
+          {
+            "line_end": 14,
+            "line_start": 13,
+            "quote": "response and unsupported-argument behavior; keep cli.py unchanged. Extra object\nkeys are allowed. Update a stale test expectation if it contradicts this request.",
+            "source_id": "S1"
+          }
+        ],
+        "statement": "Update a stale test expectation if it contradicts the requested original-list ordering."
+      }
+    ],
+    "revision": 1,
+    "schema_version": 1,
+    "source_bundle_sha256": "d80d29ab85a4f7534ff21264557fc24883e1de5800d547bd6798b19829f8b609",
+    "source_sha256": "28048df96119c5f6e2fd73c8909ed9424b063cd92cd2de1496d5f11e68c090e3"
+  },
+  "receipt": {
+    "elapsed_seconds": 225.604165,
+    "error": null,
+    "events.jsonl_sha256": "3379b3e8b5710719f0c02816ccbefc71f9c1e4a3ac34083b5e43d97bb97e2d7e",
+    "exit_code": 0,
+    "invocation_id": "75f417d0-2949-484b-ab1b-1d97a71f8571",
+    "kind": "codex_exec",
+    "native_argv_sha256": "16675445dd8eadaa6cf3abe51aa1bfeafca38e292a17ee6cc5c99b733926a647",
+    "prompt_sha256": "39b0cacfda158d625bd58665ea9f15480e597871e7f5aa8743dd55387f27fba6",
+    "stderr.txt_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "timed_out": false
+  },
+  "response": {
+    "completed": true,
+    "summary": "Implemented stable dependency ordering, validation, cycle rejection and service.batch without input mutation. Corrected the stale test; cli.py remains unchanged. All 11 tests pass, including exhaustive four-node graph checks. Advisory plan exported at revision 1. No commits made."
+  },
+  "sequence": 9,
+  "source_sha256": "28048df96119c5f6e2fd73c8909ed9424b063cd92cd2de1496d5f11e68c090e3",
+  "started_at": "2026-10-13T15:34:36.677870+00:00",
+  "status": "CORRECT_DELIVERY",
+  "task": "dependency-order",
+  "thread_id": "01a135e6-bea2-7ac2-9c6a-25d358aeef32",
+  "tool_executions": 23,
+  "usage": {
+    "cache_write_input_tokens": 0,
+    "cached_input_tokens": 187136,
+    "input_tokens": 222687,
+    "output_tokens": 7486,
+    "reasoning_output_tokens": 304
+  },
+  "workflow_seconds": 225.96699274983257
+}

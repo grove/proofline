@@ -1,0 +1,6 @@
+{
+  "approved_at": "2026-10-13T15:09:21.163966+00:00",
+  "freeze_sha256": "eeb19f8ed63b2923c0dc3265014b1901191fc7bf96db6784ebc8b4fb8b20216e",
+  "scope": "Fresh sixteen-assignment v5 cohort only; prior cohorts retained separately; no retries/resumption/pooling; original request authorizes commit/push/PR, no merge.",
+  "user_authorization": "Approve the fresh 16-assignment v5 study"
+}

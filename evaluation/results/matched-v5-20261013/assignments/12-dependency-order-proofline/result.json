@@ -1,0 +1,534 @@
+{
+  "agent_completed": true,
+  "arm": "proofline",
+  "base_tree": "977045022a51c9093a8af016a866a7f098bc681c",
+  "candidate_commit": "b5eef848423640e5f75246cacb644af6bdf27e02",
+  "candidate_files": {
+    "README.md": {
+      "kind": "file",
+      "mode": 420,
+      "path": "README.md",
+      "sha256": "2738a7f46a227dafc72511acb5d84b9bdfbefa4c2501b6897055ccd92590564e"
+    },
+    "app.py": {
+      "kind": "file",
+      "mode": 420,
+      "path": "app.py",
+      "sha256": "82c9e9d7feb3ad176ac2960f2b5a0579bbfbb8620e4a02c13e80c7e96b038786"
+    },
+    "cli.py": {
+      "kind": "file",
+      "mode": 420,
+      "path": "cli.py",
+      "sha256": "14aea6a3d7acc1d93b80e079fd645b48e4fef2e976df9ef355cc50829a7c74c8"
+    },
+    "service.py": {
+      "kind": "file",
+      "mode": 420,
+      "path": "service.py",
+      "sha256": "dc90635b21335b117095ee7818a80cc508358e7592e33f6e03824589bcbb168c"
+    },
+    "tests": {
+      "kind": "directory",
+      "mode": 493,
+      "path": "tests"
+    },
+    "tests/test_compat.py": {
+      "kind": "file",
+      "mode": 420,
+      "path": "tests/test_compat.py",
+      "sha256": "2432e53eeae0b53103501bb0cdfbd3dab2446d236503df335ea8a5e5e4171703"
+    },
+    "tests/test_dependency_order.py": {
+      "kind": "file",
+      "mode": 420,
+      "path": "tests/test_dependency_order.py",
+      "sha256": "23b11131bff2174e4eec93cb1986831c0474af4d9b1efc482c624e404d369a2a"
+    },
+    "tests/test_example.py": {
+      "kind": "file",
+      "mode": 420,
+      "path": "tests/test_example.py",
+      "sha256": "6f6a81018afe2b295f9259d9cbb56b1eaf813da13e46aa9964ec3e1672ab3d28"
+    }
+  },
+  "candidate_snapshot_sha256": "e0a366180bba4c2115ae2366ab41e0dda2d0e3b020e79db24cdac13ab594de67",
+  "candidate_tree": "fc1f84d81de1c0ad140b6b371a7f0edbf209e04e",
+  "check_elapsed_seconds": 1.136294208932668,
+  "check_model_dispatches": 0,
+  "check_status": "CHECKS PASSED",
+  "controller_episode_processes": 26,
+  "controller_grading_processes": 37,
+  "extra_worker_messages": 0,
+  "feedback": {
+    "candidate_commit": "4d05d67dac6c1d9ad37b53feb14d1407248e9bfb",
+    "candidate_tree": "fc1f84d81de1c0ad140b6b371a7f0edbf209e04e",
+    "checks": [
+      {
+        "argv": [
+          "/opt/homebrew/Cellar/python@3.14/3.14.8_2/Frameworks/Python.framework/Versions/3.14/bin/python3.14",
+          "-B",
+          "-c",
+          "from app import process; assert process({'nodes': ['z', 'a'], 'edges': []}) == {'order': ['z', 'a']}"
+        ],
+        "elapsed_seconds": 0.1395657081156969,
+        "exit_code": 0,
+        "index": 0,
+        "outcome_ids": [],
+        "reason": "Selected command exited 0; unselected promises are not demonstrated.",
+        "receipt_ref": "receipts/check-000.json",
+        "status": "PASSED",
+        "stderr_excerpt": "",
+        "stderr_ref": "receipts/check-000.json#stderr",
+        "stdout_excerpt": "",
+        "stdout_ref": "receipts/check-000.json#stdout"
+      },
+      {
+        "argv": [
+          "/opt/homebrew/Cellar/python@3.14/3.14.8_2/Frameworks/Python.framework/Versions/3.14/bin/python3.14",
+          "-B",
+          "-m",
+          "unittest",
+          "discover",
+          "-s",
+          "tests"
+        ],
+        "elapsed_seconds": 0.4799810419790447,
+        "exit_code": 0,
+        "index": 1,
+        "outcome_ids": [],
+        "reason": "Selected command exited 0; unselected promises are not demonstrated.",
+        "receipt_ref": "receipts/check-001.json",
+        "status": "PASSED",
+        "stderr_excerpt": "............. | ---------------------------------------------------------------------- | Ran 13 tests in 0.243s | OK",
+        "stderr_ref": "receipts/check-001.json#stderr",
+        "stdout_excerpt": "",
+        "stdout_ref": "receipts/check-001.json#stdout"
+      }
+    ],
+    "headline": "2/2 selected checks passed",
+    "next_action": "Report only the commands checked; original request coverage remains unknown.",
+    "scope": "Selected executable commands only; completeness of the original user promise is unknown.",
+    "snapshot_sha256": "236ef7064ebd05220c3f1c2a0432a06be620aee217cd3c4f9dc765a2c61e06e4",
+    "source_sha256": "28048df96119c5f6e2fd73c8909ed9424b063cd92cd2de1496d5f11e68c090e3",
+    "status": "CHECKS PASSED"
+  },
+  "finished_at": "2026-10-13T15:47:01.789791+00:00",
+  "grade": {
+    "available": true,
+    "correct": true,
+    "elapsed_seconds": 5.66549383290112,
+    "failures": [],
+    "receipts": [
+      {
+        "elapsed_seconds": 0.146117,
+        "exit_code": 0,
+        "invocation_id": "29508546-135d-452e-aba3-c5c70f908f5d",
+        "kind": "process_probe",
+        "native_argv_sha256": "31d6349505eb1799c0477033f759415cd880e0f39f5a19526d4c72ef9de166c0",
+        "stderr": "",
+        "stdout": "{\"ok\": true, \"unchanged\": true, \"value\": {\"order\": [\"z\", \"a\"]}}\n",
+        "timed_out": false
+      },
+      {
+        "elapsed_seconds": 0.139314,
+        "exit_code": 0,
+        "invocation_id": "a856bd49-e6b2-43d0-8d13-2f9ea27977d3",
+        "kind": "process_probe",
+        "native_argv_sha256": "48ad5cca7e47faa6f587c81afe7107d6a37b6b6c782ff9b93d80a18ad023db8b",
+        "stderr": "",
+        "stdout": "{\"ok\": true, \"unchanged\": true, \"value\": {\"order\": [\"z\", \"a\"]}}\n",
+        "timed_out": false
+      },
+      {
+        "elapsed_seconds": 0.135433,
+        "exit_code": 0,
+        "invocation_id": "8ffdf184-a4fd-4396-bd98-05f34e59dbc9",
+        "kind": "process_probe",
+        "native_argv_sha256": "c84bbddb02e372d8db26b95ab59e6d070e3ff6b3c62352f7e038af562bd98ff3",
+        "stderr": "",
+        "stdout": "{\"order\": [\"z\", \"a\"]}\n",
+        "timed_out": false
+      },
+      {
+        "elapsed_seconds": 0.138751,
+        "exit_code": 0,
+        "invocation_id": "5e135a6f-a7ca-4ab8-a190-b14452a584a6",
+        "kind": "process_probe",
+        "native_argv_sha256": "242119d54a67c3e7e9481bebdae0e2ccdc71ea2d5dca288be33514798d1415d6",
+        "stderr": "",
+        "stdout": "{\"ok\": true, \"unchanged\": true, \"value\": {\"order\": [\"b\", \"a\", \"c\"]}}\n",
+        "timed_out": false
+      },
+      {
+        "elapsed_seconds": 0.147307,
+        "exit_code": 0,
+        "invocation_id": "a0f1e914-9446-4e83-9063-a8baffa56abf",
+        "kind": "process_probe",
+        "native_argv_sha256": "0e379daeeb5100133348c3f363cecf3c0a7f5f0e63405b5cdfd976fdb5eb8f3e",
+        "stderr": "",
+        "stdout": "{\"ok\": true, \"unchanged\": true, \"value\": {\"order\": [\"b\", \"a\", \"c\"]}}\n",
+        "timed_out": false
+      },
+      {
+        "elapsed_seconds": 0.146891,
+        "exit_code": 0,
+        "invocation_id": "ea6f19a3-9ffe-438c-9629-00fd1335de8a",
+        "kind": "process_probe",
+        "native_argv_sha256": "440a08345c9759d17c67afa8f96517fdc1ce248be90cc48400236ae27dc82f6e",
+        "stderr": "",
+        "stdout": "{\"order\": [\"b\", \"a\", \"c\"]}\n",
+        "timed_out": false
+      },
+      {
+        "elapsed_seconds": 0.146901,
+        "exit_code": 0,
+        "invocation_id": "5b80dd83-1785-409a-af3b-19d592ddebcd",
+        "kind": "process_probe",
+        "native_argv_sha256": "837daa28b5f13d69bc3f1040be96d7e8a2f027a134017126e80230f74f3db047",
+        "stderr": "",
+        "stdout": "{\"ok\": true, \"unchanged\": true, \"value\": {\"order\": [\"a\", \"b\"]}}\n",
+        "timed_out": false
+      },
+      {
+        "elapsed_seconds": 0.149085,
+        "exit_code": 0,
+        "invocation_id": "afe4b917-7570-4863-b3da-92f8d922bad3",
+        "kind": "process_probe",
+        "native_argv_sha256": "02b2db96e7e997b086453a7d8c79792fc3dac60fe9be351a81a524c93fd16394",
+        "stderr": "",
+        "stdout": "{\"ok\": true, \"unchanged\": true, \"value\": {\"order\": [\"a\", \"b\"]}}\n",
+        "timed_out": false
+      },
+      {
+        "elapsed_seconds": 0.142593,
+        "exit_code": 0,
+        "invocation_id": "339646ef-f6f1-4ec1-878c-9ed66c9aa9b8",
+        "kind": "process_probe",
+        "native_argv_sha256": "13a677b662be477538e769562c3f07a3cb7dd1fc8b9f24d477c81dcc151dc854",
+        "stderr": "",
+        "stdout": "{\"order\": [\"a\", \"b\"]}\n",
+        "timed_out": false
+      },
+      {
+        "elapsed_seconds": 0.14462,
+        "exit_code": 0,
+        "invocation_id": "09a2affc-b2e3-4780-99bb-40c96fb8881d",
+        "kind": "process_probe",
+        "native_argv_sha256": "7f4200e9a5b8ca841f9cbbc75e2dfe1419e0cb0f0408aa76129097fe9e90c301",
+        "stderr": "",
+        "stdout": "{\"error\": \"ValueError\", \"is_value_error\": true, \"ok\": false, \"unchanged\": true}\n",
+        "timed_out": false
+      },
+      {
+        "elapsed_seconds": 0.1476,
+        "exit_code": 0,
+        "invocation_id": "99fce2d3-1f6d-4885-84d2-b7cd977f2b0c",
+        "kind": "process_probe",
+        "native_argv_sha256": "b36f4e491ae1e1e59bf4c60b7576afde7464e2c515cdbd5975225d20db6777c2",
+        "stderr": "",
+        "stdout": "{\"error\": \"ValueError\", \"is_value_error\": true, \"ok\": false, \"unchanged\": true}\n",
+        "timed_out": false
+      },
+      {
+        "elapsed_seconds": 0.144951,
+        "exit_code": 2,
+        "invocation_id": "97242d6f-ba81-4acc-9523-c15bd63ccb22",
+        "kind": "process_probe",
+        "native_argv_sha256": "b1c688c5c48938a1979740e69dd28f92cfe5a93b24969675d91ae9e8b9582bf6",
+        "stderr": "ERROR: dependencies contain a cycle\n",
+        "stdout": "",
+        "timed_out": false
+      },
+      {
+        "elapsed_seconds": 0.141357,
+        "exit_code": 0,
+        "invocation_id": "3df941ed-f3f6-41db-b6b4-15a7cdc52dc7",
+        "kind": "process_probe",
+        "native_argv_sha256": "7b3d19c99f11edc2c12d48466ecb3466910b07dba18e8ef8c8266ac92934a951",
+        "stderr": "",
+        "stdout": "{\"error\": \"ValueError\", \"is_value_error\": true, \"ok\": false, \"unchanged\": true}\n",
+        "timed_out": false
+      },
+      {
+        "elapsed_seconds": 0.147379,
+        "exit_code": 0,
+        "invocation_id": "ea33c0be-f977-454e-a95c-222878aebf16",
+        "kind": "process_probe",
+        "native_argv_sha256": "809a97c669565fe3162bfb2d46432155a141c82328130465efbe4fa27a3fc96b",
+        "stderr": "",
+        "stdout": "{\"error\": \"ValueError\", \"is_value_error\": true, \"ok\": false, \"unchanged\": true}\n",
+        "timed_out": false
+      },
+      {
+        "elapsed_seconds": 0.145126,
+        "exit_code": 2,
+        "invocation_id": "792f6dd1-9e47-45f4-9c0e-d4a9eb12729e",
+        "kind": "process_probe",
+        "native_argv_sha256": "2fa19a076e0d1875e36b426d0da75995d34453429f1e4663e22aa5049e1bb1a1",
+        "stderr": "ERROR: self-loops are not allowed\n",
+        "stdout": "",
+        "timed_out": false
+      },
+      {
+        "elapsed_seconds": 0.148497,
+        "exit_code": 0,
+        "invocation_id": "93da2b6e-e17a-43eb-b589-89fab0b32583",
+        "kind": "process_probe",
+        "native_argv_sha256": "64c00b0414c8e19bb8db1a79fa86f0617c179e2dddc11c8731f112ec7ff68ff5",
+        "stderr": "",
+        "stdout": "{\"error\": \"ValueError\", \"is_value_error\": true, \"ok\": false, \"unchanged\": true}\n",
+        "timed_out": false
+      },
+      {
+        "elapsed_seconds": 0.136724,
+        "exit_code": 0,
+        "invocation_id": "27fc4e7e-e676-408f-823a-f68cd4801814",
+        "kind": "process_probe",
+        "native_argv_sha256": "ed37b19044caec13df6d5a3d7401e104b075f2dd40bd81ab4d4e3b6b9faf3177",
+        "stderr": "",
+        "stdout": "{\"error\": \"ValueError\", \"is_value_error\": true, \"ok\": false, \"unchanged\": true}\n",
+        "timed_out": false
+      },
+      {
+        "elapsed_seconds": 0.140104,
+        "exit_code": 2,
+        "invocation_id": "344e672b-e595-40a5-856b-e00d32586f8c",
+        "kind": "process_probe",
+        "native_argv_sha256": "dfb335b8fb37a725f1850231dff6af6548e993a10a8213cfa058ad26ff364689",
+        "stderr": "ERROR: edges must reference declared nodes\n",
+        "stdout": "",
+        "timed_out": false
+      },
+      {
+        "elapsed_seconds": 0.148259,
+        "exit_code": 0,
+        "invocation_id": "d06b74d0-292f-4837-902f-bd0d361262c9",
+        "kind": "process_probe",
+        "native_argv_sha256": "ac0b318f494746c2fcb86a9c991d9fdd77adda2eb4116be9885e32290ebf9b2a",
+        "stderr": "",
+        "stdout": "{\"error\": \"ValueError\", \"is_value_error\": true, \"ok\": false, \"unchanged\": true}\n",
+        "timed_out": false
+      },
+      {
+        "elapsed_seconds": 0.151538,
+        "exit_code": 0,
+        "invocation_id": "0d6e031b-351a-409e-be2f-599531b967eb",
+        "kind": "process_probe",
+        "native_argv_sha256": "346e9a78abe4d4cdac6cb9b225e2788494bf18c5577225bb3a95d45214b39151",
+        "stderr": "",
+        "stdout": "{\"error\": \"ValueError\", \"is_value_error\": true, \"ok\": false, \"unchanged\": true}\n",
+        "timed_out": false
+      },
+      {
+        "elapsed_seconds": 0.139788,
+        "exit_code": 2,
+        "invocation_id": "61f29f91-c8e9-4863-b39d-1f80b736b922",
+        "kind": "process_probe",
+        "native_argv_sha256": "6f7034c4f0f8197914daab386800632bae001f518a692a25d8c21fd713aced44",
+        "stderr": "ERROR: node names must be unique\n",
+        "stdout": "",
+        "timed_out": false
+      },
+      {
+        "elapsed_seconds": 0.143287,
+        "exit_code": 0,
+        "invocation_id": "2642e9c3-12ce-4c1b-9c6d-5829486e40b5",
+        "kind": "process_probe",
+        "native_argv_sha256": "22c30dbc5000c4c7045488959bf6e4fd0d9ce72bbf861de59dc60dcf1bc0261e",
+        "stderr": "",
+        "stdout": "{\"ok\": true, \"unchanged\": true, \"value\": {\"order\": []}}\n",
+        "timed_out": false
+      },
+      {
+        "elapsed_seconds": 0.149326,
+        "exit_code": 0,
+        "invocation_id": "97f328d2-697b-48c6-bb06-8bd575e9d737",
+        "kind": "process_probe",
+        "native_argv_sha256": "8e733ea42ee78c2e2e6c6a76fd759adb0825ad92ea7d29338ba0e79bb9100a19",
+        "stderr": "",
+        "stdout": "{\"ok\": true, \"unchanged\": true, \"value\": {\"order\": []}}\n",
+        "timed_out": false
+      },
+      {
+        "elapsed_seconds": 0.149623,
+        "exit_code": 0,
+        "invocation_id": "2f142112-3748-4ab6-84ec-6fe526163a2e",
+        "kind": "process_probe",
+        "native_argv_sha256": "9b1255ef742c3ed90348f622db7c3f68d4aaa4675ca0111c0df9291636e23eb9",
+        "stderr": "",
+        "stdout": "{\"order\": []}\n",
+        "timed_out": false
+      },
+      {
+        "elapsed_seconds": 0.147453,
+        "exit_code": 0,
+        "invocation_id": "bfd3e0fd-32ad-4527-b6b5-5e06f1183fda",
+        "kind": "process_probe",
+        "native_argv_sha256": "dcdeb405a14a25484e7ff2634147ebcdc7300318cefcfc9a6c585458dc75c135",
+        "stderr": "",
+        "stdout": "{\"error\": \"ValueError\", \"is_value_error\": true, \"ok\": false, \"unchanged\": true}\n",
+        "timed_out": false
+      },
+      {
+        "elapsed_seconds": 0.151607,
+        "exit_code": 0,
+        "invocation_id": "53eaf947-531c-43ca-87c9-209c0d1a5888",
+        "kind": "process_probe",
+        "native_argv_sha256": "1d2d1fbaee0bf721243d2041bfde6c1f7bdc6df7dcd5fa6f3fb4211299ad7541",
+        "stderr": "",
+        "stdout": "{\"error\": \"ValueError\", \"is_value_error\": true, \"ok\": false, \"unchanged\": true}\n",
+        "timed_out": false
+      },
+      {
+        "elapsed_seconds": 0.14675,
+        "exit_code": 2,
+        "invocation_id": "38d02328-6bbd-4580-9266-5ab18f0d26da",
+        "kind": "process_probe",
+        "native_argv_sha256": "8f5aa6d8baaaa4a623929433733e3657d4558214e34c44152530511dbd2efbbc",
+        "stderr": "ERROR: each edge must be a two-element list\n",
+        "stdout": "",
+        "timed_out": false
+      },
+      {
+        "elapsed_seconds": 0.135963,
+        "exit_code": 0,
+        "invocation_id": "e2dd8a2d-c49c-4348-bfcf-ab3751af47d3",
+        "kind": "process_probe",
+        "native_argv_sha256": "d4a6b68ff6c406b91b7f40071de53dd33f150e8575d00ff1160cf9e18032977b",
+        "stderr": "",
+        "stdout": "{\"error\": \"ValueError\", \"is_value_error\": true, \"ok\": false, \"unchanged\": true}\n",
+        "timed_out": false
+      },
+      {
+        "elapsed_seconds": 0.137099,
+        "exit_code": 0,
+        "invocation_id": "159ad8dd-bd8d-439c-8bbf-7aa8af310da3",
+        "kind": "process_probe",
+        "native_argv_sha256": "066016375cabebbec7233540b819a85d7b93ce98c5b9be4b28eaf4a3f383dfb4",
+        "stderr": "",
+        "stdout": "{\"error\": \"ValueError\", \"is_value_error\": true, \"ok\": false, \"unchanged\": true}\n",
+        "timed_out": false
+      },
+      {
+        "elapsed_seconds": 0.142982,
+        "exit_code": 2,
+        "invocation_id": "8cdc5e4e-2698-4f3b-bdec-c30cc002a5ac",
+        "kind": "process_probe",
+        "native_argv_sha256": "b0d9c56533c9def8c6d4a678541aeb0fc62f3a18259e44cde66736e0ee2aaa69",
+        "stderr": "ERROR: payload must be an object\n",
+        "stdout": "",
+        "timed_out": false
+      },
+      {
+        "elapsed_seconds": 0.148262,
+        "exit_code": 0,
+        "invocation_id": "460c8a44-6858-4660-96d1-c25ca05c75c2",
+        "kind": "process_probe",
+        "native_argv_sha256": "e400cc0a01fa08930fdcd893a6478d2ec61cc7680f72552edf5275296a48fa09",
+        "stderr": "",
+        "stdout": "{\"ok\": true, \"unchanged\": true, \"value\": []}\n",
+        "timed_out": false
+      },
+      {
+        "elapsed_seconds": 0.144154,
+        "exit_code": 0,
+        "invocation_id": "c7fe792c-7c0e-4c5e-a8c6-cf0a37534912",
+        "kind": "process_probe",
+        "native_argv_sha256": "d33af12aaa8aa54df53c85147150e5aed33b1a8df21212a5dd930caeaad22545",
+        "stderr": "",
+        "stdout": "{\"ok\": true, \"unchanged\": true, \"value\": [{\"order\": [\"z\", \"a\"]}, {\"order\": [\"z\", \"a\"]}]}\n",
+        "timed_out": false
+      },
+      {
+        "elapsed_seconds": 0.144641,
+        "exit_code": 0,
+        "invocation_id": "b3053332-28ab-40e2-8522-13d14d52fba1",
+        "kind": "process_probe",
+        "native_argv_sha256": "fea9e23faf97efb6d5b8a5e8ef41103817dc4069757369a2c7ffd87af5caf6d6",
+        "stderr": "",
+        "stdout": "{\"error\": \"ValueError\", \"is_value_error\": true, \"ok\": false, \"unchanged\": true}\n",
+        "timed_out": false
+      },
+      {
+        "elapsed_seconds": 0.147245,
+        "exit_code": 0,
+        "invocation_id": "c0b95aa0-5d17-4eb5-ad99-f9bd2e2982ae",
+        "kind": "process_probe",
+        "native_argv_sha256": "cd98d24f2211116bc016537de4dbf6f995554fa311ea851ad7732dd5730c24a5",
+        "stderr": "",
+        "stdout": "{\"error\": \"ValueError\", \"is_value_error\": true, \"ok\": false, \"unchanged\": true}\n",
+        "timed_out": false
+      },
+      {
+        "elapsed_seconds": 0.140207,
+        "exit_code": 0,
+        "invocation_id": "c17e5d4b-31e6-4a50-b5cb-d2d280ea268b",
+        "kind": "process_probe",
+        "native_argv_sha256": "f5deb43f934a5c095ee75a1d7b153aae57483956b643170d79133e345147ea35",
+        "stderr": "",
+        "stdout": "api-v1\n",
+        "timed_out": false
+      },
+      {
+        "elapsed_seconds": 0.137077,
+        "exit_code": 2,
+        "invocation_id": "a8565213-1b67-4d7c-ade9-7c08dc5db9e1",
+        "kind": "process_probe",
+        "native_argv_sha256": "01882a39f0537a7dc25f50d38a4b1c8f4a935c26703442bbd4bee9def0eda892",
+        "stderr": "ERROR: unsupported arguments\n",
+        "stdout": "",
+        "timed_out": false
+      },
+      {
+        "elapsed_seconds": 0.434265,
+        "exit_code": 0,
+        "invocation_id": "7f207fb5-0f41-4682-b74f-e805e3d57b0f",
+        "kind": "process_probe",
+        "native_argv_sha256": "c4011126d9ff0f6001e61a6b78a0b3e19186dfa1061c6e4d5c53ae0876b4a053",
+        "stderr": ".............\n----------------------------------------------------------------------\nRan 13 tests in 0.239s\n\nOK\n",
+        "stdout": "",
+        "timed_out": false
+      }
+    ],
+    "repository_tests_passed": true,
+    "stale_test_expectation_retained": false,
+    "unavailable": []
+  },
+  "handoff": true,
+  "model_dispatches": 1,
+  "native_available": true,
+  "operator_candidate_edits": 0,
+  "promise_evidence": null,
+  "receipt": {
+    "elapsed_seconds": 108.020064,
+    "error": null,
+    "events.jsonl_sha256": "090aa6f576652b5b4ab2b4175a757a90d0d97f340060415fbedfc3e0d550b57f",
+    "exit_code": 0,
+    "invocation_id": "5a53c7fa-d854-4eac-9dc4-0ae03cc5775d",
+    "kind": "codex_exec",
+    "native_argv_sha256": "4513dc741cdba65d79f69dca830b7ecc78602f6fff9027accf77be13cdd7d760",
+    "prompt_sha256": "e76f75aedd43847b833dd798e3559b070f61d04a6eaec1beb908185b6408a96f",
+    "stderr.txt_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "timed_out": false
+  },
+  "response": {
+    "completed": true,
+    "summary": "Implemented stable dependency ordering, validation, cycle detection, and service.batch without mutating inputs. Updated the stale test; cli.py remains unchanged. Both supplied checks and all 13 tests pass. No commits made."
+  },
+  "sequence": 12,
+  "source_sha256": "28048df96119c5f6e2fd73c8909ed9424b063cd92cd2de1496d5f11e68c090e3",
+  "started_at": "2026-10-13T15:45:06.783168+00:00",
+  "status": "CORRECT_DELIVERY",
+  "task": "dependency-order",
+  "thread_id": "01a135f0-5c20-7912-af0b-757f0e76ecc0",
+  "tool_executions": 7,
+  "usage": {
+    "cache_write_input_tokens": 0,
+    "cached_input_tokens": 57216,
+    "input_tokens": 76020,
+    "output_tokens": 3638,
+    "reasoning_output_tokens": 235
+  },
+  "workflow_seconds": 109.51317087514326
+}

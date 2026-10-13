@@ -1,0 +1,564 @@
+{
+  "agent_completed": true,
+  "arm": "proofline",
+  "base_tree": "8086be2df1abaaf5bba79fc42e738054a0fc5f0f",
+  "candidate_commit": "fd7ee6a3d32e75e3f7814fc6f658add07bb5b0a2",
+  "candidate_files": {
+    "README.md": {
+      "kind": "file",
+      "mode": 420,
+      "path": "README.md",
+      "sha256": "83f5c7f67de7592566a3de4f8eeed321facbd3f09e50a32aac48528ec15c28ac"
+    },
+    "app.py": {
+      "kind": "file",
+      "mode": 420,
+      "path": "app.py",
+      "sha256": "b16c22130b786d465ad3119de24da121c26bd8ba53046b4103002d92b73739a4"
+    },
+    "cli.py": {
+      "kind": "file",
+      "mode": 420,
+      "path": "cli.py",
+      "sha256": "14aea6a3d7acc1d93b80e079fd645b48e4fef2e976df9ef355cc50829a7c74c8"
+    },
+    "service.py": {
+      "kind": "file",
+      "mode": 420,
+      "path": "service.py",
+      "sha256": "af93420efea7dd7a893dce6f784b4e1bc4523108a01c23aac8cf95ce7c8b5a60"
+    },
+    "tests": {
+      "kind": "directory",
+      "mode": 493,
+      "path": "tests"
+    },
+    "tests/test_compat.py": {
+      "kind": "file",
+      "mode": 420,
+      "path": "tests/test_compat.py",
+      "sha256": "2432e53eeae0b53103501bb0cdfbd3dab2446d236503df335ea8a5e5e4171703"
+    },
+    "tests/test_example.py": {
+      "kind": "file",
+      "mode": 420,
+      "path": "tests/test_example.py",
+      "sha256": "68ea843f459775c4502178a8061ba0329f81bef3aec680623b8a1d90f92831ce"
+    },
+    "tests/test_transfers.py": {
+      "kind": "file",
+      "mode": 420,
+      "path": "tests/test_transfers.py",
+      "sha256": "ed60671d5a09e530e17b3999fe8300fe9ffa86beafe1a1583bd0c619e9738a9e"
+    }
+  },
+  "candidate_snapshot_sha256": "e42e255098f76c52651fe82b458980d147bdcd93a76cca3d17633c1c9de8afc4",
+  "candidate_tree": "10e59046d202f64c123e6d64028f5783fe9f2923",
+  "check_elapsed_seconds": 0.9846432921476662,
+  "check_model_dispatches": 0,
+  "check_status": "CHECKS PASSED",
+  "controller_episode_processes": 26,
+  "controller_grading_processes": 40,
+  "extra_worker_messages": 0,
+  "feedback": {
+    "candidate_commit": "0349b60ea6226b40ef97269e69af29dc21af82fd",
+    "candidate_tree": "10e59046d202f64c123e6d64028f5783fe9f2923",
+    "checks": [
+      {
+        "argv": [
+          "/opt/homebrew/Cellar/python@3.14/3.14.8_2/Frameworks/Python.framework/Versions/3.14/bin/python3.14",
+          "-B",
+          "-c",
+          "from app import process; assert process({'balances': {'a': 5, 'b': 0}, 'transfers': [['a', 'b', 3]]}) == {'balances': {'a': 2, 'b': 3}}"
+        ],
+        "elapsed_seconds": 0.1461749579757452,
+        "exit_code": 0,
+        "index": 0,
+        "outcome_ids": [],
+        "reason": "Selected command exited 0; unselected promises are not demonstrated.",
+        "receipt_ref": "receipts/check-000.json",
+        "status": "PASSED",
+        "stderr_excerpt": "",
+        "stderr_ref": "receipts/check-000.json#stderr",
+        "stdout_excerpt": "",
+        "stdout_ref": "receipts/check-000.json#stdout"
+      },
+      {
+        "argv": [
+          "/opt/homebrew/Cellar/python@3.14/3.14.8_2/Frameworks/Python.framework/Versions/3.14/bin/python3.14",
+          "-B",
+          "-m",
+          "unittest",
+          "discover",
+          "-s",
+          "tests"
+        ],
+        "elapsed_seconds": 0.38198483316227794,
+        "exit_code": 0,
+        "index": 1,
+        "outcome_ids": [],
+        "reason": "Selected command exited 0; unselected promises are not demonstrated.",
+        "receipt_ref": "receipts/check-001.json",
+        "status": "PASSED",
+        "stderr_excerpt": "................ | ---------------------------------------------------------------------- | Ran 16 tests in 0.155s | OK",
+        "stderr_ref": "receipts/check-001.json#stderr",
+        "stdout_excerpt": "",
+        "stdout_ref": "receipts/check-001.json#stdout"
+      }
+    ],
+    "headline": "2/2 selected checks passed",
+    "next_action": "Report only the commands checked; original request coverage remains unknown.",
+    "scope": "Selected executable commands only; completeness of the original user promise is unknown.",
+    "snapshot_sha256": "fcb61d790bda5eef2169a9fcd387ac29d09d9690673784d7faf46a985e01c8ce",
+    "source_sha256": "c9a5c3bc2cc80520431d6fd951a8e2303270d1c390b25ed1f5413391fbc29347",
+    "status": "CHECKS PASSED"
+  },
+  "finished_at": "2026-10-13T14:35:22.647154+00:00",
+  "grade": {
+    "available": true,
+    "correct": true,
+    "elapsed_seconds": 5.898870708420873,
+    "failures": [],
+    "receipts": [
+      {
+        "elapsed_seconds": 0.147654,
+        "exit_code": 0,
+        "invocation_id": "7c7bdcfd-c2e8-4ee7-93dd-75161c01caa5",
+        "kind": "process_probe",
+        "native_argv_sha256": "edada5515071fdaf5f06d86f47ccf5e1350736209cc36e8e60e19d56fab7e31e",
+        "stderr": "",
+        "stdout": "{\"ok\": true, \"unchanged\": true, \"value\": {\"balances\": {\"a\": 2, \"b\": 3}}}\n",
+        "timed_out": false
+      },
+      {
+        "elapsed_seconds": 0.148682,
+        "exit_code": 0,
+        "invocation_id": "d3479b1e-f5af-44fc-9846-4c7d2cca55e7",
+        "kind": "process_probe",
+        "native_argv_sha256": "4d1cae49850ad3cbbaf4980e88c309b75d8b4dc46119dd800920e04b94e66d30",
+        "stderr": "",
+        "stdout": "{\"ok\": true, \"unchanged\": true, \"value\": {\"balances\": {\"a\": 2, \"b\": 3}}}\n",
+        "timed_out": false
+      },
+      {
+        "elapsed_seconds": 0.144404,
+        "exit_code": 0,
+        "invocation_id": "33ba7e64-5060-467f-bc02-9a95af1dc19b",
+        "kind": "process_probe",
+        "native_argv_sha256": "10254688e9906965c5bfc648881a882bb7fd43fba8f9810c2ba01920a397259c",
+        "stderr": "",
+        "stdout": "{\"balances\": {\"a\": 2, \"b\": 3}}\n",
+        "timed_out": false
+      },
+      {
+        "elapsed_seconds": 0.144057,
+        "exit_code": 0,
+        "invocation_id": "804896a3-846a-4415-84c8-8039e43028c7",
+        "kind": "process_probe",
+        "native_argv_sha256": "168577cb9c3023e5c7bfb84cf4e42d1ac2f5f0dff349649a860dcb39573f4a79",
+        "stderr": "",
+        "stdout": "{\"error\": \"ValueError\", \"is_value_error\": true, \"ok\": false, \"unchanged\": true}\n",
+        "timed_out": false
+      },
+      {
+        "elapsed_seconds": 0.137449,
+        "exit_code": 0,
+        "invocation_id": "45d9d571-bd25-4a6d-8bca-d99481d7bc0c",
+        "kind": "process_probe",
+        "native_argv_sha256": "f34c41af3230618ef4f90e4def19aa92ddd248b9a8238df9eb3f5934e073933b",
+        "stderr": "",
+        "stdout": "{\"error\": \"ValueError\", \"is_value_error\": true, \"ok\": false, \"unchanged\": true}\n",
+        "timed_out": false
+      },
+      {
+        "elapsed_seconds": 0.145835,
+        "exit_code": 2,
+        "invocation_id": "3769dd76-ed15-49dd-b0ce-88cd1ef8fb6f",
+        "kind": "process_probe",
+        "native_argv_sha256": "40029298d3203d96ab2e2c2d2dfb8c9051d932e3f9ef4dcb167387a71c0a813d",
+        "stderr": "ERROR: insufficient funds\n",
+        "stdout": "",
+        "timed_out": false
+      },
+      {
+        "elapsed_seconds": 0.141523,
+        "exit_code": 0,
+        "invocation_id": "76b34bf1-d5d7-4515-86ca-0da017500d1d",
+        "kind": "process_probe",
+        "native_argv_sha256": "37fc419959e3d5f11c797d35a297ff52bd897fa53f39007a50b8dff6e9e943bf",
+        "stderr": "",
+        "stdout": "{\"error\": \"ValueError\", \"is_value_error\": true, \"ok\": false, \"unchanged\": true}\n",
+        "timed_out": false
+      },
+      {
+        "elapsed_seconds": 0.146235,
+        "exit_code": 0,
+        "invocation_id": "19c2aede-cdd1-4591-a910-778a366d976d",
+        "kind": "process_probe",
+        "native_argv_sha256": "ea8847ec5e91904127e001bdb5fcbcebcd1fb6b1bccb12514d177cc7b2db476f",
+        "stderr": "",
+        "stdout": "{\"error\": \"ValueError\", \"is_value_error\": true, \"ok\": false, \"unchanged\": true}\n",
+        "timed_out": false
+      },
+      {
+        "elapsed_seconds": 0.143448,
+        "exit_code": 2,
+        "invocation_id": "36ccfdc7-dce8-4e9d-91dd-4af976153c66",
+        "kind": "process_probe",
+        "native_argv_sha256": "c99cc00578037cbb9860201ffd52451990fa0ca62e5820a36676e72d73dfcd08",
+        "stderr": "ERROR: insufficient funds\n",
+        "stdout": "",
+        "timed_out": false
+      },
+      {
+        "elapsed_seconds": 0.148181,
+        "exit_code": 0,
+        "invocation_id": "c82a1368-108f-4bf6-a46c-289fd2fecac0",
+        "kind": "process_probe",
+        "native_argv_sha256": "cc0fb9dab0f9864541b697191e339b65e7c49df6eecf80f814b7b8f456357c3c",
+        "stderr": "",
+        "stdout": "{\"ok\": true, \"unchanged\": true, \"value\": {\"balances\": {\"a\": 1}}}\n",
+        "timed_out": false
+      },
+      {
+        "elapsed_seconds": 0.142298,
+        "exit_code": 0,
+        "invocation_id": "6d2d24c6-5f44-4ea1-8b23-d45b4230d805",
+        "kind": "process_probe",
+        "native_argv_sha256": "a53fb644f1c67b7be1e8b37206a69d0815bc6638bf2a488aa404677b19ef55d7",
+        "stderr": "",
+        "stdout": "{\"ok\": true, \"unchanged\": true, \"value\": {\"balances\": {\"a\": 1}}}\n",
+        "timed_out": false
+      },
+      {
+        "elapsed_seconds": 0.136249,
+        "exit_code": 0,
+        "invocation_id": "0c7a8a1d-3543-4737-89e2-35fc1b7cf29e",
+        "kind": "process_probe",
+        "native_argv_sha256": "e503e350d17ad085118e83b71080d482f91411ae052bb45f951bf33f0bd69abf",
+        "stderr": "",
+        "stdout": "{\"balances\": {\"a\": 1}}\n",
+        "timed_out": false
+      },
+      {
+        "elapsed_seconds": 0.147097,
+        "exit_code": 0,
+        "invocation_id": "81da7538-f618-433d-88ae-86fa4ca4451a",
+        "kind": "process_probe",
+        "native_argv_sha256": "402379544f463b3c81dcbff0059768e2cd31dd9e01e3a2ef7e4901fd07ec6a08",
+        "stderr": "",
+        "stdout": "{\"error\": \"ValueError\", \"is_value_error\": true, \"ok\": false, \"unchanged\": true}\n",
+        "timed_out": false
+      },
+      {
+        "elapsed_seconds": 0.13429,
+        "exit_code": 0,
+        "invocation_id": "de20b11a-8fc5-4923-8570-5dd0bdc64bbb",
+        "kind": "process_probe",
+        "native_argv_sha256": "04fe34d001f4e44d95ce1282bde2be4ca1cfb7b57070860d1efd75d39463452b",
+        "stderr": "",
+        "stdout": "{\"error\": \"ValueError\", \"is_value_error\": true, \"ok\": false, \"unchanged\": true}\n",
+        "timed_out": false
+      },
+      {
+        "elapsed_seconds": 0.147388,
+        "exit_code": 2,
+        "invocation_id": "a0068ed4-9731-4a20-9fbf-bdc93cdd76b6",
+        "kind": "process_probe",
+        "native_argv_sha256": "8b1601f28f253beca60f616f31a198a92f103ac91b7816852351f6bca81b116d",
+        "stderr": "ERROR: balances must be nonnegative integers\n",
+        "stdout": "",
+        "timed_out": false
+      },
+      {
+        "elapsed_seconds": 0.151022,
+        "exit_code": 0,
+        "invocation_id": "536886d9-589f-4fe0-a67d-6140c274cc22",
+        "kind": "process_probe",
+        "native_argv_sha256": "14356fff6f16ece2832f8c671d9ea810d9791e1e2fd636502e1e6dc2b965ab2f",
+        "stderr": "",
+        "stdout": "{\"error\": \"ValueError\", \"is_value_error\": true, \"ok\": false, \"unchanged\": true}\n",
+        "timed_out": false
+      },
+      {
+        "elapsed_seconds": 0.138959,
+        "exit_code": 0,
+        "invocation_id": "c8cc56cf-7536-4d7c-a5f7-dfc958da1d19",
+        "kind": "process_probe",
+        "native_argv_sha256": "1ce2d6b6ea09ac074ab361c420cee180f608c1e788020dcff857c7b2ecdb0d07",
+        "stderr": "",
+        "stdout": "{\"error\": \"ValueError\", \"is_value_error\": true, \"ok\": false, \"unchanged\": true}\n",
+        "timed_out": false
+      },
+      {
+        "elapsed_seconds": 0.139305,
+        "exit_code": 2,
+        "invocation_id": "ac8aad88-2329-4017-8cc2-d68b146d9855",
+        "kind": "process_probe",
+        "native_argv_sha256": "f2c7092336e566487b0d019ad60ab7654959ed94ac2632a5a74cae70e025422a",
+        "stderr": "ERROR: transfer amounts must be nonnegative integers\n",
+        "stdout": "",
+        "timed_out": false
+      },
+      {
+        "elapsed_seconds": 0.149233,
+        "exit_code": 0,
+        "invocation_id": "ea8084f7-f19a-46aa-b13b-b734c1dbfe5a",
+        "kind": "process_probe",
+        "native_argv_sha256": "35ef4dd5c30e38f3e7ac82a246c75625ddb265bab19b3b1cfdbe359b83a25b1c",
+        "stderr": "",
+        "stdout": "{\"error\": \"ValueError\", \"is_value_error\": true, \"ok\": false, \"unchanged\": true}\n",
+        "timed_out": false
+      },
+      {
+        "elapsed_seconds": 0.142549,
+        "exit_code": 0,
+        "invocation_id": "2eb02e0a-1874-4182-b929-8436f25dd05c",
+        "kind": "process_probe",
+        "native_argv_sha256": "cee30a8ac462a43cb06f244f64d4d37b1f2b076d5ee4ef94cd7cff2a29756cb0",
+        "stderr": "",
+        "stdout": "{\"error\": \"ValueError\", \"is_value_error\": true, \"ok\": false, \"unchanged\": true}\n",
+        "timed_out": false
+      },
+      {
+        "elapsed_seconds": 0.138348,
+        "exit_code": 2,
+        "invocation_id": "5f40c226-1bdd-4cc8-a02e-bc4b001236c7",
+        "kind": "process_probe",
+        "native_argv_sha256": "a9e1cfdbb25b5c77bc113aa84a2e31cb1cc676e35c514dba9513a272834a0ce9",
+        "stderr": "ERROR: both transfer accounts must exist\n",
+        "stdout": "",
+        "timed_out": false
+      },
+      {
+        "elapsed_seconds": 0.1487,
+        "exit_code": 0,
+        "invocation_id": "1683bce4-8ef9-4cf9-9096-f92809d201fc",
+        "kind": "process_probe",
+        "native_argv_sha256": "a3689892a19d071e3c76df776ff5c2eaa0b2bb35930e9fe1dc4a3b2e4e21974b",
+        "stderr": "",
+        "stdout": "{\"ok\": true, \"unchanged\": true, \"value\": {\"balances\": {}}}\n",
+        "timed_out": false
+      },
+      {
+        "elapsed_seconds": 0.141938,
+        "exit_code": 0,
+        "invocation_id": "60aef112-a794-4680-83ee-f76ed6031377",
+        "kind": "process_probe",
+        "native_argv_sha256": "5aa409545b11745c3b85aba110bc0b75ca063fdbb483c7ad7a70cc1125fb70c5",
+        "stderr": "",
+        "stdout": "{\"ok\": true, \"unchanged\": true, \"value\": {\"balances\": {}}}\n",
+        "timed_out": false
+      },
+      {
+        "elapsed_seconds": 0.139354,
+        "exit_code": 0,
+        "invocation_id": "fe76c3a5-0b42-4b6f-bbf8-34f1237755ed",
+        "kind": "process_probe",
+        "native_argv_sha256": "44eebef63a553257199afa1f3ad378ae24c6d3ed18caae515e8578d4160e8f26",
+        "stderr": "",
+        "stdout": "{\"balances\": {}}\n",
+        "timed_out": false
+      },
+      {
+        "elapsed_seconds": 0.140425,
+        "exit_code": 0,
+        "invocation_id": "6d184f3f-2266-4904-80d7-4aa4caa4a8fe",
+        "kind": "process_probe",
+        "native_argv_sha256": "616015bc32c0ed8b744060155029f06cf2651dec9727d8c6965528751ae6d891",
+        "stderr": "",
+        "stdout": "{\"error\": \"ValueError\", \"is_value_error\": true, \"ok\": false, \"unchanged\": true}\n",
+        "timed_out": false
+      },
+      {
+        "elapsed_seconds": 0.141109,
+        "exit_code": 0,
+        "invocation_id": "5d976900-ab14-4ae6-a222-e40891a4e624",
+        "kind": "process_probe",
+        "native_argv_sha256": "045c715e7d194579321d541f83339c019c5842dafbbeacf9e2384a6157480477",
+        "stderr": "",
+        "stdout": "{\"error\": \"ValueError\", \"is_value_error\": true, \"ok\": false, \"unchanged\": true}\n",
+        "timed_out": false
+      },
+      {
+        "elapsed_seconds": 0.145714,
+        "exit_code": 2,
+        "invocation_id": "b3c7498a-b0f8-454a-960b-aeec88e1ab1b",
+        "kind": "process_probe",
+        "native_argv_sha256": "ce35c3647ac0b5559a9c252d1514b47182d4e01dc92fb146c7dfced6e344c6dc",
+        "stderr": "ERROR: each transfer must be [from, to, amount]\n",
+        "stdout": "",
+        "timed_out": false
+      },
+      {
+        "elapsed_seconds": 0.140833,
+        "exit_code": 0,
+        "invocation_id": "5a828272-da5b-41f9-8c0d-d812b31dc957",
+        "kind": "process_probe",
+        "native_argv_sha256": "3349eb0bc2488f5dbbf3a2f991ea72dbe0aa98c37f55e6a08490015b8c964240",
+        "stderr": "",
+        "stdout": "{\"error\": \"ValueError\", \"is_value_error\": true, \"ok\": false, \"unchanged\": true}\n",
+        "timed_out": false
+      },
+      {
+        "elapsed_seconds": 0.145397,
+        "exit_code": 0,
+        "invocation_id": "ea2c6fc2-cd07-40c6-bf2d-0bf159debefe",
+        "kind": "process_probe",
+        "native_argv_sha256": "3479d6e4747a57670ce9b085693f8d692fa99dbaa6b101a5800d4d9eb27348d6",
+        "stderr": "",
+        "stdout": "{\"error\": \"ValueError\", \"is_value_error\": true, \"ok\": false, \"unchanged\": true}\n",
+        "timed_out": false
+      },
+      {
+        "elapsed_seconds": 0.141768,
+        "exit_code": 2,
+        "invocation_id": "1cb8bf2a-addd-45eb-93db-259b797e882d",
+        "kind": "process_probe",
+        "native_argv_sha256": "9d1b1a73548c4d9c32199768c37f8b89513aad18a920a7037fc910bc22d71665",
+        "stderr": "ERROR: balances must be nonnegative integers\n",
+        "stdout": "",
+        "timed_out": false
+      },
+      {
+        "elapsed_seconds": 0.126883,
+        "exit_code": 0,
+        "invocation_id": "e1c105b3-4579-4341-b5aa-b1f3437347e6",
+        "kind": "process_probe",
+        "native_argv_sha256": "f9bd3ffbd1e61f5550680c41b3c83ebba556963b15f85bcf8f556f5c86fe6d74",
+        "stderr": "",
+        "stdout": "{\"error\": \"ValueError\", \"is_value_error\": true, \"ok\": false, \"unchanged\": true}\n",
+        "timed_out": false
+      },
+      {
+        "elapsed_seconds": 0.138588,
+        "exit_code": 0,
+        "invocation_id": "b2576250-2ce0-440b-9da7-9a029804a450",
+        "kind": "process_probe",
+        "native_argv_sha256": "8c4269782daff54625625ea279fc93d9d794064e0dfde4c3529009312b2605e0",
+        "stderr": "",
+        "stdout": "{\"error\": \"ValueError\", \"is_value_error\": true, \"ok\": false, \"unchanged\": true}\n",
+        "timed_out": false
+      },
+      {
+        "elapsed_seconds": 0.141158,
+        "exit_code": 2,
+        "invocation_id": "8bb4628e-d611-49df-9003-7632d5e77d58",
+        "kind": "process_probe",
+        "native_argv_sha256": "30f4cd8a359d1617a3a1e559a19aa41b131d9d1ff6fd0598ffce82a489f132a6",
+        "stderr": "ERROR: payload must be an object\n",
+        "stdout": "",
+        "timed_out": false
+      },
+      {
+        "elapsed_seconds": 0.125925,
+        "exit_code": 0,
+        "invocation_id": "2dd6b7d6-9dea-475d-b93c-0a330239269c",
+        "kind": "process_probe",
+        "native_argv_sha256": "56680105923197991b4f9b96f0a81e15e7f1cb781bd9108d6511a5898baff542",
+        "stderr": "",
+        "stdout": "{\"ok\": true, \"unchanged\": true, \"value\": []}\n",
+        "timed_out": false
+      },
+      {
+        "elapsed_seconds": 0.138964,
+        "exit_code": 0,
+        "invocation_id": "3def7632-57b3-4e4c-a312-3efd8cbf8208",
+        "kind": "process_probe",
+        "native_argv_sha256": "ab26fbaa97e56d0c8d519756c43b9895e91405bfe56d0677134d11b87bcebcf6",
+        "stderr": "",
+        "stdout": "{\"ok\": true, \"unchanged\": true, \"value\": [{\"balances\": {\"a\": 2, \"b\": 3}}, {\"balances\": {\"a\": 2, \"b\": 3}}]}\n",
+        "timed_out": false
+      },
+      {
+        "elapsed_seconds": 0.126692,
+        "exit_code": 0,
+        "invocation_id": "2de895e8-d952-4ee9-b609-eef55a7ca388",
+        "kind": "process_probe",
+        "native_argv_sha256": "52a450067b60ef9c42152ed420e5836ac3dcd46116fedd6d1dbc39937e7f44f9",
+        "stderr": "",
+        "stdout": "{\"error\": \"ValueError\", \"is_value_error\": true, \"ok\": false, \"unchanged\": true}\n",
+        "timed_out": false
+      },
+      {
+        "elapsed_seconds": 0.147085,
+        "exit_code": 0,
+        "invocation_id": "c546a8f2-974b-47e6-8767-bdd4c179c2eb",
+        "kind": "process_probe",
+        "native_argv_sha256": "72c9624d3c3657d636b01809dc5194e6954baf8397c0bf2a042890f9f92ad30b",
+        "stderr": "",
+        "stdout": "{\"error\": \"ValueError\", \"is_value_error\": true, \"ok\": false, \"unchanged\": true}\n",
+        "timed_out": false
+      },
+      {
+        "elapsed_seconds": 0.146152,
+        "exit_code": 0,
+        "invocation_id": "0c9d4d1e-a288-4e5c-a455-b4e4e56e4ded",
+        "kind": "process_probe",
+        "native_argv_sha256": "3c12b7e6ddf651e7d7e50910f192c0b490de3f72b45a077e977148b9fcedf72f",
+        "stderr": "",
+        "stdout": "api-v1\n",
+        "timed_out": false
+      },
+      {
+        "elapsed_seconds": 0.150389,
+        "exit_code": 2,
+        "invocation_id": "6fef3032-dd44-4d62-8f1e-ffc4e2d6380f",
+        "kind": "process_probe",
+        "native_argv_sha256": "5a8481060d348a7e5c0ee494df01e90f7114bb0b615d686d32a007f7d237cd8d",
+        "stderr": "ERROR: unsupported arguments\n",
+        "stdout": "",
+        "timed_out": false
+      },
+      {
+        "elapsed_seconds": 0.319946,
+        "exit_code": 0,
+        "invocation_id": "480adf4c-1b54-4313-a628-83d499b5233e",
+        "kind": "process_probe",
+        "native_argv_sha256": "5479aed3617e77f1eb2f12fe3834166e23b659da2ea36f886180f9a925531ffc",
+        "stderr": "................\n----------------------------------------------------------------------\nRan 16 tests in 0.143s\n\nOK\n",
+        "stdout": "",
+        "timed_out": false
+      }
+    ],
+    "repository_tests_passed": true,
+    "stale_test_expectation_retained": false,
+    "unavailable": []
+  },
+  "handoff": true,
+  "model_dispatches": 1,
+  "native_available": true,
+  "operator_candidate_edits": 0,
+  "promise_evidence": null,
+  "receipt": {
+    "elapsed_seconds": 130.866204,
+    "error": null,
+    "events.jsonl_sha256": "782cd368fdaf5d8986ba76a371572461100f0eb544c1aee9ee3068b993fdabb9",
+    "exit_code": 0,
+    "invocation_id": "aefa27c8-802b-4ce6-b6df-f570f80c41ea",
+    "kind": "codex_exec",
+    "native_argv_sha256": "c4fec58b75bcc165c1e9fd8e7582519f9358a573b703c795f8e3c44a4f0d205a",
+    "prompt_sha256": "1ee725f76373f6e4015d41f0c5a1b1665b4a5ff329aa10a3718def81d62e7d0a",
+    "stderr.txt_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "timed_out": false
+  },
+  "response": {
+    "completed": true,
+    "summary": "Implemented atomic ordered transfers, strict validation, input immutability, and service.batch. Kept cli.py unchanged. All 16 tests and both supplied checks pass. No commits made."
+  },
+  "sequence": 2,
+  "source_sha256": "c9a5c3bc2cc80520431d6fd951a8e2303270d1c390b25ed1f5413391fbc29347",
+  "started_at": "2026-10-13T14:33:04.720501+00:00",
+  "status": "CORRECT_DELIVERY",
+  "task": "atomic-transfers",
+  "thread_id": "01a135ae-6913-7870-b870-738273d3b3b2",
+  "tool_executions": 9,
+  "usage": {
+    "cache_write_input_tokens": 0,
+    "cached_input_tokens": 41728,
+    "input_tokens": 80278,
+    "output_tokens": 4497,
+    "reasoning_output_tokens": 320
+  },
+  "workflow_seconds": 132.18138541607186
+}

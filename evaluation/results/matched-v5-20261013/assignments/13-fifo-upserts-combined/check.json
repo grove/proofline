@@ -1,0 +1,1250 @@
+{
+  "assurance": "Only the listed command exit statuses are observed; full source correctness is not certified.",
+  "boundary": {
+    "assessment": {
+      "inputs_unchanged": true,
+      "observations": {
+        "mode_change": "denied",
+        "network": "denied",
+        "nonce": "faffb5d45b69464088b9d2ed02b5b430",
+        "reads": {
+          "actual_oracle": "denied",
+          "oracle-canary": "denied",
+          "other-role-canary": "denied",
+          "receipt-canary": "denied"
+        },
+        "scratch": true,
+        "writes": {
+          "candidate": "denied",
+          "git_head": "denied",
+          "input": "denied",
+          "receipt": "denied",
+          "source": "denied"
+        }
+      },
+      "scope": "native process canaries only; no model or external-tool qualification",
+      "status": "OBSERVED"
+    },
+    "network_control": "loopback reachable before sandbox",
+    "receipt": {
+      "argv": [
+        "/opt/homebrew/bin/codex",
+        "--no-daemon",
+        "-c",
+        "permissions.proofline_s0_d342734ddb974b8b9a6d14ac66e47ecf={\"filesystem\"={\":minimal\"=\"read\",\"/opt/homebrew/Cellar/python@3.14/3.14.8_2/Frameworks/Python.framework/Versions/3.14\"=\"read\",\"/opt/homebrew/opt/python@3.14/Frameworks/Python.framework/Versions/3.14\"=\"read\",\"/opt/homebrew/opt/python@3.14/bin/python3.14\"=\"read\",\"/opt/homebrew/Cellar/python@3.14/3.14.8_2/Frameworks/Python.framework/Versions/3.14/bin/python3.14\"=\"read\",\"/Users/grove/projects/proofline/.proofline/issue16-matched-v5-20261013/assignments/13-fifo-upserts-combined/check/inputs\"=\"read\",\"/Users/grove/projects/proofline/.proofline/issue16-matched-v5-20261013/assignments/13-fifo-upserts-combined/check/preflight/scratch\"=\"write\",\"/Users/grove/projects/proofline/.proofline/issue16-matched-v5-20261013/assignments/13-fifo-upserts-combined/check/preflight/private\"=\"deny\",\"/opt/homebrew\"=\"read\",\"/Library/Developer/CommandLineTools/usr/bin\"=\"read\",\"/Library/Developer/CommandLineTools/usr/libexec/git-core\"=\"read\"},\"network\"={\"enabled\"=false}}",
+        "sandbox",
+        "--permission-profile",
+        "proofline_s0_d342734ddb974b8b9a6d14ac66e47ecf",
+        "--include-managed-config",
+        "--cd",
+        "/Users/grove/projects/proofline/.proofline/issue16-matched-v5-20261013/assignments/13-fifo-upserts-combined/check/preflight/scratch",
+        "--",
+        "/opt/homebrew/Cellar/python@3.14/3.14.8_2/Frameworks/Python.framework/Versions/3.14/bin/python3.14",
+        "-I",
+        "-B",
+        "/Users/grove/projects/proofline/.proofline/issue16-matched-v5-20261013/assignments/13-fifo-upserts-combined/check/inputs/canary.py",
+        "/Users/grove/projects/proofline/.proofline/issue16-matched-v5-20261013/assignments/13-fifo-upserts-combined/check/inputs/canary.json"
+      ],
+      "cwd": "/Users/grove/projects/proofline/.proofline/issue16-matched-v5-20261013/assignments/13-fifo-upserts-combined/check/preflight/scratch",
+      "elapsed_seconds": 0.133255,
+      "exit_code": 0,
+      "invocation_id": "a043750f-ca98-4312-97b1-219ec4378229",
+      "kind": "process_probe",
+      "stderr": "",
+      "stdout": "{\"nonce\": \"faffb5d45b69464088b9d2ed02b5b430\", \"writes\": {\"source\": \"denied\", \"input\": \"denied\", \"candidate\": \"denied\", \"git_head\": \"denied\", \"receipt\": \"denied\"}, \"reads\": {\"receipt-canary\": \"denied\", \"oracle-canary\": \"denied\", \"other-role-canary\": \"denied\", \"actual_oracle\": \"denied\"}, \"mode_change\": \"denied\", \"scratch\": true, \"network\": \"denied\"}\n",
+      "timed_out": false
+    }
+  },
+  "candidate_commit": "d19bbcaac36b0ea403e14767858ee63c6eccc062",
+  "candidate_path": "/Users/grove/projects/proofline/.proofline/issue16-matched-v5-20261013/assignments/13-fifo-upserts-combined/check/inputs/product",
+  "candidate_tree": "3a938999ea1da5fada885ac2552ac8c5f609c1dd",
+  "checks": [
+    [
+      "/opt/homebrew/Cellar/python@3.14/3.14.8_2/Frameworks/Python.framework/Versions/3.14/bin/python3.14",
+      "-B",
+      "-c",
+      "from app import process; assert process({'capacity': 2, 'events': [{'id': 'a', 'value': 1}, {'id': 'b', 'value': 2}, {'id': 'a', 'value': 3}, {'id': 'c', 'value': 4}]}) == {'items': [{'id': 'b', 'value': 2}, {'id': 'c', 'value': 4}], 'evicted': ['a']}"
+    ],
+    [
+      "/opt/homebrew/Cellar/python@3.14/3.14.8_2/Frameworks/Python.framework/Versions/3.14/bin/python3.14",
+      "-B",
+      "-m",
+      "unittest",
+      "discover",
+      "-s",
+      "tests"
+    ]
+  ],
+  "elapsed_seconds": 1.1902269166894257,
+  "evidence_sha256": "5c2fadc82cf6bcd8d6f7b73ad0dec12e7babc4b913f566fb466587c94ac50b10",
+  "failure_details": [],
+  "feedback": {
+    "candidate_commit": "d19bbcaac36b0ea403e14767858ee63c6eccc062",
+    "candidate_tree": "3a938999ea1da5fada885ac2552ac8c5f609c1dd",
+    "checks": [
+      {
+        "argv": [
+          "/opt/homebrew/Cellar/python@3.14/3.14.8_2/Frameworks/Python.framework/Versions/3.14/bin/python3.14",
+          "-B",
+          "-c",
+          "from app import process; assert process({'capacity': 2, 'events': [{'id': 'a', 'value': 1}, {'id': 'b', 'value': 2}, {'id': 'a', 'value': 3}, {'id': 'c', 'value': 4}]}) == {'items': [{'id': 'b', 'value': 2}, {'id': 'c', 'value': 4}], 'evicted': ['a']}"
+        ],
+        "elapsed_seconds": 0.1337678749114275,
+        "exit_code": 0,
+        "index": 0,
+        "outcome_ids": [],
+        "reason": "Selected command exited 0; unselected promises are not demonstrated.",
+        "receipt_ref": "receipts/check-000.json",
+        "status": "PASSED",
+        "stderr_excerpt": "",
+        "stderr_ref": "receipts/check-000.json#stderr",
+        "stdout_excerpt": "",
+        "stdout_ref": "receipts/check-000.json#stdout"
+      },
+      {
+        "argv": [
+          "/opt/homebrew/Cellar/python@3.14/3.14.8_2/Frameworks/Python.framework/Versions/3.14/bin/python3.14",
+          "-B",
+          "-m",
+          "unittest",
+          "discover",
+          "-s",
+          "tests"
+        ],
+        "elapsed_seconds": 0.5571881248615682,
+        "exit_code": 0,
+        "index": 1,
+        "outcome_ids": [],
+        "reason": "Selected command exited 0; unselected promises are not demonstrated.",
+        "receipt_ref": "receipts/check-001.json",
+        "status": "PASSED",
+        "stderr_excerpt": "...................... | ---------------------------------------------------------------------- | Ran 22 tests in 0.316s | OK",
+        "stderr_ref": "receipts/check-001.json#stderr",
+        "stdout_excerpt": "",
+        "stdout_ref": "receipts/check-001.json#stdout"
+      }
+    ],
+    "headline": "2/2 selected checks passed",
+    "next_action": "Report only the commands checked; original request coverage remains unknown.",
+    "scope": "Selected executable commands only; completeness of the original user promise is unknown.",
+    "snapshot_sha256": "d5e811b342b103b99c63f7905a13004c36d24f53e671270a7df116f930acfd39",
+    "source_sha256": "ca511e228d32a79e61c1b3c9acc1d49b4359c9dc90f4044a325dbf313226f41e",
+    "status": "CHECKS PASSED"
+  },
+  "feedback_version": 1,
+  "intentline_advisory": {
+    "advisory": true,
+    "check_links": {
+      "R1": [
+        {
+          "argv": [
+            "/opt/homebrew/Cellar/python@3.14/3.14.8_2/Frameworks/Python.framework/Versions/3.14/bin/python3.14",
+            "-B",
+            "-m",
+            "unittest",
+            "discover",
+            "-s",
+            "tests"
+          ],
+          "index": 1
+        }
+      ],
+      "R2": [
+        {
+          "argv": [
+            "/opt/homebrew/Cellar/python@3.14/3.14.8_2/Frameworks/Python.framework/Versions/3.14/bin/python3.14",
+            "-B",
+            "-c",
+            "from app import process; assert process({'capacity': 2, 'events': [{'id': 'a', 'value': 1}, {'id': 'b', 'value': 2}, {'id': 'a', 'value': 3}, {'id': 'c', 'value': 4}]}) == {'items': [{'id': 'b', 'value': 2}, {'id': 'c', 'value': 4}], 'evicted': ['a']}"
+          ],
+          "index": 0
+        },
+        {
+          "argv": [
+            "/opt/homebrew/Cellar/python@3.14/3.14.8_2/Frameworks/Python.framework/Versions/3.14/bin/python3.14",
+            "-B",
+            "-m",
+            "unittest",
+            "discover",
+            "-s",
+            "tests"
+          ],
+          "index": 1
+        }
+      ],
+      "R3": [
+        {
+          "argv": [
+            "/opt/homebrew/Cellar/python@3.14/3.14.8_2/Frameworks/Python.framework/Versions/3.14/bin/python3.14",
+            "-B",
+            "-m",
+            "unittest",
+            "discover",
+            "-s",
+            "tests"
+          ],
+          "index": 1
+        }
+      ],
+      "R4": [
+        {
+          "argv": [
+            "/opt/homebrew/Cellar/python@3.14/3.14.8_2/Frameworks/Python.framework/Versions/3.14/bin/python3.14",
+            "-B",
+            "-m",
+            "unittest",
+            "discover",
+            "-s",
+            "tests"
+          ],
+          "index": 1
+        }
+      ],
+      "R5": [
+        {
+          "argv": [
+            "/opt/homebrew/Cellar/python@3.14/3.14.8_2/Frameworks/Python.framework/Versions/3.14/bin/python3.14",
+            "-B",
+            "-m",
+            "unittest",
+            "discover",
+            "-s",
+            "tests"
+          ],
+          "index": 1
+        }
+      ],
+      "R6": [
+        {
+          "argv": [
+            "/opt/homebrew/Cellar/python@3.14/3.14.8_2/Frameworks/Python.framework/Versions/3.14/bin/python3.14",
+            "-B",
+            "-m",
+            "unittest",
+            "discover",
+            "-s",
+            "tests"
+          ],
+          "index": 1
+        }
+      ],
+      "R7": [
+        {
+          "argv": [
+            "/opt/homebrew/Cellar/python@3.14/3.14.8_2/Frameworks/Python.framework/Versions/3.14/bin/python3.14",
+            "-B",
+            "-m",
+            "unittest",
+            "discover",
+            "-s",
+            "tests"
+          ],
+          "index": 1
+        }
+      ]
+    },
+    "constraints": [
+      {
+        "basis": "request",
+        "scope": "Implementation files and CLI compatibility",
+        "source_refs": [
+          {
+            "line_end": 16,
+            "line_start": 14,
+            "quote": "Do not mutate any input, including on errors. Preserve the exact CLI --version\nresponse and unsupported-argument behavior; keep cli.py unchanged. Extra object\nkeys are allowed. Update a stale test expectation if it contradicts this request.",
+            "source_id": "S1"
+          }
+        ],
+        "statement": "Keep cli.py unchanged."
+      }
+    ],
+    "contract_id": "fifo-upserts-combined",
+    "contract_sha256": "3938162aa0439c8ff20db62344c5b3905e52df6098922fbc796c34b05fce01bf",
+    "coverage_completeness": "UNKNOWN",
+    "evidence_gaps": [],
+    "execution_authority": "not_established",
+    "export_authority": "unapproved",
+    "export_format": "json",
+    "export_manifest_sha256": "6a96e38590c10ad032e2c4ddf922899cf7f0b1d8aa97b8eef84a91076bc45fee",
+    "external_caller_approval": "not_supplied_or_authenticated",
+    "intended_outcome": "Implement the validated FIFO record cache consistently across the existing API, service, batch and JSON CLI, preserving inputs and CLI compatibility.",
+    "out_of_scope": [],
+    "record": "intentline.advisory-input",
+    "requirements": [
+      {
+        "basis": "request",
+        "boundaries": [
+          "Missing id/value or capacity/events",
+          "Negative, boolean, noninteger capacity",
+          "Non-object payload/event, non-list events, empty/nonstring id",
+          "Null and nested JSON values; extra object keys"
+        ],
+        "evidence_gap_reasons": [],
+        "id": "R1",
+        "oracle": "Malformed inputs raise ValueError; null values and extra keys are accepted. A missing value silently treated as null would falsify this.",
+        "plan_state": "planned",
+        "planned_evidence": "Targeted unittest validation matrix with explicit valid/invalid examples",
+        "seam": "app.process and service entry points",
+        "source_refs": [
+          {
+            "line_end": 3,
+            "line_start": 1,
+            "quote": "Implement a FIFO record cache for {\"capacity\": integer >= 0,\n\"events\": [{\"id\": nonempty_string, \"value\": any_JSON_value}, ...]}.\nEvery event must contain both id and value. Booleans are invalid capacities.",
+            "source_id": "S1"
+          },
+          {
+            "line_end": 9,
+            "line_start": 8,
+            "quote": "Output records contain only id and value; extra input keys are ignored.\nReject malformed records/containers with ValueError. Input values may be null.",
+            "source_id": "S1"
+          },
+          {
+            "line_end": 16,
+            "line_start": 15,
+            "quote": "response and unsupported-argument behavior; keep cli.py unchanged. Extra object\nkeys are allowed. Update a stale test expectation if it contradicts this request.",
+            "source_id": "S1"
+          }
+        ],
+        "statement": "Accept objects with nonnegative integer capacity (excluding bool) and a list of records containing a nonempty string id and a value; allow null/any JSON value and extra object keys, and reject malformed records or containers with ValueError."
+      },
+      {
+        "basis": "request",
+        "boundaries": [
+          "Existing ID updated when at capacity",
+          "Reinsert an evicted ID at the newest position",
+          "Multiple evictions"
+        ],
+        "evidence_gap_reasons": [],
+        "id": "R2",
+        "oracle": "For capacity 2 and a1,b2,a3,c4, final items are b2,c4 and evicted is [a]. Promoting a would instead evict b.",
+        "plan_state": "planned",
+        "planned_evidence": "Public check index 0 and explicit FIFO update/reinsertion unit tests",
+        "seam": "app.process",
+        "source_refs": [
+          {
+            "line_end": 5,
+            "line_start": 4,
+            "quote": "Update an existing ID in its original insertion position, without promoting it.\nWhen inserting a new ID would exceed capacity, evict the oldest resident ID.",
+            "source_id": "S1"
+          }
+        ],
+        "statement": "Update resident IDs in their original insertion position without promotion; new IDs evict the oldest resident when capacity would be exceeded."
+      },
+      {
+        "basis": "request",
+        "boundaries": [
+          "Empty events",
+          "Zero capacity with repeated IDs",
+          "Repeated evictions of reinserted IDs",
+          "Extra record keys omitted"
+        ],
+        "evidence_gap_reasons": [],
+        "id": "R3",
+        "oracle": "Zero capacity with a1,a2,b3 yields empty items and [a,a,b]; a set of evictions or retained zero-capacity item would falsify this.",
+        "plan_state": "planned",
+        "planned_evidence": "Explicit output assertions in unittest cases",
+        "seam": "app.process output",
+        "source_refs": [
+          {
+            "line_end": 8,
+            "line_start": 6,
+            "quote": "Capacity zero immediately evicts EVERY event. Return {\"items\": [final records\nin FIFO order], \"evicted\": [IDs in eviction order, retaining repetitions]}.\nOutput records contain only id and value; extra input keys are ignored.",
+            "source_id": "S1"
+          }
+        ],
+        "statement": "Return final items in FIFO order with only id/value and all evicted IDs in chronological order retaining repetitions; capacity zero immediately evicts every event."
+      },
+      {
+        "basis": "request",
+        "boundaries": [
+          "Successful cache request through all three seams",
+          "Malformed CLI request follows existing error handling"
+        ],
+        "evidence_gap_reasons": [],
+        "id": "R4",
+        "oracle": "The same explicit request yields the same parsed cache result through all three entry points; a service wrapper retaining old transformation would falsify this.",
+        "plan_state": "planned",
+        "planned_evidence": "API parity and subprocess JSON CLI unittest cases",
+        "seam": "app.process, service.handle, cli.py subprocess",
+        "source_refs": [
+          {
+            "line_end": 12,
+            "line_start": 11,
+            "quote": "Expose the same behavior through app.process, service.handle and the existing\nJSON stdin/stdout CLI. Add service.batch(payloads): return each process result",
+            "source_id": "S1"
+          }
+        ],
+        "statement": "Expose the same FIFO behavior through app.process, service.handle and the existing JSON stdin/stdout CLI."
+      },
+      {
+        "basis": "request",
+        "boundaries": [
+          "Empty batch",
+          "Multiple different capacities",
+          "Invalid later member",
+          "Non-list iterable rejected"
+        ],
+        "evidence_gap_reasons": [],
+        "id": "R5",
+        "oracle": "A two-payload batch yields two independently expected cache results in order; an invalid later member raises ValueError.",
+        "plan_state": "planned",
+        "planned_evidence": "Batch unittest cases with independently written expected results",
+        "seam": "service.batch",
+        "source_refs": [
+          {
+            "line_end": 13,
+            "line_start": 12,
+            "quote": "JSON stdin/stdout CLI. Add service.batch(payloads): return each process result\nin input order; reject a non-list or any invalid member with ValueError.",
+            "source_id": "S1"
+          }
+        ],
+        "statement": "Add service.batch(payloads) returning each process result in input order, rejecting a non-list or any invalid member with ValueError."
+      },
+      {
+        "basis": "request",
+        "boundaries": [
+          "Valid request",
+          "Invalid event after valid events",
+          "Invalid later batch member",
+          "Nested lists/dicts as values"
+        ],
+        "evidence_gap_reasons": [],
+        "id": "R6",
+        "oracle": "Deep snapshots compare equal before and after success or ValueError; deleting an extra key or changing an earlier event falsifies this.",
+        "plan_state": "planned",
+        "planned_evidence": "Snapshot-based unittest assertions for successful and failed calls",
+        "seam": "app.process, service.handle, service.batch",
+        "source_refs": [
+          {
+            "line_end": 14,
+            "line_start": 14,
+            "quote": "Do not mutate any input, including on errors. Preserve the exact CLI --version",
+            "source_id": "S1"
+          }
+        ],
+        "statement": "Do not mutate any input, including nested values or inputs processed before an error."
+      },
+      {
+        "basis": "request",
+        "boundaries": [
+          "Version response bytes and exit status",
+          "Unsupported argument output and exit status",
+          "Conflicting legacy cache expectation"
+        ],
+        "evidence_gap_reasons": [],
+        "id": "R7",
+        "oracle": "Existing CLI compatibility assertions remain satisfied and cli.py bytes remain identical; behavior-changing CLI edits would falsify this.",
+        "plan_state": "planned",
+        "planned_evidence": "Existing compatibility tests, targeted subprocess assertions and Git diff inspection",
+        "seam": "cli.py and existing tests",
+        "source_refs": [
+          {
+            "line_end": 16,
+            "line_start": 14,
+            "quote": "Do not mutate any input, including on errors. Preserve the exact CLI --version\nresponse and unsupported-argument behavior; keep cli.py unchanged. Extra object\nkeys are allowed. Update a stale test expectation if it contradicts this request.",
+            "source_id": "S1"
+          }
+        ],
+        "statement": "Preserve the exact CLI --version response and unsupported-argument behavior, keep cli.py unchanged, and update stale test expectations that contradict the request."
+      }
+    ],
+    "revision": 1,
+    "schema_version": 1,
+    "source_bundle_sha256": "0d7368fba676008bded01b4e6da4fd722b66bb8c102bce9889aab8cde31e0c43",
+    "source_sha256": "ca511e228d32a79e61c1b3c9acc1d49b4359c9dc90f4044a325dbf313226f41e"
+  },
+  "kind": "bounded_local_check",
+  "limits": {
+    "check_seconds": 30,
+    "model_dispatches": 0,
+    "seconds": 621.1827880828641
+  },
+  "merged": false,
+  "model_dispatches": 0,
+  "observations": [
+    {
+      "argv": [
+        "/opt/homebrew/Cellar/python@3.14/3.14.8_2/Frameworks/Python.framework/Versions/3.14/bin/python3.14",
+        "-B",
+        "-c",
+        "from app import process; assert process({'capacity': 2, 'events': [{'id': 'a', 'value': 1}, {'id': 'b', 'value': 2}, {'id': 'a', 'value': 3}, {'id': 'c', 'value': 4}]}) == {'items': [{'id': 'b', 'value': 2}, {'id': 'c', 'value': 4}], 'evicted': ['a']}"
+      ],
+      "elapsed_seconds": 0.1337678749114275,
+      "receipt_ref": "receipts/check-000.json",
+      "receipt_sha256": "957382e0b2f1a9fabe0201a7bcb2e33183890f9216a141ab8f34b22a45489922",
+      "receipts": [
+        {
+          "argv": [
+            "/opt/homebrew/bin/codex",
+            "--no-daemon",
+            "-c",
+            "permissions.proofline_s0_71883030d46642f5b3e5b0d6eb06fa50={\"filesystem\"={\":minimal\"=\"read\",\"/opt/homebrew/Cellar/python@3.14/3.14.8_2/Frameworks/Python.framework/Versions/3.14\"=\"read\",\"/opt/homebrew/opt/python@3.14/Frameworks/Python.framework/Versions/3.14\"=\"read\",\"/opt/homebrew/opt/python@3.14/bin/python3.14\"=\"read\",\"/opt/homebrew/Cellar/python@3.14/3.14.8_2/Frameworks/Python.framework/Versions/3.14/bin/python3.14\"=\"read\",\"/Users/grove/projects/proofline/.proofline/issue16-matched-v5-20261013/assignments/13-fifo-upserts-combined/check/inputs\"=\"read\",\"/Users/grove/projects/proofline/.proofline/issue16-matched-v5-20261013/assignments/13-fifo-upserts-combined/check/check-0\"=\"write\",\"/Users/grove/projects/proofline/.proofline/issue16-matched-v5-20261013/assignments/13-fifo-upserts-combined/check/private\"=\"deny\",\"/opt/homebrew\"=\"read\",\"/Library/Developer/CommandLineTools/usr/bin\"=\"read\",\"/Library/Developer/CommandLineTools/usr/libexec/git-core\"=\"read\"},\"network\"={\"enabled\"=false}}",
+            "sandbox",
+            "--permission-profile",
+            "proofline_s0_71883030d46642f5b3e5b0d6eb06fa50",
+            "--include-managed-config",
+            "--cd",
+            "/Users/grove/projects/proofline/.proofline/issue16-matched-v5-20261013/assignments/13-fifo-upserts-combined/check/check-0",
+            "--",
+            "/opt/homebrew/Cellar/python@3.14/3.14.8_2/Frameworks/Python.framework/Versions/3.14/bin/python3.14",
+            "-I",
+            "-B",
+            "-c",
+            "import json,os,sys; a=json.loads(sys.argv[1]); os.execv(a[0],a)",
+            "[\"/opt/homebrew/Cellar/python@3.14/3.14.8_2/Frameworks/Python.framework/Versions/3.14/bin/python3.14\", \"-I\", \"-B\", \"-c\", \"import json,os,sys\\ntry:\\n    os.chdir(sys.argv[1])\\n    os.environ[\\\"PYTHONDONTWRITEBYTECODE\\\"]=\\\"1\\\"\\n    argv=json.loads(sys.argv[2])\\n    os.execvpe(argv[0],argv,os.environ)\\nexcept OSError as error:\\n    print(\\\"Proofline check launch unavailable: \\\"+str(error),file=sys.stderr)\\n    sys.exit(127)\\n\", \"/Users/grove/projects/proofline/.proofline/issue16-matched-v5-20261013/assignments/13-fifo-upserts-combined/check/inputs/product\", \"[\\\"/opt/homebrew/Cellar/python@3.14/3.14.8_2/Frameworks/Python.framework/Versions/3.14/bin/python3.14\\\", \\\"-B\\\", \\\"-c\\\", \\\"from app import process; assert process({'capacity': 2, 'events': [{'id': 'a', 'value': 1}, {'id': 'b', 'value': 2}, {'id': 'a', 'value': 3}, {'id': 'c', 'value': 4}]}) == {'items': [{'id': 'b', 'value': 2}, {'id': 'c', 'value': 4}], 'evicted': ['a']}\\\"]\"]"
+          ],
+          "cwd": "/Users/grove/projects/proofline/.proofline/issue16-matched-v5-20261013/assignments/13-fifo-upserts-combined/check/check-0",
+          "elapsed_seconds": 0.133286,
+          "exit_code": 0,
+          "invocation_id": "10051af1-226e-4291-9f4c-12a5e6a87393",
+          "kind": "process_probe",
+          "stderr": "",
+          "stdout": "",
+          "timed_out": false
+        }
+      ],
+      "returncode": 0,
+      "status": "PASSED"
+    },
+    {
+      "argv": [
+        "/opt/homebrew/Cellar/python@3.14/3.14.8_2/Frameworks/Python.framework/Versions/3.14/bin/python3.14",
+        "-B",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "tests"
+      ],
+      "elapsed_seconds": 0.5571881248615682,
+      "receipt_ref": "receipts/check-001.json",
+      "receipt_sha256": "d022aa85da58c4c0fcd953b9b388e376f7b09bc92488bde14154255a92ebbbf8",
+      "receipts": [
+        {
+          "argv": [
+            "/opt/homebrew/bin/codex",
+            "--no-daemon",
+            "-c",
+            "permissions.proofline_s0_855ecd16a14545078b22387ccfcc7992={\"filesystem\"={\":minimal\"=\"read\",\"/opt/homebrew/Cellar/python@3.14/3.14.8_2/Frameworks/Python.framework/Versions/3.14\"=\"read\",\"/opt/homebrew/opt/python@3.14/Frameworks/Python.framework/Versions/3.14\"=\"read\",\"/opt/homebrew/opt/python@3.14/bin/python3.14\"=\"read\",\"/opt/homebrew/Cellar/python@3.14/3.14.8_2/Frameworks/Python.framework/Versions/3.14/bin/python3.14\"=\"read\",\"/Users/grove/projects/proofline/.proofline/issue16-matched-v5-20261013/assignments/13-fifo-upserts-combined/check/inputs\"=\"read\",\"/Users/grove/projects/proofline/.proofline/issue16-matched-v5-20261013/assignments/13-fifo-upserts-combined/check/check-1\"=\"write\",\"/Users/grove/projects/proofline/.proofline/issue16-matched-v5-20261013/assignments/13-fifo-upserts-combined/check/private\"=\"deny\",\"/opt/homebrew\"=\"read\",\"/Library/Developer/CommandLineTools/usr/bin\"=\"read\",\"/Library/Developer/CommandLineTools/usr/libexec/git-core\"=\"read\"},\"network\"={\"enabled\"=false}}",
+            "sandbox",
+            "--permission-profile",
+            "proofline_s0_855ecd16a14545078b22387ccfcc7992",
+            "--include-managed-config",
+            "--cd",
+            "/Users/grove/projects/proofline/.proofline/issue16-matched-v5-20261013/assignments/13-fifo-upserts-combined/check/check-1",
+            "--",
+            "/opt/homebrew/Cellar/python@3.14/3.14.8_2/Frameworks/Python.framework/Versions/3.14/bin/python3.14",
+            "-I",
+            "-B",
+            "-c",
+            "import json,os,sys; a=json.loads(sys.argv[1]); os.execv(a[0],a)",
+            "[\"/opt/homebrew/Cellar/python@3.14/3.14.8_2/Frameworks/Python.framework/Versions/3.14/bin/python3.14\", \"-I\", \"-B\", \"-c\", \"import json,os,sys\\ntry:\\n    os.chdir(sys.argv[1])\\n    os.environ[\\\"PYTHONDONTWRITEBYTECODE\\\"]=\\\"1\\\"\\n    argv=json.loads(sys.argv[2])\\n    os.execvpe(argv[0],argv,os.environ)\\nexcept OSError as error:\\n    print(\\\"Proofline check launch unavailable: \\\"+str(error),file=sys.stderr)\\n    sys.exit(127)\\n\", \"/Users/grove/projects/proofline/.proofline/issue16-matched-v5-20261013/assignments/13-fifo-upserts-combined/check/inputs/product\", \"[\\\"/opt/homebrew/Cellar/python@3.14/3.14.8_2/Frameworks/Python.framework/Versions/3.14/bin/python3.14\\\", \\\"-B\\\", \\\"-m\\\", \\\"unittest\\\", \\\"discover\\\", \\\"-s\\\", \\\"tests\\\"]\"]"
+          ],
+          "cwd": "/Users/grove/projects/proofline/.proofline/issue16-matched-v5-20261013/assignments/13-fifo-upserts-combined/check/check-1",
+          "elapsed_seconds": 0.556632,
+          "exit_code": 0,
+          "invocation_id": "da247c8c-1d70-4b42-8d4e-649f47641baf",
+          "kind": "process_probe",
+          "stderr": "......................\n----------------------------------------------------------------------\nRan 22 tests in 0.316s\n\nOK\n",
+          "stdout": "",
+          "timed_out": false
+        }
+      ],
+      "returncode": 0,
+      "status": "PASSED"
+    }
+  ],
+  "original_source_ref": "inputs/source.md",
+  "promise_evidence": {
+    "candidate_commit": "d19bbcaac36b0ea403e14767858ee63c6eccc062",
+    "candidate_tree": "3a938999ea1da5fada885ac2552ac8c5f609c1dd",
+    "coverage_completeness": "UNKNOWN",
+    "intentline": {
+      "constraints": [
+        {
+          "basis": "request",
+          "scope": "Implementation files and CLI compatibility",
+          "source_refs": [
+            {
+              "line_end": 16,
+              "line_start": 14,
+              "quote": "Do not mutate any input, including on errors. Preserve the exact CLI --version\nresponse and unsupported-argument behavior; keep cli.py unchanged. Extra object\nkeys are allowed. Update a stale test expectation if it contradicts this request.",
+              "source_id": "S1"
+            }
+          ],
+          "statement": "Keep cli.py unchanged."
+        }
+      ],
+      "contract_id": "fifo-upserts-combined",
+      "contract_sha256": "3938162aa0439c8ff20db62344c5b3905e52df6098922fbc796c34b05fce01bf",
+      "evidence_gaps": [],
+      "execution_authority": "not_established",
+      "export_authority": "unapproved",
+      "export_manifest_sha256": "6a96e38590c10ad032e2c4ddf922899cf7f0b1d8aa97b8eef84a91076bc45fee",
+      "external_caller_approval": "not_supplied_or_authenticated",
+      "intended_outcome": "Implement the validated FIFO record cache consistently across the existing API, service, batch and JSON CLI, preserving inputs and CLI compatibility.",
+      "out_of_scope": [],
+      "revision": 1,
+      "scope": "Untrusted advisory planning data, not executable tests, proof or consent.",
+      "source_bundle_sha256": "0d7368fba676008bded01b4e6da4fd722b66bb8c102bce9889aab8cde31e0c43",
+      "source_sha256": "ca511e228d32a79e61c1b3c9acc1d49b4359c9dc90f4044a325dbf313226f41e"
+    },
+    "original_source_ref": "inputs/source.md",
+    "requirements": [
+      {
+        "id": "R1",
+        "intentline_planning": {
+          "authority": "unverified original-source-grounded proposal",
+          "basis": "request",
+          "boundaries": [
+            "Missing id/value or capacity/events",
+            "Negative, boolean, noninteger capacity",
+            "Non-object payload/event, non-list events, empty/nonstring id",
+            "Null and nested JSON values; extra object keys"
+          ],
+          "evidence_gap_reasons": [],
+          "plan_state": "planned",
+          "planned_evidence": "Targeted unittest validation matrix with explicit valid/invalid examples",
+          "seam": "app.process and service entry points"
+        },
+        "kind": "outcome",
+        "linked_checks": [
+          {
+            "argv": [
+              "/opt/homebrew/Cellar/python@3.14/3.14.8_2/Frameworks/Python.framework/Versions/3.14/bin/python3.14",
+              "-B",
+              "-m",
+              "unittest",
+              "discover",
+              "-s",
+              "tests"
+            ],
+            "index": 1,
+            "observation_status": "PASSED",
+            "receipt_ref": "receipts/check-001.json"
+          }
+        ],
+        "oracle_authority": "unverified caller suggestion",
+        "proposed_oracle": "Malformed inputs raise ValueError; null values and extra keys are accepted. A missing value silently treated as null would falsify this.",
+        "reason": "Selected commands passed; linked behaviors are not proven in full",
+        "source_refs": [
+          {
+            "line_end": 3,
+            "line_start": 1,
+            "quote": "Implement a FIFO record cache for {\"capacity\": integer >= 0,\n\"events\": [{\"id\": nonempty_string, \"value\": any_JSON_value}, ...]}.\nEvery event must contain both id and value. Booleans are invalid capacities.",
+            "source_id": "S1"
+          },
+          {
+            "line_end": 9,
+            "line_start": 8,
+            "quote": "Output records contain only id and value; extra input keys are ignored.\nReject malformed records/containers with ValueError. Input values may be null.",
+            "source_id": "S1"
+          },
+          {
+            "line_end": 16,
+            "line_start": 15,
+            "quote": "response and unsupported-argument behavior; keep cli.py unchanged. Extra object\nkeys are allowed. Update a stale test expectation if it contradicts this request.",
+            "source_id": "S1"
+          }
+        ],
+        "statement": "Accept objects with nonnegative integer capacity (excluding bool) and a list of records containing a nonempty string id and a value; allow null/any JSON value and extra object keys, and reject malformed records or containers with ValueError.",
+        "status": "LINKED CHECKS PASSED (limited evidence)"
+      },
+      {
+        "id": "R2",
+        "intentline_planning": {
+          "authority": "unverified original-source-grounded proposal",
+          "basis": "request",
+          "boundaries": [
+            "Existing ID updated when at capacity",
+            "Reinsert an evicted ID at the newest position",
+            "Multiple evictions"
+          ],
+          "evidence_gap_reasons": [],
+          "plan_state": "planned",
+          "planned_evidence": "Public check index 0 and explicit FIFO update/reinsertion unit tests",
+          "seam": "app.process"
+        },
+        "kind": "outcome",
+        "linked_checks": [
+          {
+            "argv": [
+              "/opt/homebrew/Cellar/python@3.14/3.14.8_2/Frameworks/Python.framework/Versions/3.14/bin/python3.14",
+              "-B",
+              "-c",
+              "from app import process; assert process({'capacity': 2, 'events': [{'id': 'a', 'value': 1}, {'id': 'b', 'value': 2}, {'id': 'a', 'value': 3}, {'id': 'c', 'value': 4}]}) == {'items': [{'id': 'b', 'value': 2}, {'id': 'c', 'value': 4}], 'evicted': ['a']}"
+            ],
+            "index": 0,
+            "observation_status": "PASSED",
+            "receipt_ref": "receipts/check-000.json"
+          },
+          {
+            "argv": [
+              "/opt/homebrew/Cellar/python@3.14/3.14.8_2/Frameworks/Python.framework/Versions/3.14/bin/python3.14",
+              "-B",
+              "-m",
+              "unittest",
+              "discover",
+              "-s",
+              "tests"
+            ],
+            "index": 1,
+            "observation_status": "PASSED",
+            "receipt_ref": "receipts/check-001.json"
+          }
+        ],
+        "oracle_authority": "unverified caller suggestion",
+        "proposed_oracle": "For capacity 2 and a1,b2,a3,c4, final items are b2,c4 and evicted is [a]. Promoting a would instead evict b.",
+        "reason": "Selected commands passed; linked behaviors are not proven in full",
+        "source_refs": [
+          {
+            "line_end": 5,
+            "line_start": 4,
+            "quote": "Update an existing ID in its original insertion position, without promoting it.\nWhen inserting a new ID would exceed capacity, evict the oldest resident ID.",
+            "source_id": "S1"
+          }
+        ],
+        "statement": "Update resident IDs in their original insertion position without promotion; new IDs evict the oldest resident when capacity would be exceeded.",
+        "status": "LINKED CHECKS PASSED (limited evidence)"
+      },
+      {
+        "id": "R3",
+        "intentline_planning": {
+          "authority": "unverified original-source-grounded proposal",
+          "basis": "request",
+          "boundaries": [
+            "Empty events",
+            "Zero capacity with repeated IDs",
+            "Repeated evictions of reinserted IDs",
+            "Extra record keys omitted"
+          ],
+          "evidence_gap_reasons": [],
+          "plan_state": "planned",
+          "planned_evidence": "Explicit output assertions in unittest cases",
+          "seam": "app.process output"
+        },
+        "kind": "outcome",
+        "linked_checks": [
+          {
+            "argv": [
+              "/opt/homebrew/Cellar/python@3.14/3.14.8_2/Frameworks/Python.framework/Versions/3.14/bin/python3.14",
+              "-B",
+              "-m",
+              "unittest",
+              "discover",
+              "-s",
+              "tests"
+            ],
+            "index": 1,
+            "observation_status": "PASSED",
+            "receipt_ref": "receipts/check-001.json"
+          }
+        ],
+        "oracle_authority": "unverified caller suggestion",
+        "proposed_oracle": "Zero capacity with a1,a2,b3 yields empty items and [a,a,b]; a set of evictions or retained zero-capacity item would falsify this.",
+        "reason": "Selected commands passed; linked behaviors are not proven in full",
+        "source_refs": [
+          {
+            "line_end": 8,
+            "line_start": 6,
+            "quote": "Capacity zero immediately evicts EVERY event. Return {\"items\": [final records\nin FIFO order], \"evicted\": [IDs in eviction order, retaining repetitions]}.\nOutput records contain only id and value; extra input keys are ignored.",
+            "source_id": "S1"
+          }
+        ],
+        "statement": "Return final items in FIFO order with only id/value and all evicted IDs in chronological order retaining repetitions; capacity zero immediately evicts every event.",
+        "status": "LINKED CHECKS PASSED (limited evidence)"
+      },
+      {
+        "id": "R4",
+        "intentline_planning": {
+          "authority": "unverified original-source-grounded proposal",
+          "basis": "request",
+          "boundaries": [
+            "Successful cache request through all three seams",
+            "Malformed CLI request follows existing error handling"
+          ],
+          "evidence_gap_reasons": [],
+          "plan_state": "planned",
+          "planned_evidence": "API parity and subprocess JSON CLI unittest cases",
+          "seam": "app.process, service.handle, cli.py subprocess"
+        },
+        "kind": "outcome",
+        "linked_checks": [
+          {
+            "argv": [
+              "/opt/homebrew/Cellar/python@3.14/3.14.8_2/Frameworks/Python.framework/Versions/3.14/bin/python3.14",
+              "-B",
+              "-m",
+              "unittest",
+              "discover",
+              "-s",
+              "tests"
+            ],
+            "index": 1,
+            "observation_status": "PASSED",
+            "receipt_ref": "receipts/check-001.json"
+          }
+        ],
+        "oracle_authority": "unverified caller suggestion",
+        "proposed_oracle": "The same explicit request yields the same parsed cache result through all three entry points; a service wrapper retaining old transformation would falsify this.",
+        "reason": "Selected commands passed; linked behaviors are not proven in full",
+        "source_refs": [
+          {
+            "line_end": 12,
+            "line_start": 11,
+            "quote": "Expose the same behavior through app.process, service.handle and the existing\nJSON stdin/stdout CLI. Add service.batch(payloads): return each process result",
+            "source_id": "S1"
+          }
+        ],
+        "statement": "Expose the same FIFO behavior through app.process, service.handle and the existing JSON stdin/stdout CLI.",
+        "status": "LINKED CHECKS PASSED (limited evidence)"
+      },
+      {
+        "id": "R5",
+        "intentline_planning": {
+          "authority": "unverified original-source-grounded proposal",
+          "basis": "request",
+          "boundaries": [
+            "Empty batch",
+            "Multiple different capacities",
+            "Invalid later member",
+            "Non-list iterable rejected"
+          ],
+          "evidence_gap_reasons": [],
+          "plan_state": "planned",
+          "planned_evidence": "Batch unittest cases with independently written expected results",
+          "seam": "service.batch"
+        },
+        "kind": "outcome",
+        "linked_checks": [
+          {
+            "argv": [
+              "/opt/homebrew/Cellar/python@3.14/3.14.8_2/Frameworks/Python.framework/Versions/3.14/bin/python3.14",
+              "-B",
+              "-m",
+              "unittest",
+              "discover",
+              "-s",
+              "tests"
+            ],
+            "index": 1,
+            "observation_status": "PASSED",
+            "receipt_ref": "receipts/check-001.json"
+          }
+        ],
+        "oracle_authority": "unverified caller suggestion",
+        "proposed_oracle": "A two-payload batch yields two independently expected cache results in order; an invalid later member raises ValueError.",
+        "reason": "Selected commands passed; linked behaviors are not proven in full",
+        "source_refs": [
+          {
+            "line_end": 13,
+            "line_start": 12,
+            "quote": "JSON stdin/stdout CLI. Add service.batch(payloads): return each process result\nin input order; reject a non-list or any invalid member with ValueError.",
+            "source_id": "S1"
+          }
+        ],
+        "statement": "Add service.batch(payloads) returning each process result in input order, rejecting a non-list or any invalid member with ValueError.",
+        "status": "LINKED CHECKS PASSED (limited evidence)"
+      },
+      {
+        "id": "R6",
+        "intentline_planning": {
+          "authority": "unverified original-source-grounded proposal",
+          "basis": "request",
+          "boundaries": [
+            "Valid request",
+            "Invalid event after valid events",
+            "Invalid later batch member",
+            "Nested lists/dicts as values"
+          ],
+          "evidence_gap_reasons": [],
+          "plan_state": "planned",
+          "planned_evidence": "Snapshot-based unittest assertions for successful and failed calls",
+          "seam": "app.process, service.handle, service.batch"
+        },
+        "kind": "outcome",
+        "linked_checks": [
+          {
+            "argv": [
+              "/opt/homebrew/Cellar/python@3.14/3.14.8_2/Frameworks/Python.framework/Versions/3.14/bin/python3.14",
+              "-B",
+              "-m",
+              "unittest",
+              "discover",
+              "-s",
+              "tests"
+            ],
+            "index": 1,
+            "observation_status": "PASSED",
+            "receipt_ref": "receipts/check-001.json"
+          }
+        ],
+        "oracle_authority": "unverified caller suggestion",
+        "proposed_oracle": "Deep snapshots compare equal before and after success or ValueError; deleting an extra key or changing an earlier event falsifies this.",
+        "reason": "Selected commands passed; linked behaviors are not proven in full",
+        "source_refs": [
+          {
+            "line_end": 14,
+            "line_start": 14,
+            "quote": "Do not mutate any input, including on errors. Preserve the exact CLI --version",
+            "source_id": "S1"
+          }
+        ],
+        "statement": "Do not mutate any input, including nested values or inputs processed before an error.",
+        "status": "LINKED CHECKS PASSED (limited evidence)"
+      },
+      {
+        "id": "R7",
+        "intentline_planning": {
+          "authority": "unverified original-source-grounded proposal",
+          "basis": "request",
+          "boundaries": [
+            "Version response bytes and exit status",
+            "Unsupported argument output and exit status",
+            "Conflicting legacy cache expectation"
+          ],
+          "evidence_gap_reasons": [],
+          "plan_state": "planned",
+          "planned_evidence": "Existing compatibility tests, targeted subprocess assertions and Git diff inspection",
+          "seam": "cli.py and existing tests"
+        },
+        "kind": "outcome",
+        "linked_checks": [
+          {
+            "argv": [
+              "/opt/homebrew/Cellar/python@3.14/3.14.8_2/Frameworks/Python.framework/Versions/3.14/bin/python3.14",
+              "-B",
+              "-m",
+              "unittest",
+              "discover",
+              "-s",
+              "tests"
+            ],
+            "index": 1,
+            "observation_status": "PASSED",
+            "receipt_ref": "receipts/check-001.json"
+          }
+        ],
+        "oracle_authority": "unverified caller suggestion",
+        "proposed_oracle": "Existing CLI compatibility assertions remain satisfied and cli.py bytes remain identical; behavior-changing CLI edits would falsify this.",
+        "reason": "Selected commands passed; linked behaviors are not proven in full",
+        "source_refs": [
+          {
+            "line_end": 16,
+            "line_start": 14,
+            "quote": "Do not mutate any input, including on errors. Preserve the exact CLI --version\nresponse and unsupported-argument behavior; keep cli.py unchanged. Extra object\nkeys are allowed. Update a stale test expectation if it contradicts this request.",
+            "source_id": "S1"
+          }
+        ],
+        "statement": "Preserve the exact CLI --version response and unsupported-argument behavior, keep cli.py unchanged, and update stale test expectations that contradict the request.",
+        "status": "LINKED CHECKS PASSED (limited evidence)"
+      }
+    ],
+    "same_agent_review": {
+      "authority": "unverified advisory review; may omit original promises",
+      "independent": false,
+      "proposals": [],
+      "reported_performed": false
+    },
+    "scope": "Only explicitly mapped requirements/commands; all original source remains authoritative.",
+    "snapshot_sha256": "d5e811b342b103b99c63f7905a13004c36d24f53e671270a7df116f930acfd39",
+    "source_sha256": "ca511e228d32a79e61c1b3c9acc1d49b4359c9dc90f4044a325dbf313226f41e"
+  },
+  "promise_mapping": {
+    "requirements": [
+      {
+        "checks": [
+          {
+            "argv": [
+              "/opt/homebrew/Cellar/python@3.14/3.14.8_2/Frameworks/Python.framework/Versions/3.14/bin/python3.14",
+              "-B",
+              "-m",
+              "unittest",
+              "discover",
+              "-s",
+              "tests"
+            ],
+            "index": 1
+          }
+        ],
+        "id": "R1",
+        "kind": "outcome",
+        "oracle": "Malformed inputs raise ValueError; null values and extra keys are accepted. A missing value silently treated as null would falsify this.",
+        "source_refs": [
+          {
+            "line_end": 3,
+            "line_start": 1,
+            "quote": "Implement a FIFO record cache for {\"capacity\": integer >= 0,\n\"events\": [{\"id\": nonempty_string, \"value\": any_JSON_value}, ...]}.\nEvery event must contain both id and value. Booleans are invalid capacities.",
+            "source_id": "S1"
+          },
+          {
+            "line_end": 9,
+            "line_start": 8,
+            "quote": "Output records contain only id and value; extra input keys are ignored.\nReject malformed records/containers with ValueError. Input values may be null.",
+            "source_id": "S1"
+          },
+          {
+            "line_end": 16,
+            "line_start": 15,
+            "quote": "response and unsupported-argument behavior; keep cli.py unchanged. Extra object\nkeys are allowed. Update a stale test expectation if it contradicts this request.",
+            "source_id": "S1"
+          }
+        ],
+        "statement": "Accept objects with nonnegative integer capacity (excluding bool) and a list of records containing a nonempty string id and a value; allow null/any JSON value and extra object keys, and reject malformed records or containers with ValueError."
+      },
+      {
+        "checks": [
+          {
+            "argv": [
+              "/opt/homebrew/Cellar/python@3.14/3.14.8_2/Frameworks/Python.framework/Versions/3.14/bin/python3.14",
+              "-B",
+              "-c",
+              "from app import process; assert process({'capacity': 2, 'events': [{'id': 'a', 'value': 1}, {'id': 'b', 'value': 2}, {'id': 'a', 'value': 3}, {'id': 'c', 'value': 4}]}) == {'items': [{'id': 'b', 'value': 2}, {'id': 'c', 'value': 4}], 'evicted': ['a']}"
+            ],
+            "index": 0
+          },
+          {
+            "argv": [
+              "/opt/homebrew/Cellar/python@3.14/3.14.8_2/Frameworks/Python.framework/Versions/3.14/bin/python3.14",
+              "-B",
+              "-m",
+              "unittest",
+              "discover",
+              "-s",
+              "tests"
+            ],
+            "index": 1
+          }
+        ],
+        "id": "R2",
+        "kind": "outcome",
+        "oracle": "For capacity 2 and a1,b2,a3,c4, final items are b2,c4 and evicted is [a]. Promoting a would instead evict b.",
+        "source_refs": [
+          {
+            "line_end": 5,
+            "line_start": 4,
+            "quote": "Update an existing ID in its original insertion position, without promoting it.\nWhen inserting a new ID would exceed capacity, evict the oldest resident ID.",
+            "source_id": "S1"
+          }
+        ],
+        "statement": "Update resident IDs in their original insertion position without promotion; new IDs evict the oldest resident when capacity would be exceeded."
+      },
+      {
+        "checks": [
+          {
+            "argv": [
+              "/opt/homebrew/Cellar/python@3.14/3.14.8_2/Frameworks/Python.framework/Versions/3.14/bin/python3.14",
+              "-B",
+              "-m",
+              "unittest",
+              "discover",
+              "-s",
+              "tests"
+            ],
+            "index": 1
+          }
+        ],
+        "id": "R3",
+        "kind": "outcome",
+        "oracle": "Zero capacity with a1,a2,b3 yields empty items and [a,a,b]; a set of evictions or retained zero-capacity item would falsify this.",
+        "source_refs": [
+          {
+            "line_end": 8,
+            "line_start": 6,
+            "quote": "Capacity zero immediately evicts EVERY event. Return {\"items\": [final records\nin FIFO order], \"evicted\": [IDs in eviction order, retaining repetitions]}.\nOutput records contain only id and value; extra input keys are ignored.",
+            "source_id": "S1"
+          }
+        ],
+        "statement": "Return final items in FIFO order with only id/value and all evicted IDs in chronological order retaining repetitions; capacity zero immediately evicts every event."
+      },
+      {
+        "checks": [
+          {
+            "argv": [
+              "/opt/homebrew/Cellar/python@3.14/3.14.8_2/Frameworks/Python.framework/Versions/3.14/bin/python3.14",
+              "-B",
+              "-m",
+              "unittest",
+              "discover",
+              "-s",
+              "tests"
+            ],
+            "index": 1
+          }
+        ],
+        "id": "R4",
+        "kind": "outcome",
+        "oracle": "The same explicit request yields the same parsed cache result through all three entry points; a service wrapper retaining old transformation would falsify this.",
+        "source_refs": [
+          {
+            "line_end": 12,
+            "line_start": 11,
+            "quote": "Expose the same behavior through app.process, service.handle and the existing\nJSON stdin/stdout CLI. Add service.batch(payloads): return each process result",
+            "source_id": "S1"
+          }
+        ],
+        "statement": "Expose the same FIFO behavior through app.process, service.handle and the existing JSON stdin/stdout CLI."
+      },
+      {
+        "checks": [
+          {
+            "argv": [
+              "/opt/homebrew/Cellar/python@3.14/3.14.8_2/Frameworks/Python.framework/Versions/3.14/bin/python3.14",
+              "-B",
+              "-m",
+              "unittest",
+              "discover",
+              "-s",
+              "tests"
+            ],
+            "index": 1
+          }
+        ],
+        "id": "R5",
+        "kind": "outcome",
+        "oracle": "A two-payload batch yields two independently expected cache results in order; an invalid later member raises ValueError.",
+        "source_refs": [
+          {
+            "line_end": 13,
+            "line_start": 12,
+            "quote": "JSON stdin/stdout CLI. Add service.batch(payloads): return each process result\nin input order; reject a non-list or any invalid member with ValueError.",
+            "source_id": "S1"
+          }
+        ],
+        "statement": "Add service.batch(payloads) returning each process result in input order, rejecting a non-list or any invalid member with ValueError."
+      },
+      {
+        "checks": [
+          {
+            "argv": [
+              "/opt/homebrew/Cellar/python@3.14/3.14.8_2/Frameworks/Python.framework/Versions/3.14/bin/python3.14",
+              "-B",
+              "-m",
+              "unittest",
+              "discover",
+              "-s",
+              "tests"
+            ],
+            "index": 1
+          }
+        ],
+        "id": "R6",
+        "kind": "outcome",
+        "oracle": "Deep snapshots compare equal before and after success or ValueError; deleting an extra key or changing an earlier event falsifies this.",
+        "source_refs": [
+          {
+            "line_end": 14,
+            "line_start": 14,
+            "quote": "Do not mutate any input, including on errors. Preserve the exact CLI --version",
+            "source_id": "S1"
+          }
+        ],
+        "statement": "Do not mutate any input, including nested values or inputs processed before an error."
+      },
+      {
+        "checks": [
+          {
+            "argv": [
+              "/opt/homebrew/Cellar/python@3.14/3.14.8_2/Frameworks/Python.framework/Versions/3.14/bin/python3.14",
+              "-B",
+              "-m",
+              "unittest",
+              "discover",
+              "-s",
+              "tests"
+            ],
+            "index": 1
+          }
+        ],
+        "id": "R7",
+        "kind": "outcome",
+        "oracle": "Existing CLI compatibility assertions remain satisfied and cli.py bytes remain identical; behavior-changing CLI edits would falsify this.",
+        "source_refs": [
+          {
+            "line_end": 16,
+            "line_start": 14,
+            "quote": "Do not mutate any input, including on errors. Preserve the exact CLI --version\nresponse and unsupported-argument behavior; keep cli.py unchanged. Extra object\nkeys are allowed. Update a stale test expectation if it contradicts this request.",
+            "source_id": "S1"
+          }
+        ],
+        "statement": "Preserve the exact CLI --version response and unsupported-argument behavior, keep cli.py unchanged, and update stale test expectations that contradict the request."
+      }
+    ],
+    "review": {
+      "performed": false,
+      "proposals": []
+    },
+    "schema_version": 1,
+    "source_sha256": "ca511e228d32a79e61c1b3c9acc1d49b4359c9dc90f4044a325dbf313226f41e"
+  },
+  "published": false,
+  "python": "/opt/homebrew/Cellar/python@3.14/3.14.8_2/Frameworks/Python.framework/Versions/3.14/bin/python3.14",
+  "schema_version": 1,
+  "selection": {
+    "candidate_commit": "d19bbcaac36b0ea403e14767858ee63c6eccc062",
+    "candidate_tree": "3a938999ea1da5fada885ac2552ac8c5f609c1dd",
+    "entries": [
+      {
+        "kind": "file",
+        "mode": 420,
+        "path": "README.md",
+        "sha256": "4774514d095c022a04b16a43bad405a26c0bec7ff39dff054eb3a0ed71e6ee7c"
+      },
+      {
+        "kind": "file",
+        "mode": 420,
+        "path": "app.py",
+        "sha256": "8c4e4d603330b6e39471aa90bae6242c9a243181a80e83271aa5abbadb685947"
+      },
+      {
+        "kind": "file",
+        "mode": 420,
+        "path": "cli.py",
+        "sha256": "14aea6a3d7acc1d93b80e079fd645b48e4fef2e976df9ef355cc50829a7c74c8"
+      },
+      {
+        "kind": "file",
+        "mode": 420,
+        "path": "service.py",
+        "sha256": "65946bfc3086b70419765acbbf378c77cb02981847be09294930335d73f77585"
+      },
+      {
+        "kind": "file",
+        "mode": 420,
+        "path": "tests/test_cache.py",
+        "sha256": "14e4870e5aa47762325a5aaeda1acfa0dc2c1be94958b1a255c54531c8aa1f00"
+      },
+      {
+        "kind": "file",
+        "mode": 420,
+        "path": "tests/test_compat.py",
+        "sha256": "2432e53eeae0b53103501bb0cdfbd3dab2446d236503df335ea8a5e5e4171703"
+      },
+      {
+        "kind": "file",
+        "mode": 420,
+        "path": "tests/test_example.py",
+        "sha256": "d32ad37bc744bc69e4959180ef66f8e31888e784441e580fec62f7e59f4d76a0"
+      }
+    ],
+    "policy": "current tracked files plus non-ignored untracked files; tracked deletions omitted"
+  },
+  "snapshot": "d5e811b342b103b99c63f7905a13004c36d24f53e671270a7df116f930acfd39",
+  "source_sha256": "ca511e228d32a79e61c1b3c9acc1d49b4359c9dc90f4044a325dbf313226f41e",
+  "stages": [],
+  "status": "CHECKS PASSED",
+  "version_receipt": {
+    "argv": [
+      "/opt/homebrew/bin/codex",
+      "--version"
+    ],
+    "cwd": "/Users/grove/projects/proofline/.proofline/issue16-matched-v5-20261013/assignments/13-fifo-upserts-combined/check",
+    "elapsed_seconds": 0.02146,
+    "exit_code": 0,
+    "invocation_id": "d9178214-4c7e-44ea-b411-7215d42cdb1f",
+    "kind": "process_probe",
+    "stderr": "",
+    "stdout": "codex-cli 0.162.1\n",
+    "timed_out": false
+  }
+}

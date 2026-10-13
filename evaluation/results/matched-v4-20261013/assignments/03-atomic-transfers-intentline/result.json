@@ -1,0 +1,705 @@
+{
+  "agent_completed": true,
+  "arm": "intentline",
+  "base_tree": "8086be2df1abaaf5bba79fc42e738054a0fc5f0f",
+  "candidate_commit": "7e345a836afa93b7d0af92c7023884a27176b7a5",
+  "candidate_files": {
+    "README.md": {
+      "kind": "file",
+      "mode": 420,
+      "path": "README.md",
+      "sha256": "058f74ad72b941559f85ad0222b7f43f24361e54d4dfd7a15f3bdd70622b9c87"
+    },
+    "app.py": {
+      "kind": "file",
+      "mode": 420,
+      "path": "app.py",
+      "sha256": "ce471cf73682afccb9d2f54771051e5e12ca4b2f24b3b18192e06af7d3d71454"
+    },
+    "cli.py": {
+      "kind": "file",
+      "mode": 420,
+      "path": "cli.py",
+      "sha256": "14aea6a3d7acc1d93b80e079fd645b48e4fef2e976df9ef355cc50829a7c74c8"
+    },
+    "service.py": {
+      "kind": "file",
+      "mode": 420,
+      "path": "service.py",
+      "sha256": "dc7383f21def2f82a5c81ad027144797f6330c6d06d61edcf35de6afb8af5a69"
+    },
+    "tests": {
+      "kind": "directory",
+      "mode": 493,
+      "path": "tests"
+    },
+    "tests/test_compat.py": {
+      "kind": "file",
+      "mode": 420,
+      "path": "tests/test_compat.py",
+      "sha256": "2432e53eeae0b53103501bb0cdfbd3dab2446d236503df335ea8a5e5e4171703"
+    },
+    "tests/test_example.py": {
+      "kind": "file",
+      "mode": 420,
+      "path": "tests/test_example.py",
+      "sha256": "68ea843f459775c4502178a8061ba0329f81bef3aec680623b8a1d90f92831ce"
+    },
+    "tests/test_transfers.py": {
+      "kind": "file",
+      "mode": 420,
+      "path": "tests/test_transfers.py",
+      "sha256": "f532255e2cf785dcdf5ea56877858f9aac0c87a71da334eb0bf126f754e150d3"
+    }
+  },
+  "candidate_snapshot_sha256": "d5bbe1a8b97134820422a36ede0b533ad31a902746275e7dded082d232a13c7d",
+  "candidate_tree": "62cecfc7d6206d3692bad9a322aa799d02497fd1",
+  "controller_episode_processes": 7,
+  "controller_grading_processes": 40,
+  "extra_worker_messages": 0,
+  "finished_at": "2026-10-13T14:54:14.341665+00:00",
+  "grade": {
+    "available": true,
+    "correct": true,
+    "elapsed_seconds": 5.999938082881272,
+    "failures": [],
+    "receipts": [
+      {
+        "elapsed_seconds": 0.148887,
+        "exit_code": 0,
+        "invocation_id": "9551d022-beaf-47b2-9b12-86d8ef0540bc",
+        "kind": "process_probe",
+        "native_argv_sha256": "c596f2a55fbe97b720c4c21e9daea04d58197b41174ec4e538b2201215327343",
+        "stderr": "",
+        "stdout": "{\"ok\": true, \"unchanged\": true, \"value\": {\"balances\": {\"a\": 2, \"b\": 3}}}\n",
+        "timed_out": false
+      },
+      {
+        "elapsed_seconds": 0.141416,
+        "exit_code": 0,
+        "invocation_id": "6e4c3ca5-ad22-4de6-a29f-f0e2982c2c57",
+        "kind": "process_probe",
+        "native_argv_sha256": "9b24bd60ad258169b26ff5652571e8f2a45493b9abcda53601c9b1012b2ca727",
+        "stderr": "",
+        "stdout": "{\"ok\": true, \"unchanged\": true, \"value\": {\"balances\": {\"a\": 2, \"b\": 3}}}\n",
+        "timed_out": false
+      },
+      {
+        "elapsed_seconds": 0.141014,
+        "exit_code": 0,
+        "invocation_id": "2131d401-6b20-4d33-a40b-a504249b54b8",
+        "kind": "process_probe",
+        "native_argv_sha256": "4a5ff2a1936abc5280578acf062258cd1969a7677e2e3979e370b8e31a248773",
+        "stderr": "",
+        "stdout": "{\"balances\": {\"a\": 2, \"b\": 3}}\n",
+        "timed_out": false
+      },
+      {
+        "elapsed_seconds": 0.14115,
+        "exit_code": 0,
+        "invocation_id": "dd8ecd81-755b-43b7-b4fd-4b49084682e5",
+        "kind": "process_probe",
+        "native_argv_sha256": "2a39c5a345cf79ba3b307e16bd9df290bb83db35be8ac13e7ee43b674828a647",
+        "stderr": "",
+        "stdout": "{\"error\": \"ValueError\", \"is_value_error\": true, \"ok\": false, \"unchanged\": true}\n",
+        "timed_out": false
+      },
+      {
+        "elapsed_seconds": 0.147042,
+        "exit_code": 0,
+        "invocation_id": "dfd944e2-0835-4e37-95bc-5aaaa6df449f",
+        "kind": "process_probe",
+        "native_argv_sha256": "1e9ceddfcc7577e6838d8c27413e1249db2b67ab403f1d50d9a7d794d9f33004",
+        "stderr": "",
+        "stdout": "{\"error\": \"ValueError\", \"is_value_error\": true, \"ok\": false, \"unchanged\": true}\n",
+        "timed_out": false
+      },
+      {
+        "elapsed_seconds": 0.142933,
+        "exit_code": 2,
+        "invocation_id": "a69616f0-e383-4951-a607-b6af873f1561",
+        "kind": "process_probe",
+        "native_argv_sha256": "775d77172decb6b2c8637f355189dd6eab524ee40a398f08011319e5a301ae10",
+        "stderr": "ERROR: insufficient funds\n",
+        "stdout": "",
+        "timed_out": false
+      },
+      {
+        "elapsed_seconds": 0.135781,
+        "exit_code": 0,
+        "invocation_id": "d84f477f-041e-4fb8-9f19-5eeabe25cb96",
+        "kind": "process_probe",
+        "native_argv_sha256": "5cf3d13ead5259ea336348da855c42a0dc8ce1178da7bd42000870b8c201f14d",
+        "stderr": "",
+        "stdout": "{\"error\": \"ValueError\", \"is_value_error\": true, \"ok\": false, \"unchanged\": true}\n",
+        "timed_out": false
+      },
+      {
+        "elapsed_seconds": 0.14965,
+        "exit_code": 0,
+        "invocation_id": "ee873580-c55a-4765-85b9-1ae25b6a20b6",
+        "kind": "process_probe",
+        "native_argv_sha256": "1caf746de4b2591b79c7d63f15969cbca21c119be3628c492e1513c9acb95b1e",
+        "stderr": "",
+        "stdout": "{\"error\": \"ValueError\", \"is_value_error\": true, \"ok\": false, \"unchanged\": true}\n",
+        "timed_out": false
+      },
+      {
+        "elapsed_seconds": 0.140481,
+        "exit_code": 2,
+        "invocation_id": "a9cc267f-4227-4a56-860f-092a4fe457ec",
+        "kind": "process_probe",
+        "native_argv_sha256": "35c95449e5f56256f1f8d3cb04141b6d707a36bd147fbfd6ce79d328f848a1ce",
+        "stderr": "ERROR: insufficient funds\n",
+        "stdout": "",
+        "timed_out": false
+      },
+      {
+        "elapsed_seconds": 0.129962,
+        "exit_code": 0,
+        "invocation_id": "1129acf0-71bd-4a8b-ac6c-ef2f25b48b1a",
+        "kind": "process_probe",
+        "native_argv_sha256": "af6a55a58ddf0f9f332d5ed242d77a895dee5059f3fb79e90085ed61332f0e43",
+        "stderr": "",
+        "stdout": "{\"ok\": true, \"unchanged\": true, \"value\": {\"balances\": {\"a\": 1}}}\n",
+        "timed_out": false
+      },
+      {
+        "elapsed_seconds": 0.1429,
+        "exit_code": 0,
+        "invocation_id": "df1ffadb-ebe5-45ca-a3a0-35814b799005",
+        "kind": "process_probe",
+        "native_argv_sha256": "6b5f49f69b9d4dda4697d99ac31335d250c2058bf81fa3308b54b42dc7a100d1",
+        "stderr": "",
+        "stdout": "{\"ok\": true, \"unchanged\": true, \"value\": {\"balances\": {\"a\": 1}}}\n",
+        "timed_out": false
+      },
+      {
+        "elapsed_seconds": 0.141403,
+        "exit_code": 0,
+        "invocation_id": "424a9a42-aeb6-48e5-916c-e0f546018d91",
+        "kind": "process_probe",
+        "native_argv_sha256": "9436f002e46045153ddd0da52ddf254e5fde7512ab49e483f7d7c41c64f57627",
+        "stderr": "",
+        "stdout": "{\"balances\": {\"a\": 1}}\n",
+        "timed_out": false
+      },
+      {
+        "elapsed_seconds": 0.131204,
+        "exit_code": 0,
+        "invocation_id": "715d36b9-1bf3-40b5-8d61-84cd2cd50aa3",
+        "kind": "process_probe",
+        "native_argv_sha256": "1d9a8ffe579265a4bb6c8cb3c02f215f237325304fd9e09585e17ad88a23be68",
+        "stderr": "",
+        "stdout": "{\"error\": \"ValueError\", \"is_value_error\": true, \"ok\": false, \"unchanged\": true}\n",
+        "timed_out": false
+      },
+      {
+        "elapsed_seconds": 0.137701,
+        "exit_code": 0,
+        "invocation_id": "4641fad9-02fc-4bc3-ad99-b7f7244e53a0",
+        "kind": "process_probe",
+        "native_argv_sha256": "a55f8bdb3e57d84ea3435c3a90929d665e0ad0cfc6ffd33353a25c98149fd6ae",
+        "stderr": "",
+        "stdout": "{\"error\": \"ValueError\", \"is_value_error\": true, \"ok\": false, \"unchanged\": true}\n",
+        "timed_out": false
+      },
+      {
+        "elapsed_seconds": 0.14178,
+        "exit_code": 2,
+        "invocation_id": "d73b1721-34f5-4a0c-a780-885eff28c748",
+        "kind": "process_probe",
+        "native_argv_sha256": "1cfb71ca76805087319c35391184e732cd9c6404f11d240e864ed68259b44a3a",
+        "stderr": "ERROR: balances must be nonnegative integers\n",
+        "stdout": "",
+        "timed_out": false
+      },
+      {
+        "elapsed_seconds": 0.144652,
+        "exit_code": 0,
+        "invocation_id": "b2f0b963-ae5a-43d5-95a4-2c2f7ea17416",
+        "kind": "process_probe",
+        "native_argv_sha256": "dfbe32bfb3fa5a22bf7f68d98fd1dd3b514317b2029789a238c0de33bf0b42f3",
+        "stderr": "",
+        "stdout": "{\"error\": \"ValueError\", \"is_value_error\": true, \"ok\": false, \"unchanged\": true}\n",
+        "timed_out": false
+      },
+      {
+        "elapsed_seconds": 0.141953,
+        "exit_code": 0,
+        "invocation_id": "eb4333b4-1a3a-423e-8c49-28b79ca64211",
+        "kind": "process_probe",
+        "native_argv_sha256": "f79b657489dd803cdb741f57715841731e05b16b6228c1fedfff150ca7ba5de0",
+        "stderr": "",
+        "stdout": "{\"error\": \"ValueError\", \"is_value_error\": true, \"ok\": false, \"unchanged\": true}\n",
+        "timed_out": false
+      },
+      {
+        "elapsed_seconds": 0.136255,
+        "exit_code": 2,
+        "invocation_id": "acec481d-3a04-44c1-bd53-3c349aa2067c",
+        "kind": "process_probe",
+        "native_argv_sha256": "913f09682993deca557c5a4a675e74a99459d0a6fe3d4a07069b01872fb4351a",
+        "stderr": "ERROR: transfer amounts must be nonnegative integers\n",
+        "stdout": "",
+        "timed_out": false
+      },
+      {
+        "elapsed_seconds": 0.143775,
+        "exit_code": 0,
+        "invocation_id": "efc9780a-8540-4a5b-a993-c4fac616203a",
+        "kind": "process_probe",
+        "native_argv_sha256": "42edcc145403ce9448a3630ec4e9ec0c03b39efadce62a44b94c37ad0940d01b",
+        "stderr": "",
+        "stdout": "{\"error\": \"ValueError\", \"is_value_error\": true, \"ok\": false, \"unchanged\": true}\n",
+        "timed_out": false
+      },
+      {
+        "elapsed_seconds": 0.141903,
+        "exit_code": 0,
+        "invocation_id": "a758dc05-cabf-4fef-8fac-d0b471a02ebb",
+        "kind": "process_probe",
+        "native_argv_sha256": "3c1e153745551346ac9c3936f3cc6ce62287855855f328034388e0627467f5f0",
+        "stderr": "",
+        "stdout": "{\"error\": \"ValueError\", \"is_value_error\": true, \"ok\": false, \"unchanged\": true}\n",
+        "timed_out": false
+      },
+      {
+        "elapsed_seconds": 0.147508,
+        "exit_code": 2,
+        "invocation_id": "c252e9f8-2b4f-442e-8305-0432446741b3",
+        "kind": "process_probe",
+        "native_argv_sha256": "3cac4699a92e948eca355db373c70e0cb7853fadb1991043a701bed841f88a5a",
+        "stderr": "ERROR: both accounts must exist\n",
+        "stdout": "",
+        "timed_out": false
+      },
+      {
+        "elapsed_seconds": 0.126611,
+        "exit_code": 0,
+        "invocation_id": "c73de7b7-86ba-4a69-9db3-43789a8eced3",
+        "kind": "process_probe",
+        "native_argv_sha256": "ea33077ea4e5159b825fbe0a8a5166d9fd17b121c0a26dc5c4ebce87f5ecf6d9",
+        "stderr": "",
+        "stdout": "{\"ok\": true, \"unchanged\": true, \"value\": {\"balances\": {}}}\n",
+        "timed_out": false
+      },
+      {
+        "elapsed_seconds": 0.140189,
+        "exit_code": 0,
+        "invocation_id": "a47af0dd-8145-42b1-b448-c59cb8422561",
+        "kind": "process_probe",
+        "native_argv_sha256": "6ae32d8391bd3fe612dfe95ae44d63f8a05fc25a521370aa37e772aa62b1adaf",
+        "stderr": "",
+        "stdout": "{\"ok\": true, \"unchanged\": true, \"value\": {\"balances\": {}}}\n",
+        "timed_out": false
+      },
+      {
+        "elapsed_seconds": 0.148122,
+        "exit_code": 0,
+        "invocation_id": "d19c9bbb-253c-44d8-a478-9dfd25ddb8c2",
+        "kind": "process_probe",
+        "native_argv_sha256": "5b0b4de05fb4c9841a42bc6d8522fe40e33090dae2778cc096a3833e165ab4a1",
+        "stderr": "",
+        "stdout": "{\"balances\": {}}\n",
+        "timed_out": false
+      },
+      {
+        "elapsed_seconds": 0.13383,
+        "exit_code": 0,
+        "invocation_id": "a139febc-ee64-49d5-a63d-d2aeacb376bd",
+        "kind": "process_probe",
+        "native_argv_sha256": "103355ef7c652e51613c3f8bc820445f532dec2a13d08250ccd2cd70cf4066e7",
+        "stderr": "",
+        "stdout": "{\"error\": \"ValueError\", \"is_value_error\": true, \"ok\": false, \"unchanged\": true}\n",
+        "timed_out": false
+      },
+      {
+        "elapsed_seconds": 0.147137,
+        "exit_code": 0,
+        "invocation_id": "8824f41f-c369-47b7-8c6a-96f81f35778b",
+        "kind": "process_probe",
+        "native_argv_sha256": "459b5120f6670ff879944a4e4cf740242f089db4068ceea94ad213f471bbbf06",
+        "stderr": "",
+        "stdout": "{\"error\": \"ValueError\", \"is_value_error\": true, \"ok\": false, \"unchanged\": true}\n",
+        "timed_out": false
+      },
+      {
+        "elapsed_seconds": 0.149186,
+        "exit_code": 2,
+        "invocation_id": "91aa087c-3731-4025-922e-bdc26f884b2a",
+        "kind": "process_probe",
+        "native_argv_sha256": "18f05a4cad84a83ddc45c98ff45edcd0c91393a9fdcc0861d8a571541ef8938c",
+        "stderr": "ERROR: each transfer must be a three-element list\n",
+        "stdout": "",
+        "timed_out": false
+      },
+      {
+        "elapsed_seconds": 0.143265,
+        "exit_code": 0,
+        "invocation_id": "ee93b914-f79f-469c-93ee-a03ba3e8712f",
+        "kind": "process_probe",
+        "native_argv_sha256": "81d721b4657ec6ca1a24bd1f4976b59d714231da88f8d0e8e0e4b828cc7528a4",
+        "stderr": "",
+        "stdout": "{\"error\": \"ValueError\", \"is_value_error\": true, \"ok\": false, \"unchanged\": true}\n",
+        "timed_out": false
+      },
+      {
+        "elapsed_seconds": 0.132928,
+        "exit_code": 0,
+        "invocation_id": "1f4ed937-deba-47c0-b564-5ea199ba75f6",
+        "kind": "process_probe",
+        "native_argv_sha256": "c961bdff43ea663f2903d0f61b8235fa7edd7b10b772576b82a0e0a45a1576cc",
+        "stderr": "",
+        "stdout": "{\"error\": \"ValueError\", \"is_value_error\": true, \"ok\": false, \"unchanged\": true}\n",
+        "timed_out": false
+      },
+      {
+        "elapsed_seconds": 0.148423,
+        "exit_code": 2,
+        "invocation_id": "35e9dcf4-e642-4045-b137-6dd2fd8d3d9d",
+        "kind": "process_probe",
+        "native_argv_sha256": "d2e338e00e4efdb5bea5ee758758382242922b047936b42f1e466c1efbf6875f",
+        "stderr": "ERROR: balances must be nonnegative integers\n",
+        "stdout": "",
+        "timed_out": false
+      },
+      {
+        "elapsed_seconds": 0.140951,
+        "exit_code": 0,
+        "invocation_id": "4b40764e-58ef-43f7-b634-2773f16fd1e3",
+        "kind": "process_probe",
+        "native_argv_sha256": "2a34d23716f42d8732bbdc5d82f75e41370fcede94639a3a0261c127df2288d0",
+        "stderr": "",
+        "stdout": "{\"error\": \"ValueError\", \"is_value_error\": true, \"ok\": false, \"unchanged\": true}\n",
+        "timed_out": false
+      },
+      {
+        "elapsed_seconds": 0.144974,
+        "exit_code": 0,
+        "invocation_id": "5710aaeb-2783-4058-84b2-633972d12b78",
+        "kind": "process_probe",
+        "native_argv_sha256": "892dabf94ba38b0b56e3d5a2517089ac364fc8e9f99a4de5666b3e66036852ae",
+        "stderr": "",
+        "stdout": "{\"error\": \"ValueError\", \"is_value_error\": true, \"ok\": false, \"unchanged\": true}\n",
+        "timed_out": false
+      },
+      {
+        "elapsed_seconds": 0.142943,
+        "exit_code": 2,
+        "invocation_id": "19ec4d4e-ff0f-4c81-babc-b74cfa1a0359",
+        "kind": "process_probe",
+        "native_argv_sha256": "cfc3ebe284e5d69cb55bf372bf54005dd0232e974bf4be5373a6a64155e0ce7e",
+        "stderr": "ERROR: payload must be an object\n",
+        "stdout": "",
+        "timed_out": false
+      },
+      {
+        "elapsed_seconds": 0.142619,
+        "exit_code": 0,
+        "invocation_id": "d1a84848-15bb-47f9-80c4-2021cb1e8fdd",
+        "kind": "process_probe",
+        "native_argv_sha256": "793246430c790f537d371f0ebc147f21914b4fb6531a91aebbeca184ee8ceef6",
+        "stderr": "",
+        "stdout": "{\"ok\": true, \"unchanged\": true, \"value\": []}\n",
+        "timed_out": false
+      },
+      {
+        "elapsed_seconds": 0.145275,
+        "exit_code": 0,
+        "invocation_id": "3f5a006b-c068-47da-bd4f-4e48bed2dcc4",
+        "kind": "process_probe",
+        "native_argv_sha256": "7506428bc805a6016e35f825bd8a6afb23b9acce1afacb1cf57fa770b9137403",
+        "stderr": "",
+        "stdout": "{\"ok\": true, \"unchanged\": true, \"value\": [{\"balances\": {\"a\": 2, \"b\": 3}}, {\"balances\": {\"a\": 2, \"b\": 3}}]}\n",
+        "timed_out": false
+      },
+      {
+        "elapsed_seconds": 0.149488,
+        "exit_code": 0,
+        "invocation_id": "d3ab741e-b2f1-425a-9d15-45cdaa8c15bc",
+        "kind": "process_probe",
+        "native_argv_sha256": "0eca0d81a55b61b8dc3294ee2c645b4cf86a8d863e32db6a464c232507405c94",
+        "stderr": "",
+        "stdout": "{\"error\": \"ValueError\", \"is_value_error\": true, \"ok\": false, \"unchanged\": true}\n",
+        "timed_out": false
+      },
+      {
+        "elapsed_seconds": 0.14256,
+        "exit_code": 0,
+        "invocation_id": "f4e54bbe-d821-4dae-a6a2-adaeb15af71a",
+        "kind": "process_probe",
+        "native_argv_sha256": "4d95ec4c2ccb16406ddedcc883562290e72a5d439040ba05285bf6b73c5725af",
+        "stderr": "",
+        "stdout": "{\"error\": \"ValueError\", \"is_value_error\": true, \"ok\": false, \"unchanged\": true}\n",
+        "timed_out": false
+      },
+      {
+        "elapsed_seconds": 0.142895,
+        "exit_code": 0,
+        "invocation_id": "59856d33-b601-4459-b652-8240507e1644",
+        "kind": "process_probe",
+        "native_argv_sha256": "245cb66340761a28db1c9195fa6c86d84ce01790846d3ac0cad78ab9207feeee",
+        "stderr": "",
+        "stdout": "api-v1\n",
+        "timed_out": false
+      },
+      {
+        "elapsed_seconds": 0.13854,
+        "exit_code": 2,
+        "invocation_id": "0cb0c378-1a4d-4ad3-8638-1671add54053",
+        "kind": "process_probe",
+        "native_argv_sha256": "60c8c49835d3e6069c7b72f9293cba03c24f490a9c1afce3972d1c7f1feee247",
+        "stderr": "ERROR: unsupported arguments\n",
+        "stdout": "",
+        "timed_out": false
+      },
+      {
+        "elapsed_seconds": 0.432617,
+        "exit_code": 0,
+        "invocation_id": "95e479e0-9ef8-4cb0-aae1-c27ac68f7715",
+        "kind": "process_probe",
+        "native_argv_sha256": "3c9ba207b510437fc66d1530e471821ff33e3328f4aef51ef97e58a709d14632",
+        "stderr": "....................\n----------------------------------------------------------------------\nRan 20 tests in 0.230s\n\nOK\n",
+        "stdout": "",
+        "timed_out": false
+      }
+    ],
+    "repository_tests_passed": true,
+    "stale_test_expectation_retained": false,
+    "unavailable": []
+  },
+  "handoff": true,
+  "model_dispatches": 1,
+  "native_available": true,
+  "operator_candidate_edits": 0,
+  "plan_identity": {
+    "advisory": true,
+    "check_links": {},
+    "constraints": [
+      {
+        "basis": "request",
+        "scope": "Input validation",
+        "source_refs": [
+          {
+            "line_end": 13,
+            "line_start": 12,
+            "quote": "response and unsupported-argument behavior; keep cli.py unchanged. Extra object\nkeys are allowed. Update a stale test expectation if it contradicts this request.",
+            "source_id": "S1"
+          }
+        ],
+        "statement": "Extra object keys are allowed."
+      },
+      {
+        "basis": "request",
+        "scope": "Existing tests",
+        "source_refs": [
+          {
+            "line_end": 13,
+            "line_start": 13,
+            "quote": "keys are allowed. Update a stale test expectation if it contradicts this request.",
+            "source_id": "S1"
+          }
+        ],
+        "statement": "Update any stale test expectation that contradicts the requested behavior."
+      }
+    ],
+    "contract_id": "atomic-transfers",
+    "contract_sha256": "975c6edebba89bd2b362e73b9878260f35d38039ab3417ed047a91d7038a04e3",
+    "coverage_completeness": "UNKNOWN",
+    "evidence_gaps": [],
+    "execution_authority": "not_established",
+    "export_authority": "unapproved",
+    "export_format": "json",
+    "export_manifest_sha256": "973ea1fe51fe6ff73fa85132b310fec3ae94d116ea5a64b4d2f847b7611d3999",
+    "external_caller_approval": "not_supplied_or_authenticated",
+    "intended_outcome": "Validate and apply ordered atomic account transfers consistently through the app, service, batch and unchanged JSON CLI.",
+    "out_of_scope": [
+      {
+        "source_refs": [
+          {
+            "line_end": 12,
+            "line_start": 11,
+            "quote": "Do not mutate any input, including on errors. Preserve the exact CLI --version\nresponse and unsupported-argument behavior; keep cli.py unchanged. Extra object",
+            "source_id": "S1"
+          }
+        ],
+        "statement": "Changes to cli.py."
+      }
+    ],
+    "record": "intentline.advisory-input",
+    "requirements": [
+      {
+        "basis": "request",
+        "boundaries": [
+          "Empty balances and transfers are valid.",
+          "Reject empty or non-string names, negative/fractional/boolean numbers, absent accounts and malformed transfer triples.",
+          "Extra object keys are allowed."
+        ],
+        "evidence_gap_reasons": [],
+        "id": "R1",
+        "oracle": "Explicit valid/invalid fixtures from the requested shape; boolean amounts and balances must reject.",
+        "plan_state": "planned",
+        "planned_evidence": "tests/test_transfers.py validation fixtures",
+        "seam": "app.process(payload)",
+        "source_refs": [
+          {
+            "line_end": 3,
+            "line_start": 1,
+            "quote": "Implement transfers for {\"balances\": {name: integer >= 0},\n\"transfers\": [[from, to, amount], ...]}. Names are nonempty strings; amount is\na nonnegative integer. Booleans are invalid numbers. Both accounts must exist.",
+            "source_id": "S1"
+          }
+        ],
+        "statement": "Accept valid balance and transfer objects, allowing extra object keys, and reject invalid shapes, names, numbers or missing accounts."
+      },
+      {
+        "basis": "request",
+        "boundaries": [
+          "An earlier deposit can fund a later transfer.",
+          "A later deposit cannot rescue an earlier overdraft.",
+          "Zero and affordable self-transfers leave balances unchanged."
+        ],
+        "evidence_gap_reasons": [],
+        "id": "R2",
+        "oracle": "a=5,b=0 with a->b 3 yields a=2,b=3; a=5 with self-transfer 6 rejects even though net change would be zero.",
+        "plan_state": "planned",
+        "planned_evidence": "tests/test_transfers.py ordered and self-transfer cases",
+        "seam": "app.process(payload)",
+        "source_refs": [
+          {
+            "line_end": 6,
+            "line_start": 4,
+            "quote": "Apply transfers in order; reject insufficient funds at any intermediate step,\nincluding a self-transfer exceeding that account's balance. Return\n{\"balances\": final_balances}. No partial result on rejection.",
+            "source_id": "S1"
+          }
+        ],
+        "statement": "Apply transfers in order and return only final balances; reject insufficient funds at any intermediate step, including excessive self-transfers, without a partial result."
+      },
+      {
+        "basis": "request",
+        "boundaries": [
+          "Valid payload returns the same balances at all three seams.",
+          "Invalid CLI payload returns its existing error exit behavior."
+        ],
+        "evidence_gap_reasons": [],
+        "id": "R3",
+        "oracle": "The explicit a=5,b=0 transfer of 3 returns a=2,b=3 through every seam.",
+        "plan_state": "planned",
+        "planned_evidence": "tests/test_transfers.py service and subprocess cases",
+        "seam": "app.process, service.handle, cli.py subprocess",
+        "source_refs": [
+          {
+            "line_end": 9,
+            "line_start": 8,
+            "quote": "Expose the same behavior through app.process, service.handle and the existing\nJSON stdin/stdout CLI. Add service.batch(payloads): return each process result",
+            "source_id": "S1"
+          }
+        ],
+        "statement": "Expose identical transfer behavior through app.process, service.handle and the JSON stdin/stdout CLI."
+      },
+      {
+        "basis": "request",
+        "boundaries": [
+          "Empty list returns empty list.",
+          "Invalid member after a valid member rejects the batch.",
+          "Multiple distinct results retain input order."
+        ],
+        "evidence_gap_reasons": [],
+        "id": "R4",
+        "oracle": "Two hand-calculated transfer payloads return ordered balances; tuples and a malformed later member raise ValueError.",
+        "plan_state": "planned",
+        "planned_evidence": "tests/test_transfers.py batch cases",
+        "seam": "service.batch(payloads)",
+        "source_refs": [
+          {
+            "line_end": 10,
+            "line_start": 9,
+            "quote": "JSON stdin/stdout CLI. Add service.batch(payloads): return each process result\nin input order; reject a non-list or any invalid member with ValueError.",
+            "source_id": "S1"
+          }
+        ],
+        "statement": "Add service.batch to return process results in input order, rejecting a non-list or any invalid member with ValueError."
+      },
+      {
+        "basis": "request",
+        "boundaries": [
+          "Original balances and nested transfer lists remain intact.",
+          "Failed later transfer and invalid later batch member leave all inputs unchanged.",
+          "Returned balances must be detached from input."
+        ],
+        "evidence_gap_reasons": [],
+        "id": "R5",
+        "oracle": "Compare deep snapshots before and after success/failure and mutate returned balances to confirm input independence.",
+        "plan_state": "planned",
+        "planned_evidence": "tests/test_transfers.py input preservation cases",
+        "seam": "app.process, service.handle, service.batch",
+        "source_refs": [
+          {
+            "line_end": 11,
+            "line_start": 11,
+            "quote": "Do not mutate any input, including on errors. Preserve the exact CLI --version",
+            "source_id": "S1"
+          }
+        ],
+        "statement": "Do not mutate any input on success or rejection."
+      },
+      {
+        "basis": "request",
+        "boundaries": [
+          "--version returns status 0, stdout api-v1 plus newline, empty stderr.",
+          "Unsupported arguments return status 2, empty stdout and ERROR: unsupported arguments plus newline on stderr."
+        ],
+        "evidence_gap_reasons": [],
+        "id": "R6",
+        "oracle": "Existing CLI bytes and explicit subprocess output tuples define the compatibility oracle.",
+        "plan_state": "planned",
+        "planned_evidence": "tests/test_compat.py and tests/test_transfers.py; git diff -- cli.py",
+        "seam": "cli.py subprocess and source diff",
+        "source_refs": [
+          {
+            "line_end": 12,
+            "line_start": 11,
+            "quote": "Do not mutate any input, including on errors. Preserve the exact CLI --version\nresponse and unsupported-argument behavior; keep cli.py unchanged. Extra object",
+            "source_id": "S1"
+          }
+        ],
+        "statement": "Preserve the exact CLI --version response and unsupported-argument behavior and keep cli.py unchanged."
+      }
+    ],
+    "revision": 1,
+    "schema_version": 1,
+    "source_bundle_sha256": "ce8cac7fcd74a61711001a9b189b6b1580110a878f7f44be961349ff63f8fac3",
+    "source_sha256": "c9a5c3bc2cc80520431d6fd951a8e2303270d1c390b25ed1f5413391fbc29347"
+  },
+  "receipt": {
+    "elapsed_seconds": 194.983306,
+    "error": null,
+    "events.jsonl_sha256": "061c640f6c7e0342608c9efbddc0ec011d95801620c7fdc573a45ff07876db04",
+    "exit_code": 0,
+    "invocation_id": "65b9aa1a-1ea5-4cca-bb64-27f85a751816",
+    "kind": "codex_exec",
+    "native_argv_sha256": "ea8fe4517fb37a803bd31630f55d4516c6c36e79f0de017852d0d2e00118abe8",
+    "prompt_sha256": "7e116133ad9e53e46feea2584efd086a4e95547667385f837b386e06ba7c9a6e",
+    "stderr.txt_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "timed_out": false
+  },
+  "response": {
+    "completed": true,
+    "summary": "Implemented validated, atomic ordered transfers and service.batch with input preservation. Kept cli.py unchanged. Completed the advisory planning/export pass. All 20 tests, the public smoke check, and diff checks passed. No commits made."
+  },
+  "sequence": 3,
+  "source_sha256": "c9a5c3bc2cc80520431d6fd951a8e2303270d1c390b25ed1f5413391fbc29347",
+  "started_at": "2026-10-13T14:50:53.162345+00:00",
+  "status": "CORRECT_DELIVERY",
+  "task": "atomic-transfers",
+  "thread_id": "01a135be-b67c-7692-ad01-36af9ab7ffe1",
+  "tool_executions": 12,
+  "usage": {
+    "cache_write_input_tokens": 0,
+    "cached_input_tokens": 229632,
+    "input_tokens": 264595,
+    "output_tokens": 6965,
+    "reasoning_output_tokens": 401
+  },
+  "workflow_seconds": 195.350997291971
+}

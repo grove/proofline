@@ -1,0 +1,23 @@
+{
+  "live_dispatch_allowed": false,
+  "original_preflight_revision": "4ae912fafeb5f9203257b2efda48045593a335a8",
+  "schema_version": 1,
+  "sha256": {
+    "evaluation/matched/README.md": "a9b0cb7390b143d0b035960eb7f6725427e590f5deb45ee1d1116694fc2a9f20",
+    "evaluation/matched/__init__.py": "8b17f653a868bdeedb027f5bf117036334f822242b81a6ef19397b9414ec88b1",
+    "evaluation/matched/corpus.py": "e135bf58bd44edd9c85f4610559f6dd8f05b5768b100ccc128d76c923e9eccca",
+    "evaluation/matched/corrected-canary.json": "ccaa2e512e345877798c816a485d709b9c44afa16b61f3d15d9363435fd7e843",
+    "evaluation/matched/grader.py": "c7d38c88a0feaa76820d6277ab357dd2e149ca2ff24831cbace1bc6a52dc1696",
+    "evaluation/matched/preflight-source.zip": "b4481f3b411f9867696020bac07636623bd34ef560a3ca4e6028bcf1fe945511",
+    "evaluation/matched/preflight.json": "4b201c33de7754555bdf9b76d4f287d1534c333f774beb04c1c2607ca19dbfcf",
+    "evaluation/matched/preparation.json": "9d79ec477d13f7ab2089effa5149b30ab04c7c47519d4a17000afb158a93b19f",
+    "evaluation/matched/protocol.json": "eaf9991626e553368ac11854a3c04271ae4119a269227192cbe440f2cde00e62",
+    "evaluation/matched/report.py": "6a0e2a4984b78dcf174b742d9249e1d2ed97cf7592b713c71ef3b576ffa87afa",
+    "evaluation/matched/study.py": "11d761db1311979e251a9334adbb8b5d45fc9b04cb4ec97d3191623a8ca751fe",
+    "tests/test_matched_execution.py": "4ab3864d9deb972796deecb06940207e6e011c4bd7d8e34812c8e43a3ac66f6e",
+    "tests/test_matched_preparation.py": "618a0ce362b5e639682f16347df0fdadef02d936ffbc1831101a52704ed515a1",
+    "tests/test_matched_study.py": "b39653dd778a45be9b9ac716b862c70649f0eb7a936466cb4606ea649a2fcf71"
+  },
+  "status": "CORRECTED_PREPARATION_ONLY_ORIGINAL_PREFLIGHT_RETAINED",
+  "study": "issue16-matched-v2-20261013"
+}

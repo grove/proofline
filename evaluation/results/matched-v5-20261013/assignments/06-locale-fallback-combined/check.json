@@ -1,0 +1,1147 @@
+{
+  "assurance": "Only the listed command exit statuses are observed; full source correctness is not certified.",
+  "boundary": {
+    "assessment": {
+      "inputs_unchanged": true,
+      "observations": {
+        "mode_change": "denied",
+        "network": "denied",
+        "nonce": "799651605356496f834d70f9e0e92e75",
+        "reads": {
+          "actual_oracle": "denied",
+          "oracle-canary": "denied",
+          "other-role-canary": "denied",
+          "receipt-canary": "denied"
+        },
+        "scratch": true,
+        "writes": {
+          "candidate": "denied",
+          "git_head": "denied",
+          "input": "denied",
+          "receipt": "denied",
+          "source": "denied"
+        }
+      },
+      "scope": "native process canaries only; no model or external-tool qualification",
+      "status": "OBSERVED"
+    },
+    "network_control": "loopback reachable before sandbox",
+    "receipt": {
+      "argv": [
+        "/opt/homebrew/bin/codex",
+        "--no-daemon",
+        "-c",
+        "permissions.proofline_s0_9a500b537dcf46fab5d5ad07eb99ab99={\"filesystem\"={\":minimal\"=\"read\",\"/opt/homebrew/Cellar/python@3.14/3.14.8_2/Frameworks/Python.framework/Versions/3.14\"=\"read\",\"/opt/homebrew/opt/python@3.14/Frameworks/Python.framework/Versions/3.14\"=\"read\",\"/opt/homebrew/opt/python@3.14/bin/python3.14\"=\"read\",\"/opt/homebrew/Cellar/python@3.14/3.14.8_2/Frameworks/Python.framework/Versions/3.14/bin/python3.14\"=\"read\",\"/Users/grove/projects/proofline/.proofline/issue16-matched-v5-20261013/assignments/06-locale-fallback-combined/check/inputs\"=\"read\",\"/Users/grove/projects/proofline/.proofline/issue16-matched-v5-20261013/assignments/06-locale-fallback-combined/check/preflight/scratch\"=\"write\",\"/Users/grove/projects/proofline/.proofline/issue16-matched-v5-20261013/assignments/06-locale-fallback-combined/check/preflight/private\"=\"deny\",\"/opt/homebrew\"=\"read\",\"/Library/Developer/CommandLineTools/usr/bin\"=\"read\",\"/Library/Developer/CommandLineTools/usr/libexec/git-core\"=\"read\"},\"network\"={\"enabled\"=false}}",
+        "sandbox",
+        "--permission-profile",
+        "proofline_s0_9a500b537dcf46fab5d5ad07eb99ab99",
+        "--include-managed-config",
+        "--cd",
+        "/Users/grove/projects/proofline/.proofline/issue16-matched-v5-20261013/assignments/06-locale-fallback-combined/check/preflight/scratch",
+        "--",
+        "/opt/homebrew/Cellar/python@3.14/3.14.8_2/Frameworks/Python.framework/Versions/3.14/bin/python3.14",
+        "-I",
+        "-B",
+        "/Users/grove/projects/proofline/.proofline/issue16-matched-v5-20261013/assignments/06-locale-fallback-combined/check/inputs/canary.py",
+        "/Users/grove/projects/proofline/.proofline/issue16-matched-v5-20261013/assignments/06-locale-fallback-combined/check/inputs/canary.json"
+      ],
+      "cwd": "/Users/grove/projects/proofline/.proofline/issue16-matched-v5-20261013/assignments/06-locale-fallback-combined/check/preflight/scratch",
+      "elapsed_seconds": 0.145935,
+      "exit_code": 0,
+      "invocation_id": "f61a2d17-5070-47ff-bf00-0732c450429d",
+      "kind": "process_probe",
+      "stderr": "",
+      "stdout": "{\"nonce\": \"799651605356496f834d70f9e0e92e75\", \"writes\": {\"source\": \"denied\", \"input\": \"denied\", \"candidate\": \"denied\", \"git_head\": \"denied\", \"receipt\": \"denied\"}, \"reads\": {\"receipt-canary\": \"denied\", \"oracle-canary\": \"denied\", \"other-role-canary\": \"denied\", \"actual_oracle\": \"denied\"}, \"mode_change\": \"denied\", \"scratch\": true, \"network\": \"denied\"}\n",
+      "timed_out": false
+    }
+  },
+  "candidate_commit": "e13ed202160551361db8a0f718a3b8fc9aea6db2",
+  "candidate_path": "/Users/grove/projects/proofline/.proofline/issue16-matched-v5-20261013/assignments/06-locale-fallback-combined/check/inputs/product",
+  "candidate_tree": "c31f405f9d21617a9b0e5fd811b091cf51505307",
+  "checks": [
+    [
+      "/opt/homebrew/Cellar/python@3.14/3.14.8_2/Frameworks/Python.framework/Versions/3.14/bin/python3.14",
+      "-B",
+      "-c",
+      "from app import process; assert process({'catalog': {'fr-CA': {'a': 'CA'}, 'fr': {'b': 'FR'}, 'en': {'c': 'EN'}}, 'locales': ['fr-CA'], 'keys': ['b', 'a', 'c', 'x', 'a'], 'default': 'en'}) == {'texts': ['FR', 'CA', 'EN', None, 'CA']}"
+    ],
+    [
+      "/opt/homebrew/Cellar/python@3.14/3.14.8_2/Frameworks/Python.framework/Versions/3.14/bin/python3.14",
+      "-B",
+      "-m",
+      "unittest",
+      "discover",
+      "-s",
+      "tests"
+    ]
+  ],
+  "elapsed_seconds": 1.1413900000043213,
+  "evidence_sha256": "629ddb422304dc3f8d8d06703496ad9fa2be55af219cfb3fd253b35df93c698e",
+  "failure_details": [],
+  "feedback": {
+    "candidate_commit": "e13ed202160551361db8a0f718a3b8fc9aea6db2",
+    "candidate_tree": "c31f405f9d21617a9b0e5fd811b091cf51505307",
+    "checks": [
+      {
+        "argv": [
+          "/opt/homebrew/Cellar/python@3.14/3.14.8_2/Frameworks/Python.framework/Versions/3.14/bin/python3.14",
+          "-B",
+          "-c",
+          "from app import process; assert process({'catalog': {'fr-CA': {'a': 'CA'}, 'fr': {'b': 'FR'}, 'en': {'c': 'EN'}}, 'locales': ['fr-CA'], 'keys': ['b', 'a', 'c', 'x', 'a'], 'default': 'en'}) == {'texts': ['FR', 'CA', 'EN', None, 'CA']}"
+        ],
+        "elapsed_seconds": 0.14983154088258743,
+        "exit_code": 0,
+        "index": 0,
+        "outcome_ids": [],
+        "reason": "Selected command exited 0; unselected promises are not demonstrated.",
+        "receipt_ref": "receipts/check-000.json",
+        "status": "PASSED",
+        "stderr_excerpt": "",
+        "stderr_ref": "receipts/check-000.json#stderr",
+        "stdout_excerpt": "",
+        "stdout_ref": "receipts/check-000.json#stdout"
+      },
+      {
+        "argv": [
+          "/opt/homebrew/Cellar/python@3.14/3.14.8_2/Frameworks/Python.framework/Versions/3.14/bin/python3.14",
+          "-B",
+          "-m",
+          "unittest",
+          "discover",
+          "-s",
+          "tests"
+        ],
+        "elapsed_seconds": 0.47652250016108155,
+        "exit_code": 0,
+        "index": 1,
+        "outcome_ids": [],
+        "reason": "Selected command exited 0; unselected promises are not demonstrated.",
+        "receipt_ref": "receipts/check-001.json",
+        "status": "PASSED",
+        "stderr_excerpt": "................ | ---------------------------------------------------------------------- | Ran 16 tests in 0.250s | OK",
+        "stderr_ref": "receipts/check-001.json#stderr",
+        "stdout_excerpt": "",
+        "stdout_ref": "receipts/check-001.json#stdout"
+      }
+    ],
+    "headline": "2/2 selected checks passed",
+    "next_action": "Report only the commands checked; original request coverage remains unknown.",
+    "scope": "Selected executable commands only; completeness of the original user promise is unknown.",
+    "snapshot_sha256": "0492bf6126c7e096f3ad9ecc2d9e2381314299ea9d35e797b941918417867022",
+    "source_sha256": "a916b8eeb9671391cc2bc577c1b6a3a635d54bce356997c3795df8c22bc543ca",
+    "status": "CHECKS PASSED"
+  },
+  "feedback_version": 1,
+  "intentline_advisory": {
+    "advisory": true,
+    "check_links": {
+      "R1": [
+        {
+          "argv": [
+            "/opt/homebrew/Cellar/python@3.14/3.14.8_2/Frameworks/Python.framework/Versions/3.14/bin/python3.14",
+            "-B",
+            "-c",
+            "from app import process; assert process({'catalog': {'fr-CA': {'a': 'CA'}, 'fr': {'b': 'FR'}, 'en': {'c': 'EN'}}, 'locales': ['fr-CA'], 'keys': ['b', 'a', 'c', 'x', 'a'], 'default': 'en'}) == {'texts': ['FR', 'CA', 'EN', None, 'CA']}"
+          ],
+          "index": 0
+        },
+        {
+          "argv": [
+            "/opt/homebrew/Cellar/python@3.14/3.14.8_2/Frameworks/Python.framework/Versions/3.14/bin/python3.14",
+            "-B",
+            "-m",
+            "unittest",
+            "discover",
+            "-s",
+            "tests"
+          ],
+          "index": 1
+        }
+      ],
+      "R2": [
+        {
+          "argv": [
+            "/opt/homebrew/Cellar/python@3.14/3.14.8_2/Frameworks/Python.framework/Versions/3.14/bin/python3.14",
+            "-B",
+            "-m",
+            "unittest",
+            "discover",
+            "-s",
+            "tests"
+          ],
+          "index": 1
+        }
+      ],
+      "R3": [
+        {
+          "argv": [
+            "/opt/homebrew/Cellar/python@3.14/3.14.8_2/Frameworks/Python.framework/Versions/3.14/bin/python3.14",
+            "-B",
+            "-m",
+            "unittest",
+            "discover",
+            "-s",
+            "tests"
+          ],
+          "index": 1
+        }
+      ],
+      "R4": [
+        {
+          "argv": [
+            "/opt/homebrew/Cellar/python@3.14/3.14.8_2/Frameworks/Python.framework/Versions/3.14/bin/python3.14",
+            "-B",
+            "-m",
+            "unittest",
+            "discover",
+            "-s",
+            "tests"
+          ],
+          "index": 1
+        }
+      ],
+      "R5": [
+        {
+          "argv": [
+            "/opt/homebrew/Cellar/python@3.14/3.14.8_2/Frameworks/Python.framework/Versions/3.14/bin/python3.14",
+            "-B",
+            "-m",
+            "unittest",
+            "discover",
+            "-s",
+            "tests"
+          ],
+          "index": 1
+        }
+      ],
+      "R6": [
+        {
+          "argv": [
+            "/opt/homebrew/Cellar/python@3.14/3.14.8_2/Frameworks/Python.framework/Versions/3.14/bin/python3.14",
+            "-B",
+            "-m",
+            "unittest",
+            "discover",
+            "-s",
+            "tests"
+          ],
+          "index": 1
+        }
+      ]
+    },
+    "constraints": [
+      {
+        "basis": "request",
+        "scope": "All payload validation and locale resolution",
+        "source_refs": [
+          {
+            "line_end": 10,
+            "line_start": 9,
+            "quote": "Reject malformed containers/values with ValueError. Empty keys/locales/catalog\ncontainers are allowed. Do not impose a BCP-47 grammar beyond nonempty strings.",
+            "source_id": "S1"
+          },
+          {
+            "line_end": 17,
+            "line_start": 16,
+            "quote": "response and unsupported-argument behavior; keep cli.py unchanged. Extra object\nkeys are allowed. Update a stale test expectation if it contradicts this request.",
+            "source_id": "S1"
+          }
+        ],
+        "statement": "Allow extra object keys and impose no BCP-47 grammar beyond nonempty strings."
+      }
+    ],
+    "contract_id": "locale-fallback-combined",
+    "contract_sha256": "d18db1b7ce0d72c4d3d8e9ccee13b599705f87081043aecb65af4e674cf2f048",
+    "coverage_completeness": "UNKNOWN",
+    "evidence_gaps": [],
+    "execution_authority": "not_established",
+    "export_authority": "unapproved",
+    "export_format": "json",
+    "export_manifest_sha256": "f69ffc7d1e34883bcbc1b9d6282776bc40041b5a1617b345852688e9645af848",
+    "external_caller_approval": "not_supplied_or_authenticated",
+    "intended_outcome": "Resolve translations independently per key with requested-locale truncation and exact default fallback, validated immutable inputs and consistent app, service, batch and CLI interfaces.",
+    "out_of_scope": [
+      {
+        "source_refs": [
+          {
+            "line_end": 6,
+            "line_start": 6,
+            "quote": "locale contains that key, try the exact default locale (no default truncation).",
+            "source_id": "S1"
+          },
+          {
+            "line_end": 16,
+            "line_start": 15,
+            "quote": "Do not mutate any input, including on errors. Preserve the exact CLI --version\nresponse and unsupported-argument behavior; keep cli.py unchanged. Extra object",
+            "source_id": "S1"
+          }
+        ],
+        "statement": "Changes to cli.py or default-locale truncation."
+      }
+    ],
+    "record": "intentline.advisory-input",
+    "requirements": [
+      {
+        "basis": "request",
+        "boundaries": [
+          "Different keys resolve at different levels.",
+          "First locale parent wins over later locale exact.",
+          "Default is never truncated.",
+          "Duplicate keys, case mismatches and empty translations.",
+          "Non-BCP-47 locale strings still follow literal hyphen truncation."
+        ],
+        "evidence_gap_reasons": [],
+        "id": "R1",
+        "oracle": "Explicit examples must return [FR, CA, EN, null, CA]; a whole-payload locale selection would lose FR. A default en-US must not find en unless en is reached via requested locales.",
+        "plan_state": "planned",
+        "planned_evidence": "Run hand-authored per-key and boundary unittest examples with fixed expected values.",
+        "seam": "app.process",
+        "source_refs": [
+          {
+            "line_end": 8,
+            "line_start": 1,
+            "quote": "Implement per-key translations for {\"catalog\": {locale: {key: text}},\n\"locales\": [locale, ...], \"keys\": [key, ...], \"default\": locale}.\nLocale names and keys are nonempty strings; translations are strings, including\nempty strings. For EACH key, try requested locales in order, trying each exact\nlocale then repeatedly removing its last hyphen subtag. Only if no requested\nlocale contains that key, try the exact default locale (no default truncation).\nReturn {\"texts\": [translation_or_null, ...]} in keys order, retaining duplicates.\nMatching is case sensitive; an empty translation is a found value, not missing.",
+            "source_id": "S1"
+          }
+        ],
+        "statement": "Resolve each key by requested locale order, exact locale followed by repeated last-hyphen truncation; only after all requested chains miss use the exact default. Return texts in key order with duplicates, null for misses, case-sensitive matching and empty-string hits."
+      },
+      {
+        "basis": "request",
+        "boundaries": [
+          "Validate unused catalog entries and values even with empty keys.",
+          "Missing required fields, wrong containers, booleans/numbers/null, empty identifiers.",
+          "Empty catalog, locale tables, keys and locales are valid.",
+          "Extra top-level object keys are allowed."
+        ],
+        "evidence_gap_reasons": [],
+        "id": "R2",
+        "oracle": "Each malformed fixture raises ValueError; valid empty containers yield texts=[] or nulls as applicable, and unusual nonempty identifiers are accepted.",
+        "plan_state": "planned",
+        "planned_evidence": "Run a table of invalid fixtures and valid empty/unusual-string cases in unittest.",
+        "seam": "app.process",
+        "source_refs": [
+          {
+            "line_end": 10,
+            "line_start": 1,
+            "quote": "Implement per-key translations for {\"catalog\": {locale: {key: text}},\n\"locales\": [locale, ...], \"keys\": [key, ...], \"default\": locale}.\nLocale names and keys are nonempty strings; translations are strings, including\nempty strings. For EACH key, try requested locales in order, trying each exact\nlocale then repeatedly removing its last hyphen subtag. Only if no requested\nlocale contains that key, try the exact default locale (no default truncation).\nReturn {\"texts\": [translation_or_null, ...]} in keys order, retaining duplicates.\nMatching is case sensitive; an empty translation is a found value, not missing.\nReject malformed containers/values with ValueError. Empty keys/locales/catalog\ncontainers are allowed. Do not impose a BCP-47 grammar beyond nonempty strings.",
+            "source_id": "S1"
+          }
+        ],
+        "statement": "Validate required payload fields, catalog and each locale table as objects, locales and keys as lists, locale names and keys as nonempty strings and translations as strings. Raise ValueError on malformed values; allow empty containers, extra object keys and arbitrary nonempty locale strings."
+      },
+      {
+        "basis": "request",
+        "boundaries": [
+          "Unicode and empty translations survive JSON transport.",
+          "Malformed JSON and invalid payloads use existing CLI error handling."
+        ],
+        "evidence_gap_reasons": [],
+        "id": "R3",
+        "oracle": "For the same fixed payload app and service equal the specified texts and CLI emits corresponding JSON; invalid input exits 2 with ERROR.",
+        "plan_state": "planned",
+        "planned_evidence": "Unittest API parity and subprocess CLI integration with explicit expected JSON and error status.",
+        "seam": "app.process, service.handle, cli.py stdin/stdout",
+        "source_refs": [
+          {
+            "line_end": 13,
+            "line_start": 12,
+            "quote": "Expose the same behavior through app.process, service.handle and the existing\nJSON stdin/stdout CLI. Add service.batch(payloads): return each process result",
+            "source_id": "S1"
+          }
+        ],
+        "statement": "Expose identical resolution and validation through app.process, service.handle and the existing JSON stdin/stdout CLI."
+      },
+      {
+        "basis": "request",
+        "boundaries": [
+          "Empty batch returns [].",
+          "A later invalid member raises ValueError.",
+          "Different independent payloads retain batch order."
+        ],
+        "evidence_gap_reasons": [],
+        "id": "R4",
+        "oracle": "A two-payload batch returns the two independently specified results in order; tuples, objects and lists with invalid members raise ValueError.",
+        "plan_state": "planned",
+        "planned_evidence": "Unittest batch order, empty input and malformed/member validation.",
+        "seam": "service.batch",
+        "source_refs": [
+          {
+            "line_end": 14,
+            "line_start": 13,
+            "quote": "JSON stdin/stdout CLI. Add service.batch(payloads): return each process result\nin input order; reject a non-list or any invalid member with ValueError.",
+            "source_id": "S1"
+          }
+        ],
+        "statement": "Add service.batch accepting only a list of valid payloads and returning each process result in input order; raise ValueError for a non-list or any invalid member."
+      },
+      {
+        "basis": "request",
+        "boundaries": [
+          "Nested catalog tables and lists.",
+          "Successful lookup, invalid payload and invalid later batch member."
+        ],
+        "evidence_gap_reasons": [],
+        "id": "R5",
+        "oracle": "Inputs compare equal to a deep copy after each successful or failing call.",
+        "plan_state": "planned",
+        "planned_evidence": "Unittest deep-copy comparisons for all API entry points and batch error paths.",
+        "seam": "app.process, service.handle, service.batch",
+        "source_refs": [
+          {
+            "line_end": 15,
+            "line_start": 15,
+            "quote": "Do not mutate any input, including on errors. Preserve the exact CLI --version",
+            "source_id": "S1"
+          }
+        ],
+        "statement": "Do not mutate any caller input, including when validation fails."
+      },
+      {
+        "basis": "request",
+        "boundaries": [
+          "--version returns api-v1 plus newline, status 0, empty stderr.",
+          "Unsupported arguments return status 2, empty stdout and existing stderr text.",
+          "Review existing expectations against original behavior request."
+        ],
+        "evidence_gap_reasons": [],
+        "id": "R6",
+        "oracle": "CLI contents match the initial bytes; --version and unsupported arguments have exact preexisting outputs. Existing valid example remains correct.",
+        "plan_state": "planned",
+        "planned_evidence": "Byte comparison of cli.py and subprocess compatibility unittest cases.",
+        "seam": "cli.py and existing tests",
+        "source_refs": [
+          {
+            "line_end": 17,
+            "line_start": 15,
+            "quote": "Do not mutate any input, including on errors. Preserve the exact CLI --version\nresponse and unsupported-argument behavior; keep cli.py unchanged. Extra object\nkeys are allowed. Update a stale test expectation if it contradicts this request.",
+            "source_id": "S1"
+          }
+        ],
+        "statement": "Keep cli.py unchanged and preserve the exact --version response and unsupported-argument behavior; update any stale test expectation that contradicts the request."
+      }
+    ],
+    "revision": 1,
+    "schema_version": 1,
+    "source_bundle_sha256": "9e18ed6cba6bf05216b52a112af8bc94072fc5ba307e859ae3fccc50afacef04",
+    "source_sha256": "a916b8eeb9671391cc2bc577c1b6a3a635d54bce356997c3795df8c22bc543ca"
+  },
+  "kind": "bounded_local_check",
+  "limits": {
+    "check_seconds": 30,
+    "model_dispatches": 0,
+    "seconds": 687.0065645831637
+  },
+  "merged": false,
+  "model_dispatches": 0,
+  "observations": [
+    {
+      "argv": [
+        "/opt/homebrew/Cellar/python@3.14/3.14.8_2/Frameworks/Python.framework/Versions/3.14/bin/python3.14",
+        "-B",
+        "-c",
+        "from app import process; assert process({'catalog': {'fr-CA': {'a': 'CA'}, 'fr': {'b': 'FR'}, 'en': {'c': 'EN'}}, 'locales': ['fr-CA'], 'keys': ['b', 'a', 'c', 'x', 'a'], 'default': 'en'}) == {'texts': ['FR', 'CA', 'EN', None, 'CA']}"
+      ],
+      "elapsed_seconds": 0.14983154088258743,
+      "receipt_ref": "receipts/check-000.json",
+      "receipt_sha256": "59ae5e1a738b6dd742594512ebe4ce549a2ea5834e88c4e518299c0fd3b15e45",
+      "receipts": [
+        {
+          "argv": [
+            "/opt/homebrew/bin/codex",
+            "--no-daemon",
+            "-c",
+            "permissions.proofline_s0_7d46a11fc7a6498ab5fe48bf3f9873f9={\"filesystem\"={\":minimal\"=\"read\",\"/opt/homebrew/Cellar/python@3.14/3.14.8_2/Frameworks/Python.framework/Versions/3.14\"=\"read\",\"/opt/homebrew/opt/python@3.14/Frameworks/Python.framework/Versions/3.14\"=\"read\",\"/opt/homebrew/opt/python@3.14/bin/python3.14\"=\"read\",\"/opt/homebrew/Cellar/python@3.14/3.14.8_2/Frameworks/Python.framework/Versions/3.14/bin/python3.14\"=\"read\",\"/Users/grove/projects/proofline/.proofline/issue16-matched-v5-20261013/assignments/06-locale-fallback-combined/check/inputs\"=\"read\",\"/Users/grove/projects/proofline/.proofline/issue16-matched-v5-20261013/assignments/06-locale-fallback-combined/check/check-0\"=\"write\",\"/Users/grove/projects/proofline/.proofline/issue16-matched-v5-20261013/assignments/06-locale-fallback-combined/check/private\"=\"deny\",\"/opt/homebrew\"=\"read\",\"/Library/Developer/CommandLineTools/usr/bin\"=\"read\",\"/Library/Developer/CommandLineTools/usr/libexec/git-core\"=\"read\"},\"network\"={\"enabled\"=false}}",
+            "sandbox",
+            "--permission-profile",
+            "proofline_s0_7d46a11fc7a6498ab5fe48bf3f9873f9",
+            "--include-managed-config",
+            "--cd",
+            "/Users/grove/projects/proofline/.proofline/issue16-matched-v5-20261013/assignments/06-locale-fallback-combined/check/check-0",
+            "--",
+            "/opt/homebrew/Cellar/python@3.14/3.14.8_2/Frameworks/Python.framework/Versions/3.14/bin/python3.14",
+            "-I",
+            "-B",
+            "-c",
+            "import json,os,sys; a=json.loads(sys.argv[1]); os.execv(a[0],a)",
+            "[\"/opt/homebrew/Cellar/python@3.14/3.14.8_2/Frameworks/Python.framework/Versions/3.14/bin/python3.14\", \"-I\", \"-B\", \"-c\", \"import json,os,sys\\ntry:\\n    os.chdir(sys.argv[1])\\n    os.environ[\\\"PYTHONDONTWRITEBYTECODE\\\"]=\\\"1\\\"\\n    argv=json.loads(sys.argv[2])\\n    os.execvpe(argv[0],argv,os.environ)\\nexcept OSError as error:\\n    print(\\\"Proofline check launch unavailable: \\\"+str(error),file=sys.stderr)\\n    sys.exit(127)\\n\", \"/Users/grove/projects/proofline/.proofline/issue16-matched-v5-20261013/assignments/06-locale-fallback-combined/check/inputs/product\", \"[\\\"/opt/homebrew/Cellar/python@3.14/3.14.8_2/Frameworks/Python.framework/Versions/3.14/bin/python3.14\\\", \\\"-B\\\", \\\"-c\\\", \\\"from app import process; assert process({'catalog': {'fr-CA': {'a': 'CA'}, 'fr': {'b': 'FR'}, 'en': {'c': 'EN'}}, 'locales': ['fr-CA'], 'keys': ['b', 'a', 'c', 'x', 'a'], 'default': 'en'}) == {'texts': ['FR', 'CA', 'EN', None, 'CA']}\\\"]\"]"
+          ],
+          "cwd": "/Users/grove/projects/proofline/.proofline/issue16-matched-v5-20261013/assignments/06-locale-fallback-combined/check/check-0",
+          "elapsed_seconds": 0.149322,
+          "exit_code": 0,
+          "invocation_id": "aa812322-ded7-450d-8e76-29a4fb551270",
+          "kind": "process_probe",
+          "stderr": "",
+          "stdout": "",
+          "timed_out": false
+        }
+      ],
+      "returncode": 0,
+      "status": "PASSED"
+    },
+    {
+      "argv": [
+        "/opt/homebrew/Cellar/python@3.14/3.14.8_2/Frameworks/Python.framework/Versions/3.14/bin/python3.14",
+        "-B",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "tests"
+      ],
+      "elapsed_seconds": 0.47652250016108155,
+      "receipt_ref": "receipts/check-001.json",
+      "receipt_sha256": "5e9c37608f7dea644250c355cdccac157753174330bfe67ae846ec198d7cf9ea",
+      "receipts": [
+        {
+          "argv": [
+            "/opt/homebrew/bin/codex",
+            "--no-daemon",
+            "-c",
+            "permissions.proofline_s0_d06aa564a921431fbc792f4a2fa04114={\"filesystem\"={\":minimal\"=\"read\",\"/opt/homebrew/Cellar/python@3.14/3.14.8_2/Frameworks/Python.framework/Versions/3.14\"=\"read\",\"/opt/homebrew/opt/python@3.14/Frameworks/Python.framework/Versions/3.14\"=\"read\",\"/opt/homebrew/opt/python@3.14/bin/python3.14\"=\"read\",\"/opt/homebrew/Cellar/python@3.14/3.14.8_2/Frameworks/Python.framework/Versions/3.14/bin/python3.14\"=\"read\",\"/Users/grove/projects/proofline/.proofline/issue16-matched-v5-20261013/assignments/06-locale-fallback-combined/check/inputs\"=\"read\",\"/Users/grove/projects/proofline/.proofline/issue16-matched-v5-20261013/assignments/06-locale-fallback-combined/check/check-1\"=\"write\",\"/Users/grove/projects/proofline/.proofline/issue16-matched-v5-20261013/assignments/06-locale-fallback-combined/check/private\"=\"deny\",\"/opt/homebrew\"=\"read\",\"/Library/Developer/CommandLineTools/usr/bin\"=\"read\",\"/Library/Developer/CommandLineTools/usr/libexec/git-core\"=\"read\"},\"network\"={\"enabled\"=false}}",
+            "sandbox",
+            "--permission-profile",
+            "proofline_s0_d06aa564a921431fbc792f4a2fa04114",
+            "--include-managed-config",
+            "--cd",
+            "/Users/grove/projects/proofline/.proofline/issue16-matched-v5-20261013/assignments/06-locale-fallback-combined/check/check-1",
+            "--",
+            "/opt/homebrew/Cellar/python@3.14/3.14.8_2/Frameworks/Python.framework/Versions/3.14/bin/python3.14",
+            "-I",
+            "-B",
+            "-c",
+            "import json,os,sys; a=json.loads(sys.argv[1]); os.execv(a[0],a)",
+            "[\"/opt/homebrew/Cellar/python@3.14/3.14.8_2/Frameworks/Python.framework/Versions/3.14/bin/python3.14\", \"-I\", \"-B\", \"-c\", \"import json,os,sys\\ntry:\\n    os.chdir(sys.argv[1])\\n    os.environ[\\\"PYTHONDONTWRITEBYTECODE\\\"]=\\\"1\\\"\\n    argv=json.loads(sys.argv[2])\\n    os.execvpe(argv[0],argv,os.environ)\\nexcept OSError as error:\\n    print(\\\"Proofline check launch unavailable: \\\"+str(error),file=sys.stderr)\\n    sys.exit(127)\\n\", \"/Users/grove/projects/proofline/.proofline/issue16-matched-v5-20261013/assignments/06-locale-fallback-combined/check/inputs/product\", \"[\\\"/opt/homebrew/Cellar/python@3.14/3.14.8_2/Frameworks/Python.framework/Versions/3.14/bin/python3.14\\\", \\\"-B\\\", \\\"-m\\\", \\\"unittest\\\", \\\"discover\\\", \\\"-s\\\", \\\"tests\\\"]\"]"
+          ],
+          "cwd": "/Users/grove/projects/proofline/.proofline/issue16-matched-v5-20261013/assignments/06-locale-fallback-combined/check/check-1",
+          "elapsed_seconds": 0.476107,
+          "exit_code": 0,
+          "invocation_id": "77592b1c-c29e-4dc2-bb84-cab67cd75838",
+          "kind": "process_probe",
+          "stderr": "................\n----------------------------------------------------------------------\nRan 16 tests in 0.250s\n\nOK\n",
+          "stdout": "",
+          "timed_out": false
+        }
+      ],
+      "returncode": 0,
+      "status": "PASSED"
+    }
+  ],
+  "original_source_ref": "inputs/source.md",
+  "promise_evidence": {
+    "candidate_commit": "e13ed202160551361db8a0f718a3b8fc9aea6db2",
+    "candidate_tree": "c31f405f9d21617a9b0e5fd811b091cf51505307",
+    "coverage_completeness": "UNKNOWN",
+    "intentline": {
+      "constraints": [
+        {
+          "basis": "request",
+          "scope": "All payload validation and locale resolution",
+          "source_refs": [
+            {
+              "line_end": 10,
+              "line_start": 9,
+              "quote": "Reject malformed containers/values with ValueError. Empty keys/locales/catalog\ncontainers are allowed. Do not impose a BCP-47 grammar beyond nonempty strings.",
+              "source_id": "S1"
+            },
+            {
+              "line_end": 17,
+              "line_start": 16,
+              "quote": "response and unsupported-argument behavior; keep cli.py unchanged. Extra object\nkeys are allowed. Update a stale test expectation if it contradicts this request.",
+              "source_id": "S1"
+            }
+          ],
+          "statement": "Allow extra object keys and impose no BCP-47 grammar beyond nonempty strings."
+        }
+      ],
+      "contract_id": "locale-fallback-combined",
+      "contract_sha256": "d18db1b7ce0d72c4d3d8e9ccee13b599705f87081043aecb65af4e674cf2f048",
+      "evidence_gaps": [],
+      "execution_authority": "not_established",
+      "export_authority": "unapproved",
+      "export_manifest_sha256": "f69ffc7d1e34883bcbc1b9d6282776bc40041b5a1617b345852688e9645af848",
+      "external_caller_approval": "not_supplied_or_authenticated",
+      "intended_outcome": "Resolve translations independently per key with requested-locale truncation and exact default fallback, validated immutable inputs and consistent app, service, batch and CLI interfaces.",
+      "out_of_scope": [
+        {
+          "source_refs": [
+            {
+              "line_end": 6,
+              "line_start": 6,
+              "quote": "locale contains that key, try the exact default locale (no default truncation).",
+              "source_id": "S1"
+            },
+            {
+              "line_end": 16,
+              "line_start": 15,
+              "quote": "Do not mutate any input, including on errors. Preserve the exact CLI --version\nresponse and unsupported-argument behavior; keep cli.py unchanged. Extra object",
+              "source_id": "S1"
+            }
+          ],
+          "statement": "Changes to cli.py or default-locale truncation."
+        }
+      ],
+      "revision": 1,
+      "scope": "Untrusted advisory planning data, not executable tests, proof or consent.",
+      "source_bundle_sha256": "9e18ed6cba6bf05216b52a112af8bc94072fc5ba307e859ae3fccc50afacef04",
+      "source_sha256": "a916b8eeb9671391cc2bc577c1b6a3a635d54bce356997c3795df8c22bc543ca"
+    },
+    "original_source_ref": "inputs/source.md",
+    "requirements": [
+      {
+        "id": "R1",
+        "intentline_planning": {
+          "authority": "unverified original-source-grounded proposal",
+          "basis": "request",
+          "boundaries": [
+            "Different keys resolve at different levels.",
+            "First locale parent wins over later locale exact.",
+            "Default is never truncated.",
+            "Duplicate keys, case mismatches and empty translations.",
+            "Non-BCP-47 locale strings still follow literal hyphen truncation."
+          ],
+          "evidence_gap_reasons": [],
+          "plan_state": "planned",
+          "planned_evidence": "Run hand-authored per-key and boundary unittest examples with fixed expected values.",
+          "seam": "app.process"
+        },
+        "kind": "outcome",
+        "linked_checks": [
+          {
+            "argv": [
+              "/opt/homebrew/Cellar/python@3.14/3.14.8_2/Frameworks/Python.framework/Versions/3.14/bin/python3.14",
+              "-B",
+              "-c",
+              "from app import process; assert process({'catalog': {'fr-CA': {'a': 'CA'}, 'fr': {'b': 'FR'}, 'en': {'c': 'EN'}}, 'locales': ['fr-CA'], 'keys': ['b', 'a', 'c', 'x', 'a'], 'default': 'en'}) == {'texts': ['FR', 'CA', 'EN', None, 'CA']}"
+            ],
+            "index": 0,
+            "observation_status": "PASSED",
+            "receipt_ref": "receipts/check-000.json"
+          },
+          {
+            "argv": [
+              "/opt/homebrew/Cellar/python@3.14/3.14.8_2/Frameworks/Python.framework/Versions/3.14/bin/python3.14",
+              "-B",
+              "-m",
+              "unittest",
+              "discover",
+              "-s",
+              "tests"
+            ],
+            "index": 1,
+            "observation_status": "PASSED",
+            "receipt_ref": "receipts/check-001.json"
+          }
+        ],
+        "oracle_authority": "unverified caller suggestion",
+        "proposed_oracle": "Explicit examples must return [FR, CA, EN, null, CA]; a whole-payload locale selection would lose FR. A default en-US must not find en unless en is reached via requested locales.",
+        "reason": "Selected commands passed; linked behaviors are not proven in full",
+        "source_refs": [
+          {
+            "line_end": 8,
+            "line_start": 1,
+            "quote": "Implement per-key translations for {\"catalog\": {locale: {key: text}},\n\"locales\": [locale, ...], \"keys\": [key, ...], \"default\": locale}.\nLocale names and keys are nonempty strings; translations are strings, including\nempty strings. For EACH key, try requested locales in order, trying each exact\nlocale then repeatedly removing its last hyphen subtag. Only if no requested\nlocale contains that key, try the exact default locale (no default truncation).\nReturn {\"texts\": [translation_or_null, ...]} in keys order, retaining duplicates.\nMatching is case sensitive; an empty translation is a found value, not missing.",
+            "source_id": "S1"
+          }
+        ],
+        "statement": "Resolve each key by requested locale order, exact locale followed by repeated last-hyphen truncation; only after all requested chains miss use the exact default. Return texts in key order with duplicates, null for misses, case-sensitive matching and empty-string hits.",
+        "status": "LINKED CHECKS PASSED (limited evidence)"
+      },
+      {
+        "id": "R2",
+        "intentline_planning": {
+          "authority": "unverified original-source-grounded proposal",
+          "basis": "request",
+          "boundaries": [
+            "Validate unused catalog entries and values even with empty keys.",
+            "Missing required fields, wrong containers, booleans/numbers/null, empty identifiers.",
+            "Empty catalog, locale tables, keys and locales are valid.",
+            "Extra top-level object keys are allowed."
+          ],
+          "evidence_gap_reasons": [],
+          "plan_state": "planned",
+          "planned_evidence": "Run a table of invalid fixtures and valid empty/unusual-string cases in unittest.",
+          "seam": "app.process"
+        },
+        "kind": "outcome",
+        "linked_checks": [
+          {
+            "argv": [
+              "/opt/homebrew/Cellar/python@3.14/3.14.8_2/Frameworks/Python.framework/Versions/3.14/bin/python3.14",
+              "-B",
+              "-m",
+              "unittest",
+              "discover",
+              "-s",
+              "tests"
+            ],
+            "index": 1,
+            "observation_status": "PASSED",
+            "receipt_ref": "receipts/check-001.json"
+          }
+        ],
+        "oracle_authority": "unverified caller suggestion",
+        "proposed_oracle": "Each malformed fixture raises ValueError; valid empty containers yield texts=[] or nulls as applicable, and unusual nonempty identifiers are accepted.",
+        "reason": "Selected commands passed; linked behaviors are not proven in full",
+        "source_refs": [
+          {
+            "line_end": 10,
+            "line_start": 1,
+            "quote": "Implement per-key translations for {\"catalog\": {locale: {key: text}},\n\"locales\": [locale, ...], \"keys\": [key, ...], \"default\": locale}.\nLocale names and keys are nonempty strings; translations are strings, including\nempty strings. For EACH key, try requested locales in order, trying each exact\nlocale then repeatedly removing its last hyphen subtag. Only if no requested\nlocale contains that key, try the exact default locale (no default truncation).\nReturn {\"texts\": [translation_or_null, ...]} in keys order, retaining duplicates.\nMatching is case sensitive; an empty translation is a found value, not missing.\nReject malformed containers/values with ValueError. Empty keys/locales/catalog\ncontainers are allowed. Do not impose a BCP-47 grammar beyond nonempty strings.",
+            "source_id": "S1"
+          }
+        ],
+        "statement": "Validate required payload fields, catalog and each locale table as objects, locales and keys as lists, locale names and keys as nonempty strings and translations as strings. Raise ValueError on malformed values; allow empty containers, extra object keys and arbitrary nonempty locale strings.",
+        "status": "LINKED CHECKS PASSED (limited evidence)"
+      },
+      {
+        "id": "R3",
+        "intentline_planning": {
+          "authority": "unverified original-source-grounded proposal",
+          "basis": "request",
+          "boundaries": [
+            "Unicode and empty translations survive JSON transport.",
+            "Malformed JSON and invalid payloads use existing CLI error handling."
+          ],
+          "evidence_gap_reasons": [],
+          "plan_state": "planned",
+          "planned_evidence": "Unittest API parity and subprocess CLI integration with explicit expected JSON and error status.",
+          "seam": "app.process, service.handle, cli.py stdin/stdout"
+        },
+        "kind": "outcome",
+        "linked_checks": [
+          {
+            "argv": [
+              "/opt/homebrew/Cellar/python@3.14/3.14.8_2/Frameworks/Python.framework/Versions/3.14/bin/python3.14",
+              "-B",
+              "-m",
+              "unittest",
+              "discover",
+              "-s",
+              "tests"
+            ],
+            "index": 1,
+            "observation_status": "PASSED",
+            "receipt_ref": "receipts/check-001.json"
+          }
+        ],
+        "oracle_authority": "unverified caller suggestion",
+        "proposed_oracle": "For the same fixed payload app and service equal the specified texts and CLI emits corresponding JSON; invalid input exits 2 with ERROR.",
+        "reason": "Selected commands passed; linked behaviors are not proven in full",
+        "source_refs": [
+          {
+            "line_end": 13,
+            "line_start": 12,
+            "quote": "Expose the same behavior through app.process, service.handle and the existing\nJSON stdin/stdout CLI. Add service.batch(payloads): return each process result",
+            "source_id": "S1"
+          }
+        ],
+        "statement": "Expose identical resolution and validation through app.process, service.handle and the existing JSON stdin/stdout CLI.",
+        "status": "LINKED CHECKS PASSED (limited evidence)"
+      },
+      {
+        "id": "R4",
+        "intentline_planning": {
+          "authority": "unverified original-source-grounded proposal",
+          "basis": "request",
+          "boundaries": [
+            "Empty batch returns [].",
+            "A later invalid member raises ValueError.",
+            "Different independent payloads retain batch order."
+          ],
+          "evidence_gap_reasons": [],
+          "plan_state": "planned",
+          "planned_evidence": "Unittest batch order, empty input and malformed/member validation.",
+          "seam": "service.batch"
+        },
+        "kind": "outcome",
+        "linked_checks": [
+          {
+            "argv": [
+              "/opt/homebrew/Cellar/python@3.14/3.14.8_2/Frameworks/Python.framework/Versions/3.14/bin/python3.14",
+              "-B",
+              "-m",
+              "unittest",
+              "discover",
+              "-s",
+              "tests"
+            ],
+            "index": 1,
+            "observation_status": "PASSED",
+            "receipt_ref": "receipts/check-001.json"
+          }
+        ],
+        "oracle_authority": "unverified caller suggestion",
+        "proposed_oracle": "A two-payload batch returns the two independently specified results in order; tuples, objects and lists with invalid members raise ValueError.",
+        "reason": "Selected commands passed; linked behaviors are not proven in full",
+        "source_refs": [
+          {
+            "line_end": 14,
+            "line_start": 13,
+            "quote": "JSON stdin/stdout CLI. Add service.batch(payloads): return each process result\nin input order; reject a non-list or any invalid member with ValueError.",
+            "source_id": "S1"
+          }
+        ],
+        "statement": "Add service.batch accepting only a list of valid payloads and returning each process result in input order; raise ValueError for a non-list or any invalid member.",
+        "status": "LINKED CHECKS PASSED (limited evidence)"
+      },
+      {
+        "id": "R5",
+        "intentline_planning": {
+          "authority": "unverified original-source-grounded proposal",
+          "basis": "request",
+          "boundaries": [
+            "Nested catalog tables and lists.",
+            "Successful lookup, invalid payload and invalid later batch member."
+          ],
+          "evidence_gap_reasons": [],
+          "plan_state": "planned",
+          "planned_evidence": "Unittest deep-copy comparisons for all API entry points and batch error paths.",
+          "seam": "app.process, service.handle, service.batch"
+        },
+        "kind": "outcome",
+        "linked_checks": [
+          {
+            "argv": [
+              "/opt/homebrew/Cellar/python@3.14/3.14.8_2/Frameworks/Python.framework/Versions/3.14/bin/python3.14",
+              "-B",
+              "-m",
+              "unittest",
+              "discover",
+              "-s",
+              "tests"
+            ],
+            "index": 1,
+            "observation_status": "PASSED",
+            "receipt_ref": "receipts/check-001.json"
+          }
+        ],
+        "oracle_authority": "unverified caller suggestion",
+        "proposed_oracle": "Inputs compare equal to a deep copy after each successful or failing call.",
+        "reason": "Selected commands passed; linked behaviors are not proven in full",
+        "source_refs": [
+          {
+            "line_end": 15,
+            "line_start": 15,
+            "quote": "Do not mutate any input, including on errors. Preserve the exact CLI --version",
+            "source_id": "S1"
+          }
+        ],
+        "statement": "Do not mutate any caller input, including when validation fails.",
+        "status": "LINKED CHECKS PASSED (limited evidence)"
+      },
+      {
+        "id": "R6",
+        "intentline_planning": {
+          "authority": "unverified original-source-grounded proposal",
+          "basis": "request",
+          "boundaries": [
+            "--version returns api-v1 plus newline, status 0, empty stderr.",
+            "Unsupported arguments return status 2, empty stdout and existing stderr text.",
+            "Review existing expectations against original behavior request."
+          ],
+          "evidence_gap_reasons": [],
+          "plan_state": "planned",
+          "planned_evidence": "Byte comparison of cli.py and subprocess compatibility unittest cases.",
+          "seam": "cli.py and existing tests"
+        },
+        "kind": "outcome",
+        "linked_checks": [
+          {
+            "argv": [
+              "/opt/homebrew/Cellar/python@3.14/3.14.8_2/Frameworks/Python.framework/Versions/3.14/bin/python3.14",
+              "-B",
+              "-m",
+              "unittest",
+              "discover",
+              "-s",
+              "tests"
+            ],
+            "index": 1,
+            "observation_status": "PASSED",
+            "receipt_ref": "receipts/check-001.json"
+          }
+        ],
+        "oracle_authority": "unverified caller suggestion",
+        "proposed_oracle": "CLI contents match the initial bytes; --version and unsupported arguments have exact preexisting outputs. Existing valid example remains correct.",
+        "reason": "Selected commands passed; linked behaviors are not proven in full",
+        "source_refs": [
+          {
+            "line_end": 17,
+            "line_start": 15,
+            "quote": "Do not mutate any input, including on errors. Preserve the exact CLI --version\nresponse and unsupported-argument behavior; keep cli.py unchanged. Extra object\nkeys are allowed. Update a stale test expectation if it contradicts this request.",
+            "source_id": "S1"
+          }
+        ],
+        "statement": "Keep cli.py unchanged and preserve the exact --version response and unsupported-argument behavior; update any stale test expectation that contradicts the request.",
+        "status": "LINKED CHECKS PASSED (limited evidence)"
+      }
+    ],
+    "same_agent_review": {
+      "authority": "unverified advisory review; may omit original promises",
+      "independent": false,
+      "proposals": [],
+      "reported_performed": false
+    },
+    "scope": "Only explicitly mapped requirements/commands; all original source remains authoritative.",
+    "snapshot_sha256": "0492bf6126c7e096f3ad9ecc2d9e2381314299ea9d35e797b941918417867022",
+    "source_sha256": "a916b8eeb9671391cc2bc577c1b6a3a635d54bce356997c3795df8c22bc543ca"
+  },
+  "promise_mapping": {
+    "requirements": [
+      {
+        "checks": [
+          {
+            "argv": [
+              "/opt/homebrew/Cellar/python@3.14/3.14.8_2/Frameworks/Python.framework/Versions/3.14/bin/python3.14",
+              "-B",
+              "-c",
+              "from app import process; assert process({'catalog': {'fr-CA': {'a': 'CA'}, 'fr': {'b': 'FR'}, 'en': {'c': 'EN'}}, 'locales': ['fr-CA'], 'keys': ['b', 'a', 'c', 'x', 'a'], 'default': 'en'}) == {'texts': ['FR', 'CA', 'EN', None, 'CA']}"
+            ],
+            "index": 0
+          },
+          {
+            "argv": [
+              "/opt/homebrew/Cellar/python@3.14/3.14.8_2/Frameworks/Python.framework/Versions/3.14/bin/python3.14",
+              "-B",
+              "-m",
+              "unittest",
+              "discover",
+              "-s",
+              "tests"
+            ],
+            "index": 1
+          }
+        ],
+        "id": "R1",
+        "kind": "outcome",
+        "oracle": "Explicit examples must return [FR, CA, EN, null, CA]; a whole-payload locale selection would lose FR. A default en-US must not find en unless en is reached via requested locales.",
+        "source_refs": [
+          {
+            "line_end": 8,
+            "line_start": 1,
+            "quote": "Implement per-key translations for {\"catalog\": {locale: {key: text}},\n\"locales\": [locale, ...], \"keys\": [key, ...], \"default\": locale}.\nLocale names and keys are nonempty strings; translations are strings, including\nempty strings. For EACH key, try requested locales in order, trying each exact\nlocale then repeatedly removing its last hyphen subtag. Only if no requested\nlocale contains that key, try the exact default locale (no default truncation).\nReturn {\"texts\": [translation_or_null, ...]} in keys order, retaining duplicates.\nMatching is case sensitive; an empty translation is a found value, not missing.",
+            "source_id": "S1"
+          }
+        ],
+        "statement": "Resolve each key by requested locale order, exact locale followed by repeated last-hyphen truncation; only after all requested chains miss use the exact default. Return texts in key order with duplicates, null for misses, case-sensitive matching and empty-string hits."
+      },
+      {
+        "checks": [
+          {
+            "argv": [
+              "/opt/homebrew/Cellar/python@3.14/3.14.8_2/Frameworks/Python.framework/Versions/3.14/bin/python3.14",
+              "-B",
+              "-m",
+              "unittest",
+              "discover",
+              "-s",
+              "tests"
+            ],
+            "index": 1
+          }
+        ],
+        "id": "R2",
+        "kind": "outcome",
+        "oracle": "Each malformed fixture raises ValueError; valid empty containers yield texts=[] or nulls as applicable, and unusual nonempty identifiers are accepted.",
+        "source_refs": [
+          {
+            "line_end": 10,
+            "line_start": 1,
+            "quote": "Implement per-key translations for {\"catalog\": {locale: {key: text}},\n\"locales\": [locale, ...], \"keys\": [key, ...], \"default\": locale}.\nLocale names and keys are nonempty strings; translations are strings, including\nempty strings. For EACH key, try requested locales in order, trying each exact\nlocale then repeatedly removing its last hyphen subtag. Only if no requested\nlocale contains that key, try the exact default locale (no default truncation).\nReturn {\"texts\": [translation_or_null, ...]} in keys order, retaining duplicates.\nMatching is case sensitive; an empty translation is a found value, not missing.\nReject malformed containers/values with ValueError. Empty keys/locales/catalog\ncontainers are allowed. Do not impose a BCP-47 grammar beyond nonempty strings.",
+            "source_id": "S1"
+          }
+        ],
+        "statement": "Validate required payload fields, catalog and each locale table as objects, locales and keys as lists, locale names and keys as nonempty strings and translations as strings. Raise ValueError on malformed values; allow empty containers, extra object keys and arbitrary nonempty locale strings."
+      },
+      {
+        "checks": [
+          {
+            "argv": [
+              "/opt/homebrew/Cellar/python@3.14/3.14.8_2/Frameworks/Python.framework/Versions/3.14/bin/python3.14",
+              "-B",
+              "-m",
+              "unittest",
+              "discover",
+              "-s",
+              "tests"
+            ],
+            "index": 1
+          }
+        ],
+        "id": "R3",
+        "kind": "outcome",
+        "oracle": "For the same fixed payload app and service equal the specified texts and CLI emits corresponding JSON; invalid input exits 2 with ERROR.",
+        "source_refs": [
+          {
+            "line_end": 13,
+            "line_start": 12,
+            "quote": "Expose the same behavior through app.process, service.handle and the existing\nJSON stdin/stdout CLI. Add service.batch(payloads): return each process result",
+            "source_id": "S1"
+          }
+        ],
+        "statement": "Expose identical resolution and validation through app.process, service.handle and the existing JSON stdin/stdout CLI."
+      },
+      {
+        "checks": [
+          {
+            "argv": [
+              "/opt/homebrew/Cellar/python@3.14/3.14.8_2/Frameworks/Python.framework/Versions/3.14/bin/python3.14",
+              "-B",
+              "-m",
+              "unittest",
+              "discover",
+              "-s",
+              "tests"
+            ],
+            "index": 1
+          }
+        ],
+        "id": "R4",
+        "kind": "outcome",
+        "oracle": "A two-payload batch returns the two independently specified results in order; tuples, objects and lists with invalid members raise ValueError.",
+        "source_refs": [
+          {
+            "line_end": 14,
+            "line_start": 13,
+            "quote": "JSON stdin/stdout CLI. Add service.batch(payloads): return each process result\nin input order; reject a non-list or any invalid member with ValueError.",
+            "source_id": "S1"
+          }
+        ],
+        "statement": "Add service.batch accepting only a list of valid payloads and returning each process result in input order; raise ValueError for a non-list or any invalid member."
+      },
+      {
+        "checks": [
+          {
+            "argv": [
+              "/opt/homebrew/Cellar/python@3.14/3.14.8_2/Frameworks/Python.framework/Versions/3.14/bin/python3.14",
+              "-B",
+              "-m",
+              "unittest",
+              "discover",
+              "-s",
+              "tests"
+            ],
+            "index": 1
+          }
+        ],
+        "id": "R5",
+        "kind": "outcome",
+        "oracle": "Inputs compare equal to a deep copy after each successful or failing call.",
+        "source_refs": [
+          {
+            "line_end": 15,
+            "line_start": 15,
+            "quote": "Do not mutate any input, including on errors. Preserve the exact CLI --version",
+            "source_id": "S1"
+          }
+        ],
+        "statement": "Do not mutate any caller input, including when validation fails."
+      },
+      {
+        "checks": [
+          {
+            "argv": [
+              "/opt/homebrew/Cellar/python@3.14/3.14.8_2/Frameworks/Python.framework/Versions/3.14/bin/python3.14",
+              "-B",
+              "-m",
+              "unittest",
+              "discover",
+              "-s",
+              "tests"
+            ],
+            "index": 1
+          }
+        ],
+        "id": "R6",
+        "kind": "outcome",
+        "oracle": "CLI contents match the initial bytes; --version and unsupported arguments have exact preexisting outputs. Existing valid example remains correct.",
+        "source_refs": [
+          {
+            "line_end": 17,
+            "line_start": 15,
+            "quote": "Do not mutate any input, including on errors. Preserve the exact CLI --version\nresponse and unsupported-argument behavior; keep cli.py unchanged. Extra object\nkeys are allowed. Update a stale test expectation if it contradicts this request.",
+            "source_id": "S1"
+          }
+        ],
+        "statement": "Keep cli.py unchanged and preserve the exact --version response and unsupported-argument behavior; update any stale test expectation that contradicts the request."
+      }
+    ],
+    "review": {
+      "performed": false,
+      "proposals": []
+    },
+    "schema_version": 1,
+    "source_sha256": "a916b8eeb9671391cc2bc577c1b6a3a635d54bce356997c3795df8c22bc543ca"
+  },
+  "published": false,
+  "python": "/opt/homebrew/Cellar/python@3.14/3.14.8_2/Frameworks/Python.framework/Versions/3.14/bin/python3.14",
+  "schema_version": 1,
+  "selection": {
+    "candidate_commit": "e13ed202160551361db8a0f718a3b8fc9aea6db2",
+    "candidate_tree": "c31f405f9d21617a9b0e5fd811b091cf51505307",
+    "entries": [
+      {
+        "kind": "file",
+        "mode": 420,
+        "path": "README.md",
+        "sha256": "91d664731edf42a9a028b828581385640e10be5d74c573b28f6e3e6f3c81738c"
+      },
+      {
+        "kind": "file",
+        "mode": 420,
+        "path": "app.py",
+        "sha256": "f7942206bb5dcbf34e7258716692921904fbe3399436db7d93a01ea8efadfc53"
+      },
+      {
+        "kind": "file",
+        "mode": 420,
+        "path": "cli.py",
+        "sha256": "14aea6a3d7acc1d93b80e079fd645b48e4fef2e976df9ef355cc50829a7c74c8"
+      },
+      {
+        "kind": "file",
+        "mode": 420,
+        "path": "service.py",
+        "sha256": "462b8f5485115861e83e645ebdbd2162d6a7a040e0321ff7b517f5fcfe4ce5be"
+      },
+      {
+        "kind": "file",
+        "mode": 420,
+        "path": "tests/test_compat.py",
+        "sha256": "2432e53eeae0b53103501bb0cdfbd3dab2446d236503df335ea8a5e5e4171703"
+      },
+      {
+        "kind": "file",
+        "mode": 420,
+        "path": "tests/test_example.py",
+        "sha256": "6978b5b7daa1490e0c7ce0e11ee230234953bbaf6f70ba96e04b325b5469ecc4"
+      },
+      {
+        "kind": "file",
+        "mode": 420,
+        "path": "tests/test_translations.py",
+        "sha256": "7465ecc0d5e5ebf031bdac40748d8de315dcb0428705d9e6b85db3bc5a1dd1b5"
+      }
+    ],
+    "policy": "current tracked files plus non-ignored untracked files; tracked deletions omitted"
+  },
+  "snapshot": "0492bf6126c7e096f3ad9ecc2d9e2381314299ea9d35e797b941918417867022",
+  "source_sha256": "a916b8eeb9671391cc2bc577c1b6a3a635d54bce356997c3795df8c22bc543ca",
+  "stages": [],
+  "status": "CHECKS PASSED",
+  "version_receipt": {
+    "argv": [
+      "/opt/homebrew/bin/codex",
+      "--version"
+    ],
+    "cwd": "/Users/grove/projects/proofline/.proofline/issue16-matched-v5-20261013/assignments/06-locale-fallback-combined/check",
+    "elapsed_seconds": 0.021707,
+    "exit_code": 0,
+    "invocation_id": "4dbe887d-8e45-4d5e-9d0e-18dc5f78e004",
+    "kind": "process_probe",
+    "stderr": "",
+    "stdout": "codex-cli 0.162.1\n",
+    "timed_out": false
+  }
+}

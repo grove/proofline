@@ -1,0 +1,1157 @@
+{
+  "advisory_status": "VALID",
+  "agent_completed": true,
+  "arm": "combined",
+  "base_tree": "9503e952268e34618f20dcc1f87108ee20141ad3",
+  "candidate_commit": "3d7bc444b8614a8e189d5245e37a0e7438f79226",
+  "candidate_files": {
+    "README.md": {
+      "kind": "file",
+      "mode": 420,
+      "path": "README.md",
+      "sha256": "91d664731edf42a9a028b828581385640e10be5d74c573b28f6e3e6f3c81738c"
+    },
+    "app.py": {
+      "kind": "file",
+      "mode": 420,
+      "path": "app.py",
+      "sha256": "f7942206bb5dcbf34e7258716692921904fbe3399436db7d93a01ea8efadfc53"
+    },
+    "cli.py": {
+      "kind": "file",
+      "mode": 420,
+      "path": "cli.py",
+      "sha256": "14aea6a3d7acc1d93b80e079fd645b48e4fef2e976df9ef355cc50829a7c74c8"
+    },
+    "service.py": {
+      "kind": "file",
+      "mode": 420,
+      "path": "service.py",
+      "sha256": "462b8f5485115861e83e645ebdbd2162d6a7a040e0321ff7b517f5fcfe4ce5be"
+    },
+    "tests": {
+      "kind": "directory",
+      "mode": 493,
+      "path": "tests"
+    },
+    "tests/test_compat.py": {
+      "kind": "file",
+      "mode": 420,
+      "path": "tests/test_compat.py",
+      "sha256": "2432e53eeae0b53103501bb0cdfbd3dab2446d236503df335ea8a5e5e4171703"
+    },
+    "tests/test_example.py": {
+      "kind": "file",
+      "mode": 420,
+      "path": "tests/test_example.py",
+      "sha256": "6978b5b7daa1490e0c7ce0e11ee230234953bbaf6f70ba96e04b325b5469ecc4"
+    },
+    "tests/test_translations.py": {
+      "kind": "file",
+      "mode": 420,
+      "path": "tests/test_translations.py",
+      "sha256": "7465ecc0d5e5ebf031bdac40748d8de315dcb0428705d9e6b85db3bc5a1dd1b5"
+    }
+  },
+  "candidate_snapshot_sha256": "f94c19e947808b4ba09ccbd9fc46bfdb2eb75e58fa9cac10c3b6ec4feb0a9eaa",
+  "candidate_tree": "c31f405f9d21617a9b0e5fd811b091cf51505307",
+  "check_elapsed_seconds": 1.1413900000043213,
+  "check_model_dispatches": 0,
+  "check_status": "CHECKS PASSED",
+  "controller_episode_processes": 26,
+  "controller_grading_processes": 34,
+  "extra_worker_messages": 0,
+  "feedback": {
+    "candidate_commit": "e13ed202160551361db8a0f718a3b8fc9aea6db2",
+    "candidate_tree": "c31f405f9d21617a9b0e5fd811b091cf51505307",
+    "checks": [
+      {
+        "argv": [
+          "/opt/homebrew/Cellar/python@3.14/3.14.8_2/Frameworks/Python.framework/Versions/3.14/bin/python3.14",
+          "-B",
+          "-c",
+          "from app import process; assert process({'catalog': {'fr-CA': {'a': 'CA'}, 'fr': {'b': 'FR'}, 'en': {'c': 'EN'}}, 'locales': ['fr-CA'], 'keys': ['b', 'a', 'c', 'x', 'a'], 'default': 'en'}) == {'texts': ['FR', 'CA', 'EN', None, 'CA']}"
+        ],
+        "elapsed_seconds": 0.14983154088258743,
+        "exit_code": 0,
+        "index": 0,
+        "outcome_ids": [],
+        "reason": "Selected command exited 0; unselected promises are not demonstrated.",
+        "receipt_ref": "receipts/check-000.json",
+        "status": "PASSED",
+        "stderr_excerpt": "",
+        "stderr_ref": "receipts/check-000.json#stderr",
+        "stdout_excerpt": "",
+        "stdout_ref": "receipts/check-000.json#stdout"
+      },
+      {
+        "argv": [
+          "/opt/homebrew/Cellar/python@3.14/3.14.8_2/Frameworks/Python.framework/Versions/3.14/bin/python3.14",
+          "-B",
+          "-m",
+          "unittest",
+          "discover",
+          "-s",
+          "tests"
+        ],
+        "elapsed_seconds": 0.47652250016108155,
+        "exit_code": 0,
+        "index": 1,
+        "outcome_ids": [],
+        "reason": "Selected command exited 0; unselected promises are not demonstrated.",
+        "receipt_ref": "receipts/check-001.json",
+        "status": "PASSED",
+        "stderr_excerpt": "................ | ---------------------------------------------------------------------- | Ran 16 tests in 0.250s | OK",
+        "stderr_ref": "receipts/check-001.json#stderr",
+        "stdout_excerpt": "",
+        "stdout_ref": "receipts/check-001.json#stdout"
+      }
+    ],
+    "headline": "2/2 selected checks passed",
+    "next_action": "Report only the commands checked; original request coverage remains unknown.",
+    "scope": "Selected executable commands only; completeness of the original user promise is unknown.",
+    "snapshot_sha256": "0492bf6126c7e096f3ad9ecc2d9e2381314299ea9d35e797b941918417867022",
+    "source_sha256": "a916b8eeb9671391cc2bc577c1b6a3a635d54bce356997c3795df8c22bc543ca",
+    "status": "CHECKS PASSED"
+  },
+  "finished_at": "2026-10-13T15:28:32.979104+00:00",
+  "grade": {
+    "available": true,
+    "correct": true,
+    "elapsed_seconds": 5.235368499998003,
+    "failures": [],
+    "receipts": [
+      {
+        "elapsed_seconds": 0.142519,
+        "exit_code": 0,
+        "invocation_id": "4ffc0999-eecb-423b-b58f-d22c36737881",
+        "kind": "process_probe",
+        "native_argv_sha256": "d2e80d5ab31db46463cac4e34115269e90a40b34f27e71d4b078f1e8628b4c9b",
+        "stderr": "",
+        "stdout": "{\"ok\": true, \"unchanged\": true, \"value\": {\"texts\": [\"FR\", \"CA\", \"EN\", null, \"CA\"]}}\n",
+        "timed_out": false
+      },
+      {
+        "elapsed_seconds": 0.129174,
+        "exit_code": 0,
+        "invocation_id": "8e3dbdcb-bc03-4da4-8031-d508ed88bcca",
+        "kind": "process_probe",
+        "native_argv_sha256": "8979da2f15b36d40dacf44f1548b98f5703f92038347c36ffd580e847970f0c8",
+        "stderr": "",
+        "stdout": "{\"ok\": true, \"unchanged\": true, \"value\": {\"texts\": [\"FR\", \"CA\", \"EN\", null, \"CA\"]}}\n",
+        "timed_out": false
+      },
+      {
+        "elapsed_seconds": 0.145106,
+        "exit_code": 0,
+        "invocation_id": "53ea8846-558a-4149-8c28-b2463bca8282",
+        "kind": "process_probe",
+        "native_argv_sha256": "cf0d4fdc9cfc09c4b9a6bc7c0e6158b8077668cf8ef1098a2957f65f2ca97282",
+        "stderr": "",
+        "stdout": "{\"texts\": [\"FR\", \"CA\", \"EN\", null, \"CA\"]}\n",
+        "timed_out": false
+      },
+      {
+        "elapsed_seconds": 0.142068,
+        "exit_code": 0,
+        "invocation_id": "5037e6a7-e2b0-40d1-884c-f7710ae422f1",
+        "kind": "process_probe",
+        "native_argv_sha256": "7f2bb543e54ed07676830611d6ff5df853d98820abb808283fd101e78b5ebfc4",
+        "stderr": "",
+        "stdout": "{\"ok\": true, \"unchanged\": true, \"value\": {\"texts\": [\"\"]}}\n",
+        "timed_out": false
+      },
+      {
+        "elapsed_seconds": 0.148009,
+        "exit_code": 0,
+        "invocation_id": "1dde2d25-414d-409b-8a3c-51fd85addf30",
+        "kind": "process_probe",
+        "native_argv_sha256": "099104157151afc15c85b73d2ddb6840f27d3bdcf8f2c7309ad305553ce36d7c",
+        "stderr": "",
+        "stdout": "{\"ok\": true, \"unchanged\": true, \"value\": {\"texts\": [\"\"]}}\n",
+        "timed_out": false
+      },
+      {
+        "elapsed_seconds": 0.148731,
+        "exit_code": 0,
+        "invocation_id": "35f86ee2-13cf-4ee0-bb15-a9b0cb8fd6cb",
+        "kind": "process_probe",
+        "native_argv_sha256": "5f51ddefea894b6537ce166b90bb7c5bc8bc984c0feda9b4be4f24486269c83b",
+        "stderr": "",
+        "stdout": "{\"texts\": [\"\"]}\n",
+        "timed_out": false
+      },
+      {
+        "elapsed_seconds": 0.148345,
+        "exit_code": 0,
+        "invocation_id": "d3432be8-be1c-4134-bc53-edb5dafb1e21",
+        "kind": "process_probe",
+        "native_argv_sha256": "474860b38a265de66ad426228207560c07c902efc421825c38ddf77ceede7f20",
+        "stderr": "",
+        "stdout": "{\"ok\": true, \"unchanged\": true, \"value\": {\"texts\": [null]}}\n",
+        "timed_out": false
+      },
+      {
+        "elapsed_seconds": 0.14199,
+        "exit_code": 0,
+        "invocation_id": "98b95e51-6e94-4efa-9b42-328ffaa2031a",
+        "kind": "process_probe",
+        "native_argv_sha256": "90c03f98e2570021fa2cea8d7be2e3645cd1624e13cda81f789b28e47272fcc9",
+        "stderr": "",
+        "stdout": "{\"ok\": true, \"unchanged\": true, \"value\": {\"texts\": [null]}}\n",
+        "timed_out": false
+      },
+      {
+        "elapsed_seconds": 0.150234,
+        "exit_code": 0,
+        "invocation_id": "fbb05d6e-2685-4066-a8f5-e2a2bfa763c2",
+        "kind": "process_probe",
+        "native_argv_sha256": "3ee954ed948c9b4f223f0df558f3c3c8336f8ced82868666be12725c431677b6",
+        "stderr": "",
+        "stdout": "{\"texts\": [null]}\n",
+        "timed_out": false
+      },
+      {
+        "elapsed_seconds": 0.149589,
+        "exit_code": 0,
+        "invocation_id": "b53d9b5e-c07a-4593-a0e8-bcd3b48da294",
+        "kind": "process_probe",
+        "native_argv_sha256": "e2ac4e76402a21d9119e6b7877dd72be7b25fbed2692c89a829ba097300edf84",
+        "stderr": "",
+        "stdout": "{\"ok\": true, \"unchanged\": true, \"value\": {\"texts\": [\"X\", null]}}\n",
+        "timed_out": false
+      },
+      {
+        "elapsed_seconds": 0.143462,
+        "exit_code": 0,
+        "invocation_id": "ed9c0f78-420c-400c-b984-72d912c41d60",
+        "kind": "process_probe",
+        "native_argv_sha256": "d159c2c100942e79b1402f37f99cef11d54b209f47586ec6be19b45a715a5691",
+        "stderr": "",
+        "stdout": "{\"ok\": true, \"unchanged\": true, \"value\": {\"texts\": [\"X\", null]}}\n",
+        "timed_out": false
+      },
+      {
+        "elapsed_seconds": 0.131095,
+        "exit_code": 0,
+        "invocation_id": "f3939877-0c6a-4de1-9604-bcb0e905d060",
+        "kind": "process_probe",
+        "native_argv_sha256": "e4b58ea18a51ef317683431a3cd13ea234de0634c2782ca1ecb12280d5ff6a38",
+        "stderr": "",
+        "stdout": "{\"texts\": [\"X\", null]}\n",
+        "timed_out": false
+      },
+      {
+        "elapsed_seconds": 0.150143,
+        "exit_code": 0,
+        "invocation_id": "f99b8983-98d9-445a-b085-7e9afece5999",
+        "kind": "process_probe",
+        "native_argv_sha256": "d5bb2f1080586d30418b3fe0bd7a331b34b383d6ec4942ec772b9e6579cc8244",
+        "stderr": "",
+        "stdout": "{\"ok\": true, \"unchanged\": true, \"value\": {\"texts\": [\"ok\"]}}\n",
+        "timed_out": false
+      },
+      {
+        "elapsed_seconds": 0.151319,
+        "exit_code": 0,
+        "invocation_id": "77e934df-e536-4ed5-bd55-349126dbffd4",
+        "kind": "process_probe",
+        "native_argv_sha256": "f041365d85a81fc613de5cd08698445665e2da646ccc1b2695332fcf5ba526c7",
+        "stderr": "",
+        "stdout": "{\"ok\": true, \"unchanged\": true, \"value\": {\"texts\": [\"ok\"]}}\n",
+        "timed_out": false
+      },
+      {
+        "elapsed_seconds": 0.144349,
+        "exit_code": 0,
+        "invocation_id": "2a729723-2ec5-468e-aee1-e7b2889d549a",
+        "kind": "process_probe",
+        "native_argv_sha256": "2cd61ee569fd692ef11d2abde3e5c20eb47ea1c447934543d88af39a49b3e522",
+        "stderr": "",
+        "stdout": "{\"texts\": [\"ok\"]}\n",
+        "timed_out": false
+      },
+      {
+        "elapsed_seconds": 0.144048,
+        "exit_code": 0,
+        "invocation_id": "f752fa63-766d-4755-bd70-5f60f59b9b1d",
+        "kind": "process_probe",
+        "native_argv_sha256": "03916d4d862ea6c1e1a40a30dff304dcf3dade17d56b9ee573f38239ba781b07",
+        "stderr": "",
+        "stdout": "{\"ok\": true, \"unchanged\": true, \"value\": {\"texts\": []}}\n",
+        "timed_out": false
+      },
+      {
+        "elapsed_seconds": 0.132223,
+        "exit_code": 0,
+        "invocation_id": "b0c3d8dc-a61b-4e88-b12c-5151a189fab0",
+        "kind": "process_probe",
+        "native_argv_sha256": "2e9d94950eb9677588ad3e9a93f921121128b864e66660799f959cab06d7f037",
+        "stderr": "",
+        "stdout": "{\"ok\": true, \"unchanged\": true, \"value\": {\"texts\": []}}\n",
+        "timed_out": false
+      },
+      {
+        "elapsed_seconds": 0.14212,
+        "exit_code": 0,
+        "invocation_id": "22835dc2-9d04-496e-a89a-446d1ae4233c",
+        "kind": "process_probe",
+        "native_argv_sha256": "26c36bd9a004c3aaedf55f9dde3cd625d7dad6288eccc604aaa0c5321b90e9ae",
+        "stderr": "",
+        "stdout": "{\"texts\": []}\n",
+        "timed_out": false
+      },
+      {
+        "elapsed_seconds": 0.145566,
+        "exit_code": 0,
+        "invocation_id": "2bd8f075-c36a-4974-b8c9-cd7b625f8da8",
+        "kind": "process_probe",
+        "native_argv_sha256": "114936781319c053a2a589beae12c023597aed572fb920ad4548f8ea95c69070",
+        "stderr": "",
+        "stdout": "{\"error\": \"ValueError\", \"is_value_error\": true, \"ok\": false, \"unchanged\": true}\n",
+        "timed_out": false
+      },
+      {
+        "elapsed_seconds": 0.146634,
+        "exit_code": 0,
+        "invocation_id": "5b6f4f73-5185-4522-b905-fcc8d83f6f70",
+        "kind": "process_probe",
+        "native_argv_sha256": "f35ce8031f169ed5224953d52a02b1e1c887bbcd8bd4812ce19d68f8a7221b2a",
+        "stderr": "",
+        "stdout": "{\"error\": \"ValueError\", \"is_value_error\": true, \"ok\": false, \"unchanged\": true}\n",
+        "timed_out": false
+      },
+      {
+        "elapsed_seconds": 0.149154,
+        "exit_code": 2,
+        "invocation_id": "b67a86f2-6d12-4cd1-9b50-ba2a7b551b4c",
+        "kind": "process_probe",
+        "native_argv_sha256": "affef00a0b2ec7b81b171b0858f4f0645abd5b226ca920f2752c08e56d3d028a",
+        "stderr": "ERROR: translations must map nonempty keys to strings\n",
+        "stdout": "",
+        "timed_out": false
+      },
+      {
+        "elapsed_seconds": 0.144506,
+        "exit_code": 0,
+        "invocation_id": "2be4bd2f-db74-45da-8bf7-f05c4295065c",
+        "kind": "process_probe",
+        "native_argv_sha256": "d6042732111566ae93acd97fd954a8dfca2387055aaf5a3452cddf88919fc250",
+        "stderr": "",
+        "stdout": "{\"error\": \"ValueError\", \"is_value_error\": true, \"ok\": false, \"unchanged\": true}\n",
+        "timed_out": false
+      },
+      {
+        "elapsed_seconds": 0.144797,
+        "exit_code": 0,
+        "invocation_id": "0a244645-0b0f-4c5c-9a20-c4863404c734",
+        "kind": "process_probe",
+        "native_argv_sha256": "cf5de9c759b92136e2820ee09208fd78d4ff9ef24097e5f5639043c889feece0",
+        "stderr": "",
+        "stdout": "{\"error\": \"ValueError\", \"is_value_error\": true, \"ok\": false, \"unchanged\": true}\n",
+        "timed_out": false
+      },
+      {
+        "elapsed_seconds": 0.132454,
+        "exit_code": 2,
+        "invocation_id": "7ff3f1f3-dc7f-45de-973d-9be64492514f",
+        "kind": "process_probe",
+        "native_argv_sha256": "73497d1d8a7a0ce793d75d4966e9804927f7cad3dfaaeb8fd9afd1f347629148",
+        "stderr": "ERROR: keys must be a list of nonempty strings\n",
+        "stdout": "",
+        "timed_out": false
+      },
+      {
+        "elapsed_seconds": 0.149511,
+        "exit_code": 0,
+        "invocation_id": "7dd5edd4-0a78-4f05-b029-07be0eafa277",
+        "kind": "process_probe",
+        "native_argv_sha256": "0a80e5020e5a0d7ca8f1c2d1c0a811680d986a05da70698ec4a53c44da609a55",
+        "stderr": "",
+        "stdout": "{\"error\": \"ValueError\", \"is_value_error\": true, \"ok\": false, \"unchanged\": true}\n",
+        "timed_out": false
+      },
+      {
+        "elapsed_seconds": 0.141268,
+        "exit_code": 0,
+        "invocation_id": "ac6d177e-7b2c-4f62-a7bb-bb57798dbd50",
+        "kind": "process_probe",
+        "native_argv_sha256": "6e61eb75494de2251265e4c4909231f1e16747ad6f582726e70bd6e74a6b8838",
+        "stderr": "",
+        "stdout": "{\"error\": \"ValueError\", \"is_value_error\": true, \"ok\": false, \"unchanged\": true}\n",
+        "timed_out": false
+      },
+      {
+        "elapsed_seconds": 0.147469,
+        "exit_code": 2,
+        "invocation_id": "7e78451b-4ef0-4d7b-a0a1-cd54f3f7d22a",
+        "kind": "process_probe",
+        "native_argv_sha256": "2aa726b8a8e6b1c5fd3117219ac80b1a8654fbfd828c39157bcce74684a94225",
+        "stderr": "ERROR: payload must be an object\n",
+        "stdout": "",
+        "timed_out": false
+      },
+      {
+        "elapsed_seconds": 0.149546,
+        "exit_code": 0,
+        "invocation_id": "8b372d93-c615-4236-a2ef-de64ddfeeb79",
+        "kind": "process_probe",
+        "native_argv_sha256": "3c4a62abc32ac4b4373a72f7120103d1c7f2a73472bee10634bd5ae3a6362d0d",
+        "stderr": "",
+        "stdout": "{\"ok\": true, \"unchanged\": true, \"value\": []}\n",
+        "timed_out": false
+      },
+      {
+        "elapsed_seconds": 0.148865,
+        "exit_code": 0,
+        "invocation_id": "877cfadd-1234-48cc-9bf2-fbdca1b78e8e",
+        "kind": "process_probe",
+        "native_argv_sha256": "22369a0dd6aa093c0013654a4731a1fc200d596b70434aa03c1babd475ae207b",
+        "stderr": "",
+        "stdout": "{\"ok\": true, \"unchanged\": true, \"value\": [{\"texts\": [\"FR\", \"CA\", \"EN\", null, \"CA\"]}, {\"texts\": [\"FR\", \"CA\", \"EN\", null, \"CA\"]}]}\n",
+        "timed_out": false
+      },
+      {
+        "elapsed_seconds": 0.145726,
+        "exit_code": 0,
+        "invocation_id": "6a9c9c44-2d02-4dea-826b-b4c598e8a4cf",
+        "kind": "process_probe",
+        "native_argv_sha256": "ed088b5327f1ee6916e81f4ae39e8871fc6610da4c0cb58fb12337574615d384",
+        "stderr": "",
+        "stdout": "{\"error\": \"ValueError\", \"is_value_error\": true, \"ok\": false, \"unchanged\": true}\n",
+        "timed_out": false
+      },
+      {
+        "elapsed_seconds": 0.146563,
+        "exit_code": 0,
+        "invocation_id": "70e70ca4-fcae-48ee-8632-11253f79d41a",
+        "kind": "process_probe",
+        "native_argv_sha256": "9f7de9d250637755b53c9695b4d5128f55b2f07ec4030c5e8937b70df3adef97",
+        "stderr": "",
+        "stdout": "{\"error\": \"ValueError\", \"is_value_error\": true, \"ok\": false, \"unchanged\": true}\n",
+        "timed_out": false
+      },
+      {
+        "elapsed_seconds": 0.14579,
+        "exit_code": 0,
+        "invocation_id": "1d0bb64c-f8cc-4bb0-8456-ce24d7abd43d",
+        "kind": "process_probe",
+        "native_argv_sha256": "b4f15bb7c93af183e758a118c04f0293b43ea74197821a1d3b8a4ec1ae6d519d",
+        "stderr": "",
+        "stdout": "api-v1\n",
+        "timed_out": false
+      },
+      {
+        "elapsed_seconds": 0.14468,
+        "exit_code": 2,
+        "invocation_id": "51ba807a-61fb-4f5b-9981-5022a1e24eb3",
+        "kind": "process_probe",
+        "native_argv_sha256": "78b615b63f101e7c3160feb79ed216600b82c107094e7d1c7f5e15387710b5ca",
+        "stderr": "ERROR: unsupported arguments\n",
+        "stdout": "",
+        "timed_out": false
+      },
+      {
+        "elapsed_seconds": 0.433568,
+        "exit_code": 0,
+        "invocation_id": "3397a060-b342-4b6c-a2c7-f3df7d63a8d3",
+        "kind": "process_probe",
+        "native_argv_sha256": "8754068350a53de3a699163ae1ec00c012d07331ad672a67ed8c90ab4e1e7868",
+        "stderr": "................\n----------------------------------------------------------------------\nRan 16 tests in 0.236s\n\nOK\n",
+        "stdout": "",
+        "timed_out": false
+      }
+    ],
+    "repository_tests_passed": true,
+    "stale_test_expectation_retained": false,
+    "unavailable": []
+  },
+  "handoff": true,
+  "model_dispatches": 1,
+  "native_available": true,
+  "operator_candidate_edits": 0,
+  "plan_identity": {
+    "advisory": true,
+    "check_links": {
+      "R1": [
+        {
+          "argv": [
+            "/opt/homebrew/Cellar/python@3.14/3.14.8_2/Frameworks/Python.framework/Versions/3.14/bin/python3.14",
+            "-B",
+            "-c",
+            "from app import process; assert process({'catalog': {'fr-CA': {'a': 'CA'}, 'fr': {'b': 'FR'}, 'en': {'c': 'EN'}}, 'locales': ['fr-CA'], 'keys': ['b', 'a', 'c', 'x', 'a'], 'default': 'en'}) == {'texts': ['FR', 'CA', 'EN', None, 'CA']}"
+          ],
+          "index": 0
+        },
+        {
+          "argv": [
+            "/opt/homebrew/Cellar/python@3.14/3.14.8_2/Frameworks/Python.framework/Versions/3.14/bin/python3.14",
+            "-B",
+            "-m",
+            "unittest",
+            "discover",
+            "-s",
+            "tests"
+          ],
+          "index": 1
+        }
+      ],
+      "R2": [
+        {
+          "argv": [
+            "/opt/homebrew/Cellar/python@3.14/3.14.8_2/Frameworks/Python.framework/Versions/3.14/bin/python3.14",
+            "-B",
+            "-m",
+            "unittest",
+            "discover",
+            "-s",
+            "tests"
+          ],
+          "index": 1
+        }
+      ],
+      "R3": [
+        {
+          "argv": [
+            "/opt/homebrew/Cellar/python@3.14/3.14.8_2/Frameworks/Python.framework/Versions/3.14/bin/python3.14",
+            "-B",
+            "-m",
+            "unittest",
+            "discover",
+            "-s",
+            "tests"
+          ],
+          "index": 1
+        }
+      ],
+      "R4": [
+        {
+          "argv": [
+            "/opt/homebrew/Cellar/python@3.14/3.14.8_2/Frameworks/Python.framework/Versions/3.14/bin/python3.14",
+            "-B",
+            "-m",
+            "unittest",
+            "discover",
+            "-s",
+            "tests"
+          ],
+          "index": 1
+        }
+      ],
+      "R5": [
+        {
+          "argv": [
+            "/opt/homebrew/Cellar/python@3.14/3.14.8_2/Frameworks/Python.framework/Versions/3.14/bin/python3.14",
+            "-B",
+            "-m",
+            "unittest",
+            "discover",
+            "-s",
+            "tests"
+          ],
+          "index": 1
+        }
+      ],
+      "R6": [
+        {
+          "argv": [
+            "/opt/homebrew/Cellar/python@3.14/3.14.8_2/Frameworks/Python.framework/Versions/3.14/bin/python3.14",
+            "-B",
+            "-m",
+            "unittest",
+            "discover",
+            "-s",
+            "tests"
+          ],
+          "index": 1
+        }
+      ]
+    },
+    "constraints": [
+      {
+        "basis": "request",
+        "scope": "All payload validation and locale resolution",
+        "source_refs": [
+          {
+            "line_end": 10,
+            "line_start": 9,
+            "quote": "Reject malformed containers/values with ValueError. Empty keys/locales/catalog\ncontainers are allowed. Do not impose a BCP-47 grammar beyond nonempty strings.",
+            "source_id": "S1"
+          },
+          {
+            "line_end": 17,
+            "line_start": 16,
+            "quote": "response and unsupported-argument behavior; keep cli.py unchanged. Extra object\nkeys are allowed. Update a stale test expectation if it contradicts this request.",
+            "source_id": "S1"
+          }
+        ],
+        "statement": "Allow extra object keys and impose no BCP-47 grammar beyond nonempty strings."
+      }
+    ],
+    "contract_id": "locale-fallback-combined",
+    "contract_sha256": "d18db1b7ce0d72c4d3d8e9ccee13b599705f87081043aecb65af4e674cf2f048",
+    "coverage_completeness": "UNKNOWN",
+    "evidence_gaps": [],
+    "execution_authority": "not_established",
+    "export_authority": "unapproved",
+    "export_format": "json",
+    "export_manifest_sha256": "f69ffc7d1e34883bcbc1b9d6282776bc40041b5a1617b345852688e9645af848",
+    "external_caller_approval": "not_supplied_or_authenticated",
+    "intended_outcome": "Resolve translations independently per key with requested-locale truncation and exact default fallback, validated immutable inputs and consistent app, service, batch and CLI interfaces.",
+    "out_of_scope": [
+      {
+        "source_refs": [
+          {
+            "line_end": 6,
+            "line_start": 6,
+            "quote": "locale contains that key, try the exact default locale (no default truncation).",
+            "source_id": "S1"
+          },
+          {
+            "line_end": 16,
+            "line_start": 15,
+            "quote": "Do not mutate any input, including on errors. Preserve the exact CLI --version\nresponse and unsupported-argument behavior; keep cli.py unchanged. Extra object",
+            "source_id": "S1"
+          }
+        ],
+        "statement": "Changes to cli.py or default-locale truncation."
+      }
+    ],
+    "record": "intentline.advisory-input",
+    "requirements": [
+      {
+        "basis": "request",
+        "boundaries": [
+          "Different keys resolve at different levels.",
+          "First locale parent wins over later locale exact.",
+          "Default is never truncated.",
+          "Duplicate keys, case mismatches and empty translations.",
+          "Non-BCP-47 locale strings still follow literal hyphen truncation."
+        ],
+        "evidence_gap_reasons": [],
+        "id": "R1",
+        "oracle": "Explicit examples must return [FR, CA, EN, null, CA]; a whole-payload locale selection would lose FR. A default en-US must not find en unless en is reached via requested locales.",
+        "plan_state": "planned",
+        "planned_evidence": "Run hand-authored per-key and boundary unittest examples with fixed expected values.",
+        "seam": "app.process",
+        "source_refs": [
+          {
+            "line_end": 8,
+            "line_start": 1,
+            "quote": "Implement per-key translations for {\"catalog\": {locale: {key: text}},\n\"locales\": [locale, ...], \"keys\": [key, ...], \"default\": locale}.\nLocale names and keys are nonempty strings; translations are strings, including\nempty strings. For EACH key, try requested locales in order, trying each exact\nlocale then repeatedly removing its last hyphen subtag. Only if no requested\nlocale contains that key, try the exact default locale (no default truncation).\nReturn {\"texts\": [translation_or_null, ...]} in keys order, retaining duplicates.\nMatching is case sensitive; an empty translation is a found value, not missing.",
+            "source_id": "S1"
+          }
+        ],
+        "statement": "Resolve each key by requested locale order, exact locale followed by repeated last-hyphen truncation; only after all requested chains miss use the exact default. Return texts in key order with duplicates, null for misses, case-sensitive matching and empty-string hits."
+      },
+      {
+        "basis": "request",
+        "boundaries": [
+          "Validate unused catalog entries and values even with empty keys.",
+          "Missing required fields, wrong containers, booleans/numbers/null, empty identifiers.",
+          "Empty catalog, locale tables, keys and locales are valid.",
+          "Extra top-level object keys are allowed."
+        ],
+        "evidence_gap_reasons": [],
+        "id": "R2",
+        "oracle": "Each malformed fixture raises ValueError; valid empty containers yield texts=[] or nulls as applicable, and unusual nonempty identifiers are accepted.",
+        "plan_state": "planned",
+        "planned_evidence": "Run a table of invalid fixtures and valid empty/unusual-string cases in unittest.",
+        "seam": "app.process",
+        "source_refs": [
+          {
+            "line_end": 10,
+            "line_start": 1,
+            "quote": "Implement per-key translations for {\"catalog\": {locale: {key: text}},\n\"locales\": [locale, ...], \"keys\": [key, ...], \"default\": locale}.\nLocale names and keys are nonempty strings; translations are strings, including\nempty strings. For EACH key, try requested locales in order, trying each exact\nlocale then repeatedly removing its last hyphen subtag. Only if no requested\nlocale contains that key, try the exact default locale (no default truncation).\nReturn {\"texts\": [translation_or_null, ...]} in keys order, retaining duplicates.\nMatching is case sensitive; an empty translation is a found value, not missing.\nReject malformed containers/values with ValueError. Empty keys/locales/catalog\ncontainers are allowed. Do not impose a BCP-47 grammar beyond nonempty strings.",
+            "source_id": "S1"
+          }
+        ],
+        "statement": "Validate required payload fields, catalog and each locale table as objects, locales and keys as lists, locale names and keys as nonempty strings and translations as strings. Raise ValueError on malformed values; allow empty containers, extra object keys and arbitrary nonempty locale strings."
+      },
+      {
+        "basis": "request",
+        "boundaries": [
+          "Unicode and empty translations survive JSON transport.",
+          "Malformed JSON and invalid payloads use existing CLI error handling."
+        ],
+        "evidence_gap_reasons": [],
+        "id": "R3",
+        "oracle": "For the same fixed payload app and service equal the specified texts and CLI emits corresponding JSON; invalid input exits 2 with ERROR.",
+        "plan_state": "planned",
+        "planned_evidence": "Unittest API parity and subprocess CLI integration with explicit expected JSON and error status.",
+        "seam": "app.process, service.handle, cli.py stdin/stdout",
+        "source_refs": [
+          {
+            "line_end": 13,
+            "line_start": 12,
+            "quote": "Expose the same behavior through app.process, service.handle and the existing\nJSON stdin/stdout CLI. Add service.batch(payloads): return each process result",
+            "source_id": "S1"
+          }
+        ],
+        "statement": "Expose identical resolution and validation through app.process, service.handle and the existing JSON stdin/stdout CLI."
+      },
+      {
+        "basis": "request",
+        "boundaries": [
+          "Empty batch returns [].",
+          "A later invalid member raises ValueError.",
+          "Different independent payloads retain batch order."
+        ],
+        "evidence_gap_reasons": [],
+        "id": "R4",
+        "oracle": "A two-payload batch returns the two independently specified results in order; tuples, objects and lists with invalid members raise ValueError.",
+        "plan_state": "planned",
+        "planned_evidence": "Unittest batch order, empty input and malformed/member validation.",
+        "seam": "service.batch",
+        "source_refs": [
+          {
+            "line_end": 14,
+            "line_start": 13,
+            "quote": "JSON stdin/stdout CLI. Add service.batch(payloads): return each process result\nin input order; reject a non-list or any invalid member with ValueError.",
+            "source_id": "S1"
+          }
+        ],
+        "statement": "Add service.batch accepting only a list of valid payloads and returning each process result in input order; raise ValueError for a non-list or any invalid member."
+      },
+      {
+        "basis": "request",
+        "boundaries": [
+          "Nested catalog tables and lists.",
+          "Successful lookup, invalid payload and invalid later batch member."
+        ],
+        "evidence_gap_reasons": [],
+        "id": "R5",
+        "oracle": "Inputs compare equal to a deep copy after each successful or failing call.",
+        "plan_state": "planned",
+        "planned_evidence": "Unittest deep-copy comparisons for all API entry points and batch error paths.",
+        "seam": "app.process, service.handle, service.batch",
+        "source_refs": [
+          {
+            "line_end": 15,
+            "line_start": 15,
+            "quote": "Do not mutate any input, including on errors. Preserve the exact CLI --version",
+            "source_id": "S1"
+          }
+        ],
+        "statement": "Do not mutate any caller input, including when validation fails."
+      },
+      {
+        "basis": "request",
+        "boundaries": [
+          "--version returns api-v1 plus newline, status 0, empty stderr.",
+          "Unsupported arguments return status 2, empty stdout and existing stderr text.",
+          "Review existing expectations against original behavior request."
+        ],
+        "evidence_gap_reasons": [],
+        "id": "R6",
+        "oracle": "CLI contents match the initial bytes; --version and unsupported arguments have exact preexisting outputs. Existing valid example remains correct.",
+        "plan_state": "planned",
+        "planned_evidence": "Byte comparison of cli.py and subprocess compatibility unittest cases.",
+        "seam": "cli.py and existing tests",
+        "source_refs": [
+          {
+            "line_end": 17,
+            "line_start": 15,
+            "quote": "Do not mutate any input, including on errors. Preserve the exact CLI --version\nresponse and unsupported-argument behavior; keep cli.py unchanged. Extra object\nkeys are allowed. Update a stale test expectation if it contradicts this request.",
+            "source_id": "S1"
+          }
+        ],
+        "statement": "Keep cli.py unchanged and preserve the exact --version response and unsupported-argument behavior; update any stale test expectation that contradicts the request."
+      }
+    ],
+    "revision": 1,
+    "schema_version": 1,
+    "source_bundle_sha256": "9e18ed6cba6bf05216b52a112af8bc94072fc5ba307e859ae3fccc50afacef04",
+    "source_sha256": "a916b8eeb9671391cc2bc577c1b6a3a635d54bce356997c3795df8c22bc543ca"
+  },
+  "promise_evidence": {
+    "candidate_commit": "e13ed202160551361db8a0f718a3b8fc9aea6db2",
+    "candidate_tree": "c31f405f9d21617a9b0e5fd811b091cf51505307",
+    "coverage_completeness": "UNKNOWN",
+    "intentline": {
+      "constraints": [
+        {
+          "basis": "request",
+          "scope": "All payload validation and locale resolution",
+          "source_refs": [
+            {
+              "line_end": 10,
+              "line_start": 9,
+              "quote": "Reject malformed containers/values with ValueError. Empty keys/locales/catalog\ncontainers are allowed. Do not impose a BCP-47 grammar beyond nonempty strings.",
+              "source_id": "S1"
+            },
+            {
+              "line_end": 17,
+              "line_start": 16,
+              "quote": "response and unsupported-argument behavior; keep cli.py unchanged. Extra object\nkeys are allowed. Update a stale test expectation if it contradicts this request.",
+              "source_id": "S1"
+            }
+          ],
+          "statement": "Allow extra object keys and impose no BCP-47 grammar beyond nonempty strings."
+        }
+      ],
+      "contract_id": "locale-fallback-combined",
+      "contract_sha256": "d18db1b7ce0d72c4d3d8e9ccee13b599705f87081043aecb65af4e674cf2f048",
+      "evidence_gaps": [],
+      "execution_authority": "not_established",
+      "export_authority": "unapproved",
+      "export_manifest_sha256": "f69ffc7d1e34883bcbc1b9d6282776bc40041b5a1617b345852688e9645af848",
+      "external_caller_approval": "not_supplied_or_authenticated",
+      "intended_outcome": "Resolve translations independently per key with requested-locale truncation and exact default fallback, validated immutable inputs and consistent app, service, batch and CLI interfaces.",
+      "out_of_scope": [
+        {
+          "source_refs": [
+            {
+              "line_end": 6,
+              "line_start": 6,
+              "quote": "locale contains that key, try the exact default locale (no default truncation).",
+              "source_id": "S1"
+            },
+            {
+              "line_end": 16,
+              "line_start": 15,
+              "quote": "Do not mutate any input, including on errors. Preserve the exact CLI --version\nresponse and unsupported-argument behavior; keep cli.py unchanged. Extra object",
+              "source_id": "S1"
+            }
+          ],
+          "statement": "Changes to cli.py or default-locale truncation."
+        }
+      ],
+      "revision": 1,
+      "scope": "Untrusted advisory planning data, not executable tests, proof or consent.",
+      "source_bundle_sha256": "9e18ed6cba6bf05216b52a112af8bc94072fc5ba307e859ae3fccc50afacef04",
+      "source_sha256": "a916b8eeb9671391cc2bc577c1b6a3a635d54bce356997c3795df8c22bc543ca"
+    },
+    "original_source_ref": "inputs/source.md",
+    "requirements": [
+      {
+        "id": "R1",
+        "intentline_planning": {
+          "authority": "unverified original-source-grounded proposal",
+          "basis": "request",
+          "boundaries": [
+            "Different keys resolve at different levels.",
+            "First locale parent wins over later locale exact.",
+            "Default is never truncated.",
+            "Duplicate keys, case mismatches and empty translations.",
+            "Non-BCP-47 locale strings still follow literal hyphen truncation."
+          ],
+          "evidence_gap_reasons": [],
+          "plan_state": "planned",
+          "planned_evidence": "Run hand-authored per-key and boundary unittest examples with fixed expected values.",
+          "seam": "app.process"
+        },
+        "kind": "outcome",
+        "linked_checks": [
+          {
+            "argv": [
+              "/opt/homebrew/Cellar/python@3.14/3.14.8_2/Frameworks/Python.framework/Versions/3.14/bin/python3.14",
+              "-B",
+              "-c",
+              "from app import process; assert process({'catalog': {'fr-CA': {'a': 'CA'}, 'fr': {'b': 'FR'}, 'en': {'c': 'EN'}}, 'locales': ['fr-CA'], 'keys': ['b', 'a', 'c', 'x', 'a'], 'default': 'en'}) == {'texts': ['FR', 'CA', 'EN', None, 'CA']}"
+            ],
+            "index": 0,
+            "observation_status": "PASSED",
+            "receipt_ref": "receipts/check-000.json"
+          },
+          {
+            "argv": [
+              "/opt/homebrew/Cellar/python@3.14/3.14.8_2/Frameworks/Python.framework/Versions/3.14/bin/python3.14",
+              "-B",
+              "-m",
+              "unittest",
+              "discover",
+              "-s",
+              "tests"
+            ],
+            "index": 1,
+            "observation_status": "PASSED",
+            "receipt_ref": "receipts/check-001.json"
+          }
+        ],
+        "oracle_authority": "unverified caller suggestion",
+        "proposed_oracle": "Explicit examples must return [FR, CA, EN, null, CA]; a whole-payload locale selection would lose FR. A default en-US must not find en unless en is reached via requested locales.",
+        "reason": "Selected commands passed; linked behaviors are not proven in full",
+        "source_refs": [
+          {
+            "line_end": 8,
+            "line_start": 1,
+            "quote": "Implement per-key translations for {\"catalog\": {locale: {key: text}},\n\"locales\": [locale, ...], \"keys\": [key, ...], \"default\": locale}.\nLocale names and keys are nonempty strings; translations are strings, including\nempty strings. For EACH key, try requested locales in order, trying each exact\nlocale then repeatedly removing its last hyphen subtag. Only if no requested\nlocale contains that key, try the exact default locale (no default truncation).\nReturn {\"texts\": [translation_or_null, ...]} in keys order, retaining duplicates.\nMatching is case sensitive; an empty translation is a found value, not missing.",
+            "source_id": "S1"
+          }
+        ],
+        "statement": "Resolve each key by requested locale order, exact locale followed by repeated last-hyphen truncation; only after all requested chains miss use the exact default. Return texts in key order with duplicates, null for misses, case-sensitive matching and empty-string hits.",
+        "status": "LINKED CHECKS PASSED (limited evidence)"
+      },
+      {
+        "id": "R2",
+        "intentline_planning": {
+          "authority": "unverified original-source-grounded proposal",
+          "basis": "request",
+          "boundaries": [
+            "Validate unused catalog entries and values even with empty keys.",
+            "Missing required fields, wrong containers, booleans/numbers/null, empty identifiers.",
+            "Empty catalog, locale tables, keys and locales are valid.",
+            "Extra top-level object keys are allowed."
+          ],
+          "evidence_gap_reasons": [],
+          "plan_state": "planned",
+          "planned_evidence": "Run a table of invalid fixtures and valid empty/unusual-string cases in unittest.",
+          "seam": "app.process"
+        },
+        "kind": "outcome",
+        "linked_checks": [
+          {
+            "argv": [
+              "/opt/homebrew/Cellar/python@3.14/3.14.8_2/Frameworks/Python.framework/Versions/3.14/bin/python3.14",
+              "-B",
+              "-m",
+              "unittest",
+              "discover",
+              "-s",
+              "tests"
+            ],
+            "index": 1,
+            "observation_status": "PASSED",
+            "receipt_ref": "receipts/check-001.json"
+          }
+        ],
+        "oracle_authority": "unverified caller suggestion",
+        "proposed_oracle": "Each malformed fixture raises ValueError; valid empty containers yield texts=[] or nulls as applicable, and unusual nonempty identifiers are accepted.",
+        "reason": "Selected commands passed; linked behaviors are not proven in full",
+        "source_refs": [
+          {
+            "line_end": 10,
+            "line_start": 1,
+            "quote": "Implement per-key translations for {\"catalog\": {locale: {key: text}},\n\"locales\": [locale, ...], \"keys\": [key, ...], \"default\": locale}.\nLocale names and keys are nonempty strings; translations are strings, including\nempty strings. For EACH key, try requested locales in order, trying each exact\nlocale then repeatedly removing its last hyphen subtag. Only if no requested\nlocale contains that key, try the exact default locale (no default truncation).\nReturn {\"texts\": [translation_or_null, ...]} in keys order, retaining duplicates.\nMatching is case sensitive; an empty translation is a found value, not missing.\nReject malformed containers/values with ValueError. Empty keys/locales/catalog\ncontainers are allowed. Do not impose a BCP-47 grammar beyond nonempty strings.",
+            "source_id": "S1"
+          }
+        ],
+        "statement": "Validate required payload fields, catalog and each locale table as objects, locales and keys as lists, locale names and keys as nonempty strings and translations as strings. Raise ValueError on malformed values; allow empty containers, extra object keys and arbitrary nonempty locale strings.",
+        "status": "LINKED CHECKS PASSED (limited evidence)"
+      },
+      {
+        "id": "R3",
+        "intentline_planning": {
+          "authority": "unverified original-source-grounded proposal",
+          "basis": "request",
+          "boundaries": [
+            "Unicode and empty translations survive JSON transport.",
+            "Malformed JSON and invalid payloads use existing CLI error handling."
+          ],
+          "evidence_gap_reasons": [],
+          "plan_state": "planned",
+          "planned_evidence": "Unittest API parity and subprocess CLI integration with explicit expected JSON and error status.",
+          "seam": "app.process, service.handle, cli.py stdin/stdout"
+        },
+        "kind": "outcome",
+        "linked_checks": [
+          {
+            "argv": [
+              "/opt/homebrew/Cellar/python@3.14/3.14.8_2/Frameworks/Python.framework/Versions/3.14/bin/python3.14",
+              "-B",
+              "-m",
+              "unittest",
+              "discover",
+              "-s",
+              "tests"
+            ],
+            "index": 1,
+            "observation_status": "PASSED",
+            "receipt_ref": "receipts/check-001.json"
+          }
+        ],
+        "oracle_authority": "unverified caller suggestion",
+        "proposed_oracle": "For the same fixed payload app and service equal the specified texts and CLI emits corresponding JSON; invalid input exits 2 with ERROR.",
+        "reason": "Selected commands passed; linked behaviors are not proven in full",
+        "source_refs": [
+          {
+            "line_end": 13,
+            "line_start": 12,
+            "quote": "Expose the same behavior through app.process, service.handle and the existing\nJSON stdin/stdout CLI. Add service.batch(payloads): return each process result",
+            "source_id": "S1"
+          }
+        ],
+        "statement": "Expose identical resolution and validation through app.process, service.handle and the existing JSON stdin/stdout CLI.",
+        "status": "LINKED CHECKS PASSED (limited evidence)"
+      },
+      {
+        "id": "R4",
+        "intentline_planning": {
+          "authority": "unverified original-source-grounded proposal",
+          "basis": "request",
+          "boundaries": [
+            "Empty batch returns [].",
+            "A later invalid member raises ValueError.",
+            "Different independent payloads retain batch order."
+          ],
+          "evidence_gap_reasons": [],
+          "plan_state": "planned",
+          "planned_evidence": "Unittest batch order, empty input and malformed/member validation.",
+          "seam": "service.batch"
+        },
+        "kind": "outcome",
+        "linked_checks": [
+          {
+            "argv": [
+              "/opt/homebrew/Cellar/python@3.14/3.14.8_2/Frameworks/Python.framework/Versions/3.14/bin/python3.14",
+              "-B",
+              "-m",
+              "unittest",
+              "discover",
+              "-s",
+              "tests"
+            ],
+            "index": 1,
+            "observation_status": "PASSED",
+            "receipt_ref": "receipts/check-001.json"
+          }
+        ],
+        "oracle_authority": "unverified caller suggestion",
+        "proposed_oracle": "A two-payload batch returns the two independently specified results in order; tuples, objects and lists with invalid members raise ValueError.",
+        "reason": "Selected commands passed; linked behaviors are not proven in full",
+        "source_refs": [
+          {
+            "line_end": 14,
+            "line_start": 13,
+            "quote": "JSON stdin/stdout CLI. Add service.batch(payloads): return each process result\nin input order; reject a non-list or any invalid member with ValueError.",
+            "source_id": "S1"
+          }
+        ],
+        "statement": "Add service.batch accepting only a list of valid payloads and returning each process result in input order; raise ValueError for a non-list or any invalid member.",
+        "status": "LINKED CHECKS PASSED (limited evidence)"
+      },
+      {
+        "id": "R5",
+        "intentline_planning": {
+          "authority": "unverified original-source-grounded proposal",
+          "basis": "request",
+          "boundaries": [
+            "Nested catalog tables and lists.",
+            "Successful lookup, invalid payload and invalid later batch member."
+          ],
+          "evidence_gap_reasons": [],
+          "plan_state": "planned",
+          "planned_evidence": "Unittest deep-copy comparisons for all API entry points and batch error paths.",
+          "seam": "app.process, service.handle, service.batch"
+        },
+        "kind": "outcome",
+        "linked_checks": [
+          {
+            "argv": [
+              "/opt/homebrew/Cellar/python@3.14/3.14.8_2/Frameworks/Python.framework/Versions/3.14/bin/python3.14",
+              "-B",
+              "-m",
+              "unittest",
+              "discover",
+              "-s",
+              "tests"
+            ],
+            "index": 1,
+            "observation_status": "PASSED",
+            "receipt_ref": "receipts/check-001.json"
+          }
+        ],
+        "oracle_authority": "unverified caller suggestion",
+        "proposed_oracle": "Inputs compare equal to a deep copy after each successful or failing call.",
+        "reason": "Selected commands passed; linked behaviors are not proven in full",
+        "source_refs": [
+          {
+            "line_end": 15,
+            "line_start": 15,
+            "quote": "Do not mutate any input, including on errors. Preserve the exact CLI --version",
+            "source_id": "S1"
+          }
+        ],
+        "statement": "Do not mutate any caller input, including when validation fails.",
+        "status": "LINKED CHECKS PASSED (limited evidence)"
+      },
+      {
+        "id": "R6",
+        "intentline_planning": {
+          "authority": "unverified original-source-grounded proposal",
+          "basis": "request",
+          "boundaries": [
+            "--version returns api-v1 plus newline, status 0, empty stderr.",
+            "Unsupported arguments return status 2, empty stdout and existing stderr text.",
+            "Review existing expectations against original behavior request."
+          ],
+          "evidence_gap_reasons": [],
+          "plan_state": "planned",
+          "planned_evidence": "Byte comparison of cli.py and subprocess compatibility unittest cases.",
+          "seam": "cli.py and existing tests"
+        },
+        "kind": "outcome",
+        "linked_checks": [
+          {
+            "argv": [
+              "/opt/homebrew/Cellar/python@3.14/3.14.8_2/Frameworks/Python.framework/Versions/3.14/bin/python3.14",
+              "-B",
+              "-m",
+              "unittest",
+              "discover",
+              "-s",
+              "tests"
+            ],
+            "index": 1,
+            "observation_status": "PASSED",
+            "receipt_ref": "receipts/check-001.json"
+          }
+        ],
+        "oracle_authority": "unverified caller suggestion",
+        "proposed_oracle": "CLI contents match the initial bytes; --version and unsupported arguments have exact preexisting outputs. Existing valid example remains correct.",
+        "reason": "Selected commands passed; linked behaviors are not proven in full",
+        "source_refs": [
+          {
+            "line_end": 17,
+            "line_start": 15,
+            "quote": "Do not mutate any input, including on errors. Preserve the exact CLI --version\nresponse and unsupported-argument behavior; keep cli.py unchanged. Extra object\nkeys are allowed. Update a stale test expectation if it contradicts this request.",
+            "source_id": "S1"
+          }
+        ],
+        "statement": "Keep cli.py unchanged and preserve the exact --version response and unsupported-argument behavior; update any stale test expectation that contradicts the request.",
+        "status": "LINKED CHECKS PASSED (limited evidence)"
+      }
+    ],
+    "same_agent_review": {
+      "authority": "unverified advisory review; may omit original promises",
+      "independent": false,
+      "proposals": [],
+      "reported_performed": false
+    },
+    "scope": "Only explicitly mapped requirements/commands; all original source remains authoritative.",
+    "snapshot_sha256": "0492bf6126c7e096f3ad9ecc2d9e2381314299ea9d35e797b941918417867022",
+    "source_sha256": "a916b8eeb9671391cc2bc577c1b6a3a635d54bce356997c3795df8c22bc543ca"
+  },
+  "receipt": {
+    "elapsed_seconds": 212.636461,
+    "error": null,
+    "events.jsonl_sha256": "4358f2b8be3ef8b72936694ee5b96a2534e77066565f4c995d6953b9fdfdf6e3",
+    "exit_code": 0,
+    "invocation_id": "849ba1d6-49a9-4eea-ba87-a3fcc7992b2b",
+    "kind": "codex_exec",
+    "native_argv_sha256": "975b9dc72dfc2bb2cb301d2f22217a2838aadb14a58edfe7537db520df0d18ec",
+    "prompt_sha256": "a1d518c160adae95b6fa2a901fc2d6e279ea3b63ffd190387a9ce432bf848d28",
+    "stderr.txt_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "timed_out": false
+  },
+  "response": {
+    "completed": true,
+    "summary": "Implemented per-key locale fallback, full validation, immutable input handling and service.batch. Preserved cli.py and its compatibility behavior. Both public checks and all 16 tests pass. Saved revision-1 advisory export and check links in scratch. No commits made."
+  },
+  "sequence": 6,
+  "source_sha256": "a916b8eeb9671391cc2bc577c1b6a3a635d54bce356997c3795df8c22bc543ca",
+  "started_at": "2026-10-13T15:24:53.769095+00:00",
+  "status": "CORRECT_DELIVERY",
+  "task": "locale-fallback",
+  "thread_id": "01a135dd-d9a2-7673-bb41-2923b2bca306",
+  "tool_executions": 17,
+  "usage": {
+    "cache_write_input_tokens": 0,
+    "cached_input_tokens": 181888,
+    "input_tokens": 215716,
+    "output_tokens": 6868,
+    "reasoning_output_tokens": 707
+  },
+  "workflow_seconds": 214.14951525023207
+}

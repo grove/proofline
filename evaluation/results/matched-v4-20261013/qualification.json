@@ -1,0 +1,472 @@
+{
+  "catalog_readback": {
+    "catalog_sha256": "2505904543ebfc1dcd3a64727a37def4f43d7d4c92f3bea5ec38d33147c2f67f",
+    "elapsed_seconds": 0.27138429088518023,
+    "model_dispatches": 0,
+    "native_argv_sha256": "2172b7a686bbcbc16b233b7ae3b13f269f8071cdd11334376b99f5cb986b2135",
+    "performed_at": "2026-10-13T14:53:40.116432+00:00",
+    "requests": [
+      {
+        "id": 1,
+        "method": "initialize",
+        "params": {
+          "capabilities": {},
+          "clientInfo": {
+            "name": "issue16-pinned-catalog-control",
+            "version": "1.0"
+          }
+        }
+      },
+      {
+        "method": "initialized"
+      },
+      {
+        "id": 2,
+        "method": "model/list",
+        "params": {}
+      }
+    ],
+    "response": {
+      "id": 2,
+      "result": {
+        "data": [
+          {
+            "additionalSpeedTiers": [
+              "fast"
+            ],
+            "availabilityNux": {
+              "message": "Maximize usage with GPT-6.1 Sol. Try it on complex work for near-Astra performance at a lower cost."
+            },
+            "availableAccessPrograms": {
+              "cyber": [
+                "standard"
+              ]
+            },
+            "defaultReasoningEffort": "low",
+            "defaultServiceTier": null,
+            "description": "Latest workhorse model for coding and everyday work.",
+            "displayName": "GPT-6.1-Sol",
+            "hidden": false,
+            "id": "gpt-6.1-sol",
+            "inputModalities": [
+              "text",
+              "image"
+            ],
+            "isDefault": true,
+            "model": "gpt-6.1-sol",
+            "modelSpecialty": null,
+            "multiAgentVersion": "v2",
+            "serviceTiers": [
+              {
+                "description": "2x speed, increased usage",
+                "id": "priority",
+                "name": "Fast"
+              }
+            ],
+            "supportedReasoningEfforts": [
+              {
+                "description": "Fast responses with lighter reasoning",
+                "reasoningEffort": "low"
+              },
+              {
+                "description": "Balances speed and reasoning depth for everyday tasks",
+                "reasoningEffort": "medium"
+              },
+              {
+                "description": "Greater reasoning depth for complex problems",
+                "reasoningEffort": "high"
+              },
+              {
+                "description": "Extra high reasoning depth for complex problems",
+                "reasoningEffort": "xhigh"
+              },
+              {
+                "description": "Maximum reasoning depth for the hardest problems",
+                "reasoningEffort": "max"
+              },
+              {
+                "description": "Maximum reasoning with automatic task delegation",
+                "reasoningEffort": "ultra"
+              }
+            ],
+            "supportsPersonality": false,
+            "upgrade": null,
+            "upgradeInfo": null
+          }
+        ],
+        "nextCursor": null
+      }
+    },
+    "status": "OBSERVED",
+    "stderr": "",
+    "timing": "Supplemental readback during campaign; identical catalog bytes were queried via native model/list during preparation."
+  },
+  "grader": {
+    "assessment": {
+      "inputs_unchanged": true,
+      "observations": {
+        "mode_change": "denied",
+        "network": "denied",
+        "nonce": "619ca7b734cd4dbc8884f35182cc9afa",
+        "reads": {
+          "actual_oracle": "denied",
+          "enclosing_repository": "denied",
+          "grader": "denied",
+          "matched_oracle": "denied",
+          "oracle-canary": "denied",
+          "other-role-canary": "denied",
+          "receipt-canary": "denied",
+          "sibling": "denied",
+          "study_results": "denied"
+        },
+        "scratch": true,
+        "writes": {
+          "candidate": "denied",
+          "git_head": "denied",
+          "input": "denied",
+          "receipt": "denied",
+          "source": "denied"
+        }
+      },
+      "scope": "native process canaries only; no model or external-tool qualification",
+      "status": "OBSERVED"
+    },
+    "receipt": {
+      "elapsed_seconds": 0.131673,
+      "exit_code": 0,
+      "invocation_id": "922f326e-9ada-4d3c-b287-ea6639f62f50",
+      "kind": "process_probe",
+      "native_argv_sha256": "1f47d76df83870fe8250bd16d35d34dee6205347e92b69ee66cf94cb05af2801",
+      "stderr": "",
+      "stdout": "{\"nonce\": \"619ca7b734cd4dbc8884f35182cc9afa\", \"writes\": {\"source\": \"denied\", \"input\": \"denied\", \"candidate\": \"denied\", \"git_head\": \"denied\", \"receipt\": \"denied\"}, \"reads\": {\"receipt-canary\": \"denied\", \"oracle-canary\": \"denied\", \"other-role-canary\": \"denied\", \"actual_oracle\": \"denied\", \"matched_oracle\": \"denied\", \"grader\": \"denied\", \"study_results\": \"denied\", \"enclosing_repository\": \"denied\", \"sibling\": \"denied\"}, \"mode_change\": \"denied\", \"scratch\": true, \"network\": \"denied\"}\n",
+      "timed_out": false
+    }
+  },
+  "producer_adapter_check": {
+    "check_candidate_tree": "23aa3c88275e82ea8193383deac7983fb5ccbf87",
+    "check_status": "CHECKS PASSED",
+    "model_dispatches": 0,
+    "native_cli_receipts": [
+      {
+        "elapsed_seconds": 0.13379,
+        "exit_code": 0,
+        "invocation_id": "fecf659e-ac82-4e6b-a877-287b9b5d292b",
+        "kind": "process_probe",
+        "native_argv_sha256": "56197c897d639cd8b73edb6583c0ca6404842fff4970abc0713556708129fa6a",
+        "stderr": "",
+        "stdout": "{\"command\": \"prepare\", \"data\": {\"source_bundle_sha256\": \"cca7cbebc488ae2e87d48bf155bc0a5715e8946e2614c7f6d1172474b2b81a63\", \"sources\": [{\"bytes\": 896, \"declared_authority\": \"user_request\", \"identity\": {\"device\": 16777230, \"inode\": 131333979}, \"original_location\": \"/Users/grove/projects/proofline/.proofline/issue16-matched-v4-20261013/qualification/adapter/inputs/source.md\", \"relative_path\": \"source.md\", \"role\": \"request\", \"sha256\": \"c9a5c3bc2cc80520431d6fd951a8e2303270d1c390b25ed1f5413391fbc29347\", \"source_id\": \"S1\"}], \"summary\": \"Sources captured; no semantic requirements inferred\", \"work\": \"/Users/grove/projects/proofline/.proofline/issue16-matched-v4-20261013/qualification/adapter/scratch/plan\"}, \"ok\": true, \"result\": \"intentline.result\", \"schema_version\": 1}\n",
+        "timed_out": false
+      },
+      {
+        "elapsed_seconds": 0.181172,
+        "exit_code": 0,
+        "invocation_id": "cfc6e34b-483b-4fa0-8f13-9bb1b69fef14",
+        "kind": "process_probe",
+        "native_argv_sha256": "b06505101425b1d036ceecf3347a2510849d97cb728d34429741501d8ab02378",
+        "stderr": "",
+        "stdout": "{\"command\": \"propose\", \"data\": {\"contract_id\": \"issue16-control\", \"contract_sha256\": \"df70848ee780d693c53bdc661fd08ba37987af0c55fcbf2707260a40db8215bd\", \"revision\": 1, \"source_bundle_sha256\": \"cca7cbebc488ae2e87d48bf155bc0a5715e8946e2614c7f6d1172474b2b81a63\", \"summary\": \"DRAFT saved; structural validation is not semantic approval\"}, \"ok\": true, \"result\": \"intentline.result\", \"schema_version\": 1}\n",
+        "timed_out": false
+      },
+      {
+        "elapsed_seconds": 0.190695,
+        "exit_code": 0,
+        "invocation_id": "fe7e90c6-b34a-4e1f-b097-3d36859bae24",
+        "kind": "process_probe",
+        "native_argv_sha256": "047c8cc7ceb9fb2c92c2beec9a467e869912bf5aeff17136925600ca2badb21c",
+        "stderr": "",
+        "stdout": "{\"command\": \"check\", \"data\": {\"adoption_records\": 0, \"audit_records\": 0, \"authentication\": \"unverified\", \"contract_id\": \"issue16-control\", \"contract_sha256\": \"df70848ee780d693c53bdc661fd08ba37987af0c55fcbf2707260a40db8215bd\", \"current_adoptions\": 0, \"current_audits\": 0, \"evidence_gaps\": [], \"exit_code\": 0, \"flags\": [\"DRAFT\", \"STRUCTURALLY_VALID\"], \"revision\": 1, \"source_bundle_sha256\": \"cca7cbebc488ae2e87d48bf155bc0a5715e8946e2614c7f6d1172474b2b81a63\", \"stale_sources\": [], \"status\": \"STRUCTURALLY_VALID\", \"summary\": \"STRUCTURALLY_VALID: structural checks do not establish semantic completeness\"}, \"ok\": true, \"result\": \"intentline.result\", \"schema_version\": 1}\n",
+        "timed_out": false
+      },
+      {
+        "elapsed_seconds": 0.236641,
+        "exit_code": 0,
+        "invocation_id": "ba4c728a-8931-4336-acd7-aad3359775eb",
+        "kind": "process_probe",
+        "native_argv_sha256": "a4605736fce829ab51f053b7ccc8825d7482f7e7bacf0b450576e75b43791835",
+        "stderr": "",
+        "stdout": "{\"command\": \"render\", \"data\": {\"adoption_records\": 0, \"audit_records\": 0, \"authentication\": \"unverified\", \"contract_id\": \"issue16-control\", \"contract_sha256\": \"df70848ee780d693c53bdc661fd08ba37987af0c55fcbf2707260a40db8215bd\", \"current_adoptions\": 0, \"current_audits\": 0, \"evidence_gaps\": [], \"exit_code\": 0, \"flags\": [\"DRAFT\", \"STRUCTURALLY_VALID\"], \"markdown\": \"# Intentline: issue16\\\\-control\\n\\nStatus: **STRUCTURALLY\\\\_VALID**. Preview / advisory; not authenticated approval or proof.\\n\\nContract SHA-256: `df70848ee780d693c53bdc661fd08ba37987af0c55fcbf2707260a40db8215bd`\\n\\nSource bundle SHA-256: `cca7cbebc488ae2e87d48bf155bc0a5715e8946e2614c7f6d1172474b2b81a63`\\n\\nRevision: 1\\n\\nEntire atomic transfer request\\n\\n| ID | Required outcome | Basis / source | Boundaries | Seam | Oracle | Planned evidence | Plan state |\\n|---|---|---|---|---|---|---|---|\\n| R1 | Apply valid transfers in order and reject invalid/overdrawn accounts | request: S1:1\\\\-6 \\u2014 Implement transfers for \\\\{&quot;balances&quot;: \\\\{name: integer &gt;= 0\\\\},<br>&quot;transfers&quot;: \\\\[\\\\[from, to, amount\\\\], \\\\.\\\\.\\\\.\\\\]\\\\}\\\\. Names are nonempty strings; amount is<br>a nonnegative integer\\\\. Booleans are invalid numbers\\\\. Both accounts must exist\\\\.<br>Apply transfers in order; reject insufficient funds at any intermediate step,<br>including a self\\\\-transfer exceeding that account&\\\\#x27;s balance\\\\. Return<br>\\\\{&quot;balances&quot;: final\\\\_balances\\\\}\\\\. No partial result on rejection\\\\. | Ordered balances; intermediate/self overdrafts rejected | app\\\\.process | Ordered balances; intermediate/self overdrafts rejected | Chosen project commands and finite independent probes | planned |\\n| R2 | Expose ordered batch processing and reject any invalid member | request: S1:8\\\\-10 \\u2014 Expose the same behavior through app\\\\.process, service\\\\.handle and the existing<br>JSON stdin/stdout CLI\\\\. Add service\\\\.batch\\\\(payloads\\\\): return each process result<br>in input order; reject a non\\\\-list or any invalid member with ValueError\\\\. | One result per input, invalid member rejects batch | service\\\\.batch | One result per input, invalid member rejects batch | Chosen project commands and finite independent probes | planned |\\n| R3 | Preserve inputs, exact CLI compatibility, extra keys and source\\\\-correct tests | request: S1:11\\\\-13 \\u2014 Do not mutate any input, including on errors\\\\. Preserve the exact CLI \\\\-\\\\-version<br>response and unsupported\\\\-argument behavior; keep cli\\\\.py unchanged\\\\. Extra object<br>keys are allowed\\\\. Update a stale test expectation if it contradicts this request\\\\. | No mutation; unchanged CLI bytes; extra keys accepted | CLI and input snapshots | No mutation; unchanged CLI bytes; extra keys accepted | Chosen project commands and finite independent probes | planned |\\n\\n## Constraints\\n\\nNone.\\n\\n## Out of scope\\n\\nNone.\\n\\n## Open decisions\\n\\nNone.\\n\\n## Evidence gaps\\n\\nNone.\\n\\n## Change notes\\n\\n- \\\\{&quot;kind&quot;: &quot;initial&quot;, &quot;revision&quot;: 1\\\\}\\n\\n## Selected sources\\n\\n- S1 request: source\\\\.md; SHA\\\\-256 c9a5c3bc2cc80520431d6fd951a8e2303270d1c390b25ed1f5413391fbc29347; authority: user\\\\_request\\n\", \"revision\": 1, \"source_bundle_sha256\": \"cca7cbebc488ae2e87d48bf155bc0a5715e8946e2614c7f6d1172474b2b81a63\", \"stale_sources\": [], \"status\": \"STRUCTURALLY_VALID\", \"summary\": \"STRUCTURALLY_VALID: structural checks do not establish semantic completeness\"}, \"ok\": true, \"result\": \"intentline.result\", \"schema_version\": 1}\n",
+        "timed_out": false
+      },
+      {
+        "elapsed_seconds": 0.131589,
+        "exit_code": 0,
+        "invocation_id": "9476c72b-fa1d-46c5-943e-d2c4787c08cd",
+        "kind": "process_probe",
+        "native_argv_sha256": "e266b425714acec272cd30735c6b171378a92a2215b69892ea6dc7f3bf30b0f2",
+        "stderr": "",
+        "stdout": "{\"command\": \"export\", \"data\": {\"advisory\": true, \"authority\": \"unapproved\", \"contract_id\": \"issue16-control\", \"contract_sha256\": \"df70848ee780d693c53bdc661fd08ba37987af0c55fcbf2707260a40db8215bd\", \"files\": {\"contract.json\": \"df70848ee780d693c53bdc661fd08ba37987af0c55fcbf2707260a40db8215bd\", \"source-S1.txt\": \"c9a5c3bc2cc80520431d6fd951a8e2303270d1c390b25ed1f5413391fbc29347\", \"source-manifest.json\": \"cca7cbebc488ae2e87d48bf155bc0a5715e8946e2614c7f6d1172474b2b81a63\"}, \"format\": \"json\", \"out\": \"/Users/grove/projects/proofline/.proofline/issue16-matched-v4-20261013/qualification/adapter/scratch/export\", \"record\": \"intentline.export\", \"revision\": 1, \"schema_version\": 1, \"source_bundle_sha256\": \"cca7cbebc488ae2e87d48bf155bc0a5715e8946e2614c7f6d1172474b2b81a63\", \"summary\": \"Advisory preview exported; no downstream execution or approval granted\"}, \"ok\": true, \"result\": \"intentline.result\", \"schema_version\": 1}\n",
+        "timed_out": false
+      }
+    ],
+    "package_metadata": {
+      "advisory": true,
+      "check_links": {
+        "R1": [
+          {
+            "argv": [
+              "/opt/homebrew/Cellar/python@3.14/3.14.8_2/Frameworks/Python.framework/Versions/3.14/bin/python3.14",
+              "-B",
+              "-c",
+              "from app import process; assert process({'balances': {'a': 5, 'b': 0}, 'transfers': [['a', 'b', 3]]}) == {'balances': {'a': 2, 'b': 3}}"
+            ],
+            "index": 0
+          }
+        ]
+      },
+      "constraints": [],
+      "contract_id": "issue16-control",
+      "contract_sha256": "df70848ee780d693c53bdc661fd08ba37987af0c55fcbf2707260a40db8215bd",
+      "coverage_completeness": "UNKNOWN",
+      "evidence_gaps": [],
+      "execution_authority": "not_established",
+      "export_authority": "unapproved",
+      "export_format": "json",
+      "export_manifest_sha256": "bfab728c3a924153d38c98a3a9d2ba9536a62397243f3857c4d926af639e4637",
+      "external_caller_approval": "not_supplied_or_authenticated",
+      "intended_outcome": "Entire atomic transfer request",
+      "out_of_scope": [],
+      "record": "intentline.advisory-input",
+      "requirements": [
+        {
+          "basis": "request",
+          "boundaries": [
+            "Ordered balances; intermediate/self overdrafts rejected"
+          ],
+          "evidence_gap_reasons": [],
+          "id": "R1",
+          "oracle": "Ordered balances; intermediate/self overdrafts rejected",
+          "plan_state": "planned",
+          "planned_evidence": "Chosen project commands and finite independent probes",
+          "seam": "app.process",
+          "source_refs": [
+            {
+              "line_end": 6,
+              "line_start": 1,
+              "quote": "Implement transfers for {\"balances\": {name: integer >= 0},\n\"transfers\": [[from, to, amount], ...]}. Names are nonempty strings; amount is\na nonnegative integer. Booleans are invalid numbers. Both accounts must exist.\nApply transfers in order; reject insufficient funds at any intermediate step,\nincluding a self-transfer exceeding that account's balance. Return\n{\"balances\": final_balances}. No partial result on rejection.",
+              "source_id": "S1"
+            }
+          ],
+          "statement": "Apply valid transfers in order and reject invalid/overdrawn accounts"
+        },
+        {
+          "basis": "request",
+          "boundaries": [
+            "One result per input, invalid member rejects batch"
+          ],
+          "evidence_gap_reasons": [],
+          "id": "R2",
+          "oracle": "One result per input, invalid member rejects batch",
+          "plan_state": "planned",
+          "planned_evidence": "Chosen project commands and finite independent probes",
+          "seam": "service.batch",
+          "source_refs": [
+            {
+              "line_end": 10,
+              "line_start": 8,
+              "quote": "Expose the same behavior through app.process, service.handle and the existing\nJSON stdin/stdout CLI. Add service.batch(payloads): return each process result\nin input order; reject a non-list or any invalid member with ValueError.",
+              "source_id": "S1"
+            }
+          ],
+          "statement": "Expose ordered batch processing and reject any invalid member"
+        },
+        {
+          "basis": "request",
+          "boundaries": [
+            "No mutation; unchanged CLI bytes; extra keys accepted"
+          ],
+          "evidence_gap_reasons": [],
+          "id": "R3",
+          "oracle": "No mutation; unchanged CLI bytes; extra keys accepted",
+          "plan_state": "planned",
+          "planned_evidence": "Chosen project commands and finite independent probes",
+          "seam": "CLI and input snapshots",
+          "source_refs": [
+            {
+              "line_end": 13,
+              "line_start": 11,
+              "quote": "Do not mutate any input, including on errors. Preserve the exact CLI --version\nresponse and unsupported-argument behavior; keep cli.py unchanged. Extra object\nkeys are allowed. Update a stale test expectation if it contradicts this request.",
+              "source_id": "S1"
+            }
+          ],
+          "statement": "Preserve inputs, exact CLI compatibility, extra keys and source-correct tests"
+        }
+      ],
+      "revision": 1,
+      "schema_version": 1,
+      "source_bundle_sha256": "cca7cbebc488ae2e87d48bf155bc0a5715e8946e2614c7f6d1172474b2b81a63",
+      "source_sha256": "c9a5c3bc2cc80520431d6fd951a8e2303270d1c390b25ed1f5413391fbc29347"
+    },
+    "promise_evidence": {
+      "candidate_commit": "8b634e4ab5424e4e3ad9fcdfe978431a02714314",
+      "candidate_tree": "23aa3c88275e82ea8193383deac7983fb5ccbf87",
+      "coverage_completeness": "UNKNOWN",
+      "intentline": {
+        "constraints": [],
+        "contract_id": "issue16-control",
+        "contract_sha256": "df70848ee780d693c53bdc661fd08ba37987af0c55fcbf2707260a40db8215bd",
+        "evidence_gaps": [],
+        "execution_authority": "not_established",
+        "export_authority": "unapproved",
+        "export_manifest_sha256": "bfab728c3a924153d38c98a3a9d2ba9536a62397243f3857c4d926af639e4637",
+        "external_caller_approval": "not_supplied_or_authenticated",
+        "intended_outcome": "Entire atomic transfer request",
+        "out_of_scope": [],
+        "revision": 1,
+        "scope": "Untrusted advisory planning data, not executable tests, proof or consent.",
+        "source_bundle_sha256": "cca7cbebc488ae2e87d48bf155bc0a5715e8946e2614c7f6d1172474b2b81a63",
+        "source_sha256": "c9a5c3bc2cc80520431d6fd951a8e2303270d1c390b25ed1f5413391fbc29347"
+      },
+      "original_source_ref": "inputs/source.md",
+      "requirements": [
+        {
+          "id": "R1",
+          "intentline_planning": {
+            "authority": "unverified original-source-grounded proposal",
+            "basis": "request",
+            "boundaries": [
+              "Ordered balances; intermediate/self overdrafts rejected"
+            ],
+            "evidence_gap_reasons": [],
+            "plan_state": "planned",
+            "planned_evidence": "Chosen project commands and finite independent probes",
+            "seam": "app.process"
+          },
+          "kind": "outcome",
+          "linked_checks": [
+            {
+              "argv": [
+                "/opt/homebrew/Cellar/python@3.14/3.14.8_2/Frameworks/Python.framework/Versions/3.14/bin/python3.14",
+                "-B",
+                "-c",
+                "from app import process; assert process({'balances': {'a': 5, 'b': 0}, 'transfers': [['a', 'b', 3]]}) == {'balances': {'a': 2, 'b': 3}}"
+              ],
+              "index": 0,
+              "observation_status": "PASSED",
+              "receipt_ref": "receipts/check-000.json"
+            }
+          ],
+          "oracle_authority": "unverified caller suggestion",
+          "proposed_oracle": "Ordered balances; intermediate/self overdrafts rejected",
+          "reason": "Selected commands passed; linked behaviors are not proven in full",
+          "source_refs": [
+            {
+              "line_end": 6,
+              "line_start": 1,
+              "quote": "Implement transfers for {\"balances\": {name: integer >= 0},\n\"transfers\": [[from, to, amount], ...]}. Names are nonempty strings; amount is\na nonnegative integer. Booleans are invalid numbers. Both accounts must exist.\nApply transfers in order; reject insufficient funds at any intermediate step,\nincluding a self-transfer exceeding that account's balance. Return\n{\"balances\": final_balances}. No partial result on rejection.",
+              "source_id": "S1"
+            }
+          ],
+          "statement": "Apply valid transfers in order and reject invalid/overdrawn accounts",
+          "status": "LINKED CHECKS PASSED (limited evidence)"
+        },
+        {
+          "id": "R2",
+          "intentline_planning": {
+            "authority": "unverified original-source-grounded proposal",
+            "basis": "request",
+            "boundaries": [
+              "One result per input, invalid member rejects batch"
+            ],
+            "evidence_gap_reasons": [],
+            "plan_state": "planned",
+            "planned_evidence": "Chosen project commands and finite independent probes",
+            "seam": "service.batch"
+          },
+          "kind": "outcome",
+          "linked_checks": [],
+          "oracle_authority": "unverified caller suggestion",
+          "proposed_oracle": "One result per input, invalid member rejects batch",
+          "reason": "No selected executable check linked",
+          "source_refs": [
+            {
+              "line_end": 10,
+              "line_start": 8,
+              "quote": "Expose the same behavior through app.process, service.handle and the existing\nJSON stdin/stdout CLI. Add service.batch(payloads): return each process result\nin input order; reject a non-list or any invalid member with ValueError.",
+              "source_id": "S1"
+            }
+          ],
+          "statement": "Expose ordered batch processing and reject any invalid member",
+          "status": "NOT DEMONSTRATED"
+        },
+        {
+          "id": "R3",
+          "intentline_planning": {
+            "authority": "unverified original-source-grounded proposal",
+            "basis": "request",
+            "boundaries": [
+              "No mutation; unchanged CLI bytes; extra keys accepted"
+            ],
+            "evidence_gap_reasons": [],
+            "plan_state": "planned",
+            "planned_evidence": "Chosen project commands and finite independent probes",
+            "seam": "CLI and input snapshots"
+          },
+          "kind": "outcome",
+          "linked_checks": [],
+          "oracle_authority": "unverified caller suggestion",
+          "proposed_oracle": "No mutation; unchanged CLI bytes; extra keys accepted",
+          "reason": "No selected executable check linked",
+          "source_refs": [
+            {
+              "line_end": 13,
+              "line_start": 11,
+              "quote": "Do not mutate any input, including on errors. Preserve the exact CLI --version\nresponse and unsupported-argument behavior; keep cli.py unchanged. Extra object\nkeys are allowed. Update a stale test expectation if it contradicts this request.",
+              "source_id": "S1"
+            }
+          ],
+          "statement": "Preserve inputs, exact CLI compatibility, extra keys and source-correct tests",
+          "status": "NOT DEMONSTRATED"
+        }
+      ],
+      "same_agent_review": {
+        "authority": "unverified advisory review; may omit original promises",
+        "independent": false,
+        "proposals": [],
+        "reported_performed": false
+      },
+      "scope": "Only explicitly mapped requirements/commands; all original source remains authoritative.",
+      "snapshot_sha256": "1a2f231f2c44b17b6e6307ae0b22a714699169a43d39b8482fa66f3dc279b6ce",
+      "source_sha256": "c9a5c3bc2cc80520431d6fd951a8e2303270d1c390b25ed1f5413391fbc29347"
+    },
+    "status": "OBSERVED"
+  },
+  "worker": {
+    "assessment": {
+      "observations": {
+        "mode_change": "allowed",
+        "network": "denied",
+        "nonce": "5f977dc959884d06909be251191be82c",
+        "reads": {
+          "actual_oracle": "denied",
+          "enclosing_repository": "denied",
+          "grader": "denied",
+          "matched_oracle": "denied",
+          "oracle-canary": "denied",
+          "other-role-canary": "denied",
+          "receipt-canary": "denied",
+          "sibling": "denied",
+          "study_results": "denied"
+        },
+        "scratch": true,
+        "writes": {
+          "candidate": "allowed",
+          "git_head": "denied",
+          "input": "denied",
+          "receipt": "denied",
+          "source": "denied"
+        }
+      },
+      "status": "OBSERVED"
+    },
+    "receipt": {
+      "elapsed_seconds": 0.125068,
+      "exit_code": 0,
+      "invocation_id": "4e45a2e0-5b10-44bd-96c1-472bb9ebca74",
+      "kind": "process_probe",
+      "native_argv_sha256": "9eee8cb199a7566ae61ff9657812c680e9a5cfb0a0f39e2164d08d813ea5185b",
+      "stderr": "",
+      "stdout": "{\"nonce\": \"5f977dc959884d06909be251191be82c\", \"writes\": {\"source\": \"denied\", \"input\": \"denied\", \"candidate\": \"allowed\", \"git_head\": \"denied\", \"receipt\": \"denied\"}, \"reads\": {\"receipt-canary\": \"denied\", \"oracle-canary\": \"denied\", \"other-role-canary\": \"denied\", \"actual_oracle\": \"denied\", \"matched_oracle\": \"denied\", \"grader\": \"denied\", \"study_results\": \"denied\", \"enclosing_repository\": \"denied\", \"sibling\": \"denied\"}, \"mode_change\": \"allowed\", \"scratch\": true, \"network\": \"denied\"}\n",
+      "timed_out": false
+    }
+  }
+}
