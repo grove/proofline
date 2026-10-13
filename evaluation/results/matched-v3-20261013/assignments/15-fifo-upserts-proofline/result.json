@@ -1,0 +1,55 @@
+{
+  "arm": "proofline",
+  "base_tree": "f32ee627087f16af8ac3cc693785bfcf517b275e",
+  "candidate_files": {
+    "README.md": {
+      "kind": "file",
+      "mode": 420,
+      "path": "README.md",
+      "sha256": "4774514d095c022a04b16a43bad405a26c0bec7ff39dff054eb3a0ed71e6ee7c"
+    },
+    "app.py": {
+      "kind": "file",
+      "mode": 420,
+      "path": "app.py",
+      "sha256": "aaea00a9b71c288ad289e8aeac007a4168249e69f7efea2fae15b46792deb00d"
+    },
+    "cli.py": {
+      "kind": "file",
+      "mode": 420,
+      "path": "cli.py",
+      "sha256": "14aea6a3d7acc1d93b80e079fd645b48e4fef2e976df9ef355cc50829a7c74c8"
+    },
+    "service.py": {
+      "kind": "file",
+      "mode": 420,
+      "path": "service.py",
+      "sha256": "48db6ebd2d4d56bd71e566d9b43a980cac5956b80bee8944810a5d857bec0ff6"
+    },
+    "tests": {
+      "kind": "directory",
+      "mode": 493,
+      "path": "tests"
+    },
+    "tests/test_compat.py": {
+      "kind": "file",
+      "mode": 420,
+      "path": "tests/test_compat.py",
+      "sha256": "2432e53eeae0b53103501bb0cdfbd3dab2446d236503df335ea8a5e5e4171703"
+    },
+    "tests/test_example.py": {
+      "kind": "file",
+      "mode": 420,
+      "path": "tests/test_example.py",
+      "sha256": "d32ad37bc744bc69e4959180ef66f8e31888e784441e580fec62f7e59f4d76a0"
+    }
+  },
+  "candidate_snapshot_sha256": null,
+  "model_dispatches": 0,
+  "sequence": 15,
+  "source_sha256": "ca511e228d32a79e61c1b3c9acc1d49b4359c9dc90f4044a325dbf313226f41e",
+  "status": "NOT_EXECUTED",
+  "task": "fifo-upserts",
+  "usage": null,
+  "workflow_seconds": null
+}

@@ -47,18 +47,22 @@ def producer_files():
     return {str(path.relative_to(PRODUCER)): path for path in paths}
 
 
+def catalog():
+    return json.loads((Path.home() / ".codex/models_cache.json").read_text())
+
+
 def identities():
     freeze = json.loads((HERE / "FREEZE.json").read_text())
     for name, expected in freeze["sha256"].items():
         if p.host.sha256((ROOT / name).read_bytes()) != expected:
             raise ValueError("Frozen study input drift: " + name)
-    paths = {str(path.relative_to(ROOT)): path for folder in (ROOT / "checks", HERE, ROOT / "evaluation/v1", ROOT / "evaluation/matched")
+    paths = {str(path.relative_to(ROOT)): path for folder in (ROOT / "checks", HERE, Path(__file__).parent, ROOT / "evaluation/v1", ROOT / "evaluation/matched")
              for path in folder.rglob("*") if path.is_file() and path.suffix in (".py", ".json", ".md")}
     paths.update({"proofline.py": ROOT / "proofline.py", "evaluation/__init__.py": ROOT / "evaluation/__init__.py",
                   "codex": Path(CODEX), "python": Path(sys.executable).resolve()})
     paths.update({"intentline/" + name: path for name, path in producer_files().items()})
     result = {name: p.host.sha256(path.read_bytes()) for name, path in paths.items()}
-    cache = json.loads((Path.home() / ".codex/models_cache.json").read_text())
+    cache = catalog()
     model = next(m for m in cache["models"] if m["slug"] == read_protocol()["model"]["model"])
     result["selected_model_metadata"] = p.host.sha256(json.dumps(model, sort_keys=True).encode())
     return result
@@ -150,7 +154,7 @@ def qualify():
             raise ValueError("Declared native CLI unavailable")
         if p.host.auth_status(p.host.run_command([CODEX, "login", "status"], STORE)) != "authenticated":
             raise ValueError("Existing model authentication unavailable")
-        cache = json.loads((Path.home() / ".codex/models_cache.json").read_text())
+        cache = catalog()
         models = [m for m in cache["models"] if m["slug"] == spec["model"]["model"]]
         if not models or spec["model"]["model_reasoning_effort"] not in [r["effort"] for r in models[0]["supported_reasoning_levels"]]:
             raise ValueError("Declared model/reasoning unavailable")
@@ -205,6 +209,7 @@ def prompt(row, inputs, scratch, remaining):
                  "The skill applies to the planning phase; finish that phase then implement this same original task in this same turn. "
                  "No audit, adoption, separate planner, reviewer, or user approval. CLI examples use this frozen offline CLI instead of -m intentline: "
                  f"{cli}. Use prepare --source {inputs / 'source.md'} --root {inputs} --out {scratch / 'plan'} --json. "
+                 "Capture only this original S1 request; additional context sources are outside the qualified adapter contract. "
                  "Read frozen schema/identity and authority documents. Author source-grounded draft.json, propose, check and render per the skill. "
                  f"After structurally valid planning you are explicitly authorized to export --work {scratch / 'plan'} --format json --out {scratch / 'export'} --json. "
                  "The draft is advisory; an evidence gap never prevents implementation. Preserve all original obligations. "

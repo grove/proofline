@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "study": "issue16-matched-v3-20261013",
-  "live_dispatch_allowed": true,
+  "live_dispatch_allowed": false,
   "sha256": {
     "checks/__init__.py": "f0cab0051a0d846f75f4212ab1f99dcd27f13ffd0b79fc07915970227a08f032",
     "checks/candidate_snapshot.py": "9a99a9a93ac33078b3b612d51be3d397561c35103ba5a714f9bc25c0441b2b96",
@@ -45,7 +45,7 @@
     "evaluation/matched_v3/__init__.py": "bc82ecdb8919685b71e57ee371a5af99b571be6bf1a2ce75d9be975f51f81344",
     "evaluation/matched_v3/preflight.py": "58960bb39db3b1d8aafa5c5fae598f0f840bb695e54367fbfc8a0d5f1a2df61c",
     "evaluation/matched_v3/protocol.json": "b81eadbfb938c5559b7063fc688687fd3b7676c1f427601ab171b733227380e8",
-    "evaluation/matched_v3/study.py": "f5162052fe2ee010110e1add94723808bcba58cbf48f28252debc5f0afc76cd5",
+    "evaluation/matched_v3/study.py": "34e1df236dcc623372159abbf36849534fc18771aea353ec16bd21ab480bbdd7",
     "evaluation/v1/README.md": "051103a2c24035d84c0b55bd8d64bf09e5f08c0193ef6184bbc465689ab05665",
     "evaluation/v1/__init__.py": "657b6d46e1c351af7cf359ae5dde73b6f2700b4c76c5303ec44a7b4f4df35f1f",
     "evaluation/v1/benchmark.py": "e9fa3cb4ca8055263c4b96696799bab6dc5c4485eccbe7e9ca4ede47870d7343",
@@ -57,5 +57,6 @@
     "proofline.py": "670ccf241a0a1f89c566f7ec39daa9873ad5bd4cd2531b9e0ec0bf64b089245a",
     "tests/test_matched_v3.py": "c7facd7106ddd2b81c2218635aac3961bfb66570ef0bdfc9a3bc020f92d9c16d"
   },
-  "scope": "Fresh user-authorized 16-assignment cohort; v2 remains stopped. Source request/oracle/control bytes reused unchanged. No retry/resume/correction."
+  "scope": "Fresh user-authorized 16-assignment cohort; v2 remains stopped. Source request/oracle/control bytes reused unchanged. No retry/resume/correction.",
+  "retirement": "Stopped after two dispatches on selected catalog hash drift; original frozen source/manifest preserved in evaluation/results/matched-v3-20261013. No resume."
 }

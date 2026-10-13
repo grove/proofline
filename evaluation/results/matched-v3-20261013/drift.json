@@ -1,0 +1,7 @@
+{
+  "changed_identity": "selected_model_metadata",
+  "frozen_sha256": "7b3f0b0c1028f1dde24c4bb51f58604d9ec446ea120154d8b887637f34f20e4d",
+  "limitation": "Only the original selected catalog hash was retained; exact changed fields cannot be reconstructed. Selected slug and high reasoning remain available.",
+  "observed_sha256": "7b3f0b0c1028f1dde24c4bb51f58604d9ec446ea120154d8b887637f34f20e4d",
+  "original_metadata_content": null
+}
