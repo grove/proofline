@@ -1,0 +1,17 @@
+{
+  "schema_version": 1,
+  "scope": "proofline-vnext-baseline-v1-20261013",
+  "frozen_at_utc_date": "2026-10-13",
+  "identity_scheme": "Git blob SHA-1 over 'blob '+bytes+'\\0'+UTF-8 content; linked to immutable study commit",
+  "git_blob_sha1": {
+    "tasks.py": "43d43f14b0a2f358e3f7aefd219497fb68a9e05a",
+    "variants.py": "7b20fc872b5ab5967116dc46ee1a1c8cd7583842",
+    "oracle.py": "8de2d474bd8f8a6e1367b94d091db976ba32c52b",
+    "benchmark.py": "9fb55d1fa22888791fa89adc3386da5e9bbba91c",
+    "protocol.json": "3fa99facd16a7c7ae9f7e3390e47d7366dc42370",
+    "ledger.json": "551469fad7e0d70ac9041723baebfa7d7e792e45",
+    "README.md": "f2c00010c7b41e931188a8f0ed98e8b129f7cfea"
+  },
+  "original_historical_evidence": "docs/BOUNDED-COMPARISON.md (not modified)",
+  "disclosure": "This manifest freezes offline preparation, not results; model calls=0, six assignments unexecuted. The Git commit containing FREEZE.json anchors its own contents."
+}

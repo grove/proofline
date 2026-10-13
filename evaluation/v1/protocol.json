@@ -1,0 +1,94 @@
+{
+  "schema_version": 1,
+  "study_id": "proofline-vnext-baseline-v1-20261013",
+  "status": "PREDECLARED_PREPARATION_NOT_LIVE_RESULT",
+  "purpose": "Measure independently correct deliveries of an ordinary coding agent before introducing mandatory Proofline assurance.",
+  "reference_evidence": "docs/BOUNDED-COMPARISON.md, prior completed six-task small comparison; separate non-reused tasks and scores.",
+  "tasks": [
+    "collision-slugs",
+    "ordered-inventory",
+    "half-open-union",
+    "form-multimap",
+    "largest-remainder",
+    "four-way-islands"
+  ],
+  "primary_arm": "ordinary-agent",
+  "future_matched_arm": "ordinary-agent-plus-proofline-check",
+  "model_dispatches_planned": 6,
+  "coding_transport": {
+    "name": "Codex CLI",
+    "version": "0.162.1",
+    "model": "gpt-6.1-sol",
+    "reasoning_effort": "high",
+    "host": "qualified native macOS",
+    "authentication": "existing",
+    "model_substitution": false
+  },
+  "assignment": {
+    "order": "frozen list order",
+    "repetitions": 1,
+    "concurrency": 1,
+    "retries": 0,
+    "changes_during_campaign": "none",
+    "worker_input": "Only source.md and product/ seed; no oracle/variants/controls; deny network and evaluator/research/root paths."
+  },
+  "limits": {
+    "episode_seconds": 900,
+    "coding_seconds": 600,
+    "verification_seconds": 120,
+    "per_probe_seconds": 5
+  },
+  "independent_finite_controls": {
+    "each_task": [
+      "reference",
+      "alternative",
+      "defective"
+    ],
+    "expected": "reference and structurally different alternative pass; seeded material defect rejected",
+    "host_grade_seams": [
+      "app.process",
+      "service.handle",
+      "cli.py stdin JSON",
+      "cli.py --version and invalid args"
+    ],
+    "candidate_mutation": "forbidden"
+  },
+  "grader": {
+    "criterion_source": "literal expected outputs and invalid-input classifications authored from the original requests, independent of implementation algorithms",
+    "execution": "trusted local controls only; any later untrusted model candidate must run behind qualified native sandbox with evaluator inputs protected and network denied",
+    "coverage": "finite cases, no completeness certificate",
+    "operator_author": "same study author; no independent second human oracle author"
+  },
+  "outcomes": {
+    "observed_correct": "All frozen private behavioral/compatibility checks pass for the exact candidate under qualified independent evaluation.",
+    "correct_delivery": "Observed correct plus explicit completed handoff before deadline.",
+    "false_acceptance": "Completed handoff despite independently observed incorrect candidate.",
+    "false_blocking": "No completed handoff despite independently correct candidate.",
+    "failed": "Candidate produced, independently evaluated incorrect, no completed handoff.",
+    "unavailable": "Execution or grading cannot be observed reliably; never scored as correct or incorrect.",
+    "not_executed": "Assignment never dispatched; remains in assigned denominator."
+  },
+  "stop_rules": [
+    "Unqualified native isolation or readable grader/private answers",
+    "Task, base tree, source, oracle, runtime or budget changed after freeze",
+    "Evaluator positive/alternative/negative controls do not match",
+    "Unsafe worker reads, network, protected mutations, or sibling/root access",
+    "Unreconciled native worker or broken receipt",
+    "Operator changes scope or model; terminate with partial report, do not replace or retry assignments"
+  ],
+  "accounting": {
+    "denominator": "All 6 declared ordinary-agent assignments, including failures and not-executed",
+    "observed_only": "Rates and seconds/tokens per correct delivery remain null if no observed correct deliveries; always report executed/assigned separately",
+    "tokens": "input, cached subset, output and unknown-usage dispatches; do not double-count cached or reasoning output",
+    "time": "sum elapsed episode seconds across attempts plus separate study preparation/grader/operator time; missing time unknown",
+    "human": "record actual manual actions and active human attention when observable; unknown otherwise",
+    "currency": "unknown unless authoritative rates are frozen",
+    "post_declaration_changes": "new versioned study only; no retroactive result edits"
+  },
+  "future_comparison": "Use identical raw requests, starting bytes, private independent checks, budgets and host/model settings. Freeze arm ordering and runtime before dispatch; report all assignments including missing results. Comparisons do not establish superiority from a six-task sample.",
+  "qualifications": {
+    "live_host": "REQUIRED_FOR_LIVE",
+    "live_model": "NOT_AVAILABLE_IN_THIS_EXECUTION_ENVIRONMENT",
+    "current_claim": "Only six task fixtures, independent finite grader and controlled preparation are implemented; no ordinary-agent performance claim."
+  }
+}

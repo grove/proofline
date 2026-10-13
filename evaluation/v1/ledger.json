@@ -1,0 +1,83 @@
+{
+  "schema_version": 1,
+  "study_id": "proofline-vnext-baseline-v1-20261013",
+  "status": "PREPARED_ONLY",
+  "reason": "No authenticated qualified Codex model host is available from this execution environment. No ordinary-agent dispatches were run; the pilot remains incomplete.",
+  "assignments": [
+    {
+      "sequence": 1,
+      "task": "collision-slugs",
+      "arm": "ordinary-agent",
+      "status": "NOT_EXECUTED",
+      "handoff": null,
+      "grade": null,
+      "seconds": null,
+      "reported_tokens": null,
+      "operator_interventions": null,
+      "reason": "model_runner_unavailable"
+    },
+    {
+      "sequence": 2,
+      "task": "ordered-inventory",
+      "arm": "ordinary-agent",
+      "status": "NOT_EXECUTED",
+      "handoff": null,
+      "grade": null,
+      "seconds": null,
+      "reported_tokens": null,
+      "operator_interventions": null,
+      "reason": "model_runner_unavailable"
+    },
+    {
+      "sequence": 3,
+      "task": "half-open-union",
+      "arm": "ordinary-agent",
+      "status": "NOT_EXECUTED",
+      "handoff": null,
+      "grade": null,
+      "seconds": null,
+      "reported_tokens": null,
+      "operator_interventions": null,
+      "reason": "model_runner_unavailable"
+    },
+    {
+      "sequence": 4,
+      "task": "form-multimap",
+      "arm": "ordinary-agent",
+      "status": "NOT_EXECUTED",
+      "handoff": null,
+      "grade": null,
+      "seconds": null,
+      "reported_tokens": null,
+      "operator_interventions": null,
+      "reason": "model_runner_unavailable"
+    },
+    {
+      "sequence": 5,
+      "task": "largest-remainder",
+      "arm": "ordinary-agent",
+      "status": "NOT_EXECUTED",
+      "handoff": null,
+      "grade": null,
+      "seconds": null,
+      "reported_tokens": null,
+      "operator_interventions": null,
+      "reason": "model_runner_unavailable"
+    },
+    {
+      "sequence": 6,
+      "task": "four-way-islands",
+      "arm": "ordinary-agent",
+      "status": "NOT_EXECUTED",
+      "handoff": null,
+      "grade": null,
+      "seconds": null,
+      "reported_tokens": null,
+      "operator_interventions": null,
+      "reason": "model_runner_unavailable"
+    }
+  ],
+  "studies_completed": 0,
+  "dollars": null,
+  "operator_time_seconds": null
+}
