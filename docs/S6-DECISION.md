@@ -32,15 +32,15 @@ authors also produced unusable designs, wrong expectations and narrower coverage
 Manually supplied public predicates shared some of those assumptions. Increasing
 finite coverage repaired controls but did not establish general source coverage.
 
-The [ordering qualification](S6-ORDERING-QUALIFICATION.md) recorded three false
+The [ordering qualification](https://github.com/grove/proofline/blob/e46814efce7e2b59adecb4583be60806012b1707/docs/S6-ORDERING-QUALIFICATION.md) recorded three false
 acceptances among twelve fresh Sol judgments. The
-[representation qualification](S6-REPRESENTATION-QUALIFICATION.md) recorded four
+[representation qualification](https://github.com/grove/proofline/blob/e46814efce7e2b59adecb4583be60806012b1707/docs/S6-REPRESENTATION-QUALIFICATION.md) recorded four
 among sixteen. Separate readback corrected six earlier pagination and four earlier
 username positive judgments without rewriting their original labels. Defective
 positive controls, unavailable invocations and missing evidence remain distinct;
 none is converted into a false rejection for convenience.
 
-The [scalar qualification](S6-SCALAR-QUALIFICATION.md) was held during native
+The [scalar qualification](https://github.com/grove/proofline/blob/e46814efce7e2b59adecb4583be60806012b1707/docs/S6-SCALAR-QUALIFICATION.md) was held during native
 preflight for the scope discussion and terminated after the owner chose closure.
 Nineteen of twenty-one finite controls completed and matched; partial control 19
 artifacts remain retained. **Zero model judgments dispatched.** All eighty-four
@@ -120,8 +120,8 @@ No authoritative prices were frozen; dollars and cost per independently correct
 delivery remain unknown. Test-provider aggregate usage is unknown. Verification
 controls and this one smoke do not supply matched workflow-delivery denominators.
 
-The [historical results](S6-RESULTS.md), [first follow-up](S6-FOLLOWUP.md),
-[verification redesign](S6-VERIFICATION-REDESIGN.md) and every prior trial remain
+The [historical results](https://github.com/grove/proofline/blob/e46814efce7e2b59adecb4583be60806012b1707/docs/S6-RESULTS.md), [first follow-up](https://github.com/grove/proofline/blob/e46814efce7e2b59adecb4583be60806012b1707/docs/S6-FOLLOWUP.md),
+[verification redesign](https://github.com/grove/proofline/blob/e46814efce7e2b59adecb4583be60806012b1707/docs/S6-VERIFICATION-REDESIGN.md) and every prior trial remain
 preserved. Closed-run evidence indexes and runtime archives remain available.
 Raw transcripts and private oracle artifacts stay ignored and inaccessible to
 workers. No push, PR, merge, deployment or other remote mutation occurred.

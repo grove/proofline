@@ -8,8 +8,8 @@ They are **unchanged in the ancestor Git commit**:
 - [Original DESIGN.md](https://github.com/grove/proofline/blob/e46814efce7e2b59adecb4583be60806012b1707/DESIGN.md)
 - [Original IMPLEMENTATION.md](https://github.com/grove/proofline/blob/e46814efce7e2b59adecb4583be60806012b1707/IMPLEMENTATION.md)
 - [Original experimental proofline.py (deliver/resume)](https://github.com/grove/proofline/blob/e46814efce7e2b59adecb4583be60806012b1707/proofline.py)
-- [All historical experiment scripts](https://github.com/grove/proofline/blob/e46814efce7e2b59adecb4583be60806012b1707/checks)
-- [All historical experiment tests and fixtures](https://github.com/grove/proofline/blob/e46814efce7e2b59adecb4583be60806012b1707/tests)
+- [All historical experiment scripts](https://github.com/grove/proofline/tree/e46814efce7e2b59adecb4583be60806012b1707/checks)
+- [All historical experiment tests and fixtures](https://github.com/grove/proofline/tree/e46814efce7e2b59adecb4583be60806012b1707/tests)
 
 ## Historical reports
 
