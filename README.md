@@ -321,6 +321,11 @@ The [issue #16 matched delivery study](evaluation/results/matched-v5-20261013/RE
 
 The separate [issue #32 Sol-guided Luna study](docs/ISSUE32.md) prepares four new tasks across five approaches using Luna:high and Sol:high. The runner, finite grader controls and cost accounting are implemented; native qualification is blocked, so **no live comparison or monetary savings are claimed**. The original Sol cohort is unchanged. Planning, review and correction remain optional, and the normal `check` command still invokes zero models.
 
+The fresh [issue #34 recovery comparison](docs/ISSUE34.md) freezes six Python
+repository changes across ordinary Luna, checks plus Luna, Proofline plus Luna,
+and defect-triggered Sol diagnosis. Its native controls are qualified; live
+execution requires fresh spending approval. No recovery benefit is claimed.
+
 **License:** [Apache 2.0](LICENSE).
 
 ---

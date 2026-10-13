@@ -1,0 +1,27 @@
+{
+  "observations": [
+    {
+      "label": "repository-capture",
+      "status": "EXECUTION UNAVAILABLE",
+      "error": "Symlinks must be relative aliases to regular product files outside Git metadata",
+      "elapsed_seconds": 0.4400005000643432,
+      "model_dispatches": 0
+    },
+    {
+      "label": "nested-native",
+      "status": "EXECUTION UNAVAILABLE",
+      "error": "Native check boundary unavailable; no unprotected fallback",
+      "elapsed_seconds": 0.4666397077962756,
+      "model_dispatches": 0
+    },
+    {
+      "label": "host-native",
+      "status": "CHECKS PASSED",
+      "error": null,
+      "elapsed_seconds": 0.64188520796597,
+      "model_dispatches": 0
+    }
+  ],
+  "production_changes": 0,
+  "conclusion": "Unsupported directory symlinks and nested sandbox are documented scope/host constraints; standalone host checking succeeds."
+}
