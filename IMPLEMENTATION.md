@@ -85,6 +85,13 @@ JSON advisory adapter does not execute peers or grant authority.
    Planning added overhead without an observed delivery benefit; keep additional
    stages optional. Four tasks cannot establish general superiority. Earlier
    stopped declarations retain their separate missing slots and source archives.
+8. [#32 — Sol-guided Luna](https://github.com/grove/proofline/issues/32), prepared:
+   [twenty fresh matched assignments](docs/ISSUE32.md) across Luna-only, Sol-plan,
+   Sol-verify, full hybrid and fresh Sol-only arms. Reuses native coding,
+   snapshots, Intentline, receipts and bounded correction. Offline controls and
+   simulated handoffs are tested; native isolation/catalog qualification is
+   unavailable here. No live task, efficacy result or dollar saving is claimed;
+   empirical acceptance remains incomplete and the issue stays open.
 
 ## Stop rules
 

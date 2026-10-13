@@ -319,6 +319,8 @@ Proofline's lean design follows the [S6 abandon/simplify decision](docs/S6-DECIS
 
 The [issue #16 matched delivery study](evaluation/results/matched-v5-20261013/README.md) observed all sixteen assignments across four fresh tasks with untested obligations and stale-oracle cases. Every arm delivered 4/4 finite-correct products. Planning-only and combined used 72.9% and 89.1% more episode time than ordinary coding, with no observed delivery benefit. Checks, planning and mapping remain optional. Four tasks cannot establish general superiority; [earlier stopped studies](docs/ISSUE16-V5.md) retain their failures, missing slots and costs separately.
 
+The separate [issue #32 Sol-guided Luna study](docs/ISSUE32.md) prepares four new tasks across five approaches using Luna:high and Sol:high. The runner, finite grader controls and cost accounting are implemented; native qualification is blocked, so **no live comparison or monetary savings are claimed**. The original Sol cohort is unchanged. Planning, review and correction remain optional, and the normal `check` command still invokes zero models.
+
 **License:** [Apache 2.0](LICENSE).
 
 ---
