@@ -88,8 +88,29 @@ class MatchedStudy(unittest.TestCase):
             with patch.object(study, "STORE", root), patch.object(study, "verify", return_value={}):
                 with self.assertRaisesRegex(ValueError, "No retry or resume"):
                     study.execute()
-                with self.assertRaises(FileExistsError):
+                with self.assertRaisesRegex(ValueError, "No retry or resume"):
                     study.qualify()
+
+    def test_failed_preflight_is_retired_even_in_a_fresh_clone(self):
+        with tempfile.TemporaryDirectory() as temporary:
+            with patch.object(study, "STORE", Path(temporary) / "absent"), patch.object(
+                    study.p.live, "launch", side_effect=AssertionError("No dispatch")):
+                with self.assertRaisesRegex(ValueError, "fresh live declaration"):
+                    study.qualify()
+                with self.assertRaisesRegex(ValueError, "fresh live declaration"):
+                    study.execute()
+
+    def test_sibling_canary_points_outside_worker_inputs(self):
+        with tempfile.TemporaryDirectory() as temporary:
+            root = Path(temporary)
+            product = corpus.seed("atomic-transfers", root / "qualification/inputs")
+            with patch.object(study, "STORE", root), patch.object(study.p.host, "run_command",
+                    return_value={"exit_code": 1, "timed_out": False, "stdout": "", "stderr": "unavailable"}):
+                with self.assertRaisesRegex(ValueError, "Unqualified native boundary"):
+                    study.boundary(product.parent, root / "boundary", worker=True)
+            spec = json.loads((product.parent / "canary.json").read_text())
+            self.assertEqual(Path(spec["reads"]["sibling"]), root / "qualification/sibling.txt")
+            self.assertFalse(Path(spec["reads"]["sibling"]).is_relative_to(product.parent))
 
     def test_outcome_taxonomy_separates_handoff_from_finite_correctness(self):
         self.assertEqual([report.outcome(h, c) for h,c in [(True, True), (True, False), (False, True), (False, False), (True, None)]],

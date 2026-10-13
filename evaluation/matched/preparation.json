@@ -1,0 +1,317 @@
+{
+  "assignments": [
+    {
+      "arm": "ordinary",
+      "base_tree": "8086be2df1abaaf5bba79fc42e738054a0fc5f0f",
+      "model_dispatches": 0,
+      "sequence": 1,
+      "source_sha256": "c9a5c3bc2cc80520431d6fd951a8e2303270d1c390b25ed1f5413391fbc29347",
+      "status": "NOT_EXECUTED",
+      "task": "atomic-transfers",
+      "usage": null,
+      "workflow_seconds": null
+    },
+    {
+      "arm": "proofline",
+      "base_tree": "8086be2df1abaaf5bba79fc42e738054a0fc5f0f",
+      "model_dispatches": 0,
+      "sequence": 2,
+      "source_sha256": "c9a5c3bc2cc80520431d6fd951a8e2303270d1c390b25ed1f5413391fbc29347",
+      "status": "NOT_EXECUTED",
+      "task": "atomic-transfers",
+      "usage": null,
+      "workflow_seconds": null
+    },
+    {
+      "arm": "intentline",
+      "base_tree": "8086be2df1abaaf5bba79fc42e738054a0fc5f0f",
+      "model_dispatches": 0,
+      "sequence": 3,
+      "source_sha256": "c9a5c3bc2cc80520431d6fd951a8e2303270d1c390b25ed1f5413391fbc29347",
+      "status": "NOT_EXECUTED",
+      "task": "atomic-transfers",
+      "usage": null,
+      "workflow_seconds": null
+    },
+    {
+      "arm": "combined",
+      "base_tree": "8086be2df1abaaf5bba79fc42e738054a0fc5f0f",
+      "model_dispatches": 0,
+      "sequence": 4,
+      "source_sha256": "c9a5c3bc2cc80520431d6fd951a8e2303270d1c390b25ed1f5413391fbc29347",
+      "status": "NOT_EXECUTED",
+      "task": "atomic-transfers",
+      "usage": null,
+      "workflow_seconds": null
+    },
+    {
+      "arm": "proofline",
+      "base_tree": "9503e952268e34618f20dcc1f87108ee20141ad3",
+      "model_dispatches": 0,
+      "sequence": 5,
+      "source_sha256": "a916b8eeb9671391cc2bc577c1b6a3a635d54bce356997c3795df8c22bc543ca",
+      "status": "NOT_EXECUTED",
+      "task": "locale-fallback",
+      "usage": null,
+      "workflow_seconds": null
+    },
+    {
+      "arm": "combined",
+      "base_tree": "9503e952268e34618f20dcc1f87108ee20141ad3",
+      "model_dispatches": 0,
+      "sequence": 6,
+      "source_sha256": "a916b8eeb9671391cc2bc577c1b6a3a635d54bce356997c3795df8c22bc543ca",
+      "status": "NOT_EXECUTED",
+      "task": "locale-fallback",
+      "usage": null,
+      "workflow_seconds": null
+    },
+    {
+      "arm": "ordinary",
+      "base_tree": "9503e952268e34618f20dcc1f87108ee20141ad3",
+      "model_dispatches": 0,
+      "sequence": 7,
+      "source_sha256": "a916b8eeb9671391cc2bc577c1b6a3a635d54bce356997c3795df8c22bc543ca",
+      "status": "NOT_EXECUTED",
+      "task": "locale-fallback",
+      "usage": null,
+      "workflow_seconds": null
+    },
+    {
+      "arm": "intentline",
+      "base_tree": "9503e952268e34618f20dcc1f87108ee20141ad3",
+      "model_dispatches": 0,
+      "sequence": 8,
+      "source_sha256": "a916b8eeb9671391cc2bc577c1b6a3a635d54bce356997c3795df8c22bc543ca",
+      "status": "NOT_EXECUTED",
+      "task": "locale-fallback",
+      "usage": null,
+      "workflow_seconds": null
+    },
+    {
+      "arm": "intentline",
+      "base_tree": "977045022a51c9093a8af016a866a7f098bc681c",
+      "model_dispatches": 0,
+      "sequence": 9,
+      "source_sha256": "28048df96119c5f6e2fd73c8909ed9424b063cd92cd2de1496d5f11e68c090e3",
+      "status": "NOT_EXECUTED",
+      "task": "dependency-order",
+      "usage": null,
+      "workflow_seconds": null
+    },
+    {
+      "arm": "ordinary",
+      "base_tree": "977045022a51c9093a8af016a866a7f098bc681c",
+      "model_dispatches": 0,
+      "sequence": 10,
+      "source_sha256": "28048df96119c5f6e2fd73c8909ed9424b063cd92cd2de1496d5f11e68c090e3",
+      "status": "NOT_EXECUTED",
+      "task": "dependency-order",
+      "usage": null,
+      "workflow_seconds": null
+    },
+    {
+      "arm": "combined",
+      "base_tree": "977045022a51c9093a8af016a866a7f098bc681c",
+      "model_dispatches": 0,
+      "sequence": 11,
+      "source_sha256": "28048df96119c5f6e2fd73c8909ed9424b063cd92cd2de1496d5f11e68c090e3",
+      "status": "NOT_EXECUTED",
+      "task": "dependency-order",
+      "usage": null,
+      "workflow_seconds": null
+    },
+    {
+      "arm": "proofline",
+      "base_tree": "977045022a51c9093a8af016a866a7f098bc681c",
+      "model_dispatches": 0,
+      "sequence": 12,
+      "source_sha256": "28048df96119c5f6e2fd73c8909ed9424b063cd92cd2de1496d5f11e68c090e3",
+      "status": "NOT_EXECUTED",
+      "task": "dependency-order",
+      "usage": null,
+      "workflow_seconds": null
+    },
+    {
+      "arm": "combined",
+      "base_tree": "f32ee627087f16af8ac3cc693785bfcf517b275e",
+      "model_dispatches": 0,
+      "sequence": 13,
+      "source_sha256": "ca511e228d32a79e61c1b3c9acc1d49b4359c9dc90f4044a325dbf313226f41e",
+      "status": "NOT_EXECUTED",
+      "task": "fifo-upserts",
+      "usage": null,
+      "workflow_seconds": null
+    },
+    {
+      "arm": "intentline",
+      "base_tree": "f32ee627087f16af8ac3cc693785bfcf517b275e",
+      "model_dispatches": 0,
+      "sequence": 14,
+      "source_sha256": "ca511e228d32a79e61c1b3c9acc1d49b4359c9dc90f4044a325dbf313226f41e",
+      "status": "NOT_EXECUTED",
+      "task": "fifo-upserts",
+      "usage": null,
+      "workflow_seconds": null
+    },
+    {
+      "arm": "proofline",
+      "base_tree": "f32ee627087f16af8ac3cc693785bfcf517b275e",
+      "model_dispatches": 0,
+      "sequence": 15,
+      "source_sha256": "ca511e228d32a79e61c1b3c9acc1d49b4359c9dc90f4044a325dbf313226f41e",
+      "status": "NOT_EXECUTED",
+      "task": "fifo-upserts",
+      "usage": null,
+      "workflow_seconds": null
+    },
+    {
+      "arm": "ordinary",
+      "base_tree": "f32ee627087f16af8ac3cc693785bfcf517b275e",
+      "model_dispatches": 0,
+      "sequence": 16,
+      "source_sha256": "ca511e228d32a79e61c1b3c9acc1d49b4359c9dc90f4044a325dbf313226f41e",
+      "status": "NOT_EXECUTED",
+      "task": "fifo-upserts",
+      "usage": null,
+      "workflow_seconds": null
+    }
+  ],
+  "empirical_acceptance": "INCOMPLETE",
+  "live_episode_seconds": null,
+  "mandatory_actions": [
+    {
+      "action": "Proofline checks/feedback/status",
+      "decision": "INCONCLUSIVE",
+      "policy": "KEEP OPTIONAL; no new mandatory action"
+    },
+    {
+      "action": "Intentline planning/export",
+      "decision": "INCONCLUSIVE",
+      "policy": "KEEP OPTIONAL; no new mandatory action"
+    },
+    {
+      "action": "Intentline to Proofline mapping",
+      "decision": "INCONCLUSIVE",
+      "policy": "KEEP OPTIONAL; no new mandatory action"
+    }
+  ],
+  "metrics": {
+    "arms": {
+      "combined": {
+        "assigned": 4,
+        "executed": 0,
+        "extra_worker_messages": null,
+        "independent_grading_seconds": null,
+        "independently_correct_deliveries": null,
+        "known_tokens": null,
+        "material_green_test_omissions": null,
+        "native_model_dispatches": 0,
+        "observed_agent_tool_executions": 0,
+        "observed_delivery_rate": null,
+        "operator_candidate_edits": null,
+        "outcomes": {
+          "NOT_EXECUTED": 4
+        },
+        "retained_stale_test_expectations": null,
+        "seconds_per_correct_delivery": null,
+        "selected_check_processes": 0,
+        "tokens_per_correct_delivery": null,
+        "tool_count_unknown_attempts": 0,
+        "unknown_usage_attempts": 0,
+        "workflow_seconds": null
+      },
+      "intentline": {
+        "assigned": 4,
+        "executed": 0,
+        "extra_worker_messages": null,
+        "independent_grading_seconds": null,
+        "independently_correct_deliveries": null,
+        "known_tokens": null,
+        "material_green_test_omissions": null,
+        "native_model_dispatches": 0,
+        "observed_agent_tool_executions": 0,
+        "observed_delivery_rate": null,
+        "operator_candidate_edits": null,
+        "outcomes": {
+          "NOT_EXECUTED": 4
+        },
+        "retained_stale_test_expectations": null,
+        "seconds_per_correct_delivery": null,
+        "selected_check_processes": 0,
+        "tokens_per_correct_delivery": null,
+        "tool_count_unknown_attempts": 0,
+        "unknown_usage_attempts": 0,
+        "workflow_seconds": null
+      },
+      "ordinary": {
+        "assigned": 4,
+        "executed": 0,
+        "extra_worker_messages": null,
+        "independent_grading_seconds": null,
+        "independently_correct_deliveries": null,
+        "known_tokens": null,
+        "material_green_test_omissions": null,
+        "native_model_dispatches": 0,
+        "observed_agent_tool_executions": 0,
+        "observed_delivery_rate": null,
+        "operator_candidate_edits": null,
+        "outcomes": {
+          "NOT_EXECUTED": 4
+        },
+        "retained_stale_test_expectations": null,
+        "seconds_per_correct_delivery": null,
+        "selected_check_processes": 0,
+        "tokens_per_correct_delivery": null,
+        "tool_count_unknown_attempts": 0,
+        "unknown_usage_attempts": 0,
+        "workflow_seconds": null
+      },
+      "proofline": {
+        "assigned": 4,
+        "executed": 0,
+        "extra_worker_messages": null,
+        "independent_grading_seconds": null,
+        "independently_correct_deliveries": null,
+        "known_tokens": null,
+        "material_green_test_omissions": null,
+        "native_model_dispatches": 0,
+        "observed_agent_tool_executions": 0,
+        "observed_delivery_rate": null,
+        "operator_candidate_edits": null,
+        "outcomes": {
+          "NOT_EXECUTED": 4
+        },
+        "retained_stale_test_expectations": null,
+        "seconds_per_correct_delivery": null,
+        "selected_check_processes": 0,
+        "tokens_per_correct_delivery": null,
+        "tool_count_unknown_attempts": 0,
+        "unknown_usage_attempts": 0,
+        "workflow_seconds": null
+      }
+    },
+    "assigned": 16,
+    "dollars": null,
+    "empirical_acceptance": "INCOMPLETE",
+    "executed": 0,
+    "human_active_seconds": null,
+    "initiating_agent_tokens": null,
+    "mandatory_actions_decision": "INCONCLUSIVE",
+    "other_host_tool_executions": null,
+    "paired_effects": null,
+    "provider_internal_calls": null
+  },
+  "model_dispatches": 0,
+  "original_preflight_sha256": "4adf494d1118e66d41b25458ee4f315e8fa37e9c8707e09f2f38ba803299358f",
+  "resumption": "Forbidden; fresh authorized declaration required; no case replacement or frozen-oracle repair.",
+  "schema_version": 1,
+  "separate_model_stages": {
+    "decision": "REMOVE",
+    "scope": "mandatory comparison workflow"
+  },
+  "status": "PREPARATION_ONLY_NATIVE_PREFLIGHT_STOPPED",
+  "study": "issue16-matched-v2-20261013",
+  "study_authoring_seconds": null,
+  "study_preparation_seconds_observed": 2.7575244586914778
+}

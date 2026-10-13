@@ -4,6 +4,15 @@ Four fresh tasks, four arms, sixteen fixed assignments; one selected model,
 host, coding transport and cumulative time budget. This is a separate study,
 not a continuation or oracle repair of S6 or v1.
 
+**Preparation only; empirical acceptance INCOMPLETE.** Native qualification
+stopped before any model dispatch because its sibling-read canary mistakenly
+pointed at its own allowed candidate. All sixteen assignments remain
+NOT_EXECUTED. The [published preparation report](../../docs/ISSUE16-PREPARATION.md)
+and [retained preflight record](preflight.json) preserve the original frozen
+revision and failed observations. The canary setup is corrected in the current
+preparation code, but v2 cannot qualify or execute again, even in a fresh clone.
+A fresh authorized live declaration is required; this PR does not close #16.
+
 The [protocol](protocol.json) declares exposure, order, budgets, denominator,
 taxonomy, stop rules, resource accounting and decision criteria. The
 [corpus](corpus.py) contains exact requests, seeds, independently authored
@@ -30,7 +39,7 @@ Offline checks, with no model dispatch:
 ```
 
 `report` always shows the original unexecuted preparation ledger. Live evidence
-is separate in ignored `.proofline/issue16-matched-v2-20261013/`. `qualify`
+is separate in ignored `.proofline/issue16-matched-v2-20261013/`. As originally declared, `qualify`
 creates that directory once, checks exact host/model access, freezes all input,
 runtime, producer and initial candidate identities, then exercises native
 coding/grading canaries and all twelve controls. `execute` verifies those

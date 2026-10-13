@@ -70,7 +70,7 @@ def boundary(inputs, directory, *, worker=False):
     with p.host.boundary_fixture(directory, inputs, target=inputs / "product/app.py",
             denied_reads={"matched_oracle": str(HERE / "corpus.py"), "grader": str(HERE / "grader.py"),
                           "study_results": str(STORE / "results.json"), "enclosing_repository": str(ROOT / "README.md"),
-                          "sibling": str(STORE / "qualification/inputs/product/app.py")}) as (spec, before, private_before, _):
+                          "sibling": str(STORE / "qualification/sibling.txt")}) as (spec, before, private_before, _):
         if worker:
             command = p.live.command(CODEX, inputs, directory / "scratch", directory / "private", read_protocol()["model"], implementer=True)
             profile = next(value for value in command if value.startswith("permissions.proofline="))
@@ -119,6 +119,8 @@ def verify():
 
 
 def qualify():
+    if not json.loads((HERE / "FREEZE.json").read_text()).get("live_dispatch_allowed", True):
+        raise ValueError("No retry or resume: v2 preflight stopped; a fresh live declaration is required")
     STORE.mkdir(mode=0o700, parents=True, exist_ok=False)
     started = time.monotonic()
     rows = ledger()
@@ -155,6 +157,7 @@ def qualify():
         probe = STORE / "qualification"
         inputs = probe / "inputs"
         initialize(spec["tasks"][0], inputs)
+        (probe / "sibling.txt").write_text("Separate inaccessible assignment canary.\n")
         boundary(inputs, probe / "worker", worker=True)
         boundary(inputs, probe / "grader")
         controls = grader.controls(trusted=False, directory=probe / "controls")
@@ -196,6 +199,8 @@ def prompt(row, inputs, scratch, remaining):
 
 
 def execute():
+    if not json.loads((HERE / "FREEZE.json").read_text()).get("live_dispatch_allowed", True):
+        raise ValueError("No retry or resume: v2 preflight stopped; a fresh live declaration is required")
     manifest = verify()
     result = json.loads((STORE / "results.json").read_text())
     if result["status"] != "QUALIFIED_NOT_DISPATCHED":

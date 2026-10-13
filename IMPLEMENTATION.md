@@ -80,6 +80,11 @@ JSON advisory adapter does not execute peers or grant authority.
    report independently correct deliveries against the ordinary-agent
    baseline, latency, cost, false acceptances and needless blocking. Retain
    only features that measurably earn their overhead.
+   [Matched 2×2 preparation](docs/ISSUE16-PREPARATION.md) now includes
+   four fresh tasks, twelve independent controls, fixed sixteen-slot
+   accounting and a one-shot native coordinator. Native preflight stopped
+   on an invalid sibling-canary expectation before any model dispatch;
+   empirical acceptance remains incomplete and the frozen study cannot resume.
 
 ## Stop rules
 
