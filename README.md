@@ -1,17 +1,20 @@
 # Proofline
 
 **A small, optional helper to autonomous coding agents.** Proofline preserves
-an original request, runs one bounded local coding attempt, freezes its
-candidate, and executes caller-selected checks. Passing commands are evidence
+an original request, freezes an existing working candidate, and executes
+caller-selected checks without another model dispatch. It also offers one
+optional bounded coding attempt. Passing commands are evidence
 **only about those commands**, not proof of every requirement.
 
 ## Currently supported
 
-The only supported commands are `proofline.py run` and `proofline.py status`.
-On the qualified **macOS** host (Python 3.11+, Codex CLI **0.162.1**, existing
-authentication), `run` dispatches **one** coding attempt. It does **not**
-run automatic reviewers, provers, corrections, PRs, merges or deployments.
-It requires a clean Git source repository and does not alter that repository.
+The supported commands are `proofline.py check`, `run` and `status`.
+On the qualified **macOS** host (Python 3.11+, Codex CLI **0.162.1**),
+`check` uses only the CLI's native sandbox: **zero model dispatches**, no
+model settings or authentication needed. `run` optionally dispatches **one**
+coding attempt and needs existing authentication and a clean Git source.
+Neither mode runs automatic reviewers, provers, corrections, PRs, merges or
+deployments. Both leave the source repository untouched.
 
 Save the exact original user request in `source.md`, outside the product
 changes. Choose relevant executable checks with **absolute executable paths**
@@ -22,16 +25,45 @@ and store their exact argument arrays in `checks.json`:
 ```
 
 ```sh
-/opt/homebrew/bin/python3.14 -B proofline.py run \
+/opt/homebrew/bin/python3.14 -B proofline.py check \
   --repo /absolute/path/to/product \
   --source /absolute/path/to/source.md \
   --checks /absolute/path/to/checks.json \
-  --seconds 900 --stage-seconds 600 --check-seconds 120
+  --output /absolute/path/outside/product/check-record \
+  --seconds 900 --check-seconds 120
 ```
 
 ```sh
 /opt/homebrew/bin/python3.14 -B proofline.py status /absolute/path/to/report.json
 ```
+
+`check` selects **current working bytes** of tracked files (including staged
+and unstaged work) plus non-ignored untracked files. Deleted tracked files are
+omitted; ignored untracked files, Git metadata and empty directories are not
+copied. Tracked files remain included even if an ignore rule matches them.
+Regular file bytes and modes, and safe relative symlinks to files inside the
+snapshot, are preserved. Submodules, nested repositories, directory or escaping
+symlinks, FIFOs, sockets and devices are unsupported and rejected when selected;
+ignored untracked files remain excluded. Linux and Windows have no supported
+execution boundary. There is **no unprotected fallback**.
+
+Pause edits while the candidate is copied; two reads detect changes during
+capture and refuse a mixed snapshot. `check` never resets, stashes, commits in,
+or writes to the source. Its isolated copy gets its own local Git identity.
+The output directory must be new and outside the source repository; by default
+it is under the system temporary directory (`proofline-check/<unique-id>`).
+Retain that directory if evidence must survive temporary-file cleanup.
+The original request bytes, selected file manifest, candidate identity and exact
+command arrays are bound to the report and separate host evidence. `status`
+detects changed or missing frozen inputs and evidence. Later live-source edits
+do not change the old frozen candidate; checking new work requires a new run.
+
+For optional managed coding, use `run` with the same arguments plus
+`--stage-seconds 600`. It still requires a clean source repository. The total
+`--seconds` budget counts capture, boundary preflight and command execution;
+`--check-seconds` caps each selected command. A timeout or unavailable tool
+produces unavailable evidence, while an executed nonzero command produces a
+failure. No checks run until the native boundary canaries pass.
 
 Checks run against a **frozen, read-only candidate** under native protection,
 without network access or writes to product files. No dependency installation
@@ -43,11 +75,11 @@ available, a candidate identity, and distinct `CHECKS PASSED`,
 after an apparent success. Partial or unavailable implementation handoffs do
 not become successful check claims.
 
-**User journey (current):** A user requests a new CLI option without breaking
-existing behavior. The caller supplies the full source and selected CLI plus
-regression checks; Proofline codes once and runs those commands on its frozen
-candidate. The handoff says exactly which commands passed, notes any untested
-requirements, and confirms **no PR or merge occurred**.
+**User journey:** An existing coding agent implements a CLI option, supplies
+the complete original request plus selected CLI and regression checks, and
+calls `check`. Proofline freezes that work and returns command evidence without
+launching another model. The same agent owns any fixes and the final handoff,
+including requirements not demonstrated by the selected checks.
 
 The supported runtime keeps separate small modules for CLI, Git snapshots
 (`checks/candidate_snapshot.py`), one coding attempt, native checks,
@@ -55,26 +87,15 @@ and exact receipt readback. Historical host diagnostics remain available
 for offline security testing, not as an extra acceptance stage. Successful
 Linux CI does **not** establish a qualified live macOS/Codex boundary.
 
-## Planned vNext: help existing agents, don't supervise them
+## Agent-first scope
 
-[Issue #11](https://github.com/grove/proofline/issues/11) proposes model-free
-**check-only** use: an existing coding agent writes the code, gives Proofline
-its candidate and the original promise, and gets concise check evidence without
-a second model dispatch. **The `check` command does not exist yet.** The
-existing agent owns planning, implementation, self-tests and repairs; Proofline
-owns frozen identities, bounded checks, receipts and truthful feedback.
-
-**Proposed journey (not implemented):** The existing agent implements username
-validation, calls the future check-only mode, and reports "These validation
-commands passed; Unicode compatibility is not demonstrated by the selected
-checks." A failed check goes back to the same agent to correct. No second AI
-reviewer or automatic publisher intervenes.
-
-Direct tasks should not require P2P or Intentline. Already-authorized contracts
-may be reused in later optional evidence mapping without replanning or silently
-narrowing the source. Local checking never authorizes push, PR, merge or
-deployment. New mandatory workflow stages must earn their latency and blocking
-risk through improved *independently correct deliveries*.
+The existing agent owns planning, implementation, self-tests and repairs;
+Proofline owns frozen identities, bounded checks, receipts and truthful
+feedback. Direct tasks require neither P2P nor Intentline. Already-authorized
+contracts may inform later optional evidence mapping without replanning or
+silently narrowing the original request. Local checking never authorizes push,
+PR, merge or deployment. New mandatory stages must earn their latency and
+blocking risk through improved *independently correct deliveries*.
 
 See [DESIGN.md](DESIGN.md) for the small product contract and
 [IMPLEMENTATION.md](IMPLEMENTATION.md) for the issue-aligned sequence.

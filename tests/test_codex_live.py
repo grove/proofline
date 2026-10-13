@@ -61,7 +61,7 @@ class LiveTransportTests(unittest.TestCase):
         private = self.work / "private"
         private.mkdir()
         controller_code = ("import sys; from pathlib import Path; "
-            f"sys.path.insert(0, {str(Path(live.__file__).parent)!r}); import codex_live; "
+            f"sys.path.insert(0, {str(Path(live.__file__).parents[1])!r}); from checks import codex_live; "
             f"codex_live.launch([sys.executable, '-c', 'import time; time.sleep(30)'], 'input', Path({str(private)!r}), 40)")
         controller = subprocess.Popen([sys.executable, "-I", "-B", "-c", controller_code])
         worker = None

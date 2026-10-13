@@ -11,6 +11,7 @@ import json
 import math
 from pathlib import Path
 import sys
+import tempfile
 import uuid
 
 from checks import codex_live as live, host_probe as host
@@ -29,23 +30,28 @@ def main(argv=None):
     parser = argparse.ArgumentParser(description=__doc__)
     sub = parser.add_subparsers(dest="command", required=True)
     run = sub.add_parser("run", help="One isolated coding attempt and explicit checks")
-    run.add_argument("--repo", type=Path, required=True)
-    run.add_argument("--source", type=Path, required=True)
-    run.add_argument("--checks", type=Path, required=True, help="JSON list of command argv arrays")
-    run.add_argument("--output", type=Path)
-    run.add_argument("--seconds", type=positive_seconds, default=900)
+    check = sub.add_parser("check", help="Model-free protected checks on an existing working candidate")
+    for command in (run, check):
+        command.add_argument("--repo", type=Path, required=True)
+        command.add_argument("--source", type=Path, required=True)
+        command.add_argument("--checks", type=Path, required=True, help="JSON list of command argv arrays")
+        command.add_argument("--output", type=Path)
+        command.add_argument("--seconds", type=positive_seconds, default=900)
+        command.add_argument("--check-seconds", type=positive_seconds, default=120)
     run.add_argument("--stage-seconds", type=positive_seconds, default=600)
-    run.add_argument("--check-seconds", type=positive_seconds, default=120)
     status = sub.add_parser("status", help="Read back exact frozen check receipts")
     status.add_argument("record", type=Path)
     args = parser.parse_args(argv)
     from checks import local_run
     try:
-        if args.command == "run":
-            output = (args.output or host.ROOT / ".proofline" / "run" / uuid.uuid4().hex).resolve()
-            record = local_run.run(args.repo.resolve(), args.source.read_text(),
-                json.loads(args.checks.read_text()), output,
-                args.seconds, args.stage_seconds, args.check_seconds)
+        if args.command in ("run", "check"):
+            default = (Path(tempfile.gettempdir()) / "proofline-check" if args.command == "check"
+                       else host.ROOT / ".proofline" / "run")
+            output = (args.output or default / uuid.uuid4().hex).resolve()
+            budgets = ((args.seconds, args.stage_seconds, args.check_seconds) if args.command == "run"
+                       else (args.seconds, args.check_seconds))
+            record = getattr(local_run, args.command)(args.repo.resolve(), args.source.read_bytes().decode("utf-8"),
+                json.loads(args.checks.read_text()), output, *budgets)
             print(record["status"])
             print(record["assurance"])
             if record.get("candidate_path"):

@@ -1,12 +1,13 @@
-"""Trusted Git snapshots and frozen candidate identities for local Proofline runs.
+"""Trusted Git/working-tree snapshots and frozen identities for local Proofline runs.
 
-Copies tracked Git contents into an isolated repository. Does not mutate the
+Copies selected contents into an isolated repository. Does not mutate the
 source worktree, dispatch models, make acceptance judgments, or publish anything.
 """
 from __future__ import annotations
 
 import os
 from pathlib import Path, PurePosixPath
+import stat
 import subprocess
 from checks import host_probe as host
 
@@ -56,6 +57,91 @@ def capture_base(repo, product):
     host.git(product, "add", "--force", "--all")
     host.git(product, "commit", "--quiet", "--allow-empty", "-m", "Frozen Proofline comparison base")
     return source_commit, host.git(product, "rev-parse", "HEAD")
+
+
+def _working_files(repo, product=None):
+    """Read tracked and non-ignored untracked paths without following directory aliases."""
+    indexed = git_bytes(repo, "ls-files", "--stage", "-z").split(b"\0")
+    if any(entry.startswith(b"160000 ") for entry in indexed):
+        raise InputGap("Submodules need a qualified observation path")
+    # Git omits untracked FIFOs/devices from ls-files; reject rather than silently skip them.
+    ignored = set(filter(None, git_bytes(repo, "ls-files", "--others", "--ignored",
+                                       "--exclude-standard", "--directory", "-z").split(b"\0")))
+    for root, directories, files in os.walk(repo, followlinks=False):
+        directories[:] = [name for name in directories if name.casefold() != ".git" and
+                          os.fsencode(str((Path(root) / name).relative_to(repo)) + "/") not in ignored]
+        for name in files:
+            path = Path(root) / name
+            mode = path.lstat().st_mode
+            if not (stat.S_ISREG(mode) or stat.S_ISLNK(mode)):
+                try:
+                    git_bytes(repo, "check-ignore", "--quiet", "--", str(path.relative_to(repo)))
+                except subprocess.CalledProcessError as error:
+                    if error.returncode != 1:
+                        raise
+                    raise InputGap("Only regular files and safe relative file symlinks are supported") from error
+    paths = sorted(set(filter(None, git_bytes(repo, "ls-files", "--cached", "--others",
+                                            "--exclude-standard", "-z").split(b"\0"))))
+    entries = []
+    for raw in paths:
+        relative = PurePosixPath(os.fsdecode(raw))
+        if relative.is_absolute() or any(part in {"..", "."} or part.casefold() == ".git"
+                                         for part in relative.parts):
+            raise InputGap("Unsafe working-tree path")
+        directory = os.open(repo, os.O_RDONLY | os.O_DIRECTORY | os.O_NOFOLLOW)
+        try:
+            for part in relative.parts[:-1]:
+                child = os.open(part, os.O_RDONLY | os.O_DIRECTORY | os.O_NOFOLLOW, dir_fd=directory)
+                os.close(directory)
+                directory = child
+            name = relative.name
+            info = os.stat(name, dir_fd=directory, follow_symlinks=False)
+            entry = {"path": str(relative), "mode": stat.S_IMODE(info.st_mode)}
+            target = product / str(relative) if product else None
+            if stat.S_ISLNK(info.st_mode):
+                link = os.readlink(name, dir_fd=directory)
+                entry.update(kind="symlink", target=link)
+                if target:
+                    target.parent.mkdir(parents=True, exist_ok=True)
+                    target.symlink_to(link)
+            elif stat.S_ISREG(info.st_mode):
+                descriptor = os.open(name, os.O_RDONLY | os.O_NOFOLLOW | os.O_NONBLOCK, dir_fd=directory)
+                with os.fdopen(descriptor, "rb") as stream:
+                    opened = os.fstat(stream.fileno())
+                    if not stat.S_ISREG(opened.st_mode) or (opened.st_dev, opened.st_ino) != (info.st_dev, info.st_ino):
+                        raise InputGap("Working-tree file changed during snapshot")
+                    data = stream.read()
+                entry.update(kind="file", sha256=host.sha256(data))
+                if target:
+                    target.parent.mkdir(parents=True, exist_ok=True)
+                    target.write_bytes(data)
+                    target.chmod(entry["mode"])
+            else:
+                raise InputGap("Only regular files and safe relative file symlinks are supported")
+            entries.append(entry)
+        except FileNotFoundError:
+            # Tracked deletions belong to the current working candidate, not HEAD.
+            if product and (product / str(relative)).exists():
+                raise InputGap("Working-tree file disappeared during snapshot")
+        finally:
+            os.close(directory)
+    return entries
+
+
+def capture_worktree(repo, product):
+    """Copy current working bytes; never use the source index as a staging area."""
+    repo = repo.resolve()
+    if git_bytes(repo, "rev-parse", "--show-toplevel").decode().strip() != str(repo):
+        raise InputGap("--repo must name the Git repository root")
+    product.mkdir()
+    before = _working_files(repo, product)
+    validate_links(product)
+    if before != _working_files(repo):
+        raise InputGap("Working tree changed during snapshot; pause edits and retry")
+    host.git(product, "init", "--quiet", "--template=")
+    commit, tree = freeze(product)
+    return {"policy": "current tracked files plus non-ignored untracked files; tracked deletions omitted",
+            "entries": before, "candidate_commit": commit, "candidate_tree": tree}
 
 
 def validate_links(product):
