@@ -31,7 +31,7 @@ try:
     result=(app.process if sys.argv[2]=='library' else service.handle)(payload)
     observation={'ok':True,'value':result,'unchanged':payload==before}
 except Exception as error:
-    observation={'ok':False,'error':type(error).__name__,'unchanged':payload==before}
+    observation={'ok':False,'error':type(error).__name__,'is_value_error':isinstance(error,ValueError),'unchanged':payload==before}
 print(json.dumps(observation,ensure_ascii=False,sort_keys=True))
 """
 
@@ -105,7 +105,7 @@ def grade_trusted_control(product, task):
                 observed = None
             good = process.returncode == 0 and isinstance(observed, dict) and observed.get("unchanged") is True
             if expected == "ValueError":
-                good = good and observed.get("ok") is False and observed.get("error") == "ValueError"
+                good = good and observed.get("ok") is False and observed.get("is_value_error") is True
             else:
                 good = good and observed.get("ok") is True and observed.get("value") == expected
             if good:
