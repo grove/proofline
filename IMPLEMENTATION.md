@@ -1,6 +1,6 @@
 # Proofline vNext — lean implementation plan
 
-The supported `run`/`status` workflow is the product baseline.
+The supported `check`/`run`/`status` workflow is the product baseline.
 The [design](DESIGN.md) is agent-first; S0–S6's previous mandatory
 review/proof/certification architecture was abandoned. Historical source
 and reports are [pinned in Git](docs/RESEARCH-ARCHIVE.md), not imported
@@ -8,10 +8,10 @@ by the current CLI.
 
 ## Minimal active architecture
 
-- `proofline.py`: small public `run`/`status` CLI. It keeps minimal
+- `proofline.py`: small public `check`/`run`/`status` CLI. It keeps minimal
   compatibility exports for already recorded native study tools.
-- `checks/candidate_snapshot.py`: exact clean-source Git snapshot, path
-  validation and frozen candidate identity, without agent/review policy.
+- `checks/candidate_snapshot.py`: exact clean-source Git snapshot or current tracked/non-ignored
+  working-file snapshot, path validation and frozen candidate identity, without agent/review policy.
 - `checks/local_run.py`: bounded episode orchestration and exact status
   revalidation, retaining distinct check failure/unavailability/staleness.
 - `checks/coding_attempt.py`: one autonomous Codex implementation dispatch,
@@ -22,7 +22,7 @@ by the current CLI.
   sandbox, process lifecycle and model transport protections. S0 diagnostic
   helpers remain available for offline regressions, but are not called as
   extra acceptance stages by the supported runner.
-- `tests/test_local_run.py`, `tests/test_supported_cli.py`,
+- `tests/test_check_only.py`, `tests/test_local_run.py`, `tests/test_supported_cli.py`,
   `tests/test_host_probe.py`, `tests/test_codex_live.py`, and retained
   native S0 fixture controls: the supported runner and its boundary
   regressions.
@@ -42,9 +42,10 @@ reinstatement of retired certification.
 2. [#10 — Core extraction](https://github.com/grove/proofline/issues/10):
    finish simplifying native helper boundaries without breaking validated
    sandbox and receipt controls. This cleanup is significant groundwork.
-3. [#11 — Check-only](https://github.com/grove/proofline/issues/11):
-   let an existing coding agent obtain frozen checks with zero new model
-   calls, safely handling dirty/untracked work without mutation.
+3. [#11 — Check-only](https://github.com/grove/proofline/issues/11), implemented:
+   existing coding agents obtain frozen checks with zero new model calls,
+   safely handling dirty/untracked work without mutation. Original request,
+   selected manifest, exact argv and host evidence are bound to each record.
 4. [#12 — Invocation](https://github.com/grove/proofline/issues/12),
    [#14 — Feedback](https://github.com/grove/proofline/issues/14):
    reduce setup and show concise, actionable native observations.

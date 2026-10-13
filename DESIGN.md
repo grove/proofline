@@ -1,8 +1,8 @@
 # Proofline vNext — minimal agent-first design
 
 **Status:** Direction agreed in [issue #8](https://github.com/grove/proofline/issues/8);
-cleanup proposed before new functionality. Today's working commands remain
-`run` and `status`; check-only is **not yet implemented**.
+the lean core and model-free check-only mode are implemented. Today's working
+commands are `check`, `run` and `status`.
 
 ## Purpose
 
@@ -26,7 +26,7 @@ the way when evidence is sufficient for the caller's decision.
 
 | Path | Actual state | Boundaries |
 | --- | --- | --- |
-| Ordinary agent → check existing candidate → handoff | **Planned (#11)**; zero Proofline model dispatches; accepts unchanged/dirty work safely when implemented. | Existing agent owns all coding and fixes. Proofline checks frozen candidate. |
+| Ordinary agent → check existing candidate → handoff | **Supported** `proofline.py check`; zero model dispatches; snapshots current tracked and non-ignored untracked work without source mutation. | Existing agent owns all coding and fixes. Proofline checks frozen candidate. |
 | Optional managed coding → explicit checks → handoff | **Supported** `proofline.py run`; one Codex coding dispatch and selected check commands. | Clean Git input, qualified macOS host, no correction/reviewer/prover/PR/merge. |
 
 **Current example:** User requests a CLI version option. Caller provides the
@@ -35,7 +35,7 @@ codes once, executes those named commands, and reports "Selected commands
 passed on candidate X, no full-source certification and no remote publication."
 A failed or unavailable check is reported, not turned into acceptance.
 
-**Future example (not runnable):** An existing agent implements Unicode-aware
+**Check-only example:** An existing agent implements Unicode-aware
 username validation, invokes check-only without launching a second model,
 receives "selected validation checks passed; Unicode compatibility not
 demonstrated," and chooses whether to add coverage or fix a defect.
