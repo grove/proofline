@@ -18,6 +18,9 @@ by the current CLI.
   without an independent reviewer/prover or a second acceptance verdict.
 - `checks/native_checks.py`: trusted host command receipts and protected
   check execution.
+- `checks/feedback.py`: deterministic, optional caller-grounded failure
+  annotations and concise check-scoped reports, with separately hash-bound
+  bounded process receipts. No model inference or semantic certification.
 - `checks/host_probe.py` and `checks/codex_live.py`: existing qualified
   sandbox, process lifecycle and model transport protections. S0 diagnostic
   helpers remain available for offline regressions, but are not called as
@@ -48,7 +51,9 @@ reinstatement of retired certification.
    selected manifest, exact argv and host evidence are bound to each record.
 4. [#12 — Invocation](https://github.com/grove/proofline/issues/12),
    [#14 — Feedback](https://github.com/grove/proofline/issues/14):
-   reduce setup and show concise, actionable native observations.
+   reduce setup and show concise, actionable native observations while keeping
+   raw bounded host receipts and optional expected/observed annotations separate.
+   Source-linked R IDs remain advisory until #13 is implemented.
 5. [#13 — Promise/evidence](https://github.com/grove/proofline/issues/13):
    optional source-linked rows with explicit evidence gaps, not certification.
 6. [#15 — Correction](https://github.com/grove/proofline/issues/15):
