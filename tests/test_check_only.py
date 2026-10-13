@@ -414,6 +414,31 @@ class CheckOnlyTests(unittest.TestCase):
         self.assertNotEqual(proc.returncode, 0)
         self.assertNotIn(self.source.encode('utf-8'), proc.stdout)
 
+    def test_unmapped_check_keeps_original_request_retrievable_without_planning(self):
+        result = self.execute([[sys.executable, '-c', 'pass']])
+        self.assertEqual(result['status'], 'CHECKS PASSED')
+        self.assertNotIn('promise_mapping', result)
+        self.assertNotIn('promise_evidence', result)
+        proc = subprocess.run([sys.executable, '-B',
+                               str(runner.host.ROOT/'proofline.py'), 'status',
+                               str(self.output/'report.json'), '--show-source'],
+                              capture_output=True, timeout=15)
+        self.assertEqual(proc.returncode, 0, proc.stderr)
+        self.assertIn(self.source.encode('utf-8'), proc.stdout)
+        self.assertEqual(runner.inspect(self.output/'report.json')['status'], 'CHECKS PASSED')
+
+    def test_forged_candidate_path_refused_before_status_snapshots_any_other_repo(self):
+        checks = [[sys.executable, '-c', 'pass']]
+        mapping = self.mapped(checks)
+        self.execute(checks, promise_mapping=mapping)
+        report = self.output/'report.json'
+        value = json.loads(report.read_text())
+        value['candidate_path'] = str(self.root/'protected-other-checkout'/'product')
+        report.write_text(json.dumps(value))
+        self.assertEqual(runner.inspect(report)['status'], 'STALE CHECKS')
+        self.assertIn('coverage UNKNOWN',
+                      '\n'.join(promises.format_lines(runner.inspect(report))))
+
     @unittest.skipUnless(sys.platform == 'darwin' and os.environ.get('PROOFLINE_NATIVE_TESTS') == '1',
                          'opt-in macOS native check-only test')
     def test_native_cli_denies_source_writes_candidate_writes_and_network(self):
