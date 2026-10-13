@@ -72,9 +72,12 @@ class HostContinuationTests(unittest.TestCase):
     def test_bundle_keeps_both_freezes_without_duplicates_or_native_state(self):
         with tempfile.TemporaryDirectory() as temporary:
             root=Path(temporary);store=root/'store';store.mkdir()
+            (root/'LICENSE').write_text('test producer license')
             (store/'result.json').write_text('{}')
             (store/'catalog-state').mkdir();(store/'catalog-state/hidden').write_text('private native state')
-            with patch.object(study,'STORE',store):
+            with patch.object(study,'STORE',store), \
+                 patch.object(study.runner.infrastructure,'PRODUCER',root), \
+                 patch.object(study.runner.infrastructure,'producer_files',return_value={}):
                 study.publish_record(root/'bundle')
             import zipfile
             with zipfile.ZipFile(root/'bundle/frozen-source.zip') as archive:
