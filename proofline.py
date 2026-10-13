@@ -78,6 +78,7 @@ def main(argv=None):
         checks_group = command.add_mutually_exclusive_group(required=True)
         checks_group.add_argument("--checks", type=Path, help="JSON list of argv arrays (existing interface)")
         checks_group.add_argument("--command", dest="check_commands", action="append", help="One quoted executable + arguments; repeat for each check, no shell")
+        command.add_argument("--failure-details", type=Path, help="Optional JSON check-indexed expected/observed snippets and R IDs")
         command.add_argument("--output", type=Path)
         command.add_argument("--seconds", type=positive_seconds, default=900)
         command.add_argument("--check-seconds", type=positive_seconds, default=120)
@@ -85,7 +86,7 @@ def main(argv=None):
     status = sub.add_parser("status", help="Read back exact frozen check receipts")
     status.add_argument("record", type=Path)
     args = parser.parse_args(argv)
-    from checks import local_run
+    from checks import local_run, feedback
     try:
         if args.command in ("run", "check"):
             default = (Path(tempfile.gettempdir()) / "proofline-check" if args.command == "check"
@@ -97,9 +98,15 @@ def main(argv=None):
             if not source.strip():
                 raise ValueError("Original request is empty; use --request TEXT, --request-stdin or --source FILE")
             checks = explicit_checks(args)
+            optional = {}
+            if args.failure_details is not None:
+                details = json.loads(args.failure_details.read_text(encoding="utf-8"))
+                optional["failure_details"] = feedback.validate_failure_details(details,checks)
             record = getattr(local_run, args.command)(args.repo.resolve(), source,
-                checks, output, *budgets)
+                checks, output, *budgets, **optional)
             print(record["status"])
+            for line in feedback.format_lines(record):
+                print(line)
             print(record["assurance"])
             if record.get("candidate_path"):
                 print("Candidate: " + record["candidate_path"])
@@ -107,6 +114,8 @@ def main(argv=None):
         else:
             record = local_run.inspect(args.record.resolve())
             print(record["status"])
+            for line in feedback.format_lines(record):
+                print(line)
             print(record["assurance"])
             print("Record: " + str(args.record))
         return 0 if record["status"] == "CHECKS PASSED" else 2
