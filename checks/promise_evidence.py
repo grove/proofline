@@ -195,10 +195,26 @@ def _linked_state(record, indexes):
 
 
 def summarize(record):
-    """Summarize only caller-supplied rows and actual recorded command outcomes."""
+    """Summarize advisory rows without allowing a malformed report to claim green."""
     mapping = record.get("promise_mapping")
     if mapping is None:
         return None
+    try:
+        return _summarize_mapping(record, mapping)
+    except (KeyError, TypeError, ValueError, IndexError):
+        return {"source_sha256": None, "original_source_ref": "inputs/source.md",
+                "candidate_commit": record.get("candidate_commit"),
+                "candidate_tree": record.get("candidate_tree"),
+                "snapshot_sha256": record.get("snapshot"),
+                "coverage_completeness": "UNKNOWN", "requirements": [],
+                "mapping_invalid": True,
+                "same_agent_review": {"reported_performed": False, "independent": False,
+                                       "proposals": [],
+                                       "authority": "invalid untrusted mapping"},
+                "scope": "Mapping invalid; no accepted requirement coverage evidence."}
+
+
+def _summarize_mapping(record, mapping):
     rows = []
     for row in mapping["requirements"]:
         indexes = [ref["index"] for ref in row["checks"]]
@@ -237,6 +253,8 @@ def format_lines(record, limit=3):
     evidence = summarize(record)
     if evidence is None:
         return []
+    if evidence.get("mapping_invalid"):
+        return ["Promise evidence: invalid or tampered mapping; coverage UNKNOWN"]
     rows = evidence["requirements"]
     not_demonstrated = [x for x in rows if x["status"] != "LINKED CHECKS PASSED (limited evidence)"]
     passed = len(rows) - len(not_demonstrated)
@@ -259,10 +277,13 @@ def readback_intact(record, inputs):
     if mapping is None:
         return record.get("promise_evidence") is None
     try:
-        if not isinstance(mapping, dict):
+        inputs = Path(inputs)
+        if (not isinstance(mapping, dict) or inputs.is_symlink() or
+                (inputs / "source.md").is_symlink() or
+                (inputs / "promises.json").is_symlink()):
             return False
-        source = (Path(inputs) / "source.md").read_bytes().decode("utf-8")
-        frozen = (Path(inputs) / "promises.json").read_bytes()
+        source = (inputs / "source.md").read_bytes().decode("utf-8")
+        frozen = (inputs / "promises.json").read_bytes()
         if len(frozen) > MAX_JSON_BYTES:
             return False
         stored = json.loads(frozen.decode("utf-8"), object_pairs_hook=_object_no_duplicates)
