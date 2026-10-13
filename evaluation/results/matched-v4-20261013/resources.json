@@ -1,0 +1,16 @@
+{
+  "authoring_earlier_seconds": null,
+  "campaign_seconds_including_independent_grading": 699.4601992079988,
+  "control_process_seconds": 57.889382,
+  "control_processes": 435,
+  "dollars": null,
+  "episode_controller_processes": 47,
+  "grading_processes": 160,
+  "human_active_seconds": null,
+  "initiating_agent_tokens": null,
+  "overlap_policy": "Process time overlaps wall time; grading/control/preparation are separate from delivery episodes.",
+  "provider_internal_calls": null,
+  "qualification_seconds_including_controls": 63.15216720895842,
+  "supplemental_catalog_readback_processes": 1,
+  "supplemental_catalog_readback_seconds": 0.27138429088518023
+}

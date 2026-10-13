@@ -210,6 +210,7 @@ def prompt(row, inputs, scratch, remaining):
                  "No audit, adoption, separate planner, reviewer, or user approval. CLI examples use this frozen offline CLI instead of -m intentline: "
                  f"{cli}. Use prepare --source {inputs / 'source.md'} --root {inputs} --out {scratch / 'plan'} --json. "
                  "Capture only this original S1 request; additional context sources are outside the qualified adapter contract. "
+                 "Keep the completed export at initial revision 1, the only qualified adapter format; structural repairs before a valid proposal do not require a new revision. "
                  "Read frozen schema/identity and authority documents. Author source-grounded draft.json, propose, check and render per the skill. "
                  f"After structurally valid planning you are explicitly authorized to export --work {scratch / 'plan'} --format json --out {scratch / 'export'} --json. "
                  "The draft is advisory; an evidence gap never prevents implementation. Preserve all original obligations. "
@@ -292,15 +293,17 @@ def execute():
             row["candidate_commit"], row["candidate_tree"] = p.freeze(product)
             row["candidate_snapshot"] = p.host.snapshot(product)
             intervention_available = True
+            package = None
             if row["arm"] in ("intentline", "combined"):
                 try:
-                    row["plan_identity"] = intentline_advisory.load_export(scratch / "export", (inputs / "source.md").read_text(), frozen["checks"])["metadata"]
+                    links = intentline_advisory.read_links(scratch / "links.json") if row["arm"] == "combined" and (scratch / "links.json").exists() else None
+                    package = intentline_advisory.load_export(scratch / "export", (inputs / "source.md").read_text(), frozen["checks"], links=links)
+                    row.update(plan_identity=package["metadata"], advisory_status="VALID")
                 except (OSError, ValueError) as error:
-                    row["plan_error"] = str(error)
-                    intervention_available = False
-            if row["arm"] in ("proofline", "combined") and intervention_available:
-                links = intentline_advisory.read_links(scratch / "links.json") if row["arm"] == "combined" and (scratch / "links.json").exists() else None
-                package = intentline_advisory.load_export(scratch / "export", (inputs / "source.md").read_text(), frozen["checks"], links=links) if row["arm"] == "combined" else None
+                    row.update(plan_error=str(error), advisory_status="MISSING_OR_INVALID")
+                    if row["arm"] == "combined":
+                        row.update(handoff=False, check_status="IMPORT REJECTED")
+            if row["arm"] == "proofline" or row["arm"] == "combined" and package is not None:
                 record = local_run.check(product, (inputs / "source.md").read_text(), frozen["checks"], folder / "check",
                                  seconds=max(0.001, 900 - (time.monotonic() - started)), check_seconds=30, intentline_package=package)
                 status = local_run.inspect(folder / "check/report.json")

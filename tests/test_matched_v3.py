@@ -61,7 +61,7 @@ class MatchedV3Execution(unittest.TestCase):
             self.assertEqual(result["status"], "COMPLETE")
             self.assertEqual(worker.call_count, 16)
             self.assertEqual(checked.call_count, 8)
-            self.assertEqual(imported.call_count, 12)
+            self.assertEqual(imported.call_count, 8)
             self.assertEqual(sum(r["status"] == "CORRECT_BUT_BLOCKED" for r in result["assignments"]), 4)
             for call in checked.call_args_list:
                 product, source, checks = call.args[:3]

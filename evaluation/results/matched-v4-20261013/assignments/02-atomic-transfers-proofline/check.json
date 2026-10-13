@@ -1,0 +1,306 @@
+{
+  "assurance": "Only the listed command exit statuses are observed; full source correctness is not certified.",
+  "boundary": {
+    "assessment": {
+      "inputs_unchanged": true,
+      "observations": {
+        "mode_change": "denied",
+        "network": "denied",
+        "nonce": "d25b5f1e70b245a580f544906e8bdb90",
+        "reads": {
+          "actual_oracle": "denied",
+          "oracle-canary": "denied",
+          "other-role-canary": "denied",
+          "receipt-canary": "denied"
+        },
+        "scratch": true,
+        "writes": {
+          "candidate": "denied",
+          "git_head": "denied",
+          "input": "denied",
+          "receipt": "denied",
+          "source": "denied"
+        }
+      },
+      "scope": "native process canaries only; no model or external-tool qualification",
+      "status": "OBSERVED"
+    },
+    "network_control": "loopback reachable before sandbox",
+    "receipt": {
+      "argv": [
+        "/opt/homebrew/bin/codex",
+        "--no-daemon",
+        "-c",
+        "permissions.proofline_s0_aad8f7260a43463b9855124da37cea69={\"filesystem\"={\":minimal\"=\"read\",\"/opt/homebrew/Cellar/python@3.14/3.14.8_2/Frameworks/Python.framework/Versions/3.14\"=\"read\",\"/opt/homebrew/opt/python@3.14/Frameworks/Python.framework/Versions/3.14\"=\"read\",\"/opt/homebrew/opt/python@3.14/bin/python3.14\"=\"read\",\"/opt/homebrew/Cellar/python@3.14/3.14.8_2/Frameworks/Python.framework/Versions/3.14/bin/python3.14\"=\"read\",\"/Users/grove/projects/proofline/.proofline/issue16-matched-v4-20261013/assignments/02-atomic-transfers-proofline/check/inputs\"=\"read\",\"/Users/grove/projects/proofline/.proofline/issue16-matched-v4-20261013/assignments/02-atomic-transfers-proofline/check/preflight/scratch\"=\"write\",\"/Users/grove/projects/proofline/.proofline/issue16-matched-v4-20261013/assignments/02-atomic-transfers-proofline/check/preflight/private\"=\"deny\",\"/opt/homebrew\"=\"read\",\"/Library/Developer/CommandLineTools/usr/bin\"=\"read\",\"/Library/Developer/CommandLineTools/usr/libexec/git-core\"=\"read\"},\"network\"={\"enabled\"=false}}",
+        "sandbox",
+        "--permission-profile",
+        "proofline_s0_aad8f7260a43463b9855124da37cea69",
+        "--include-managed-config",
+        "--cd",
+        "/Users/grove/projects/proofline/.proofline/issue16-matched-v4-20261013/assignments/02-atomic-transfers-proofline/check/preflight/scratch",
+        "--",
+        "/opt/homebrew/Cellar/python@3.14/3.14.8_2/Frameworks/Python.framework/Versions/3.14/bin/python3.14",
+        "-I",
+        "-B",
+        "/Users/grove/projects/proofline/.proofline/issue16-matched-v4-20261013/assignments/02-atomic-transfers-proofline/check/inputs/canary.py",
+        "/Users/grove/projects/proofline/.proofline/issue16-matched-v4-20261013/assignments/02-atomic-transfers-proofline/check/inputs/canary.json"
+      ],
+      "cwd": "/Users/grove/projects/proofline/.proofline/issue16-matched-v4-20261013/assignments/02-atomic-transfers-proofline/check/preflight/scratch",
+      "elapsed_seconds": 0.138352,
+      "exit_code": 0,
+      "invocation_id": "05f3163b-67bc-4ee8-9b9a-ca3cce494a5e",
+      "kind": "process_probe",
+      "stderr": "",
+      "stdout": "{\"nonce\": \"d25b5f1e70b245a580f544906e8bdb90\", \"writes\": {\"source\": \"denied\", \"input\": \"denied\", \"candidate\": \"denied\", \"git_head\": \"denied\", \"receipt\": \"denied\"}, \"reads\": {\"receipt-canary\": \"denied\", \"oracle-canary\": \"denied\", \"other-role-canary\": \"denied\", \"actual_oracle\": \"denied\"}, \"mode_change\": \"denied\", \"scratch\": true, \"network\": \"denied\"}\n",
+      "timed_out": false
+    }
+  },
+  "candidate_commit": "4295bddbb9c96c16aa292c07cbce875ef8321dbb",
+  "candidate_path": "/Users/grove/projects/proofline/.proofline/issue16-matched-v4-20261013/assignments/02-atomic-transfers-proofline/check/inputs/product",
+  "candidate_tree": "01967a46cdb3f574fe660f2ed3cc55e7398343f3",
+  "checks": [
+    [
+      "/opt/homebrew/Cellar/python@3.14/3.14.8_2/Frameworks/Python.framework/Versions/3.14/bin/python3.14",
+      "-B",
+      "-c",
+      "from app import process; assert process({'balances': {'a': 5, 'b': 0}, 'transfers': [['a', 'b', 3]]}) == {'balances': {'a': 2, 'b': 3}}"
+    ],
+    [
+      "/opt/homebrew/Cellar/python@3.14/3.14.8_2/Frameworks/Python.framework/Versions/3.14/bin/python3.14",
+      "-B",
+      "-m",
+      "unittest",
+      "discover",
+      "-s",
+      "tests"
+    ]
+  ],
+  "elapsed_seconds": 1.130450667347759,
+  "evidence_sha256": "dcc661d90ff4c585c20694aba172e804eb1d214fe993db785cbf9bf6f1c91170",
+  "failure_details": [],
+  "feedback": {
+    "candidate_commit": "4295bddbb9c96c16aa292c07cbce875ef8321dbb",
+    "candidate_tree": "01967a46cdb3f574fe660f2ed3cc55e7398343f3",
+    "checks": [
+      {
+        "argv": [
+          "/opt/homebrew/Cellar/python@3.14/3.14.8_2/Frameworks/Python.framework/Versions/3.14/bin/python3.14",
+          "-B",
+          "-c",
+          "from app import process; assert process({'balances': {'a': 5, 'b': 0}, 'transfers': [['a', 'b', 3]]}) == {'balances': {'a': 2, 'b': 3}}"
+        ],
+        "elapsed_seconds": 0.14930433267727494,
+        "exit_code": 0,
+        "index": 0,
+        "outcome_ids": [],
+        "reason": "Selected command exited 0; unselected promises are not demonstrated.",
+        "receipt_ref": "receipts/check-000.json",
+        "status": "PASSED",
+        "stderr_excerpt": "",
+        "stderr_ref": "receipts/check-000.json#stderr",
+        "stdout_excerpt": "",
+        "stdout_ref": "receipts/check-000.json#stdout"
+      },
+      {
+        "argv": [
+          "/opt/homebrew/Cellar/python@3.14/3.14.8_2/Frameworks/Python.framework/Versions/3.14/bin/python3.14",
+          "-B",
+          "-m",
+          "unittest",
+          "discover",
+          "-s",
+          "tests"
+        ],
+        "elapsed_seconds": 0.48363079223781824,
+        "exit_code": 0,
+        "index": 1,
+        "outcome_ids": [],
+        "reason": "Selected command exited 0; unselected promises are not demonstrated.",
+        "receipt_ref": "receipts/check-001.json",
+        "status": "PASSED",
+        "stderr_excerpt": "............. | ---------------------------------------------------------------------- | Ran 13 tests in 0.243s | OK",
+        "stderr_ref": "receipts/check-001.json#stderr",
+        "stdout_excerpt": "",
+        "stdout_ref": "receipts/check-001.json#stdout"
+      }
+    ],
+    "headline": "2/2 selected checks passed",
+    "next_action": "Report only the commands checked; original request coverage remains unknown.",
+    "scope": "Selected executable commands only; completeness of the original user promise is unknown.",
+    "snapshot_sha256": "dfd094224f8d6471b4fdadb248f458c48eb8d21025149f79fb0533d7ecda73a9",
+    "source_sha256": "c9a5c3bc2cc80520431d6fd951a8e2303270d1c390b25ed1f5413391fbc29347",
+    "status": "CHECKS PASSED"
+  },
+  "feedback_version": 1,
+  "kind": "bounded_local_check",
+  "limits": {
+    "check_seconds": 30,
+    "model_dispatches": 0,
+    "seconds": 768.2462714589201
+  },
+  "merged": false,
+  "model_dispatches": 0,
+  "observations": [
+    {
+      "argv": [
+        "/opt/homebrew/Cellar/python@3.14/3.14.8_2/Frameworks/Python.framework/Versions/3.14/bin/python3.14",
+        "-B",
+        "-c",
+        "from app import process; assert process({'balances': {'a': 5, 'b': 0}, 'transfers': [['a', 'b', 3]]}) == {'balances': {'a': 2, 'b': 3}}"
+      ],
+      "elapsed_seconds": 0.14930433267727494,
+      "receipt_ref": "receipts/check-000.json",
+      "receipt_sha256": "2e0e87390e6a7f8d04a13a83d85a1630dbeb1786a7797b4d84ad4bd1340d1467",
+      "receipts": [
+        {
+          "argv": [
+            "/opt/homebrew/bin/codex",
+            "--no-daemon",
+            "-c",
+            "permissions.proofline_s0_5ebd49bb66c14982aaa64d7239f0d61b={\"filesystem\"={\":minimal\"=\"read\",\"/opt/homebrew/Cellar/python@3.14/3.14.8_2/Frameworks/Python.framework/Versions/3.14\"=\"read\",\"/opt/homebrew/opt/python@3.14/Frameworks/Python.framework/Versions/3.14\"=\"read\",\"/opt/homebrew/opt/python@3.14/bin/python3.14\"=\"read\",\"/opt/homebrew/Cellar/python@3.14/3.14.8_2/Frameworks/Python.framework/Versions/3.14/bin/python3.14\"=\"read\",\"/Users/grove/projects/proofline/.proofline/issue16-matched-v4-20261013/assignments/02-atomic-transfers-proofline/check/inputs\"=\"read\",\"/Users/grove/projects/proofline/.proofline/issue16-matched-v4-20261013/assignments/02-atomic-transfers-proofline/check/check-0\"=\"write\",\"/Users/grove/projects/proofline/.proofline/issue16-matched-v4-20261013/assignments/02-atomic-transfers-proofline/check/private\"=\"deny\",\"/opt/homebrew\"=\"read\",\"/Library/Developer/CommandLineTools/usr/bin\"=\"read\",\"/Library/Developer/CommandLineTools/usr/libexec/git-core\"=\"read\"},\"network\"={\"enabled\"=false}}",
+            "sandbox",
+            "--permission-profile",
+            "proofline_s0_5ebd49bb66c14982aaa64d7239f0d61b",
+            "--include-managed-config",
+            "--cd",
+            "/Users/grove/projects/proofline/.proofline/issue16-matched-v4-20261013/assignments/02-atomic-transfers-proofline/check/check-0",
+            "--",
+            "/opt/homebrew/Cellar/python@3.14/3.14.8_2/Frameworks/Python.framework/Versions/3.14/bin/python3.14",
+            "-I",
+            "-B",
+            "-c",
+            "import json,os,sys; a=json.loads(sys.argv[1]); os.execv(a[0],a)",
+            "[\"/opt/homebrew/Cellar/python@3.14/3.14.8_2/Frameworks/Python.framework/Versions/3.14/bin/python3.14\", \"-I\", \"-B\", \"-c\", \"import json,os,sys\\ntry:\\n    os.chdir(sys.argv[1])\\n    os.environ[\\\"PYTHONDONTWRITEBYTECODE\\\"]=\\\"1\\\"\\n    argv=json.loads(sys.argv[2])\\n    os.execvpe(argv[0],argv,os.environ)\\nexcept OSError as error:\\n    print(\\\"Proofline check launch unavailable: \\\"+str(error),file=sys.stderr)\\n    sys.exit(127)\\n\", \"/Users/grove/projects/proofline/.proofline/issue16-matched-v4-20261013/assignments/02-atomic-transfers-proofline/check/inputs/product\", \"[\\\"/opt/homebrew/Cellar/python@3.14/3.14.8_2/Frameworks/Python.framework/Versions/3.14/bin/python3.14\\\", \\\"-B\\\", \\\"-c\\\", \\\"from app import process; assert process({'balances': {'a': 5, 'b': 0}, 'transfers': [['a', 'b', 3]]}) == {'balances': {'a': 2, 'b': 3}}\\\"]\"]"
+          ],
+          "cwd": "/Users/grove/projects/proofline/.proofline/issue16-matched-v4-20261013/assignments/02-atomic-transfers-proofline/check/check-0",
+          "elapsed_seconds": 0.148815,
+          "exit_code": 0,
+          "invocation_id": "182081a0-e71e-4768-9281-b6ddb7813ff9",
+          "kind": "process_probe",
+          "stderr": "",
+          "stdout": "",
+          "timed_out": false
+        }
+      ],
+      "returncode": 0,
+      "status": "PASSED"
+    },
+    {
+      "argv": [
+        "/opt/homebrew/Cellar/python@3.14/3.14.8_2/Frameworks/Python.framework/Versions/3.14/bin/python3.14",
+        "-B",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "tests"
+      ],
+      "elapsed_seconds": 0.48363079223781824,
+      "receipt_ref": "receipts/check-001.json",
+      "receipt_sha256": "ec4b93949a156522ed434e4ef166fb2c6b500df5eb44d8fbfbfc8ae8a53051b6",
+      "receipts": [
+        {
+          "argv": [
+            "/opt/homebrew/bin/codex",
+            "--no-daemon",
+            "-c",
+            "permissions.proofline_s0_f2ea6ea89ca54a42b557d5b6449919f4={\"filesystem\"={\":minimal\"=\"read\",\"/opt/homebrew/Cellar/python@3.14/3.14.8_2/Frameworks/Python.framework/Versions/3.14\"=\"read\",\"/opt/homebrew/opt/python@3.14/Frameworks/Python.framework/Versions/3.14\"=\"read\",\"/opt/homebrew/opt/python@3.14/bin/python3.14\"=\"read\",\"/opt/homebrew/Cellar/python@3.14/3.14.8_2/Frameworks/Python.framework/Versions/3.14/bin/python3.14\"=\"read\",\"/Users/grove/projects/proofline/.proofline/issue16-matched-v4-20261013/assignments/02-atomic-transfers-proofline/check/inputs\"=\"read\",\"/Users/grove/projects/proofline/.proofline/issue16-matched-v4-20261013/assignments/02-atomic-transfers-proofline/check/check-1\"=\"write\",\"/Users/grove/projects/proofline/.proofline/issue16-matched-v4-20261013/assignments/02-atomic-transfers-proofline/check/private\"=\"deny\",\"/opt/homebrew\"=\"read\",\"/Library/Developer/CommandLineTools/usr/bin\"=\"read\",\"/Library/Developer/CommandLineTools/usr/libexec/git-core\"=\"read\"},\"network\"={\"enabled\"=false}}",
+            "sandbox",
+            "--permission-profile",
+            "proofline_s0_f2ea6ea89ca54a42b557d5b6449919f4",
+            "--include-managed-config",
+            "--cd",
+            "/Users/grove/projects/proofline/.proofline/issue16-matched-v4-20261013/assignments/02-atomic-transfers-proofline/check/check-1",
+            "--",
+            "/opt/homebrew/Cellar/python@3.14/3.14.8_2/Frameworks/Python.framework/Versions/3.14/bin/python3.14",
+            "-I",
+            "-B",
+            "-c",
+            "import json,os,sys; a=json.loads(sys.argv[1]); os.execv(a[0],a)",
+            "[\"/opt/homebrew/Cellar/python@3.14/3.14.8_2/Frameworks/Python.framework/Versions/3.14/bin/python3.14\", \"-I\", \"-B\", \"-c\", \"import json,os,sys\\ntry:\\n    os.chdir(sys.argv[1])\\n    os.environ[\\\"PYTHONDONTWRITEBYTECODE\\\"]=\\\"1\\\"\\n    argv=json.loads(sys.argv[2])\\n    os.execvpe(argv[0],argv,os.environ)\\nexcept OSError as error:\\n    print(\\\"Proofline check launch unavailable: \\\"+str(error),file=sys.stderr)\\n    sys.exit(127)\\n\", \"/Users/grove/projects/proofline/.proofline/issue16-matched-v4-20261013/assignments/02-atomic-transfers-proofline/check/inputs/product\", \"[\\\"/opt/homebrew/Cellar/python@3.14/3.14.8_2/Frameworks/Python.framework/Versions/3.14/bin/python3.14\\\", \\\"-B\\\", \\\"-m\\\", \\\"unittest\\\", \\\"discover\\\", \\\"-s\\\", \\\"tests\\\"]\"]"
+          ],
+          "cwd": "/Users/grove/projects/proofline/.proofline/issue16-matched-v4-20261013/assignments/02-atomic-transfers-proofline/check/check-1",
+          "elapsed_seconds": 0.483186,
+          "exit_code": 0,
+          "invocation_id": "1bd8e79e-01d0-45bc-a66e-29669dc2c027",
+          "kind": "process_probe",
+          "stderr": ".............\n----------------------------------------------------------------------\nRan 13 tests in 0.243s\n\nOK\n",
+          "stdout": "",
+          "timed_out": false
+        }
+      ],
+      "returncode": 0,
+      "status": "PASSED"
+    }
+  ],
+  "published": false,
+  "python": "/opt/homebrew/Cellar/python@3.14/3.14.8_2/Frameworks/Python.framework/Versions/3.14/bin/python3.14",
+  "schema_version": 1,
+  "selection": {
+    "candidate_commit": "4295bddbb9c96c16aa292c07cbce875ef8321dbb",
+    "candidate_tree": "01967a46cdb3f574fe660f2ed3cc55e7398343f3",
+    "entries": [
+      {
+        "kind": "file",
+        "mode": 420,
+        "path": "README.md",
+        "sha256": "058f74ad72b941559f85ad0222b7f43f24361e54d4dfd7a15f3bdd70622b9c87"
+      },
+      {
+        "kind": "file",
+        "mode": 420,
+        "path": "app.py",
+        "sha256": "154f16e242d0b48df8b7864cbcfc7cc5c887c7cb8c4d13f380eeb73056a7030a"
+      },
+      {
+        "kind": "file",
+        "mode": 420,
+        "path": "cli.py",
+        "sha256": "14aea6a3d7acc1d93b80e079fd645b48e4fef2e976df9ef355cc50829a7c74c8"
+      },
+      {
+        "kind": "file",
+        "mode": 420,
+        "path": "service.py",
+        "sha256": "21d31784988e079c6f9733ef92a96c0f6a993d52afd0cba5b5b2d0de82078ab1"
+      },
+      {
+        "kind": "file",
+        "mode": 420,
+        "path": "tests/test_compat.py",
+        "sha256": "2432e53eeae0b53103501bb0cdfbd3dab2446d236503df335ea8a5e5e4171703"
+      },
+      {
+        "kind": "file",
+        "mode": 420,
+        "path": "tests/test_example.py",
+        "sha256": "68ea843f459775c4502178a8061ba0329f81bef3aec680623b8a1d90f92831ce"
+      },
+      {
+        "kind": "file",
+        "mode": 420,
+        "path": "tests/test_transfers.py",
+        "sha256": "55f7870cc725f9bb850e870142895c6deb160b3ce7fef22149c57632e3c0e378"
+      }
+    ],
+    "policy": "current tracked files plus non-ignored untracked files; tracked deletions omitted"
+  },
+  "snapshot": "dfd094224f8d6471b4fdadb248f458c48eb8d21025149f79fb0533d7ecda73a9",
+  "source_sha256": "c9a5c3bc2cc80520431d6fd951a8e2303270d1c390b25ed1f5413391fbc29347",
+  "stages": [],
+  "status": "CHECKS PASSED",
+  "version_receipt": {
+    "argv": [
+      "/opt/homebrew/bin/codex",
+      "--version"
+    ],
+    "cwd": "/Users/grove/projects/proofline/.proofline/issue16-matched-v4-20261013/assignments/02-atomic-transfers-proofline/check",
+    "elapsed_seconds": 0.020997,
+    "exit_code": 0,
+    "invocation_id": "deba7f2d-5ca0-4cc2-abb9-e2493faecab2",
+    "kind": "process_probe",
+    "stderr": "",
+    "stdout": "codex-cli 0.162.1\n",
+    "timed_out": false
+  }
+}

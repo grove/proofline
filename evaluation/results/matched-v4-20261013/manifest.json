@@ -1,0 +1,4392 @@
+{
+  "assignments": [
+    {
+      "base_tree": "8086be2df1abaaf5bba79fc42e738054a0fc5f0f",
+      "checks": [
+        [
+          "/opt/homebrew/Cellar/python@3.14/3.14.8_2/Frameworks/Python.framework/Versions/3.14/bin/python3.14",
+          "-B",
+          "-c",
+          "from app import process; assert process({'balances': {'a': 5, 'b': 0}, 'transfers': [['a', 'b', 3]]}) == {'balances': {'a': 2, 'b': 3}}"
+        ],
+        [
+          "/opt/homebrew/Cellar/python@3.14/3.14.8_2/Frameworks/Python.framework/Versions/3.14/bin/python3.14",
+          "-B",
+          "-m",
+          "unittest",
+          "discover",
+          "-s",
+          "tests"
+        ]
+      ],
+      "seed_snapshot": {
+        "entries": [
+          {
+            "kind": "directory",
+            "mode": 493,
+            "path": ".git"
+          },
+          {
+            "kind": "file",
+            "mode": 420,
+            "path": ".git/COMMIT_EDITMSG",
+            "sha256": "d7d0d3b87937197214f294e53efc4f1da68a647de510eb76c7e6d348f27539a6"
+          },
+          {
+            "kind": "file",
+            "mode": 420,
+            "path": ".git/HEAD",
+            "sha256": "f6f2b945f6c411b02ba3da9c7ace88dcf71b6af65ba2e0d89aa82900042b5a10"
+          },
+          {
+            "kind": "file",
+            "mode": 420,
+            "path": ".git/config",
+            "sha256": "cae33efdb02cf774435c1ff9cb16bcc1014606908530c6e1dc727615fe3e8cda"
+          },
+          {
+            "kind": "file",
+            "mode": 420,
+            "path": ".git/index",
+            "sha256": "605b2cdc788c9bd36ac1e47715fd4d64c2cd437b20eef009b550b07c183de384"
+          },
+          {
+            "kind": "directory",
+            "mode": 493,
+            "path": ".git/logs"
+          },
+          {
+            "kind": "file",
+            "mode": 420,
+            "path": ".git/logs/HEAD",
+            "sha256": "f915a7eb194ba68f0117f431bc91a43fc8cee0906f0778c9297930419c938f53"
+          },
+          {
+            "kind": "directory",
+            "mode": 493,
+            "path": ".git/logs/refs"
+          },
+          {
+            "kind": "directory",
+            "mode": 493,
+            "path": ".git/logs/refs/heads"
+          },
+          {
+            "kind": "file",
+            "mode": 420,
+            "path": ".git/logs/refs/heads/master",
+            "sha256": "f915a7eb194ba68f0117f431bc91a43fc8cee0906f0778c9297930419c938f53"
+          },
+          {
+            "kind": "directory",
+            "mode": 493,
+            "path": ".git/objects"
+          },
+          {
+            "kind": "directory",
+            "mode": 493,
+            "path": ".git/objects/0a"
+          },
+          {
+            "kind": "file",
+            "mode": 292,
+            "path": ".git/objects/0a/c1669cc58dcb594aa619314cb8024f09d08bab",
+            "sha256": "daab48ef0d7eeb982ca1e0fa1162f5624dc4998d8c79c58c02c6ada42c0503ab"
+          },
+          {
+            "kind": "directory",
+            "mode": 493,
+            "path": ".git/objects/3c"
+          },
+          {
+            "kind": "file",
+            "mode": 292,
+            "path": ".git/objects/3c/8293f363b3795767e8a9bcf6f8f5eb9e00e0dc",
+            "sha256": "71451b47c50c5d7790a670289bcb401e469527dcc2b7dced246480e9c3327aa3"
+          },
+          {
+            "kind": "directory",
+            "mode": 493,
+            "path": ".git/objects/58"
+          },
+          {
+            "kind": "file",
+            "mode": 292,
+            "path": ".git/objects/58/9c7ae4c398959a90aa3ea16dabfdd00f3b5dc3",
+            "sha256": "d7054328933f8c11ee75d8f0828132fe98ed3c84e277f28a23078035ec36b33a"
+          },
+          {
+            "kind": "directory",
+            "mode": 493,
+            "path": ".git/objects/66"
+          },
+          {
+            "kind": "file",
+            "mode": 292,
+            "path": ".git/objects/66/9816705ee836e1147dd1e2329d60310a96cbbe",
+            "sha256": "17a2a0bf72f8c7b61e8f177981b1dc3511e0efc3028482c001ecc72eb185c16d"
+          },
+          {
+            "kind": "directory",
+            "mode": 493,
+            "path": ".git/objects/80"
+          },
+          {
+            "kind": "file",
+            "mode": 292,
+            "path": ".git/objects/80/86be2df1abaaf5bba79fc42e738054a0fc5f0f",
+            "sha256": "0f9f84409b04e3c03caefcdaf79c70b3e76753fc3fb96b9e897cadb0d0b910e2"
+          },
+          {
+            "kind": "directory",
+            "mode": 493,
+            "path": ".git/objects/83"
+          },
+          {
+            "kind": "file",
+            "mode": 292,
+            "path": ".git/objects/83/8ffc11b720d19b54406c5c75977ec717748edb",
+            "sha256": "1763374c05bf144727f991d7488e50b264bce862052ae2476d6e41d31a48d7c4"
+          },
+          {
+            "kind": "directory",
+            "mode": 493,
+            "path": ".git/objects/8f"
+          },
+          {
+            "kind": "file",
+            "mode": 292,
+            "path": ".git/objects/8f/1efb3d5bca2a4a73799eb832780bdc9249d6e8",
+            "sha256": "cd8617d257deabc810dcb535fcc0ff80eac08da3408ef9249de2100a500871c1"
+          },
+          {
+            "kind": "directory",
+            "mode": 493,
+            "path": ".git/objects/9f"
+          },
+          {
+            "kind": "file",
+            "mode": 292,
+            "path": ".git/objects/9f/307534dc2f58df77c14d4780d28e813e118692",
+            "sha256": "ea5d429a0aa6eae2a62468c3a103b3b23ca7225e6d34e4097df9766d24a07fe7"
+          },
+          {
+            "kind": "directory",
+            "mode": 493,
+            "path": ".git/objects/d5"
+          },
+          {
+            "kind": "file",
+            "mode": 292,
+            "path": ".git/objects/d5/6d364a6edc9cd30bc29317ae3781983947e016",
+            "sha256": "ed8291d866f7869b6f291728fcd128ae43402f42cb4e9565dd209baeb7a54144"
+          },
+          {
+            "kind": "directory",
+            "mode": 493,
+            "path": ".git/objects/info"
+          },
+          {
+            "kind": "directory",
+            "mode": 493,
+            "path": ".git/objects/pack"
+          },
+          {
+            "kind": "directory",
+            "mode": 493,
+            "path": ".git/refs"
+          },
+          {
+            "kind": "directory",
+            "mode": 493,
+            "path": ".git/refs/heads"
+          },
+          {
+            "kind": "file",
+            "mode": 420,
+            "path": ".git/refs/heads/master",
+            "sha256": "93169677770a1a9f2b4114fe9b3c456bb85ab6557af53df38ae66440a02c7037"
+          },
+          {
+            "kind": "directory",
+            "mode": 493,
+            "path": ".git/refs/tags"
+          },
+          {
+            "kind": "file",
+            "mode": 420,
+            "path": "README.md",
+            "sha256": "058f74ad72b941559f85ad0222b7f43f24361e54d4dfd7a15f3bdd70622b9c87"
+          },
+          {
+            "kind": "file",
+            "mode": 420,
+            "path": "app.py",
+            "sha256": "aaea00a9b71c288ad289e8aeac007a4168249e69f7efea2fae15b46792deb00d"
+          },
+          {
+            "kind": "file",
+            "mode": 420,
+            "path": "cli.py",
+            "sha256": "14aea6a3d7acc1d93b80e079fd645b48e4fef2e976df9ef355cc50829a7c74c8"
+          },
+          {
+            "kind": "file",
+            "mode": 420,
+            "path": "service.py",
+            "sha256": "48db6ebd2d4d56bd71e566d9b43a980cac5956b80bee8944810a5d857bec0ff6"
+          },
+          {
+            "kind": "directory",
+            "mode": 493,
+            "path": "tests"
+          },
+          {
+            "kind": "file",
+            "mode": 420,
+            "path": "tests/test_compat.py",
+            "sha256": "2432e53eeae0b53103501bb0cdfbd3dab2446d236503df335ea8a5e5e4171703"
+          },
+          {
+            "kind": "file",
+            "mode": 420,
+            "path": "tests/test_example.py",
+            "sha256": "68ea843f459775c4502178a8061ba0329f81bef3aec680623b8a1d90f92831ce"
+          }
+        ],
+        "sha256": "8aabc144b57f18a2b946b59320e36cfca1e5f457f31a050cd2db73740e7e6ace"
+      },
+      "sequence": 1,
+      "source_sha256": "c9a5c3bc2cc80520431d6fd951a8e2303270d1c390b25ed1f5413391fbc29347"
+    },
+    {
+      "base_tree": "8086be2df1abaaf5bba79fc42e738054a0fc5f0f",
+      "checks": [
+        [
+          "/opt/homebrew/Cellar/python@3.14/3.14.8_2/Frameworks/Python.framework/Versions/3.14/bin/python3.14",
+          "-B",
+          "-c",
+          "from app import process; assert process({'balances': {'a': 5, 'b': 0}, 'transfers': [['a', 'b', 3]]}) == {'balances': {'a': 2, 'b': 3}}"
+        ],
+        [
+          "/opt/homebrew/Cellar/python@3.14/3.14.8_2/Frameworks/Python.framework/Versions/3.14/bin/python3.14",
+          "-B",
+          "-m",
+          "unittest",
+          "discover",
+          "-s",
+          "tests"
+        ]
+      ],
+      "seed_snapshot": {
+        "entries": [
+          {
+            "kind": "directory",
+            "mode": 493,
+            "path": ".git"
+          },
+          {
+            "kind": "file",
+            "mode": 420,
+            "path": ".git/COMMIT_EDITMSG",
+            "sha256": "d7d0d3b87937197214f294e53efc4f1da68a647de510eb76c7e6d348f27539a6"
+          },
+          {
+            "kind": "file",
+            "mode": 420,
+            "path": ".git/HEAD",
+            "sha256": "f6f2b945f6c411b02ba3da9c7ace88dcf71b6af65ba2e0d89aa82900042b5a10"
+          },
+          {
+            "kind": "file",
+            "mode": 420,
+            "path": ".git/config",
+            "sha256": "cae33efdb02cf774435c1ff9cb16bcc1014606908530c6e1dc727615fe3e8cda"
+          },
+          {
+            "kind": "file",
+            "mode": 420,
+            "path": ".git/index",
+            "sha256": "5d614435aba2889700f8c112d90fc6e22cda32d31601c2fe0be524235f148ad8"
+          },
+          {
+            "kind": "directory",
+            "mode": 493,
+            "path": ".git/logs"
+          },
+          {
+            "kind": "file",
+            "mode": 420,
+            "path": ".git/logs/HEAD",
+            "sha256": "f915a7eb194ba68f0117f431bc91a43fc8cee0906f0778c9297930419c938f53"
+          },
+          {
+            "kind": "directory",
+            "mode": 493,
+            "path": ".git/logs/refs"
+          },
+          {
+            "kind": "directory",
+            "mode": 493,
+            "path": ".git/logs/refs/heads"
+          },
+          {
+            "kind": "file",
+            "mode": 420,
+            "path": ".git/logs/refs/heads/master",
+            "sha256": "f915a7eb194ba68f0117f431bc91a43fc8cee0906f0778c9297930419c938f53"
+          },
+          {
+            "kind": "directory",
+            "mode": 493,
+            "path": ".git/objects"
+          },
+          {
+            "kind": "directory",
+            "mode": 493,
+            "path": ".git/objects/0a"
+          },
+          {
+            "kind": "file",
+            "mode": 292,
+            "path": ".git/objects/0a/c1669cc58dcb594aa619314cb8024f09d08bab",
+            "sha256": "daab48ef0d7eeb982ca1e0fa1162f5624dc4998d8c79c58c02c6ada42c0503ab"
+          },
+          {
+            "kind": "directory",
+            "mode": 493,
+            "path": ".git/objects/3c"
+          },
+          {
+            "kind": "file",
+            "mode": 292,
+            "path": ".git/objects/3c/8293f363b3795767e8a9bcf6f8f5eb9e00e0dc",
+            "sha256": "71451b47c50c5d7790a670289bcb401e469527dcc2b7dced246480e9c3327aa3"
+          },
+          {
+            "kind": "directory",
+            "mode": 493,
+            "path": ".git/objects/58"
+          },
+          {
+            "kind": "file",
+            "mode": 292,
+            "path": ".git/objects/58/9c7ae4c398959a90aa3ea16dabfdd00f3b5dc3",
+            "sha256": "d7054328933f8c11ee75d8f0828132fe98ed3c84e277f28a23078035ec36b33a"
+          },
+          {
+            "kind": "directory",
+            "mode": 493,
+            "path": ".git/objects/66"
+          },
+          {
+            "kind": "file",
+            "mode": 292,
+            "path": ".git/objects/66/9816705ee836e1147dd1e2329d60310a96cbbe",
+            "sha256": "17a2a0bf72f8c7b61e8f177981b1dc3511e0efc3028482c001ecc72eb185c16d"
+          },
+          {
+            "kind": "directory",
+            "mode": 493,
+            "path": ".git/objects/80"
+          },
+          {
+            "kind": "file",
+            "mode": 292,
+            "path": ".git/objects/80/86be2df1abaaf5bba79fc42e738054a0fc5f0f",
+            "sha256": "0f9f84409b04e3c03caefcdaf79c70b3e76753fc3fb96b9e897cadb0d0b910e2"
+          },
+          {
+            "kind": "directory",
+            "mode": 493,
+            "path": ".git/objects/83"
+          },
+          {
+            "kind": "file",
+            "mode": 292,
+            "path": ".git/objects/83/8ffc11b720d19b54406c5c75977ec717748edb",
+            "sha256": "1763374c05bf144727f991d7488e50b264bce862052ae2476d6e41d31a48d7c4"
+          },
+          {
+            "kind": "directory",
+            "mode": 493,
+            "path": ".git/objects/8f"
+          },
+          {
+            "kind": "file",
+            "mode": 292,
+            "path": ".git/objects/8f/1efb3d5bca2a4a73799eb832780bdc9249d6e8",
+            "sha256": "cd8617d257deabc810dcb535fcc0ff80eac08da3408ef9249de2100a500871c1"
+          },
+          {
+            "kind": "directory",
+            "mode": 493,
+            "path": ".git/objects/9f"
+          },
+          {
+            "kind": "file",
+            "mode": 292,
+            "path": ".git/objects/9f/307534dc2f58df77c14d4780d28e813e118692",
+            "sha256": "ea5d429a0aa6eae2a62468c3a103b3b23ca7225e6d34e4097df9766d24a07fe7"
+          },
+          {
+            "kind": "directory",
+            "mode": 493,
+            "path": ".git/objects/d5"
+          },
+          {
+            "kind": "file",
+            "mode": 292,
+            "path": ".git/objects/d5/6d364a6edc9cd30bc29317ae3781983947e016",
+            "sha256": "ed8291d866f7869b6f291728fcd128ae43402f42cb4e9565dd209baeb7a54144"
+          },
+          {
+            "kind": "directory",
+            "mode": 493,
+            "path": ".git/objects/info"
+          },
+          {
+            "kind": "directory",
+            "mode": 493,
+            "path": ".git/objects/pack"
+          },
+          {
+            "kind": "directory",
+            "mode": 493,
+            "path": ".git/refs"
+          },
+          {
+            "kind": "directory",
+            "mode": 493,
+            "path": ".git/refs/heads"
+          },
+          {
+            "kind": "file",
+            "mode": 420,
+            "path": ".git/refs/heads/master",
+            "sha256": "93169677770a1a9f2b4114fe9b3c456bb85ab6557af53df38ae66440a02c7037"
+          },
+          {
+            "kind": "directory",
+            "mode": 493,
+            "path": ".git/refs/tags"
+          },
+          {
+            "kind": "file",
+            "mode": 420,
+            "path": "README.md",
+            "sha256": "058f74ad72b941559f85ad0222b7f43f24361e54d4dfd7a15f3bdd70622b9c87"
+          },
+          {
+            "kind": "file",
+            "mode": 420,
+            "path": "app.py",
+            "sha256": "aaea00a9b71c288ad289e8aeac007a4168249e69f7efea2fae15b46792deb00d"
+          },
+          {
+            "kind": "file",
+            "mode": 420,
+            "path": "cli.py",
+            "sha256": "14aea6a3d7acc1d93b80e079fd645b48e4fef2e976df9ef355cc50829a7c74c8"
+          },
+          {
+            "kind": "file",
+            "mode": 420,
+            "path": "service.py",
+            "sha256": "48db6ebd2d4d56bd71e566d9b43a980cac5956b80bee8944810a5d857bec0ff6"
+          },
+          {
+            "kind": "directory",
+            "mode": 493,
+            "path": "tests"
+          },
+          {
+            "kind": "file",
+            "mode": 420,
+            "path": "tests/test_compat.py",
+            "sha256": "2432e53eeae0b53103501bb0cdfbd3dab2446d236503df335ea8a5e5e4171703"
+          },
+          {
+            "kind": "file",
+            "mode": 420,
+            "path": "tests/test_example.py",
+            "sha256": "68ea843f459775c4502178a8061ba0329f81bef3aec680623b8a1d90f92831ce"
+          }
+        ],
+        "sha256": "6a8f965e45f5d31f05fb687f2d84b3958534ba5bd2f778c36bcf20eed61d2211"
+      },
+      "sequence": 2,
+      "source_sha256": "c9a5c3bc2cc80520431d6fd951a8e2303270d1c390b25ed1f5413391fbc29347"
+    },
+    {
+      "base_tree": "8086be2df1abaaf5bba79fc42e738054a0fc5f0f",
+      "checks": [
+        [
+          "/opt/homebrew/Cellar/python@3.14/3.14.8_2/Frameworks/Python.framework/Versions/3.14/bin/python3.14",
+          "-B",
+          "-c",
+          "from app import process; assert process({'balances': {'a': 5, 'b': 0}, 'transfers': [['a', 'b', 3]]}) == {'balances': {'a': 2, 'b': 3}}"
+        ],
+        [
+          "/opt/homebrew/Cellar/python@3.14/3.14.8_2/Frameworks/Python.framework/Versions/3.14/bin/python3.14",
+          "-B",
+          "-m",
+          "unittest",
+          "discover",
+          "-s",
+          "tests"
+        ]
+      ],
+      "seed_snapshot": {
+        "entries": [
+          {
+            "kind": "directory",
+            "mode": 493,
+            "path": ".git"
+          },
+          {
+            "kind": "file",
+            "mode": 420,
+            "path": ".git/COMMIT_EDITMSG",
+            "sha256": "d7d0d3b87937197214f294e53efc4f1da68a647de510eb76c7e6d348f27539a6"
+          },
+          {
+            "kind": "file",
+            "mode": 420,
+            "path": ".git/HEAD",
+            "sha256": "f6f2b945f6c411b02ba3da9c7ace88dcf71b6af65ba2e0d89aa82900042b5a10"
+          },
+          {
+            "kind": "file",
+            "mode": 420,
+            "path": ".git/config",
+            "sha256": "cae33efdb02cf774435c1ff9cb16bcc1014606908530c6e1dc727615fe3e8cda"
+          },
+          {
+            "kind": "file",
+            "mode": 420,
+            "path": ".git/index",
+            "sha256": "6a2432aebee054fc80acda85a05c3998e489e5ab74c47902b408a93ca81a660e"
+          },
+          {
+            "kind": "directory",
+            "mode": 493,
+            "path": ".git/logs"
+          },
+          {
+            "kind": "file",
+            "mode": 420,
+            "path": ".git/logs/HEAD",
+            "sha256": "f915a7eb194ba68f0117f431bc91a43fc8cee0906f0778c9297930419c938f53"
+          },
+          {
+            "kind": "directory",
+            "mode": 493,
+            "path": ".git/logs/refs"
+          },
+          {
+            "kind": "directory",
+            "mode": 493,
+            "path": ".git/logs/refs/heads"
+          },
+          {
+            "kind": "file",
+            "mode": 420,
+            "path": ".git/logs/refs/heads/master",
+            "sha256": "f915a7eb194ba68f0117f431bc91a43fc8cee0906f0778c9297930419c938f53"
+          },
+          {
+            "kind": "directory",
+            "mode": 493,
+            "path": ".git/objects"
+          },
+          {
+            "kind": "directory",
+            "mode": 493,
+            "path": ".git/objects/0a"
+          },
+          {
+            "kind": "file",
+            "mode": 292,
+            "path": ".git/objects/0a/c1669cc58dcb594aa619314cb8024f09d08bab",
+            "sha256": "daab48ef0d7eeb982ca1e0fa1162f5624dc4998d8c79c58c02c6ada42c0503ab"
+          },
+          {
+            "kind": "directory",
+            "mode": 493,
+            "path": ".git/objects/3c"
+          },
+          {
+            "kind": "file",
+            "mode": 292,
+            "path": ".git/objects/3c/8293f363b3795767e8a9bcf6f8f5eb9e00e0dc",
+            "sha256": "71451b47c50c5d7790a670289bcb401e469527dcc2b7dced246480e9c3327aa3"
+          },
+          {
+            "kind": "directory",
+            "mode": 493,
+            "path": ".git/objects/58"
+          },
+          {
+            "kind": "file",
+            "mode": 292,
+            "path": ".git/objects/58/9c7ae4c398959a90aa3ea16dabfdd00f3b5dc3",
+            "sha256": "d7054328933f8c11ee75d8f0828132fe98ed3c84e277f28a23078035ec36b33a"
+          },
+          {
+            "kind": "directory",
+            "mode": 493,
+            "path": ".git/objects/66"
+          },
+          {
+            "kind": "file",
+            "mode": 292,
+            "path": ".git/objects/66/9816705ee836e1147dd1e2329d60310a96cbbe",
+            "sha256": "17a2a0bf72f8c7b61e8f177981b1dc3511e0efc3028482c001ecc72eb185c16d"
+          },
+          {
+            "kind": "directory",
+            "mode": 493,
+            "path": ".git/objects/80"
+          },
+          {
+            "kind": "file",
+            "mode": 292,
+            "path": ".git/objects/80/86be2df1abaaf5bba79fc42e738054a0fc5f0f",
+            "sha256": "0f9f84409b04e3c03caefcdaf79c70b3e76753fc3fb96b9e897cadb0d0b910e2"
+          },
+          {
+            "kind": "directory",
+            "mode": 493,
+            "path": ".git/objects/83"
+          },
+          {
+            "kind": "file",
+            "mode": 292,
+            "path": ".git/objects/83/8ffc11b720d19b54406c5c75977ec717748edb",
+            "sha256": "1763374c05bf144727f991d7488e50b264bce862052ae2476d6e41d31a48d7c4"
+          },
+          {
+            "kind": "directory",
+            "mode": 493,
+            "path": ".git/objects/8f"
+          },
+          {
+            "kind": "file",
+            "mode": 292,
+            "path": ".git/objects/8f/1efb3d5bca2a4a73799eb832780bdc9249d6e8",
+            "sha256": "cd8617d257deabc810dcb535fcc0ff80eac08da3408ef9249de2100a500871c1"
+          },
+          {
+            "kind": "directory",
+            "mode": 493,
+            "path": ".git/objects/9f"
+          },
+          {
+            "kind": "file",
+            "mode": 292,
+            "path": ".git/objects/9f/307534dc2f58df77c14d4780d28e813e118692",
+            "sha256": "ea5d429a0aa6eae2a62468c3a103b3b23ca7225e6d34e4097df9766d24a07fe7"
+          },
+          {
+            "kind": "directory",
+            "mode": 493,
+            "path": ".git/objects/d5"
+          },
+          {
+            "kind": "file",
+            "mode": 292,
+            "path": ".git/objects/d5/6d364a6edc9cd30bc29317ae3781983947e016",
+            "sha256": "ed8291d866f7869b6f291728fcd128ae43402f42cb4e9565dd209baeb7a54144"
+          },
+          {
+            "kind": "directory",
+            "mode": 493,
+            "path": ".git/objects/info"
+          },
+          {
+            "kind": "directory",
+            "mode": 493,
+            "path": ".git/objects/pack"
+          },
+          {
+            "kind": "directory",
+            "mode": 493,
+            "path": ".git/refs"
+          },
+          {
+            "kind": "directory",
+            "mode": 493,
+            "path": ".git/refs/heads"
+          },
+          {
+            "kind": "file",
+            "mode": 420,
+            "path": ".git/refs/heads/master",
+            "sha256": "93169677770a1a9f2b4114fe9b3c456bb85ab6557af53df38ae66440a02c7037"
+          },
+          {
+            "kind": "directory",
+            "mode": 493,
+            "path": ".git/refs/tags"
+          },
+          {
+            "kind": "file",
+            "mode": 420,
+            "path": "README.md",
+            "sha256": "058f74ad72b941559f85ad0222b7f43f24361e54d4dfd7a15f3bdd70622b9c87"
+          },
+          {
+            "kind": "file",
+            "mode": 420,
+            "path": "app.py",
+            "sha256": "aaea00a9b71c288ad289e8aeac007a4168249e69f7efea2fae15b46792deb00d"
+          },
+          {
+            "kind": "file",
+            "mode": 420,
+            "path": "cli.py",
+            "sha256": "14aea6a3d7acc1d93b80e079fd645b48e4fef2e976df9ef355cc50829a7c74c8"
+          },
+          {
+            "kind": "file",
+            "mode": 420,
+            "path": "service.py",
+            "sha256": "48db6ebd2d4d56bd71e566d9b43a980cac5956b80bee8944810a5d857bec0ff6"
+          },
+          {
+            "kind": "directory",
+            "mode": 493,
+            "path": "tests"
+          },
+          {
+            "kind": "file",
+            "mode": 420,
+            "path": "tests/test_compat.py",
+            "sha256": "2432e53eeae0b53103501bb0cdfbd3dab2446d236503df335ea8a5e5e4171703"
+          },
+          {
+            "kind": "file",
+            "mode": 420,
+            "path": "tests/test_example.py",
+            "sha256": "68ea843f459775c4502178a8061ba0329f81bef3aec680623b8a1d90f92831ce"
+          }
+        ],
+        "sha256": "ef51f8639189f92b04716c6f6635c3f6e42df47bb44c58ae8f26a42b9d437f48"
+      },
+      "sequence": 3,
+      "source_sha256": "c9a5c3bc2cc80520431d6fd951a8e2303270d1c390b25ed1f5413391fbc29347"
+    },
+    {
+      "base_tree": "8086be2df1abaaf5bba79fc42e738054a0fc5f0f",
+      "checks": [
+        [
+          "/opt/homebrew/Cellar/python@3.14/3.14.8_2/Frameworks/Python.framework/Versions/3.14/bin/python3.14",
+          "-B",
+          "-c",
+          "from app import process; assert process({'balances': {'a': 5, 'b': 0}, 'transfers': [['a', 'b', 3]]}) == {'balances': {'a': 2, 'b': 3}}"
+        ],
+        [
+          "/opt/homebrew/Cellar/python@3.14/3.14.8_2/Frameworks/Python.framework/Versions/3.14/bin/python3.14",
+          "-B",
+          "-m",
+          "unittest",
+          "discover",
+          "-s",
+          "tests"
+        ]
+      ],
+      "seed_snapshot": {
+        "entries": [
+          {
+            "kind": "directory",
+            "mode": 493,
+            "path": ".git"
+          },
+          {
+            "kind": "file",
+            "mode": 420,
+            "path": ".git/COMMIT_EDITMSG",
+            "sha256": "d7d0d3b87937197214f294e53efc4f1da68a647de510eb76c7e6d348f27539a6"
+          },
+          {
+            "kind": "file",
+            "mode": 420,
+            "path": ".git/HEAD",
+            "sha256": "f6f2b945f6c411b02ba3da9c7ace88dcf71b6af65ba2e0d89aa82900042b5a10"
+          },
+          {
+            "kind": "file",
+            "mode": 420,
+            "path": ".git/config",
+            "sha256": "cae33efdb02cf774435c1ff9cb16bcc1014606908530c6e1dc727615fe3e8cda"
+          },
+          {
+            "kind": "file",
+            "mode": 420,
+            "path": ".git/index",
+            "sha256": "d6d91ba6703616f0a22e574d47a549cf40cdeaa937094d9c8daa791ac744ac2c"
+          },
+          {
+            "kind": "directory",
+            "mode": 493,
+            "path": ".git/logs"
+          },
+          {
+            "kind": "file",
+            "mode": 420,
+            "path": ".git/logs/HEAD",
+            "sha256": "f915a7eb194ba68f0117f431bc91a43fc8cee0906f0778c9297930419c938f53"
+          },
+          {
+            "kind": "directory",
+            "mode": 493,
+            "path": ".git/logs/refs"
+          },
+          {
+            "kind": "directory",
+            "mode": 493,
+            "path": ".git/logs/refs/heads"
+          },
+          {
+            "kind": "file",
+            "mode": 420,
+            "path": ".git/logs/refs/heads/master",
+            "sha256": "f915a7eb194ba68f0117f431bc91a43fc8cee0906f0778c9297930419c938f53"
+          },
+          {
+            "kind": "directory",
+            "mode": 493,
+            "path": ".git/objects"
+          },
+          {
+            "kind": "directory",
+            "mode": 493,
+            "path": ".git/objects/0a"
+          },
+          {
+            "kind": "file",
+            "mode": 292,
+            "path": ".git/objects/0a/c1669cc58dcb594aa619314cb8024f09d08bab",
+            "sha256": "daab48ef0d7eeb982ca1e0fa1162f5624dc4998d8c79c58c02c6ada42c0503ab"
+          },
+          {
+            "kind": "directory",
+            "mode": 493,
+            "path": ".git/objects/3c"
+          },
+          {
+            "kind": "file",
+            "mode": 292,
+            "path": ".git/objects/3c/8293f363b3795767e8a9bcf6f8f5eb9e00e0dc",
+            "sha256": "71451b47c50c5d7790a670289bcb401e469527dcc2b7dced246480e9c3327aa3"
+          },
+          {
+            "kind": "directory",
+            "mode": 493,
+            "path": ".git/objects/58"
+          },
+          {
+            "kind": "file",
+            "mode": 292,
+            "path": ".git/objects/58/9c7ae4c398959a90aa3ea16dabfdd00f3b5dc3",
+            "sha256": "d7054328933f8c11ee75d8f0828132fe98ed3c84e277f28a23078035ec36b33a"
+          },
+          {
+            "kind": "directory",
+            "mode": 493,
+            "path": ".git/objects/66"
+          },
+          {
+            "kind": "file",
+            "mode": 292,
+            "path": ".git/objects/66/9816705ee836e1147dd1e2329d60310a96cbbe",
+            "sha256": "17a2a0bf72f8c7b61e8f177981b1dc3511e0efc3028482c001ecc72eb185c16d"
+          },
+          {
+            "kind": "directory",
+            "mode": 493,
+            "path": ".git/objects/80"
+          },
+          {
+            "kind": "file",
+            "mode": 292,
+            "path": ".git/objects/80/86be2df1abaaf5bba79fc42e738054a0fc5f0f",
+            "sha256": "0f9f84409b04e3c03caefcdaf79c70b3e76753fc3fb96b9e897cadb0d0b910e2"
+          },
+          {
+            "kind": "directory",
+            "mode": 493,
+            "path": ".git/objects/83"
+          },
+          {
+            "kind": "file",
+            "mode": 292,
+            "path": ".git/objects/83/8ffc11b720d19b54406c5c75977ec717748edb",
+            "sha256": "1763374c05bf144727f991d7488e50b264bce862052ae2476d6e41d31a48d7c4"
+          },
+          {
+            "kind": "directory",
+            "mode": 493,
+            "path": ".git/objects/8f"
+          },
+          {
+            "kind": "file",
+            "mode": 292,
+            "path": ".git/objects/8f/1efb3d5bca2a4a73799eb832780bdc9249d6e8",
+            "sha256": "cd8617d257deabc810dcb535fcc0ff80eac08da3408ef9249de2100a500871c1"
+          },
+          {
+            "kind": "directory",
+            "mode": 493,
+            "path": ".git/objects/9f"
+          },
+          {
+            "kind": "file",
+            "mode": 292,
+            "path": ".git/objects/9f/307534dc2f58df77c14d4780d28e813e118692",
+            "sha256": "ea5d429a0aa6eae2a62468c3a103b3b23ca7225e6d34e4097df9766d24a07fe7"
+          },
+          {
+            "kind": "directory",
+            "mode": 493,
+            "path": ".git/objects/d5"
+          },
+          {
+            "kind": "file",
+            "mode": 292,
+            "path": ".git/objects/d5/6d364a6edc9cd30bc29317ae3781983947e016",
+            "sha256": "ed8291d866f7869b6f291728fcd128ae43402f42cb4e9565dd209baeb7a54144"
+          },
+          {
+            "kind": "directory",
+            "mode": 493,
+            "path": ".git/objects/info"
+          },
+          {
+            "kind": "directory",
+            "mode": 493,
+            "path": ".git/objects/pack"
+          },
+          {
+            "kind": "directory",
+            "mode": 493,
+            "path": ".git/refs"
+          },
+          {
+            "kind": "directory",
+            "mode": 493,
+            "path": ".git/refs/heads"
+          },
+          {
+            "kind": "file",
+            "mode": 420,
+            "path": ".git/refs/heads/master",
+            "sha256": "93169677770a1a9f2b4114fe9b3c456bb85ab6557af53df38ae66440a02c7037"
+          },
+          {
+            "kind": "directory",
+            "mode": 493,
+            "path": ".git/refs/tags"
+          },
+          {
+            "kind": "file",
+            "mode": 420,
+            "path": "README.md",
+            "sha256": "058f74ad72b941559f85ad0222b7f43f24361e54d4dfd7a15f3bdd70622b9c87"
+          },
+          {
+            "kind": "file",
+            "mode": 420,
+            "path": "app.py",
+            "sha256": "aaea00a9b71c288ad289e8aeac007a4168249e69f7efea2fae15b46792deb00d"
+          },
+          {
+            "kind": "file",
+            "mode": 420,
+            "path": "cli.py",
+            "sha256": "14aea6a3d7acc1d93b80e079fd645b48e4fef2e976df9ef355cc50829a7c74c8"
+          },
+          {
+            "kind": "file",
+            "mode": 420,
+            "path": "service.py",
+            "sha256": "48db6ebd2d4d56bd71e566d9b43a980cac5956b80bee8944810a5d857bec0ff6"
+          },
+          {
+            "kind": "directory",
+            "mode": 493,
+            "path": "tests"
+          },
+          {
+            "kind": "file",
+            "mode": 420,
+            "path": "tests/test_compat.py",
+            "sha256": "2432e53eeae0b53103501bb0cdfbd3dab2446d236503df335ea8a5e5e4171703"
+          },
+          {
+            "kind": "file",
+            "mode": 420,
+            "path": "tests/test_example.py",
+            "sha256": "68ea843f459775c4502178a8061ba0329f81bef3aec680623b8a1d90f92831ce"
+          }
+        ],
+        "sha256": "2f17f73ea5fdfe7e777c767eff3ba1cdc9e4f1eb25d9cfc0e9274b702b3967f2"
+      },
+      "sequence": 4,
+      "source_sha256": "c9a5c3bc2cc80520431d6fd951a8e2303270d1c390b25ed1f5413391fbc29347"
+    },
+    {
+      "base_tree": "9503e952268e34618f20dcc1f87108ee20141ad3",
+      "checks": [
+        [
+          "/opt/homebrew/Cellar/python@3.14/3.14.8_2/Frameworks/Python.framework/Versions/3.14/bin/python3.14",
+          "-B",
+          "-c",
+          "from app import process; assert process({'catalog': {'fr-CA': {'a': 'CA'}, 'fr': {'b': 'FR'}, 'en': {'c': 'EN'}}, 'locales': ['fr-CA'], 'keys': ['b', 'a', 'c', 'x', 'a'], 'default': 'en'}) == {'texts': ['FR', 'CA', 'EN', None, 'CA']}"
+        ],
+        [
+          "/opt/homebrew/Cellar/python@3.14/3.14.8_2/Frameworks/Python.framework/Versions/3.14/bin/python3.14",
+          "-B",
+          "-m",
+          "unittest",
+          "discover",
+          "-s",
+          "tests"
+        ]
+      ],
+      "seed_snapshot": {
+        "entries": [
+          {
+            "kind": "directory",
+            "mode": 493,
+            "path": ".git"
+          },
+          {
+            "kind": "file",
+            "mode": 420,
+            "path": ".git/COMMIT_EDITMSG",
+            "sha256": "d7d0d3b87937197214f294e53efc4f1da68a647de510eb76c7e6d348f27539a6"
+          },
+          {
+            "kind": "file",
+            "mode": 420,
+            "path": ".git/HEAD",
+            "sha256": "f6f2b945f6c411b02ba3da9c7ace88dcf71b6af65ba2e0d89aa82900042b5a10"
+          },
+          {
+            "kind": "file",
+            "mode": 420,
+            "path": ".git/config",
+            "sha256": "cae33efdb02cf774435c1ff9cb16bcc1014606908530c6e1dc727615fe3e8cda"
+          },
+          {
+            "kind": "file",
+            "mode": 420,
+            "path": ".git/index",
+            "sha256": "115cbf815ad6e1f36c523907cdc0211da0e88f2f48cefe6e883bd8deed88fa36"
+          },
+          {
+            "kind": "directory",
+            "mode": 493,
+            "path": ".git/logs"
+          },
+          {
+            "kind": "file",
+            "mode": 420,
+            "path": ".git/logs/HEAD",
+            "sha256": "fa01ce91ed73c84d2ccb21c3264373529baa6904dabb3d9c9f562ce44d17930d"
+          },
+          {
+            "kind": "directory",
+            "mode": 493,
+            "path": ".git/logs/refs"
+          },
+          {
+            "kind": "directory",
+            "mode": 493,
+            "path": ".git/logs/refs/heads"
+          },
+          {
+            "kind": "file",
+            "mode": 420,
+            "path": ".git/logs/refs/heads/master",
+            "sha256": "fa01ce91ed73c84d2ccb21c3264373529baa6904dabb3d9c9f562ce44d17930d"
+          },
+          {
+            "kind": "directory",
+            "mode": 493,
+            "path": ".git/objects"
+          },
+          {
+            "kind": "directory",
+            "mode": 493,
+            "path": ".git/objects/11"
+          },
+          {
+            "kind": "file",
+            "mode": 292,
+            "path": ".git/objects/11/2dabb133f3b1c0adcb9290fe4d96ac08112f7a",
+            "sha256": "3a89c9ba52ca23ed8dde246f934323d3b8f60c1108a974e55d230e3d4f3931c2"
+          },
+          {
+            "kind": "directory",
+            "mode": 493,
+            "path": ".git/objects/3c"
+          },
+          {
+            "kind": "file",
+            "mode": 292,
+            "path": ".git/objects/3c/8293f363b3795767e8a9bcf6f8f5eb9e00e0dc",
+            "sha256": "71451b47c50c5d7790a670289bcb401e469527dcc2b7dced246480e9c3327aa3"
+          },
+          {
+            "kind": "directory",
+            "mode": 493,
+            "path": ".git/objects/83"
+          },
+          {
+            "kind": "file",
+            "mode": 292,
+            "path": ".git/objects/83/8ffc11b720d19b54406c5c75977ec717748edb",
+            "sha256": "1763374c05bf144727f991d7488e50b264bce862052ae2476d6e41d31a48d7c4"
+          },
+          {
+            "kind": "directory",
+            "mode": 493,
+            "path": ".git/objects/8f"
+          },
+          {
+            "kind": "file",
+            "mode": 292,
+            "path": ".git/objects/8f/1efb3d5bca2a4a73799eb832780bdc9249d6e8",
+            "sha256": "cd8617d257deabc810dcb535fcc0ff80eac08da3408ef9249de2100a500871c1"
+          },
+          {
+            "kind": "directory",
+            "mode": 493,
+            "path": ".git/objects/95"
+          },
+          {
+            "kind": "file",
+            "mode": 292,
+            "path": ".git/objects/95/03e952268e34618f20dcc1f87108ee20141ad3",
+            "sha256": "5aecb1f11028d97c062a9806749f983a1c7dfb01cacdf20b03cfce00fe98e625"
+          },
+          {
+            "kind": "directory",
+            "mode": 493,
+            "path": ".git/objects/9f"
+          },
+          {
+            "kind": "file",
+            "mode": 292,
+            "path": ".git/objects/9f/307534dc2f58df77c14d4780d28e813e118692",
+            "sha256": "ea5d429a0aa6eae2a62468c3a103b3b23ca7225e6d34e4097df9766d24a07fe7"
+          },
+          {
+            "kind": "directory",
+            "mode": 493,
+            "path": ".git/objects/a5"
+          },
+          {
+            "kind": "file",
+            "mode": 292,
+            "path": ".git/objects/a5/c7766c0718a7d802d276e09118d9772337213c",
+            "sha256": "b11441c8f5b5f8d3b86a266b68b0a75f22c6dd85114bf9d6ee0f660b4ccfe4c8"
+          },
+          {
+            "kind": "directory",
+            "mode": 493,
+            "path": ".git/objects/af"
+          },
+          {
+            "kind": "file",
+            "mode": 292,
+            "path": ".git/objects/af/343dbc45aebf805ee504b22230312c5947f09c",
+            "sha256": "15250f40a40f5a0b3e098ed14cd3da09235db0a8477812969ef6446977147ae5"
+          },
+          {
+            "kind": "directory",
+            "mode": 493,
+            "path": ".git/objects/d2"
+          },
+          {
+            "kind": "file",
+            "mode": 292,
+            "path": ".git/objects/d2/08f83bd0caa99e4762a5dd3795385653191e10",
+            "sha256": "8eeed12c01e90198267fba3e3cdeaeea9d733414f4fae1b059a2d98dd8632548"
+          },
+          {
+            "kind": "directory",
+            "mode": 493,
+            "path": ".git/objects/info"
+          },
+          {
+            "kind": "directory",
+            "mode": 493,
+            "path": ".git/objects/pack"
+          },
+          {
+            "kind": "directory",
+            "mode": 493,
+            "path": ".git/refs"
+          },
+          {
+            "kind": "directory",
+            "mode": 493,
+            "path": ".git/refs/heads"
+          },
+          {
+            "kind": "file",
+            "mode": 420,
+            "path": ".git/refs/heads/master",
+            "sha256": "bed6b1df0256195b4c6d964da8844846f91a8a44e2c0b77593c37c8c776a8f65"
+          },
+          {
+            "kind": "directory",
+            "mode": 493,
+            "path": ".git/refs/tags"
+          },
+          {
+            "kind": "file",
+            "mode": 420,
+            "path": "README.md",
+            "sha256": "91d664731edf42a9a028b828581385640e10be5d74c573b28f6e3e6f3c81738c"
+          },
+          {
+            "kind": "file",
+            "mode": 420,
+            "path": "app.py",
+            "sha256": "aaea00a9b71c288ad289e8aeac007a4168249e69f7efea2fae15b46792deb00d"
+          },
+          {
+            "kind": "file",
+            "mode": 420,
+            "path": "cli.py",
+            "sha256": "14aea6a3d7acc1d93b80e079fd645b48e4fef2e976df9ef355cc50829a7c74c8"
+          },
+          {
+            "kind": "file",
+            "mode": 420,
+            "path": "service.py",
+            "sha256": "48db6ebd2d4d56bd71e566d9b43a980cac5956b80bee8944810a5d857bec0ff6"
+          },
+          {
+            "kind": "directory",
+            "mode": 493,
+            "path": "tests"
+          },
+          {
+            "kind": "file",
+            "mode": 420,
+            "path": "tests/test_compat.py",
+            "sha256": "2432e53eeae0b53103501bb0cdfbd3dab2446d236503df335ea8a5e5e4171703"
+          },
+          {
+            "kind": "file",
+            "mode": 420,
+            "path": "tests/test_example.py",
+            "sha256": "6978b5b7daa1490e0c7ce0e11ee230234953bbaf6f70ba96e04b325b5469ecc4"
+          }
+        ],
+        "sha256": "a1c12a19fbeecafaf392276ac0c3a53c6bdc64401bfc41641e5f4a6612fb1bd8"
+      },
+      "sequence": 5,
+      "source_sha256": "a916b8eeb9671391cc2bc577c1b6a3a635d54bce356997c3795df8c22bc543ca"
+    },
+    {
+      "base_tree": "9503e952268e34618f20dcc1f87108ee20141ad3",
+      "checks": [
+        [
+          "/opt/homebrew/Cellar/python@3.14/3.14.8_2/Frameworks/Python.framework/Versions/3.14/bin/python3.14",
+          "-B",
+          "-c",
+          "from app import process; assert process({'catalog': {'fr-CA': {'a': 'CA'}, 'fr': {'b': 'FR'}, 'en': {'c': 'EN'}}, 'locales': ['fr-CA'], 'keys': ['b', 'a', 'c', 'x', 'a'], 'default': 'en'}) == {'texts': ['FR', 'CA', 'EN', None, 'CA']}"
+        ],
+        [
+          "/opt/homebrew/Cellar/python@3.14/3.14.8_2/Frameworks/Python.framework/Versions/3.14/bin/python3.14",
+          "-B",
+          "-m",
+          "unittest",
+          "discover",
+          "-s",
+          "tests"
+        ]
+      ],
+      "seed_snapshot": {
+        "entries": [
+          {
+            "kind": "directory",
+            "mode": 493,
+            "path": ".git"
+          },
+          {
+            "kind": "file",
+            "mode": 420,
+            "path": ".git/COMMIT_EDITMSG",
+            "sha256": "d7d0d3b87937197214f294e53efc4f1da68a647de510eb76c7e6d348f27539a6"
+          },
+          {
+            "kind": "file",
+            "mode": 420,
+            "path": ".git/HEAD",
+            "sha256": "f6f2b945f6c411b02ba3da9c7ace88dcf71b6af65ba2e0d89aa82900042b5a10"
+          },
+          {
+            "kind": "file",
+            "mode": 420,
+            "path": ".git/config",
+            "sha256": "cae33efdb02cf774435c1ff9cb16bcc1014606908530c6e1dc727615fe3e8cda"
+          },
+          {
+            "kind": "file",
+            "mode": 420,
+            "path": ".git/index",
+            "sha256": "cb850e6546c93b44b5daceb8cdb97d6053d6435aa8b5e778e9f0ee3341055b45"
+          },
+          {
+            "kind": "directory",
+            "mode": 493,
+            "path": ".git/logs"
+          },
+          {
+            "kind": "file",
+            "mode": 420,
+            "path": ".git/logs/HEAD",
+            "sha256": "fa01ce91ed73c84d2ccb21c3264373529baa6904dabb3d9c9f562ce44d17930d"
+          },
+          {
+            "kind": "directory",
+            "mode": 493,
+            "path": ".git/logs/refs"
+          },
+          {
+            "kind": "directory",
+            "mode": 493,
+            "path": ".git/logs/refs/heads"
+          },
+          {
+            "kind": "file",
+            "mode": 420,
+            "path": ".git/logs/refs/heads/master",
+            "sha256": "fa01ce91ed73c84d2ccb21c3264373529baa6904dabb3d9c9f562ce44d17930d"
+          },
+          {
+            "kind": "directory",
+            "mode": 493,
+            "path": ".git/objects"
+          },
+          {
+            "kind": "directory",
+            "mode": 493,
+            "path": ".git/objects/11"
+          },
+          {
+            "kind": "file",
+            "mode": 292,
+            "path": ".git/objects/11/2dabb133f3b1c0adcb9290fe4d96ac08112f7a",
+            "sha256": "3a89c9ba52ca23ed8dde246f934323d3b8f60c1108a974e55d230e3d4f3931c2"
+          },
+          {
+            "kind": "directory",
+            "mode": 493,
+            "path": ".git/objects/3c"
+          },
+          {
+            "kind": "file",
+            "mode": 292,
+            "path": ".git/objects/3c/8293f363b3795767e8a9bcf6f8f5eb9e00e0dc",
+            "sha256": "71451b47c50c5d7790a670289bcb401e469527dcc2b7dced246480e9c3327aa3"
+          },
+          {
+            "kind": "directory",
+            "mode": 493,
+            "path": ".git/objects/83"
+          },
+          {
+            "kind": "file",
+            "mode": 292,
+            "path": ".git/objects/83/8ffc11b720d19b54406c5c75977ec717748edb",
+            "sha256": "1763374c05bf144727f991d7488e50b264bce862052ae2476d6e41d31a48d7c4"
+          },
+          {
+            "kind": "directory",
+            "mode": 493,
+            "path": ".git/objects/8f"
+          },
+          {
+            "kind": "file",
+            "mode": 292,
+            "path": ".git/objects/8f/1efb3d5bca2a4a73799eb832780bdc9249d6e8",
+            "sha256": "cd8617d257deabc810dcb535fcc0ff80eac08da3408ef9249de2100a500871c1"
+          },
+          {
+            "kind": "directory",
+            "mode": 493,
+            "path": ".git/objects/95"
+          },
+          {
+            "kind": "file",
+            "mode": 292,
+            "path": ".git/objects/95/03e952268e34618f20dcc1f87108ee20141ad3",
+            "sha256": "5aecb1f11028d97c062a9806749f983a1c7dfb01cacdf20b03cfce00fe98e625"
+          },
+          {
+            "kind": "directory",
+            "mode": 493,
+            "path": ".git/objects/9f"
+          },
+          {
+            "kind": "file",
+            "mode": 292,
+            "path": ".git/objects/9f/307534dc2f58df77c14d4780d28e813e118692",
+            "sha256": "ea5d429a0aa6eae2a62468c3a103b3b23ca7225e6d34e4097df9766d24a07fe7"
+          },
+          {
+            "kind": "directory",
+            "mode": 493,
+            "path": ".git/objects/a5"
+          },
+          {
+            "kind": "file",
+            "mode": 292,
+            "path": ".git/objects/a5/c7766c0718a7d802d276e09118d9772337213c",
+            "sha256": "b11441c8f5b5f8d3b86a266b68b0a75f22c6dd85114bf9d6ee0f660b4ccfe4c8"
+          },
+          {
+            "kind": "directory",
+            "mode": 493,
+            "path": ".git/objects/af"
+          },
+          {
+            "kind": "file",
+            "mode": 292,
+            "path": ".git/objects/af/343dbc45aebf805ee504b22230312c5947f09c",
+            "sha256": "15250f40a40f5a0b3e098ed14cd3da09235db0a8477812969ef6446977147ae5"
+          },
+          {
+            "kind": "directory",
+            "mode": 493,
+            "path": ".git/objects/d2"
+          },
+          {
+            "kind": "file",
+            "mode": 292,
+            "path": ".git/objects/d2/08f83bd0caa99e4762a5dd3795385653191e10",
+            "sha256": "8eeed12c01e90198267fba3e3cdeaeea9d733414f4fae1b059a2d98dd8632548"
+          },
+          {
+            "kind": "directory",
+            "mode": 493,
+            "path": ".git/objects/info"
+          },
+          {
+            "kind": "directory",
+            "mode": 493,
+            "path": ".git/objects/pack"
+          },
+          {
+            "kind": "directory",
+            "mode": 493,
+            "path": ".git/refs"
+          },
+          {
+            "kind": "directory",
+            "mode": 493,
+            "path": ".git/refs/heads"
+          },
+          {
+            "kind": "file",
+            "mode": 420,
+            "path": ".git/refs/heads/master",
+            "sha256": "bed6b1df0256195b4c6d964da8844846f91a8a44e2c0b77593c37c8c776a8f65"
+          },
+          {
+            "kind": "directory",
+            "mode": 493,
+            "path": ".git/refs/tags"
+          },
+          {
+            "kind": "file",
+            "mode": 420,
+            "path": "README.md",
+            "sha256": "91d664731edf42a9a028b828581385640e10be5d74c573b28f6e3e6f3c81738c"
+          },
+          {
+            "kind": "file",
+            "mode": 420,
+            "path": "app.py",
+            "sha256": "aaea00a9b71c288ad289e8aeac007a4168249e69f7efea2fae15b46792deb00d"
+          },
+          {
+            "kind": "file",
+            "mode": 420,
+            "path": "cli.py",
+            "sha256": "14aea6a3d7acc1d93b80e079fd645b48e4fef2e976df9ef355cc50829a7c74c8"
+          },
+          {
+            "kind": "file",
+            "mode": 420,
+            "path": "service.py",
+            "sha256": "48db6ebd2d4d56bd71e566d9b43a980cac5956b80bee8944810a5d857bec0ff6"
+          },
+          {
+            "kind": "directory",
+            "mode": 493,
+            "path": "tests"
+          },
+          {
+            "kind": "file",
+            "mode": 420,
+            "path": "tests/test_compat.py",
+            "sha256": "2432e53eeae0b53103501bb0cdfbd3dab2446d236503df335ea8a5e5e4171703"
+          },
+          {
+            "kind": "file",
+            "mode": 420,
+            "path": "tests/test_example.py",
+            "sha256": "6978b5b7daa1490e0c7ce0e11ee230234953bbaf6f70ba96e04b325b5469ecc4"
+          }
+        ],
+        "sha256": "aac51d33da460e063d8b29069fe46b97cdb1b44eeac24942b9b21273005e461c"
+      },
+      "sequence": 6,
+      "source_sha256": "a916b8eeb9671391cc2bc577c1b6a3a635d54bce356997c3795df8c22bc543ca"
+    },
+    {
+      "base_tree": "9503e952268e34618f20dcc1f87108ee20141ad3",
+      "checks": [
+        [
+          "/opt/homebrew/Cellar/python@3.14/3.14.8_2/Frameworks/Python.framework/Versions/3.14/bin/python3.14",
+          "-B",
+          "-c",
+          "from app import process; assert process({'catalog': {'fr-CA': {'a': 'CA'}, 'fr': {'b': 'FR'}, 'en': {'c': 'EN'}}, 'locales': ['fr-CA'], 'keys': ['b', 'a', 'c', 'x', 'a'], 'default': 'en'}) == {'texts': ['FR', 'CA', 'EN', None, 'CA']}"
+        ],
+        [
+          "/opt/homebrew/Cellar/python@3.14/3.14.8_2/Frameworks/Python.framework/Versions/3.14/bin/python3.14",
+          "-B",
+          "-m",
+          "unittest",
+          "discover",
+          "-s",
+          "tests"
+        ]
+      ],
+      "seed_snapshot": {
+        "entries": [
+          {
+            "kind": "directory",
+            "mode": 493,
+            "path": ".git"
+          },
+          {
+            "kind": "file",
+            "mode": 420,
+            "path": ".git/COMMIT_EDITMSG",
+            "sha256": "d7d0d3b87937197214f294e53efc4f1da68a647de510eb76c7e6d348f27539a6"
+          },
+          {
+            "kind": "file",
+            "mode": 420,
+            "path": ".git/HEAD",
+            "sha256": "f6f2b945f6c411b02ba3da9c7ace88dcf71b6af65ba2e0d89aa82900042b5a10"
+          },
+          {
+            "kind": "file",
+            "mode": 420,
+            "path": ".git/config",
+            "sha256": "cae33efdb02cf774435c1ff9cb16bcc1014606908530c6e1dc727615fe3e8cda"
+          },
+          {
+            "kind": "file",
+            "mode": 420,
+            "path": ".git/index",
+            "sha256": "f84ba89d22f6e8ef3ae03bef10932af3975932a009ced29ffb677928057403ba"
+          },
+          {
+            "kind": "directory",
+            "mode": 493,
+            "path": ".git/logs"
+          },
+          {
+            "kind": "file",
+            "mode": 420,
+            "path": ".git/logs/HEAD",
+            "sha256": "fa01ce91ed73c84d2ccb21c3264373529baa6904dabb3d9c9f562ce44d17930d"
+          },
+          {
+            "kind": "directory",
+            "mode": 493,
+            "path": ".git/logs/refs"
+          },
+          {
+            "kind": "directory",
+            "mode": 493,
+            "path": ".git/logs/refs/heads"
+          },
+          {
+            "kind": "file",
+            "mode": 420,
+            "path": ".git/logs/refs/heads/master",
+            "sha256": "fa01ce91ed73c84d2ccb21c3264373529baa6904dabb3d9c9f562ce44d17930d"
+          },
+          {
+            "kind": "directory",
+            "mode": 493,
+            "path": ".git/objects"
+          },
+          {
+            "kind": "directory",
+            "mode": 493,
+            "path": ".git/objects/11"
+          },
+          {
+            "kind": "file",
+            "mode": 292,
+            "path": ".git/objects/11/2dabb133f3b1c0adcb9290fe4d96ac08112f7a",
+            "sha256": "3a89c9ba52ca23ed8dde246f934323d3b8f60c1108a974e55d230e3d4f3931c2"
+          },
+          {
+            "kind": "directory",
+            "mode": 493,
+            "path": ".git/objects/3c"
+          },
+          {
+            "kind": "file",
+            "mode": 292,
+            "path": ".git/objects/3c/8293f363b3795767e8a9bcf6f8f5eb9e00e0dc",
+            "sha256": "71451b47c50c5d7790a670289bcb401e469527dcc2b7dced246480e9c3327aa3"
+          },
+          {
+            "kind": "directory",
+            "mode": 493,
+            "path": ".git/objects/83"
+          },
+          {
+            "kind": "file",
+            "mode": 292,
+            "path": ".git/objects/83/8ffc11b720d19b54406c5c75977ec717748edb",
+            "sha256": "1763374c05bf144727f991d7488e50b264bce862052ae2476d6e41d31a48d7c4"
+          },
+          {
+            "kind": "directory",
+            "mode": 493,
+            "path": ".git/objects/8f"
+          },
+          {
+            "kind": "file",
+            "mode": 292,
+            "path": ".git/objects/8f/1efb3d5bca2a4a73799eb832780bdc9249d6e8",
+            "sha256": "cd8617d257deabc810dcb535fcc0ff80eac08da3408ef9249de2100a500871c1"
+          },
+          {
+            "kind": "directory",
+            "mode": 493,
+            "path": ".git/objects/95"
+          },
+          {
+            "kind": "file",
+            "mode": 292,
+            "path": ".git/objects/95/03e952268e34618f20dcc1f87108ee20141ad3",
+            "sha256": "5aecb1f11028d97c062a9806749f983a1c7dfb01cacdf20b03cfce00fe98e625"
+          },
+          {
+            "kind": "directory",
+            "mode": 493,
+            "path": ".git/objects/9f"
+          },
+          {
+            "kind": "file",
+            "mode": 292,
+            "path": ".git/objects/9f/307534dc2f58df77c14d4780d28e813e118692",
+            "sha256": "ea5d429a0aa6eae2a62468c3a103b3b23ca7225e6d34e4097df9766d24a07fe7"
+          },
+          {
+            "kind": "directory",
+            "mode": 493,
+            "path": ".git/objects/a5"
+          },
+          {
+            "kind": "file",
+            "mode": 292,
+            "path": ".git/objects/a5/c7766c0718a7d802d276e09118d9772337213c",
+            "sha256": "b11441c8f5b5f8d3b86a266b68b0a75f22c6dd85114bf9d6ee0f660b4ccfe4c8"
+          },
+          {
+            "kind": "directory",
+            "mode": 493,
+            "path": ".git/objects/af"
+          },
+          {
+            "kind": "file",
+            "mode": 292,
+            "path": ".git/objects/af/343dbc45aebf805ee504b22230312c5947f09c",
+            "sha256": "15250f40a40f5a0b3e098ed14cd3da09235db0a8477812969ef6446977147ae5"
+          },
+          {
+            "kind": "directory",
+            "mode": 493,
+            "path": ".git/objects/d2"
+          },
+          {
+            "kind": "file",
+            "mode": 292,
+            "path": ".git/objects/d2/08f83bd0caa99e4762a5dd3795385653191e10",
+            "sha256": "8eeed12c01e90198267fba3e3cdeaeea9d733414f4fae1b059a2d98dd8632548"
+          },
+          {
+            "kind": "directory",
+            "mode": 493,
+            "path": ".git/objects/info"
+          },
+          {
+            "kind": "directory",
+            "mode": 493,
+            "path": ".git/objects/pack"
+          },
+          {
+            "kind": "directory",
+            "mode": 493,
+            "path": ".git/refs"
+          },
+          {
+            "kind": "directory",
+            "mode": 493,
+            "path": ".git/refs/heads"
+          },
+          {
+            "kind": "file",
+            "mode": 420,
+            "path": ".git/refs/heads/master",
+            "sha256": "bed6b1df0256195b4c6d964da8844846f91a8a44e2c0b77593c37c8c776a8f65"
+          },
+          {
+            "kind": "directory",
+            "mode": 493,
+            "path": ".git/refs/tags"
+          },
+          {
+            "kind": "file",
+            "mode": 420,
+            "path": "README.md",
+            "sha256": "91d664731edf42a9a028b828581385640e10be5d74c573b28f6e3e6f3c81738c"
+          },
+          {
+            "kind": "file",
+            "mode": 420,
+            "path": "app.py",
+            "sha256": "aaea00a9b71c288ad289e8aeac007a4168249e69f7efea2fae15b46792deb00d"
+          },
+          {
+            "kind": "file",
+            "mode": 420,
+            "path": "cli.py",
+            "sha256": "14aea6a3d7acc1d93b80e079fd645b48e4fef2e976df9ef355cc50829a7c74c8"
+          },
+          {
+            "kind": "file",
+            "mode": 420,
+            "path": "service.py",
+            "sha256": "48db6ebd2d4d56bd71e566d9b43a980cac5956b80bee8944810a5d857bec0ff6"
+          },
+          {
+            "kind": "directory",
+            "mode": 493,
+            "path": "tests"
+          },
+          {
+            "kind": "file",
+            "mode": 420,
+            "path": "tests/test_compat.py",
+            "sha256": "2432e53eeae0b53103501bb0cdfbd3dab2446d236503df335ea8a5e5e4171703"
+          },
+          {
+            "kind": "file",
+            "mode": 420,
+            "path": "tests/test_example.py",
+            "sha256": "6978b5b7daa1490e0c7ce0e11ee230234953bbaf6f70ba96e04b325b5469ecc4"
+          }
+        ],
+        "sha256": "328ccc78a3ea2fff12166c194233770055896adb1b47fc5ef22811d671172377"
+      },
+      "sequence": 7,
+      "source_sha256": "a916b8eeb9671391cc2bc577c1b6a3a635d54bce356997c3795df8c22bc543ca"
+    },
+    {
+      "base_tree": "9503e952268e34618f20dcc1f87108ee20141ad3",
+      "checks": [
+        [
+          "/opt/homebrew/Cellar/python@3.14/3.14.8_2/Frameworks/Python.framework/Versions/3.14/bin/python3.14",
+          "-B",
+          "-c",
+          "from app import process; assert process({'catalog': {'fr-CA': {'a': 'CA'}, 'fr': {'b': 'FR'}, 'en': {'c': 'EN'}}, 'locales': ['fr-CA'], 'keys': ['b', 'a', 'c', 'x', 'a'], 'default': 'en'}) == {'texts': ['FR', 'CA', 'EN', None, 'CA']}"
+        ],
+        [
+          "/opt/homebrew/Cellar/python@3.14/3.14.8_2/Frameworks/Python.framework/Versions/3.14/bin/python3.14",
+          "-B",
+          "-m",
+          "unittest",
+          "discover",
+          "-s",
+          "tests"
+        ]
+      ],
+      "seed_snapshot": {
+        "entries": [
+          {
+            "kind": "directory",
+            "mode": 493,
+            "path": ".git"
+          },
+          {
+            "kind": "file",
+            "mode": 420,
+            "path": ".git/COMMIT_EDITMSG",
+            "sha256": "d7d0d3b87937197214f294e53efc4f1da68a647de510eb76c7e6d348f27539a6"
+          },
+          {
+            "kind": "file",
+            "mode": 420,
+            "path": ".git/HEAD",
+            "sha256": "f6f2b945f6c411b02ba3da9c7ace88dcf71b6af65ba2e0d89aa82900042b5a10"
+          },
+          {
+            "kind": "file",
+            "mode": 420,
+            "path": ".git/config",
+            "sha256": "cae33efdb02cf774435c1ff9cb16bcc1014606908530c6e1dc727615fe3e8cda"
+          },
+          {
+            "kind": "file",
+            "mode": 420,
+            "path": ".git/index",
+            "sha256": "398c715762373ee7e560567e2cd07362af470c778d0572495c82cf57c1bf5563"
+          },
+          {
+            "kind": "directory",
+            "mode": 493,
+            "path": ".git/logs"
+          },
+          {
+            "kind": "file",
+            "mode": 420,
+            "path": ".git/logs/HEAD",
+            "sha256": "fa01ce91ed73c84d2ccb21c3264373529baa6904dabb3d9c9f562ce44d17930d"
+          },
+          {
+            "kind": "directory",
+            "mode": 493,
+            "path": ".git/logs/refs"
+          },
+          {
+            "kind": "directory",
+            "mode": 493,
+            "path": ".git/logs/refs/heads"
+          },
+          {
+            "kind": "file",
+            "mode": 420,
+            "path": ".git/logs/refs/heads/master",
+            "sha256": "fa01ce91ed73c84d2ccb21c3264373529baa6904dabb3d9c9f562ce44d17930d"
+          },
+          {
+            "kind": "directory",
+            "mode": 493,
+            "path": ".git/objects"
+          },
+          {
+            "kind": "directory",
+            "mode": 493,
+            "path": ".git/objects/11"
+          },
+          {
+            "kind": "file",
+            "mode": 292,
+            "path": ".git/objects/11/2dabb133f3b1c0adcb9290fe4d96ac08112f7a",
+            "sha256": "3a89c9ba52ca23ed8dde246f934323d3b8f60c1108a974e55d230e3d4f3931c2"
+          },
+          {
+            "kind": "directory",
+            "mode": 493,
+            "path": ".git/objects/3c"
+          },
+          {
+            "kind": "file",
+            "mode": 292,
+            "path": ".git/objects/3c/8293f363b3795767e8a9bcf6f8f5eb9e00e0dc",
+            "sha256": "71451b47c50c5d7790a670289bcb401e469527dcc2b7dced246480e9c3327aa3"
+          },
+          {
+            "kind": "directory",
+            "mode": 493,
+            "path": ".git/objects/83"
+          },
+          {
+            "kind": "file",
+            "mode": 292,
+            "path": ".git/objects/83/8ffc11b720d19b54406c5c75977ec717748edb",
+            "sha256": "1763374c05bf144727f991d7488e50b264bce862052ae2476d6e41d31a48d7c4"
+          },
+          {
+            "kind": "directory",
+            "mode": 493,
+            "path": ".git/objects/8f"
+          },
+          {
+            "kind": "file",
+            "mode": 292,
+            "path": ".git/objects/8f/1efb3d5bca2a4a73799eb832780bdc9249d6e8",
+            "sha256": "cd8617d257deabc810dcb535fcc0ff80eac08da3408ef9249de2100a500871c1"
+          },
+          {
+            "kind": "directory",
+            "mode": 493,
+            "path": ".git/objects/95"
+          },
+          {
+            "kind": "file",
+            "mode": 292,
+            "path": ".git/objects/95/03e952268e34618f20dcc1f87108ee20141ad3",
+            "sha256": "5aecb1f11028d97c062a9806749f983a1c7dfb01cacdf20b03cfce00fe98e625"
+          },
+          {
+            "kind": "directory",
+            "mode": 493,
+            "path": ".git/objects/9f"
+          },
+          {
+            "kind": "file",
+            "mode": 292,
+            "path": ".git/objects/9f/307534dc2f58df77c14d4780d28e813e118692",
+            "sha256": "ea5d429a0aa6eae2a62468c3a103b3b23ca7225e6d34e4097df9766d24a07fe7"
+          },
+          {
+            "kind": "directory",
+            "mode": 493,
+            "path": ".git/objects/a5"
+          },
+          {
+            "kind": "file",
+            "mode": 292,
+            "path": ".git/objects/a5/c7766c0718a7d802d276e09118d9772337213c",
+            "sha256": "b11441c8f5b5f8d3b86a266b68b0a75f22c6dd85114bf9d6ee0f660b4ccfe4c8"
+          },
+          {
+            "kind": "directory",
+            "mode": 493,
+            "path": ".git/objects/af"
+          },
+          {
+            "kind": "file",
+            "mode": 292,
+            "path": ".git/objects/af/343dbc45aebf805ee504b22230312c5947f09c",
+            "sha256": "15250f40a40f5a0b3e098ed14cd3da09235db0a8477812969ef6446977147ae5"
+          },
+          {
+            "kind": "directory",
+            "mode": 493,
+            "path": ".git/objects/d2"
+          },
+          {
+            "kind": "file",
+            "mode": 292,
+            "path": ".git/objects/d2/08f83bd0caa99e4762a5dd3795385653191e10",
+            "sha256": "8eeed12c01e90198267fba3e3cdeaeea9d733414f4fae1b059a2d98dd8632548"
+          },
+          {
+            "kind": "directory",
+            "mode": 493,
+            "path": ".git/objects/info"
+          },
+          {
+            "kind": "directory",
+            "mode": 493,
+            "path": ".git/objects/pack"
+          },
+          {
+            "kind": "directory",
+            "mode": 493,
+            "path": ".git/refs"
+          },
+          {
+            "kind": "directory",
+            "mode": 493,
+            "path": ".git/refs/heads"
+          },
+          {
+            "kind": "file",
+            "mode": 420,
+            "path": ".git/refs/heads/master",
+            "sha256": "bed6b1df0256195b4c6d964da8844846f91a8a44e2c0b77593c37c8c776a8f65"
+          },
+          {
+            "kind": "directory",
+            "mode": 493,
+            "path": ".git/refs/tags"
+          },
+          {
+            "kind": "file",
+            "mode": 420,
+            "path": "README.md",
+            "sha256": "91d664731edf42a9a028b828581385640e10be5d74c573b28f6e3e6f3c81738c"
+          },
+          {
+            "kind": "file",
+            "mode": 420,
+            "path": "app.py",
+            "sha256": "aaea00a9b71c288ad289e8aeac007a4168249e69f7efea2fae15b46792deb00d"
+          },
+          {
+            "kind": "file",
+            "mode": 420,
+            "path": "cli.py",
+            "sha256": "14aea6a3d7acc1d93b80e079fd645b48e4fef2e976df9ef355cc50829a7c74c8"
+          },
+          {
+            "kind": "file",
+            "mode": 420,
+            "path": "service.py",
+            "sha256": "48db6ebd2d4d56bd71e566d9b43a980cac5956b80bee8944810a5d857bec0ff6"
+          },
+          {
+            "kind": "directory",
+            "mode": 493,
+            "path": "tests"
+          },
+          {
+            "kind": "file",
+            "mode": 420,
+            "path": "tests/test_compat.py",
+            "sha256": "2432e53eeae0b53103501bb0cdfbd3dab2446d236503df335ea8a5e5e4171703"
+          },
+          {
+            "kind": "file",
+            "mode": 420,
+            "path": "tests/test_example.py",
+            "sha256": "6978b5b7daa1490e0c7ce0e11ee230234953bbaf6f70ba96e04b325b5469ecc4"
+          }
+        ],
+        "sha256": "f1666bb345b1a7e85d683017936eb0e7bf163e0f7a76c5a83bc638be9b9ca5d5"
+      },
+      "sequence": 8,
+      "source_sha256": "a916b8eeb9671391cc2bc577c1b6a3a635d54bce356997c3795df8c22bc543ca"
+    },
+    {
+      "base_tree": "977045022a51c9093a8af016a866a7f098bc681c",
+      "checks": [
+        [
+          "/opt/homebrew/Cellar/python@3.14/3.14.8_2/Frameworks/Python.framework/Versions/3.14/bin/python3.14",
+          "-B",
+          "-c",
+          "from app import process; assert process({'nodes': ['z', 'a'], 'edges': []}) == {'order': ['z', 'a']}"
+        ],
+        [
+          "/opt/homebrew/Cellar/python@3.14/3.14.8_2/Frameworks/Python.framework/Versions/3.14/bin/python3.14",
+          "-B",
+          "-m",
+          "unittest",
+          "discover",
+          "-s",
+          "tests"
+        ]
+      ],
+      "seed_snapshot": {
+        "entries": [
+          {
+            "kind": "directory",
+            "mode": 493,
+            "path": ".git"
+          },
+          {
+            "kind": "file",
+            "mode": 420,
+            "path": ".git/COMMIT_EDITMSG",
+            "sha256": "d7d0d3b87937197214f294e53efc4f1da68a647de510eb76c7e6d348f27539a6"
+          },
+          {
+            "kind": "file",
+            "mode": 420,
+            "path": ".git/HEAD",
+            "sha256": "f6f2b945f6c411b02ba3da9c7ace88dcf71b6af65ba2e0d89aa82900042b5a10"
+          },
+          {
+            "kind": "file",
+            "mode": 420,
+            "path": ".git/config",
+            "sha256": "cae33efdb02cf774435c1ff9cb16bcc1014606908530c6e1dc727615fe3e8cda"
+          },
+          {
+            "kind": "file",
+            "mode": 420,
+            "path": ".git/index",
+            "sha256": "ae83a04297a4e1dac5a9bb515aed060a1080a61309f1dc63ae372bd96628bb8a"
+          },
+          {
+            "kind": "directory",
+            "mode": 493,
+            "path": ".git/logs"
+          },
+          {
+            "kind": "file",
+            "mode": 420,
+            "path": ".git/logs/HEAD",
+            "sha256": "accf899df2aafaa5e05a308edeba98b2cc0ec02e32d50af8adb6532bb7278467"
+          },
+          {
+            "kind": "directory",
+            "mode": 493,
+            "path": ".git/logs/refs"
+          },
+          {
+            "kind": "directory",
+            "mode": 493,
+            "path": ".git/logs/refs/heads"
+          },
+          {
+            "kind": "file",
+            "mode": 420,
+            "path": ".git/logs/refs/heads/master",
+            "sha256": "accf899df2aafaa5e05a308edeba98b2cc0ec02e32d50af8adb6532bb7278467"
+          },
+          {
+            "kind": "directory",
+            "mode": 493,
+            "path": ".git/objects"
+          },
+          {
+            "kind": "directory",
+            "mode": 493,
+            "path": ".git/objects/03"
+          },
+          {
+            "kind": "file",
+            "mode": 292,
+            "path": ".git/objects/03/62f01fc2928dc2763fbc941ee7ff633aa6868f",
+            "sha256": "7617d27fd3aa734401167417a21528e0fc8140e5092d14e9dca099dc2e5142f0"
+          },
+          {
+            "kind": "directory",
+            "mode": 493,
+            "path": ".git/objects/31"
+          },
+          {
+            "kind": "file",
+            "mode": 292,
+            "path": ".git/objects/31/718a3ee8095911c969ceb639de9f494604d4d3",
+            "sha256": "118d275c1e705799d68e7a109838e7d107667d83adb8c33e2e155d73f577c1ae"
+          },
+          {
+            "kind": "directory",
+            "mode": 493,
+            "path": ".git/objects/3c"
+          },
+          {
+            "kind": "file",
+            "mode": 292,
+            "path": ".git/objects/3c/8293f363b3795767e8a9bcf6f8f5eb9e00e0dc",
+            "sha256": "71451b47c50c5d7790a670289bcb401e469527dcc2b7dced246480e9c3327aa3"
+          },
+          {
+            "kind": "directory",
+            "mode": 493,
+            "path": ".git/objects/83"
+          },
+          {
+            "kind": "file",
+            "mode": 292,
+            "path": ".git/objects/83/8ffc11b720d19b54406c5c75977ec717748edb",
+            "sha256": "1763374c05bf144727f991d7488e50b264bce862052ae2476d6e41d31a48d7c4"
+          },
+          {
+            "kind": "file",
+            "mode": 292,
+            "path": ".git/objects/83/ea353090b4bbcf6ce15c22221192b100d1b0a3",
+            "sha256": "5870fe98a920aab715a7e17acbdfedd705e5f32e76c49145a5ffeb5bd5f00d60"
+          },
+          {
+            "kind": "directory",
+            "mode": 493,
+            "path": ".git/objects/8f"
+          },
+          {
+            "kind": "file",
+            "mode": 292,
+            "path": ".git/objects/8f/1efb3d5bca2a4a73799eb832780bdc9249d6e8",
+            "sha256": "cd8617d257deabc810dcb535fcc0ff80eac08da3408ef9249de2100a500871c1"
+          },
+          {
+            "kind": "directory",
+            "mode": 493,
+            "path": ".git/objects/97"
+          },
+          {
+            "kind": "file",
+            "mode": 292,
+            "path": ".git/objects/97/7045022a51c9093a8af016a866a7f098bc681c",
+            "sha256": "582acbb1344c365fbc3f0fb2cb2938a98b520bbb4276e3b4aea89da46e5f6e85"
+          },
+          {
+            "kind": "directory",
+            "mode": 493,
+            "path": ".git/objects/9f"
+          },
+          {
+            "kind": "file",
+            "mode": 292,
+            "path": ".git/objects/9f/307534dc2f58df77c14d4780d28e813e118692",
+            "sha256": "ea5d429a0aa6eae2a62468c3a103b3b23ca7225e6d34e4097df9766d24a07fe7"
+          },
+          {
+            "kind": "directory",
+            "mode": 493,
+            "path": ".git/objects/ef"
+          },
+          {
+            "kind": "file",
+            "mode": 292,
+            "path": ".git/objects/ef/dad469bdf227411212baf35c9af80f57f7dd40",
+            "sha256": "a3b6c06be8f1656bcdf6c02e93ed0330c5d81f6ec071d94f0cff935e15a10d63"
+          },
+          {
+            "kind": "directory",
+            "mode": 493,
+            "path": ".git/objects/info"
+          },
+          {
+            "kind": "directory",
+            "mode": 493,
+            "path": ".git/objects/pack"
+          },
+          {
+            "kind": "directory",
+            "mode": 493,
+            "path": ".git/refs"
+          },
+          {
+            "kind": "directory",
+            "mode": 493,
+            "path": ".git/refs/heads"
+          },
+          {
+            "kind": "file",
+            "mode": 420,
+            "path": ".git/refs/heads/master",
+            "sha256": "d9dbab36a70853a885c739baee86be9707c33075d521d4f35527891abf7f6a76"
+          },
+          {
+            "kind": "directory",
+            "mode": 493,
+            "path": ".git/refs/tags"
+          },
+          {
+            "kind": "file",
+            "mode": 420,
+            "path": "README.md",
+            "sha256": "2738a7f46a227dafc72511acb5d84b9bdfbefa4c2501b6897055ccd92590564e"
+          },
+          {
+            "kind": "file",
+            "mode": 420,
+            "path": "app.py",
+            "sha256": "aaea00a9b71c288ad289e8aeac007a4168249e69f7efea2fae15b46792deb00d"
+          },
+          {
+            "kind": "file",
+            "mode": 420,
+            "path": "cli.py",
+            "sha256": "14aea6a3d7acc1d93b80e079fd645b48e4fef2e976df9ef355cc50829a7c74c8"
+          },
+          {
+            "kind": "file",
+            "mode": 420,
+            "path": "service.py",
+            "sha256": "48db6ebd2d4d56bd71e566d9b43a980cac5956b80bee8944810a5d857bec0ff6"
+          },
+          {
+            "kind": "directory",
+            "mode": 493,
+            "path": "tests"
+          },
+          {
+            "kind": "file",
+            "mode": 420,
+            "path": "tests/test_compat.py",
+            "sha256": "2432e53eeae0b53103501bb0cdfbd3dab2446d236503df335ea8a5e5e4171703"
+          },
+          {
+            "kind": "file",
+            "mode": 420,
+            "path": "tests/test_example.py",
+            "sha256": "72d607660ab90df3d90ca037eb1ffb13df189f546acfac80f4f4ee763a36e058"
+          }
+        ],
+        "sha256": "a587a21079ef07593374bb06393af9a4e208510391ca993ce6b4d8e036a88cca"
+      },
+      "sequence": 9,
+      "source_sha256": "28048df96119c5f6e2fd73c8909ed9424b063cd92cd2de1496d5f11e68c090e3"
+    },
+    {
+      "base_tree": "977045022a51c9093a8af016a866a7f098bc681c",
+      "checks": [
+        [
+          "/opt/homebrew/Cellar/python@3.14/3.14.8_2/Frameworks/Python.framework/Versions/3.14/bin/python3.14",
+          "-B",
+          "-c",
+          "from app import process; assert process({'nodes': ['z', 'a'], 'edges': []}) == {'order': ['z', 'a']}"
+        ],
+        [
+          "/opt/homebrew/Cellar/python@3.14/3.14.8_2/Frameworks/Python.framework/Versions/3.14/bin/python3.14",
+          "-B",
+          "-m",
+          "unittest",
+          "discover",
+          "-s",
+          "tests"
+        ]
+      ],
+      "seed_snapshot": {
+        "entries": [
+          {
+            "kind": "directory",
+            "mode": 493,
+            "path": ".git"
+          },
+          {
+            "kind": "file",
+            "mode": 420,
+            "path": ".git/COMMIT_EDITMSG",
+            "sha256": "d7d0d3b87937197214f294e53efc4f1da68a647de510eb76c7e6d348f27539a6"
+          },
+          {
+            "kind": "file",
+            "mode": 420,
+            "path": ".git/HEAD",
+            "sha256": "f6f2b945f6c411b02ba3da9c7ace88dcf71b6af65ba2e0d89aa82900042b5a10"
+          },
+          {
+            "kind": "file",
+            "mode": 420,
+            "path": ".git/config",
+            "sha256": "cae33efdb02cf774435c1ff9cb16bcc1014606908530c6e1dc727615fe3e8cda"
+          },
+          {
+            "kind": "file",
+            "mode": 420,
+            "path": ".git/index",
+            "sha256": "6ed9921e3e5944e58e73978d16cb04ab79f6be334fcf73cfb71c33f98a28662b"
+          },
+          {
+            "kind": "directory",
+            "mode": 493,
+            "path": ".git/logs"
+          },
+          {
+            "kind": "file",
+            "mode": 420,
+            "path": ".git/logs/HEAD",
+            "sha256": "accf899df2aafaa5e05a308edeba98b2cc0ec02e32d50af8adb6532bb7278467"
+          },
+          {
+            "kind": "directory",
+            "mode": 493,
+            "path": ".git/logs/refs"
+          },
+          {
+            "kind": "directory",
+            "mode": 493,
+            "path": ".git/logs/refs/heads"
+          },
+          {
+            "kind": "file",
+            "mode": 420,
+            "path": ".git/logs/refs/heads/master",
+            "sha256": "accf899df2aafaa5e05a308edeba98b2cc0ec02e32d50af8adb6532bb7278467"
+          },
+          {
+            "kind": "directory",
+            "mode": 493,
+            "path": ".git/objects"
+          },
+          {
+            "kind": "directory",
+            "mode": 493,
+            "path": ".git/objects/03"
+          },
+          {
+            "kind": "file",
+            "mode": 292,
+            "path": ".git/objects/03/62f01fc2928dc2763fbc941ee7ff633aa6868f",
+            "sha256": "7617d27fd3aa734401167417a21528e0fc8140e5092d14e9dca099dc2e5142f0"
+          },
+          {
+            "kind": "directory",
+            "mode": 493,
+            "path": ".git/objects/31"
+          },
+          {
+            "kind": "file",
+            "mode": 292,
+            "path": ".git/objects/31/718a3ee8095911c969ceb639de9f494604d4d3",
+            "sha256": "118d275c1e705799d68e7a109838e7d107667d83adb8c33e2e155d73f577c1ae"
+          },
+          {
+            "kind": "directory",
+            "mode": 493,
+            "path": ".git/objects/3c"
+          },
+          {
+            "kind": "file",
+            "mode": 292,
+            "path": ".git/objects/3c/8293f363b3795767e8a9bcf6f8f5eb9e00e0dc",
+            "sha256": "71451b47c50c5d7790a670289bcb401e469527dcc2b7dced246480e9c3327aa3"
+          },
+          {
+            "kind": "directory",
+            "mode": 493,
+            "path": ".git/objects/83"
+          },
+          {
+            "kind": "file",
+            "mode": 292,
+            "path": ".git/objects/83/8ffc11b720d19b54406c5c75977ec717748edb",
+            "sha256": "1763374c05bf144727f991d7488e50b264bce862052ae2476d6e41d31a48d7c4"
+          },
+          {
+            "kind": "file",
+            "mode": 292,
+            "path": ".git/objects/83/ea353090b4bbcf6ce15c22221192b100d1b0a3",
+            "sha256": "5870fe98a920aab715a7e17acbdfedd705e5f32e76c49145a5ffeb5bd5f00d60"
+          },
+          {
+            "kind": "directory",
+            "mode": 493,
+            "path": ".git/objects/8f"
+          },
+          {
+            "kind": "file",
+            "mode": 292,
+            "path": ".git/objects/8f/1efb3d5bca2a4a73799eb832780bdc9249d6e8",
+            "sha256": "cd8617d257deabc810dcb535fcc0ff80eac08da3408ef9249de2100a500871c1"
+          },
+          {
+            "kind": "directory",
+            "mode": 493,
+            "path": ".git/objects/97"
+          },
+          {
+            "kind": "file",
+            "mode": 292,
+            "path": ".git/objects/97/7045022a51c9093a8af016a866a7f098bc681c",
+            "sha256": "582acbb1344c365fbc3f0fb2cb2938a98b520bbb4276e3b4aea89da46e5f6e85"
+          },
+          {
+            "kind": "directory",
+            "mode": 493,
+            "path": ".git/objects/9f"
+          },
+          {
+            "kind": "file",
+            "mode": 292,
+            "path": ".git/objects/9f/307534dc2f58df77c14d4780d28e813e118692",
+            "sha256": "ea5d429a0aa6eae2a62468c3a103b3b23ca7225e6d34e4097df9766d24a07fe7"
+          },
+          {
+            "kind": "directory",
+            "mode": 493,
+            "path": ".git/objects/ef"
+          },
+          {
+            "kind": "file",
+            "mode": 292,
+            "path": ".git/objects/ef/dad469bdf227411212baf35c9af80f57f7dd40",
+            "sha256": "a3b6c06be8f1656bcdf6c02e93ed0330c5d81f6ec071d94f0cff935e15a10d63"
+          },
+          {
+            "kind": "directory",
+            "mode": 493,
+            "path": ".git/objects/info"
+          },
+          {
+            "kind": "directory",
+            "mode": 493,
+            "path": ".git/objects/pack"
+          },
+          {
+            "kind": "directory",
+            "mode": 493,
+            "path": ".git/refs"
+          },
+          {
+            "kind": "directory",
+            "mode": 493,
+            "path": ".git/refs/heads"
+          },
+          {
+            "kind": "file",
+            "mode": 420,
+            "path": ".git/refs/heads/master",
+            "sha256": "d9dbab36a70853a885c739baee86be9707c33075d521d4f35527891abf7f6a76"
+          },
+          {
+            "kind": "directory",
+            "mode": 493,
+            "path": ".git/refs/tags"
+          },
+          {
+            "kind": "file",
+            "mode": 420,
+            "path": "README.md",
+            "sha256": "2738a7f46a227dafc72511acb5d84b9bdfbefa4c2501b6897055ccd92590564e"
+          },
+          {
+            "kind": "file",
+            "mode": 420,
+            "path": "app.py",
+            "sha256": "aaea00a9b71c288ad289e8aeac007a4168249e69f7efea2fae15b46792deb00d"
+          },
+          {
+            "kind": "file",
+            "mode": 420,
+            "path": "cli.py",
+            "sha256": "14aea6a3d7acc1d93b80e079fd645b48e4fef2e976df9ef355cc50829a7c74c8"
+          },
+          {
+            "kind": "file",
+            "mode": 420,
+            "path": "service.py",
+            "sha256": "48db6ebd2d4d56bd71e566d9b43a980cac5956b80bee8944810a5d857bec0ff6"
+          },
+          {
+            "kind": "directory",
+            "mode": 493,
+            "path": "tests"
+          },
+          {
+            "kind": "file",
+            "mode": 420,
+            "path": "tests/test_compat.py",
+            "sha256": "2432e53eeae0b53103501bb0cdfbd3dab2446d236503df335ea8a5e5e4171703"
+          },
+          {
+            "kind": "file",
+            "mode": 420,
+            "path": "tests/test_example.py",
+            "sha256": "72d607660ab90df3d90ca037eb1ffb13df189f546acfac80f4f4ee763a36e058"
+          }
+        ],
+        "sha256": "4d097a485c60f6ffb9de3ddd884651c08052a5638a4cb3d960a6d9d9d996a89b"
+      },
+      "sequence": 10,
+      "source_sha256": "28048df96119c5f6e2fd73c8909ed9424b063cd92cd2de1496d5f11e68c090e3"
+    },
+    {
+      "base_tree": "977045022a51c9093a8af016a866a7f098bc681c",
+      "checks": [
+        [
+          "/opt/homebrew/Cellar/python@3.14/3.14.8_2/Frameworks/Python.framework/Versions/3.14/bin/python3.14",
+          "-B",
+          "-c",
+          "from app import process; assert process({'nodes': ['z', 'a'], 'edges': []}) == {'order': ['z', 'a']}"
+        ],
+        [
+          "/opt/homebrew/Cellar/python@3.14/3.14.8_2/Frameworks/Python.framework/Versions/3.14/bin/python3.14",
+          "-B",
+          "-m",
+          "unittest",
+          "discover",
+          "-s",
+          "tests"
+        ]
+      ],
+      "seed_snapshot": {
+        "entries": [
+          {
+            "kind": "directory",
+            "mode": 493,
+            "path": ".git"
+          },
+          {
+            "kind": "file",
+            "mode": 420,
+            "path": ".git/COMMIT_EDITMSG",
+            "sha256": "d7d0d3b87937197214f294e53efc4f1da68a647de510eb76c7e6d348f27539a6"
+          },
+          {
+            "kind": "file",
+            "mode": 420,
+            "path": ".git/HEAD",
+            "sha256": "f6f2b945f6c411b02ba3da9c7ace88dcf71b6af65ba2e0d89aa82900042b5a10"
+          },
+          {
+            "kind": "file",
+            "mode": 420,
+            "path": ".git/config",
+            "sha256": "cae33efdb02cf774435c1ff9cb16bcc1014606908530c6e1dc727615fe3e8cda"
+          },
+          {
+            "kind": "file",
+            "mode": 420,
+            "path": ".git/index",
+            "sha256": "3f40cc2310078e57b85282ca57713e379081900ed97fe2c8252dd14923add26b"
+          },
+          {
+            "kind": "directory",
+            "mode": 493,
+            "path": ".git/logs"
+          },
+          {
+            "kind": "file",
+            "mode": 420,
+            "path": ".git/logs/HEAD",
+            "sha256": "accf899df2aafaa5e05a308edeba98b2cc0ec02e32d50af8adb6532bb7278467"
+          },
+          {
+            "kind": "directory",
+            "mode": 493,
+            "path": ".git/logs/refs"
+          },
+          {
+            "kind": "directory",
+            "mode": 493,
+            "path": ".git/logs/refs/heads"
+          },
+          {
+            "kind": "file",
+            "mode": 420,
+            "path": ".git/logs/refs/heads/master",
+            "sha256": "accf899df2aafaa5e05a308edeba98b2cc0ec02e32d50af8adb6532bb7278467"
+          },
+          {
+            "kind": "directory",
+            "mode": 493,
+            "path": ".git/objects"
+          },
+          {
+            "kind": "directory",
+            "mode": 493,
+            "path": ".git/objects/03"
+          },
+          {
+            "kind": "file",
+            "mode": 292,
+            "path": ".git/objects/03/62f01fc2928dc2763fbc941ee7ff633aa6868f",
+            "sha256": "7617d27fd3aa734401167417a21528e0fc8140e5092d14e9dca099dc2e5142f0"
+          },
+          {
+            "kind": "directory",
+            "mode": 493,
+            "path": ".git/objects/31"
+          },
+          {
+            "kind": "file",
+            "mode": 292,
+            "path": ".git/objects/31/718a3ee8095911c969ceb639de9f494604d4d3",
+            "sha256": "118d275c1e705799d68e7a109838e7d107667d83adb8c33e2e155d73f577c1ae"
+          },
+          {
+            "kind": "directory",
+            "mode": 493,
+            "path": ".git/objects/3c"
+          },
+          {
+            "kind": "file",
+            "mode": 292,
+            "path": ".git/objects/3c/8293f363b3795767e8a9bcf6f8f5eb9e00e0dc",
+            "sha256": "71451b47c50c5d7790a670289bcb401e469527dcc2b7dced246480e9c3327aa3"
+          },
+          {
+            "kind": "directory",
+            "mode": 493,
+            "path": ".git/objects/83"
+          },
+          {
+            "kind": "file",
+            "mode": 292,
+            "path": ".git/objects/83/8ffc11b720d19b54406c5c75977ec717748edb",
+            "sha256": "1763374c05bf144727f991d7488e50b264bce862052ae2476d6e41d31a48d7c4"
+          },
+          {
+            "kind": "file",
+            "mode": 292,
+            "path": ".git/objects/83/ea353090b4bbcf6ce15c22221192b100d1b0a3",
+            "sha256": "5870fe98a920aab715a7e17acbdfedd705e5f32e76c49145a5ffeb5bd5f00d60"
+          },
+          {
+            "kind": "directory",
+            "mode": 493,
+            "path": ".git/objects/8f"
+          },
+          {
+            "kind": "file",
+            "mode": 292,
+            "path": ".git/objects/8f/1efb3d5bca2a4a73799eb832780bdc9249d6e8",
+            "sha256": "cd8617d257deabc810dcb535fcc0ff80eac08da3408ef9249de2100a500871c1"
+          },
+          {
+            "kind": "directory",
+            "mode": 493,
+            "path": ".git/objects/97"
+          },
+          {
+            "kind": "file",
+            "mode": 292,
+            "path": ".git/objects/97/7045022a51c9093a8af016a866a7f098bc681c",
+            "sha256": "582acbb1344c365fbc3f0fb2cb2938a98b520bbb4276e3b4aea89da46e5f6e85"
+          },
+          {
+            "kind": "directory",
+            "mode": 493,
+            "path": ".git/objects/9f"
+          },
+          {
+            "kind": "file",
+            "mode": 292,
+            "path": ".git/objects/9f/307534dc2f58df77c14d4780d28e813e118692",
+            "sha256": "ea5d429a0aa6eae2a62468c3a103b3b23ca7225e6d34e4097df9766d24a07fe7"
+          },
+          {
+            "kind": "directory",
+            "mode": 493,
+            "path": ".git/objects/ef"
+          },
+          {
+            "kind": "file",
+            "mode": 292,
+            "path": ".git/objects/ef/dad469bdf227411212baf35c9af80f57f7dd40",
+            "sha256": "a3b6c06be8f1656bcdf6c02e93ed0330c5d81f6ec071d94f0cff935e15a10d63"
+          },
+          {
+            "kind": "directory",
+            "mode": 493,
+            "path": ".git/objects/info"
+          },
+          {
+            "kind": "directory",
+            "mode": 493,
+            "path": ".git/objects/pack"
+          },
+          {
+            "kind": "directory",
+            "mode": 493,
+            "path": ".git/refs"
+          },
+          {
+            "kind": "directory",
+            "mode": 493,
+            "path": ".git/refs/heads"
+          },
+          {
+            "kind": "file",
+            "mode": 420,
+            "path": ".git/refs/heads/master",
+            "sha256": "d9dbab36a70853a885c739baee86be9707c33075d521d4f35527891abf7f6a76"
+          },
+          {
+            "kind": "directory",
+            "mode": 493,
+            "path": ".git/refs/tags"
+          },
+          {
+            "kind": "file",
+            "mode": 420,
+            "path": "README.md",
+            "sha256": "2738a7f46a227dafc72511acb5d84b9bdfbefa4c2501b6897055ccd92590564e"
+          },
+          {
+            "kind": "file",
+            "mode": 420,
+            "path": "app.py",
+            "sha256": "aaea00a9b71c288ad289e8aeac007a4168249e69f7efea2fae15b46792deb00d"
+          },
+          {
+            "kind": "file",
+            "mode": 420,
+            "path": "cli.py",
+            "sha256": "14aea6a3d7acc1d93b80e079fd645b48e4fef2e976df9ef355cc50829a7c74c8"
+          },
+          {
+            "kind": "file",
+            "mode": 420,
+            "path": "service.py",
+            "sha256": "48db6ebd2d4d56bd71e566d9b43a980cac5956b80bee8944810a5d857bec0ff6"
+          },
+          {
+            "kind": "directory",
+            "mode": 493,
+            "path": "tests"
+          },
+          {
+            "kind": "file",
+            "mode": 420,
+            "path": "tests/test_compat.py",
+            "sha256": "2432e53eeae0b53103501bb0cdfbd3dab2446d236503df335ea8a5e5e4171703"
+          },
+          {
+            "kind": "file",
+            "mode": 420,
+            "path": "tests/test_example.py",
+            "sha256": "72d607660ab90df3d90ca037eb1ffb13df189f546acfac80f4f4ee763a36e058"
+          }
+        ],
+        "sha256": "15d4567b1e87c6c55291f5d25511bbd96217498d6609792e838bf85e3bbc5f11"
+      },
+      "sequence": 11,
+      "source_sha256": "28048df96119c5f6e2fd73c8909ed9424b063cd92cd2de1496d5f11e68c090e3"
+    },
+    {
+      "base_tree": "977045022a51c9093a8af016a866a7f098bc681c",
+      "checks": [
+        [
+          "/opt/homebrew/Cellar/python@3.14/3.14.8_2/Frameworks/Python.framework/Versions/3.14/bin/python3.14",
+          "-B",
+          "-c",
+          "from app import process; assert process({'nodes': ['z', 'a'], 'edges': []}) == {'order': ['z', 'a']}"
+        ],
+        [
+          "/opt/homebrew/Cellar/python@3.14/3.14.8_2/Frameworks/Python.framework/Versions/3.14/bin/python3.14",
+          "-B",
+          "-m",
+          "unittest",
+          "discover",
+          "-s",
+          "tests"
+        ]
+      ],
+      "seed_snapshot": {
+        "entries": [
+          {
+            "kind": "directory",
+            "mode": 493,
+            "path": ".git"
+          },
+          {
+            "kind": "file",
+            "mode": 420,
+            "path": ".git/COMMIT_EDITMSG",
+            "sha256": "d7d0d3b87937197214f294e53efc4f1da68a647de510eb76c7e6d348f27539a6"
+          },
+          {
+            "kind": "file",
+            "mode": 420,
+            "path": ".git/HEAD",
+            "sha256": "f6f2b945f6c411b02ba3da9c7ace88dcf71b6af65ba2e0d89aa82900042b5a10"
+          },
+          {
+            "kind": "file",
+            "mode": 420,
+            "path": ".git/config",
+            "sha256": "cae33efdb02cf774435c1ff9cb16bcc1014606908530c6e1dc727615fe3e8cda"
+          },
+          {
+            "kind": "file",
+            "mode": 420,
+            "path": ".git/index",
+            "sha256": "07457d85812d99724be7cf70c901d81bb97508e032b4e84d2265a049bd135838"
+          },
+          {
+            "kind": "directory",
+            "mode": 493,
+            "path": ".git/logs"
+          },
+          {
+            "kind": "file",
+            "mode": 420,
+            "path": ".git/logs/HEAD",
+            "sha256": "accf899df2aafaa5e05a308edeba98b2cc0ec02e32d50af8adb6532bb7278467"
+          },
+          {
+            "kind": "directory",
+            "mode": 493,
+            "path": ".git/logs/refs"
+          },
+          {
+            "kind": "directory",
+            "mode": 493,
+            "path": ".git/logs/refs/heads"
+          },
+          {
+            "kind": "file",
+            "mode": 420,
+            "path": ".git/logs/refs/heads/master",
+            "sha256": "accf899df2aafaa5e05a308edeba98b2cc0ec02e32d50af8adb6532bb7278467"
+          },
+          {
+            "kind": "directory",
+            "mode": 493,
+            "path": ".git/objects"
+          },
+          {
+            "kind": "directory",
+            "mode": 493,
+            "path": ".git/objects/03"
+          },
+          {
+            "kind": "file",
+            "mode": 292,
+            "path": ".git/objects/03/62f01fc2928dc2763fbc941ee7ff633aa6868f",
+            "sha256": "7617d27fd3aa734401167417a21528e0fc8140e5092d14e9dca099dc2e5142f0"
+          },
+          {
+            "kind": "directory",
+            "mode": 493,
+            "path": ".git/objects/31"
+          },
+          {
+            "kind": "file",
+            "mode": 292,
+            "path": ".git/objects/31/718a3ee8095911c969ceb639de9f494604d4d3",
+            "sha256": "118d275c1e705799d68e7a109838e7d107667d83adb8c33e2e155d73f577c1ae"
+          },
+          {
+            "kind": "directory",
+            "mode": 493,
+            "path": ".git/objects/3c"
+          },
+          {
+            "kind": "file",
+            "mode": 292,
+            "path": ".git/objects/3c/8293f363b3795767e8a9bcf6f8f5eb9e00e0dc",
+            "sha256": "71451b47c50c5d7790a670289bcb401e469527dcc2b7dced246480e9c3327aa3"
+          },
+          {
+            "kind": "directory",
+            "mode": 493,
+            "path": ".git/objects/83"
+          },
+          {
+            "kind": "file",
+            "mode": 292,
+            "path": ".git/objects/83/8ffc11b720d19b54406c5c75977ec717748edb",
+            "sha256": "1763374c05bf144727f991d7488e50b264bce862052ae2476d6e41d31a48d7c4"
+          },
+          {
+            "kind": "file",
+            "mode": 292,
+            "path": ".git/objects/83/ea353090b4bbcf6ce15c22221192b100d1b0a3",
+            "sha256": "5870fe98a920aab715a7e17acbdfedd705e5f32e76c49145a5ffeb5bd5f00d60"
+          },
+          {
+            "kind": "directory",
+            "mode": 493,
+            "path": ".git/objects/8f"
+          },
+          {
+            "kind": "file",
+            "mode": 292,
+            "path": ".git/objects/8f/1efb3d5bca2a4a73799eb832780bdc9249d6e8",
+            "sha256": "cd8617d257deabc810dcb535fcc0ff80eac08da3408ef9249de2100a500871c1"
+          },
+          {
+            "kind": "directory",
+            "mode": 493,
+            "path": ".git/objects/97"
+          },
+          {
+            "kind": "file",
+            "mode": 292,
+            "path": ".git/objects/97/7045022a51c9093a8af016a866a7f098bc681c",
+            "sha256": "582acbb1344c365fbc3f0fb2cb2938a98b520bbb4276e3b4aea89da46e5f6e85"
+          },
+          {
+            "kind": "directory",
+            "mode": 493,
+            "path": ".git/objects/9f"
+          },
+          {
+            "kind": "file",
+            "mode": 292,
+            "path": ".git/objects/9f/307534dc2f58df77c14d4780d28e813e118692",
+            "sha256": "ea5d429a0aa6eae2a62468c3a103b3b23ca7225e6d34e4097df9766d24a07fe7"
+          },
+          {
+            "kind": "directory",
+            "mode": 493,
+            "path": ".git/objects/ef"
+          },
+          {
+            "kind": "file",
+            "mode": 292,
+            "path": ".git/objects/ef/dad469bdf227411212baf35c9af80f57f7dd40",
+            "sha256": "a3b6c06be8f1656bcdf6c02e93ed0330c5d81f6ec071d94f0cff935e15a10d63"
+          },
+          {
+            "kind": "directory",
+            "mode": 493,
+            "path": ".git/objects/info"
+          },
+          {
+            "kind": "directory",
+            "mode": 493,
+            "path": ".git/objects/pack"
+          },
+          {
+            "kind": "directory",
+            "mode": 493,
+            "path": ".git/refs"
+          },
+          {
+            "kind": "directory",
+            "mode": 493,
+            "path": ".git/refs/heads"
+          },
+          {
+            "kind": "file",
+            "mode": 420,
+            "path": ".git/refs/heads/master",
+            "sha256": "d9dbab36a70853a885c739baee86be9707c33075d521d4f35527891abf7f6a76"
+          },
+          {
+            "kind": "directory",
+            "mode": 493,
+            "path": ".git/refs/tags"
+          },
+          {
+            "kind": "file",
+            "mode": 420,
+            "path": "README.md",
+            "sha256": "2738a7f46a227dafc72511acb5d84b9bdfbefa4c2501b6897055ccd92590564e"
+          },
+          {
+            "kind": "file",
+            "mode": 420,
+            "path": "app.py",
+            "sha256": "aaea00a9b71c288ad289e8aeac007a4168249e69f7efea2fae15b46792deb00d"
+          },
+          {
+            "kind": "file",
+            "mode": 420,
+            "path": "cli.py",
+            "sha256": "14aea6a3d7acc1d93b80e079fd645b48e4fef2e976df9ef355cc50829a7c74c8"
+          },
+          {
+            "kind": "file",
+            "mode": 420,
+            "path": "service.py",
+            "sha256": "48db6ebd2d4d56bd71e566d9b43a980cac5956b80bee8944810a5d857bec0ff6"
+          },
+          {
+            "kind": "directory",
+            "mode": 493,
+            "path": "tests"
+          },
+          {
+            "kind": "file",
+            "mode": 420,
+            "path": "tests/test_compat.py",
+            "sha256": "2432e53eeae0b53103501bb0cdfbd3dab2446d236503df335ea8a5e5e4171703"
+          },
+          {
+            "kind": "file",
+            "mode": 420,
+            "path": "tests/test_example.py",
+            "sha256": "72d607660ab90df3d90ca037eb1ffb13df189f546acfac80f4f4ee763a36e058"
+          }
+        ],
+        "sha256": "b4532f146765330bc39486ee7152cf7cebe88bcc6b5df83bee9a01d7e6530c4f"
+      },
+      "sequence": 12,
+      "source_sha256": "28048df96119c5f6e2fd73c8909ed9424b063cd92cd2de1496d5f11e68c090e3"
+    },
+    {
+      "base_tree": "f32ee627087f16af8ac3cc693785bfcf517b275e",
+      "checks": [
+        [
+          "/opt/homebrew/Cellar/python@3.14/3.14.8_2/Frameworks/Python.framework/Versions/3.14/bin/python3.14",
+          "-B",
+          "-c",
+          "from app import process; assert process({'capacity': 2, 'events': [{'id': 'a', 'value': 1}, {'id': 'b', 'value': 2}, {'id': 'a', 'value': 3}, {'id': 'c', 'value': 4}]}) == {'items': [{'id': 'b', 'value': 2}, {'id': 'c', 'value': 4}], 'evicted': ['a']}"
+        ],
+        [
+          "/opt/homebrew/Cellar/python@3.14/3.14.8_2/Frameworks/Python.framework/Versions/3.14/bin/python3.14",
+          "-B",
+          "-m",
+          "unittest",
+          "discover",
+          "-s",
+          "tests"
+        ]
+      ],
+      "seed_snapshot": {
+        "entries": [
+          {
+            "kind": "directory",
+            "mode": 493,
+            "path": ".git"
+          },
+          {
+            "kind": "file",
+            "mode": 420,
+            "path": ".git/COMMIT_EDITMSG",
+            "sha256": "d7d0d3b87937197214f294e53efc4f1da68a647de510eb76c7e6d348f27539a6"
+          },
+          {
+            "kind": "file",
+            "mode": 420,
+            "path": ".git/HEAD",
+            "sha256": "f6f2b945f6c411b02ba3da9c7ace88dcf71b6af65ba2e0d89aa82900042b5a10"
+          },
+          {
+            "kind": "file",
+            "mode": 420,
+            "path": ".git/config",
+            "sha256": "cae33efdb02cf774435c1ff9cb16bcc1014606908530c6e1dc727615fe3e8cda"
+          },
+          {
+            "kind": "file",
+            "mode": 420,
+            "path": ".git/index",
+            "sha256": "aadc72487727fcf0dbd24beae63ad0b01b3050e15b9663828ed492333e832cb0"
+          },
+          {
+            "kind": "directory",
+            "mode": 493,
+            "path": ".git/logs"
+          },
+          {
+            "kind": "file",
+            "mode": 420,
+            "path": ".git/logs/HEAD",
+            "sha256": "749fd7994ac67adddcb2d4a735373ee7b35352c1ba80c1711329f96d00c72c56"
+          },
+          {
+            "kind": "directory",
+            "mode": 493,
+            "path": ".git/logs/refs"
+          },
+          {
+            "kind": "directory",
+            "mode": 493,
+            "path": ".git/logs/refs/heads"
+          },
+          {
+            "kind": "file",
+            "mode": 420,
+            "path": ".git/logs/refs/heads/master",
+            "sha256": "749fd7994ac67adddcb2d4a735373ee7b35352c1ba80c1711329f96d00c72c56"
+          },
+          {
+            "kind": "directory",
+            "mode": 493,
+            "path": ".git/objects"
+          },
+          {
+            "kind": "directory",
+            "mode": 493,
+            "path": ".git/objects/02"
+          },
+          {
+            "kind": "file",
+            "mode": 292,
+            "path": ".git/objects/02/79babbe5f47bfd6062e5701c22a01384faf045",
+            "sha256": "cfec0f543ad6d309c77585330368764f00cdc00c7f0bce755645611d11310652"
+          },
+          {
+            "kind": "directory",
+            "mode": 493,
+            "path": ".git/objects/1b"
+          },
+          {
+            "kind": "file",
+            "mode": 292,
+            "path": ".git/objects/1b/4d99c673732db4cfd83ce3ebf28582114a0545",
+            "sha256": "9ea208a5f63097084f56bc226abd9472330dec502eca95296a0f938cc0ae5677"
+          },
+          {
+            "kind": "directory",
+            "mode": 493,
+            "path": ".git/objects/39"
+          },
+          {
+            "kind": "file",
+            "mode": 292,
+            "path": ".git/objects/39/deeca24a971ccf70f8e20404f13493f9ebc1aa",
+            "sha256": "512859b368e73d8208b76a1df92fc259150b1966ccad8c898b882165ef1180c4"
+          },
+          {
+            "kind": "directory",
+            "mode": 493,
+            "path": ".git/objects/3c"
+          },
+          {
+            "kind": "file",
+            "mode": 292,
+            "path": ".git/objects/3c/8293f363b3795767e8a9bcf6f8f5eb9e00e0dc",
+            "sha256": "71451b47c50c5d7790a670289bcb401e469527dcc2b7dced246480e9c3327aa3"
+          },
+          {
+            "kind": "directory",
+            "mode": 493,
+            "path": ".git/objects/83"
+          },
+          {
+            "kind": "file",
+            "mode": 292,
+            "path": ".git/objects/83/8ffc11b720d19b54406c5c75977ec717748edb",
+            "sha256": "1763374c05bf144727f991d7488e50b264bce862052ae2476d6e41d31a48d7c4"
+          },
+          {
+            "kind": "directory",
+            "mode": 493,
+            "path": ".git/objects/8f"
+          },
+          {
+            "kind": "file",
+            "mode": 292,
+            "path": ".git/objects/8f/1efb3d5bca2a4a73799eb832780bdc9249d6e8",
+            "sha256": "cd8617d257deabc810dcb535fcc0ff80eac08da3408ef9249de2100a500871c1"
+          },
+          {
+            "kind": "directory",
+            "mode": 493,
+            "path": ".git/objects/9f"
+          },
+          {
+            "kind": "file",
+            "mode": 292,
+            "path": ".git/objects/9f/307534dc2f58df77c14d4780d28e813e118692",
+            "sha256": "ea5d429a0aa6eae2a62468c3a103b3b23ca7225e6d34e4097df9766d24a07fe7"
+          },
+          {
+            "kind": "directory",
+            "mode": 493,
+            "path": ".git/objects/e7"
+          },
+          {
+            "kind": "file",
+            "mode": 292,
+            "path": ".git/objects/e7/4997415cdc24c3630c060085ab59c3de85976e",
+            "sha256": "60a2a7fae7aa01f9ab8cd09dd32e675bc50cf66cb4fac1742fa65917277cef7a"
+          },
+          {
+            "kind": "directory",
+            "mode": 493,
+            "path": ".git/objects/f3"
+          },
+          {
+            "kind": "file",
+            "mode": 292,
+            "path": ".git/objects/f3/2ee627087f16af8ac3cc693785bfcf517b275e",
+            "sha256": "a97fdc4b778084e41c9e28e36bb9e6085b2e2ebd10455cd0b30082859102d7f3"
+          },
+          {
+            "kind": "directory",
+            "mode": 493,
+            "path": ".git/objects/info"
+          },
+          {
+            "kind": "directory",
+            "mode": 493,
+            "path": ".git/objects/pack"
+          },
+          {
+            "kind": "directory",
+            "mode": 493,
+            "path": ".git/refs"
+          },
+          {
+            "kind": "directory",
+            "mode": 493,
+            "path": ".git/refs/heads"
+          },
+          {
+            "kind": "file",
+            "mode": 420,
+            "path": ".git/refs/heads/master",
+            "sha256": "01e8e6c59b0a0a55199229f0a5fa3a24f1bd48c2bd7dbd5401574dc139f4ce2c"
+          },
+          {
+            "kind": "directory",
+            "mode": 493,
+            "path": ".git/refs/tags"
+          },
+          {
+            "kind": "file",
+            "mode": 420,
+            "path": "README.md",
+            "sha256": "4774514d095c022a04b16a43bad405a26c0bec7ff39dff054eb3a0ed71e6ee7c"
+          },
+          {
+            "kind": "file",
+            "mode": 420,
+            "path": "app.py",
+            "sha256": "aaea00a9b71c288ad289e8aeac007a4168249e69f7efea2fae15b46792deb00d"
+          },
+          {
+            "kind": "file",
+            "mode": 420,
+            "path": "cli.py",
+            "sha256": "14aea6a3d7acc1d93b80e079fd645b48e4fef2e976df9ef355cc50829a7c74c8"
+          },
+          {
+            "kind": "file",
+            "mode": 420,
+            "path": "service.py",
+            "sha256": "48db6ebd2d4d56bd71e566d9b43a980cac5956b80bee8944810a5d857bec0ff6"
+          },
+          {
+            "kind": "directory",
+            "mode": 493,
+            "path": "tests"
+          },
+          {
+            "kind": "file",
+            "mode": 420,
+            "path": "tests/test_compat.py",
+            "sha256": "2432e53eeae0b53103501bb0cdfbd3dab2446d236503df335ea8a5e5e4171703"
+          },
+          {
+            "kind": "file",
+            "mode": 420,
+            "path": "tests/test_example.py",
+            "sha256": "d32ad37bc744bc69e4959180ef66f8e31888e784441e580fec62f7e59f4d76a0"
+          }
+        ],
+        "sha256": "d4313ee953cf4cdaa101adebef251fe164494565868cfc1cf0d5352fcbe9b4c8"
+      },
+      "sequence": 13,
+      "source_sha256": "ca511e228d32a79e61c1b3c9acc1d49b4359c9dc90f4044a325dbf313226f41e"
+    },
+    {
+      "base_tree": "f32ee627087f16af8ac3cc693785bfcf517b275e",
+      "checks": [
+        [
+          "/opt/homebrew/Cellar/python@3.14/3.14.8_2/Frameworks/Python.framework/Versions/3.14/bin/python3.14",
+          "-B",
+          "-c",
+          "from app import process; assert process({'capacity': 2, 'events': [{'id': 'a', 'value': 1}, {'id': 'b', 'value': 2}, {'id': 'a', 'value': 3}, {'id': 'c', 'value': 4}]}) == {'items': [{'id': 'b', 'value': 2}, {'id': 'c', 'value': 4}], 'evicted': ['a']}"
+        ],
+        [
+          "/opt/homebrew/Cellar/python@3.14/3.14.8_2/Frameworks/Python.framework/Versions/3.14/bin/python3.14",
+          "-B",
+          "-m",
+          "unittest",
+          "discover",
+          "-s",
+          "tests"
+        ]
+      ],
+      "seed_snapshot": {
+        "entries": [
+          {
+            "kind": "directory",
+            "mode": 493,
+            "path": ".git"
+          },
+          {
+            "kind": "file",
+            "mode": 420,
+            "path": ".git/COMMIT_EDITMSG",
+            "sha256": "d7d0d3b87937197214f294e53efc4f1da68a647de510eb76c7e6d348f27539a6"
+          },
+          {
+            "kind": "file",
+            "mode": 420,
+            "path": ".git/HEAD",
+            "sha256": "f6f2b945f6c411b02ba3da9c7ace88dcf71b6af65ba2e0d89aa82900042b5a10"
+          },
+          {
+            "kind": "file",
+            "mode": 420,
+            "path": ".git/config",
+            "sha256": "cae33efdb02cf774435c1ff9cb16bcc1014606908530c6e1dc727615fe3e8cda"
+          },
+          {
+            "kind": "file",
+            "mode": 420,
+            "path": ".git/index",
+            "sha256": "75deac65a8437915cbc2293c3d1f3451ab83bd4df82a5d71ad8fc69e10425ff5"
+          },
+          {
+            "kind": "directory",
+            "mode": 493,
+            "path": ".git/logs"
+          },
+          {
+            "kind": "file",
+            "mode": 420,
+            "path": ".git/logs/HEAD",
+            "sha256": "749fd7994ac67adddcb2d4a735373ee7b35352c1ba80c1711329f96d00c72c56"
+          },
+          {
+            "kind": "directory",
+            "mode": 493,
+            "path": ".git/logs/refs"
+          },
+          {
+            "kind": "directory",
+            "mode": 493,
+            "path": ".git/logs/refs/heads"
+          },
+          {
+            "kind": "file",
+            "mode": 420,
+            "path": ".git/logs/refs/heads/master",
+            "sha256": "749fd7994ac67adddcb2d4a735373ee7b35352c1ba80c1711329f96d00c72c56"
+          },
+          {
+            "kind": "directory",
+            "mode": 493,
+            "path": ".git/objects"
+          },
+          {
+            "kind": "directory",
+            "mode": 493,
+            "path": ".git/objects/02"
+          },
+          {
+            "kind": "file",
+            "mode": 292,
+            "path": ".git/objects/02/79babbe5f47bfd6062e5701c22a01384faf045",
+            "sha256": "cfec0f543ad6d309c77585330368764f00cdc00c7f0bce755645611d11310652"
+          },
+          {
+            "kind": "directory",
+            "mode": 493,
+            "path": ".git/objects/1b"
+          },
+          {
+            "kind": "file",
+            "mode": 292,
+            "path": ".git/objects/1b/4d99c673732db4cfd83ce3ebf28582114a0545",
+            "sha256": "9ea208a5f63097084f56bc226abd9472330dec502eca95296a0f938cc0ae5677"
+          },
+          {
+            "kind": "directory",
+            "mode": 493,
+            "path": ".git/objects/39"
+          },
+          {
+            "kind": "file",
+            "mode": 292,
+            "path": ".git/objects/39/deeca24a971ccf70f8e20404f13493f9ebc1aa",
+            "sha256": "512859b368e73d8208b76a1df92fc259150b1966ccad8c898b882165ef1180c4"
+          },
+          {
+            "kind": "directory",
+            "mode": 493,
+            "path": ".git/objects/3c"
+          },
+          {
+            "kind": "file",
+            "mode": 292,
+            "path": ".git/objects/3c/8293f363b3795767e8a9bcf6f8f5eb9e00e0dc",
+            "sha256": "71451b47c50c5d7790a670289bcb401e469527dcc2b7dced246480e9c3327aa3"
+          },
+          {
+            "kind": "directory",
+            "mode": 493,
+            "path": ".git/objects/83"
+          },
+          {
+            "kind": "file",
+            "mode": 292,
+            "path": ".git/objects/83/8ffc11b720d19b54406c5c75977ec717748edb",
+            "sha256": "1763374c05bf144727f991d7488e50b264bce862052ae2476d6e41d31a48d7c4"
+          },
+          {
+            "kind": "directory",
+            "mode": 493,
+            "path": ".git/objects/8f"
+          },
+          {
+            "kind": "file",
+            "mode": 292,
+            "path": ".git/objects/8f/1efb3d5bca2a4a73799eb832780bdc9249d6e8",
+            "sha256": "cd8617d257deabc810dcb535fcc0ff80eac08da3408ef9249de2100a500871c1"
+          },
+          {
+            "kind": "directory",
+            "mode": 493,
+            "path": ".git/objects/9f"
+          },
+          {
+            "kind": "file",
+            "mode": 292,
+            "path": ".git/objects/9f/307534dc2f58df77c14d4780d28e813e118692",
+            "sha256": "ea5d429a0aa6eae2a62468c3a103b3b23ca7225e6d34e4097df9766d24a07fe7"
+          },
+          {
+            "kind": "directory",
+            "mode": 493,
+            "path": ".git/objects/e7"
+          },
+          {
+            "kind": "file",
+            "mode": 292,
+            "path": ".git/objects/e7/4997415cdc24c3630c060085ab59c3de85976e",
+            "sha256": "60a2a7fae7aa01f9ab8cd09dd32e675bc50cf66cb4fac1742fa65917277cef7a"
+          },
+          {
+            "kind": "directory",
+            "mode": 493,
+            "path": ".git/objects/f3"
+          },
+          {
+            "kind": "file",
+            "mode": 292,
+            "path": ".git/objects/f3/2ee627087f16af8ac3cc693785bfcf517b275e",
+            "sha256": "a97fdc4b778084e41c9e28e36bb9e6085b2e2ebd10455cd0b30082859102d7f3"
+          },
+          {
+            "kind": "directory",
+            "mode": 493,
+            "path": ".git/objects/info"
+          },
+          {
+            "kind": "directory",
+            "mode": 493,
+            "path": ".git/objects/pack"
+          },
+          {
+            "kind": "directory",
+            "mode": 493,
+            "path": ".git/refs"
+          },
+          {
+            "kind": "directory",
+            "mode": 493,
+            "path": ".git/refs/heads"
+          },
+          {
+            "kind": "file",
+            "mode": 420,
+            "path": ".git/refs/heads/master",
+            "sha256": "01e8e6c59b0a0a55199229f0a5fa3a24f1bd48c2bd7dbd5401574dc139f4ce2c"
+          },
+          {
+            "kind": "directory",
+            "mode": 493,
+            "path": ".git/refs/tags"
+          },
+          {
+            "kind": "file",
+            "mode": 420,
+            "path": "README.md",
+            "sha256": "4774514d095c022a04b16a43bad405a26c0bec7ff39dff054eb3a0ed71e6ee7c"
+          },
+          {
+            "kind": "file",
+            "mode": 420,
+            "path": "app.py",
+            "sha256": "aaea00a9b71c288ad289e8aeac007a4168249e69f7efea2fae15b46792deb00d"
+          },
+          {
+            "kind": "file",
+            "mode": 420,
+            "path": "cli.py",
+            "sha256": "14aea6a3d7acc1d93b80e079fd645b48e4fef2e976df9ef355cc50829a7c74c8"
+          },
+          {
+            "kind": "file",
+            "mode": 420,
+            "path": "service.py",
+            "sha256": "48db6ebd2d4d56bd71e566d9b43a980cac5956b80bee8944810a5d857bec0ff6"
+          },
+          {
+            "kind": "directory",
+            "mode": 493,
+            "path": "tests"
+          },
+          {
+            "kind": "file",
+            "mode": 420,
+            "path": "tests/test_compat.py",
+            "sha256": "2432e53eeae0b53103501bb0cdfbd3dab2446d236503df335ea8a5e5e4171703"
+          },
+          {
+            "kind": "file",
+            "mode": 420,
+            "path": "tests/test_example.py",
+            "sha256": "d32ad37bc744bc69e4959180ef66f8e31888e784441e580fec62f7e59f4d76a0"
+          }
+        ],
+        "sha256": "fbc5c1d17fff33623b94fad9e135bc1830f97d98947ec0e620fc8cbe14e48637"
+      },
+      "sequence": 14,
+      "source_sha256": "ca511e228d32a79e61c1b3c9acc1d49b4359c9dc90f4044a325dbf313226f41e"
+    },
+    {
+      "base_tree": "f32ee627087f16af8ac3cc693785bfcf517b275e",
+      "checks": [
+        [
+          "/opt/homebrew/Cellar/python@3.14/3.14.8_2/Frameworks/Python.framework/Versions/3.14/bin/python3.14",
+          "-B",
+          "-c",
+          "from app import process; assert process({'capacity': 2, 'events': [{'id': 'a', 'value': 1}, {'id': 'b', 'value': 2}, {'id': 'a', 'value': 3}, {'id': 'c', 'value': 4}]}) == {'items': [{'id': 'b', 'value': 2}, {'id': 'c', 'value': 4}], 'evicted': ['a']}"
+        ],
+        [
+          "/opt/homebrew/Cellar/python@3.14/3.14.8_2/Frameworks/Python.framework/Versions/3.14/bin/python3.14",
+          "-B",
+          "-m",
+          "unittest",
+          "discover",
+          "-s",
+          "tests"
+        ]
+      ],
+      "seed_snapshot": {
+        "entries": [
+          {
+            "kind": "directory",
+            "mode": 493,
+            "path": ".git"
+          },
+          {
+            "kind": "file",
+            "mode": 420,
+            "path": ".git/COMMIT_EDITMSG",
+            "sha256": "d7d0d3b87937197214f294e53efc4f1da68a647de510eb76c7e6d348f27539a6"
+          },
+          {
+            "kind": "file",
+            "mode": 420,
+            "path": ".git/HEAD",
+            "sha256": "f6f2b945f6c411b02ba3da9c7ace88dcf71b6af65ba2e0d89aa82900042b5a10"
+          },
+          {
+            "kind": "file",
+            "mode": 420,
+            "path": ".git/config",
+            "sha256": "cae33efdb02cf774435c1ff9cb16bcc1014606908530c6e1dc727615fe3e8cda"
+          },
+          {
+            "kind": "file",
+            "mode": 420,
+            "path": ".git/index",
+            "sha256": "ca4256655ac27158f130e76df73f079dd21c69f32bc42c55f4bf0316395dd32f"
+          },
+          {
+            "kind": "directory",
+            "mode": 493,
+            "path": ".git/logs"
+          },
+          {
+            "kind": "file",
+            "mode": 420,
+            "path": ".git/logs/HEAD",
+            "sha256": "749fd7994ac67adddcb2d4a735373ee7b35352c1ba80c1711329f96d00c72c56"
+          },
+          {
+            "kind": "directory",
+            "mode": 493,
+            "path": ".git/logs/refs"
+          },
+          {
+            "kind": "directory",
+            "mode": 493,
+            "path": ".git/logs/refs/heads"
+          },
+          {
+            "kind": "file",
+            "mode": 420,
+            "path": ".git/logs/refs/heads/master",
+            "sha256": "749fd7994ac67adddcb2d4a735373ee7b35352c1ba80c1711329f96d00c72c56"
+          },
+          {
+            "kind": "directory",
+            "mode": 493,
+            "path": ".git/objects"
+          },
+          {
+            "kind": "directory",
+            "mode": 493,
+            "path": ".git/objects/02"
+          },
+          {
+            "kind": "file",
+            "mode": 292,
+            "path": ".git/objects/02/79babbe5f47bfd6062e5701c22a01384faf045",
+            "sha256": "cfec0f543ad6d309c77585330368764f00cdc00c7f0bce755645611d11310652"
+          },
+          {
+            "kind": "directory",
+            "mode": 493,
+            "path": ".git/objects/1b"
+          },
+          {
+            "kind": "file",
+            "mode": 292,
+            "path": ".git/objects/1b/4d99c673732db4cfd83ce3ebf28582114a0545",
+            "sha256": "9ea208a5f63097084f56bc226abd9472330dec502eca95296a0f938cc0ae5677"
+          },
+          {
+            "kind": "directory",
+            "mode": 493,
+            "path": ".git/objects/39"
+          },
+          {
+            "kind": "file",
+            "mode": 292,
+            "path": ".git/objects/39/deeca24a971ccf70f8e20404f13493f9ebc1aa",
+            "sha256": "512859b368e73d8208b76a1df92fc259150b1966ccad8c898b882165ef1180c4"
+          },
+          {
+            "kind": "directory",
+            "mode": 493,
+            "path": ".git/objects/3c"
+          },
+          {
+            "kind": "file",
+            "mode": 292,
+            "path": ".git/objects/3c/8293f363b3795767e8a9bcf6f8f5eb9e00e0dc",
+            "sha256": "71451b47c50c5d7790a670289bcb401e469527dcc2b7dced246480e9c3327aa3"
+          },
+          {
+            "kind": "directory",
+            "mode": 493,
+            "path": ".git/objects/83"
+          },
+          {
+            "kind": "file",
+            "mode": 292,
+            "path": ".git/objects/83/8ffc11b720d19b54406c5c75977ec717748edb",
+            "sha256": "1763374c05bf144727f991d7488e50b264bce862052ae2476d6e41d31a48d7c4"
+          },
+          {
+            "kind": "directory",
+            "mode": 493,
+            "path": ".git/objects/8f"
+          },
+          {
+            "kind": "file",
+            "mode": 292,
+            "path": ".git/objects/8f/1efb3d5bca2a4a73799eb832780bdc9249d6e8",
+            "sha256": "cd8617d257deabc810dcb535fcc0ff80eac08da3408ef9249de2100a500871c1"
+          },
+          {
+            "kind": "directory",
+            "mode": 493,
+            "path": ".git/objects/9f"
+          },
+          {
+            "kind": "file",
+            "mode": 292,
+            "path": ".git/objects/9f/307534dc2f58df77c14d4780d28e813e118692",
+            "sha256": "ea5d429a0aa6eae2a62468c3a103b3b23ca7225e6d34e4097df9766d24a07fe7"
+          },
+          {
+            "kind": "directory",
+            "mode": 493,
+            "path": ".git/objects/e7"
+          },
+          {
+            "kind": "file",
+            "mode": 292,
+            "path": ".git/objects/e7/4997415cdc24c3630c060085ab59c3de85976e",
+            "sha256": "60a2a7fae7aa01f9ab8cd09dd32e675bc50cf66cb4fac1742fa65917277cef7a"
+          },
+          {
+            "kind": "directory",
+            "mode": 493,
+            "path": ".git/objects/f3"
+          },
+          {
+            "kind": "file",
+            "mode": 292,
+            "path": ".git/objects/f3/2ee627087f16af8ac3cc693785bfcf517b275e",
+            "sha256": "a97fdc4b778084e41c9e28e36bb9e6085b2e2ebd10455cd0b30082859102d7f3"
+          },
+          {
+            "kind": "directory",
+            "mode": 493,
+            "path": ".git/objects/info"
+          },
+          {
+            "kind": "directory",
+            "mode": 493,
+            "path": ".git/objects/pack"
+          },
+          {
+            "kind": "directory",
+            "mode": 493,
+            "path": ".git/refs"
+          },
+          {
+            "kind": "directory",
+            "mode": 493,
+            "path": ".git/refs/heads"
+          },
+          {
+            "kind": "file",
+            "mode": 420,
+            "path": ".git/refs/heads/master",
+            "sha256": "01e8e6c59b0a0a55199229f0a5fa3a24f1bd48c2bd7dbd5401574dc139f4ce2c"
+          },
+          {
+            "kind": "directory",
+            "mode": 493,
+            "path": ".git/refs/tags"
+          },
+          {
+            "kind": "file",
+            "mode": 420,
+            "path": "README.md",
+            "sha256": "4774514d095c022a04b16a43bad405a26c0bec7ff39dff054eb3a0ed71e6ee7c"
+          },
+          {
+            "kind": "file",
+            "mode": 420,
+            "path": "app.py",
+            "sha256": "aaea00a9b71c288ad289e8aeac007a4168249e69f7efea2fae15b46792deb00d"
+          },
+          {
+            "kind": "file",
+            "mode": 420,
+            "path": "cli.py",
+            "sha256": "14aea6a3d7acc1d93b80e079fd645b48e4fef2e976df9ef355cc50829a7c74c8"
+          },
+          {
+            "kind": "file",
+            "mode": 420,
+            "path": "service.py",
+            "sha256": "48db6ebd2d4d56bd71e566d9b43a980cac5956b80bee8944810a5d857bec0ff6"
+          },
+          {
+            "kind": "directory",
+            "mode": 493,
+            "path": "tests"
+          },
+          {
+            "kind": "file",
+            "mode": 420,
+            "path": "tests/test_compat.py",
+            "sha256": "2432e53eeae0b53103501bb0cdfbd3dab2446d236503df335ea8a5e5e4171703"
+          },
+          {
+            "kind": "file",
+            "mode": 420,
+            "path": "tests/test_example.py",
+            "sha256": "d32ad37bc744bc69e4959180ef66f8e31888e784441e580fec62f7e59f4d76a0"
+          }
+        ],
+        "sha256": "31e26a1c191da8f21f64a8793fb325fde5a26dce3c1299559e5bcb7961d5cdd3"
+      },
+      "sequence": 15,
+      "source_sha256": "ca511e228d32a79e61c1b3c9acc1d49b4359c9dc90f4044a325dbf313226f41e"
+    },
+    {
+      "base_tree": "f32ee627087f16af8ac3cc693785bfcf517b275e",
+      "checks": [
+        [
+          "/opt/homebrew/Cellar/python@3.14/3.14.8_2/Frameworks/Python.framework/Versions/3.14/bin/python3.14",
+          "-B",
+          "-c",
+          "from app import process; assert process({'capacity': 2, 'events': [{'id': 'a', 'value': 1}, {'id': 'b', 'value': 2}, {'id': 'a', 'value': 3}, {'id': 'c', 'value': 4}]}) == {'items': [{'id': 'b', 'value': 2}, {'id': 'c', 'value': 4}], 'evicted': ['a']}"
+        ],
+        [
+          "/opt/homebrew/Cellar/python@3.14/3.14.8_2/Frameworks/Python.framework/Versions/3.14/bin/python3.14",
+          "-B",
+          "-m",
+          "unittest",
+          "discover",
+          "-s",
+          "tests"
+        ]
+      ],
+      "seed_snapshot": {
+        "entries": [
+          {
+            "kind": "directory",
+            "mode": 493,
+            "path": ".git"
+          },
+          {
+            "kind": "file",
+            "mode": 420,
+            "path": ".git/COMMIT_EDITMSG",
+            "sha256": "d7d0d3b87937197214f294e53efc4f1da68a647de510eb76c7e6d348f27539a6"
+          },
+          {
+            "kind": "file",
+            "mode": 420,
+            "path": ".git/HEAD",
+            "sha256": "f6f2b945f6c411b02ba3da9c7ace88dcf71b6af65ba2e0d89aa82900042b5a10"
+          },
+          {
+            "kind": "file",
+            "mode": 420,
+            "path": ".git/config",
+            "sha256": "cae33efdb02cf774435c1ff9cb16bcc1014606908530c6e1dc727615fe3e8cda"
+          },
+          {
+            "kind": "file",
+            "mode": 420,
+            "path": ".git/index",
+            "sha256": "4761c63fd071eb2dde149f42fd24dc75b6751fc6914aafdbe8fdcfd4d08ae48b"
+          },
+          {
+            "kind": "directory",
+            "mode": 493,
+            "path": ".git/logs"
+          },
+          {
+            "kind": "file",
+            "mode": 420,
+            "path": ".git/logs/HEAD",
+            "sha256": "749fd7994ac67adddcb2d4a735373ee7b35352c1ba80c1711329f96d00c72c56"
+          },
+          {
+            "kind": "directory",
+            "mode": 493,
+            "path": ".git/logs/refs"
+          },
+          {
+            "kind": "directory",
+            "mode": 493,
+            "path": ".git/logs/refs/heads"
+          },
+          {
+            "kind": "file",
+            "mode": 420,
+            "path": ".git/logs/refs/heads/master",
+            "sha256": "749fd7994ac67adddcb2d4a735373ee7b35352c1ba80c1711329f96d00c72c56"
+          },
+          {
+            "kind": "directory",
+            "mode": 493,
+            "path": ".git/objects"
+          },
+          {
+            "kind": "directory",
+            "mode": 493,
+            "path": ".git/objects/02"
+          },
+          {
+            "kind": "file",
+            "mode": 292,
+            "path": ".git/objects/02/79babbe5f47bfd6062e5701c22a01384faf045",
+            "sha256": "cfec0f543ad6d309c77585330368764f00cdc00c7f0bce755645611d11310652"
+          },
+          {
+            "kind": "directory",
+            "mode": 493,
+            "path": ".git/objects/1b"
+          },
+          {
+            "kind": "file",
+            "mode": 292,
+            "path": ".git/objects/1b/4d99c673732db4cfd83ce3ebf28582114a0545",
+            "sha256": "9ea208a5f63097084f56bc226abd9472330dec502eca95296a0f938cc0ae5677"
+          },
+          {
+            "kind": "directory",
+            "mode": 493,
+            "path": ".git/objects/39"
+          },
+          {
+            "kind": "file",
+            "mode": 292,
+            "path": ".git/objects/39/deeca24a971ccf70f8e20404f13493f9ebc1aa",
+            "sha256": "512859b368e73d8208b76a1df92fc259150b1966ccad8c898b882165ef1180c4"
+          },
+          {
+            "kind": "directory",
+            "mode": 493,
+            "path": ".git/objects/3c"
+          },
+          {
+            "kind": "file",
+            "mode": 292,
+            "path": ".git/objects/3c/8293f363b3795767e8a9bcf6f8f5eb9e00e0dc",
+            "sha256": "71451b47c50c5d7790a670289bcb401e469527dcc2b7dced246480e9c3327aa3"
+          },
+          {
+            "kind": "directory",
+            "mode": 493,
+            "path": ".git/objects/83"
+          },
+          {
+            "kind": "file",
+            "mode": 292,
+            "path": ".git/objects/83/8ffc11b720d19b54406c5c75977ec717748edb",
+            "sha256": "1763374c05bf144727f991d7488e50b264bce862052ae2476d6e41d31a48d7c4"
+          },
+          {
+            "kind": "directory",
+            "mode": 493,
+            "path": ".git/objects/8f"
+          },
+          {
+            "kind": "file",
+            "mode": 292,
+            "path": ".git/objects/8f/1efb3d5bca2a4a73799eb832780bdc9249d6e8",
+            "sha256": "cd8617d257deabc810dcb535fcc0ff80eac08da3408ef9249de2100a500871c1"
+          },
+          {
+            "kind": "directory",
+            "mode": 493,
+            "path": ".git/objects/9f"
+          },
+          {
+            "kind": "file",
+            "mode": 292,
+            "path": ".git/objects/9f/307534dc2f58df77c14d4780d28e813e118692",
+            "sha256": "ea5d429a0aa6eae2a62468c3a103b3b23ca7225e6d34e4097df9766d24a07fe7"
+          },
+          {
+            "kind": "directory",
+            "mode": 493,
+            "path": ".git/objects/e7"
+          },
+          {
+            "kind": "file",
+            "mode": 292,
+            "path": ".git/objects/e7/4997415cdc24c3630c060085ab59c3de85976e",
+            "sha256": "60a2a7fae7aa01f9ab8cd09dd32e675bc50cf66cb4fac1742fa65917277cef7a"
+          },
+          {
+            "kind": "directory",
+            "mode": 493,
+            "path": ".git/objects/f3"
+          },
+          {
+            "kind": "file",
+            "mode": 292,
+            "path": ".git/objects/f3/2ee627087f16af8ac3cc693785bfcf517b275e",
+            "sha256": "a97fdc4b778084e41c9e28e36bb9e6085b2e2ebd10455cd0b30082859102d7f3"
+          },
+          {
+            "kind": "directory",
+            "mode": 493,
+            "path": ".git/objects/info"
+          },
+          {
+            "kind": "directory",
+            "mode": 493,
+            "path": ".git/objects/pack"
+          },
+          {
+            "kind": "directory",
+            "mode": 493,
+            "path": ".git/refs"
+          },
+          {
+            "kind": "directory",
+            "mode": 493,
+            "path": ".git/refs/heads"
+          },
+          {
+            "kind": "file",
+            "mode": 420,
+            "path": ".git/refs/heads/master",
+            "sha256": "01e8e6c59b0a0a55199229f0a5fa3a24f1bd48c2bd7dbd5401574dc139f4ce2c"
+          },
+          {
+            "kind": "directory",
+            "mode": 493,
+            "path": ".git/refs/tags"
+          },
+          {
+            "kind": "file",
+            "mode": 420,
+            "path": "README.md",
+            "sha256": "4774514d095c022a04b16a43bad405a26c0bec7ff39dff054eb3a0ed71e6ee7c"
+          },
+          {
+            "kind": "file",
+            "mode": 420,
+            "path": "app.py",
+            "sha256": "aaea00a9b71c288ad289e8aeac007a4168249e69f7efea2fae15b46792deb00d"
+          },
+          {
+            "kind": "file",
+            "mode": 420,
+            "path": "cli.py",
+            "sha256": "14aea6a3d7acc1d93b80e079fd645b48e4fef2e976df9ef355cc50829a7c74c8"
+          },
+          {
+            "kind": "file",
+            "mode": 420,
+            "path": "service.py",
+            "sha256": "48db6ebd2d4d56bd71e566d9b43a980cac5956b80bee8944810a5d857bec0ff6"
+          },
+          {
+            "kind": "directory",
+            "mode": 493,
+            "path": "tests"
+          },
+          {
+            "kind": "file",
+            "mode": 420,
+            "path": "tests/test_compat.py",
+            "sha256": "2432e53eeae0b53103501bb0cdfbd3dab2446d236503df335ea8a5e5e4171703"
+          },
+          {
+            "kind": "file",
+            "mode": 420,
+            "path": "tests/test_example.py",
+            "sha256": "d32ad37bc744bc69e4959180ef66f8e31888e784441e580fec62f7e59f4d76a0"
+          }
+        ],
+        "sha256": "a9bf7518b89b1ba21fe43d9f56e62b755925e1cd9c727b13d07629a8153b551c"
+      },
+      "sequence": 16,
+      "source_sha256": "ca511e228d32a79e61c1b3c9acc1d49b4359c9dc90f4044a325dbf313226f41e"
+    }
+  ],
+  "declared_at": "2026-10-13T14:41:45.757088+00:00",
+  "identities": {
+    "checks/__init__.py": "f0cab0051a0d846f75f4212ab1f99dcd27f13ffd0b79fc07915970227a08f032",
+    "checks/candidate_snapshot.py": "9a99a9a93ac33078b3b612d51be3d397561c35103ba5a714f9bc25c0441b2b96",
+    "checks/codex_live.py": "a24c8d98d366296d825238bbc49a6e9e0234b450420c54f080e806c68e2f0888",
+    "checks/coding_attempt.py": "2081235d9b15139bb856cb8d3f03ac3c265447aab4f2c007ae1523a7235a69bc",
+    "checks/feedback.py": "be733712539c3d2c7230d680692ea2863b54bd2d635ba421a8962a9f946e6533",
+    "checks/fixtures/s0/README.md": "a45b29188eb196f707ad529f83a4339aa6748bee7fa25f1b8dd5a6d45dba4ba8",
+    "checks/fixtures/s0/accepted-input.md": "f901d5e86760bd104b011f66f0d24dd555ebb5b66fb28b9404ec0d90a336d1ff",
+    "checks/fixtures/s0/oracle.py": "f919e131ee691fcc396c24661bb8e7f4faa214f2ec10690dde39b0d82cd69b2f",
+    "checks/fixtures/s0/source.md": "679ea432572c0f3f9c577ac749eb7dbbb7ffb93fe7b315367eaac34d88729802",
+    "checks/fixtures/s0/test_oracle.py": "8b241c7d69200ef1ba754e41f1c5a0a8fa99c9913a8112fc3609cfaae8ee84a1",
+    "checks/fixtures/s0/workers/alternative/README.md": "e814542c3e43cacdfaf8fc233e8b363cc84ace19aabd26d9920d45ce1ff3d06d",
+    "checks/fixtures/s0/workers/alternative/test_username.py": "120090b03ee56935e90f4b656f613803b5dc36d0f51f43e0db6d1c19b95f71ed",
+    "checks/fixtures/s0/workers/alternative/username.py": "1bedda69b8fa51ccb22ed854b466be95cf106c8f328693dc096e21428db60d09",
+    "checks/fixtures/s0/workers/baseline/README.md": "e814542c3e43cacdfaf8fc233e8b363cc84ace19aabd26d9920d45ce1ff3d06d",
+    "checks/fixtures/s0/workers/baseline/test_username.py": "120090b03ee56935e90f4b656f613803b5dc36d0f51f43e0db6d1c19b95f71ed",
+    "checks/fixtures/s0/workers/baseline/username.py": "b749436b3acd69b9d6184eeb9fead6e58b7f137ba0fe8a83fd7dc0e6e075082d",
+    "checks/fixtures/s0/workers/correct/README.md": "e814542c3e43cacdfaf8fc233e8b363cc84ace19aabd26d9920d45ce1ff3d06d",
+    "checks/fixtures/s0/workers/correct/test_username.py": "120090b03ee56935e90f4b656f613803b5dc36d0f51f43e0db6d1c19b95f71ed",
+    "checks/fixtures/s0/workers/correct/username.py": "e0baaa70084bbb7aa1646f8a9ce90d5ee8fb689f3c3566c2956642daf2153c99",
+    "checks/fixtures/s0/workers/defective/README.md": "e814542c3e43cacdfaf8fc233e8b363cc84ace19aabd26d9920d45ce1ff3d06d",
+    "checks/fixtures/s0/workers/defective/test_username.py": "120090b03ee56935e90f4b656f613803b5dc36d0f51f43e0db6d1c19b95f71ed",
+    "checks/fixtures/s0/workers/defective/username.py": "91cb558997c163a121599405f590d8ea0317a9977e3a5cbda62d0f0c29d966aa",
+    "checks/host_probe.py": "6f30bd9761454f7eec98e9d0b8112f299f2650f925272f47d24cb4a5cdb6684d",
+    "checks/intentline_advisory.py": "5a67a60dcce28c73c2be7869f7256111d0e8f5a08780fbaaa2369b4bba270b5a",
+    "checks/local_run.py": "432b7fc61e839ce8fb5ace1961ebeffe239bc1dff6c596dd73d2fe15d01c2dab",
+    "checks/native_checks.py": "fc94848417f3b145b4079966f1e4f3d261dd4f70a9533463059da06f209847f6",
+    "checks/promise_evidence.py": "e99ecc4291ec22981fb8f079986a040439a18622c2380891e265e2e4e3dba562",
+    "checks/s0_live.py": "373981b6dfe5fd216cb378528c0099a8e364663e8366385e68624581b6cfd5fc",
+    "codex": "74c6a6d263f40d65f99c27a815275f5b4ed0bcc2baecc396b4cf3255498bdfc0",
+    "evaluation/__init__.py": "8405b9bdb2128aa3fdb14466183e9153db2b5895857b6da405448b118fb0e140",
+    "evaluation/matched/FREEZE.json": "fde841d434cb1073a8abf249ef59eb5bf1ca76983c437a825629d573241a2388",
+    "evaluation/matched/README.md": "a9b0cb7390b143d0b035960eb7f6725427e590f5deb45ee1d1116694fc2a9f20",
+    "evaluation/matched/__init__.py": "8b17f653a868bdeedb027f5bf117036334f822242b81a6ef19397b9414ec88b1",
+    "evaluation/matched/corpus.py": "e135bf58bd44edd9c85f4610559f6dd8f05b5768b100ccc128d76c923e9eccca",
+    "evaluation/matched/corrected-canary.json": "ccaa2e512e345877798c816a485d709b9c44afa16b61f3d15d9363435fd7e843",
+    "evaluation/matched/grader.py": "c7d38c88a0feaa76820d6277ab357dd2e149ca2ff24831cbace1bc6a52dc1696",
+    "evaluation/matched/preflight.json": "4b201c33de7754555bdf9b76d4f287d1534c333f774beb04c1c2607ca19dbfcf",
+    "evaluation/matched/preparation.json": "9d79ec477d13f7ab2089effa5149b30ab04c7c47519d4a17000afb158a93b19f",
+    "evaluation/matched/protocol.json": "eaf9991626e553368ac11854a3c04271ae4119a269227192cbe440f2cde00e62",
+    "evaluation/matched/report.py": "6a0e2a4984b78dcf174b742d9249e1d2ed97cf7592b713c71ef3b576ffa87afa",
+    "evaluation/matched/study.py": "11d761db1311979e251a9334adbb8b5d45fc9b04cb4ec97d3191623a8ca751fe",
+    "evaluation/matched_v3/FREEZE.json": "daa8bbed5b50b87d4f9bb391f5f790f50b9b6acde8f66c649383cdcc76cbfaf8",
+    "evaluation/matched_v3/__init__.py": "bc82ecdb8919685b71e57ee371a5af99b571be6bf1a2ce75d9be975f51f81344",
+    "evaluation/matched_v3/preflight.py": "58960bb39db3b1d8aafa5c5fae598f0f840bb695e54367fbfc8a0d5f1a2df61c",
+    "evaluation/matched_v3/protocol.json": "b81eadbfb938c5559b7063fc688687fd3b7676c1f427601ab171b733227380e8",
+    "evaluation/matched_v3/study.py": "34e1df236dcc623372159abbf36849534fc18771aea353ec16bd21ab480bbdd7",
+    "evaluation/matched_v4/FREEZE.json": "527f31ad44516902a037ef4a11ebd134d6f7dca7c7bc5d8a509fe9aff0ce13af",
+    "evaluation/matched_v4/__init__.py": "c027ae0c0d9c42d47dcf4cb03e2e21e12897a55e0d925676bf7d53bf5d05863b",
+    "evaluation/matched_v4/model-catalog.json": "2505904543ebfc1dcd3a64727a37def4f43d7d4c92f3bea5ec38d33147c2f67f",
+    "evaluation/matched_v4/protocol.json": "42e52724d1d51706e745dd90705c356ebf5920cee05d674da475502f476dbf7c",
+    "evaluation/matched_v4/study.py": "29ae8a06f881acfcd50dc84be70fa37b4e612a7082cbdc4208444ff47acd5d1c",
+    "evaluation/v1/FREEZE.json": "60e5d60dc43e266a79b232789925aac9d01d19fdb920d89b46f0e8f0a6e7573a",
+    "evaluation/v1/README.md": "051103a2c24035d84c0b55bd8d64bf09e5f08c0193ef6184bbc465689ab05665",
+    "evaluation/v1/__init__.py": "657b6d46e1c351af7cf359ae5dde73b6f2700b4c76c5303ec44a7b4f4df35f1f",
+    "evaluation/v1/benchmark.py": "e9fa3cb4ca8055263c4b96696799bab6dc5c4485eccbe7e9ca4ede47870d7343",
+    "evaluation/v1/ledger.json": "b9671092539438312df5b7713af1db77059b2d2a4553ec7fea6fe146f43a4e00",
+    "evaluation/v1/oracle.py": "4b83d69ca40331a28bbf9dcdb8688b0b247ca60e30582083543806c95e516776",
+    "evaluation/v1/protocol.json": "8aa4bca12033373f804e418478ad8ea84889b3b77adf527735d0ed02a18dbaab",
+    "evaluation/v1/tasks.py": "0ef969ada04f9869ab9223f7e501ece53ec575b60ebe2d2bf8bd9531109d9652",
+    "evaluation/v1/variants.py": "9b049ca26bd3ea9900c2d7d0a084c7c7ded42b60ca01d6c54cd360bc1fc9584c",
+    "intentline/docs/AGENT_GUIDE.md": "c144f51d91bdb87cc2048377e7ea7928a773e2ed66d29feec275e5cc10bdef5d",
+    "intentline/docs/CLI.md": "bb5277db900001b8e3d1e7c7f89e8c79816b87dd7650ab26763e84fb7207d34b",
+    "intentline/docs/CONTRACT.md": "d49feb8c166942747c3b5261968627ed2f0a0a3fd09de30026d7cfca7d47387a",
+    "intentline/docs/DEVELOPMENT.md": "3c1a2b9feff300ba69f6210bc0ee74092d74ba414a7f2401ed0d5b3336531be5",
+    "intentline/docs/IMPLEMENTATION_0.3.md": "14b20eb7e83246974335d0f2686da69d150ce5fe4fa4da5d6e9dd36829794f2a",
+    "intentline/docs/IMPLEMENTATION_0.4.md": "cd792d91a577a3319b9b14c443aa8e4daa4f257881de20fdc1280b4dc93bef0f",
+    "intentline/docs/IMPLEMENTATION_0.5.md": "42292665898774321a851da566e5b74bc12d3fc78824ad3c743aae3727499e5e",
+    "intentline/docs/IMPLEMENTATION_0.6.md": "d50b9a69c18fca6c2456a810951b7babbe94a3aa2cfacdb351af27d126e6aea2",
+    "intentline/docs/INTEGRATIONS.md": "c15412aefb1464209e71371950412c73bba772a7c268be64dd069072ecb3c02f",
+    "intentline/docs/LORE_CONTEXT.md": "d81649e077b45a29ea070f03aaadb893e9cd492afdd02514f5e690e7fb274375",
+    "intentline/docs/SCORECARD_0.1.md": "468bd51638779585a5f4316d8bd62cd4cbbd10153bba418fd7276acadc3ea7a1",
+    "intentline/docs/SCORECARD_0.2.md": "5d3990e4ce09f514054a65a5fce8bbed71d75591cf067f287abdc3b07c8fd267",
+    "intentline/docs/SCORECARD_0.3.md": "b45958f47f315c0bdefc310d4cb7f4a8cad7846ba46ca0167ef798093a7c199d",
+    "intentline/docs/SCORECARD_0.4.md": "31674e2cab7d0c1445cab07facb27b000753e44f67e7fe51c9fe1b22fc4bae5a",
+    "intentline/docs/SCORECARD_0.5.md": "521f3613849f9628eed240c97a430152dc19e0f0b862a7000a65f39f822a2d6c",
+    "intentline/docs/SCORECARD_0.6.md": "9e5fb7a846e05802d18d3d175afe360373b2f7d4c1fc34396cc4269085f6e02f",
+    "intentline/docs/SLICING.md": "65bb279aae371a53b544602c0b963834777c06a6125eab13f6650b012d807915",
+    "intentline/docs/SLICING_INTEGRATIONS.md": "baba6e79c060183377160ba350e47949739555bdae8625509270aba8178f99b9",
+    "intentline/docs/TRUST_AND_AUTHORITY.md": "2141d9c1e10e735c29402fe03eb09c27730f013eb6d94efa42db5f4ceb0a6527",
+    "intentline/docs/TUTORIAL.md": "d5091a58bd976a8fe369c270e443e88449b3d643b5174c6f7a4339c3977e77d4",
+    "intentline/docs/WINDOWS_STORAGE_FEASIBILITY.md": "5f816c4235d8fd7e386e1173761572addbdd919c8283d6fe56c8bf183e92c9f0",
+    "intentline/intentline/__init__.py": "3ecdad742e0757cf3f57cdba90668fac05dff4d6d8268053ffa36aaf86969fd1",
+    "intentline/intentline/__main__.py": "0cac9210efbfdcdf4f5cd709b300479487d1f70fa04fe31ad7ca81a8be7bf427",
+    "intentline/intentline/adoption.py": "1199d2335ce4c8e08b2011bf923da52b8aa4765ba4deae2e6a864bc9ef8d371f",
+    "intentline/intentline/amendments.py": "4a7bcbb27975c9491550df9871e52fe9fa50a5766f9c12409041e4b783d2c2be",
+    "intentline/intentline/audits.py": "8305e6071379dba6b9552d1161a701e851bae6836967941fa0c844b90b3140f5",
+    "intentline/intentline/cli.py": "c076d4608f1b3051d098a0b693195d270a543ca2616c68742dc9cecdccd78e1f",
+    "intentline/intentline/continuity.py": "47acc85161d0b98f14648918788f7ed01f4c7ba6d6dbcb069ce42f589e3490ac",
+    "intentline/intentline/contracts.py": "079e36ce8054882d66492532482411d4cd58bf4ba5692bb0536ec4d5edc36a62",
+    "intentline/intentline/errors.py": "278da840255cb6f2fb9242ab75b212ee74f5e101e035033b980d1f2e47e026cf",
+    "intentline/intentline/export.py": "99e6ddde4d36071efdb3e01e43c28f527945a3a28265704dae0d38075821e3a6",
+    "intentline/intentline/lore_adapter.py": "f4b96fe12fde8d619632d6c3b54fe0528f89c69ac36ed876e56990e822e768fd",
+    "intentline/intentline/native_handoff.py": "612aa9e341c4e3fcbb0f061ca7161952d7d47a96b0ac7f51ac5f3942e4b716a7",
+    "intentline/intentline/native_inspect.py": "e7e067ae8fbe5e8ef9f3932f38c73fe57879a04035c8cc8a64617c7644ef2381",
+    "intentline/intentline/paths.py": "2116a461e616c37251e7ef9f15aaf143dd78e9336e457e837dae2b0e63459380",
+    "intentline/intentline/records.py": "b1f5cf488b5ee09db498988a7f9a8f8e122ab45ffb7cc55e9a5f7ff5458fd1ea",
+    "intentline/intentline/render.py": "19e0efd2bc2e87e4bcaf62e5fa5f157ce853fdb2e3f7d1acf75894e3e2c08f60",
+    "intentline/intentline/review.py": "e01a3ab1336c891716507ec891cc394c532ef358051b7b4319356c0d16ae7852",
+    "intentline/intentline/schemas.py": "bc0e2942f511479c306cfcb6c5590e8f612d1b98ae99a97a33c240983d06874f",
+    "intentline/intentline/slice_audits.py": "5dd7b1d1a633107a968f94c3a0a4591ceb69650e75a695e77731be055a5ce636",
+    "intentline/intentline/slice_export.py": "059e38fcde475ff977ae1c2962127e2990f10a2a2ca065f3d53b3db88b368efd",
+    "intentline/intentline/slice_impact.py": "b32b2158967c2b413c06637a5719ec4ace2d49229a78a4c739213427e5af6d00",
+    "intentline/intentline/slice_inspect.py": "e3a3709b4c540856307f378ed390a27e144835011873713a9b80ecd0bce63564",
+    "intentline/intentline/slice_records.py": "f66ae5c47917489289ab52479054b5a2b64922f2e72a2eeace407cdafe2fb792",
+    "intentline/intentline/slicing.py": "74128d5107bd180c2c06927c3af3593832f7494da35a1ba045878996b0aaec31",
+    "intentline/intentline/sources.py": "ad7e34baf30ebe9cc82c228cb3ca8497132d6a5b85073dc5849f263b12e0468b",
+    "intentline/schema/acceptance-v1.schema.json": "83f695667568d28f8aa20e75821f7a6ead4a5be9493b5e0884c169064fead8b5",
+    "intentline/schema/approval-v1.schema.json": "87afd00451a0d79c2705f295e831be7dd7d30bd71905c0526a3061f92f2a278e",
+    "intentline/schema/audit-v1.schema.json": "4fe06620ef28e447a726f4aa46de56b5b114cdda086209c973522dde7b43becc",
+    "intentline/schema/continuity-v1.schema.json": "4a47abba01f72afcac96861bf3886fa458ef349b7855e53422c8e8b3df6966b5",
+    "intentline/schema/native-handoff-v1.schema.json": "a46130e033f71011674e9e4e18c435f11318b67fd06093da825ebf2fac2ede1a",
+    "intentline/schema/slice-audit-v1.schema.json": "b5914ba12102de73c9ec86f93016c9b4b26188ac282ac9664ba39ccbcbb6a386",
+    "intentline/schema/slice-handoff-v1.schema.json": "5013c1f565c60f4a073df297f56e2aa8bda9c51c89348cbe95d765cac7d6e70a",
+    "intentline/schema/slicing-v1.schema.json": "77486706d8f1db7ca8a35d4a2436475b255eae778e028cc1e84476cd7adf91ff",
+    "intentline/schema/source-bundle-v2.schema.json": "6fd9606347a7825e60b8977d5c9cab9d325c965f0498c0716741e728b1dd8ac4",
+    "intentline/skills/intentline-plan/SKILL.md": "6d35ec8b0af205364c59cd97ab4dd1bc1ed8ee85b097cb80faf101e7d21796ed",
+    "proofline.py": "670ccf241a0a1f89c566f7ec39daa9873ad5bd4cd2531b9e0ec0bf64b089245a",
+    "python": "a39ba8658c8955a744ba1e87d2912bb019c5f4e93fcfd8e96263f891d15ec1aa",
+    "selected_model_metadata": "fab44ce6375da41cf99b74b42f725cb64bc8bda04183b3cddfb60890a5beacb0"
+  },
+  "model_cache_at": null,
+  "model_capacity": "unknown until first dispatch",
+  "producer_revision": "06ae147099efda7c276469c948bf0ac60fc5de2e",
+  "protocol": {
+    "accounting": {
+      "calls": "Native invocation count, observed tool executions, unknown provider-internal model calls; no inferred usage or prices. Coordinator child-process launches counted separately for episodes and independent grading; these are observed launches, not provider-internal calls.",
+      "episode": "Preparation within each assignment, plan creation/export, agent coding/self-checking, check setup/execution, feedback/status and freezing included. Independent grading/control/study authoring reported separately. All arms share the same allowed total time and agent allocation; planning consumes that allocation.",
+      "human": "Task-specific manual edits and extra messages observed; human active attention, initiating-agent tokens and authoring costs unknown unless actually measured. No fake zeros.",
+      "statistics": "Observed delivery rates over assigned, paired percentage-point differences for P-O, I-O, C-O, C-I, C-P and C-I-P+O interaction. Exact enumerated task-bootstrap 95% descriptive intervals when all four tasks observed; no interval or efficacy decision with missing runs. Four tasks cannot establish general superiority.",
+      "tokens": "Native reported input, cached input subset, output; reasoning subset not added. Unknown usage is null and counted. Same time cap, no observable enforceable token cap; report this budget limitation."
+    },
+    "arms": [
+      "ordinary",
+      "proofline",
+      "intentline",
+      "combined"
+    ],
+    "assignments": 16,
+    "authoring": "Initiating-agent preparation observed from 2026-10-13T14:21:15Z; earlier attention/tokens and active human time unknown. No task worker was dispatched in v2 or qualification rehearsals.",
+    "authorization": "PREPARED; new 16-assignment declaration requires explicit approval after stopped v3. No resume, replacement or pooling.",
+    "catalog": "The exact selected catalog entry is retained read-only and supplied via native model_catalog_json to EVERY coding invocation. Host-cache refreshes cannot change effective CLI model metadata. Backend revision is still unobservable.",
+    "concurrency": 1,
+    "corrections": 0,
+    "decision_rule": "No new mandatory action unless matched independent delivery benefit is observed and added costs/blocking risk justify it. No benefit => keep existing check-only receipts optional, Intentline optional; no new planning/review/adoption stage. Missing runs => INCONCLUSIVE, empirical acceptance incomplete.",
+    "exposure": {
+      "combined": "Same planning exposure plus actual opt-in Intentline JSON adapter with same selected commands. Agent may supply explicit R-to-command links; unlinked rows remain NOT DEMONSTRATED. Missing/invalid export is an unavailable intervention, never a fallback to ordinary checks.",
+      "common": "Exact original request, identical product seed, existing tests and selected check argv; ordinary self-checking allowed. No grader, expected private outputs, controls, sibling assignments, enclosing repository or network.",
+      "intentline": "Same implementer performs one advisory plan pass using pinned intentline-plan skill and offline producer. No planner/auditor/reviewer/prover dispatch. Structural repairs allowed within the one turn and budget. Explicit JSON export allowed after planning; never adopt. Plan and export retained; no preauthored R inventory.",
+      "proofline": "After the one coding handoff, actual check-only runtime freezes candidate and runs two public commands, displays bounded feedback and revalidates status. No correction model turn. Failed/unavailable checks block the delivery; advisory gaps never block it."
+    },
+    "host": {
+      "backend_revision": "not exposed by transport; selected model identity only",
+      "codex": "codex-cli 0.162.1",
+      "machine": "arm64",
+      "macos": "26.6.2",
+      "python": "3.14.8",
+      "system": "Darwin"
+    },
+    "limits": {
+      "agent_seconds": 600,
+      "check_seconds": 30,
+      "episode_seconds": 900,
+      "grading_seconds": 120
+    },
+    "maximum_assignments_per_model_cohort": 24,
+    "missing_runs": "Stop once, retain failures and every missing assignment. No resume, retry, replacement, model change, oracle repair or S6 resumption. A later study requires a new declaration.",
+    "model": {
+      "model": "gpt-6.1-sol",
+      "model_catalog_json": "/Users/grove/projects/proofline/evaluation/matched_v4/model-catalog.json",
+      "model_reasoning_effort": "high"
+    },
+    "model_context": "Ephemeral fresh threads. The same atomic request was exposed to two v3 workers; no transcripts/candidates/plans are exposed in v4, no warmup results pooled. All four source tasks/oracle/controls unchanged.",
+    "oracle": "Literal finite positive, negative, compatibility and batch obligations derived independently of worker code. Alternatives use different algorithms with shared validation. Controls include green-test missing-batch defects and a stale alphabetical-order test. Finite correctness includes all frozen source obligations at these seams, never semantic completeness.",
+    "order": [
+      [
+        "ordinary",
+        "proofline",
+        "intentline",
+        "combined"
+      ],
+      [
+        "proofline",
+        "combined",
+        "ordinary",
+        "intentline"
+      ],
+      [
+        "intentline",
+        "ordinary",
+        "combined",
+        "proofline"
+      ],
+      [
+        "combined",
+        "intentline",
+        "proofline",
+        "ordinary"
+      ]
+    ],
+    "primary_outcome": "Independently correct delivery of entire request at the frozen finite seams, over all 16 assigned attempts (4 per arm). Completion plus finite correct; Proofline additionally requires current CHECKS PASSED. Unknown/unexecuted attempts never become successes or leave the denominator.",
+    "prior_preparation": {
+      "assigned": 16,
+      "correct_deliveries": 2,
+      "executed": 2,
+      "missing": 14,
+      "status": "STOPPED on selected catalog metadata drift; retained separately, no effects or pooling",
+      "study": "issue16-matched-v3-20261013"
+    },
+    "qualification": "Before dispatch: native coding/read-only/network/sibling protection, all 12 unchanged reference/alternative/green-but-incomplete controls, real producer prepare/propose/check/render/export and actual adapter/check/readback with linked and unlinked source obligations. No model calls.",
+    "repetitions": 1,
+    "retries": 0,
+    "schema_version": 1,
+    "secondary": [
+      "material omitted obligations with green repository tests",
+      "independently source-conflicting stale expectations retained",
+      "invalid/unknown test evidence",
+      "advisory unlinked obligations",
+      "native execution/model unavailability"
+    ],
+    "selected_checks": "Frozen literal first-case app.process assertion from corpus plus project unittest discovery. Same definitions exposed in every arm; tests may be repaired only if they conflict with original request.",
+    "status": "PREDECLARED_NOT_OBSERVED",
+    "stop_rules": [
+      "source, seed, grader, runtime, skill, tool or model drift",
+      "invalid correct/alternative/defective controls",
+      "unqualified coding/planning/check/grading native boundary",
+      "grader/source/sibling leakage or protected mutation",
+      "unavailable selected model or unreliable/unreconciled worker lifecycle",
+      "unavailable grading or adapter intervention",
+      "budget exhaustion or protocol drift"
+    ],
+    "study_id": "issue16-matched-v4-20261013",
+    "tasks": [
+      "atomic-transfers",
+      "locale-fallback",
+      "dependency-order",
+      "fifo-upserts"
+    ],
+    "taxonomy": [
+      "CORRECT_DELIVERY",
+      "FALSE_ACCEPTANCE",
+      "CORRECT_BUT_BLOCKED",
+      "INCORRECT_NO_HANDOFF",
+      "UNAVAILABLE",
+      "NOT_EXECUTED"
+    ]
+  },
+  "qualification_seconds": 63.15216720895842,
+  "source_revision": "5131c9298872f724e119d277b5e05f69c7913d8a",
+  "version_receipt": {
+    "argv": [
+      "/opt/homebrew/bin/codex",
+      "--version"
+    ],
+    "cwd": "/Users/grove/projects/proofline/.proofline/issue16-matched-v4-20261013",
+    "elapsed_seconds": 0.019998,
+    "exit_code": 0,
+    "invocation_id": "8dc8030c-918a-4ae0-bfed-ae9ea65a061b",
+    "kind": "process_probe",
+    "stderr": "",
+    "stdout": "codex-cli 0.162.1\n",
+    "timed_out": false
+  }
+}
