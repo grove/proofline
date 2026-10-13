@@ -1,0 +1,374 @@
+{
+  "boundaries": {
+    "grading-boundary": {
+      "assessment": {
+        "inputs_unchanged": true,
+        "observations": {
+          "mode_change": "denied",
+          "network": "denied",
+          "nonce": "3158763f710e48d699468a2f5aecee37",
+          "reads": {
+            "actual_oracle": "denied",
+            "model_metadata": "denied",
+            "oracle-canary": "denied",
+            "other-role-canary": "denied",
+            "other_candidate": "denied",
+            "private_results": "denied",
+            "receipt-canary": "denied",
+            "repository": "denied",
+            "v1_oracle": "denied",
+            "v1_variants": "denied"
+          },
+          "scratch": true,
+          "writes": {
+            "candidate": "denied",
+            "git_head": "denied",
+            "input": "denied",
+            "receipt": "denied",
+            "source": "denied"
+          }
+        },
+        "scope": "native process canaries only; no model or external-tool qualification",
+        "status": "OBSERVED"
+      },
+      "network_control": "loopback reachable before sandbox",
+      "receipt": {
+        "argv": [
+          "$CODEX",
+          "--no-daemon",
+          "-c",
+          "permissions.proofline_s0_80977a3a46e84edab05b5b6d915b3206={\"filesystem\"={\":minimal\"=\"read\",\"/opt/homebrew/Cellar/python@3.14/3.14.8_2/Frameworks/Python.framework/Versions/3.14\"=\"read\",\"/opt/homebrew/opt/python@3.14/Frameworks/Python.framework/Versions/3.14\"=\"read\",\"/opt/homebrew/opt/python@3.14/bin/python3.14\"=\"read\",\"$PYTHON\"=\"read\",\"$PRIVATE_RUN/qualification/grading-inputs\"=\"read\",\"$PRIVATE_RUN/qualification/grading-boundary/scratch\"=\"write\",\"$PRIVATE_RUN/qualification/grading-boundary/private\"=\"deny\",\"/opt/homebrew\"=\"read\",\"/Library/Developer/CommandLineTools/usr/bin\"=\"read\",\"/Library/Developer/CommandLineTools/usr/libexec/git-core\"=\"read\"},\"network\"={\"enabled\"=false}}",
+          "sandbox",
+          "--permission-profile",
+          "proofline_s0_80977a3a46e84edab05b5b6d915b3206",
+          "--include-managed-config",
+          "--cd",
+          "$PRIVATE_RUN/qualification/grading-boundary/scratch",
+          "--",
+          "$PYTHON",
+          "-I",
+          "-B",
+          "$PRIVATE_RUN/qualification/grading-inputs/canary.py",
+          "$PRIVATE_RUN/qualification/grading-inputs/canary.json"
+        ],
+        "cwd": "$PRIVATE_RUN/qualification/grading-boundary/scratch",
+        "elapsed_seconds": 0.138372,
+        "exit_code": 0,
+        "invocation_id": "01a6cae6-7d39-41e2-a798-7a46206f0bff",
+        "kind": "process_probe",
+        "stderr": "",
+        "stdout": "{\"nonce\": \"3158763f710e48d699468a2f5aecee37\", \"writes\": {\"source\": \"denied\", \"input\": \"denied\", \"candidate\": \"denied\", \"git_head\": \"denied\", \"receipt\": \"denied\"}, \"reads\": {\"receipt-canary\": \"denied\", \"oracle-canary\": \"denied\", \"other-role-canary\": \"denied\", \"actual_oracle\": \"denied\", \"v1_oracle\": \"denied\", \"v1_variants\": \"denied\", \"repository\": \"denied\", \"private_results\": \"denied\", \"model_metadata\": \"denied\", \"other_candidate\": \"denied\"}, \"mode_change\": \"denied\", \"scratch\": true, \"network\": \"denied\"}\n",
+        "timed_out": false
+      }
+    },
+    "worker-boundary": {
+      "assessment": {
+        "observations": {
+          "mode_change": "allowed",
+          "network": "denied",
+          "nonce": "f225b3bf8af643cc8861af41f735349f",
+          "reads": {
+            "actual_oracle": "denied",
+            "model_metadata": "denied",
+            "oracle-canary": "denied",
+            "other-role-canary": "denied",
+            "other_candidate": "denied",
+            "private_results": "denied",
+            "receipt-canary": "denied",
+            "repository": "denied",
+            "v1_oracle": "denied",
+            "v1_variants": "denied"
+          },
+          "scratch": true,
+          "writes": {
+            "candidate": "allowed",
+            "git_head": "denied",
+            "input": "denied",
+            "receipt": "denied",
+            "source": "denied"
+          }
+        },
+        "status": "OBSERVED"
+      },
+      "network_control": "loopback reachable before sandbox",
+      "receipt": {
+        "argv": [
+          "$CODEX",
+          "--no-daemon",
+          "-c",
+          "permissions.proofline={\"filesystem\"={\":minimal\"=\"read\",\"/opt/homebrew/Cellar/python@3.14/3.14.8_2/Frameworks/Python.framework/Versions/3.14\"=\"read\",\"/opt/homebrew/opt/python@3.14/Frameworks/Python.framework/Versions/3.14\"=\"read\",\"/opt/homebrew/opt/python@3.14/bin/python3.14\"=\"read\",\"$PYTHON\"=\"read\",\"$PRIVATE_RUN/qualification/worker-inputs\"=\"read\",\"$PRIVATE_RUN/qualification/worker-boundary/scratch\"=\"write\",\"$PRIVATE_RUN/qualification/worker-boundary/private\"=\"deny\",\"/opt/homebrew\"=\"read\",\"/Library/Developer/CommandLineTools/usr/bin\"=\"read\",\"/Library/Developer/CommandLineTools/usr/libexec/git-core\"=\"read\",\"$CODEX\"=\"read\",\"/opt/homebrew/Caskroom/codex/0.162.1/bin/codex\"=\"read\",\"$PRIVATE_RUN/qualification/worker-inputs/product\"=\"write\",\"$PRIVATE_RUN/qualification/worker-inputs/product/.git\"=\"read\"},\"network\"={\"enabled\"=false}}",
+          "sandbox",
+          "--permission-profile",
+          "proofline",
+          "--include-managed-config",
+          "--cd",
+          "$PRIVATE_RUN/qualification/worker-boundary/scratch",
+          "--",
+          "$PYTHON",
+          "-I",
+          "-B",
+          "$PRIVATE_RUN/qualification/worker-inputs/canary.py",
+          "$PRIVATE_RUN/qualification/worker-inputs/canary.json"
+        ],
+        "cwd": "$PRIVATE_RUN/qualification/worker-boundary/scratch",
+        "elapsed_seconds": 0.14016,
+        "exit_code": 0,
+        "invocation_id": "adac1a6b-7291-4336-bfc9-76ac176be2d4",
+        "kind": "process_probe",
+        "stderr": "",
+        "stdout": "{\"nonce\": \"f225b3bf8af643cc8861af41f735349f\", \"writes\": {\"source\": \"denied\", \"input\": \"denied\", \"candidate\": \"allowed\", \"git_head\": \"denied\", \"receipt\": \"denied\"}, \"reads\": {\"receipt-canary\": \"denied\", \"oracle-canary\": \"denied\", \"other-role-canary\": \"denied\", \"actual_oracle\": \"denied\", \"v1_oracle\": \"denied\", \"v1_variants\": \"denied\", \"repository\": \"denied\", \"private_results\": \"denied\", \"model_metadata\": \"denied\", \"other_candidate\": \"denied\"}, \"mode_change\": \"allowed\", \"scratch\": true, \"network\": \"denied\"}\n",
+        "timed_out": false
+      }
+    }
+  },
+  "native": [
+    {
+      "matched": true,
+      "passed": true,
+      "seconds": 3.3098957501351833,
+      "task": "collision-slugs",
+      "variant": "reference"
+    },
+    {
+      "matched": true,
+      "passed": true,
+      "seconds": 3.3225202499888837,
+      "task": "collision-slugs",
+      "variant": "alternative"
+    },
+    {
+      "matched": true,
+      "passed": false,
+      "seconds": 3.3006474999710917,
+      "task": "collision-slugs",
+      "variant": "defective"
+    },
+    {
+      "matched": true,
+      "passed": true,
+      "seconds": 3.2791482503525913,
+      "task": "ordered-inventory",
+      "variant": "reference"
+    },
+    {
+      "matched": true,
+      "passed": true,
+      "seconds": 3.3484199168160558,
+      "task": "ordered-inventory",
+      "variant": "alternative"
+    },
+    {
+      "matched": true,
+      "passed": false,
+      "seconds": 3.3457869589328766,
+      "task": "ordered-inventory",
+      "variant": "defective"
+    },
+    {
+      "matched": true,
+      "passed": true,
+      "seconds": 3.272165291942656,
+      "task": "half-open-union",
+      "variant": "reference"
+    },
+    {
+      "matched": true,
+      "passed": true,
+      "seconds": 3.4433242920786142,
+      "task": "half-open-union",
+      "variant": "alternative"
+    },
+    {
+      "matched": true,
+      "passed": false,
+      "seconds": 3.3728681663051248,
+      "task": "half-open-union",
+      "variant": "defective"
+    },
+    {
+      "matched": true,
+      "passed": true,
+      "seconds": 3.707258959300816,
+      "task": "form-multimap",
+      "variant": "reference"
+    },
+    {
+      "matched": true,
+      "passed": true,
+      "seconds": 3.791800625156611,
+      "task": "form-multimap",
+      "variant": "alternative"
+    },
+    {
+      "matched": true,
+      "passed": false,
+      "seconds": 3.7869794168509543,
+      "task": "form-multimap",
+      "variant": "defective"
+    },
+    {
+      "matched": true,
+      "passed": true,
+      "seconds": 3.2673889165744185,
+      "task": "largest-remainder",
+      "variant": "reference"
+    },
+    {
+      "matched": true,
+      "passed": true,
+      "seconds": 3.274151834193617,
+      "task": "largest-remainder",
+      "variant": "alternative"
+    },
+    {
+      "matched": true,
+      "passed": false,
+      "seconds": 3.3409013329073787,
+      "task": "largest-remainder",
+      "variant": "defective"
+    },
+    {
+      "matched": true,
+      "passed": true,
+      "seconds": 3.7708387905731797,
+      "task": "four-way-islands",
+      "variant": "reference"
+    },
+    {
+      "matched": true,
+      "passed": true,
+      "seconds": 3.751861374825239,
+      "task": "four-way-islands",
+      "variant": "alternative"
+    },
+    {
+      "matched": true,
+      "passed": false,
+      "seconds": 3.8046507090330124,
+      "task": "four-way-islands",
+      "variant": "defective"
+    }
+  ],
+  "offline": {
+    "all_18_matched": true,
+    "controls": [
+      {
+        "alternative": {
+          "all_finite_checks_passed": true,
+          "failures": 0,
+          "passes": 23
+        },
+        "defective": {
+          "all_finite_checks_passed": false,
+          "failures": 3,
+          "passes": 20
+        },
+        "matched": true,
+        "reference": {
+          "all_finite_checks_passed": true,
+          "failures": 0,
+          "passes": 23
+        },
+        "task": "collision-slugs"
+      },
+      {
+        "alternative": {
+          "all_finite_checks_passed": true,
+          "failures": 0,
+          "passes": 23
+        },
+        "defective": {
+          "all_finite_checks_passed": false,
+          "failures": 3,
+          "passes": 20
+        },
+        "matched": true,
+        "reference": {
+          "all_finite_checks_passed": true,
+          "failures": 0,
+          "passes": 23
+        },
+        "task": "ordered-inventory"
+      },
+      {
+        "alternative": {
+          "all_finite_checks_passed": true,
+          "failures": 0,
+          "passes": 23
+        },
+        "defective": {
+          "all_finite_checks_passed": false,
+          "failures": 3,
+          "passes": 20
+        },
+        "matched": true,
+        "reference": {
+          "all_finite_checks_passed": true,
+          "failures": 0,
+          "passes": 23
+        },
+        "task": "half-open-union"
+      },
+      {
+        "alternative": {
+          "all_finite_checks_passed": true,
+          "failures": 0,
+          "passes": 26
+        },
+        "defective": {
+          "all_finite_checks_passed": false,
+          "failures": 6,
+          "passes": 20
+        },
+        "matched": true,
+        "reference": {
+          "all_finite_checks_passed": true,
+          "failures": 0,
+          "passes": 26
+        },
+        "task": "form-multimap"
+      },
+      {
+        "alternative": {
+          "all_finite_checks_passed": true,
+          "failures": 0,
+          "passes": 23
+        },
+        "defective": {
+          "all_finite_checks_passed": false,
+          "failures": 6,
+          "passes": 17
+        },
+        "matched": true,
+        "reference": {
+          "all_finite_checks_passed": true,
+          "failures": 0,
+          "passes": 23
+        },
+        "task": "largest-remainder"
+      },
+      {
+        "alternative": {
+          "all_finite_checks_passed": true,
+          "failures": 0,
+          "passes": 26
+        },
+        "defective": {
+          "all_finite_checks_passed": false,
+          "failures": 3,
+          "passes": 23
+        },
+        "matched": true,
+        "reference": {
+          "all_finite_checks_passed": true,
+          "failures": 0,
+          "passes": 26
+        },
+        "task": "four-way-islands"
+      }
+    ],
+    "deliberately_defective_controls": 6,
+    "live_model_assignments_executed": 0,
+    "positive_controls": 12
+  }
+}

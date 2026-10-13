@@ -1,0 +1,54 @@
+{
+  "campaign_wall_seconds_including_evaluation": 563.8004805827513,
+  "coding_stage_seconds": 531.363875,
+  "earlier_inspection_authoring_seconds": null,
+  "independent_evaluation_process_seconds": 19.652163,
+  "independent_evaluation_processes": 144,
+  "independent_evaluation_wall_seconds": 19.82176941772923,
+  "native_control_process_seconds": 61.998878,
+  "native_control_processes": 432,
+  "native_control_wall_seconds": 66.58061158284545,
+  "offline_control_seconds_rounded": 32.88,
+  "operator_active_seconds": null,
+  "overlap_policy": "Process durations overlap control/evaluation wall time; those overlap qualification/campaign time. Do not add overlapping costs. Workflow time excludes independent grading.",
+  "post_publication_test_seconds": 31.342,
+  "pre_dispatch_test_seconds": 31.515,
+  "qualification_seconds_including_controls": 67.98336949991062,
+  "workflow": {
+    "assigned": 6,
+    "correct_delivery_rate": 1.0,
+    "dollars": null,
+    "executed": 6,
+    "human_active_seconds": null,
+    "independently_correct_deliveries": 6,
+    "initiating_agent_usage": null,
+    "known_tokens": {
+      "cache_write_input_tokens": 0,
+      "cached_input_tokens": 357760,
+      "input_tokens": 492670,
+      "output_tokens": 15242,
+      "reasoning_output_tokens": 1292
+    },
+    "known_workflow_seconds": 533.9276598729193,
+    "operator_candidate_edits": 0,
+    "outcomes": {
+      "CORRECT_DELIVERY": 6,
+      "FAILED_IMPLEMENTATION": 0,
+      "FALSE_ACCEPTANCE": 0,
+      "NOT_EXECUTED": 0,
+      "UNAVAILABLE": 0,
+      "UNNECESSARY_BLOCKING": 0
+    },
+    "pricing": "No authoritative rates frozen; cost unknown.",
+    "reported_input_plus_output_tokens_per_correct_delivery": 84652.0,
+    "seconds_per_correct_delivery": 88.98794331215322,
+    "unknown_usage_dispatches_by_category": {
+      "cache_write_input_tokens": 0,
+      "cached_input_tokens": 0,
+      "input_tokens": 0,
+      "output_tokens": 0,
+      "reasoning_output_tokens": 0
+    },
+    "workflow_seconds": 533.9276598729193
+  }
+}
