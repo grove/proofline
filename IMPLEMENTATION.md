@@ -10,6 +10,10 @@ by the current CLI.
 
 - `proofline.py`: small public `check`/`run`/`status` CLI. It keeps minimal
   compatibility exports for already recorded native study tools.
+- `skills/proofline-check/SKILL.md`: sole canonical optional coding-agent
+  instruction set; both Codex and Claude Code repo-local discovery locations
+  link to it, with the old root `SKILL.md` retained as a migration pointer.
+  The Python CLI and check-only zero-model behavior do not require skills.
 - `checks/candidate_snapshot.py`: exact clean-source Git snapshot or current tracked/non-ignored
   working-file snapshot, path validation and frozen candidate identity, without agent/review policy.
 - `checks/local_run.py`: bounded episode orchestration and exact status

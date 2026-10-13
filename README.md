@@ -6,6 +6,67 @@ caller-selected checks without another model dispatch. It also offers one
 optional bounded coding attempt. Passing commands are evidence
 **only about those commands**, not proof of every requirement.
 
+## Agent skill: `proofline-check`
+
+Proofline provides **one optional agent skill**, named
+[`proofline-check`](skills/proofline-check/SKILL.md), for an existing
+coding agent to invoke **after implementing code** when it needs to run
+selected checks on a frozen candidate, interpret actual failures, and
+identify evidence gaps. The same instructions also document optional
+Intentline mappings and optional managed `run --correct-once`; they
+are **not separate skills or mandatory stages**. The skill does not
+automatically start a model, install packages, publish code or grant
+permission to modify the user's repository.
+
+The repository keeps **one canonical** `skills/proofline-check/SKILL.md`.
+Codex and Claude Code both support symlinked skill folders, so this
+checkout contains discovery links to that *same* directory:
+
+| Agent | Checked-in repository discovery path | Explicit invocation |
+| --- | --- | --- |
+| Codex | `.agents/skills/proofline-check` | `$proofline-check` |
+| Claude Code | `.claude/skills/proofline-check` | `/proofline-check` |
+
+These paths make the skill visible **when the agent is working in the
+Proofline repository**. For a coding agent working in **another product
+repository**, install the skill for that agent instead. With Proofline
+already checked out at `/absolute/path/to/proofline`, a user-level
+installation on macOS/Linux can be made once using:
+
+```sh
+mkdir -p "$HOME/.agents/skills" "$HOME/.claude/skills"
+ln -s /absolute/path/to/proofline/skills/proofline-check "$HOME/.agents/skills/proofline-check"
+ln -s /absolute/path/to/proofline/skills/proofline-check "$HOME/.claude/skills/proofline-check"
+```
+
+Use **only the agent you need**; both commands are shown for convenience.
+To scope it to an individual product repository instead, use
+`/absolute/path/to/product/.agents/skills/proofline-check` for Codex or
+`/absolute/path/to/product/.claude/skills/proofline-check` for Claude
+Code, with the same source directory as the symlink target. Do not use
+both user- and project-level copies unnecessarily. The target must
+continue to exist; a standalone copy of the canonical skill directory
+also works, but its instructions still require an independently
+available Proofline checkout for the Python CLI.
+
+Agents may **discover** installed skills by their descriptions and
+choose to use them when relevant; automatic invocation is **not
+guaranteed**. Explicitly request the skill if desired. Installation
+does not make checks mandatory for trivial work. The Python CLI remains
+usable without any skill installation.
+
+**Migration from the previous name:** The former root
+[`SKILL.md`](SKILL.md) is a compatibility pointer, not a second
+discoverable skill or an alias. Previously installed
+`$proofline` (Codex) and `/proofline` (Claude Code) invocations
+must be changed to `$proofline-check` and `/proofline-check`;
+remove or rename any older user-level `proofline` skill folders
+yourself. The project and CLI are still named **Proofline**.
+No existing skill installation is automatically migrated.
+
+Source: [Codex skill locations](https://learn.chatgpt.com/docs/build-skills)
+and [Claude Code skill locations](https://code.claude.com/docs/en/skills).
+
 ## Quick start — let the existing agent check its work
 
 No planning step, acceptance-contract file, or test-configuration file is needed.
