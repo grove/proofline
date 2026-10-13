@@ -1,38 +1,20 @@
 ---
 name: proofline
-description: Run one bounded coding attempt on an isolated local candidate, followed by explicit executable checks. Reports check outcomes without certifying the complete source promise.
+description: One bounded coding attempt and explicit executable checks on a frozen local candidate, without universal correctness certification.
 ---
 
-## Product direction: agent-first, not new runtime behavior
+Use the [supported local runner](proofline.py) `run` command. It currently
+requires **macOS**, Python 3.11+, authenticated **Codex CLI 0.162.1**, and
+a **clean Git repository**. Do not launch historical `deliver` or `resume`;
+they are no longer supported commands. **Check-only is planned (#11), not
+currently available.** Direct requests need no P2P/Intentline workflow.
 
-This skill **currently supports only** the managed `run` workflow below:
-one Codex coding attempt and selected native checks on its frozen candidate.
-The [vNext contract](DESIGN.md#proofline-vnext--agent-first-product-contract-proposed-13-october-2026)
-also proposes a [check-only mode (#11)](https://github.com/grove/proofline/issues/11)
-for existing coding agents, with **zero additional model dispatches**.
-**Do not invoke `proofline check` yet; it is not implemented.**
-
-The coding agent owns strategy, implementation, self-testing and corrections.
-Proofline owns bounded execution, exact source/candidate/check identity,
-native receipts and concise observed outcomes. Preserve the *full* source,
-including source-grounded authorized contracts where supplied; direct tasks
-need neither P2P nor Intentline. Report checks passed/failed/unavailable and
-stale candidate evidence truthfully; requirement coverage mapping is future
-work, and passing commands cannot certify all promises. No local check
-authorizes push, PR, merge or deployment. No mandatory reviewer, prover,
-planner, slicer, extra approval ceremony, config or publication stage is
-introduced by this documentation change. Extra mandatory steps require
-independently measured correctness gains worth their overhead.
-
-Use [proofline.py](proofline.py) `run`. The supported native host is macOS,
-Python 3.11+ and Codex CLI 0.162.1 with existing authentication. Select an exact
-supported interpreter. See the [S6 decision](docs/S6-DECISION.md).
-
-Preserve the user's complete original request in a source file outside product
-changes. Select task-relevant executable checks and store their exact argument
-lists in a JSON file outside product changes. A clean Git source repository is
-required; preserve unrelated work rather than discarding it. The runner creates
-an isolated candidate and leaves the source repository untouched.
+Preserve the user's **entire original request** in a file outside product
+changes. Select relevant project-native executable checks and store each
+exact argv list in `checks.json`, also outside product changes. Do not
+fabricate expectations, silently narrow requested behavior, or modify
+unrelated user work. The runner creates an isolated candidate; the source
+repository stays untouched.
 
 ```sh
 /opt/homebrew/bin/python3.14 -B /absolute/path/to/proofline/proofline.py run \
@@ -42,24 +24,21 @@ an isolated candidate and leaves the source repository untouched.
   --seconds 900 --stage-seconds 600 --check-seconds 120
 ```
 
-Own implementation strategy. The runner dispatches one coding attempt, freezes
-its candidate and runs the caller-selected commands under the native read-only
-boundary. No automatic model reviewer, prover, repair loop or publication runs.
-All preparation, implementation and checks consume the same episode budget.
-Use explicit executable paths. Checks can write temporary scratch artifacts but
-cannot change the frozen product or access the network. Preserve failures,
-unavailable observations and unfinished handoffs; never invent receipts or
-silently restart a run to reset the budget.
+The coding agent owns strategy and self-checks. Proofline dispatches one
+model attempt and runs the caller-selected commands against its frozen,
+read-only candidate under native protection. All time counts toward the
+episode budget. No automatic AI reviewer/prover, correction, publication,
+merge or deployment runs. Existing authorization rules still apply;
+local checking never permits external mutations.
 
-Read back `proofline.py status <report.json>` before reporting check success.
-Report the candidate and actual checked commands, failed/unavailable observations
-and remaining source gaps. **CHECKS PASSED means the listed commands exited
-successfully; full source correctness is not certified.** The caller decides
-whether the implementation fulfills the request. A stale snapshot cannot inherit
-old checks. No push, PR, merge or deployment is part of this workflow.
+Use `proofline.py status <report.json>` to revalidate the receipts.
+Report the exact candidate, actual named check results and uncovered
+requirements. `CHECKS PASSED` means only that listed commands exited
+successfully. Distinguish `CHECKS FAILED`, `CHECKS UNAVAILABLE`,
+`EXECUTION UNAVAILABLE`, and `STALE CHECKS`. Never call checks
+full-promise certification or claim a PR/merge occurred.
 
-Historical `deliver` and `resume` require explicit `--experimental` selection.
-Their model acceptance verdicts remain untrusted for complete-source coverage.
-The original input/source/effect authority boundaries still apply; experimental
-selection grants no contract adoption or remote mutation authority. Do not
-invoke those paths as the current production workflow or reuse a stopped study.
+The [vNext contract](DESIGN.md) and [open issues](https://github.com/grove/proofline/issues)
+prioritize zero-extra-model check-only use and useful failure feedback.
+New mandatory stages must demonstrate improvements in independently
+correct deliveries that justify their latency, cost and blocking risk.

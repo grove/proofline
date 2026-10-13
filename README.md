@@ -1,148 +1,89 @@
 # Proofline
 
-A bounded coding attempt followed by explicit executable checks.
+**A small, optional helper to autonomous coding agents.** Proofline preserves
+an original request, runs one bounded local coding attempt, freezes its
+candidate, and executes caller-selected checks. Passing commands are evidence
+**only about those commands**, not proof of every requirement.
 
-Proofline preserves the original request, works in an isolated Git snapshot,
-freezes the candidate, and records the caller-selected command results. **CHECKS
-PASSED describes those commands. It does not certify the complete request.**
-The source repository stays untouched; the caller decides whether the result
-fulfills the promise.
+## Currently supported
 
-[S6 closed with an abandon/simplify decision](docs/S6-DECISION.md) on 13 October
-2026, under the owner's explicit scope revision. Automated full-promise
-certification was abandoned after repeated native false acceptances. The original
-full comparisons remain incomplete; no efficiency or model-superiority claim is
-established. [DESIGN.md](DESIGN.md) defines the revised product and
-[IMPLEMENTATION.md](IMPLEMENTATION.md) records the implementation direction.
+The only supported commands are `proofline.py run` and `proofline.py status`.
+On the qualified **macOS** host (Python 3.11+, Codex CLI **0.162.1**, existing
+authentication), `run` dispatches **one** coding attempt. It does **not**
+run automatic reviewers, provers, corrections, PRs, merges or deployments.
+It requires a clean Git source repository and does not alter that repository.
 
-A separate [bounded comparison](docs/BOUNDED-COMPARISON.md) completed all 18
-assignments on six new tasks. Ordinary agent and agent plus review each produced
-six observed correct deliveries; the simplified runner produced five, retaining
-one pre-coding model-capacity failure. Its checks took about 0.35 seconds per
-checked candidate and showed no added correctness benefit in this sample.
-Keep the runner optional for frozen command receipts; this establishes no
-superiority or full-promise certification.
-
-## Agent-first direction (proposed vNext; not yet shipped)
-
-The [vNext design contract](DESIGN.md#proofline-vnext--agent-first-product-contract-proposed-13-october-2026)
-positions Proofline as a small, optional assistant to an autonomous coding
-agent: keep the whole request, check the **exact** candidate, give useful
-feedback and leave planning/implementation to the agent. **No universal
-correctness certification.**
-
-| Workflow | Availability | Model dispatches inside Proofline |
-| --- | --- | --- |
-| Existing coding agent → **check-only** → truthful handoff | **Proposed** in [#11](https://github.com/grove/proofline/issues/11). The `proofline check` command does **not** exist yet. | **Zero additional** (design requirement) |
-| Optional managed run → checks → truthful handoff | **Supported now** as `proofline.py run` below, on the documented macOS/Codex host | One coding attempt; no reviewer/prover |
-
-**Journey A (future check-only; conceptual, not runnable today):** A user asks
-their ordinary coding agent to "Reject whitespace-only usernames but preserve
-Unicode usernames and CLI compatibility." The agent implements and self-tests,
-then gives Proofline the existing candidate, original request and selected
-commands. Proofline freezes and checks it, without starting another model. A
-truthful handoff might say:
-
-> Selected validation and compatibility checks passed on candidate X. Unicode
-> behavior is **not demonstrated** by the selected checks. Nothing was pushed,
-> merged, or deployed by Proofline.
-
-The same agent decides whether to add a check or fix the code. Optional
-requirement-to-evidence mapping ([#13](https://github.com/grove/proofline/issues/13))
-is proposed, not an existing CLI status.
-
-**Journey B (supported managed run):** The user asks "Add `--version` while
-preserving the old CLI output." The caller saves the *entire* request in
-`source.md`, supplies concrete CLI/regression argv in `checks.json`, and
-runs the command shown below. Proofline makes one coding dispatch, freezes
-its candidate and executes those commands. After `status` revalidates the
-report, a truthful handoff might say:
-
-> Named CLI and regression commands passed on candidate Y. All original
-> requirements have **not** been certified. This is a local candidate only;
-> no PR or merge was performed by Proofline.
-
-A failing command, an unavailable execution or stale checks must be reported
-as such, never silently turned into success. The coding agent owns its
-implementation, tests and fixes; Proofline owns bound checks, candidate
-identity and concise observations. Direct requests do **not** require P2P,
-Intentline or upstream planning. Authorized upstream contracts can be
-reused without silently narrowing the source or inventing user approval.
-Local checks never grant permission to push, create a PR, merge or deploy.
-
-No mandatory reviewer/prover, automatic planning/slicing, publication,
-extra approval ceremony, or new config is part of vNext. Any additional
-mandatory stage must show enough improvement in **independently correct
-delivery** to justify its extra latency, cost and blocking risk.
-
-## Run a request
-
-The supported host is macOS, Python 3.11+ and Codex CLI 0.162.1 with existing
-Codex authentication. Native observations used Homebrew Python 3.14.8. The macOS
-system Python may be too old; select the interpreter explicitly.
-
-Use a clean Git source repository. Preserve unrelated changes in a separate
-committed snapshot rather than resetting them. Save the exact request and a JSON
-list of command argument lists outside product changes, for example:
+Save the exact original user request in `source.md`, outside the product
+changes. Choose relevant executable checks with **absolute executable paths**
+and store their exact argument arrays in `checks.json`:
 
 ```json
 [["/opt/homebrew/bin/python3.14", "-B", "-m", "unittest", "discover", "-s", "tests"]]
 ```
 
 ```sh
-/opt/homebrew/bin/python3.14 -B /absolute/path/to/proofline/proofline.py run \
+/opt/homebrew/bin/python3.14 -B proofline.py run \
   --repo /absolute/path/to/product \
   --source /absolute/path/to/source.md \
   --checks /absolute/path/to/checks.json \
   --seconds 900 --stage-seconds 600 --check-seconds 120
 ```
 
-There is one implementation model dispatch and no automatic reviewer, prover,
-repair loop or publication. The configured Codex model preferences are recorded.
-All preparation, coding and checks share the episode budget. Each check also has
-its own timeout. The commands run against the frozen read-only candidate with
-network access denied and temporary writes confined to scratch. Use explicit
-executable paths; command arguments are not implicitly parsed by a shell.
-Tests requiring writes inside the candidate need a different check command or
-observation path. No dependency installation is performed by the host runner.
-
-The output names the isolated candidate and its report. Command failures and
-unavailable executions remain distinct. Partial implementation handoffs are
-retained without a successful-check claim. No failed run silently restarts.
-
 ```sh
 /opt/homebrew/bin/python3.14 -B proofline.py status /absolute/path/to/report.json
 ```
 
-Status checks the frozen inputs, declared commands and successful receipts.
-Candidate or source drift invalidates a previously successful check record.
-Full source correctness, coverage and human acceptance remain separate facts.
+Checks run against a **frozen, read-only candidate** under native protection,
+without network access or writes to product files. No dependency installation
+takes place; checks requiring in-tree writes need a different observation path.
+A bounded report records exact argv, native execution receipts, usage when
+available, a candidate identity, and distinct `CHECKS PASSED`,
+`CHECKS FAILED`, `CHECKS UNAVAILABLE`, `EXECUTION UNAVAILABLE` and
+`STALE CHECKS` observations. `status` detects candidate/source/check drift
+after an apparent success. Partial or unavailable implementation handoffs do
+not become successful check claims.
 
-## Retained experiments
+**User journey (current):** A user requests a new CLI option without breaking
+existing behavior. The caller supplies the full source and selected CLI plus
+regression checks; Proofline codes once and runs those commands on its frozen
+candidate. The handoff says exactly which commands passed, notes any untested
+requirements, and confirms **no PR or merge occurred**.
 
-| Slice | Evidence status |
-| --- | --- |
-| S0 | Native host/isolation observations retained; see [host evidence](docs/S0-CODEX-RUNNER.md) |
-| S1–S2 | Small direct and adopted-contract demonstrations retained; see [direct delivery](docs/S1-DIRECT-DELIVERY.md) and [contract evidence](docs/S2-LIVE-EVIDENCE.md) |
-| S3 | Small four-way comparison retained with its original limits; see [results](docs/S3-COMPARISON.md) |
-| S4–S5 | Recovery and authorized disposable-repository publication observations retained; see [recovery](docs/S4-RECOVERY.md) and [publication](docs/S5-PUBLICATION.md) |
-| S6 | **Decision closed under revised scope.** Full comparisons incomplete: original 69/120 and follow-up 4/144; see [decision and limits](docs/S6-DECISION.md) |
+## Planned vNext: help existing agents, don't supervise them
 
-Earlier finite demonstrations did not establish reliable full-source model
-certification. Historical reports and raw receipts are preserved. Original S6
-scores stay unchanged, with expanded readback disclosed separately. Cached tokens
-remain part of input, unknown measurements remain unknown, and stopped campaigns
-are never described as completed comparisons.
+[Issue #11](https://github.com/grove/proofline/issues/11) proposes model-free
+**check-only** use: an existing coding agent writes the code, gives Proofline
+its candidate and the original promise, and gets concise check evidence without
+a second model dispatch. **The `check` command does not exist yet.** The
+existing agent owns planning, implementation, self-tests and repairs; Proofline
+owns frozen identities, bounded checks, receipts and truthful feedback.
 
-The old delivery, contract, recovery and publication code is retained for research
-and historical readback. `deliver` and `resume` require `--experimental`; their
-model verdicts do not certify full source coverage. Any historical remote effect
-still requires its exact separate grant. The current `run` command supports only
-local coding and checks, with no push, PR, merge or deployment.
+**Proposed journey (not implemented):** The existing agent implements username
+validation, calls the future check-only mode, and reports "These validation
+commands passed; Unicode compatibility is not demonstrated by the selected
+checks." A failed check goes back to the same agent to correct. No second AI
+reviewer or automatic publisher intervenes.
 
-See [historical S6 results](docs/S6-RESULTS.md), [first follow-up](docs/S6-FOLLOWUP.md),
-[verification redesign](docs/S6-VERIFICATION-REDESIGN.md),
-[text-domain findings](docs/S6-TEXT-QUALIFICATION.md) and
-[scope-stopped scalar qualification](docs/S6-SCALAR-QUALIFICATION.md).
-Raw transcripts and private evaluator artifacts remain ignored and unavailable
-to workers.
+Direct tasks should not require P2P or Intentline. Already-authorized contracts
+may be reused in later optional evidence mapping without replanning or silently
+narrowing the source. Local checking never authorizes push, PR, merge or
+deployment. New mandatory workflow stages must earn their latency and blocking
+risk through improved *independently correct deliveries*.
+
+See [DESIGN.md](DESIGN.md) for the small product contract and
+[IMPLEMENTATION.md](IMPLEMENTATION.md) for the issue-aligned sequence.
+
+## Research retained without active runtime weight
+
+On 13 October 2026, S6 closed with an [abandon/simplify decision](docs/S6-DECISION.md)
+after repeated false acceptances. The original full pilot remained incomplete;
+**no superiority to an ordinary agent, or Luna/Sol advantage, was established**.
+A later [six-task bounded comparison](docs/BOUNDED-COMPARISON.md) found no extra
+correctness benefit from mandatory review in that small sample.
+
+Historical S0–S6 experiments, documents, fixtures, experimental `deliver`
+and `resume` implementation, and dependent tests were removed from the
+**active** code path. Their complete original versions remain in Git history,
+indexed in [the research archive](docs/RESEARCH-ARCHIVE.md). Raw local ignored
+`.proofline/` records, where present, were never tracked in Git. The supported
+runtime has **no** remote-mutation or full-promise acceptance command.
