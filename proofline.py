@@ -83,14 +83,19 @@ def main(argv=None):
         command.add_argument("--seconds", type=positive_seconds, default=900)
         command.add_argument("--check-seconds", type=positive_seconds, default=120)
     run.add_argument("--stage-seconds", type=positive_seconds, default=600)
-    check.add_argument("--promises", type=Path,
-                       help="Optional JSON source-quoted R requirements, check links and advisory gap review")
+    advisory = check.add_mutually_exclusive_group()
+    advisory.add_argument("--promises", type=Path,
+                          help="Optional direct source-quoted R requirements and check links")
+    advisory.add_argument("--intentline-export", type=Path,
+                          help="Optional completed original-request Intentline --format json export")
+    check.add_argument("--intentline-links", type=Path,
+                       help="Optional JSON exact R-to-selected-argv links, only with --intentline-export")
     status = sub.add_parser("status", help="Read back exact frozen check receipts")
     status.add_argument("record", type=Path)
     status.add_argument("--show-source", action="store_true",
                         help="Display the complete verified original request (check-only records)")
     args = parser.parse_args(argv)
-    from checks import local_run, feedback, promise_evidence
+    from checks import local_run, feedback, promise_evidence, intentline_advisory
     try:
         if args.command in ("run", "check"):
             default = (Path(tempfile.gettempdir()) / "proofline-check" if args.command == "check"
@@ -106,8 +111,16 @@ def main(argv=None):
             if args.failure_details is not None:
                 details = json.loads(args.failure_details.read_text(encoding="utf-8"))
                 optional["failure_details"] = feedback.validate_failure_details(details,checks)
-            if args.command == "check" and args.promises is not None:
-                optional["promise_mapping"] = promise_evidence.read_mapping(args.promises)
+            if args.command == "check":
+                if args.intentline_links is not None and args.intentline_export is None:
+                    raise ValueError("--intentline-links requires --intentline-export")
+                if args.promises is not None:
+                    optional["promise_mapping"] = promise_evidence.read_mapping(args.promises)
+                elif args.intentline_export is not None:
+                    links = intentline_advisory.read_links(args.intentline_links)
+                    optional["intentline_package"] = intentline_advisory.load_export(
+                        args.intentline_export,source,checks,links,
+                        optional.get("failure_details",[]))
             record = getattr(local_run, args.command)(args.repo.resolve(), source,
                 checks, output, *budgets, **optional)
             print(record["status"])
