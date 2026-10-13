@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Proofline delivery with independent local acceptance and explicitly scoped publication."""
+"""Bounded coding and explicit checks; historical acceptance experiments remain inspectable."""
 from __future__ import annotations
 
 import argparse
@@ -158,6 +158,7 @@ Then enumerate candidate assumptions that restrict source inputs, and justify ea
     return f"""You are Proofline's {role}{' in a fresh independent context' if role != 'implementer' else ''}. {duty}
 {coverage}
 Original binding source: {inputs / 'source.md'}
+{('Source-derived evidence and original interface facts: ' + str(inputs / 'source-evidence.json') + '. These are fallible interpretations, not permission to amend or narrow the source. Read them and independently resolve any conflict against the original promise.') if (inputs / 'source-evidence.json').exists() else ''}
 {('Full native contract, chronological original/amendment streams and historical continuity: ' + str(inputs / 'intentline') + '. Read every relevant archived promise; the indexed display is not a verbatim single request. Adoption reference payload remains host-protected.') if (inputs / 'intentline').exists() else ''}
 Accepted input (direct brief or unchanged adopted contract; never permission to omit original promises): {inputs / 'accepted-input.md'}
 {('Binding approval, parent/contribution snapshots and scope: ' + str(inputs / 'contract-context.json')) if (inputs / 'contract-context.json').exists() else ''}
@@ -201,7 +202,7 @@ def episode_lock(output):
 
 def binding_inputs(inputs):
     return {name: host.sha256((inputs / name).read_bytes()) for name in
-            ("source.md", "accepted-input.md", "contract-context.json", "execution-map.md") if (inputs / name).exists()}
+            ("source.md", "accepted-input.md", "contract-context.json", "execution-map.md", "source-evidence.json") if (inputs / name).exists()}
 
 
 def classify_failure(result):
@@ -241,11 +242,22 @@ def validate_stage(stage, ids):
 def confirm_challenges(record, *, attached=True):
     if not record.get("verification_remedy"):
         return
+    inputs = Path(record["candidate_path"]).parent
+    if record['verification_remedy'] == 'source-evidence-v1':
+        raw = (inputs / 'source-evidence.json').read_bytes()
+        contract = json.loads(raw)
+        challenges.validate_contract(contract, (inputs / 'source.md').read_text(), record['criterion_ids'],
+                                     host.git(inputs / 'product', 'rev-parse', record['base_commit'] + '^{tree}'))
+        if host.sha256(raw) != record['binding_inputs']['source-evidence.json']:
+            raise InputGap('Source evidence changed; original obligations require fresh adjudication')
+        if (inputs / 'challenges.json').read_bytes() != raw:
+            raise ValueError('Frozen source evidence changed')
+        challenges.validate_execution({'verdict': 'NOT VERIFIED'}, {}, inputs)
+        return
     if record["verification_remedy"] != "source-challenges-v1":
         raise ValueError("Unknown verification remedy")
     stage = record["stages"][record["challenge_index"]]
     validate_stage(stage, record["criterion_ids"])
-    inputs = Path(record["candidate_path"]).parent
     if (stage["role"] != "challenger" or stage["report"]["verdict"] != "PLANNED"
             or any(stage["identities"][key] != host.sha256((inputs / name).read_bytes())
                    for key, name in (("source_sha256", "source.md"), ("input_sha256", "accepted-input.md")))
@@ -281,7 +293,8 @@ def accept_stage(record, result, inputs, save):
         freeze(inputs / "product")
         if record.get("verification_remedy"):
             confirm_challenges(record, attached=False)
-            challenges.attach(inputs, record["stages"][record["challenge_index"]]["report"])
+            if record['verification_remedy'] == 'source-challenges-v1':
+                challenges.attach(inputs, record["stages"][record["challenge_index"]]["report"])
         record["identities"] = identities(inputs, record["base_commit"])
         record["snapshot"] = host.snapshot(inputs)["sha256"]
         if result.get("thread_id"):
@@ -350,7 +363,7 @@ def run_episode(record, output, codex, save):
     began, consumed = time.monotonic(), elapsed(record)
     while record.get("next_role"):
         role = record["next_role"]
-        if record.get("challenge_index") is not None:
+        if record.get("challenge_index") is not None or record.get('verification_remedy') == 'source-evidence-v1':
             confirm_challenges(record, attached=role != "implementer")
         if record.get("accepted_contract", {}).get("format") == "intentline-native":
             confirm_contract(record)
@@ -404,7 +417,7 @@ def run_episode(record, output, codex, save):
             host.write_diff(stage_inputs / "product", record["base_commit"], stage_inputs / "change.diff")
         record["active_stage"] = {"role": role, "directory": str(stage_dir), "binding": live.binding_for(identity),
             "protected": {name: host.sha256((inputs / name).read_bytes()) for name in
-                          ("source.md", "accepted-input.md", "response.schema.json", "change.diff") if (inputs / name).exists()},
+                          ("source.md", "accepted-input.md", "response.schema.json", "change.diff", "source-evidence.json", "challenges.json") if (inputs / name).exists()},
             "git_snapshot": host.snapshot(inputs / "product" / ".git")["sha256"]}
         record["model_dispatches"] += 1
         save()
@@ -594,7 +607,7 @@ def resume(path):
 def deliver(repo, source, brief, output, seconds=900, stage_seconds=240,
             reserve=120, execution_map="Inspect repository README and relevant entry points; command availability is initially unknown.",
             contract_request=None, intentline_request=None, dispatches=12, effect_grant=None,
-            source_challenges=False):
+            source_challenges=False, source_evidence=None):
     output.mkdir(parents=True, exist_ok=False)
     lock = (output / "episode.lock").open("a")
     fcntl.flock(lock, fcntl.LOCK_EX | fcntl.LOCK_NB)
@@ -616,6 +629,8 @@ def deliver(repo, source, brief, output, seconds=900, stage_seconds=240,
         write_record(path, record)
 
     try:
+        if source_challenges and source_evidence is not None:
+            raise InputGap('Choose supplied source evidence or the candidate-blind experiment')
         if intentline_request is not None and effect_grant is not None:
             raise InputGap("Experimental native Intentline delivery supports only the local target")
         if effect_grant is not None:
@@ -679,6 +694,15 @@ def deliver(repo, source, brief, output, seconds=900, stage_seconds=240,
             write_record(inputs / "permissions.json", {"network": False, "publication": False, "merge": False,
                                                         "candidate_scope": "standalone", "model_dispatch_limit": dispatches})
         source_commit, base = capture_base(repo, inputs / "product")
+        if source_evidence is not None:
+            try:
+                challenges.validate_contract(source_evidence, source, ids,
+                                             host.git(inputs / 'product', 'rev-parse', 'HEAD^{tree}'))
+            except ValueError as exc:
+                raise InputGap(str(exc)) from exc
+            (inputs / 'source-evidence.json').write_bytes(challenges.encoded(source_evidence))
+            challenges.attach(inputs, source_evidence)
+            record['verification_remedy'] = 'source-evidence-v1'
         record["base_commit"] = base
         record["criterion_ids"] = ids
         record["binding_inputs"] = binding_inputs(inputs)
@@ -871,7 +895,16 @@ def positive_dispatches(value):
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     sub = parser.add_subparsers(dest="command", required=True)
-    run = sub.add_parser("deliver", help="Implement a direct request into a separate local candidate")
+    simple=sub.add_parser('run',help='One bounded coding attempt followed by caller-selected executable checks')
+    simple.add_argument('--repo',required=True,type=Path)
+    simple.add_argument('--source',required=True,type=Path)
+    simple.add_argument('--checks',required=True,type=Path,help='JSON list of command argument lists')
+    simple.add_argument('--output',type=Path)
+    simple.add_argument('--seconds',type=positive_seconds,default=900)
+    simple.add_argument('--stage-seconds',type=positive_seconds,default=600)
+    simple.add_argument('--check-seconds',type=positive_seconds,default=120)
+    run = sub.add_parser("deliver", help="Historical acceptance experiment; requires --experimental")
+    run.add_argument('--experimental',action='store_true',help='Explicitly select the untrusted historical certification workflow')
     run.add_argument("--repo", required=True, type=Path)
     run.add_argument("--source", type=Path)
     run.add_argument("--brief", type=Path)
@@ -893,6 +926,8 @@ def main():
                      help="Cumulative host dispatch limit, including corrections (default: 12)")
     run.add_argument("--source-challenges", action="store_true",
                      help="Experimental candidate-blind executable source challenges (not trust-qualified)")
+    run.add_argument('--source-evidence', type=Path,
+                     help='Experimental source-bound interface/domain invariants (not trust-qualified)')
     run.add_argument("--target", choices=("local", "pr-created", "pr-merged"), default="local")
     run.add_argument("--github-repo", help="Explicitly authorized OWNER/REPO on github.com")
     run.add_argument("--base", help="Authorized target base branch; must remain at the frozen source commit")
@@ -902,6 +937,7 @@ def main():
     run.add_argument("--merge-method", choices=("merge", "squash", "rebase"), default="merge")
     restart = sub.add_parser("resume", help="Reconcile interrupted workers and remote effects without resetting the budget")
     restart.add_argument("record", type=Path)
+    restart.add_argument('--experimental',action='store_true')
     status = sub.add_parser("status", help="Revalidate local acceptance and read current remote outcome")
     status.add_argument("record", type=Path)
     contract = sub.add_parser("inspect-contract", help="Read supported contract/source identities without approving or executing")
@@ -910,6 +946,17 @@ def main():
     native_inspect.add_argument("bundle")
     args = parser.parse_args()
     try:
+        if args.command=='run':
+            from checks import local_run
+            output=(args.output or host.ROOT/'.proofline/run'/uuid.uuid4().hex).resolve()
+            record=local_run.run(args.repo.resolve(),args.source.read_text(),json.loads(args.checks.read_text()),
+                                 output,args.seconds,args.stage_seconds,args.check_seconds)
+            print(record['status']);print(record['assurance'])
+            if record.get('candidate_path'):print('Candidate: '+record['candidate_path'])
+            print('Record: '+str(output/'report.json'))
+            return 0 if record['status']=='CHECKS PASSED' else 2
+        if args.command in {'deliver','resume'} and not args.experimental:
+            raise ValueError('Automated full-promise certification was retired after S6. Use run with explicit checks; historical research requires --experimental.')
         if args.command == "inspect-intentline":
             metadata, _, _ = intentline_input.inspect_intentline(args.bundle)
             print(json.dumps({**metadata, "authorization": "not_established", "consumer_execution": "not_observed"}, indent=2))
@@ -921,6 +968,12 @@ def main():
             print("NOT APPROVED by inspection. Delivery requires exact user adoption.")
             return 0
         if args.command in {"status", "resume"}:
+            if args.command=='status' and json.loads(args.record.read_text()).get('kind')=='bounded_local_run':
+                from checks import local_run
+                record=local_run.inspect(args.record.resolve())
+                print(record['status']);print(record['assurance'])
+                print('Record: '+str(args.record))
+                return 0 if record['status']=='CHECKS PASSED' else 2
             record = (resume if args.command == "resume" else inspect_record)(args.record.resolve())
             record_path = args.record
         else:
@@ -957,8 +1010,10 @@ def main():
             record = deliver(args.repo.resolve(), source, brief, output,
                              args.seconds, args.stage_seconds, args.verification_reserve, args.execution_map, adoption,
                              intentline_request=native_adoption, dispatches=args.dispatches, effect_grant=effect,
-                             source_challenges=args.source_challenges)
+                             source_challenges=args.source_challenges,
+                             source_evidence=json.loads(args.source_evidence.read_text()) if args.source_evidence else None)
             record_path = output / "report.json"
+        print('Historical experiment record; its verdict does not certify full source coverage.')
         print(record["status"] + (". Not published or merged." if not record.get("delivery") else
             ". Remote target: " + record["delivery"]["grant"]["target"] + "; " + record["delivery"]["status"] + "."))
         if record.get("accepted_contract", {}).get("scope") == "child":

@@ -1,3 +1,32 @@
+# Current decision — 13 October 2026
+
+The owner explicitly closed S6 with an abandon/simplify decision and waived the
+remaining full-comparison requirement for decision closure. The original
+comparisons remain incomplete. This section supersedes the historical proposal
+and roadmap below; the original task promises and evidence are preserved.
+See [the decision record](docs/S6-DECISION.md).
+
+The current product is one bounded coding attempt plus caller-selected executable
+checks on an isolated, frozen candidate. It preserves the source repository,
+records native receipts and model usage, distinguishes failed from unavailable
+checks, and invalidates success on candidate/source/command drift. It reports
+CHECKS PASSED only about the named commands, without automated full-promise
+certification. Full-source acceptance remains the caller's judgment.
+
+`proofline.py run --repo ... --source ... --checks ...` is the supported local
+workflow. There is no automatic review/proof, repair loop, publication or merge.
+The episode and per-stage/check budgets remain bounded. Historical delivery and
+resume require `--experimental`; their original effect/adoption restrictions
+remain, but their verdicts are not reliable full-source certification.
+
+Further universal verifier machinery and efficacy campaigns are stopped. Any
+future comparison or acceptance hypothesis requires a new explicit study scope;
+closing this decision establishes no efficiency or model-superiority result.
+
+---
+
+## Historical proposal and evidence roadmap (retained)
+
 # Proofline — Implementation plan
 
 **Status:** Execution roadmap v1 · 12 October 2026 (S0–S2 demonstrated; qualified P2P delivery and fixed 240-second S3 comparison complete; S4 local recovery and S5 authorized remote gates demonstrated)
@@ -51,6 +80,91 @@ regressions passed (164 tests, two platform skips); seven focused mechanics test
 passed. These checks do not establish judgment quality. The remedy remains
 disabled by default; no new campaign was declared or dispatched, and S6 remains
 incomplete with the trust gate closed.
+
+The subsequent [interface repair](docs/S6-SOURCE-EVIDENCE.md) preserved original
+adapter facts and added native evidence preflight, bounded judgment batches and
+read-only Git metadata protection. Its nine native evaluator controls passed,
+and all frozen runtime/fixture hashes matched, but six author calls produced zero
+usable designs: four observed NOT VERIFIED and two unavailable timeouts. All 36
+product judgments and six conditional production recovery episodes were
+unexecuted. The decision is to stop pursuing this candidate-blind production
+design. No new comparison was declared or dispatched; S6 remains incomplete.
+
+The [explicit source-contract calibration](docs/S6-SOURCE-CONTRACTS.md) binds
+caller-supplied interface/domain invariants to the original source and baseline,
+protects their bytes and requires strict native proof receipts without another
+model author. Unresolved obligations stop before implementation. Native controls
+accepted both pagination and username alternatives and caught preserved defects,
+but exposed a valid leap-second rejection in the formerly positive UTC reference.
+All 36 conditional judgments and six production recovery episodes were unexecuted;
+the optional path remains unqualified. Complete ISO interpretation and genuinely
+correct alternative controls are required before new native qualification and
+the still-required matched comparisons. S6 remains incomplete.
+
+Further [ISO source readback](docs/S6-ISO-READBACK.md) established that the supplied
+2019 PDF is a preview ending before the detailed grammar. The published 2022
+amendment supports additional fractional-unit obligations; both retained UTC
+candidates failed all nine added native CLI/library cases. The audit preserves
+the old controls and reports; no replacement positive controls, model judgments
+or comparison population were introduced. The earlier claim that obtaining the
+full standard was a prerequisite was too strict. Public primary sources can
+establish the needed rules; contradictory or unsupported interpretations remain
+explicit gaps. The blocker is independently validating corrected UTC controls,
+then passing native model qualification and production recovery before comparisons.
+
+The [replacement UTC qualification](docs/S6-UTC-QUALIFICATION.md) ran four fresh
+Sol judgments: reviewer/prover rejection of the preserved pagination defect and
+acceptance of the corrected pagination control. A separate native readback
+disproved both proposed UTC positive controls on Unicode minus offsets. Further
+dispatch stopped; all four active workers finished with bindings and isolation
+canaries intact. Forty judgments, including every Luna judgment, and all six
+recovery episodes were unexecuted. The subsequent character repair passes finite
+native controls; its expanded-basic year-width assumption remains unresolved
+and blocks source readiness. No new comparison was declared or executed, and
+the optional remedy remains unqualified and disabled by default.
+
+The [clarified-source qualification](docs/S6-AMBIGUITY-QUALIFICATION.md) retained the user's
+actual clarification: reject ambiguous strings without an agreement and accept
+unambiguous ISO forms. Both UTC controls now enumerate interpretations without
+inventing a fixed year width. Twenty Sol judgments completed; subsequent
+independent readback disproved both UTC positives. The prover correctly rejected
+a complete-timestamp defect and the reviewer blocked a material brief omission.
+Initial finite adjudication reported no false acceptance or confirmed false
+rejection; separate ordering readback subsequently identifies four pagination
+false acceptances. The original report is retained. Twenty-four judgments and
+six recovery controls remain unexecuted.
+
+The [current qualification](docs/S6-FULL-TIMESTAMP-QUALIFICATION.md) repairs complete
+timestamp ambiguity, the leap-unit interaction, brief indexing and error-channel
+coverage. Both defective controls are retained as negatives. All thirteen native
+finite preflight controls matched. The [ordering trust stop](docs/S6-ORDERING-QUALIFICATION.md)
+then confirmed three false acceptances among twelve Sol judgments; forty
+judgments and all six recovery controls remain unexecuted. The disproved controls
+and six earlier pagination false-acceptance judgments are separately disclosed.
+Reference/predicate repairs pass native counterexamples but do not qualify the
+production remedy. S6 remains incomplete; no comparison or favorable retry ran.
+The intermediate declaration remains retained with zero dispatches.
+
+The [representation qualification](docs/S6-REPRESENTATION-QUALIFICATION.md) tested
+a general compiler for source-declared ordering representation invariance through
+the production source-evidence transport. Its finite preflight missed optional
+string-method narrowing: sixteen Sol judgments produced twelve correct rejections
+and four false acceptances. Forty-four judgments and all six recovery controls
+remain unexecuted; Luna and comparison dispatches are zero. All bindings and
+isolation readbacks passed, demonstrating that integrity does not establish source
+coverage. The [text-domain follow-up](docs/S6-TEXT-QUALIFICATION.md) preserves
+independent counterexamples, earlier misclassifications and subsequent reference,
+predicate and library-grader repairs. These deterministic repairs do not qualify
+the model remedy. S6 remains incomplete; no favorable retry or comparison ran.
+Final native validation ran 189 tests: 187 passed and two Linux-specific skips;
+all 47 default evaluator controls and eight independent text adjudications matched.
+A [separate scalar qualification](docs/S6-SCALAR-QUALIFICATION.md) was declared after
+native integer-subclass adjudication disproved two unexecuted pagination positives.
+The repaired controls and compiler pass twelve native source and library controls;
+189 of 191 regression tests pass with two platform skips. Its 84 fresh judgments
+and six conditional recovery controls remained required before comparison; the
+owner subsequently stopped that qualification during preflight and closed the
+decision phase under revised scope. The original comparison remains incomplete.
 
 This plan orders engineering work; it is **not** an alternative acceptance agreement and cannot revise the user's promise. The original source and any separately approved acceptance contract remain binding. Where this roadmap and DESIGN.md differ, **DESIGN.md wins** until the product owner authorizes a design change.
 

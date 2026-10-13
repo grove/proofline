@@ -110,7 +110,7 @@ def succeeded(receipt: dict) -> bool:
 
 def git(product: Path, *args: str) -> str:
     env = {key: value for key, value in os.environ.items() if not key.startswith("GIT_")}
-    env.update(GIT_CONFIG_NOSYSTEM="1", GIT_CONFIG_GLOBAL=os.devnull,
+    env.update(GIT_CONFIG_NOSYSTEM="1", GIT_CONFIG_GLOBAL=os.devnull, GIT_OPTIONAL_LOCKS="0",
                GIT_AUTHOR_NAME="Proofline fixture", GIT_COMMITTER_NAME="Proofline fixture",
                GIT_AUTHOR_EMAIL="fixture@proofline.invalid",
                GIT_COMMITTER_EMAIL="fixture@proofline.invalid",

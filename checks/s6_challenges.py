@@ -12,7 +12,7 @@ from checks import s6_compare as s6
 p = s6.p
 
 
-def qualify(output, model=s6.MODELS['sol'], seconds=1800, stage_seconds=360, task_id='unicode-usernames'):
+def qualify(output, model=s6.MODELS['sol'], seconds=1800, stage_seconds=360, task_id='unicode-usernames', *, source_challenges=False, execution_map=s6.MAP, source_evidence=False):
     item = next(item for item in s6.corpus.TASKS if item['id'] == task_id)
     if item['alternative'] is None:
         raise ValueError('Recovery calibration requires a valid alternative')
@@ -22,7 +22,8 @@ def qualify(output, model=s6.MODELS['sol'], seconds=1800, stage_seconds=360, tas
     p.write_record(output/'manifest.json', {'cases':['third-implementation','weak-evidence','valid-alternative'],
         'model':model,'seconds':seconds,'stage_seconds':stage_seconds,'task':task_id,
         'corpus_sha256':p.host.sha256(Path(s6.corpus.__file__).read_bytes()),
-        'runner_sha256':p.host.sha256(Path(__file__).read_bytes()),'excluded_from_pilot':True})
+        'runner_sha256':p.host.sha256(Path(__file__).read_bytes()),'excluded_from_pilot':True,
+        'source_challenges':source_challenges,'source_evidence':source_evidence,'execution_map':execution_map,'dispatches':12})
     started=time.monotonic()
     native=p.live.run_stage
     for case in ('third-implementation','weak-evidence','valid-alternative'):
@@ -56,8 +57,12 @@ def qualify(output, model=s6.MODELS['sol'], seconds=1800, stage_seconds=360, tas
                         (product/'app.py').write_text(s6.corpus.APP.replace('pilot-tool 1.0','pilot-tool BROKEN'))
                     injections.append(f'Implementation {implementations} replaced before freeze: R1 failure'+(' and R2 regression' if implementations==1 else ''))
             return result
+        evidence=None
+        if source_evidence:
+            from checks.s6_source_contracts import contract
+            evidence=contract(task_id,s6.corpus.source(item),p.host.git(directory/'source','rev-parse','HEAD^{tree}'))
         with patch.object(p.live,'preferences',return_value={'model':model,'model_reasoning_effort':'high'}), patch.object(p.live,'run_stage',side_effect=worker):
-            result=p.deliver(directory/'source',s6.corpus.source(item),s6.corpus.brief(item),directory/'run',seconds,stage_seconds,120,execution_map=s6.MAP,dispatches=12)
+            result=p.deliver(directory/'source',s6.corpus.source(item),s6.corpus.brief(item),directory/'run',seconds,stage_seconds,120,execution_map=execution_map,dispatches=12,source_challenges=source_challenges,source_evidence=evidence)
         candidate=Path(result.get('candidate_path',directory/'source'))
         evaluation=s6.evaluate(candidate,item,codex=p.host.find_codex(None),directory=directory/'operator/final')
         entry={'case':case,'status':result['status'],'implementations':implementations,'proofs':proofs,
@@ -83,6 +88,10 @@ def qualify(output, model=s6.MODELS['sol'], seconds=1800, stage_seconds=360, tas
         record['cases'].append(entry)
         p.write_record(output/'report.json',record)
         print(case,entry['status'],'matched',entry['matched'],flush=True)
+        if result['status']=='LOCAL ACCEPTED' and not evaluation['correct']:
+            record.update(status='TRUST GATE FAILED',elapsed_seconds=time.monotonic()-started)
+            p.write_record(output/'report.json',record)
+            return record
     record.update(status='OBSERVED' if all(c['matched'] for c in record['cases']) else 'NOT VERIFIED',elapsed_seconds=time.monotonic()-started)
     p.write_record(output/'report.json',record)
     return record

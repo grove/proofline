@@ -23,17 +23,6 @@ def probe(tasks=s6.corpus.TASKS):
 def timestamp_probe(tasks=s6.corpus.TASKS):
     item = copy.deepcopy(next(t for t in tasks if t['id'] == 'utc-timestamps'))
     item['probes'] = [{'input': '2024-061T00:15:30+05:45', 'expected': '2024-02-29T18:30:30Z'}]
-    item['good'] += '''\nfrom datetime import timedelta
-import re
-calendar_process = process
-def process(data):
-    if isinstance(data, str) and re.match(r"^[0-9]{4}-[0-9]{3}T", data):
-        year, day = int(data[:4]), int(data[5:8])
-        date = datetime(year, 1, 1) + timedelta(days=day - 1)
-        if day < 1 or date.year != year: raise ValueError("invalid ordinal date")
-        data = date.strftime("%Y-%m-%d") + data[8:]
-    return calendar_process(data)
-'''
     return item
 
 

@@ -349,6 +349,9 @@ def run_stage(codex, directory, inputs, identities, role, preferences, timeout,
                      ("source.md", "accepted-input.md", "response.schema.json", "change.diff")}
         if (inputs / "contract-context.json").exists():
             protected["contract-context.json"] = host.sha256((inputs / "contract-context.json").read_bytes())
+        for path in [inputs / 'source-evidence.json', inputs / 'challenges.json', *(inputs / 'challenges').glob('*.py')]:
+            if path.exists():
+                protected[str(path.relative_to(inputs))] = host.sha256(path.read_bytes())
         git_before = host.snapshot(product / ".git")
         result["receipt"] = launch(command(codex, inputs, scratch, private, preferences, True, session_id, persist),
                                        make_prompt(role, inputs, identities) + budget, private, timeout)

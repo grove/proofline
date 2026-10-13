@@ -80,8 +80,9 @@ class PilotTests(unittest.TestCase):
 
     def test_library_paging_keeps_non_boolean_integer_subclasses(self):
         item=s6.corpus.TASKS[1]
-        defective=item['good'].replace('any(not isinstance(v, int) or isinstance(v, bool) or v < 0 for v in (offset, limit))',
+        defective=item['good'].replace('any(not isinstance(v, int) or isinstance(v, bool) for v in (offset, limit))',
                                      'type(offset) is not int or type(limit) is not int or min(offset, limit) < 0')
+        self.assertNotEqual(defective,item['good'])
         with tempfile.TemporaryDirectory() as temporary:
             root=Path(temporary)
             s6.seed(root/'product',{**item,'plain-int-only':defective},'plain-int-only')
@@ -89,6 +90,49 @@ class PilotTests(unittest.TestCase):
         self.assertTrue(score['observed'])
         self.assertTrue(all(o['status']=='SATISFIED' for o in score['observations']))
         self.assertFalse(score['library']['correct'])
+
+    def test_library_adjudication_rejects_unnecessary_score_equality(self):
+        item=s6.corpus.TASKS[1]
+        defective=item['good'].replace('if b["score"] < a["score"]:',
+                                      'if a["score"] != b["score"] and b["score"] < a["score"]:')
+        with tempfile.TemporaryDirectory() as temporary:
+            root=Path(temporary)
+            s6.seed(root/'product',{**item,'equality-only':defective},'equality-only')
+            score=s6.evaluate(root/'product',item,directory=root/'evaluation')
+        self.assertTrue(score['observed'])
+        self.assertTrue(all(o['status']=='SATISFIED' for o in score['observations']))
+        self.assertFalse(score['library']['correct'])
+        failures=[o for o in score['library']['observations'] if o['status']=='VIOLATED']
+        self.assertTrue(failures)
+        self.assertTrue(all(o['ordering_mode']!='json' for o in failures))
+
+    def test_library_text_adjudication_rejects_instance_method_narrowing(self):
+        item=s6.corpus.TASKS[0]
+        defective=item['good'].replace('str.strip(data, WHITE_SPACE)','data.strip(WHITE_SPACE)')
+        with tempfile.TemporaryDirectory() as temporary:
+            root=Path(temporary)
+            s6.seed(root/'product',{**item,'instance-strip':defective},'instance-strip')
+            score=s6.evaluate(root/'product',item,directory=root/'evaluation')
+        self.assertTrue(score['observed'])
+        self.assertTrue(all(o['status']=='SATISFIED' for o in score['observations']))
+        self.assertFalse(score['library']['correct'])
+        failures=[o for o in score['library']['observations'] if o['status']=='VIOLATED']
+        self.assertTrue(failures)
+        self.assertTrue(all(o['ordering_mode']=='text-strip' for o in failures))
+
+    def test_library_integer_adjudication_rejects_optional_conversion(self):
+        item=s6.corpus.TASKS[1]
+        defective=item['good'].replace('int.__int__(v)','int(v)')
+        with tempfile.TemporaryDirectory() as temporary:
+            root=Path(temporary)
+            s6.seed(root/'product',{**item,'instance-int':defective},'instance-int')
+            score=s6.evaluate(root/'product',item,directory=root/'evaluation')
+        self.assertTrue(score['observed'])
+        self.assertTrue(all(o['status']=='SATISFIED' for o in score['observations']))
+        self.assertFalse(score['library']['correct'])
+        failures=[o for o in score['library']['observations'] if o['status']=='VIOLATED']
+        self.assertTrue(failures)
+        self.assertTrue(all(o['ordering_mode']=='integer-operators' for o in failures))
 
     def test_failed_attempt_costs_are_divided_by_successes(self):
         result=self.summary([self.assignment(),self.assignment(outcome='FAILED',end_to_end_seconds=20)])
@@ -300,3 +344,17 @@ class OriginalPromiseAuditTests(unittest.TestCase):
             code='class ValidationError(ValueError):\n    pass\n\n'+item['good'].replace('raise ValueError(', 'raise ValidationError(')
             s6.seed(root/'candidate',dict(item,good=code),'good')
             self.assertTrue(audit.inspect(root/'candidate',item,root/'audit')['correct'])
+
+    def test_specific_error_obligation_preserves_other_named_error_channels(self):
+        from checks import s6_acceptance_audit as audit
+        item={**s6.corpus.TASKS[0],'requirement':'Reject ambiguity with the adopted error; keep other error channels.',
+            'probes':[{'input':'ambiguous','expected':{'error':True,'value_error':True}},
+                      {'input':'other','expected':{'error':True}}]}
+        for error,correct in (('TypeError',False),('ValidationError',True)):
+            with self.subTest(error=error),tempfile.TemporaryDirectory() as tmp:
+                root=Path(tmp)
+                code='class ValidationError(ValueError): pass\ndef process(data):\n    if data=="ambiguous": raise '+error+'("ambiguous")\n    raise KeyError("other")\n'
+                s6.seed(root/'candidate',{**item,'good':code},'good')
+                result=audit.inspect(root/'candidate',item,root/'audit')
+                self.assertTrue(result['observed'])
+                self.assertEqual(result['correct'],correct)

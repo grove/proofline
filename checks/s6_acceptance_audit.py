@@ -21,14 +21,41 @@ sys.path.insert(0,sys.argv[1])
 data=json.loads(sys.argv[2])
 for field in json.loads(sys.argv[3]):
     data[field]=IntEnum("Integer", {"operand":data[field]}).operand
-before=json.dumps(data,sort_keys=True,ensure_ascii=True)
+class Ordered:
+    def __init__(self,value): self.value=value
+    def __lt__(self,other): return self.value<other.value
+    def __eq__(self,other): raise TypeError("equality is unavailable")
+class NoIntegerOperators(int):
+    def __lt__(self,other):raise TypeError('instance integer comparison unavailable')
+    def __add__(self,other):raise TypeError('instance integer addition unavailable')
+    def __int__(self):raise TypeError('instance integer conversion unavailable')
+class NoStrip(str):
+    def strip(self,*args): raise TypeError("instance strip is unavailable")
+class NoIteration(str):
+    def __iter__(self): raise TypeError("instance iteration is unavailable")
+class NoCount(str):
+    def count(self,*args): raise TypeError("instance count is unavailable")
+mode=sys.argv[4] if len(sys.argv)>4 else "json"
+if mode=="integer-operators":
+    for field in ("offset","limit"):
+        if type(data.get(field)) is int:data[field]=NoIntegerOperators(data[field])
+elif mode in ("text-strip","text-iteration","text-count"):
+    data={"text-strip":NoStrip,"text-iteration":NoIteration,"text-count":NoCount}[mode](data)
+elif mode!="json":
+    for row in data["rows"]:
+        for field in ("score","id") if mode=="row-ordering" else ("score",):
+            if field in row: row[field]=Ordered(row[field])
+def encode(value):
+    if isinstance(value,Ordered): return value.value
+    raise TypeError("unexpected value")
+before=json.dumps(data,sort_keys=True,ensure_ascii=True,default=encode)
 try:
     value=importlib.import_module("product").process(data)
     result={"value":value,"error_type":None,"value_error":False,"handled_error":False}
 except Exception as error:
     result={"value":None,"error_type":type(error).__name__,"value_error":isinstance(error,ValueError),"handled_error":isinstance(error,(ValueError,KeyError,TypeError))}
-result["input_unchanged"]=json.dumps(data,sort_keys=True,ensure_ascii=True)==before
-print(json.dumps(result,ensure_ascii=True,sort_keys=True,allow_nan=False))
+result["input_unchanged"]=json.dumps(data,sort_keys=True,ensure_ascii=True,default=encode)==before
+print(json.dumps(result,ensure_ascii=True,sort_keys=True,allow_nan=False,default=encode))
 '''
 
 
@@ -50,25 +77,33 @@ def inspect(candidate,item,directory,codex=None):
         except (SyntaxError,UnicodeError) as error:
             foreign.append({'path':str(path),'invalid_python':str(error)})
     observations=[];receipts=[]
-    cases=[(probe, []) for probe in item['probes']]
+    cases=[(probe, [], 'json') for probe in item['probes']]
     fields=item.get('library_integer_fields', [])
     if fields:
-        cases += [(probe, fields) for probe in item['probes'] if isinstance(probe['input'], dict)
+        cases += [(probe, fields, 'json') for probe in item['probes'] if isinstance(probe['input'], dict)
                   and all(type(probe['input'].get(field)) is int for field in fields)]
-    for probe, integer_fields in cases:
+    if item['id']=='stable-pagination':
+        cases += [(probe, [], mode) for probe in item['probes'] for mode in ('score-ordering','row-ordering','integer-operators')
+                  if isinstance(probe['input'],dict) and isinstance(probe['input'].get('rows'),list)]
+    modes={'unicode-usernames':('text-strip','text-iteration'),
+           'utc-timestamps':('text-count',)}.get(item['id'],())
+    cases += [(probe, [], mode) for probe in item['probes'] for mode in modes
+              if isinstance(probe['input'],str)]
+    for probe, integer_fields, mode in cases:
         with tempfile.TemporaryDirectory(prefix='proofline-s6-library-') as temporary:
             scratch=Path(temporary).resolve()
             runner=oracle_runner(codex,inputs,directory/'private',receipts) if codex else subprocess.run
-            observation={'input':probe['input'],'integer_subclass_fields':integer_fields,'status':'NOT VERIFIED'}
+            observation={'input':probe['input'],'integer_subclass_fields':integer_fields,'ordering_mode':mode,'status':'NOT VERIFIED'}
             try:
-                result=runner([str(Path(sys.executable).resolve()),'-I','-B','-S','-c',LIBRARY_PROBE,str(inputs/'product'),json.dumps(probe['input'],ensure_ascii=True),json.dumps(integer_fields)],cwd=scratch,timeout=8,capture_output=True,text=True,check=False)
+                result=runner([str(Path(sys.executable).resolve()),'-I','-B','-S','-c',LIBRARY_PROBE,str(inputs/'product'),json.dumps(probe['input'],ensure_ascii=True),json.dumps(integer_fields),mode],cwd=scratch,timeout=8,capture_output=True,text=True,check=False)
                 observation.update(returncode=result.returncode,stdout=result.stdout,stderr=result.stderr)
                 if codex and 'sandbox-exec: sandbox_apply:' in result.stderr: raise OSError('Native sandbox unavailable')
                 try:
                     payload=json.loads(result.stdout)
                     expected=probe['expected']
                     error=isinstance(expected,dict) and expected.get('error') is True
-                    valid_error=payload['value_error'] is True if 'ValueError' in item['requirement'] else payload['handled_error'] is True
+                    requires_value_error='ValueError' in item['requirement'] or error and expected.get('value_error') is True
+                    valid_error=payload['value_error'] is True if requires_value_error else payload['handled_error'] is True
                     matched=(valid_error if error else payload['error_type'] is None and s6.same_json(payload['value'],expected))
                     matched=matched and payload['input_unchanged'] is True and result.returncode==0 and not result.stderr and not any(scratch.iterdir())
                 except (ValueError,KeyError,TypeError): matched=False

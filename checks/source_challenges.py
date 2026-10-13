@@ -25,6 +25,34 @@ def encoded(report):
     return json.dumps(report, sort_keys=True).encode()
 
 
+def validate_contract(contract, source, ids, base_tree):
+    """Check source/baseline provenance and readiness, never semantic correctness."""
+    if (not isinstance(contract, dict) or set(contract) != {
+            'format', 'source_sha256', 'base_tree', 'interface', 'criteria', 'unresolved'}
+            or contract['format'] != 'source-evidence-v1'
+            or contract['source_sha256'] != host.sha256(source.encode())
+            or contract['base_tree'] != base_tree
+            or not isinstance(contract['interface'], str) or not contract['interface'].strip()
+            or not isinstance(contract['criteria'], list)
+            or not isinstance(contract['unresolved'], list)
+            or any(not isinstance(x, str) or not x.strip() for x in contract['unresolved'])):
+        raise ValueError('Source evidence contract does not bind the original source and interface baseline')
+    rows = []
+    for row in contract['criteria']:
+        if (not isinstance(row, dict) or set(row) != {'id', 'source_quote', 'domains', 'invariants', 'probe'}
+                or not isinstance(row['invariants'], list) or not row['invariants']
+                or any(not isinstance(x, str) or not x.strip() for x in row['invariants'])
+                or not isinstance(row['source_quote'], str) or not row['source_quote']
+                or row['source_quote'] not in source):
+            raise ValueError('Source evidence contract has an ungrounded or incomplete invariant')
+        rows.append({key: value for key, value in row.items() if key != 'invariants'})
+    validate_report({'role': 'challenger', 'binding': 'contract', 'verdict': 'PLANNED',
+                     'summary': 'Caller-supplied source evidence, not a model judgment',
+                     'findings': [], 'criteria': rows}, 'challenger', 'contract', {}, ids)
+    if contract['unresolved']:
+        raise ValueError('Unresolved source evidence: ' + '; '.join(contract['unresolved']))
+
+
 def validate_report(report, role, binding, commands, ids):
     if (not isinstance(report, dict) or set(report) != set(SCHEMA["properties"])
             or role != "challenger" or report["role"] != role or report["binding"] != binding
@@ -59,7 +87,7 @@ Public interface and environment guidance (no expected answers):
 {execution_map}
 The product stub contains only this interface guidance, no implementation. Derive materially distinct valid domains, invalid inputs, preserved behavior and expected outcomes from the source. Do not assume restrictions from a familiar implementation, operator, parser or library. Where an operation is undefined, do not invent its result. State unresolved material standard/semantics coverage as NOT VERIFIED.
 For each criterion {json.dumps(ids)}, quote its original source and return domain reasoning plus one self-contained standard-library Python probe as source text. It will receive the protected product directory as sys.argv[1], run with -I -B in disposable scratch, and have no network. Use public interfaces in the map. Assert independently determined expected and actual results; raise on mismatch, exit zero only after checks succeed. Bound subprocesses. Keep file/build/cache output in scratch. Do not use candidate tests as expectations. Code inspection can accompany executable observations for constraints. Missing observations cannot establish acceptance. Compile-check your probe source in scratch where useful, but no candidate is available to run it. PLANNED means only that executable expectations were designed, never that product behavior passed. Return NOT VERIFIED with precise gaps if meaningful probes cannot be designed.
-Report role challenger, binding {live.binding_for(identity)}, verdict PLANNED or NOT VERIFIED. All criterion rows require id, source_quote, domains and probe. Do not return a product verdict.
+Report role challenger, binding {live.binding_for(identity)}, verdict PLANNED or NOT VERIFIED. All criterion rows require id, source_quote, domains and probe. Findings are unresolved material gaps only: PLANNED requires an empty findings array. Put nonblocking observations in summary or domains. Do not return a product verdict.
 {('First execute this exact standalone boundary canary: ' + canary) if canary else ''}
 """
 
@@ -127,6 +155,8 @@ def validate_execution(report, observed, inputs):
 def guidance(inputs):
     if not (inputs / "challenges.json").exists():
         return ""
-    return f"""\nCandidate-blind source challenges were authored and sealed before implementation; inspect {inputs / 'challenges.json'} for source/domain reasoning. They are fallible evidence, not an oracle or amendment. Execute every frozen criterion probe as an exact standalone command before positive proof and cite it in that criterion, alongside your own candidate-specific challenges:
+    origin = ('Caller-supplied source invariants bind the original source and interface baseline'
+              if (inputs / 'source-evidence.json').exists() else 'Candidate-blind source challenges were authored before implementation')
+    return f"""\n{origin}; inspect {inputs / 'challenges.json'} for source/domain reasoning. They are fallible evidence, not an oracle, approval or amendment. Independently challenge their domain and expectations against the complete original source. Execute every frozen criterion probe as an exact standalone command before positive proof and cite it in that criterion, alongside your own candidate-specific challenges:
 {json.dumps(commands(inputs), indent=2)}
 Never edit or replace these probes to obtain a pass. Independently adjudicate a failure against the original source: a reproduced product mismatch is FAIL, an unsupported expectation or broken observation is NOT VERIFIED with the precise gap. Positive proof is forbidden while any frozen challenge fails or is unavailable. Successful finite probes alone do not establish full source coverage.\n"""

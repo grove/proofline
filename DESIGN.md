@@ -1,3 +1,32 @@
+# Current decision — 13 October 2026
+
+The owner explicitly closed S6 with an abandon/simplify decision and waived the
+remaining full-comparison requirement for decision closure. The original
+comparisons remain incomplete. This section supersedes the historical proposal
+and roadmap below; the original task promises and evidence are preserved.
+See [the decision record](docs/S6-DECISION.md).
+
+The current product is one bounded coding attempt plus caller-selected executable
+checks on an isolated, frozen candidate. It preserves the source repository,
+records native receipts and model usage, distinguishes failed from unavailable
+checks, and invalidates success on candidate/source/command drift. It reports
+CHECKS PASSED only about the named commands, without automated full-promise
+certification. Full-source acceptance remains the caller's judgment.
+
+`proofline.py run --repo ... --source ... --checks ...` is the supported local
+workflow. There is no automatic review/proof, repair loop, publication or merge.
+The episode and per-stage/check budgets remain bounded. Historical delivery and
+resume require `--experimental`; their original effect/adoption restrictions
+remain, but their verdicts are not reliable full-source certification.
+
+Further universal verifier machinery and efficacy campaigns are stopped. Any
+future comparison or acceptance hypothesis requires a new explicit study scope;
+closing this decision establishes no efficiency or model-superiority result.
+
+---
+
+## Historical proposal and evidence roadmap (retained)
+
 # Proofline — Design proposal
 
 **Status:** Proposed design, version 0.5 · 11 October 2026  
@@ -262,6 +291,38 @@ the existing stage ledger. This is a qualification experiment, not a new default
 or an established coverage guarantee; comparisons remain gated on native rejection,
 positive acceptance, binding, isolation and bounded recovery.
 
+The subsequent optional `--source-evidence` experiment instead accepts explicit
+source/baseline-bound interface facts, domains and executable invariants from the
+caller, retaining the existing three model stages. Their interpretations remain
+fallible; unresolved obligations block dispatch and native positive proof must
+execute all immutable predicates. This is not a new acceptance authority or an
+automatic semantic compiler. Native calibration found a defective UTC positive
+reference and unresolved ISO obligations before model judgment. The path remains
+unqualified and disabled by default; see [source-contract findings](docs/S6-SOURCE-CONTRACTS.md).
+
+The [replacement qualification](docs/S6-UTC-QUALIFICATION.md) retains four valid
+Sol judgments on pagination, then stops after external readback disproves both
+proposed UTC positives. Repairing their Unicode character handling does not
+resolve an unprovided expanded-basic year-width agreement. That source artifact
+now records the gap and blocks dispatch. Finite controls and partial judgments
+do not qualify the remedy or complete the comparisons.
+
+The user subsequently resolved that context: ambiguous strings without an
+agreement raise ValueError; unambiguous ISO forms remain accepted. The
+[new qualification](docs/S6-AMBIGUITY-QUALIFICATION.md) preserves original source
+bytes and appends the adopted clarification. No fixed expanded-year width is
+invented, and historical outcomes retain their original context. Qualification
+stopped after twenty judgments when independent readback disproved both UTC
+positives. Its prover rejection and reviewer readiness block are correct.
+The [current qualification](docs/S6-FULL-TIMESTAMP-QUALIFICATION.md) repairs those
+controls, indexes the adopted context and preserves original error-channel scope.
+It retains the defective controls as negatives. Finite preflight and partial
+judgments do not authorize comparisons.
+The subsequent [ordering qualification](docs/S6-ORDERING-QUALIFICATION.md)
+failed with three false acceptances. Reference and predicate repairs do not
+establish general source coverage. The experimental remedy remains disabled by
+default; qualification, bounded recovery and comparisons remain incomplete.
+
 ## 7. Evaluation: Proofline has to earn its existence
 
 The comparison with P2P is a **product requirement**, not a retrospective marketing exercise. Reuse suitable independent test cases and accounting concepts from [P2P issue #52](https://github.com/grove/promise-to-proof/issues/52), [P2P's live judgment fixtures](https://github.com/grove/promise-to-proof/tree/main/checks/fixtures/live-judgments), and [P2P's delivery measurement work](https://github.com/grove/promise-to-proof/issues/59), **without copying its controller or protocol wholesale**.
@@ -384,3 +445,11 @@ The end state is deliberately simple:
 **Proofline should be easier to use than P2P, simpler to maintain than P2P, and at least as honest about what has—not—been proven.** Its central advantage should be *maximum useful autonomy: less management of the coding agent's process, continuously accessible promises, runnable observations, precise correction feedback, and better independent evidence*.
 
 If the experiments do not support those goals, change the hypothesis before adding more machinery.
+
+The representation qualification subsequently produced four false acceptances
+on two username implementations that assume optional instance string methods.
+Its ordering relation caught the preserved score defects but did not establish
+coverage of other source domains. General representation probes now include
+source-declared text capability removal; these remain finite, fallible evidence.
+The production remedy is unqualified and S6 is incomplete. See
+[the text-domain follow-up](docs/S6-TEXT-QUALIFICATION.md).

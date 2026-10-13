@@ -91,7 +91,7 @@ class NativeInput(unittest.TestCase):
         path.unlink();path.write_bytes(original)
         marker=native.parse((self.bundle/'native-manifest.json').read_bytes());marker['requirement_ids']=['R1'];(self.bundle/'native-manifest.json').write_bytes(native.canonical(marker))
         with self.assertRaises(ValueError):native.inspect_intentline(self.bundle)
-        result=subprocess.run([sys.executable,'-I','-B',str(Path(proofline.__file__)),'deliver','--repo',str(self.repo),'--intentline-bundle',str(self.bundle),'--source',str(self.repo/'entry.py'),'--brief',str(self.repo/'entry.py')],capture_output=True,text=True)
+        result=subprocess.run([sys.executable,'-I','-B',str(Path(proofline.__file__)),'deliver','--experimental','--repo',str(self.repo),'--intentline-bundle',str(self.bundle),'--source',str(self.repo/'entry.py'),'--brief',str(self.repo/'entry.py')],capture_output=True,text=True)
         self.assertEqual(result.returncode,2);self.assertIn('mutually exclusive',result.stderr)
 
     def test_admission_then_missing_host_and_current_document_gate(self):

@@ -15,7 +15,11 @@ def run(repo, source, guidance, output, review, codex, preferences, seconds, rev
     (inputs / 'guidance.md').write_text(guidance)
     _, base = p.capture_base(repo, inputs / 'product')
     boundary = output / 'preflight'; boundary.mkdir()
-    observed = p.host.probe_boundary(codex, boundary, inputs, 15, inputs / 'product/app.py')
+    target=next((path for path in (inputs/'product').rglob('*')
+                 if path.is_file() and '.git' not in path.relative_to(inputs/'product').parts),None)
+    if target is None:raise ValueError('A regular tracked product file is required')
+    observed = p.host.probe_boundary(codex, boundary, inputs, 15, target)
+    p.write_record(boundary/'report.json',observed)
     if observed['assessment']['status'] != 'OBSERVED':
         return {'accepted':False,'candidate':str(inputs/'product'),'stages':[],
                 'elapsed_seconds':time.monotonic()-started,'model_dispatches':0,'error':'Native baseline boundary unavailable'}
