@@ -9,6 +9,7 @@ import time
 
 from checks import codex_live as live, host_probe as host
 from checks import coding_attempt as coding
+from checks import feedback
 from checks.native_checks import oracle_runner, write_record
 from checks.candidate_snapshot import capture_worktree, git_bytes
 
@@ -37,8 +38,9 @@ def validate_checks(checks):
     return checks
 
 
-def run(repo,source,checks,output,seconds=900,stage_seconds=600,check_seconds=120):
+def run(repo,source,checks,output,seconds=900,stage_seconds=600,check_seconds=120, failure_details=None):
     validate_checks(checks)
+    failure_details=feedback.validate_failure_details(failure_details,checks)
     if (not source.strip() or any(type(value) not in (int,float) or not math.isfinite(value)
             or value<=0 for value in (seconds,stage_seconds,check_seconds)) or seconds<=check_seconds):
         raise ValueError('Source and positive finite budgets with time reserved for checks are required')
@@ -49,9 +51,11 @@ def run(repo,source,checks,output,seconds=900,stage_seconds=600,check_seconds=12
             'assurance':'Only the listed command exit statuses are observed; full source correctness is not certified.',
             'limits':{'seconds':seconds,'stage_seconds':stage_seconds,'check_seconds':check_seconds,'model_dispatches':1},
             'checks':checks,'observations':[],'model_dispatches':0,'stages':[],'published':False,'merged':False,
-            'python':str(Path(sys.executable).resolve())}
+            'python':str(Path(sys.executable).resolve()),'feedback_version':1,
+        'failure_details':failure_details,'source_sha256':host.sha256(source.encode('utf-8'))}
     def save():
         record['elapsed_seconds']=time.monotonic()-started
+        record['feedback']=feedback.summarize(record)
         write_record(output/'report.json',record)
     save()
     try:
@@ -73,8 +77,11 @@ def run(repo,source,checks,output,seconds=900,stage_seconds=600,check_seconds=12
             save();return record
         inputs=Path(record['candidate_path']).parent
         (inputs/'checks.json').write_text(json.dumps(checks))
+        if failure_details:
+            (inputs/'failure-details.json').write_text(json.dumps(failure_details,ensure_ascii=False))
         record['snapshot']=host.snapshot(inputs)['sha256']
         record['candidate_commit']=host.git(inputs/'product','rev-parse','HEAD')
+        record['candidate_tree']=host.git(inputs/'product','rev-parse','HEAD^{tree}')
         record['status']='RUNNING CHECKS';save()
         execute_checks(record,inputs,output,codex,started,save)
     except (OSError,ValueError,RuntimeError,subprocess.SubprocessError,KeyboardInterrupt) as error:
@@ -88,7 +95,9 @@ def execute_checks(record,inputs,output,codex,started,save):
         remaining=record['limits']['seconds']-(time.monotonic()-started)
         entry={'argv':argv,'status':'UNAVAILABLE','receipts':[],'elapsed_seconds':0.0};record['observations'].append(entry)
         if remaining<=0:
-            entry['error']='Cumulative budget exhausted';record['status']='CHECKS UNAVAILABLE';break
+            entry['error']='Cumulative budget exhausted';record['status']='CHECKS UNAVAILABLE'
+            feedback.attach_details(entry,record.get('failure_details',[]),index)
+            break
         scratch=output/('check-'+str(index));scratch.mkdir()
         check_started=time.monotonic()
         try:
@@ -104,6 +113,8 @@ def execute_checks(record,inputs,output,codex,started,save):
             entry['error']=str(error)
         finally:
             entry['elapsed_seconds']=max(0.0,time.monotonic()-check_started)
+            feedback.save_receipt(entry,output,index)
+            feedback.attach_details(entry,record.get('failure_details',[]),index)
         if host.snapshot(inputs)['sha256']!=record['snapshot']:raise ValueError('Frozen check inputs changed')
         save()
     if any(x['status']=='UNAVAILABLE' for x in record['observations']):record['status']='CHECKS UNAVAILABLE'
@@ -111,9 +122,10 @@ def execute_checks(record,inputs,output,codex,started,save):
     else:record['status']='CHECKS PASSED'
 
 
-def check(repo,source,checks,output,seconds=900,check_seconds=120):
+def check(repo,source,checks,output,seconds=900,check_seconds=120, failure_details=None):
     """Freeze an existing working candidate and observe commands without model dispatch."""
     validate_checks(checks)
+    failure_details=feedback.validate_failure_details(failure_details,checks)
     if (not source.strip() or any(type(value) not in (int,float) or not math.isfinite(value)
             or not 0<value<=3600 for value in (seconds,check_seconds))):
         raise ValueError('Source and positive finite budgets of at most 3600 seconds are required')
@@ -136,9 +148,12 @@ def check(repo,source,checks,output,seconds=900,check_seconds=120):
             'assurance':'Only the listed command exit statuses are observed; full source correctness is not certified.',
             'limits':{'seconds':seconds,'check_seconds':check_seconds,'model_dispatches':0},
             'checks':checks,'observations':[],'model_dispatches':0,'stages':[],
-            'published':False,'merged':False,'python':str(Path(sys.executable).resolve())}
+            'published':False,'merged':False,'python':str(Path(sys.executable).resolve()),
+        'feedback_version':1,'failure_details':failure_details,
+        'source_sha256':host.sha256(source.encode('utf-8'))}
     def save():
         record['elapsed_seconds']=time.monotonic()-started
+        record['feedback']=feedback.summarize(record)
         write_record(output/'report.json',record)
     save()
     try:
@@ -147,6 +162,8 @@ def check(repo,source,checks,output,seconds=900,check_seconds=120):
         inputs=output/'inputs';inputs.mkdir()
         (inputs/'source.md').write_bytes(source.encode('utf-8'))
         (inputs/'checks.json').write_text(json.dumps(checks))
+        if failure_details:
+            (inputs/'failure-details.json').write_text(json.dumps(failure_details,ensure_ascii=False))
         record['selection']=capture_worktree(repo,inputs/'product')
         record.update(candidate_path=str(inputs/'product'),
                       candidate_commit=record['selection']['candidate_commit'],
@@ -188,6 +205,25 @@ def inspect(path):
     if record.get('kind') not in ('bounded_local_run','bounded_local_check') or record.get('schema_version')!=1:
         raise ValueError('Unsupported bounded run record')
     validate_checks(record['checks'])
+    if record.get('feedback_version')==1:
+        # A moved or rewritten native receipt is stale, even when the original
+        # command reported failure or unavailability. Older reports are unchanged.
+        if (not feedback.receipts_intact(record,path.parent) or
+                record.get('feedback')!=feedback.summarize(record)):
+            record['status']='STALE CHECKS'
+            record['feedback']=feedback.summarize(record)
+            return record
+        if 'snapshot' in record:
+            try:
+                inputs=Path(record['candidate_path']).parent
+                if (host.snapshot(inputs)['sha256']!=record['snapshot'] or
+                        host.sha256((inputs/'source.md').read_bytes())!=record['source_sha256'] or
+                        json.loads((inputs/'checks.json').read_text())!=record['checks']):
+                    raise ValueError('Frozen evidence changed')
+            except (OSError,ValueError,KeyError,TypeError):
+                record['status']='STALE CHECKS'
+                record['feedback']=feedback.summarize(record)
+                return record
     if record['kind']=='bounded_local_check':
         try:
             evidence=(path.parent/'evidence.json').read_bytes()
@@ -198,6 +234,7 @@ def inspect(path):
                 raise ValueError('Frozen inputs changed')
         except (OSError,ValueError,KeyError,TypeError):
             record['status']='STALE CHECKS'
+            record['feedback']=feedback.summarize(record)
             return record
     if record['status']=='CHECKS PASSED':
         inputs=Path(record['candidate_path']).parent
@@ -211,4 +248,6 @@ def inspect(path):
                   or json.loads(entry['receipts'][0]['argv'][-1])!=check_argv(record['python'],inputs,argv)
                   for entry,argv in zip(record['observations'],record['checks']))):
             raise ValueError('Incomplete successful command observations')
+    if record.get('feedback_version')==1:
+        record['feedback']=feedback.summarize(record)
     return record
