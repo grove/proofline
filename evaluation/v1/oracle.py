@@ -1,0 +1,85 @@
+"""Fixed expected outputs derived from the six original task requests.
+
+Expected answers are literal, not computed by either reference implementation.
+Keep this entire file and control variants OUT of worker sandboxes. The corpus
+is publicly reviewable and therefore not a permanently secret holdout.
+"""
+VECTORS = {
+    "collision-slugs": [
+        ({"titles": ["Hello world", "A&B", "001"]}, {"slugs": ["hello-world", "a-b", "001"]}),
+        ({"titles": ["foo", "foo-2", "FOO"]}, {"slugs": ["foo", "foo-2", "foo-3"]}),
+        ({"titles": ["a", "a", "a"]}, {"slugs": ["a", "a-2", "a-3"]}),
+        ({"titles": []}, {"slugs": []}),
+        ({"titles": ["a_b", "a b"]}, {"slugs": ["a-b", "a-b-2"]}),
+        ({"titles": ["!!!"]}, "ValueError"),
+        ({"titles": [5]}, "ValueError"),
+    ],
+    "ordered-inventory": [
+        ({"starting": {"pen": 2}, "events": [
+            {"sku": "pen", "delta": -1}, {"sku": "new", "delta": 3},
+            {"sku": "pen", "delta": 1}]},
+         {"stock": {"new": 3, "pen": 2}}),
+        ({"starting": {"pen": 1}, "events": [
+            {"sku": "pen", "delta": -2}, {"sku": "pen", "delta": 3}]},
+         "ValueError"),
+        ({"starting": {"old": 0}, "events": []}, {"stock": {"old": 0}}),
+        ({"starting": {}, "events": [{"sku": "n", "delta": 0}]},
+         {"stock": {"n": 0}}),
+        ({"starting": {}, "events": [{"sku": "n", "delta": -1}]},
+         "ValueError"),
+        ({"starting": {"bad": True}, "events": []}, "ValueError"),
+        ({"starting": {}, "events": [{"sku": "", "delta": 1}]},
+         "ValueError"),
+    ],
+    "half-open-union": [
+        ({"intervals": [[0, 2], [2, 4]]},
+         {"segments": [[0, 4]], "covered": 4}),
+        ({"intervals": [[5, 5], [2, 4], [1, 3], [6, 8]]},
+         {"segments": [[1, 4], [6, 8]], "covered": 5}),
+        ({"intervals": []}, {"segments": [], "covered": 0}),
+        ({"intervals": [[0, 200]]},
+         {"segments": [[0, 200]], "covered": 200}),
+        ({"intervals": [[3, 2]]}, "ValueError"),
+        ({"intervals": [[True, 5]]}, "ValueError"),
+        ({"intervals": [[0, 201]]}, "ValueError"),
+    ],
+    "form-multimap": [
+        ({"query": "n=one&n=two&space=hello+world"},
+         {"fields": {"n": ["one", "two"], "space": ["hello world"]}}),
+        ({"query": "name&empty="},
+         {"fields": {"name": [""], "empty": [""]}}),
+        ({"query": "k=%E2%98%83&k=☃"},
+         {"fields": {"k": ["☃", "☃"]}}),
+        ({"query": "a=x=y&b"},
+         {"fields": {"a": ["x=y"], "b": [""]}}),
+        ({"query": "&&"}, {"fields": {}}),
+        ({"query": "=x"}, "ValueError"),
+        ({"query": "x=%ZZ"}, "ValueError"),
+        ({"query": "x=%FF"}, "ValueError"),
+    ],
+    "largest-remainder": [
+        ({"units": 2, "weights": [1, 1, 1]},
+         {"allocations": [1, 1, 0]}),
+        ({"units": 10, "weights": [1, 3, 6]},
+         {"allocations": [1, 3, 6]}),
+        ({"units": 5, "weights": [0, 1, 1]},
+         {"allocations": [0, 3, 2]}),
+        ({"units": 0, "weights": [1, 0]},
+         {"allocations": [0, 0]}),
+        ({"units": 1, "weights": [0, 0, 1]},
+         {"allocations": [0, 0, 1]}),
+        ({"units": 1, "weights": [0, 0]}, "ValueError"),
+        ({"units": True, "weights": [1]}, "ValueError"),
+    ],
+    "four-way-islands": [
+        ({"grid": ["#.", ".#"]}, {"count": 2, "sizes": [1, 1]}),
+        ({"grid": ["###", "#..", "..#"]},
+         {"count": 2, "sizes": [4, 1]}),
+        ({"grid": ["...", "..."]}, {"count": 0, "sizes": []}),
+        ({"grid": ["#"]}, {"count": 1, "sizes": [1]}),
+        ({"grid": ["##", "##"]}, {"count": 1, "sizes": [4]}),
+        ({"grid": ["#.", "#"]}, "ValueError"),
+        ({"grid": ["#x"]}, "ValueError"),
+        ({"grid": []}, "ValueError"),
+    ],
+}
