@@ -50,9 +50,11 @@ demonstrated," and chooses whether to add coverage or fix a defect.
   (timeout, missing tool, sandbox or environment failure).
 - **Stale checks:** candidate/source/command identity changed; previous
   evidence cannot be reused.
-- **Requirements with or without demonstrated evidence:** planned optional
-  mapping in [#13](https://github.com/grove/proofline/issues/13); not a
-  current `run` verdict and not an exhaustive promise inventory.
+- **Requirements with or without demonstrated evidence:** optional source-linked
+  mapping in [#13](https://github.com/grove/proofline/issues/13), and optional
+  Intentline JSON advisory import in [#23](https://github.com/grove/proofline/issues/23).
+  Neither is required or an exhaustive promise inventory; check-only evidence
+  cannot become a managed `run` acceptance verdict.
 
 Local coding/check permission does **not** authorize push, PR creation, merge,
 deployment or other external mutation. A separate exact user grant would be

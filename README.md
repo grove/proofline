@@ -60,9 +60,9 @@ The existing agent may first use
 to identify source-grounded `R` requirements and important checks, then use
 the ordinary Proofline `check` command above against the **original request**.
 That advice is not an independent test result, approval, or replacement for
-original source bytes. Automatic consumption of Intentline exports is
-**future work in [#23](https://github.com/grove/proofline/issues/23)**;
-the CLI does not require or import Intentline.
+original source bytes. If a **completed Intentline JSON export** already exists,
+Proofline can consume it optionally using `--intentline-export` (see below).
+The CLI never installs or imports Intentline.
 
 ## Actionable, receipt-grounded feedback
 
@@ -206,9 +206,89 @@ dispatch follows from it. If no such review is performed, Proofline records
 that fact rather than silently asserting coverage. Only `S1` (the exact
 original request) is supported by this direct mapping; the optional
 [Intentline adapter #23](https://github.com/grove/proofline/issues/23)
-may add separately validated producer/source identities later. Intentline is
-**not** a runtime dependency, and no original promise may be amended by this
-convenience mapping.
+now provides a separate, explicit read-only JSON import for one unamended
+request. Intentline remains **optional**, and no original promise may be
+amended by any convenience mapping.
+
+## Optional Intentline → Proofline handoff
+
+When an existing agent (or human) has already used
+[Intentline](https://github.com/grove/intentline) to prepare an acceptance
+agreement, **reuse its existing JSON export** instead of retyping source-linked
+requirements. This is entirely optional; the simple `check` command above
+does not change or gain any new prerequisite.
+
+Export once with Intentline's existing offline CLI (this runs no tests or
+models):
+
+```sh
+python3 -B -m intentline export \
+  --work /private/intentline/work \
+  --format json --out /private/intentline/json-export --json
+```
+
+Then an existing coding agent checks its implementation, supplying the *exact
+original request bytes* from the export and its own selected executable test
+commands:
+
+```sh
+/opt/homebrew/bin/python3.14 -B proofline.py check \
+  --repo /absolute/path/to/product \
+  --source /private/intentline/json-export/source-S1.txt \
+  --command '/opt/homebrew/bin/python3.14 -B -m unittest discover -s tests' \
+  --intentline-export /private/intentline/json-export
+```
+
+The adapter **does not infer which tests cover the agreement**. With no explicit
+links, **every imported R requirement is NOT DEMONSTRATED**, even if all
+selected commands happen to pass. For known checks, provide the optional
+`--intentline-links /private/links.json` input:
+
+```json
+{
+  "R1": [
+    {"index":0, "argv":["/opt/homebrew/bin/python3.14","-B",
+                       "-m","unittest","discover","-s","tests"]}
+  ]
+}
+```
+
+This is an explicit exact-argv link to the *first selected* check, not a
+claim the command fully proves R1. Other requirements remain unlinked.
+Both link files and export paths are read as **untrusted data**, never
+executed. `--intentline-export` and direct `--promises` are mutually
+exclusive; `--intentline-links` is valid only with the export.
+
+**Supported narrow format:** a *complete* `export --format json` with
+canonical `export-manifest.json`, `contract.json`,
+`source-manifest.json`, and `source-S1.txt`, for a **single original
+request, initial acceptance contract revision 1/schema 1**. The adapter
+validates every manifest-listed byte hash, contract ID/revision, original
+source snapshot SHA-256 and byte-for-byte equality with the supplied Proofline
+request, exact source quotes and selected argv links. It refuses partial,
+tampered, noncanonical, symlinked or unexpected files. Amended contracts,
+S2/project-context/multiple-source exports, native scripts, successor bundles,
+and unresolved decisions are **explicitly unsupported**; no silent flattening
+or historical `deliver` fallback occurs. Producer filesystem paths are
+provenance labels, never dereferenced by Proofline.
+
+The `promise_evidence` report includes Intentline's R IDs, source quotes,
+boundaries, interface/seam, caller-proposed oracles, `planned_evidence`,
+per-R evidence-gap reasons, constraints and out-of-scope exclusions, plus
+export/contract/source hashes. All are **proposed guidance**. `CHECKS PASSED`
+remains about selected commands only, and overall requirement completeness is
+always **UNKNOWN**. The export's `unapproved` or
+`operator_asserted_unverified` status is reported faithfully; neither
+status nor file hashes establish external user approval, permission to
+dispatch models, push/merge/deploy authorization, or independent correctness.
+
+Proofline freezes a protected copy of the validated export outside the
+candidate and check-writable scratch, so `status` can detect stale/tampered
+evidence without reopening the producer's work directory. No additional
+model invocation or approval stage is introduced. Offline regression tests
+do not replace live macOS/Codex sandbox qualification. Intentline's
+[documentation handoff #36](https://github.com/grove/intentline/issues/36)
+tracks replacing obsolete historical Proofline integration instructions.
 
 ## Currently supported
 
