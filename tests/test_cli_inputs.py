@@ -15,6 +15,8 @@ import unittest
 from unittest.mock import patch
 
 import proofline as cli
+
+ROOT = Path(__file__).resolve().parents[1]
 from checks import local_run
 
 
@@ -242,6 +244,71 @@ class DirectCliInputs(unittest.TestCase):
                       "--command", shlex.join(self.commands[0]),
                       "--promises", str(self.root / "promises.json")])
         self.assertEqual(error.exception.code, 2)
+
+    def test_intentline_json_export_cli_is_explicit_optional_and_peer_free(self):
+        from checks import intentline_advisory as ia
+        fixture = ROOT / "tests/fixtures/intentline/v1"
+        original = (fixture/"source-S1.txt").read_bytes().decode("utf-8")
+        command = self.commands[0]
+        links = self.root/"links.json"
+        links.write_text(json.dumps({"R1":[{"index":0,"argv":command}]}))
+        seen = []
+        def recorder(*args, **kwargs):
+            seen.append((args, kwargs))
+            return {"status":"CHECKS PASSED", "assurance":"Mock; no model dispatched."}
+        with patch.object(local_run, "check", side_effect=recorder), \
+             patch.object(local_run.live, "launch",
+                          side_effect=AssertionError("model dispatched")), \
+             redirect_stdout(io.StringIO()), redirect_stderr(io.StringIO()):
+            result = cli.main(["check", "--repo", str(self.repo),
+                               "--request", original, "--command", shlex.join(command),
+                               "--intentline-export", str(fixture),
+                               "--intentline-links", str(links)])
+        self.assertEqual(result, 0)
+        self.assertEqual(len(seen), 1)
+        self.assertNotIn("promise_mapping", seen[0][1])
+        pkg = seen[0][1]["intentline_package"]
+        self.assertEqual(pkg["mapping"]["requirements"][0]["checks"],
+                         [{"index":0,"argv":command}])
+        self.assertEqual(pkg["metadata"]["export_authority"], "unapproved")
+        self.assertEqual(pkg["metadata"]["coverage_completeness"], "UNKNOWN")
+        self.assertEqual(seen[0][0][1], original)
+        self.assertFalse(self.out.exists())
+
+    def test_invalid_intentline_export_refuses_before_runner_dispatch(self):
+        fixture = ROOT/"tests/fixtures/intentline/v1"
+        original = (fixture/"source-S1.txt").read_bytes().decode("utf-8")
+        seen = []
+        def recorder(*args, **kwargs):
+            seen.append(args)
+            return {"status":"CHECKS PASSED","assurance":"mock"}
+        cases = [
+            ["--request", self.request, "--intentline-export", str(fixture)],
+            ["--request", original, "--intentline-links", str(self.root/"missing")],
+            ["--request", original, "--intentline-export", str(self.root/"does-not-exist")],
+        ]
+        for case in cases:
+            with self.subTest(case=case), \
+                 patch.object(local_run, "check", side_effect=recorder), \
+                 redirect_stdout(io.StringIO()), redirect_stderr(io.StringIO()) as err:
+                code = cli.main(["check","--repo",str(self.repo),
+                                 "--command",shlex.join(self.commands[0]),*case])
+                self.assertEqual(code, 1)
+                self.assertNotEqual(err.getvalue(),"")
+                self.assertEqual(seen, [])
+
+    def test_intentline_export_is_exclusive_and_not_a_managed_run_controller(self):
+        fixture = ROOT/"tests/fixtures/intentline/v1"
+        for cmd, extras in (
+            ("check", ["--promises", str(self.root/"one"),
+                       "--intentline-export", str(fixture)]),
+            ("run", ["--intentline-export", str(fixture)]),
+        ):
+            with self.subTest(cmd=cmd), redirect_stderr(io.StringIO()), \
+                 self.assertRaises(SystemExit) as exc:
+                cli.main([cmd, "--repo", str(self.repo), "--request", self.request,
+                          "--command", shlex.join(self.commands[0]), *extras])
+            self.assertEqual(exc.exception.code, 2)
 
     def test_cli_reports_unavailable_host_without_pretending_success(self):
         with patch.object(local_run, "check",
