@@ -23,6 +23,17 @@ Further universal verifier machinery and efficacy campaigns are stopped. Any
 future comparison or acceptance hypothesis requires a new explicit study scope;
 closing this decision establishes no efficiency or model-superiority result.
 
+The owner subsequently authorized a separate, smaller observed-performance study.
+The [bounded comparison](docs/BOUNDED-COMPARISON.md) completed 18 assignments on six
+new raw-request tasks with Sol/high: ordinary and review each delivered six
+candidates passing the frozen private criteria; the simplified runner delivered
+five, with one retained model-capacity failure before coding. All arms shared
+the same native coding helper. Runner checks added about 0.35 seconds per checked
+candidate; six fresh reviews added 496.4 seconds. Neither added observed
+correctness. Continue the runner as an optional source of frozen command receipts;
+add no assurance stage. Production code needed no change. This study does not
+complete historical S6 comparisons; P2P and Luna/Sol remain deferred.
+
 ---
 
 ## Historical proposal and evidence roadmap (retained)

@@ -15,6 +15,14 @@ full comparisons remain incomplete; no efficiency or model-superiority claim is
 established. [DESIGN.md](DESIGN.md) defines the revised product and
 [IMPLEMENTATION.md](IMPLEMENTATION.md) records the implementation direction.
 
+A separate [bounded comparison](docs/BOUNDED-COMPARISON.md) completed all 18
+assignments on six new tasks. Ordinary agent and agent plus review each produced
+six observed correct deliveries; the simplified runner produced five, retaining
+one pre-coding model-capacity failure. Its checks took about 0.35 seconds per
+checked candidate and showed no added correctness benefit in this sample.
+Keep the runner optional for frozen command receipts; this establishes no
+superiority or full-promise certification.
+
 ## Run a request
 
 The supported host is macOS, Python 3.11+ and Codex CLI 0.162.1 with existing
