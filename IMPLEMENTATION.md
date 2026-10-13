@@ -14,7 +14,8 @@ by the current CLI.
   working-file snapshot, path validation and frozen candidate identity, without agent/review policy.
 - `checks/local_run.py`: bounded episode orchestration and exact status
   revalidation, retaining distinct check failure/unavailability/staleness.
-- `checks/coding_attempt.py`: one autonomous Codex implementation dispatch,
+- `checks/coding_attempt.py`: one autonomous Codex implementation dispatch per turn,
+  optionally persisting/resuming the same implementer for one correction,
   without an independent reviewer/prover or a second acceptance verdict.
 - `checks/native_checks.py`: trusted host command receipts and protected
   check execution.
@@ -66,9 +67,11 @@ JSON advisory adapter does not execute peers or grant authority.
    [#23](https://github.com/grove/proofline/issues/23) adds a separate
    **opt-in** reader of completed initial Intentline JSON exports and their
    unverified promises/gaps; no mandatory installation or adoption.
-6. [#15 — Correction](https://github.com/grove/proofline/issues/15):
-   an optional single same-agent repair after observed failures; one
-   cumulative budget and no extra model dispatch on success.
+6. [#15 — Correction](https://github.com/grove/proofline/issues/15), implemented:
+   opt-in `run --correct-once` resumes the bound implementer after an intact
+   Python assertion failure. Both candidates and their receipts remain bound;
+   all selected checks rerun under one cumulative budget. No extra dispatch
+   on success, no retry after interruption, no inference from advisory gaps.
 7. [#16 — Compare](https://github.com/grove/proofline/issues/16):
    report independently correct deliveries against the ordinary-agent
    baseline, latency, cost, false acceptances and needless blocking. Retain

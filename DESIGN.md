@@ -27,7 +27,7 @@ the way when evidence is sufficient for the caller's decision.
 | Path | Actual state | Boundaries |
 | --- | --- | --- |
 | Ordinary agent → check existing candidate → handoff | **Supported** `proofline.py check`; zero model dispatches; snapshots current tracked and non-ignored untracked work without source mutation. | Existing agent owns all coding and fixes. Proofline checks frozen candidate. |
-| Optional managed coding → explicit checks → handoff | **Supported** `proofline.py run`; one Codex coding dispatch and selected check commands. | Clean Git input, qualified macOS host, no correction/reviewer/prover/PR/merge. |
+| Optional managed coding → explicit checks → handoff | **Supported** `proofline.py run`; one Codex coding dispatch and selected check commands. `--correct-once` optionally resumes that implementer once after an intact assertion failure. | Clean Git input, qualified macOS host, one episode budget, no reviewer/prover/PR/merge. |
 
 **Current example:** User requests a CLI version option. Caller provides the
 complete request and relevant CLI/compatibility commands. The managed runner

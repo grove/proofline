@@ -32,6 +32,14 @@ class SupportedCliTests(unittest.TestCase):
         self.assertEqual(result.returncode, 0, result.stderr)
         self.assertIn("--check-seconds", result.stdout)
         self.assertNotIn("--stage-seconds", result.stdout)
+        self.assertNotIn("--correct-once", result.stdout)
+
+    def test_correction_is_explicit_and_only_available_in_run(self):
+        self.assertIn('--correct-once',self.invoke('run','--help').stdout)
+        result=self.invoke('check','--repo','/tmp/product','--request','request',
+                           '--command','/usr/bin/true','--correct-once')
+        self.assertNotEqual(result.returncode,0)
+        self.assertIn('unrecognized arguments: --correct-once',result.stderr)
 
     def test_old_research_record_is_not_read_as_success(self):
         with tempfile.TemporaryDirectory() as tmp:
