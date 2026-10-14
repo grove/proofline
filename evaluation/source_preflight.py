@@ -66,8 +66,12 @@ def qualify(declaration, *, source, oracle_text, inventory):
         if not isinstance(row.get("claim"), str) or not row["claim"].strip():
             problems.append(f"{identifier}: no precise expected behavior")
         clause = row.get("source_clause")
-        if not isinstance(clause, str) or not clause.strip() or source.count(clause.encode("utf-8")) != 1:
+        clause_exact = (isinstance(clause, str) and bool(clause.strip()) and
+                        source.count(clause.encode("utf-8")) == 1)
+        if not clause_exact and support != "adjudicated":
             problems.append(f"{identifier}: source clause missing or not unique")
+        elif clause is not None and not clause_exact:
+            problems.append(f"{identifier}: inaccurate adjudication source citation")
         ambiguity = row.get("ambiguity")
         alternatives = row.get("acceptable_alternatives")
         if not isinstance(ambiguity, str) or not isinstance(alternatives, list) or any(
@@ -77,7 +81,14 @@ def qualify(declaration, *, source, oracle_text, inventory):
             ambiguity, alternatives = None, []
         support = row.get("support")
         if support == "source":
-            if ambiguity:
+            if ambiguity and not (
+                row.get("kind") == "exception" and
+                row.get("exception_policy") == "unprescribed_validation" and
+                set(alternatives) == {"TypeError", "ValueError"} and
+                len(alternatives) == 2 and clause_exact and
+                "validat" in clause.lower() and
+                not any(exc in clause for exc in ("ValueError", "TypeError"))
+            ):
                 problems.append(f"{identifier}: disputed/ambiguous source requires adjudication")
             if row.get("adjudication"):
                 problems.append(f"{identifier}: conflicting source/adjudication status")
@@ -99,13 +110,17 @@ def qualify(declaration, *, source, oracle_text, inventory):
                     or any(not isinstance(x, str) or not x for x in accepted)
                     or len(accepted) != len(set(accepted))):
                 problems.append(f"{identifier}: invalid exception policy")
-            elif support == "source" and (
-                not isinstance(clause, str) or any(exc not in clause for exc in accepted)
-            ):
-                problems.append(f"{identifier}: exception class not promised by source")
+            elif support == "source":
+                if row.get("exception_policy") == "unprescribed_validation":
+                    if (accepted != alternatives or set(accepted) != {"ValueError", "TypeError"}
+                            or not isinstance(clause, str) or
+                            any(exc in clause for exc in accepted)):
+                        problems.append(f"{identifier}: invalid unspecified-class exception policy")
+                elif not clause_exact or any(exc not in clause for exc in accepted):
+                    problems.append(f"{identifier}: exception class not promised by source")
             elif support == "adjudicated" and alternatives != accepted:
                 problems.append(f"{identifier}: adjudicated alternatives disagree with exception policy")
-        elif "allowed_exceptions" in row:
+        elif "allowed_exceptions" in row or "exception_policy" in row:
             problems.append(f"{identifier}: exception policy on non-exception expectation")
 
     for missing in sorted(set(inventory) - seen):
