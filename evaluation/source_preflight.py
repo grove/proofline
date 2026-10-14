@@ -25,6 +25,9 @@ def qualify(declaration, *, source, oracle_text, inventory):
     source_hash = _sha256(source)
     oracle_hash = _sha256(oracle_text.encode("utf-8"))
     problems = []
+    if not isinstance(inventory, dict) or not inventory:
+        problems.append("No independent material case inventory")
+        inventory = {}
     if not isinstance(declaration, dict):
         declaration = {}
         problems.append("Declaration is not an object")
