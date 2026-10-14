@@ -1,0 +1,139 @@
+{
+  "study_id": "issue46-minimal-checklist-v2",
+  "declaration_revision": 2,
+  "freeze_sha256": "2ca1ec2bfbaf0981f9295695131b1e2fd0107ee04723d3ae1ad3bc15c1c16d23",
+  "status": "NOT QUALIFIED",
+  "live_authorization_ready": false,
+  "model_calls": {
+    "additional_reviewer": 0,
+    "coding_workers": 0,
+    "repair": 0,
+    "organizer_tokens": null
+  },
+  "control_regressions": {
+    "tests": 328,
+    "skips": 10,
+    "passing_tests": 318
+  },
+  "substantive_defects_detected": 2,
+  "initial_control_pass": {
+    "elapsed_seconds": 169.1642979583703,
+    "result": "Reference/alternative regression unavailable or failed",
+    "failures_retained": true
+  },
+  "supplement": {
+    "elapsed_seconds": 29.739631208125502,
+    "all_matched": true
+  },
+  "native_demo": {
+    "status": "CHECKS UNAVAILABLE",
+    "boundary": {
+      "status": "OBSERVED",
+      "observations": {
+        "nonce": "664f4441cab447c8ac8f1146bf3aa4cd",
+        "writes": {
+          "source": "denied",
+          "input": "denied",
+          "candidate": "denied",
+          "git_head": "denied",
+          "receipt": "denied"
+        },
+        "reads": {
+          "receipt-canary": "denied",
+          "oracle-canary": "denied",
+          "other-role-canary": "denied",
+          "actual_oracle": "denied"
+        },
+        "mode_change": "denied",
+        "scratch": true,
+        "network": "denied"
+      },
+      "inputs_unchanged": true,
+      "scope": "native process canaries only; no model or external-tool qualification"
+    },
+    "observations": [
+      "PASSED",
+      "FAILED",
+      "UNAVAILABLE"
+    ],
+    "states": [
+      "LINKED CHECKS PASSED (limited evidence)",
+      "CHECK FAILED",
+      "CHECK UNAVAILABLE",
+      "NOT DEMONSTRATED"
+    ],
+    "readback_status": "CHECKS UNAVAILABLE",
+    "source_preserved": true,
+    "model_dispatches": 0,
+    "elapsed_seconds": 5.0125233749859035,
+    "scope": "One model-free native observation with the existing trusted host runner.\nThis does not qualify the nested, candidate-owned CLI grading assembly.\n",
+    "freeze_sha256": "01de70ae98ee752ea2df0581099349ea6b324868c102331bbaf198b3da54a0d0",
+    "tampered_readback_status": "STALE CHECKS"
+  },
+  "readonly_boundary": "OBSERVED",
+  "writable_boundary": "OBSERVED",
+  "protected_nested_cli": "EXECUTION UNAVAILABLE: private config denied",
+  "independent_review": "PENDING for final v2; prior v1 NOT QUALIFIED retained",
+  "validation": {
+    "command": "/opt/homebrew/bin/python3.14 -B -m unittest tests.test_checklist_study tests.test_source_oracles tests.test_effort -v",
+    "tests": 30,
+    "result": "PASSED",
+    "seconds": 4.109,
+    "ci_matrix": "NOT RUN"
+  },
+  "resources": {
+    "seed_preparation_seconds": 19.72739424975589,
+    "control_pass_seconds": 169.1642979583703,
+    "native_demo_seconds": 5.0125233749859035,
+    "supplement_seconds": 29.739631208125502,
+    "validation_seconds": 4.109,
+    "failed_fixture_assembly_seconds": null,
+    "early_shell_python_selection_and_test_module_errors_seconds": null,
+    "observed_clock_interval_start_utc": "2026-10-14 20:05:08 UTC",
+    "observed_clock_interval_end_utc": "2026-10-14 20:14:45 UTC",
+    "observed_clock_interval_seconds": 577,
+    "full_turn_seconds": null,
+    "organizer_tokens": null,
+    "active_human_seconds": null,
+    "actual_billing_usd": null,
+    "measured_process_seconds": 227.7528467912376,
+    "preparation_errors": [
+      "System Python 3.9 lacked tomllib; corrected to frozen Python 3.14.8. Two missing python3 aliases also failed.",
+      "A nonexistent test_source_preflight module was requested; corrected to test_source_oracles.",
+      "First targeted supplement stopped before tests: source-display fixture replacement expected 2 occurrences, actual count 3; corrected without changing source outcomes."
+    ]
+  },
+  "recommendation": "SIMPLIFY; no corpus change or live dispatch performed",
+  "limits": {
+    "native_dispatches": 8,
+    "coding_seconds": 900,
+    "assignment_seconds": 1200,
+    "campaign_seconds": 9600,
+    "preflight_seconds": 1800
+  },
+  "models": {
+    "ordinary": {
+      "model": "gpt-6-luna",
+      "model_reasoning_effort": "medium"
+    },
+    "checklist": {
+      "model": "gpt-6-luna",
+      "model_reasoning_effort": "medium"
+    }
+  },
+  "host": {
+    "versions": [
+      "Darwin",
+      "arm64",
+      "26.6.2",
+      "3.14.8"
+    ],
+    "codex": "codex-cli 0.162.1"
+  },
+  "limitations": [
+    "Offline mocked tests do not qualify native launches or managed model execution.",
+    "Existing control test APIs are not mandatory candidate APIs.",
+    "Complete documentation/compatibility/historical preservation assessment remains unobserved.",
+    "Native demo belongs to its recorded preparation freeze; final nested probe and supplement bind the final revision."
+  ]
+}

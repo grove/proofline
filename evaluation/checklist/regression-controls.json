@@ -1,0 +1,67 @@
+{
+  "10": {
+    "modules": [
+      "tests.test_supported_cli",
+      "tests.test_candidate_snapshot",
+      "tests.test_host_probe",
+      "tests.test_local_run"
+    ],
+    "scope": "Authored control tests only; synthetic receipts/mocked launches do not qualify native execution or impose internal APIs on workers.",
+    "source_clauses": [
+      "- [ ] Normal CI passes on its supported test matrix; native qualification remains explicit rather than mocked into a success claim."
+    ]
+  },
+  "11": {
+    "modules": [
+      "tests.test_check_only",
+      "tests.test_supported_cli",
+      "tests.test_candidate_snapshot"
+    ],
+    "scope": "Authored control tests only; synthetic receipts/mocked launches do not qualify native execution or impose internal APIs on workers.",
+    "source_clauses": [
+      "- [ ] Deterministic tests cover dirty worktrees, untracked files, freeze/receipt tampering, failed/unavailable checks, zero model dispatch, and source preservation."
+    ]
+  },
+  "14": {
+    "modules": [
+      "tests.test_feedback",
+      "tests.test_check_only",
+      "tests.test_local_run",
+      "tests.test_cli_inputs"
+    ],
+    "scope": "Authored control tests only; synthetic receipts/mocked launches do not qualify native execution or impose internal APIs on workers.",
+    "source_clauses": [
+      "- [ ] Distinguish observed check failures, missing/insufficient evidence, environment/boundary unavailability, timeouts, and stale receipts.",
+      "- [ ] Produce concise plain-language guidance an existing coding agent can act upon; preserve logs for audit without dumping them into the primary answer.",
+      "- [ ] Tests cover failing and passing commands, truncated or missing output, timeouts, unauthorized mutation attempts, malformed expected/actual metadata, and correct status re-read."
+    ],
+    "negative_test": "tests.test_feedback.FeedbackTests.test_missing_or_tampered_external_receipts_are_stale",
+    "defect": {
+      "path": "checks/feedback.py",
+      "old": "if not strict and ref is None:",
+      "new": "if True:  # deliberately accept missing or forged native receipts"
+    }
+  },
+  "13": {
+    "modules": [
+      "tests.test_promise_evidence",
+      "tests.test_check_only",
+      "tests.test_feedback",
+      "tests.test_local_run"
+    ],
+    "scope": "Authored control tests only; synthetic receipts/mocked launches do not qualify native execution or impose internal APIs on workers.",
+    "source_clauses": [
+      "- [ ] A direct check needs **no** acceptance plan, Intentline/P2P installation, second model call, additional mandatory file or approval ceremony. Existing run/check/status semantics and native sandbox/receipt integrity remain intact.",
+      "- [ ] Support an **optional step by the same existing coding agent**: reread the complete original source, compare it with the recorded rows/selected checks, and propose any apparent omitted material promise or high-value negative/compatibility case with a verbatim source citation and test suggestion. Record such findings as **proposals/gaps**, not authenticated or complete review. Proofline itself dispatches zero extra models. If no gap analysis was performed, make coverage completeness **unknown**, not silently complete.",
+      "- [ ] Any listed expected behavior, `oracle`, or proposed check derived from an agent is explicitly a *proposed expectation*, not an independently established answer. Actual success requires executable receipts.",
+      "- [ ] Negative tests: valid green existing suite but source's Unicode promise left uncovered; missing/duplicate IDs, omitted material source quote, changed source, wrong candidate, forged command link, failed check, unavailable sandbox, stale receipt, and an advisory plan that omits a user constraint.",
+      "- [ ] Output stays concise; detailed source/check/receipt identities are available for inspection but do not clutter ordinary successful handoffs."
+    ],
+    "negative_test": "tests.test_promise_evidence.SourceBoundMapping.test_green_suite_does_not_convert_unlinked_unicode_into_coverage",
+    "defect": {
+      "path": "checks/promise_evidence.py",
+      "old": "return (\"NOT DEMONSTRATED\", \"No selected executable check linked\")",
+      "new": "return (\"LINKED CHECKS PASSED (limited evidence)\", \"No selected executable check linked\")"
+    }
+  }
+}

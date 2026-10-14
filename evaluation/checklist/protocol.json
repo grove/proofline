@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "study_id": "issue46-minimal-checklist-v1",
+  "study_id": "issue46-minimal-checklist-v2",
   "tasks": [
     {
       "issue": 10,
@@ -105,7 +105,7 @@
   },
   "guidance": "Use your ordinary coding approach and the complete unchanged original request. Ordinary repository context, tools and tests are available. No separate planner, reviewer, model/effort escalation, mandatory Proofline step, correction or retry. The caller owns separately authorized host qualification and publication; do not claim those effects from implementation.",
   "execution_map": "No network, external repository/history after the base, private evaluator, other assignments or published study receipts. Only this product and scratch are writable. Use installed Python. Self-tests and checklist reading count toward the same assignment budget.",
-  "prior_preflight_seconds": 119.70300304191187,
+  "prior_preflight_seconds": 208.20309349847957,
   "grading": {
     "complete": "Independent source assessment of every frozen material clause, actual candidate diff, executable observations, documentation, installation/usability and plausible alternatives; green sampled tests alone never suffice.",
     "external_effects": "Only implementation obligations are replayed. Original requests remain complete. Normal CI and native assurance require their own observations; no replayed publication, merge or fresh live product-model qualification is claimed.",

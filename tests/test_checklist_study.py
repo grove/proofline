@@ -136,6 +136,22 @@ class ChecklistStudy(unittest.TestCase):
             self.assertIn('native-check', result['observed']['unknown'])
             self.assertIsNone(result['correct'])
 
+    def test_regression_controls_need_real_assertions_not_import_errors_or_skips(self):
+        import time
+        from evaluation.recovery import grader
+        for expected_pass, failures, errors, skipped, available, matched in (
+                (True, 0, 0, [], True, True), (False, 1, 0, [], True, True),
+                (False, 0, 1, [], True, False), (False, 0, 0, [], True, False),
+                (True, 0, 0, [['test', 'unavailable']], True, False),
+                (True, 0, 0, [], False, False)):
+            counts = {'tests': 1, 'failures': failures, 'errors': errors, 'skipped': skipped}
+            result = {'available': available, 'receipt': {'stdout': json.dumps(counts),
+                      'exit_code': 0 if expected_pass else 1}}
+            with patch.object(grader, 'invoke', return_value=result):
+                observed = study.regression_control(Path('.'), ['tests.fixture'], Path('.'),
+                    time.monotonic()+10, expected_pass=expected_pass)
+            self.assertEqual(observed['matched'], matched)
+
 
 if __name__ == '__main__':
     unittest.main()

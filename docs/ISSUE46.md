@@ -9,7 +9,7 @@ requested live-study result and does not close #46.
 
 The frozen proposal compares ordinary GPT-6 Luna:medium with the same model,
 starting bytes, full request, tools, tests and total assignment budget plus one
-short source-linked checklist. It uses four fresh real repository requests:
+short source-linked checklist. It uses four previously implemented real repository requests:
 
 | Request | Starting commit | Reference commit | First arm |
 | --- | --- | --- | --- |
@@ -74,3 +74,26 @@ must not be presented as full costs per correct delivery. With no observed
 correct deliveries, such per-correct costs have no estimate. Four pairs, one
 attempt, all-correct ceilings, too few defects or unknown full overhead cannot
 justify a default guidance/model recommendation or a claim of savings.
+
+
+## Focused engineering continuation (v2)
+
+See [the engineering findings and recommendation](../evaluation/results/issue46-checklist/ENGINEERING-v2.md)
+and [v2 executable evidence](../evaluation/results/issue46-checklist-v2).
+The active declaration is `issue46-minimal-checklist-v2`, revision 2. The previous
+v1 freeze and v2 preparation freeze are retained beside it; existing historical
+results and the independent NOT QUALIFIED review are unchanged.
+
+A trusted host-runner demonstration now executes real source-grounded tests
+under the existing native boundary, with actual pass/failure/unavailability,
+four mapped outcome states, raw receipts, readback and stale-tamper detection.
+Existing reference tests strengthen the authored #10/#11/#13/#14 controls;
+substantive negative controls target unlinked green claims and forged receipts.
+Mocks and skipped platform/native tests are disclosed, not qualification.
+
+The nested protected candidate CLI still has no demonstrated safe launch, and
+there is no independent review of the final v2 declaration. **The study remains
+NOT QUALIFIED and is not ready for live authorization.** No new reviewer or
+coding inference ran. Recommendation: simplify to ordinary implementation tasks
+that can be graded inside one existing native boundary, preserving the A/B
+comparison and complete request. This is a proposal only; no tasks were swapped.

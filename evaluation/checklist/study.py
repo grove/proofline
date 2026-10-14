@@ -19,7 +19,7 @@ from evaluation.sol_luna.grader import bound_module
 
 ROOT = Path(__file__).resolve().parents[2]
 HERE = Path(__file__).resolve().parent
-STORE = ROOT / '.proofline/issue46-checklist-v1'
+STORE = ROOT / '.proofline/issue46-checklist-v2'
 CODEX = existing.CODEX
 TASKS = {10: 12, 11: 28, 14: 41, 13: 42}
 ARMS = {'ordinary': 'medium', 'checklist': 'high'}
@@ -119,7 +119,7 @@ def controls():
     """Model-free execution qualification; semantic review remains a separate gate."""
     identities()
     directory = STORE / 'preflight'; directory.mkdir(exist_ok=False)
-    began = time.monotonic(); rows = []
+    began = time.monotonic(); rows = []; regressions = []
     deadline = began + protocol()['limits']['preflight_seconds'] - protocol()['prior_preflight_seconds']
     execution_qualified = False
     blocker = None
@@ -145,6 +145,26 @@ def controls():
                              'tree': host.git(product, 'rev-parse', 'HEAD^{tree}'), 'observation': observed})
                 if not matched:
                     raise ValueError('Control mismatch/unavailability: '+str(task['issue'])+' '+kind)
+                if kind != 'defective':
+                    modules = json.loads((HERE / 'regression-controls.json').read_text())[str(task['issue'])]['modules']
+                    regressions.append(regression_control(product, modules, folder / 'regressions',
+                                                          deadline, expected_pass=True))
+                    if not regressions[-1]['matched']:
+                        raise ValueError('Reference/alternative regression unavailable or failed')
+        for issue in (14, 13):
+            spec = json.loads((HERE / 'regression-controls.json').read_text())[str(issue)]
+            task = next(task for task in protocol()['tasks'] if task['issue'] == issue)
+            folder = directory / str(issue) / 'substantive-defect'
+            product = existing.seed(task, folder / 'product', reference=True)
+            edit = spec['defect']; path = product / edit['path']; raw = path.read_text()
+            if raw.count(edit['old']) != 1:
+                raise ValueError('Substantive control patch drift')
+            path.write_text(raw.replace(edit['old'], edit['new']))
+            snapshots.freeze(product)
+            regressions.append(regression_control(product, [spec['negative_test']], folder / 'regressions',
+                                                  deadline, expected_pass=False))
+            if not regressions[-1]['matched']:
+                raise ValueError('Substantive defect not detected')
         inputs = directory / 'boundary/inputs'; inputs.mkdir(parents=True)
         existing.seed(protocol()['tasks'][0], inputs / 'product')
         (inputs / 'product/app.py').write_text('Disposable worker boundary canary.\n')
@@ -176,9 +196,35 @@ def controls():
             results.update(status='STOPPED_NOT_QUALIFIED', blocker=blocker)
             write_record(STORE / 'results.json', results)
         write_record(directory / 'controls.json', {'controls': rows, 'all_matched': len(rows) == 12 and all(row['matched'] for row in rows),
+                     'regressions': regressions,
+                     'regressions_matched': len(regressions) == 10 and all(row['matched'] for row in regressions),
                      'execution_qualified': execution_qualified, 'blocker': blocker,
                      'elapsed_seconds': time.monotonic()-began, 'model_dispatches': 0,
                      'scope': 'Authored public reference/alternative/defective controls; independent semantic adjudication still required.'})
+
+
+def regression_control(product, modules, directory, deadline, *, expected_pass):
+    """Existing tests of authored controls only; mocks are not native qualification.
+
+    These internal test interfaces are not mandatory worker implementation APIs.
+    Equivalent implementations still require the frozen manual source assessment.
+    """
+    from evaluation.recovery.grader import invoke
+    script = ('import json, unittest\n'
+              f'suite = unittest.defaultTestLoader.loadTestsFromNames({modules!r})\n'
+              'result = unittest.TextTestRunner(verbosity=2).run(suite)\n'
+              'print(json.dumps({"tests": result.testsRun, "failures": len(result.failures), '
+              '"errors": len(result.errors), "skipped": [[str(test), reason] for test, reason in result.skipped]}))\n'
+              'raise SystemExit(0 if result.wasSuccessful() else 1)\n')
+    result = invoke(product, script, directory, trusted=True, seconds=min(120, deadline-time.monotonic()))
+    try:
+        counts = json.loads(result['receipt']['stdout'])
+        matched = result['available'] and result['receipt']['exit_code'] == (0 if expected_pass else 1) and counts['tests'] > len(counts['skipped']) and counts['errors'] == 0 and (
+            counts['failures'] == 0 if expected_pass else counts['failures'] > 0)
+    except (ValueError, KeyError, TypeError):
+        counts, matched = None, False
+    return {'modules': modules, 'expected_pass': expected_pass, 'matched': matched,
+            'counts': counts, 'invocation': result}
 
 
 def adapter():

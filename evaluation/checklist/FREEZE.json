@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "study_id": "issue46-minimal-checklist-v1",
+  "study_id": "issue46-minimal-checklist-v2",
   "sha256": {
     "checks/__init__.py": "f0cab0051a0d846f75f4212ab1f99dcd27f13ffd0b79fc07915970227a08f032",
     "checks/candidate_snapshot.py": "1943f795bb3e1de379b927d476bea3a341f0f525b68db702d9130d89eb364306",
@@ -23,13 +23,13 @@
     "evaluation/checklist/checklists/issue-11.md": "925cf9c83edaebb94fa689d491f4c9a76809130281147fe229571b024dd7e4e6",
     "evaluation/checklist/checklists/issue-13.md": "d2e93b3675892a0ad374c53770b9e3156510ac850ac31b582429351e4950e043",
     "evaluation/checklist/checklists/issue-14.md": "6712e1157bbe3d3b090ba92bead024a073a015e15068f2d14d30bf999746691d",
-    "evaluation/checklist/controls.json": "922fc6e0904dfa863342003634e29a21b08654a8909403a317175c75b170bddf",
-    "evaluation/checklist/expectations.json": "f0ec72f741ac3a783d07f8a5589dc38d38abe921e2eb5e2e18649808a0532ce1",
+    "evaluation/checklist/controls.json": "18568878f51f70c89b11a22f557c8cb77b7cecd80c0448404582f406dfe0b045",
+    "evaluation/checklist/expectations.json": "4faee63143fd0f6ccc784124dbb741a7945dedfedccbf7dbab9f638c346c7de5",
     "evaluation/checklist/inventory.json": "38a5a7aa42b2115f14291aec25ece2037920be1b60288dc4880e3ba7ae6a4bdb",
     "evaluation/checklist/model-catalog.json": "997a391a921db16b1939f89121c84ad816c74d4b0369183cad842f9d0acb82eb",
     "evaluation/checklist/oracle.py": "eed34046a4b9bbdde5055ec0ec858bf9ed068694312da65a96e753270457569e",
     "evaluation/checklist/probes.py": "0eaef5242dccf28ab8de55abd10eb50730098d77246f2ba68b3c7f23cee28efd",
-    "evaluation/checklist/protocol.json": "09c27f2afa5bdb320ed712c688bcccfadb8b33574c46d7507a44a85caf5c9b0e",
+    "evaluation/checklist/protocol.json": "b8cee3885d157fea01d0cf07249ece088766d8ca58d3a667175ae48c6ac9fc3f",
     "evaluation/checklist/requests/issue-10.json": "68c7d27941767b2b51bfd6e9ce424fc0150b6482b6c31190ff0c649b52d462f6",
     "evaluation/checklist/requests/issue-10.md": "f69d4455bdd35b38d5f8b230e4c8a56378b8d2c86d805c8a300add8d6c0a4b08",
     "evaluation/checklist/requests/issue-11.json": "dadb668b25887798be4505a12592a3b43f1cbf6325b0b90f264eb59b4d52d0ce",
@@ -41,7 +41,7 @@
     "evaluation/checklist/requests/issue-46.json": "dac8bdec215421602fe9c9c7987aabafa7de3ab97916e4fd72addcb3ae7f3109",
     "evaluation/checklist/requests/issue-46.md": "a9d4d0ec451be68c56f312ac257f2e47b3b07cebcc1f59728abf4f113b983a2e",
     "evaluation/checklist/selection.json": "3eb3f7ebc866dbc8107ad5546c3ecd11f3bfb173ccc7f0fd37c2a1320c484304",
-    "evaluation/checklist/study.py": "6f719d7794070d43db61332f35633f12f0f9abe1e00b629d01521d0649c460f5",
+    "evaluation/checklist/study.py": "75451bd6dfb0360c3e281fd338969da6b91aa2324fdb35a6d448de9af2578ee1",
     "evaluation/effort/__init__.py": "e8cb97255580327f4c47363bcc367cf1f29b4da5fd4b7840c71fd341c72faebc",
     "evaluation/effort/audit-clauses.json": "b23d27108e3dec082236f850262ddf412960f86ffbe1fa936af88373c2399e7f",
     "evaluation/effort/controls.json": "f1d12889dd73086c486f6aa8a8cad55cc7775f8027ca1592585b294d71e61983",
@@ -103,11 +103,16 @@
     "evaluation/v1/tasks.py": "0ef969ada04f9869ab9223f7e501ece53ec575b60ebe2d2bf8bd9531109d9652",
     "evaluation/v1/variants.py": "9b049ca26bd3ea9900c2d7d0a084c7c7ded42b60ca01d6c54cd360bc1fc9584c",
     "proofline.py": "670ccf241a0a1f89c566f7ec39daa9873ad5bd4cd2531b9e0ec0bf64b089245a",
-    "tests/test_effort.py": "5b855dfc4f9a6539b6c0a17dd5e7b2fb6231cc32fb6792032d995570854aff19"
+    "tests/test_effort.py": "5b855dfc4f9a6539b6c0a17dd5e7b2fb6231cc32fb6792032d995570854aff19",
+    "evaluation/checklist/regression-controls.json": "246421aa0048fb360efb47d7e814a0938610e053efe263821492d7197e86c4e5",
+    "tests/test_checklist_study.py": "094b443ce8bb99136fbc8a699732be17b03253e3417b70b745e2859caf89a867"
   },
   "runtime_sha256": {
     "python": "a39ba8658c8955a744ba1e87d2912bb019c5f4e93fcfd8e96263f891d15ec1aa",
     "codex": "74c6a6d263f40d65f99c27a815275f5b4ed0bcc2baecc396b4cf3255498bdfc0"
   },
-  "semantic_review": "PENDING; hashes/source substring checks are not independent semantic qualification."
+  "semantic_review": "NOT QUALIFIED; v1 independent review retained. Exact v2 independent review pending; no reviewer expenditure authorized.",
+  "supersedes_freeze_sha256": "dc32e41ac170b216994bffebc702ae3015b1457799f6fb6dd23245d70dab6c41",
+  "declaration_revision": 2,
+  "supersedes_preparation_freeze_sha256": "01de70ae98ee752ea2df0581099349ea6b324868c102331bbaf198b3da54a0d0"
 }

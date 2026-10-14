@@ -66,6 +66,12 @@
         "old": "--show-source",
         "new": "--original-request",
         "occurrences": 1
+      },
+      {
+        "path": "tests/test_check_only.py",
+        "old": "--show-source",
+        "new": "--original-request",
+        "occurrences": 3
       }
     ],
     "defective": [
