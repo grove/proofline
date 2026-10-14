@@ -1,0 +1,473 @@
+{
+  "schema_version": 1,
+  "observed_at": "2026-10-14T07:26:40.043707+00:00",
+  "runner_commit": "c06bd54f79ed492fcf33dc734c69d090abf4155f",
+  "method": "Retrospective checks of unchanged real implementation PR heads; no coding replay.",
+  "host": {
+    "platform": "macOS-26.6.2-arm64-arm-64bit-Mach-O",
+    "python": "3.14.8 (main, Sep 30 2026, 17:55:09) [Clang 21.0.0 (clang-2100.3.34.2)]",
+    "python_executable": "/opt/homebrew/Cellar/python@3.14/3.14.8_2/Frameworks/Python.framework/Versions/3.14/bin/python3.14"
+  },
+  "cases": [
+    {
+      "id": "issue-12-pr-24",
+      "issue": 12,
+      "pr": 24,
+      "task_url": "https://github.com/grove/proofline/issues/12",
+      "pr_url": "https://github.com/grove/proofline/pull/24",
+      "candidate": {
+        "head_commit": "aac3d942440c87da2b67de9aa2a587070390ee0e",
+        "head_tree": "e4138ed9804b1cba3348fc44f6011af73b2223de",
+        "status": ""
+      },
+      "candidate_path": "/Users/grove/.p2p/issue37-20261014/candidate-12",
+      "source_file": "requests/request-12.md",
+      "source_sha256": "217825e29a71651b8e34fac1dfaf43982bc1b5424649b31e114e5b648d362754",
+      "source_basis": "Complete issue title + two LF bytes + exact GitHub body, including amendments; no comments existed. Original agent-session prompt is unavailable.",
+      "checks": [
+        [
+          "/opt/homebrew/Cellar/python@3.14/3.14.8_2/Frameworks/Python.framework/Versions/3.14/bin/python3.14",
+          "-B",
+          "-m",
+          "unittest",
+          "tests.test_cli_inputs",
+          "-v"
+        ],
+        [
+          "/opt/homebrew/Cellar/python@3.14/3.14.8_2/Frameworks/Python.framework/Versions/3.14/bin/python3.14",
+          "-B",
+          "-m",
+          "unittest",
+          "tests.test_supported_cli",
+          "-v"
+        ]
+      ],
+      "ordinary": {
+        "receipt_file": "ordinary-12.json",
+        "elapsed_seconds": 0.8089799999999999,
+        "exit_codes": [
+          0,
+          0
+        ]
+      },
+      "setup_seconds": null,
+      "human_setup_seconds": null,
+      "original_implementation_agent": {
+        "identity": null,
+        "usage": null,
+        "cost_usd": null,
+        "provenance": "Not independently authenticated by Git author/PR metadata."
+      },
+      "model_dispatches_for_checking": 0,
+      "checking_model_tokens": 0,
+      "checking_model_cost_usd": 0,
+      "independent_acceptance": "UNKNOWN",
+      "coverage_completeness": "UNKNOWN",
+      "recovery_observed": 0,
+      "proofline_invocations": [
+        {
+          "argv": [
+            "/opt/homebrew/bin/python3.14",
+            "-B",
+            "/Users/grove/.p2p/issue37-20261014/pr/proofline.py",
+            "check",
+            "--repo",
+            "/Users/grove/.p2p/issue37-20261014/candidate-12",
+            "--request-stdin",
+            "--command",
+            "/opt/homebrew/Cellar/python@3.14/3.14.8_2/Frameworks/Python.framework/Versions/3.14/bin/python3.14 -B -m unittest tests.test_cli_inputs -v",
+            "--command",
+            "/opt/homebrew/Cellar/python@3.14/3.14.8_2/Frameworks/Python.framework/Versions/3.14/bin/python3.14 -B -m unittest tests.test_supported_cli -v",
+            "--output",
+            "/Users/grove/.p2p/issue37-20261014/check-12-nested",
+            "--seconds",
+            "180",
+            "--check-seconds",
+            "60"
+          ],
+          "stdin_file": "request-12.md",
+          "report_file": "check-12-nested/report.json",
+          "host_execution": false,
+          "status": "EXECUTION UNAVAILABLE",
+          "controller_elapsed_seconds": 0.6056803748942912,
+          "candidate_tree": "e4138ed9804b1cba3348fc44f6011af73b2223de",
+          "snapshot_sha256": null,
+          "native_boundary": "NOT VERIFIED",
+          "error": "Native check boundary unavailable; no unprotected fallback",
+          "readback_status": "EXECUTION UNAVAILABLE",
+          "readback_receipt_file": "check-12-nested-readback.json",
+          "readback_elapsed_seconds": 0.088844,
+          "report_sha256": "a946561b05631779836fd2a9b4050f7c0cd39cdffc89a8aa9ece21fc4b0f8cdc",
+          "selected_statuses": [],
+          "native_receipts": []
+        },
+        {
+          "argv": [
+            "/opt/homebrew/bin/python3.14",
+            "-B",
+            "/Users/grove/.p2p/issue37-20261014/pr/proofline.py",
+            "check",
+            "--repo",
+            "/Users/grove/.p2p/issue37-20261014/candidate-12",
+            "--request-stdin",
+            "--command",
+            "/opt/homebrew/Cellar/python@3.14/3.14.8_2/Frameworks/Python.framework/Versions/3.14/bin/python3.14 -B -m unittest tests.test_cli_inputs -v",
+            "--command",
+            "/opt/homebrew/Cellar/python@3.14/3.14.8_2/Frameworks/Python.framework/Versions/3.14/bin/python3.14 -B -m unittest tests.test_supported_cli -v",
+            "--output",
+            "/Users/grove/.p2p/issue37-20261014/check-12-host",
+            "--seconds",
+            "180",
+            "--check-seconds",
+            "60"
+          ],
+          "stdin_file": "request-12.md",
+          "report_file": "check-12-host/report.json",
+          "host_execution": true,
+          "status": "CHECKS PASSED",
+          "controller_elapsed_seconds": 1.6958805839531124,
+          "candidate_tree": "e4138ed9804b1cba3348fc44f6011af73b2223de",
+          "snapshot_sha256": "c5d8445e956257a1613cd4031bacd09a739cec7d77aaa6a82b11c18ee95650f5",
+          "native_boundary": "OBSERVED",
+          "error": null,
+          "readback_status": "CHECKS PASSED",
+          "readback_receipt_file": "check-12-host-readback.json",
+          "readback_elapsed_seconds": 0.205791,
+          "report_sha256": "1988fae8d32ad19b8839402eaeb707189905c57298f2fb86a2fc44260e079476",
+          "selected_statuses": [
+            "PASSED",
+            "PASSED"
+          ],
+          "native_receipts": [
+            {
+              "path": "check-12-host/receipts/check-000.json",
+              "sha256": "19c550e934e2bc54bcae2ac0ed9ef62864ed4f49eb314f81d765adc643d45f3b"
+            },
+            {
+              "path": "check-12-host/receipts/check-001.json",
+              "sha256": "9fe47b677f0c493d0c82998b8578f6a33fe18382ae624bfcc510e538d93bfdfd"
+            }
+          ]
+        }
+      ],
+      "candidate_unchanged_after_checking": true,
+      "proofline_controller_seconds": 2.3015609588474035,
+      "readback_seconds": 0.294635,
+      "setup_instructions": "Read the repository-local proofline-check skill, preserve the complete issue snapshot, select existing unittest modules from the candidate, pause edits, use new output directories outside the source; native qualification needs host execution."
+    },
+    {
+      "id": "issue-28-pr-30",
+      "issue": 28,
+      "pr": 30,
+      "task_url": "https://github.com/grove/proofline/issues/28",
+      "pr_url": "https://github.com/grove/proofline/pull/30",
+      "candidate": {
+        "head_commit": "bb15f7754615b1209d52e7233e7178809b08e4c4",
+        "head_tree": "d5d10bd9e9a58e571cf338ccd4482255bfba911e",
+        "status": ""
+      },
+      "candidate_path": "/Users/grove/.p2p/issue37-20261014/candidate-28",
+      "source_file": "requests/request-28.md",
+      "source_sha256": "0358c7171107906a7b52e2549c640cb875e410517cd83ea80863baa18b521ebb",
+      "source_basis": "Complete issue title + two LF bytes + exact GitHub body, including amendments; no comments existed. Original agent-session prompt is unavailable.",
+      "checks": [
+        [
+          "/opt/homebrew/Cellar/python@3.14/3.14.8_2/Frameworks/Python.framework/Versions/3.14/bin/python3.14",
+          "-B",
+          "-m",
+          "unittest",
+          "tests.test_skill_discovery",
+          "-v"
+        ],
+        [
+          "/opt/homebrew/Cellar/python@3.14/3.14.8_2/Frameworks/Python.framework/Versions/3.14/bin/python3.14",
+          "-B",
+          "-m",
+          "unittest",
+          "tests.test_supported_cli",
+          "-v"
+        ]
+      ],
+      "ordinary": {
+        "receipt_file": "ordinary-28.json",
+        "elapsed_seconds": 0.9118189999999999,
+        "exit_codes": [
+          0,
+          0
+        ]
+      },
+      "setup_seconds": null,
+      "human_setup_seconds": null,
+      "original_implementation_agent": {
+        "identity": null,
+        "usage": null,
+        "cost_usd": null,
+        "provenance": "Not independently authenticated by Git author/PR metadata."
+      },
+      "model_dispatches_for_checking": 0,
+      "checking_model_tokens": 0,
+      "checking_model_cost_usd": 0,
+      "independent_acceptance": "UNKNOWN",
+      "coverage_completeness": "UNKNOWN",
+      "recovery_observed": 0,
+      "proofline_invocations": [
+        {
+          "argv": [
+            "/opt/homebrew/opt/python@3.14/bin/python3.14",
+            "-B",
+            "/Users/grove/.p2p/issue37-20261014/pr/proofline.py",
+            "check",
+            "--repo",
+            "/Users/grove/.p2p/issue37-20261014/candidate-28",
+            "--request",
+            "Rename Proofline agent skill to proofline-check\n\n## Why\nIntentline's existing skills use the `<project>-<action>` convention (`intentline-plan`, `intentline-audit`, `intentline-slice`), while Proofline's single skill currently declares `name: proofline` in its root `SKILL.md`. Renaming that skill to **`proofline-check`** makes its purpose clearer and makes explicit invocation consistent across the two projects.\n\n## Scope\nRename **the skill**, not the Proofline project, Python package, or CLI. Keep **one** Proofline skill covering check-only verification, evidence/feedback, optional Intentline input, and optional managed `run`. Prioritize agent-friendly discoverability, correct installation guidance, and minimal change.\n\n## Acceptance criteria\n- [ ] Change the canonical skill's frontmatter to `name: proofline-check` with a concise trigger-focused description: use after an existing coding agent implements a change to execute selected tests against the frozen candidate and report actual failures / missing evidence; mention that it is optional and model-free in `check` mode.\n- [ ] Determine and document the supported skill installation/discovery path for at least Codex and Claude Code. If a standard `skills/proofline-check/SKILL.md` directory is needed, provide it without silently breaking the existing root `SKILL.md` entry or creating two independently maintained divergent instructions. Preserve relative documentation/code links under the chosen layout.\n- [ ] Update README, skill instructions, examples, and any current references that invoke or install the skill under its old name. Distinguish **automatic discovery when installed** from guaranteed automatic invocation (not guaranteed).\n- [ ] Preserve the existing `proofline.py check`, `run`, and `status` commands, direct/file source inputs, optional Intentline integration, zero-extra-model check-only behavior, receipt integrity, and safety boundaries. Do **not** rename the CLI to `proofline-check`.\n- [ ] Test/validate skill metadata, single canonical definition or explicit compatibility alias (if needed), relative link resolution, supported install packaging, and documentation consistency. If an old explicit skill invocation is no longer supported, document the migration clearly rather than claiming unverified compatibility.\n- [ ] Confirm no new mandatory planning, reviewer/prover, authorization, or model-dispatch stage was introduced.\n\n## Out of scope\nSplitting Proofline into multiple skills merely for symmetry, changing Intentline skill names, merging repositories, altering check execution semantics, or making skill discovery mandatory for direct CLI use.\n\n## Notes\nCurrent skill: [root SKILL.md](https://github.com/grove/proofline/blob/main/SKILL.md). Intentline comparison: [intentline-plan](https://github.com/grove/intentline/blob/main/skills/intentline-plan/SKILL.md). This is a naming/documentation/discoverability improvement, **not** an independently demonstrated correctness improvement.",
+            "--command",
+            "/opt/homebrew/Cellar/python@3.14/3.14.8_2/Frameworks/Python.framework/Versions/3.14/bin/python3.14 -B -m unittest tests.test_skill_discovery -v",
+            "--command",
+            "/opt/homebrew/Cellar/python@3.14/3.14.8_2/Frameworks/Python.framework/Versions/3.14/bin/python3.14 -B -m unittest tests.test_supported_cli -v",
+            "--output",
+            "/Users/grove/.p2p/issue37-20261014/check-28",
+            "--seconds",
+            "180",
+            "--check-seconds",
+            "60"
+          ],
+          "receipt_file": "invocation-28.json",
+          "elapsed_seconds": 0.264998,
+          "report_file": "check-28/report.json",
+          "status": "EXECUTION UNAVAILABLE",
+          "controller_elapsed_seconds": 0.15861141681671143,
+          "candidate_tree": null,
+          "snapshot_sha256": null,
+          "native_boundary": null,
+          "error": "Symlinks must be relative aliases to regular product files outside Git metadata",
+          "readback_status": "EXECUTION UNAVAILABLE",
+          "readback_receipt_file": "check-28-readback.json",
+          "readback_elapsed_seconds": 0.087722,
+          "report_sha256": "dcd5cf584e6be0275e6cd591b02d861e562d7fe6556d48938e61181e01f348cc",
+          "selected_statuses": [],
+          "native_receipts": []
+        }
+      ],
+      "candidate_unchanged_after_checking": true,
+      "proofline_controller_seconds": 0.15861141681671143,
+      "readback_seconds": 0.087722,
+      "setup_instructions": "Read the repository-local proofline-check skill, preserve the complete issue snapshot, select existing unittest modules from the candidate, pause edits, use new output directories outside the source; native qualification needs host execution."
+    },
+    {
+      "id": "issue-36-pr-39",
+      "issue": 36,
+      "pr": 39,
+      "task_url": "https://github.com/grove/proofline/issues/36",
+      "pr_url": "https://github.com/grove/proofline/pull/39",
+      "candidate": {
+        "head_commit": "c5cadd8b49b1cc33eea9f17ccbf649b14b83b0f3",
+        "head_tree": "3248860dc578da0a0221192d1a45aecef4ee6746",
+        "status": ""
+      },
+      "candidate_path": "/Users/grove/.p2p/issue37-20261014/candidate-36",
+      "source_file": "requests/request-36.md",
+      "source_sha256": "32e38cb5641b828ef7f2e6e509a7178b7985afd6454cf2d351c240f2d144d8b8",
+      "source_basis": "Complete issue title + two LF bytes + exact GitHub body, including amendments; no comments existed. Original agent-session prompt is unavailable.",
+      "checks": [
+        [
+          "/opt/homebrew/Cellar/python@3.14/3.14.8_2/Frameworks/Python.framework/Versions/3.14/bin/python3.14",
+          "-B",
+          "-m",
+          "unittest",
+          "tests.test_source_oracles",
+          "-v"
+        ],
+        [
+          "/opt/homebrew/Cellar/python@3.14/3.14.8_2/Frameworks/Python.framework/Versions/3.14/bin/python3.14",
+          "-B",
+          "-m",
+          "unittest",
+          "tests.test_supported_cli",
+          "-v"
+        ]
+      ],
+      "ordinary": {
+        "receipt_file": "ordinary-36-initial.json",
+        "initial_summary": [
+          {
+            "argv": [
+              "/opt/homebrew/Cellar/python@3.14/3.14.8_2/Frameworks/Python.framework/Versions/3.14/bin/python3.14",
+              "-B",
+              "-m",
+              "unittest",
+              "tests.test_source_oracles",
+              "-v"
+            ],
+            "exit_code": 1,
+            "elapsed_seconds": 2.592831,
+            "test_count": 10,
+            "failures_including_subtests": 10
+          },
+          {
+            "argv": [
+              "/opt/homebrew/Cellar/python@3.14/3.14.8_2/Frameworks/Python.framework/Versions/3.14/bin/python3.14",
+              "-B",
+              "-m",
+              "unittest",
+              "tests.test_supported_cli",
+              "-v"
+            ],
+            "exit_code": 0,
+            "elapsed_seconds": 0.780015,
+            "test_count": 5
+          }
+        ],
+        "initial_receipt_gap": "Initial capture stopped before persisting these receipts; exit/count/time summaries were retained in tool output.",
+        "elapsed_seconds": 5.904578,
+        "repeat_reason": "Retain bounded failure output after capture assertion aborted; no implementation changes.",
+        "exit_codes": [
+          1,
+          0,
+          1
+        ]
+      },
+      "setup_seconds": null,
+      "human_setup_seconds": null,
+      "original_implementation_agent": {
+        "identity": null,
+        "usage": null,
+        "cost_usd": null,
+        "provenance": "Not independently authenticated by Git author/PR metadata."
+      },
+      "model_dispatches_for_checking": 0,
+      "checking_model_tokens": 0,
+      "checking_model_cost_usd": 0,
+      "independent_acceptance": "UNKNOWN",
+      "coverage_completeness": "UNKNOWN",
+      "recovery_observed": 0,
+      "proofline_invocations": [
+        {
+          "argv": [
+            "/opt/homebrew/opt/python@3.14/bin/python3.14",
+            "-B",
+            "/Users/grove/.p2p/issue37-20261014/pr/proofline.py",
+            "check",
+            "--repo",
+            "/Users/grove/.p2p/issue37-20261014/candidate-36",
+            "--source",
+            "/Users/grove/.p2p/issue37-20261014/request-36.md",
+            "--command",
+            "/opt/homebrew/Cellar/python@3.14/3.14.8_2/Frameworks/Python.framework/Versions/3.14/bin/python3.14 -B -m unittest tests.test_source_oracles -v",
+            "--command",
+            "/opt/homebrew/Cellar/python@3.14/3.14.8_2/Frameworks/Python.framework/Versions/3.14/bin/python3.14 -B -m unittest tests.test_supported_cli -v",
+            "--output",
+            "/Users/grove/.p2p/issue37-20261014/check-36",
+            "--seconds",
+            "180",
+            "--check-seconds",
+            "60"
+          ],
+          "receipt_file": "invocation-36.json",
+          "elapsed_seconds": 0.469526,
+          "report_file": "check-36/report.json",
+          "status": "EXECUTION UNAVAILABLE",
+          "controller_elapsed_seconds": 0.35852841613814235,
+          "candidate_tree": null,
+          "snapshot_sha256": null,
+          "native_boundary": null,
+          "error": "Symlinks must be relative aliases to regular product files outside Git metadata",
+          "readback_status": "EXECUTION UNAVAILABLE",
+          "readback_receipt_file": "check-36-readback.json",
+          "readback_elapsed_seconds": 0.09081,
+          "report_sha256": "acda784a5bf27c7cb6f4b0ff720f6de9d14ea2792840534d197f3f278b280ec4",
+          "selected_statuses": [],
+          "native_receipts": []
+        }
+      ],
+      "candidate_unchanged_after_checking": true,
+      "proofline_controller_seconds": 0.35852841613814235,
+      "readback_seconds": 0.09081,
+      "setup_instructions": "Read the repository-local proofline-check skill, preserve the complete issue snapshot, select existing unittest modules from the candidate, pause edits, use new output directories outside the source; native qualification needs host execution."
+    }
+  ],
+  "recommendation": "Fix a specific usability blocker in a separately approved PR; retain optional check. Evidence for adoption/correctness improvement is insufficient.",
+  "population": {
+    "real_implementation_prs_attempted": 3,
+    "retrospective": 3,
+    "concurrent_implementation_uses": 0,
+    "native_selected_check_successes": 1,
+    "candidate_layout_blockers": 2,
+    "recovered_defects": 0
+  },
+  "scope_limits": [
+    "One repository and one macOS host; convenience sample of already merged PR heads.",
+    "Original agent-session prompts, implementer identity/model/effort/cost and human time are unknown.",
+    "Issue title/body snapshots were used in full; they are not reconstructed agent-session transcripts.",
+    "No independently authored whole-request acceptance assessment; correctness and coverage completeness remain unknown.",
+    "No dirty/untracked-tree friction, standalone installation, Claude invocation or bounded repair was observed."
+  ],
+  "additional_diagnostic": {
+    "task": "issue-36-pr-39",
+    "kind": "Homebrew executable path alias receipt mismatch",
+    "result_file": "future-cache-diagnostic/result.json",
+    "expected_python": "/opt/homebrew/Cellar/python@3.14/3.14.8_2/Frameworks/Python.framework/Versions/3.14/bin/python3.14",
+    "actual_repository_test_argv0": "/opt/homebrew/opt/python@3.14/bin/python3.14",
+    "child_repository_tests_status": "PASSED",
+    "future_grade_status": "ORACLE UNAVAILABLE",
+    "model_dispatches": 0,
+    "outer_elapsed_seconds": null,
+    "interpretation": "Ordinary selected tests noticed this. Proofline snapshotting was blocked before tests; no added Proofline defect detection or recovery."
+  },
+  "capture_error": {
+    "description": "The first ordinary-test capture asserted all exit codes were zero and stopped on #36 before saving the ledger/receipts. The assumption was removed; prior #12/#28 receipts were preserved and #36 was rerun once to retain diagnostics.",
+    "initial_issue36_observation_retained": "Exit/count/time summaries only; exact first receipts unavailable."
+  },
+  "byte_preservation_observation": {
+    "argv": [
+      "git",
+      "diff",
+      "--name-status",
+      "4a92ba0",
+      "c5cadd8b49b1cc33eea9f17ccbf649b14b83b0f3"
+    ],
+    "stdout": "A\tdocs/ORACLE-QUALIFICATION.md\nA\tevaluation/future_cache.py\nA\tevaluation/source_preflight.py\nA\ttests/test_source_oracles.py\n",
+    "assessment": "Only four new #36 files; all previously tracked bytes, including frozen studies and optional check runtime, are unchanged."
+  },
+  "artifact": {
+    "file": "evidence.zip",
+    "sha256": "8f4a389752c4aa0ae2d39093a3c54f0ace585f8f036e0a683cd85753b8da43ca",
+    "bytes": 538345,
+    "scope": "Bounded process receipts, original native reports/evidence, complete successful frozen inputs with Git metadata, native preflight, and the small authored cache diagnostic. Unavailable partial product copies omitted.",
+    "readback_portability": "Native status binds absolute paths and file modes. Recorded readbacks ran at original paths; relocated archive reports must not be presented as freshly revalidated. Original task directory is retained locally."
+  },
+  "validation": {
+    "full_suite": {
+      "argv": [
+        "/opt/homebrew/bin/python3.14",
+        "-B",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "tests",
+        "-v"
+      ],
+      "cwd": "/Users/grove/.p2p/issue37-20261014/pr",
+      "exit_code": 1,
+      "tests": 251,
+      "elapsed_seconds": 163.869,
+      "failure_diagnostics": 10,
+      "skipped": 8,
+      "stderr_file": "validation/full-suite.stderr",
+      "cause": "Existing #36 FutureCacheControls executable-alias receipt mismatch, reproduced on unchanged PR head before edits."
+    },
+    "fixed_oracle_controls": {
+      "argv": [
+        "/opt/homebrew/bin/python3.14",
+        "-B",
+        "checks/fixtures/s0/test_oracle.py"
+      ],
+      "cwd": "/Users/grove/.p2p/issue37-20261014/pr",
+      "exit_code": 0,
+      "tests": 3,
+      "elapsed_seconds": 4.009
+    },
+    "diff_check": "PASSED"
+  }
+}

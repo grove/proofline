@@ -327,6 +327,11 @@ and defect-triggered Sol diagnosis. Its authorized six-baseline run stopped at
 the spending gate: five passed the frozen oracle and one grade is disputed.
 All 18 intervention slots remain unobserved; no recovery benefit is claimed.
 
+The [real-PR check casebook (#37)](docs/ISSUE37.md) records three retrospective
+implementation uses: one protected check passed and two were blocked by directory
+symlinks. Ordinary tests also exposed a macOS receipt-path problem. No recovery
+or added test-coverage benefit was observed; checks remain optional.
+
 **License:** [Apache 2.0](LICENSE).
 
 ---
