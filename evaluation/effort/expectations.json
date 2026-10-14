@@ -1,0 +1,564 @@
+{
+  "12": {
+    "schema_version": 1,
+    "study_id": "issue38-real-requests-medium-high-v4",
+    "author": "source/grader preparation agent",
+    "source_sha256": "217825e29a71651b8e34fac1dfaf43982bc1b5424649b31e114e5b648d362754",
+    "oracle_sha256": "39078dff0b94ee17baa2bf9befc176cde7db8605c949f6a8aa49dfc07a471234",
+    "expectations": [
+      {
+        "id": "regression_observations",
+        "kind": "compatibility",
+        "cases": [
+          "test_check_direct_and_existing_files_forward_identical_full_input",
+          "test_managed_run_supports_same_direct_and_file_inputs",
+          "test_tokenization_does_not_execute_shell_metacharacters",
+          "test_invalid_direct_commands_fail_before_any_dispatch",
+          "test_invalid_file_inputs_fail_before_any_dispatch",
+          "test_cli_reports_unavailable_host_without_pretending_success"
+        ],
+        "claim": "Collect source-relevant regression observations. Reference-specific CLI names, numeric exit codes, packaging and wording do not become source obligations; failures require the whole-source audit.",
+        "source_clause": "- [ ] Full original source survives intact (including multiline input) and is recorded in the frozen evidence. No silent summarization or reinterpretation.",
+        "support": "source",
+        "ambiguity": "",
+        "acceptable_alternatives": [
+          "Any documented source-valid equivalent interface or packaging; supplied regression observations may require a recorded equivalent probe before scoring."
+        ]
+      },
+      {
+        "id": "R1",
+        "kind": "output",
+        "cases": [
+          "material source clause 1: supported, violated, disputed or not demonstrated"
+        ],
+        "claim": "Evaluate the entire original clause; accept source-valid alternatives and keep unsupported expectations disputed.",
+        "source_clause": "- [ ] Document one short, realistic command/skill example for check-only use and an optional example for managed `run`.",
+        "support": "source",
+        "ambiguity": "",
+        "acceptable_alternatives": [
+          "All choices permitted by the original clause."
+        ]
+      },
+      {
+        "id": "R2",
+        "kind": "negative",
+        "cases": [
+          "material source clause 2: supported, violated, disputed or not demonstrated"
+        ],
+        "claim": "Evaluate the entire original clause; accept source-valid alternatives and keep unsupported expectations disputed.",
+        "source_clause": "- [ ] A direct request requires no P2P issue, Intentline contract, acceptance-planning stage, or second model call.",
+        "support": "source",
+        "ambiguity": "",
+        "acceptable_alternatives": [
+          "All choices permitted by the original clause."
+        ]
+      },
+      {
+        "id": "R3",
+        "kind": "negative",
+        "cases": [
+          "material source clause 3: supported, violated, disputed or not demonstrated"
+        ],
+        "claim": "Evaluate the entire original clause; accept source-valid alternatives and keep unsupported expectations disputed.",
+        "source_clause": "- [ ] Full original source survives intact (including multiline input) and is recorded in the frozen evidence. No silent summarization or reinterpretation.",
+        "support": "source",
+        "ambiguity": "",
+        "acceptable_alternatives": [
+          "All choices permitted by the original clause."
+        ]
+      },
+      {
+        "id": "R4",
+        "kind": "negative",
+        "cases": [
+          "material source clause 4: supported, violated, disputed or not demonstrated"
+        ],
+        "claim": "Evaluate the entire original clause; accept source-valid alternatives and keep unsupported expectations disputed.",
+        "source_clause": "- [ ] Command invocation uses a safely parsed argv list with no implicit shell execution, and remains reproducible in receipts.",
+        "support": "source",
+        "ambiguity": "",
+        "acceptable_alternatives": [
+          "All choices permitted by the original clause."
+        ]
+      },
+      {
+        "id": "R5",
+        "kind": "negative",
+        "cases": [
+          "material source clause 5: supported, violated, disputed or not demonstrated"
+        ],
+        "claim": "Evaluate the entire original clause; accept source-valid alternatives and keep unsupported expectations disputed.",
+        "source_clause": "- [ ] Helpful validation errors describe missing commands, unavailable runtime, and source/candidate limitations without launching models.",
+        "support": "source",
+        "ambiguity": "",
+        "acceptable_alternatives": [
+          "All choices permitted by the original clause."
+        ]
+      },
+      {
+        "id": "R6",
+        "kind": "output",
+        "cases": [
+          "material source clause 6: supported, violated, disputed or not demonstrated"
+        ],
+        "claim": "Evaluate the entire original clause; accept source-valid alternatives and keep unsupported expectations disputed.",
+        "source_clause": "- [ ] Tests demonstrate equivalence of direct and existing file inputs and preserve backward compatibility.",
+        "support": "source",
+        "ambiguity": "",
+        "acceptable_alternatives": [
+          "All choices permitted by the original clause."
+        ]
+      },
+      {
+        "id": "R7",
+        "kind": "output",
+        "cases": [
+          "material source clause 7: supported, violated, disputed or not demonstrated"
+        ],
+        "claim": "Evaluate the entire original clause; accept source-valid alternatives and keep unsupported expectations disputed.",
+        "source_clause": "- [ ] Update `README.md` and `SKILL.md` with task-oriented, minimal usage.",
+        "support": "source",
+        "ambiguity": "",
+        "acceptable_alternatives": [
+          "All choices permitted by the original clause."
+        ]
+      },
+      {
+        "id": "R8",
+        "kind": "negative",
+        "cases": [
+          "material source clause 8: supported, violated, disputed or not demonstrated"
+        ],
+        "claim": "Evaluate the entire original clause; accept source-valid alternatives and keep unsupported expectations disputed.",
+        "source_clause": "Keep the **no-Intentline** direct `check` UX as the default; no new required `intentline` command, model, config, file ceremony or approval. The same existing agent may **optionally** use Intentline's plan skill or manually source-grounded `R` rows for an important task, then invoke Proofline's ordinary explicit argv checks. Show both workflows in README/SKILL with one short example each, clearly distinguishing the **future** [#23 Intentline consumer](https://github.com/grove/proofline/issues/23) from present capabilities. Preserve the whole original request; planning suggestions must not narrow it. This issue does **not** implement the adapter; the CLI should stay simple even if the adapter never ships. Test direct usage and absence of a peer dependency.\n",
+        "support": "source",
+        "ambiguity": "",
+        "acceptable_alternatives": [
+          "All choices permitted by the original clause."
+        ]
+      },
+      {
+        "id": "R9",
+        "kind": "negative",
+        "cases": [
+          "material source clause 9: supported, violated, disputed or not demonstrated"
+        ],
+        "claim": "Evaluate the entire original clause; accept source-valid alternatives and keep unsupported expectations disputed.",
+        "source_clause": "Design a thin CLI/skill interface over `check` and the optional managed `run` pathway. Allow the agent to pass the full original request and explicitly chosen checks directly or by existing files; keep advanced file-based inputs available. The existing agent\u2014not Proofline\u2014chooses relevant commands, informed by real repository facts.",
+        "support": "source",
+        "ambiguity": "",
+        "acceptable_alternatives": [
+          "All choices permitted by the original clause."
+        ]
+      },
+      {
+        "id": "R10",
+        "kind": "output",
+        "cases": [
+          "material source clause 10: supported, violated, disputed or not demonstrated"
+        ],
+        "claim": "Evaluate the entire original clause; accept source-valid alternatives and keep unsupported expectations disputed.",
+        "source_clause": "Auto-writing acceptance tests, another planning interface, an interactive wizard, or installation of repository dependencies.",
+        "support": "source",
+        "ambiguity": "",
+        "acceptable_alternatives": [
+          "All choices permitted by the original clause."
+        ]
+      }
+    ]
+  },
+  "28": {
+    "schema_version": 1,
+    "study_id": "issue38-real-requests-medium-high-v4",
+    "author": "source/grader preparation agent",
+    "source_sha256": "0358c7171107906a7b52e2549c640cb875e410517cd83ea80863baa18b521ebb",
+    "oracle_sha256": "7a007ffc01608fb5262424505e85de8d63406a5cb52835e7116da50ac3d85dcf",
+    "expectations": [
+      {
+        "id": "regression_observations",
+        "kind": "compatibility",
+        "cases": [
+          "test_metadata_and_one_maintained_definition",
+          "test_root_entry_and_supported_installation_documented",
+          "test_local_links_resolve_in_the_selected_layout",
+          "test_install_copy_retains_skill_metadata",
+          "test_python_cli_keeps_run_check_status"
+        ],
+        "claim": "Collect source-relevant regression observations. Reference-specific CLI names, numeric exit codes, packaging and wording do not become source obligations; failures require the whole-source audit.",
+        "source_clause": "- [ ] Test/validate skill metadata, single canonical definition or explicit compatibility alias (if needed), relative link resolution, supported install packaging, and documentation consistency. If an old explicit skill invocation is no longer supported, document the migration clearly rather than claiming unverified compatibility.",
+        "support": "source",
+        "ambiguity": "",
+        "acceptable_alternatives": [
+          "Any documented source-valid equivalent interface or packaging; supplied regression observations may require a recorded equivalent probe before scoring."
+        ]
+      },
+      {
+        "id": "R1",
+        "kind": "output",
+        "cases": [
+          "material source clause 1: supported, violated, disputed or not demonstrated"
+        ],
+        "claim": "Evaluate the entire original clause; accept source-valid alternatives and keep unsupported expectations disputed.",
+        "source_clause": "- [ ] Change the canonical skill's frontmatter to `name: proofline-check` with a concise trigger-focused description: use after an existing coding agent implements a change to execute selected tests against the frozen candidate and report actual failures / missing evidence; mention that it is optional and model-free in `check` mode.",
+        "support": "source",
+        "ambiguity": "",
+        "acceptable_alternatives": [
+          "All choices permitted by the original clause."
+        ]
+      },
+      {
+        "id": "R2",
+        "kind": "negative",
+        "cases": [
+          "material source clause 2: supported, violated, disputed or not demonstrated"
+        ],
+        "claim": "Evaluate the entire original clause; accept source-valid alternatives and keep unsupported expectations disputed.",
+        "source_clause": "- [ ] Determine and document the supported skill installation/discovery path for at least Codex and Claude Code. If a standard `skills/proofline-check/SKILL.md` directory is needed, provide it without silently breaking the existing root `SKILL.md` entry or creating two independently maintained divergent instructions. Preserve relative documentation/code links under the chosen layout.",
+        "support": "source",
+        "ambiguity": "",
+        "acceptable_alternatives": [
+          "All choices permitted by the original clause."
+        ]
+      },
+      {
+        "id": "R3",
+        "kind": "negative",
+        "cases": [
+          "material source clause 3: supported, violated, disputed or not demonstrated"
+        ],
+        "claim": "Evaluate the entire original clause; accept source-valid alternatives and keep unsupported expectations disputed.",
+        "source_clause": "- [ ] Update README, skill instructions, examples, and any current references that invoke or install the skill under its old name. Distinguish **automatic discovery when installed** from guaranteed automatic invocation (not guaranteed).",
+        "support": "source",
+        "ambiguity": "",
+        "acceptable_alternatives": [
+          "All choices permitted by the original clause."
+        ]
+      },
+      {
+        "id": "R4",
+        "kind": "output",
+        "cases": [
+          "material source clause 4: supported, violated, disputed or not demonstrated"
+        ],
+        "claim": "Evaluate the entire original clause; accept source-valid alternatives and keep unsupported expectations disputed.",
+        "source_clause": "- [ ] Preserve the existing `proofline.py check`, `run`, and `status` commands, direct/file source inputs, optional Intentline integration, zero-extra-model check-only behavior, receipt integrity, and safety boundaries. Do **not** rename the CLI to `proofline-check`.",
+        "support": "source",
+        "ambiguity": "",
+        "acceptable_alternatives": [
+          "All choices permitted by the original clause."
+        ]
+      },
+      {
+        "id": "R5",
+        "kind": "negative",
+        "cases": [
+          "material source clause 5: supported, violated, disputed or not demonstrated"
+        ],
+        "claim": "Evaluate the entire original clause; accept source-valid alternatives and keep unsupported expectations disputed.",
+        "source_clause": "- [ ] Test/validate skill metadata, single canonical definition or explicit compatibility alias (if needed), relative link resolution, supported install packaging, and documentation consistency. If an old explicit skill invocation is no longer supported, document the migration clearly rather than claiming unverified compatibility.",
+        "support": "source",
+        "ambiguity": "",
+        "acceptable_alternatives": [
+          "All choices permitted by the original clause."
+        ]
+      },
+      {
+        "id": "R6",
+        "kind": "negative",
+        "cases": [
+          "material source clause 6: supported, violated, disputed or not demonstrated"
+        ],
+        "claim": "Evaluate the entire original clause; accept source-valid alternatives and keep unsupported expectations disputed.",
+        "source_clause": "- [ ] Confirm no new mandatory planning, reviewer/prover, authorization, or model-dispatch stage was introduced.",
+        "support": "source",
+        "ambiguity": "",
+        "acceptable_alternatives": [
+          "All choices permitted by the original clause."
+        ]
+      },
+      {
+        "id": "R7",
+        "kind": "negative",
+        "cases": [
+          "material source clause 7: supported, violated, disputed or not demonstrated"
+        ],
+        "claim": "Evaluate the entire original clause; accept source-valid alternatives and keep unsupported expectations disputed.",
+        "source_clause": "Rename **the skill**, not the Proofline project, Python package, or CLI. Keep **one** Proofline skill covering check-only verification, evidence/feedback, optional Intentline input, and optional managed `run`. Prioritize agent-friendly discoverability, correct installation guidance, and minimal change.",
+        "support": "source",
+        "ambiguity": "",
+        "acceptable_alternatives": [
+          "All choices permitted by the original clause."
+        ]
+      },
+      {
+        "id": "R8",
+        "kind": "output",
+        "cases": [
+          "material source clause 8: supported, violated, disputed or not demonstrated"
+        ],
+        "claim": "Evaluate the entire original clause; accept source-valid alternatives and keep unsupported expectations disputed.",
+        "source_clause": "Splitting Proofline into multiple skills merely for symmetry, changing Intentline skill names, merging repositories, altering check execution semantics, or making skill discovery mandatory for direct CLI use.",
+        "support": "source",
+        "ambiguity": "",
+        "acceptable_alternatives": [
+          "All choices permitted by the original clause."
+        ]
+      }
+    ]
+  },
+  "41": {
+    "schema_version": 1,
+    "study_id": "issue38-real-requests-medium-high-v4",
+    "author": "source/grader preparation agent",
+    "source_sha256": "374836e667caaa4c37ef10b30d0e821ea135dc04e51074c9f81b95972910d390",
+    "oracle_sha256": "b93305e858e0fd798bb9782467eeddefa4e7b6ad4360a7747bd48b9dc42d7edb",
+    "expectations": [
+      {
+        "id": "regression_observations",
+        "kind": "compatibility",
+        "cases": [
+          "test_fully_source_bound_and_explicit_exception",
+          "test_missing_material_unsupported_citation_unknown_disagreement_and_tamper",
+          "test_no_case_inventory_cannot_qualify_vacuously",
+          "test_adjudicated_requires_separate_reviewer_and_supported_decision",
+          "test_qualification_stops_before_oracle_execution",
+          "test_oracle_unknown_receipts_are_not_false_acceptances",
+          "test_reference_alternative_and_deliberate_defects",
+          "test_import_path_bug_is_reproduced_and_corrected_in_future_runner",
+          "test_original_suite_failure_preserves_argv_status_and_receipt",
+          "test_explicit_valueerror_allows_reference_but_rejects_typeerror",
+          "test_unavailable_repository_suite_preserves_behavior_and_timeout_evidence",
+          "test_relative_and_absolute_executable_aliases_record_canonical_invocation",
+          "test_homebrew_alias_and_cellar_launches_agree_on_exact_receipt",
+          "test_tampered_repository_receipts_remain_unavailable"
+        ],
+        "claim": "Collect source-relevant regression observations. Reference-specific CLI names, numeric exit codes, packaging and wording do not become source obligations; failures require the whole-source audit.",
+        "source_clause": "- [ ] Re-run `python -B -m unittest tests.test_source_oracles -v` and the normal repo suite on the **supported macOS Python 3.14/Codex host**; distinguish this from Linux CI. Retain concise reproducer and before/after results. Never claim the issue fixed based only on passing Linux jobs.",
+        "support": "source",
+        "ambiguity": "",
+        "acceptable_alternatives": [
+          "Any documented source-valid equivalent interface or packaging; supplied regression observations may require a recorded equivalent probe before scoring."
+        ]
+      },
+      {
+        "id": "R1",
+        "kind": "output",
+        "cases": [
+          "material source clause 1: supported, violated, disputed or not demonstrated"
+        ],
+        "claim": "The source audit must evaluate this entire original clause; no reference-specific implementation choice is required.",
+        "source_clause": "- [ ] In `evaluation/future_cache.py`, make the **actual recorded child invocation** and the **trusted expected argv** agree on an exact, deliberately selected interpreter identity. Prefer invoking the *canonical resolved executable* and continuing to compare the actual receipt's argv exactly, rather than blindly declaring arbitrary paths equivalent after execution.",
+        "support": "source",
+        "ambiguity": "",
+        "acceptable_alternatives": [
+          "All choices permitted by this original clause; unknown or unpromised implementation-specific assertions remain disputed rather than defects."
+        ]
+      },
+      {
+        "id": "R2",
+        "kind": "output",
+        "cases": [
+          "material source clause 2: supported, violated, disputed or not demonstrated"
+        ],
+        "claim": "The source audit must evaluate this entire original clause; no reference-specific implementation choice is required.",
+        "source_clause": "- [ ] If alias handling is required, qualify equivalence using a clearly defined trusted identity and retain **both the literal executed argv and the resolved identity** in the receipt. An unrelated binary, changed symlink, malicious alias, unexpected argv/cwd, omitted options, or mismatched evidence must remain unavailable.",
+        "support": "source",
+        "ambiguity": "",
+        "acceptable_alternatives": [
+          "All choices permitted by this original clause; unknown or unpromised implementation-specific assertions remain disputed rather than defects."
+        ]
+      },
+      {
+        "id": "R3",
+        "kind": "negative",
+        "cases": [
+          "material source clause 3: supported, violated, disputed or not demonstrated"
+        ],
+        "claim": "The source audit must evaluate this entire original clause; no reference-specific implementation choice is required.",
+        "source_clause": "- [ ] Keep repository-test launch cwd, subprocess exit status, stdout/stderr, timeout and command provenance separately observable from behavioral correctness. A green original suite is **PASSED**, an intentionally red one **FAILED**, and malformed/tampered or unavailable receipts **UNAVAILABLE**, not false product defects.",
+        "support": "source",
+        "ambiguity": "",
+        "acceptable_alternatives": [
+          "All choices permitted by this original clause; unknown or unpromised implementation-specific assertions remain disputed rather than defects."
+        ]
+      },
+      {
+        "id": "R4",
+        "kind": "output",
+        "cases": [
+          "material source clause 4: supported, violated, disputed or not demonstrated"
+        ],
+        "claim": "The source audit must evaluate this entire original clause; no reference-specific implementation choice is required.",
+        "source_clause": "- [ ] Add focused regressions covering a temporary relative/absolute executable alias where applicable, actual Homebrew alias vs Cellar executable on supported macOS, an unrelated interpreter/changed link, and the existing positive/negative cache/reference controls. Preserve no-follow/protection guarantees.",
+        "support": "source",
+        "ambiguity": "",
+        "acceptable_alternatives": [
+          "All choices permitted by this original clause; unknown or unpromised implementation-specific assertions remain disputed rather than defects."
+        ]
+      },
+      {
+        "id": "R5",
+        "kind": "negative",
+        "cases": [
+          "material source clause 5: supported, violated, disputed or not demonstrated"
+        ],
+        "claim": "The source audit must evaluate this entire original clause; no reference-specific implementation choice is required.",
+        "source_clause": "- [ ] Re-run `python -B -m unittest tests.test_source_oracles -v` and the normal repo suite on the **supported macOS Python 3.14/Codex host**; distinguish this from Linux CI. Retain concise reproducer and before/after results. Never claim the issue fixed based only on passing Linux jobs.",
+        "support": "source",
+        "ambiguity": "",
+        "acceptable_alternatives": [
+          "All choices permitted by this original clause; unknown or unpromised implementation-specific assertions remain disputed rather than defects."
+        ]
+      },
+      {
+        "id": "R6",
+        "kind": "negative",
+        "cases": [
+          "material source clause 6: supported, violated, disputed or not demonstrated"
+        ],
+        "claim": "The source audit must evaluate this entire original clause; no reference-specific implementation choice is required.",
+        "source_clause": "This is a **small future-oracle fix**, with **zero coding-model calls** and **no new benchmark, dependency, approval process or oracle engine**. Leave frozen #16, #32 and #34 study bytes, scores and receipts unchanged; do not retroactively repair or re-grade published results. Do not relax the original requirement-to-oracle checks or the model-free Proofline check safety boundary.",
+        "support": "source",
+        "ambiguity": "",
+        "acceptable_alternatives": [
+          "All choices permitted by this original clause; unknown or unpromised implementation-specific assertions remain disputed rather than defects."
+        ]
+      }
+    ]
+  },
+  "42": {
+    "schema_version": 1,
+    "study_id": "issue38-real-requests-medium-high-v4",
+    "author": "source/grader preparation agent",
+    "source_sha256": "8a10e3cea99fb82ac990cef242c2dd0591037b5b311af6c14de23c09d625cc4f",
+    "oracle_sha256": "1a3a628393e89e6fd3d6c54e7fb770deeff13933adb0000c0c618006f4525d2c",
+    "expectations": [
+      {
+        "id": "regression_observations",
+        "kind": "compatibility",
+        "cases": [
+          "test_copy_and_freeze_preserve_original_source",
+          "test_dirty_and_untracked_source_are_never_discarded",
+          "test_source_symlink_outside_snapshot_is_rejected",
+          "test_clean_git_snapshot_retains_real_skill_directory_and_file_aliases",
+          "test_working_snapshot_retains_tracked_dirty_and_untracked_directory_aliases",
+          "test_links_reject_unsafe_literal_targets_without_resolving_them",
+          "test_directory_targets_reject_nested_aliases_metadata_and_special_files",
+          "test_directory_alias_edits_during_capture_refuse_the_snapshot",
+          "test_external_symlink_chain_is_not_followed_during_discovery_or_validation",
+          "test_special_alias_targets_are_rejected_without_opening_them",
+          "test_candidate_nested_git_metadata_cannot_be_frozen",
+          "test_worktree_rejects_special_files_without_opening_them",
+          "test_worktree_rejects_escape_links_and_symlinked_parents",
+          "test_worktree_rejects_submodules_and_nested_repositories",
+          "test_concurrent_worktree_edits_refuse_a_mixed_snapshot"
+        ],
+        "claim": "Collect source-relevant regression observations. Reference-specific CLI names, numeric exit codes, packaging and wording do not become source obligations; failures require the whole-source audit.",
+        "source_clause": "- [ ] Add explicit regressions for supported local directory links (including the **real `.agents` and `.claude` layout**), file aliases, the security-negative cases above, snapshot readback/staleness, tampering and candidate changes, without weakening existing tests.",
+        "support": "source",
+        "ambiguity": "",
+        "acceptable_alternatives": [
+          "Any documented source-valid equivalent interface or packaging; supplied regression observations may require a recorded equivalent probe before scoring."
+        ]
+      },
+      {
+        "id": "R1",
+        "kind": "negative",
+        "cases": [
+          "material source clause 1: supported, violated, disputed or not demonstrated"
+        ],
+        "claim": "The source audit must evaluate this entire original clause; no reference-specific implementation choice is required.",
+        "source_clause": "- [ ] Support the **minimum qualified, safe in-tree relative directory aliases** needed for real skill-discovery layouts, OR adopt an equally small packaging alternative that keeps **one canonical maintained skill** and lets Proofline check its own checkout. Prefer not to duplicate independent skill definitions or create a general symlink compatibility framework.",
+        "support": "source",
+        "ambiguity": "",
+        "acceptable_alternatives": [
+          "All choices permitted by this original clause; unknown or unpromised implementation-specific assertions remain disputed rather than defects."
+        ]
+      },
+      {
+        "id": "R2",
+        "kind": "negative",
+        "cases": [
+          "material source clause 2: supported, violated, disputed or not demonstrated"
+        ],
+        "claim": "The source audit must evaluate this entire original clause; no reference-specific implementation choice is required.",
+        "source_clause": "- [ ] Retain each alias's **literal target, mode and Git tree identity** in the frozen candidate and readback record; never quietly dereference it into extra copies, omit it, or substitute different checkout bytes. Tracked, dirty tracked and non-ignored untracked candidates must retain existing snapshot/integrity semantics.",
+        "support": "source",
+        "ambiguity": "",
+        "acceptable_alternatives": [
+          "All choices permitted by this original clause; unknown or unpromised implementation-specific assertions remain disputed rather than defects."
+        ]
+      },
+      {
+        "id": "R3",
+        "kind": "negative",
+        "cases": [
+          "material source clause 3: supported, violated, disputed or not demonstrated"
+        ],
+        "claim": "The source audit must evaluate this entire original clause; no reference-specific implementation choice is required.",
+        "source_clause": "- [ ] Reject absolute links, external traversal, aliases into Git metadata (including case variants), dangling targets, cycles, links traversing out-of-tree symlink chains, special files, or any link whose target cannot be safely validated. Maintain bounded traversal and refuse unqualified nesting. Do not follow unsafe aliases during discovery or allow a link to cross the native sandbox write/read boundary.",
+        "support": "source",
+        "ambiguity": "",
+        "acceptable_alternatives": [
+          "All choices permitted by this original clause; unknown or unpromised implementation-specific assertions remain disputed rather than defects."
+        ]
+      },
+      {
+        "id": "R4",
+        "kind": "negative",
+        "cases": [
+          "material source clause 4: supported, violated, disputed or not demonstrated"
+        ],
+        "claim": "The source audit must evaluate this entire original clause; no reference-specific implementation choice is required.",
+        "source_clause": "- [ ] Add explicit regressions for supported local directory links (including the **real `.agents` and `.claude` layout**), file aliases, the security-negative cases above, snapshot readback/staleness, tampering and candidate changes, without weakening existing tests.",
+        "support": "source",
+        "ambiguity": "",
+        "acceptable_alternatives": [
+          "All choices permitted by this original clause; unknown or unpromised implementation-specific assertions remain disputed rather than defects."
+        ]
+      },
+      {
+        "id": "R5",
+        "kind": "negative",
+        "cases": [
+          "material source clause 5: supported, violated, disputed or not demonstrated"
+        ],
+        "claim": "The source audit must evaluate this entire original clause; no reference-specific implementation choice is required.",
+        "source_clause": "- [ ] On the supported macOS native host, execute the actual `proofline.py check` / `proofline-check` flow against a clean repository with the two skill-discovery directory links. Run representative existing tests, verify **CHECKS PASSED**, zero model dispatches, unchanged live worktree, candidate-bound native receipts and successful `status` readback. If a safety-preserving native boundary cannot qualify directory aliases, report the precise limitation and use the narrowest safe packaging solution instead.",
+        "support": "source",
+        "ambiguity": "",
+        "acceptable_alternatives": [
+          "All choices permitted by this original clause; unknown or unpromised implementation-specific assertions remain disputed rather than defects."
+        ]
+      },
+      {
+        "id": "R6",
+        "kind": "negative",
+        "cases": [
+          "material source clause 6: supported, violated, disputed or not demonstrated"
+        ],
+        "claim": "The source audit must evaluate this entire original clause; no reference-specific implementation choice is required.",
+        "source_clause": "Do not bypass the Codex native sandbox, grant broader permissions, read or copy external targets, discard symlinked user work, auto-install a skill, introduce extra models, or redesign the Proofline CLI. Preserve all archived/frozen #16, #32, #34 studies and their scores. Keep the single maintained `proofline-check` skill.",
+        "support": "source",
+        "ambiguity": "",
+        "acceptable_alternatives": [
+          "All choices permitted by this original clause; unknown or unpromised implementation-specific assertions remain disputed rather than defects."
+        ]
+      },
+      {
+        "id": "R7",
+        "kind": "negative",
+        "cases": [
+          "material source clause 7: supported, violated, disputed or not demonstrated"
+        ],
+        "claim": "The source audit must evaluate this entire original clause; no reference-specific implementation choice is required.",
+        "source_clause": "The previously blocked real-PR layout is checkable **without dropping links or weakening isolation**, with independent security-negative regressions and clear installation/readback behavior. A focused PR is sufficient; **do not merge without explicit approval**.",
+        "support": "source",
+        "ambiguity": "",
+        "acceptable_alternatives": [
+          "All choices permitted by this original clause; unknown or unpromised implementation-specific assertions remain disputed rather than defects."
+        ]
+      }
+    ]
+  }
+}

@@ -1,0 +1,144 @@
+{
+  "schema_version": 1,
+  "study_id": "issue38-real-requests-medium-high-v4",
+  "tasks": [
+    {
+      "issue": 12,
+      "pr": 24,
+      "label": "Direct CLI inputs",
+      "base_commit": "d130bdeb15ba5e3aae00664a371296fc28ae132f",
+      "base_tree": "58d6bf72c45dd5a2fcafcae9966bf055758bdfd6",
+      "reference_commit": "aac3d942440c87da2b67de9aa2a587070390ee0e",
+      "reference_tree": "e4138ed9804b1cba3348fc44f6011af73b2223de",
+      "visible_tests": [
+        "tests.test_supported_cli"
+      ],
+      "source_sha256": "217825e29a71651b8e34fac1dfaf43982bc1b5424649b31e114e5b648d362754",
+      "source_url": "https://github.com/grove/proofline/issues/12"
+    },
+    {
+      "issue": 28,
+      "pr": 30,
+      "label": "Skill packaging control",
+      "base_commit": "80515676de017d68a5f913f5e23a5e80397fe54e",
+      "base_tree": "5684d04c6d5927955bd963e0e9d4128b085f6a24",
+      "reference_commit": "bb15f7754615b1209d52e7233e7178809b08e4c4",
+      "reference_tree": "d5d10bd9e9a58e571cf338ccd4482255bfba911e",
+      "visible_tests": [
+        "tests.test_supported_cli"
+      ],
+      "source_sha256": "0358c7171107906a7b52e2549c640cb875e410517cd83ea80863baa18b521ebb",
+      "source_url": "https://github.com/grove/proofline/issues/28"
+    },
+    {
+      "issue": 41,
+      "pr": 43,
+      "label": "Python receipt identity",
+      "base_commit": "9c9d8948b82bd47a82938da8620d3eb58b85d200",
+      "base_tree": "0c12e50e322b9c1faaa54f6134569c679be6d759",
+      "reference_commit": "5cec4104eb2131b16c8b8112b1bbdf28d89878b2",
+      "reference_tree": "0c40b872bbff9b60fc39ddb560789c189cbf8b58",
+      "visible_tests": [
+        "tests.test_supported_cli"
+      ],
+      "source_sha256": "374836e667caaa4c37ef10b30d0e821ea135dc04e51074c9f81b95972910d390",
+      "source_url": "https://github.com/grove/proofline/issues/41"
+    },
+    {
+      "issue": 42,
+      "pr": 44,
+      "label": "Safe directory aliases",
+      "base_commit": "03e803d8cdd50378fdce2691a79ce80523f098de",
+      "base_tree": "0c40b872bbff9b60fc39ddb560789c189cbf8b58",
+      "reference_commit": "0331ea8661a02ec1ee7467136369da8cb6938518",
+      "reference_tree": "216b018028b5e3b83c89848001bf9145beb37ee4",
+      "visible_tests": [
+        "tests.test_supported_cli"
+      ],
+      "source_sha256": "8a10e3cea99fb82ac990cef242c2dd0591037b5b311af6c14de23c09d625cc4f",
+      "source_url": "https://github.com/grove/proofline/issues/42"
+    }
+  ],
+  "models": {
+    "medium": {
+      "model": "gpt-6-luna",
+      "model_reasoning_effort": "medium"
+    },
+    "high": {
+      "model": "gpt-6-luna",
+      "model_reasoning_effort": "high"
+    }
+  },
+  "host": {
+    "versions": [
+      "Darwin",
+      "arm64",
+      "26.6.2",
+      "3.14.8"
+    ],
+    "codex": "codex-cli 0.162.1"
+  },
+  "order": [
+    [
+      "medium",
+      "high"
+    ],
+    [
+      "high",
+      "medium"
+    ],
+    [
+      "high",
+      "medium"
+    ],
+    [
+      "medium",
+      "high"
+    ]
+  ],
+  "limits": {
+    "native_dispatches": 8,
+    "coding_seconds": 540,
+    "assignment_seconds": 900,
+    "campaign_seconds": 7200,
+    "preflight_seconds": 1800
+  },
+  "guidance": "Use your ordinary coding approach and relevant original repository tests. Implement the complete original request. Private graders and other assignments are unavailable. No model or reasoning escalation, separate planner/verifier, mandatory Proofline check, or correction turn.",
+  "execution_map": "No network or external repository/history access. Source, Git metadata and private evidence are protected. Only this assignment product and scratch are writable. Use the installed native Python. All self-checks count toward the same assignment budget.",
+  "exposure": {
+    "selection": "Four real requested repository changes selected before any study model outcome. #12 and #28 were identified by #37; #41 and #42 were genuine real-host fixes prompted by it.",
+    "public_solutions": true,
+    "organizer_saw_reference_implementations": true,
+    "worker_prior_training_exposure": "UNKNOWN",
+    "worker_access": "Exact base bytes and only Git objects reachable from the real base commit (needed by original archival tests), complete current issue request, common guidance, ordinary tools and own results. No post-base solution commits/refs, private study regressions, evaluator files, other assignments or network.",
+    "inference": "Retrospective public-issue replays, not unseen prospective tasks or a population reliability estimate. No #16/#32/#34 benchmark task/solution/oracle pair is reassigned."
+  },
+  "grading": {
+    "regressions": "Private protected observations and reference/alternative/defective controls. Not sole correctness authority.",
+    "source_audit": "During each assignment deadline, read the complete request and candidate diff and record all frozen material clauses against the exact candidate and observations. Regression failures require exact source support; documented equivalent input spellings, wording, packaging and meaningful exception alternatives are accepted. Unsupported/disputed expectations never become defects. No next model dispatch before this audit.",
+    "confirmed_success": "Completed handoff plus available independent observations and a recorded complete source audit with all material obligations supported.",
+    "repository_tests": "Original selected visible suite receipts are separate from independent correctness; passing sampled regressions is not a source audit.",
+    "external_effects": "These are retrospective repository-implementation replays. Preserve complete original requests, including workflow constraints. Previously completed publication/merge effects are not replayed or claimed anew. Grade implementation and regression/qualification obligations; the study caller owns authorized publication and native qualification, with no extra worker feedback."
+  },
+  "stop_rules": [
+    "Source preflight, native boundaries and all control observations must qualify before any live dispatch.",
+    "Separate user authorization must identify this exact freeze, eight implementation turns and 7200 cumulative assignment seconds. No inherited authorization.",
+    "Serial execution, one coding turn per slot, no retry/resume, no mid-cohort changes, no pooling historic scores.",
+    "Unavailable model/check/oracle, protected input drift, interrupted uncertain dispatch or exhausted cumulative budget stops the entire campaign with every remaining slot retained.",
+    "A confirmed medium defect recommends a separately authorized fresh cohort, never automatic Sol, feedback, correction or task cherry-picking."
+  ],
+  "accounting": {
+    "tokens": [
+      "input_tokens",
+      "cached_input_tokens",
+      "uncached_input_tokens",
+      "output_tokens"
+    ],
+    "cached": "Cached input is included in input. Uncached=input-cached; never add cached input twice.",
+    "billing_usd": null,
+    "preparation_and_human_usage": "Record observed process seconds separately; organizer model usage, active human time and total billing are unknown unless independently observed.",
+    "comparison": "All assigned and per-task paired source-correct deliveries, complete elapsed/turns/tools/tokens and resources per independently correct delivery. Zero observed correct deliveries has no per-correct cost estimate.",
+    "shared_preparation": "Report all measured preflight attempts and preparation separately. Allocate half of measured shared preparation process seconds to each arm when giving preparation-inclusive resources per source-correct delivery; total organizer/human effort and dollars remain unknown."
+  },
+  "prior_preflight_seconds": 258.1723803752102
+}

@@ -1,0 +1,256 @@
+{
+  "12": {
+    "regression_observations": {
+      "kind": "compatibility",
+      "cases": [
+        "test_check_direct_and_existing_files_forward_identical_full_input",
+        "test_managed_run_supports_same_direct_and_file_inputs",
+        "test_tokenization_does_not_execute_shell_metacharacters",
+        "test_invalid_direct_commands_fail_before_any_dispatch",
+        "test_invalid_file_inputs_fail_before_any_dispatch",
+        "test_cli_reports_unavailable_host_without_pretending_success"
+      ]
+    },
+    "R1": {
+      "kind": "output",
+      "cases": [
+        "material source clause 1: supported, violated, disputed or not demonstrated"
+      ]
+    },
+    "R2": {
+      "kind": "negative",
+      "cases": [
+        "material source clause 2: supported, violated, disputed or not demonstrated"
+      ]
+    },
+    "R3": {
+      "kind": "negative",
+      "cases": [
+        "material source clause 3: supported, violated, disputed or not demonstrated"
+      ]
+    },
+    "R4": {
+      "kind": "negative",
+      "cases": [
+        "material source clause 4: supported, violated, disputed or not demonstrated"
+      ]
+    },
+    "R5": {
+      "kind": "negative",
+      "cases": [
+        "material source clause 5: supported, violated, disputed or not demonstrated"
+      ]
+    },
+    "R6": {
+      "kind": "output",
+      "cases": [
+        "material source clause 6: supported, violated, disputed or not demonstrated"
+      ]
+    },
+    "R7": {
+      "kind": "output",
+      "cases": [
+        "material source clause 7: supported, violated, disputed or not demonstrated"
+      ]
+    },
+    "R8": {
+      "kind": "negative",
+      "cases": [
+        "material source clause 8: supported, violated, disputed or not demonstrated"
+      ]
+    },
+    "R9": {
+      "kind": "negative",
+      "cases": [
+        "material source clause 9: supported, violated, disputed or not demonstrated"
+      ]
+    },
+    "R10": {
+      "kind": "output",
+      "cases": [
+        "material source clause 10: supported, violated, disputed or not demonstrated"
+      ]
+    }
+  },
+  "28": {
+    "regression_observations": {
+      "kind": "compatibility",
+      "cases": [
+        "test_metadata_and_one_maintained_definition",
+        "test_root_entry_and_supported_installation_documented",
+        "test_local_links_resolve_in_the_selected_layout",
+        "test_install_copy_retains_skill_metadata",
+        "test_python_cli_keeps_run_check_status"
+      ]
+    },
+    "R1": {
+      "kind": "output",
+      "cases": [
+        "material source clause 1: supported, violated, disputed or not demonstrated"
+      ]
+    },
+    "R2": {
+      "kind": "negative",
+      "cases": [
+        "material source clause 2: supported, violated, disputed or not demonstrated"
+      ]
+    },
+    "R3": {
+      "kind": "negative",
+      "cases": [
+        "material source clause 3: supported, violated, disputed or not demonstrated"
+      ]
+    },
+    "R4": {
+      "kind": "output",
+      "cases": [
+        "material source clause 4: supported, violated, disputed or not demonstrated"
+      ]
+    },
+    "R5": {
+      "kind": "negative",
+      "cases": [
+        "material source clause 5: supported, violated, disputed or not demonstrated"
+      ]
+    },
+    "R6": {
+      "kind": "negative",
+      "cases": [
+        "material source clause 6: supported, violated, disputed or not demonstrated"
+      ]
+    },
+    "R7": {
+      "kind": "negative",
+      "cases": [
+        "material source clause 7: supported, violated, disputed or not demonstrated"
+      ]
+    },
+    "R8": {
+      "kind": "output",
+      "cases": [
+        "material source clause 8: supported, violated, disputed or not demonstrated"
+      ]
+    }
+  },
+  "41": {
+    "regression_observations": {
+      "kind": "compatibility",
+      "cases": [
+        "test_fully_source_bound_and_explicit_exception",
+        "test_missing_material_unsupported_citation_unknown_disagreement_and_tamper",
+        "test_no_case_inventory_cannot_qualify_vacuously",
+        "test_adjudicated_requires_separate_reviewer_and_supported_decision",
+        "test_qualification_stops_before_oracle_execution",
+        "test_oracle_unknown_receipts_are_not_false_acceptances",
+        "test_reference_alternative_and_deliberate_defects",
+        "test_import_path_bug_is_reproduced_and_corrected_in_future_runner",
+        "test_original_suite_failure_preserves_argv_status_and_receipt",
+        "test_explicit_valueerror_allows_reference_but_rejects_typeerror",
+        "test_unavailable_repository_suite_preserves_behavior_and_timeout_evidence",
+        "test_relative_and_absolute_executable_aliases_record_canonical_invocation",
+        "test_homebrew_alias_and_cellar_launches_agree_on_exact_receipt",
+        "test_tampered_repository_receipts_remain_unavailable"
+      ]
+    },
+    "R1": {
+      "kind": "output",
+      "cases": [
+        "material source clause 1: supported, violated, disputed or not demonstrated"
+      ]
+    },
+    "R2": {
+      "kind": "output",
+      "cases": [
+        "material source clause 2: supported, violated, disputed or not demonstrated"
+      ]
+    },
+    "R3": {
+      "kind": "negative",
+      "cases": [
+        "material source clause 3: supported, violated, disputed or not demonstrated"
+      ]
+    },
+    "R4": {
+      "kind": "output",
+      "cases": [
+        "material source clause 4: supported, violated, disputed or not demonstrated"
+      ]
+    },
+    "R5": {
+      "kind": "negative",
+      "cases": [
+        "material source clause 5: supported, violated, disputed or not demonstrated"
+      ]
+    },
+    "R6": {
+      "kind": "negative",
+      "cases": [
+        "material source clause 6: supported, violated, disputed or not demonstrated"
+      ]
+    }
+  },
+  "42": {
+    "regression_observations": {
+      "kind": "compatibility",
+      "cases": [
+        "test_copy_and_freeze_preserve_original_source",
+        "test_dirty_and_untracked_source_are_never_discarded",
+        "test_source_symlink_outside_snapshot_is_rejected",
+        "test_clean_git_snapshot_retains_real_skill_directory_and_file_aliases",
+        "test_working_snapshot_retains_tracked_dirty_and_untracked_directory_aliases",
+        "test_links_reject_unsafe_literal_targets_without_resolving_them",
+        "test_directory_targets_reject_nested_aliases_metadata_and_special_files",
+        "test_directory_alias_edits_during_capture_refuse_the_snapshot",
+        "test_external_symlink_chain_is_not_followed_during_discovery_or_validation",
+        "test_special_alias_targets_are_rejected_without_opening_them",
+        "test_candidate_nested_git_metadata_cannot_be_frozen",
+        "test_worktree_rejects_special_files_without_opening_them",
+        "test_worktree_rejects_escape_links_and_symlinked_parents",
+        "test_worktree_rejects_submodules_and_nested_repositories",
+        "test_concurrent_worktree_edits_refuse_a_mixed_snapshot"
+      ]
+    },
+    "R1": {
+      "kind": "negative",
+      "cases": [
+        "material source clause 1: supported, violated, disputed or not demonstrated"
+      ]
+    },
+    "R2": {
+      "kind": "negative",
+      "cases": [
+        "material source clause 2: supported, violated, disputed or not demonstrated"
+      ]
+    },
+    "R3": {
+      "kind": "negative",
+      "cases": [
+        "material source clause 3: supported, violated, disputed or not demonstrated"
+      ]
+    },
+    "R4": {
+      "kind": "negative",
+      "cases": [
+        "material source clause 4: supported, violated, disputed or not demonstrated"
+      ]
+    },
+    "R5": {
+      "kind": "negative",
+      "cases": [
+        "material source clause 5: supported, violated, disputed or not demonstrated"
+      ]
+    },
+    "R6": {
+      "kind": "negative",
+      "cases": [
+        "material source clause 6: supported, violated, disputed or not demonstrated"
+      ]
+    },
+    "R7": {
+      "kind": "negative",
+      "cases": [
+        "material source clause 7: supported, violated, disputed or not demonstrated"
+      ]
+    }
+  }
+}

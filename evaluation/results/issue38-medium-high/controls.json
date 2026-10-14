@@ -1,0 +1,86 @@
+[
+  {
+    "task": 12,
+    "kind": "reference",
+    "matched": true,
+    "tree": "e4138ed9804b1cba3348fc44f6011af73b2223de",
+    "observation": "/Users/grove/projects/proofline/.proofline/issue38-medium-high-v4/controls/12/reference/grade/observation.json"
+  },
+  {
+    "task": 12,
+    "kind": "alternative",
+    "matched": true,
+    "tree": "b56ad5a081f0fc4e059fd546ba7d5476c9a669f0",
+    "observation": "/Users/grove/projects/proofline/.proofline/issue38-medium-high-v4/controls/12/alternative/grade/observation.json"
+  },
+  {
+    "task": 12,
+    "kind": "defective",
+    "matched": true,
+    "tree": "21308d2d5106ab5cddda67c21cdeeaf1e5c60382",
+    "observation": "/Users/grove/projects/proofline/.proofline/issue38-medium-high-v4/controls/12/defective/grade/observation.json"
+  },
+  {
+    "task": 28,
+    "kind": "reference",
+    "matched": true,
+    "tree": "d5d10bd9e9a58e571cf338ccd4482255bfba911e",
+    "observation": "/Users/grove/projects/proofline/.proofline/issue38-medium-high-v4/controls/28/reference/grade/observation.json"
+  },
+  {
+    "task": 28,
+    "kind": "alternative",
+    "matched": true,
+    "tree": "a19449c35970cf2f5211d71ab7d6f1aff059fddb",
+    "observation": "/Users/grove/projects/proofline/.proofline/issue38-medium-high-v4/controls/28/alternative/grade/observation.json"
+  },
+  {
+    "task": 28,
+    "kind": "defective",
+    "matched": true,
+    "tree": "a83240cbb17efed3c814b1e02be7b596623a2d10",
+    "observation": "/Users/grove/projects/proofline/.proofline/issue38-medium-high-v4/controls/28/defective/grade/observation.json"
+  },
+  {
+    "task": 41,
+    "kind": "reference",
+    "matched": true,
+    "tree": "0c40b872bbff9b60fc39ddb560789c189cbf8b58",
+    "observation": "/Users/grove/projects/proofline/.proofline/issue38-medium-high-v4/controls/41/reference/grade/observation.json"
+  },
+  {
+    "task": 41,
+    "kind": "alternative",
+    "matched": true,
+    "tree": "46a360e83cf27a09031be83bffac13ce4888f780",
+    "observation": "/Users/grove/projects/proofline/.proofline/issue38-medium-high-v4/controls/41/alternative/grade/observation.json"
+  },
+  {
+    "task": 41,
+    "kind": "defective",
+    "matched": true,
+    "tree": "e8c267933561ce9f7f807630bd24e4828c15cec1",
+    "observation": "/Users/grove/projects/proofline/.proofline/issue38-medium-high-v4/controls/41/defective/grade/observation.json"
+  },
+  {
+    "task": 42,
+    "kind": "reference",
+    "matched": true,
+    "tree": "216b018028b5e3b83c89848001bf9145beb37ee4",
+    "observation": "/Users/grove/projects/proofline/.proofline/issue38-medium-high-v4/controls/42/reference/grade/observation.json"
+  },
+  {
+    "task": 42,
+    "kind": "alternative",
+    "matched": true,
+    "tree": "e7ae273bded0dc224e78d1cbff106fe4cee03561",
+    "observation": "/Users/grove/projects/proofline/.proofline/issue38-medium-high-v4/controls/42/alternative/grade/observation.json"
+  },
+  {
+    "task": 42,
+    "kind": "defective",
+    "matched": true,
+    "tree": "2e0cf63196f00f2bb8f588543b3623e3042ab954",
+    "observation": "/Users/grove/projects/proofline/.proofline/issue38-medium-high-v4/controls/42/defective/grade/observation.json"
+  }
+]

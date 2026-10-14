@@ -1,0 +1,74 @@
+{
+  "12": {
+    "alternative": [
+      {
+        "path": "proofline.py",
+        "old": "argv = shlex.split(command, posix=True)",
+        "new": "lexer = shlex.shlex(command, posix=True)\n            lexer.whitespace_split = True\n            lexer.commenters = ''\n            argv = list(lexer)"
+      }
+    ],
+    "defective": [
+      {
+        "path": "proofline.py",
+        "old": "return args.request",
+        "new": "return args.request.strip()"
+      }
+    ]
+  },
+  "28": {
+    "alternative": [
+      {
+        "path": ".agents/skills/proofline-check",
+        "symlink": "../../skills/./proofline-check"
+      },
+      {
+        "path": ".claude/skills/proofline-check",
+        "symlink": "../../skills/./proofline-check"
+      }
+    ],
+    "defective": [
+      {
+        "path": "skills/proofline-check/SKILL.md",
+        "old": "name: proofline-check",
+        "new": "name: proofline"
+      }
+    ]
+  },
+  "41": {
+    "alternative": [
+      {
+        "path": "evaluation/future_cache.py",
+        "old": "argv = [str(Path(sys.executable).resolve()),",
+        "new": "argv = [CANONICAL_PYTHON,"
+      },
+      {
+        "path": "evaluation/future_cache.py",
+        "old": "return (\"ALLOWED = (\"",
+        "new": "return (\"CANONICAL_PYTHON = \" + repr(grader.PYTHON) + \"\\n\"\n            + \"ALLOWED = (\""
+      }
+    ],
+    "defective": [
+      {
+        "path": "evaluation/future_cache.py",
+        "old": "argv = [str(Path(sys.executable).resolve()),",
+        "new": "argv = [sys.executable,"
+      }
+    ]
+  },
+  "42": {
+    "alternative": [
+      {
+        "path": "checks/candidate_snapshot.py",
+        "old": "links = [path for path in product.rglob(\"*\") if path.is_symlink()]",
+        "new": "links = [Path(root) / name for root, directories, files in os.walk(product, followlinks=False)\n             for name in directories + files if (Path(root) / name).is_symlink()]"
+      }
+    ],
+    "defective": [
+      {
+        "path": "checks/candidate_snapshot.py",
+        "old": "def validate_links(product):\n    \"\"\"Permit direct relative file/directory aliases without following any symlink hop.\"\"\"\n    product = product.resolve()\n    links = [path for path in product.rglob(\"*\") if path.is_symlink()]\n    for path in links:\n        directory = os.open(product, os.O_RDONLY | os.O_DIRECTORY | os.O_NOFOLLOW)\n        try:\n            link = os.readlink(path)\n            parts = path.relative_to(product).parent.parts + tuple(part or \".\" for part in link.split(\"/\"))\n            if Path(link).is_absolute() or any(part.casefold() == \".git\" for part in parts):\n                raise ValueError(\"Absolute or Git metadata target\")\n            relative = []\n            info = os.fstat(directory)\n            for index, part in enumerate(parts):\n                if part == \"..\":\n                    if not relative:\n                        raise ValueError(\"Out-of-tree traversal\")\n                    relative.pop()\n                elif part != \".\":\n                    relative.append(part)\n                info = os.stat(part, dir_fd=directory, follow_symlinks=False)\n                if not (stat.S_ISREG(info.st_mode) or stat.S_ISDIR(info.st_mode)):\n                    raise ValueError(\"Symlink hop or special target\")\n                # Validate literal components before '..' can cancel them; never resolve a link chain.\n                if index < len(parts) - 1:\n                    child = os.open(part, os.O_RDONLY | os.O_DIRECTORY | os.O_NOFOLLOW, dir_fd=directory)\n                    os.close(directory)\n                    directory = child\n        except (OSError, ValueError, RuntimeError) as exc:\n            raise InputGap(\"Symlink escapes the candidate, is missing, cyclic, or traverses an unsafe target\") from exc\n        finally:\n            os.close(directory)\n        target = product.joinpath(*relative)\n        if stat.S_ISDIR(info.st_mode) and any(alias.is_relative_to(target) for alias in links):\n            raise InputGap(\"Directory aliases cannot contain nested aliases or cycles\")\n\n",
+        "new": "def validate_links(product):\n    \"\"\"Permit only aliases to regular files wholly inside this product snapshot.\"\"\"\n    product = product.resolve()\n    for path in product.rglob(\"*\"):\n        if not path.is_symlink():\n            continue\n        try:\n            link = Path(os.readlink(path))\n            lexical = Path(os.path.abspath(path.parent / link)).relative_to(product.resolve())\n            target = path.resolve(strict=True)\n            relative = target.relative_to(product.resolve())\n        except (OSError, ValueError, RuntimeError) as exc:\n            raise InputGap(\"Symlink escapes the candidate, is missing, or is cyclic\") from exc\n        if (not target.is_file() or link.is_absolute() or\n                any(part.casefold() == \".git\" for part in (*lexical.parts, *relative.parts))):\n            raise InputGap(\"Symlinks must be relative aliases to regular product files outside Git metadata\")\n\n"
+      }
+    ]
+  }
+}

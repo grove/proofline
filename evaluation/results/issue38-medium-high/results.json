@@ -1,0 +1,207 @@
+{
+  "study_id": "issue38-real-requests-medium-high-v4",
+  "freeze_sha256": "9405fc84f70ad452797e7e15280b5367255352fa8cfd642cf44869c202f246f4",
+  "status": "QUALIFIED_NOT_DISPATCHED",
+  "model_dispatches": 0,
+  "reserved_native_dispatches": 0,
+  "assignments": [
+    {
+      "sequence": 1,
+      "task": 12,
+      "arm": "medium",
+      "seed": "/Users/grove/projects/proofline/.proofline/issue38-medium-high-v4/assignments/01-12-medium/seed",
+      "seed_tree": "58d6bf72c45dd5a2fcafcae9966bf055758bdfd6",
+      "status": "NOT_EXECUTED",
+      "stages": [],
+      "source_audit": null,
+      "total_seconds": null,
+      "billing_usd": null
+    },
+    {
+      "sequence": 2,
+      "task": 12,
+      "arm": "high",
+      "seed": "/Users/grove/projects/proofline/.proofline/issue38-medium-high-v4/assignments/02-12-high/seed",
+      "seed_tree": "58d6bf72c45dd5a2fcafcae9966bf055758bdfd6",
+      "status": "NOT_EXECUTED",
+      "stages": [],
+      "source_audit": null,
+      "total_seconds": null,
+      "billing_usd": null
+    },
+    {
+      "sequence": 3,
+      "task": 28,
+      "arm": "high",
+      "seed": "/Users/grove/projects/proofline/.proofline/issue38-medium-high-v4/assignments/03-28-high/seed",
+      "seed_tree": "5684d04c6d5927955bd963e0e9d4128b085f6a24",
+      "status": "NOT_EXECUTED",
+      "stages": [],
+      "source_audit": null,
+      "total_seconds": null,
+      "billing_usd": null
+    },
+    {
+      "sequence": 4,
+      "task": 28,
+      "arm": "medium",
+      "seed": "/Users/grove/projects/proofline/.proofline/issue38-medium-high-v4/assignments/04-28-medium/seed",
+      "seed_tree": "5684d04c6d5927955bd963e0e9d4128b085f6a24",
+      "status": "NOT_EXECUTED",
+      "stages": [],
+      "source_audit": null,
+      "total_seconds": null,
+      "billing_usd": null
+    },
+    {
+      "sequence": 5,
+      "task": 41,
+      "arm": "high",
+      "seed": "/Users/grove/projects/proofline/.proofline/issue38-medium-high-v4/assignments/05-41-high/seed",
+      "seed_tree": "0c12e50e322b9c1faaa54f6134569c679be6d759",
+      "status": "NOT_EXECUTED",
+      "stages": [],
+      "source_audit": null,
+      "total_seconds": null,
+      "billing_usd": null
+    },
+    {
+      "sequence": 6,
+      "task": 41,
+      "arm": "medium",
+      "seed": "/Users/grove/projects/proofline/.proofline/issue38-medium-high-v4/assignments/06-41-medium/seed",
+      "seed_tree": "0c12e50e322b9c1faaa54f6134569c679be6d759",
+      "status": "NOT_EXECUTED",
+      "stages": [],
+      "source_audit": null,
+      "total_seconds": null,
+      "billing_usd": null
+    },
+    {
+      "sequence": 7,
+      "task": 42,
+      "arm": "medium",
+      "seed": "/Users/grove/projects/proofline/.proofline/issue38-medium-high-v4/assignments/07-42-medium/seed",
+      "seed_tree": "0c40b872bbff9b60fc39ddb560789c189cbf8b58",
+      "status": "NOT_EXECUTED",
+      "stages": [],
+      "source_audit": null,
+      "total_seconds": null,
+      "billing_usd": null
+    },
+    {
+      "sequence": 8,
+      "task": 42,
+      "arm": "high",
+      "seed": "/Users/grove/projects/proofline/.proofline/issue38-medium-high-v4/assignments/08-42-high/seed",
+      "seed_tree": "0c40b872bbff9b60fc39ddb560789c189cbf8b58",
+      "status": "NOT_EXECUTED",
+      "stages": [],
+      "source_audit": null,
+      "total_seconds": null,
+      "billing_usd": null
+    }
+  ],
+  "preparation_seconds": 73.7459190422669,
+  "qualification_seconds": 186.37883337493986,
+  "metrics": {
+    "assigned": 8,
+    "arms": {
+      "medium": {
+        "assigned": 4,
+        "attempted": 0,
+        "outcomes": {
+          "NOT_EXECUTED": 4
+        },
+        "correct_deliveries": 0,
+        "confirmed_defects": 0,
+        "disputed": 0,
+        "false_acceptance": 0,
+        "false_blocking": 0,
+        "green_test_omissions": 0,
+        "elapsed_seconds": null,
+        "seconds_per_correct_delivery": null,
+        "native_turns": 0,
+        "tool_executions": 0,
+        "tokens": {
+          "input_tokens": 0,
+          "cached_input_tokens": 0,
+          "output_tokens": 0,
+          "uncached_input_tokens": 0
+        },
+        "tokens_per_correct_delivery": {
+          "input_tokens": null,
+          "cached_input_tokens": null,
+          "output_tokens": null,
+          "uncached_input_tokens": null
+        },
+        "dollars_per_correct_delivery": null
+      },
+      "high": {
+        "assigned": 4,
+        "attempted": 0,
+        "outcomes": {
+          "NOT_EXECUTED": 4
+        },
+        "correct_deliveries": 0,
+        "confirmed_defects": 0,
+        "disputed": 0,
+        "false_acceptance": 0,
+        "false_blocking": 0,
+        "green_test_omissions": 0,
+        "elapsed_seconds": null,
+        "seconds_per_correct_delivery": null,
+        "native_turns": 0,
+        "tool_executions": 0,
+        "tokens": {
+          "input_tokens": 0,
+          "cached_input_tokens": 0,
+          "output_tokens": 0,
+          "uncached_input_tokens": 0
+        },
+        "tokens_per_correct_delivery": {
+          "input_tokens": null,
+          "cached_input_tokens": null,
+          "output_tokens": null,
+          "uncached_input_tokens": null
+        },
+        "dollars_per_correct_delivery": null
+      }
+    },
+    "paired": [
+      {
+        "task": 12,
+        "medium": "NOT_EXECUTED",
+        "high": "NOT_EXECUTED",
+        "correct_delivery_difference": null,
+        "elapsed_seconds_difference": null
+      },
+      {
+        "task": 28,
+        "medium": "NOT_EXECUTED",
+        "high": "NOT_EXECUTED",
+        "correct_delivery_difference": null,
+        "elapsed_seconds_difference": null
+      },
+      {
+        "task": 41,
+        "medium": "NOT_EXECUTED",
+        "high": "NOT_EXECUTED",
+        "correct_delivery_difference": null,
+        "elapsed_seconds_difference": null
+      },
+      {
+        "task": 42,
+        "medium": "NOT_EXECUTED",
+        "high": "NOT_EXECUTED",
+        "correct_delivery_difference": null,
+        "elapsed_seconds_difference": null
+      }
+    ],
+    "recommendation": "INCONCLUSIVE",
+    "billing_usd": null,
+    "organizer_tokens": null,
+    "human_active_seconds": null,
+    "limit": "Four retrospective public repository requests, one repetition. Neither an all-correct ceiling nor this small cohort establishes general reliability."
+  }
+}

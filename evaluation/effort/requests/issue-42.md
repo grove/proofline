@@ -1,0 +1,25 @@
+Allow safe skill-discovery directory aliases in Proofline snapshots
+
+## Problem observed on real user-requested PRs
+
+The [#37 / PR #40 real-world casebook](https://github.com/grove/proofline/pull/40) attempted `proofline-check` on actual PR heads for [#28 / PR #30](https://github.com/grove/proofline/pull/30) and [#36 / PR #39](https://github.com/grove/proofline/pull/39). Both failed **before running any selected check** because `checks/candidate_snapshot.py:validate_links` accepts only relative aliases to **regular files**, while Proofline itself tracks the relative **directory** links `.agents/skills/proofline-check` and `.claude/skills/proofline-check` to its one canonical `skills/proofline-check` directory.
+
+The model-free check cannot check Proofline's own supported skill-discovery layout. The failure is a genuine usability gap, **not** evidence of a product defect or a reason to abandon safe snapshotting.
+
+## Small, safety-preserving fix
+
+- [ ] Support the **minimum qualified, safe in-tree relative directory aliases** needed for real skill-discovery layouts, OR adopt an equally small packaging alternative that keeps **one canonical maintained skill** and lets Proofline check its own checkout. Prefer not to duplicate independent skill definitions or create a general symlink compatibility framework.
+- [ ] Retain each alias's **literal target, mode and Git tree identity** in the frozen candidate and readback record; never quietly dereference it into extra copies, omit it, or substitute different checkout bytes. Tracked, dirty tracked and non-ignored untracked candidates must retain existing snapshot/integrity semantics.
+- [ ] Reject absolute links, external traversal, aliases into Git metadata (including case variants), dangling targets, cycles, links traversing out-of-tree symlink chains, special files, or any link whose target cannot be safely validated. Maintain bounded traversal and refuse unqualified nesting. Do not follow unsafe aliases during discovery or allow a link to cross the native sandbox write/read boundary.
+- [ ] Add explicit regressions for supported local directory links (including the **real `.agents` and `.claude` layout**), file aliases, the security-negative cases above, snapshot readback/staleness, tampering and candidate changes, without weakening existing tests.
+- [ ] On the supported macOS native host, execute the actual `proofline.py check` / `proofline-check` flow against a clean repository with the two skill-discovery directory links. Run representative existing tests, verify **CHECKS PASSED**, zero model dispatches, unchanged live worktree, candidate-bound native receipts and successful `status` readback. If a safety-preserving native boundary cannot qualify directory aliases, report the precise limitation and use the narrowest safe packaging solution instead.
+
+## Boundaries
+
+Do not bypass the Codex native sandbox, grant broader permissions, read or copy external targets, discard symlinked user work, auto-install a skill, introduce extra models, or redesign the Proofline CLI. Preserve all archived/frozen #16, #32, #34 studies and their scores. Keep the single maintained `proofline-check` skill.
+
+## Definition of done
+
+The previously blocked real-PR layout is checkable **without dropping links or weakening isolation**, with independent security-negative regressions and clear installation/readback behavior. A focused PR is sufficient; **do not merge without explicit approval**.
+
+**Priority:** After [#41](https://github.com/grove/proofline/issues/41) and before [#38](https://github.com/grove/proofline/issues/38) when using the current Proofline checkout. Reference: [#37 casebook](https://github.com/grove/proofline/blob/main/docs/ISSUE37.md).

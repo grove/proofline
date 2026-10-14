@@ -336,6 +336,11 @@ implementation uses: one protected check passed and two were blocked by director
 symlinks. Ordinary tests also exposed a macOS receipt-path problem. No recovery
 or added test-coverage benefit was observed; checks remain optional.
 
+The [Luna medium/high comparison (#38)](docs/ISSUE38.md) declares eight ordinary
+coding assignments on four real repository requests. Native controls and source
+preflight pass; live inference awaits separate exact-study spending approval.
+No reliability, resource saving or dollar conclusion is available yet.
+
 **License:** [Apache 2.0](LICENSE).
 
 ---
