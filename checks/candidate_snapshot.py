@@ -40,7 +40,7 @@ def capture_base(repo, product):
         relative = PurePosixPath(os.fsdecode(raw_path))
         if mode not in {"100644", "100755", "120000"} or kind != "blob":
             raise InputGap("Submodules need a qualified observation path")
-        if relative.is_absolute() or any(part in {"..", ".git"} for part in relative.parts):
+        if relative.is_absolute() or any(part == ".." or part.casefold() == ".git" for part in relative.parts):
             raise InputGap("Unsafe Git product path")
         target = product / str(relative)
         target.parent.mkdir(parents=True, exist_ok=True)
@@ -55,7 +55,8 @@ def capture_base(repo, product):
     validate_links(product)
     host.git(product, "init", "--quiet", "--template=")
     host.git(product, "add", "--force", "--all")
-    host.git(product, "commit", "--quiet", "--allow-empty", "-m", "Frozen Proofline comparison base")
+    host.git(product, "-c", "gc.auto=0", "-c", "maintenance.auto=false",
+             "commit", "--quiet", "--allow-empty", "-m", "Frozen Proofline comparison base")
     return source_commit, host.git(product, "rev-parse", "HEAD")
 
 
@@ -68,6 +69,9 @@ def _working_files(repo, product=None):
     ignored = set(filter(None, git_bytes(repo, "ls-files", "--others", "--ignored",
                                        "--exclude-standard", "--directory", "-z").split(b"\0")))
     for root, directories, files in os.walk(repo, followlinks=False):
+        if any(name.casefold() == ".git" and (Path(root) != repo or name != ".git")
+               for name in directories + files):
+            raise InputGap("Nested Git repositories cannot be captured as regular product files")
         directories[:] = [name for name in directories if name.casefold() != ".git" and
                           os.fsencode(str((Path(root) / name).relative_to(repo)) + "/") not in ignored]
         for name in files:
@@ -79,7 +83,7 @@ def _working_files(repo, product=None):
                 except subprocess.CalledProcessError as error:
                     if error.returncode != 1:
                         raise
-                    raise InputGap("Only regular files and safe relative file symlinks are supported") from error
+                    raise InputGap("Only regular files and safe relative aliases are supported") from error
     paths = sorted(set(filter(None, git_bytes(repo, "ls-files", "--cached", "--others",
                                             "--exclude-standard", "-z").split(b"\0"))))
     entries = []
@@ -104,6 +108,8 @@ def _working_files(repo, product=None):
                 if target:
                     target.parent.mkdir(parents=True, exist_ok=True)
                     target.symlink_to(link)
+                    if stat.S_IMODE(target.lstat().st_mode) != entry["mode"]:
+                        target.chmod(entry["mode"], follow_symlinks=False)
             elif stat.S_ISREG(info.st_mode):
                 descriptor = os.open(name, os.O_RDONLY | os.O_NOFOLLOW | os.O_NONBLOCK, dir_fd=directory)
                 with os.fdopen(descriptor, "rb") as stream:
@@ -117,7 +123,7 @@ def _working_files(repo, product=None):
                     target.write_bytes(data)
                     target.chmod(entry["mode"])
             else:
-                raise InputGap("Only regular files and safe relative file symlinks are supported")
+                raise InputGap("Only regular files and safe relative aliases are supported")
             entries.append(entry)
         except FileNotFoundError:
             # Tracked deletions belong to the current working candidate, not HEAD.
@@ -145,21 +151,40 @@ def capture_worktree(repo, product):
 
 
 def validate_links(product):
-    """Permit only aliases to regular files wholly inside this product snapshot."""
+    """Permit direct relative file/directory aliases without following any symlink hop."""
     product = product.resolve()
-    for path in product.rglob("*"):
-        if not path.is_symlink():
-            continue
+    links = [path for path in product.rglob("*") if path.is_symlink()]
+    for path in links:
+        directory = os.open(product, os.O_RDONLY | os.O_DIRECTORY | os.O_NOFOLLOW)
         try:
-            link = Path(os.readlink(path))
-            lexical = Path(os.path.abspath(path.parent / link)).relative_to(product.resolve())
-            target = path.resolve(strict=True)
-            relative = target.relative_to(product.resolve())
+            link = os.readlink(path)
+            parts = path.relative_to(product).parent.parts + tuple(part or "." for part in link.split("/"))
+            if Path(link).is_absolute() or any(part.casefold() == ".git" for part in parts):
+                raise ValueError("Absolute or Git metadata target")
+            relative = []
+            info = os.fstat(directory)
+            for index, part in enumerate(parts):
+                if part == "..":
+                    if not relative:
+                        raise ValueError("Out-of-tree traversal")
+                    relative.pop()
+                elif part != ".":
+                    relative.append(part)
+                info = os.stat(part, dir_fd=directory, follow_symlinks=False)
+                if not (stat.S_ISREG(info.st_mode) or stat.S_ISDIR(info.st_mode)):
+                    raise ValueError("Symlink hop or special target")
+                # Validate literal components before '..' can cancel them; never resolve a link chain.
+                if index < len(parts) - 1:
+                    child = os.open(part, os.O_RDONLY | os.O_DIRECTORY | os.O_NOFOLLOW, dir_fd=directory)
+                    os.close(directory)
+                    directory = child
         except (OSError, ValueError, RuntimeError) as exc:
-            raise InputGap("Symlink escapes the candidate, is missing, or is cyclic") from exc
-        if (not target.is_file() or link.is_absolute() or
-                any(part.casefold() == ".git" for part in (*lexical.parts, *relative.parts))):
-            raise InputGap("Symlinks must be relative aliases to regular product files outside Git metadata")
+            raise InputGap("Symlink escapes the candidate, is missing, cyclic, or traverses an unsafe target") from exc
+        finally:
+            os.close(directory)
+        target = product.joinpath(*relative)
+        if stat.S_ISDIR(info.st_mode) and any(alias.is_relative_to(target) for alias in links):
+            raise InputGap("Directory aliases cannot contain nested aliases or cycles")
 
 
 def freeze(product):
@@ -174,7 +199,9 @@ def freeze(product):
         if not (path.is_file() or path.is_dir()):
             raise InputGap("Candidate introduced a link or special file; its execution boundary is not qualified")
     host.git(product, "add", "--force", "--all")
-    host.git(product, "commit", "--quiet", "--allow-empty", "-m", "Frozen Proofline implementation candidate")
+    # Background packing would change the Git bytes after the candidate is frozen.
+    host.git(product, "-c", "gc.auto=0", "-c", "maintenance.auto=false",
+             "commit", "--quiet", "--allow-empty", "-m", "Frozen Proofline implementation candidate")
     return host.git(product, "rev-parse", "HEAD"), host.git(product, "rev-parse", "HEAD^{tree}")
 
 

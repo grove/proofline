@@ -3,6 +3,7 @@ import json
 from pathlib import Path
 import tempfile
 import unittest
+import zipfile
 from unittest.mock import patch
 
 from evaluation.sol_luna import study as original
@@ -39,10 +40,15 @@ class HostContinuationTests(unittest.TestCase):
         self.assertEqual((study.HERE/'corpus.py').resolve(),Path(original.corpus.__file__).resolve())
 
     def test_original_and_continuation_freezes_remain_bound_to_their_sources(self):
-        for here in (original.HERE,study.HERE):
+        for here, bundle in ((original.HERE, 'issue32-preparation'),
+                             (study.HERE, 'issue32-lenient-results')):
             frozen=json.loads((here/'FREEZE.json').read_text())
-            for name,digest in frozen['sha256'].items():
-                self.assertEqual(original.host.sha256((original.ROOT/name).read_bytes()),digest,name)
+            # Revalidate the exact published runtime, not today's supported CLI.
+            with zipfile.ZipFile(original.ROOT/'evaluation/results'/bundle/'frozen-source.zip') as archive:
+                self.assertEqual(archive.read(str((here/'FREEZE.json').relative_to(original.ROOT))),
+                                 (here/'FREEZE.json').read_bytes())
+                for name,digest in frozen['sha256'].items():
+                    self.assertEqual(original.host.sha256(archive.read(name)),digest,name)
         self.assertEqual(study.runner.ledger(),original.ledger())
         self.assertEqual(json.loads((study.HERE/'FREEZE.json').read_text())['tasks'],
                          json.loads((original.HERE/'FREEZE.json').read_text())['tasks'])
