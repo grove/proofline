@@ -3,6 +3,7 @@ import json
 import hashlib
 import os
 from pathlib import Path
+import shlex
 import subprocess
 import sys
 import tempfile
@@ -100,6 +101,51 @@ class CheckOnlyTests(unittest.TestCase):
         # Later work in the live source is a different candidate, not a mutation of this evidence.
         (self.repo / 'tiny.py').write_text('new work')
         self.assertEqual(runner.inspect(self.output / 'report.json')['status'], 'CHECKS PASSED')
+
+    def add_skill_layout(self):
+        canonical = Path('skills/proofline-check/SKILL.md')
+        (self.repo / canonical).parent.mkdir(parents=True)
+        (self.repo / canonical).write_bytes((runner.host.ROOT / canonical).read_bytes())
+        for agent in ('.agents', '.claude'):
+            alias = Path(agent) / 'skills/proofline-check'
+            (self.repo / alias).parent.mkdir(parents=True)
+            (self.repo / alias).symlink_to(os.readlink(runner.host.ROOT / alias))
+        self.before = runner.host.snapshot(self.repo)
+
+    def test_directory_alias_readback_tampering_and_new_live_candidate(self):
+        self.add_skill_layout()
+        result = self.execute([[sys.executable, '-B', '-c',
+            'from pathlib import Path\n'
+            'for agent in (".agents", ".claude"):\n'
+            ' assert (Path(agent)/"skills/proofline-check/SKILL.md").read_bytes()==Path("skills/proofline-check/SKILL.md").read_bytes()']])
+        self.assertEqual(result['status'], 'CHECKS PASSED', result)
+        report = self.output / 'report.json'
+        product = Path(result['candidate_path'])
+        alias = product / '.agents/skills/proofline-check'
+        alias.unlink()
+        alias.symlink_to('../../skills/./proofline-check')
+        self.assertEqual(runner.inspect(report)['status'], 'STALE CHECKS')
+        alias.unlink()
+        self.assertEqual(runner.inspect(report)['status'], 'STALE CHECKS')
+        alias.symlink_to('../../skills/proofline-check')
+        self.assertEqual(runner.inspect(report)['status'], 'CHECKS PASSED')
+        canonical = product / 'skills/proofline-check/SKILL.md'
+        original_mode = canonical.stat().st_mode & 0o777
+        canonical.chmod(original_mode ^ 0o111)
+        self.assertEqual(runner.inspect(report)['status'], 'STALE CHECKS')
+        canonical.chmod(original_mode)
+        live_alias = self.repo / '.agents/skills/proofline-check'
+        live_alias.unlink()
+        live_alias.symlink_to('../../skills/./proofline-check')
+        self.assertEqual(runner.inspect(report)['status'], 'CHECKS PASSED')
+        self.before = runner.host.snapshot(self.repo)
+        self.output = self.root / 'new-candidate'
+        newer = self.execute([[sys.executable, '-c', 'pass']])
+        self.assertEqual(newer['status'], 'CHECKS PASSED', newer)
+        self.assertNotEqual(result['candidate_tree'], newer['candidate_tree'])
+        newer['selection']['entries'][0]['mode'] ^= 0o111
+        (self.output / 'report.json').write_text(json.dumps(newer))
+        self.assertEqual(runner.inspect(self.output / 'report.json')['status'], 'STALE CHECKS')
 
     def test_failed_unavailable_missing_tool_and_timeout_are_distinct(self):
         cases = [([sys.executable, '-c', 'raise SystemExit(3)'], {}, 'CHECKS FAILED'),
@@ -520,6 +566,53 @@ class CheckOnlyTests(unittest.TestCase):
             self.execute(checks, intentline_package=package,
                          promise_mapping=package['mapping'])
         self.assertFalse(self.output.exists())
+
+    @unittest.skipUnless(sys.platform == 'darwin' and os.environ.get('PROOFLINE_NATIVE_TESTS') == '1',
+                         'opt-in macOS native check-only test')
+    def test_native_clean_skill_aliases_keep_read_and_write_boundaries(self):
+        self.add_skill_layout()
+        snapshot.freeze(self.repo)
+        self.assertEqual(runner.host.git(self.repo, 'status', '--porcelain'), '')
+        self.before = runner.host.snapshot(self.repo)
+        python = str(Path(sys.executable).resolve())
+        command = [python, '-B', '-c',
+            'import errno,os\nfrom pathlib import Path\n'
+            'canonical=Path("skills/proofline-check/SKILL.md")\n'
+            'aliases=[Path(a)/"skills/proofline-check" for a in (".agents", ".claude")]\n'
+            'for alias in aliases:\n'
+            ' assert alias.is_symlink() and os.readlink(alias)=="../../skills/proofline-check"\n'
+            ' assert (alias/"SKILL.md").read_bytes()==canonical.read_bytes()\n'
+            'scratch=Path(os.environ["TMPDIR"])\n'
+            '(scratch/"candidate-link").symlink_to((aliases[0]/"SKILL.md").absolute())\n'
+            f'(scratch/"external-link").symlink_to({str(self.repo / "skills/proofline-check/SKILL.md")!r})\n'
+            'actions=[lambda a=a: (a/"SKILL.md").write_text("tamper") for a in aliases]\n'
+            'actions += [lambda a=a: a.unlink() for a in aliases]\n'
+            'actions += [lambda a=a: (a/"SKILL.md").chmod(0o777) for a in aliases]\n'
+            'actions += [lambda: (scratch/"candidate-link").write_text("tamper"),\n'
+            '            lambda: (scratch/"external-link").read_bytes()]\n'
+            'for action in actions:\n'
+            ' try: action()\n'
+            ' except OSError as e: assert e.errno in (errno.EPERM,errno.EACCES,errno.EROFS)\n'
+            ' else: raise AssertionError("alias crossed sandbox boundary")\n'
+            'print("directory alias boundary observed")\n']
+        process = subprocess.run([python, '-B', str(runner.host.ROOT / 'proofline.py'), 'check',
+            '--repo', str(self.repo), '--request', self.source,
+            '--command', shlex.join(command), '--output', str(self.output),
+            '--seconds', '60', '--check-seconds', '15'], capture_output=True, text=True, timeout=75)
+        self.assertEqual(process.returncode, 0, process.stdout + process.stderr)
+        record = runner.inspect(self.output / 'report.json')
+        self.assertEqual(record['status'], 'CHECKS PASSED')
+        self.assertEqual(record['model_dispatches'], 0)
+        self.assertEqual(record['boundary']['assessment']['status'], 'OBSERVED')
+        receipt = record['observations'][0]['receipts'][0]
+        self.assertEqual(json.loads(receipt['argv'][-1]),
+                         runner.check_argv(python, Path(record['candidate_path']).parent, command))
+        self.assertEqual(receipt['stdout'], 'directory alias boundary observed\n')
+        self.assertEqual(runner.host.snapshot(self.repo), self.before)
+        status = subprocess.run([python, '-B', str(runner.host.ROOT / 'proofline.py'), 'status',
+                                 str(self.output / 'report.json')], capture_output=True, text=True, timeout=15)
+        self.assertEqual(status.returncode, 0, status.stdout + status.stderr)
+        self.assertIn('CHECKS PASSED', status.stdout)
 
     @unittest.skipUnless(sys.platform == 'darwin' and os.environ.get('PROOFLINE_NATIVE_TESTS') == '1',
                          'opt-in macOS native check-only test')

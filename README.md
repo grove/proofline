@@ -120,6 +120,10 @@ ln -s /absolute/path/to/proofline/skills/proofline-check \
 
 Replace `/absolute/path/to/proofline` with your actual checkout. **Install only the agent you need.** Project-specific alternatives are `/absolute/path/to/product/.agents/skills/proofline-check` and `/absolute/path/to/product/.claude/skills/proofline-check`. Avoid unnecessary user/project duplicates. The symlink target must continue to exist; a standalone copy of the canonical folder also works, but the **Proofline CLI checkout remains a separate requirement**.
 
+Proofline can check its own two **relative, in-tree directory aliases**, retaining each literal target and Git symlink identity. Targets must exist in the selected snapshot; no target component may traverse another symlink, and directory targets must contain no nested aliases. Absolute or external installation links inside a product checkout are unsupported snapshot inputs; user-level installations outside that checkout are not captured. `status` binds the literal links and canonical bytes to the old candidate; new live edits need a new `check`.
+
+See the [#42 native qualification and readback observations](docs/ISSUE42.md) for the supported layout and execution limits.
+
 Installed agents can discover a skill from its description, but automatic invocation is **not** guaranteed. Ask explicitly for `$proofline-check` or `/proofline-check` if you want the agent to use it. The CLI itself works without a skill.
 
 **Previous skill name?** Root [`SKILL.md`](SKILL.md) is just a compatibility pointer—not a second skill or alias. Replace `$proofline` and `/proofline` with the new invocations and **remove or rename** any older user-level `proofline` skill directories. Installation isn't migrated automatically.
@@ -293,7 +297,7 @@ If a checker already produced a specific case, optionally attach `--failure-deta
 ## Safety and scope
 
 - **Source is untouched.** `check` doesn't reset, stash, stage, commit or write to your repo; `run` also uses an isolated copy.
-- **Snapshots are explicit.** Tracked files include staged and unstaged work; non-ignored untracked files are included, tracked deletions omitted. Ignored untracked files, Git metadata and empty directories aren't copied. Regular file modes and safe relative file symlinks are preserved. Submodules, nested repos, directory or escaping symlinks and special files are unsupported.
+- **Snapshots are explicit.** Tracked files include staged and unstaged work; non-ignored untracked files are included, tracked deletions omitted. Ignored untracked files, Git metadata and empty directories aren't copied. Regular file modes and direct relative file/directory symlinks are preserved. Targets must stay in-tree, outside Git metadata, without any symlink hops; directory targets cannot contain nested aliases. Submodules, nested repos, dangling/escaping/chained aliases and special files are unsupported.
 - **Avoid mixed captures.** Proofline checks for changes while copying; pause edits until the candidate freezes.
 - **Checks cannot write product files or use the network.** If a test needs in-tree writes, choose another observation strategy; Proofline installs no dependencies.
 - **Native isolation is mandatory.** Missing/unqualified native boundaries produce unavailable evidence; offline Linux CI does not establish live macOS safety.

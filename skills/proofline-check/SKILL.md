@@ -25,11 +25,15 @@ difficult argv. Source and check input forms are each mutually exclusive.
 
 Do not fabricate expected results, silently narrow requested behavior,
 or modify unrelated user work. `check` copies current tracked bytes plus non-ignored
-untracked files, preserves regular file modes and safe relative file symlinks,
+untracked files, preserves regular file modes and direct relative file/directory symlinks,
 and omits tracked deletions. Pause edits during capture; changes detected across
 two reads invalidate the snapshot. Ignored untracked files, Git metadata and
-empty directories are excluded. Submodules, nested repositories, directory or
-escaping symlinks, FIFOs, sockets and devices have no supported observation path.
+empty directories are excluded. Alias targets must exist in the selected in-tree
+snapshot, outside Git metadata (case-insensitive), with no symlink hops; directory
+targets cannot contain nested aliases. The repository's `.agents` and `.claude`
+links retain their literal targets and Git identities without copying extra skill
+definitions. Absolute/external project installation links, dangling/chained aliases,
+submodules, nested repositories, FIFOs, sockets and devices have no supported observation path.
 There is no unprotected fallback on unsupported files or platforms. The source
 repository stays untouched, including its index, dirty and untracked work.
 
