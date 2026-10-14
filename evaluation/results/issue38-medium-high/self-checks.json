@@ -1,0 +1,447 @@
+{
+  "assignments": [
+    {
+      "sequence": 1,
+      "task": 12,
+      "arm": "medium",
+      "source_status": "FALSE_ACCEPTANCE",
+      "commands": [
+        {
+          "native_item_id": "item_13",
+          "command": "/bin/zsh -c '/opt/homebrew/bin/python3.14 -B -m unittest tests.test_supported_cli tests.test_check_only'",
+          "exit_code": 1,
+          "observed_suite_summaries": [
+            "Ran 17 tests in 2.455s",
+            "FAILED (failures=1, errors=10, skipped=1)"
+          ],
+          "observed_output_sha256": "b20de9d1d51dab8de590d4e1860889de7d6b55993cf1838c952add0941713c18",
+          "cwd": null
+        },
+        {
+          "native_item_id": "item_14",
+          "command": "/bin/zsh -c '/opt/homebrew/bin/python3.14 -B -m unittest tests.test_supported_cli'",
+          "exit_code": 0,
+          "observed_suite_summaries": [
+            "Ran 6 tests in 0.478s",
+            "OK"
+          ],
+          "observed_output_sha256": "df4612f1f63bdc835f4feaac729f30de4afade41d19d9aa384d7a169afc94454",
+          "cwd": null
+        },
+        {
+          "native_item_id": "item_17",
+          "command": "/bin/zsh -c '/opt/homebrew/bin/python3.14 -B -m unittest tests.test_supported_cli && /opt/homebrew/bin/python3.14 -B -m py_compile proofline.py checks/local_run.py tests/test_supported_cli.py'",
+          "exit_code": 0,
+          "observed_suite_summaries": [
+            "Ran 6 tests in 0.495s",
+            "OK"
+          ],
+          "observed_output_sha256": "363a07ecbcd8d030d9217ec815cd57a44127f80e4bf46d1dc7760b23829bcf5b",
+          "cwd": null
+        }
+      ]
+    },
+    {
+      "sequence": 2,
+      "task": 12,
+      "arm": "high",
+      "source_status": "FALSE_ACCEPTANCE",
+      "commands": [
+        {
+          "native_item_id": "item_26",
+          "command": "/bin/zsh -c '/opt/homebrew/bin/python3.14 -B -m unittest tests.test_direct_cli_inputs tests.test_supported_cli tests.test_check_only tests.test_local_run'",
+          "exit_code": 1,
+          "observed_suite_summaries": [
+            "Ran 27 tests in 2.157s",
+            "FAILED (failures=8, errors=10, skipped=1)"
+          ],
+          "observed_output_sha256": "34ad9524006a87789907492161a6bbd9d02b5681b6d2a0431192e5f10d030175",
+          "cwd": null
+        },
+        {
+          "native_item_id": "item_35",
+          "command": "/bin/zsh -c '/opt/homebrew/bin/python3.14 -B -m unittest tests.test_direct_cli_inputs tests.test_supported_cli'",
+          "exit_code": 0,
+          "observed_suite_summaries": [
+            "Ran 8 tests in 0.494s",
+            "OK"
+          ],
+          "observed_output_sha256": "22b843474224850e34dc45c462d5d4a071f0c537b0563bb54dbb1812a03324e3",
+          "cwd": null
+        },
+        {
+          "native_item_id": "item_37",
+          "command": "/bin/zsh -c 'mkdir -p /Users/grove/projects/proofline/.proofline/issue38-medium-high-v4/assignments/02-12-high/coding/implementation/scratch/test-tmp && TMPDIR=/Users/grove/projects/proofline/.proofline/issue38-medium-high-v4/assignments/02-12-high/coding/implementation/scratch/test-tmp /opt/homebrew/bin/python3.14 -B -m unittest tests.test_direct_cli_inputs tests.test_supported_cli tests.test_check_only tests.test_local_run'",
+          "exit_code": 1,
+          "observed_suite_summaries": [
+            "Ran 28 tests in 2.184s",
+            "FAILED (failures=8, errors=10, skipped=1)"
+          ],
+          "observed_output_sha256": "b356dd947e1a84430d6db7d49c4601693fc02bd13a7371d38d0b6846814483b3",
+          "cwd": null
+        },
+        {
+          "native_item_id": "item_41",
+          "command": "/bin/zsh -c \"/opt/homebrew/bin/python3.14 -B -c 'import os,unittest; os.defpath=\\\"/Library/Developer/CommandLineTools/usr/bin:/usr/local/bin:/usr/bin:/bin\\\"; suite=unittest.defaultTestLoader.loadTestsFromNames([\\\"tests.test_direct_cli_inputs\\\",\\\"tests.test_supported_cli\\\",\\\"tests.test_check_only\\\",\\\"tests.test_local_run\\\"]); result=unittest.TextTestRunner(verbosity=1).run(suite); raise SystemExit(not result.wasSuccessful())'\"",
+          "exit_code": 0,
+          "observed_suite_summaries": [
+            "Ran 28 tests in 5.966s",
+            "OK (skipped=1)"
+          ],
+          "observed_output_sha256": "8c09092e3b5d820c60c8467ff5723d643b82529eace80f515ae553fd8c4bb953",
+          "cwd": null
+        },
+        {
+          "native_item_id": "item_43",
+          "command": "/bin/zsh -c \"/opt/homebrew/bin/python3.14 -B -c 'import os,unittest; os.defpath=\\\"/Library/Developer/CommandLineTools/usr/bin:/usr/local/bin:/usr/bin:/bin\\\"; suite=unittest.defaultTestLoader.discover(\\\"tests\\\"); result=unittest.TextTestRunner(verbosity=1).run(suite); raise SystemExit(not result.wasSuccessful())'\"",
+          "exit_code": 0,
+          "observed_suite_summaries": [
+            "Ran 88 tests in 33.698s",
+            "OK (skipped=7)"
+          ],
+          "observed_output_sha256": "c4219041c108490c4d782f2dcd05f09eac8efedb5e618d15fa17b5a658bccdeb",
+          "cwd": null
+        },
+        {
+          "native_item_id": "item_46",
+          "command": "/bin/zsh -c '/opt/homebrew/bin/python3.14 -B -m unittest tests.test_direct_cli_inputs tests.test_supported_cli && git diff --check && git status --short'",
+          "exit_code": 0,
+          "observed_suite_summaries": [
+            "Ran 8 tests in 0.481s",
+            "OK"
+          ],
+          "observed_output_sha256": "2948add71b61a0129cfd6b454ae120cbf0809bf6d33603ad554278004f3aad26",
+          "cwd": null
+        }
+      ]
+    },
+    {
+      "sequence": 3,
+      "task": 28,
+      "arm": "high",
+      "source_status": "CORRECT_DELIVERY",
+      "commands": [
+        {
+          "native_item_id": "item_20",
+          "command": "/bin/zsh -c '/opt/homebrew/bin/python3.14 -B -m unittest discover -s tests'",
+          "exit_code": 1,
+          "observed_suite_summaries": [
+            "Ran 167 tests in 33.389s",
+            "FAILED (failures=16, errors=36, skipped=8)"
+          ],
+          "observed_output_sha256": "282ed1f740597551a83b6936ebce4ea8f5a4c32dfebe709b8a4aea22ecb18ec7",
+          "cwd": null
+        }
+      ]
+    },
+    {
+      "sequence": 4,
+      "task": 28,
+      "arm": "medium",
+      "source_status": "FALSE_ACCEPTANCE",
+      "commands": [
+        {
+          "native_item_id": "item_17",
+          "command": "/bin/zsh -c 'python3.14 -B -m unittest tests.test_skill_packaging -v'",
+          "exit_code": 1,
+          "observed_suite_summaries": [
+            "Ran 3 tests in 0.001s",
+            "FAILED (failures=1)"
+          ],
+          "observed_output_sha256": "8d925cf60ab1c070cd6b512f70d00d28d4a320c6666c70d81bb81cfd8b0f01d3",
+          "cwd": null
+        },
+        {
+          "native_item_id": "item_18",
+          "command": "/bin/zsh -c \"python3.14 -B - <<'PY'\np='tests/test_skill_packaging.py'; s=open(p).read().replace('self.assertIn(\\\"support for the old invocation name is not guaranteed\\\", readme)', 'self.assertIn(\\\"support for the old invocation name is not guaranteed\\\", \\\" \\\".join(readme.split()))'); open(p,'w').write(s)\nPY\npython3.14 -B -m unittest tests.test_skill_packaging -v\"",
+          "exit_code": 0,
+          "observed_suite_summaries": [
+            "Ran 3 tests in 0.001s",
+            "OK"
+          ],
+          "observed_output_sha256": "9867d66c00e09f9e89c453bead5e5682e606eebf80e72d58586da455785d9ed3",
+          "cwd": null
+        },
+        {
+          "native_item_id": "item_21",
+          "command": "/bin/zsh -c 'python3.14 -B -m unittest discover -s tests'",
+          "exit_code": 1,
+          "observed_suite_summaries": [
+            "Ran 170 tests in 42.477s",
+            "FAILED (failures=16, errors=36, skipped=8)"
+          ],
+          "observed_output_sha256": "e3924c4b69940477510dbc22158728dcca95a2c712c3a5f116066c457b529e51",
+          "cwd": null
+        },
+        {
+          "native_item_id": "item_26",
+          "command": "/bin/zsh -c 'python3.14 -B -m unittest tests.test_skill_packaging -v'",
+          "exit_code": 0,
+          "observed_suite_summaries": [
+            "Ran 3 tests in 0.001s",
+            "OK"
+          ],
+          "observed_output_sha256": "9867d66c00e09f9e89c453bead5e5682e606eebf80e72d58586da455785d9ed3",
+          "cwd": null
+        }
+      ]
+    },
+    {
+      "sequence": 5,
+      "task": 41,
+      "arm": "high",
+      "source_status": "CORRECT_DELIVERY",
+      "commands": [
+        {
+          "native_item_id": "item_10",
+          "command": "/bin/zsh -c 'python3.14 -B -m unittest tests.test_source_oracles -v'",
+          "exit_code": 0,
+          "observed_suite_summaries": [
+            "Ran 13 tests in 2.416s",
+            "OK"
+          ],
+          "observed_output_sha256": "f5d25f463ef83d4a3f6f3df1b8d25065e50bf2ff4fbb5b99488c9debc54b06d1",
+          "cwd": null
+        },
+        {
+          "native_item_id": "item_13",
+          "command": "/bin/zsh -c 'python3.14 -B -m unittest discover -s tests'",
+          "exit_code": 1,
+          "observed_suite_summaries": [
+            "Ran 254 tests in 115.823s",
+            "FAILED (failures=16, errors=39, skipped=8)"
+          ],
+          "observed_output_sha256": "dfb916dab5f41fc6bdb284161b6b00f160789b563f6c77dae520e06db50449fd",
+          "cwd": null
+        },
+        {
+          "native_item_id": "item_14",
+          "command": "/bin/zsh -c 'python3.14 -B -m unittest discover -s tests'",
+          "exit_code": 1,
+          "observed_suite_summaries": [
+            "Ran 254 tests in 115.041s",
+            "FAILED (failures=16, errors=39, skipped=8)"
+          ],
+          "observed_output_sha256": "cf557807c66ff3cf1d6061dd83b40c9d0da35c3a39a0c59a4828f9820c30377c",
+          "cwd": null
+        },
+        {
+          "native_item_id": "item_18",
+          "command": "/bin/zsh -c 'python3.14 -B -m unittest tests.test_source_oracles -v && git diff --check && git status --short'",
+          "exit_code": 1,
+          "observed_suite_summaries": [
+            "Ran 13 tests in 2.112s",
+            "FAILED (errors=10)"
+          ],
+          "observed_output_sha256": "42823bf2c7ac249045473ef5824d9a4a1e6ed5e1d1af3225b6ede9e363693339",
+          "cwd": null
+        },
+        {
+          "native_item_id": "item_20",
+          "command": "/bin/zsh -c 'python3.14 -B -m unittest tests.test_source_oracles -v && git diff --check && git status --short'",
+          "exit_code": 0,
+          "observed_suite_summaries": [
+            "Ran 13 tests in 2.266s",
+            "OK"
+          ],
+          "observed_output_sha256": "622d662a4675739d46dea312da9e280eeceeaccd188befce014b8305f374d006",
+          "cwd": null
+        }
+      ]
+    },
+    {
+      "sequence": 6,
+      "task": 41,
+      "arm": "medium",
+      "source_status": "CORRECT_DELIVERY",
+      "commands": [
+        {
+          "native_item_id": "item_6",
+          "command": "/bin/zsh -c 'python3 -B -m unittest tests.test_source_oracles -v'",
+          "exit_code": 1,
+          "observed_suite_summaries": [],
+          "observed_output_sha256": "f3deae9eb6b95a5ede008896d3d33c95687add7d88ff0b540c2f4fcc4312ec59",
+          "cwd": null
+        },
+        {
+          "native_item_id": "item_7",
+          "command": "/bin/zsh -c '/opt/homebrew/opt/python@3.14/bin/python3.14 -B -m unittest tests.test_source_oracles -v'",
+          "exit_code": 1,
+          "observed_suite_summaries": [
+            "Ran 10 tests in 2.392s",
+            "FAILED (failures=10)"
+          ],
+          "observed_output_sha256": "d935955767624c98e769b7234d07611a184ed907844c327bc9b2a7b0598d2b68",
+          "cwd": null
+        },
+        {
+          "native_item_id": "item_13",
+          "command": "/bin/zsh -c '/opt/homebrew/opt/python@3.14/bin/python3.14 -B -m unittest tests.test_source_oracles -v'",
+          "exit_code": 1,
+          "observed_suite_summaries": [
+            "Ran 11 tests in 2.352s",
+            "FAILED (failures=1)"
+          ],
+          "observed_output_sha256": "de947b56af81ed90b66bbd5bc72983803a9c12e1ee1da85f9aee43fb24efac6d",
+          "cwd": null
+        },
+        {
+          "native_item_id": "item_15",
+          "command": "/bin/zsh -c '/opt/homebrew/opt/python@3.14/bin/python3.14 -B -m unittest tests.test_source_oracles -v'",
+          "exit_code": 0,
+          "observed_suite_summaries": [
+            "Ran 11 tests in 2.343s",
+            "OK"
+          ],
+          "observed_output_sha256": "523d4033e1923cc96d3ec7ee7c90f5af600354aa785962b75e765684330438f9",
+          "cwd": null
+        },
+        {
+          "native_item_id": "item_17",
+          "command": "/bin/zsh -c '/opt/homebrew/opt/python@3.14/bin/python3.14 -B -m unittest discover -s tests -v'",
+          "exit_code": 1,
+          "observed_suite_summaries": [
+            "Ran 252 tests in 105.297s",
+            "FAILED (failures=16, errors=39, skipped=8)"
+          ],
+          "observed_output_sha256": "e7b7496eff2f2154712fb2890674040470936c995f062b0d0b16075a0d177901",
+          "cwd": null
+        },
+        {
+          "native_item_id": "item_20",
+          "command": "/bin/zsh -c '/opt/homebrew/opt/python@3.14/bin/python3.14 -B -m unittest tests.test_source_oracles -v'",
+          "exit_code": 0,
+          "observed_suite_summaries": [
+            "Ran 12 tests in 2.226s",
+            "OK"
+          ],
+          "observed_output_sha256": "568c8cf1a4abfe09acb0f4a1b855f415f09ab234026b899067e696623799083e",
+          "cwd": null
+        }
+      ]
+    },
+    {
+      "sequence": 7,
+      "task": 42,
+      "arm": "medium",
+      "source_status": "UNAVAILABLE",
+      "commands": [
+        {
+          "native_item_id": "item_9",
+          "command": "/bin/zsh -c \"/opt/homebrew/opt/python@3.14/bin/python3 - <<'PY'\nfrom pathlib import Path\np=Path('/Users/grove/projects/proofline/.proofline/issue38-medium-high-v4/assignments/07-42-medium/coding/implementation/inputs/product/tests/test_candidate_snapshot_links.py')\np.write_text('''import os\nfrom pathlib import Path\nimport tempfile\nimport unittest\n\nfrom checks import candidate_snapshot as snapshot\nfrom checks import host_probe\n\n\nclass CandidateSnapshotLinkTests(unittest.TestCase):\n    def setUp(self):\n        temporary = tempfile.TemporaryDirectory(prefix=\\\"snapshot-links-\\\")\n        self.addCleanup(temporary.cleanup)\n        self.root = Path(temporary.name)\n        self.product = self.root / \\\"product\\\"\n        self.product.mkdir()\n        (self.product / \\\"skills\\\" / \\\"proofline-check\\\").mkdir(parents=True)\n        (self.product / \\\"skills\\\" / \\\"proofline-check\\\" / \\\"SKILL.md\\\").write_text(\\\"canonical\\\\\\\\n\\\")\n\n    def test_agents_and_claude_directory_links_and_file_alias_freeze_literally(self):\n        for prefix in (\\\".agents\\\", \\\".claude\\\"):\n            alias = self.product / prefix / \\\"skills\\\" / \\\"proofline-check\\\"\n            alias.parent.mkdir(parents=True)\n            alias.symlink_to(\\\"../../../skills/proofline-check\\\", target_is_directory=True)\n        (self.product / \\\"skill-file\\\").symlink_to(\\\"skills/proofline-check/SKILL.md\\\")\n        snapshot.validate_links(self.product)\n        host_probe.git(self.product, \\\"init\\\", \\\"--quiet\\\", \\\"--template=\\\")\n        snapshot.freeze(self.product)\n        for prefix in (\\\".agents\\\", \\\".claude\\\"):\n            self.assertEqual(os.readlink(self.product / prefix / \\\"skills\\\" / \\\"proofline-check\\\"),\n                             \\\"../../../skills/proofline-check\\\")\n            self.assertEqual(host_probe.git(self.product, \\\"show\\\", f\\\"HEAD:{prefix}/skills/proofline-check\\\"),\n                             \\\"../../../skills/proofline-check\\\\\\\\n\\\")\n        self.assertEqual(os.readlink(self.product / \\\"skill-file\\\"), \\\"skills/proofline-check/SKILL.md\\\")\n\n    def test_worktree_capture_preserves_directory_alias_in_selection_and_tree(self):\n        source = self.root / \\\"source\\\"\n        source.mkdir()\n        host_probe.git(source, \\\"init\\\", \\\"--quiet\\\", \\\"--template=\\\")\n        (source / \\\"skills\\\" / \\\"module\\\").mkdir(parents=True)\n        (source / \\\"skills\\\" / \\\"module\\\" / \\\"x\\\").write_text(\\\"x\\\")\n        host_probe.git(source, \\\"add\\\", \\\"--all\\\")\n        host_probe.git(source, \\\"commit\\\", \\\"--quiet\\\", \\\"-m\\\", \\\"base\\\")\n        alias = source / \\\".agents\\\" / \\\"skills\\\" / \\\"module\\\"\n        alias.parent.mkdir(parents=True)\n        alias.symlink_to(\\\"../../skills/module\\\", target_is_directory=True)\n        product = self.root / \\\"captured\\\"\n        result = snapshot.capture_worktree(source, product)\n        self.assertEqual(os.readlink(product / \\\".agents/skills/module\\\"), \\\"../../skills/module\\\")\n        self.assertIn({\\\"path\\\": \\\".agents/skills/module\\\", \\\"mode\\\": 0o777,\n                       \\\"kind\\\": \\\"symlink\\\", \\\"target\\\": \\\"../../skills/module\\\"}, result[\\\"entries\\\"])\n        self.assertEqual(host_probe.git(product, \\\"show\\\", \\\"HEAD:.agents/skills/module\\\"), \\\"../../skills/module\\\\\\\\n\\\")\n\n    def test_rejects_absolute_external_dangling_metadata_and_cycles(self):\n        cases = {\\\"absolute\\\": \\\"/etc/passwd\\\", \\\"external\\\": \\\"../../outside\\\",\n                 \\\"dangling\\\": \\\"missing\\\", \\\"metadata\\\": \\\".GIT/config\\\"}\n        for label, target in cases.items():\n            alias = self.product / \\\"bad\\\"\n            alias.symlink_to(target)\n            with self.subTest(label=label), self.assertRaises(snapshot.InputGap):\n                snapshot.validate_links(self.product)\n            alias.unlink()\n        (self.product / \\\"cycle-a\\\").symlink_to(\\\"cycle-b\\\")\n        (self.product / \\\"cycle-b\\\").symlink_to(\\\"cycle-a\\\")\n        with self.assertRaises(snapshot.InputGap):\n            snapshot.validate_links(self.product)\n\n    def test_rejects_external_symlink_chain_and_special_target(self):\n        outside = self.root / \\\"outside\\\"\n        outside.mkdir()\n        (outside / \\\"back\\\").symlink_to(self.product / \\\"skills\\\", target_is_directory=True)\n        (self.product / \\\"escape-chain\\\").symlink_to(\\\"../outside/back\\\", target_is_directory=True)\n        with self.assertRaises(snapshot.InputGap):\n            snapshot.validate_links(self.product)\n        (self.product / \\\"escape-chain\\\").unlink()\n        os.mkfifo(self.product / \\\"fifo\\\")\n        (self.product / \\\"special\\\").symlink_to(\\\"fifo\\\")\n        with self.assertRaises(snapshot.InputGap):\n            snapshot.validate_links(self.product)\n\n\nif __name__ == \\\"__main__\\\":\n    unittest.main()\n''')\nPY\n/opt/homebrew/opt/python@3.14/bin/python3 -m unittest tests.test_candidate_snapshot_links tests.test_check_only\"",
+          "exit_code": 127,
+          "observed_suite_summaries": [],
+          "observed_output_sha256": "719cfa93b6db3753fdafdbce0e8c3bc97b6b4c74fcfe6592092691cfaee70bbf",
+          "cwd": null
+        },
+        {
+          "native_item_id": "item_10",
+          "command": "/bin/zsh -c \"/opt/homebrew/Cellar/python@3.14/3.14.8_2/Frameworks/Python.framework/Versions/3.14/bin/python3.14 - <<'PY'\nfrom pathlib import Path\np=Path('tests/test_candidate_snapshot_links.py')\np.write_text('''import os\nfrom pathlib import Path\nimport tempfile\nimport unittest\nfrom checks import candidate_snapshot as snapshot\nfrom checks import host_probe\n\nclass CandidateSnapshotLinkTests(unittest.TestCase):\n    def setUp(self):\n        temporary = tempfile.TemporaryDirectory(prefix=\\\"snapshot-links-\\\")\n        self.addCleanup(temporary.cleanup)\n        self.root = Path(temporary.name)\n        self.product = self.root / \\\"product\\\"\n        self.product.mkdir()\n        (self.product / \\\"skills/proofline-check\\\").mkdir(parents=True)\n        (self.product / \\\"skills/proofline-check/SKILL.md\\\").write_text(\\\"canonical\\\\\\\\n\\\")\n\n    def test_agents_claude_and_file_aliases_survive_freeze_literally(self):\n        for prefix in (\\\".agents\\\", \\\".claude\\\"):\n            alias = self.product / prefix / \\\"skills/proofline-check\\\"\n            alias.parent.mkdir(parents=True)\n            alias.symlink_to(\\\"../../../skills/proofline-check\\\", target_is_directory=True)\n        (self.product / \\\"skill-file\\\").symlink_to(\\\"skills/proofline-check/SKILL.md\\\")\n        snapshot.validate_links(self.product)\n        host_probe.git(self.product, \\\"init\\\", \\\"--quiet\\\", \\\"--template=\\\")\n        snapshot.freeze(self.product)\n        for prefix in (\\\".agents\\\", \\\".claude\\\"):\n            self.assertEqual(os.readlink(self.product / prefix / \\\"skills/proofline-check\\\"), \\\"../../../skills/proofline-check\\\")\n            self.assertEqual(host_probe.git(self.product, \\\"show\\\", f\\\"HEAD:{prefix}/skills/proofline-check\\\"), \\\"../../../skills/proofline-check\\\\\\\\n\\\")\n        self.assertEqual(os.readlink(self.product / \\\"skill-file\\\"), \\\"skills/proofline-check/SKILL.md\\\")\n\n    def test_worktree_capture_records_and_freezes_directory_alias(self):\n        source = self.root / \\\"source\\\"\n        source.mkdir()\n        host_probe.git(source, \\\"init\\\", \\\"--quiet\\\", \\\"--template=\\\")\n        (source / \\\"skills/module\\\").mkdir(parents=True)\n        (source / \\\"skills/module/x\\\").write_text(\\\"x\\\")\n        host_probe.git(source, \\\"add\\\", \\\"--all\\\")\n        host_probe.git(source, \\\"commit\\\", \\\"--quiet\\\", \\\"-m\\\", \\\"base\\\")\n        alias = source / \\\".agents/skills/module\\\"\n        alias.parent.mkdir(parents=True)\n        alias.symlink_to(\\\"../../skills/module\\\", target_is_directory=True)\n        product = self.root / \\\"captured\\\"\n        result = snapshot.capture_worktree(source, product)\n        self.assertEqual(os.readlink(product / \\\".agents/skills/module\\\"), \\\"../../skills/module\\\")\n        self.assertIn({\\\"path\\\": \\\".agents/skills/module\\\", \\\"mode\\\": 0o777, \\\"kind\\\": \\\"symlink\\\", \\\"target\\\": \\\"../../skills/module\\\"}, result[\\\"entries\\\"])\n        self.assertEqual(host_probe.git(product, \\\"show\\\", \\\"HEAD:.agents/skills/module\\\"), \\\"../../skills/module\\\\\\\\n\\\")\n\n    def test_rejects_absolute_external_dangling_metadata_and_cycles(self):\n        for label, target in {\\\"absolute\\\": \\\"/etc/passwd\\\", \\\"external\\\": \\\"../../outside\\\", \\\"dangling\\\": \\\"missing\\\", \\\"metadata\\\": \\\".GIT/config\\\"}.items():\n            alias = self.product / \\\"bad\\\"\n            alias.symlink_to(target)\n            with self.subTest(label=label), self.assertRaises(snapshot.InputGap): snapshot.validate_links(self.product)\n            alias.unlink()\n        (self.product / \\\"cycle-a\\\").symlink_to(\\\"cycle-b\\\")\n        (self.product / \\\"cycle-b\\\").symlink_to(\\\"cycle-a\\\")\n        with self.assertRaises(snapshot.InputGap): snapshot.validate_links(self.product)\n\n    def test_rejects_external_symlink_chain_and_special_target(self):\n        outside = self.root / \\\"outside\\\"\n        outside.mkdir()\n        (outside / \\\"back\\\").symlink_to(self.product / \\\"skills\\\", target_is_directory=True)\n        (self.product / \\\"escape-chain\\\").symlink_to(\\\"../outside/back\\\", target_is_directory=True)\n        with self.assertRaises(snapshot.InputGap): snapshot.validate_links(self.product)\n        (self.product / \\\"escape-chain\\\").unlink()\n        os.mkfifo(self.product / \\\"fifo\\\")\n        (self.product / \\\"special\\\").symlink_to(\\\"fifo\\\")\n        with self.assertRaises(snapshot.InputGap): snapshot.validate_links(self.product)\n\nif __name__ == \\\"__main__\\\": unittest.main()\n''')\nPY\n/opt/homebrew/Cellar/python@3.14/3.14.8_2/Frameworks/Python.framework/Versions/3.14/bin/python3.14 -m unittest tests.test_candidate_snapshot_links tests.test_check_only\"",
+          "exit_code": 1,
+          "observed_suite_summaries": [
+            "Ran 33 tests in 2.955s",
+            "FAILED (failures=1, errors=25, skipped=1)"
+          ],
+          "observed_output_sha256": "7b27d95164c922f768445052b7e15351e4eca7a48927d019018302f8c5244b1b",
+          "cwd": null
+        },
+        {
+          "native_item_id": "item_13",
+          "command": "/bin/zsh -c \"/opt/homebrew/Cellar/python@3.14/3.14.8_2/Frameworks/Python.framework/Versions/3.14/bin/python3.14 - <<'PY'\nfrom pathlib import Path\np=Path('checks/candidate_snapshot.py')\ns=p.read_text().replace('import stat\\\\nimport subprocess','import stat\\\\nimport shutil\\\\nimport subprocess')\ns=s.replace('def git_bytes(repo, *args):\\\\n    return subprocess.check_output([\\\"git\\\", \\\"-c\\\",', 'def git_bytes(repo, *args):\\\\n    executable = shutil.which(\\\"git\\\")\\\\n    if not executable:\\\\n        raise InputGap(\\\"Git is unavailable\\\")\\\\n    return subprocess.check_output([executable, \\\"-c\\\",')\ns=s.replace('env={\\\"PATH\\\": os.defpath, \\\"GIT_CONFIG_NOSYSTEM\\\": \\\"1\\\",', 'env={\\\"PATH\\\": os.path.dirname(executable) + os.pathsep + os.defpath, \\\"GIT_CONFIG_NOSYSTEM\\\": \\\"1\\\",')\np.write_text(s)\np=Path('tests/test_candidate_snapshot_links.py')\ns=p.read_text().replace('\\\"../../../skills/proofline-check\\\"','\\\"../../skills/proofline-check\\\"')\ns=s.replace('\\\"../../skills/proofline-check\\\\\\\\n\\\"','\\\"../../skills/proofline-check\\\\\\\\n\\\"')\np.write_text(s)\nPY\n/opt/homebrew/Cellar/python@3.14/3.14.8_2/Frameworks/Python.framework/Versions/3.14/bin/python3.14 -m unittest tests.test_candidate_snapshot_links tests.test_check_only\"",
+          "exit_code": 1,
+          "observed_suite_summaries": [
+            "Ran 33 tests in 7.882s",
+            "FAILED (failures=2, skipped=1)"
+          ],
+          "observed_output_sha256": "1f289730d9bd025f8bd7a34abdc47c29d737c325e41596a03dec9309f66fc4dd",
+          "cwd": null
+        },
+        {
+          "native_item_id": "item_15",
+          "command": "/bin/zsh -c \"/opt/homebrew/Cellar/python@3.14/3.14.8_2/Frameworks/Python.framework/Versions/3.14/bin/python3.14 - <<'PY'\nfrom pathlib import Path\np=Path('tests/test_candidate_snapshot_links.py')\ns=p.read_text().replace('\\\"../../../skills/proofline-check\\\\\\\\n\\\")','\\\"../../skills/proofline-check\\\")').replace('\\\"mode\\\": 0o777, \\\"kind\\\": \\\"symlink\\\"','\\\"mode\\\": 0o755, \\\"kind\\\": \\\"symlink\\\"').replace('\\\"../../skills/module\\\\\\\\n\\\")','\\\"../../skills/module\\\")')\np.write_text(s)\nPY\n/opt/homebrew/Cellar/python@3.14/3.14.8_2/Frameworks/Python.framework/Versions/3.14/bin/python3.14 -m unittest tests.test_candidate_snapshot_links tests.test_check_only\"",
+          "exit_code": 0,
+          "observed_suite_summaries": [
+            "Ran 33 tests in 7.986s",
+            "OK (skipped=1)"
+          ],
+          "observed_output_sha256": "cf547f0154333c051360082218ea790da5a16a4a804c4eb128ebd23768899747",
+          "cwd": null
+        },
+        {
+          "native_item_id": "item_17",
+          "command": "/bin/zsh -c '/opt/homebrew/Cellar/python@3.14/3.14.8_2/Frameworks/Python.framework/Versions/3.14/bin/python3.14 -m unittest discover -s tests'",
+          "exit_code": 1,
+          "observed_suite_summaries": [
+            "Ran 259 tests in 122.417s",
+            "FAILED (failures=19, errors=6, skipped=8)"
+          ],
+          "observed_output_sha256": "bb18d1805a094e0e96a419bdb7bd31ae967eacc7c0061c936a6c56cd148e8f7c",
+          "cwd": null
+        },
+        {
+          "native_item_id": "item_22",
+          "command": "/bin/zsh -c '/opt/homebrew/Cellar/python@3.14/3.14.8_2/Frameworks/Python.framework/Versions/3.14/bin/python3.14 -m unittest tests.test_candidate_snapshot tests.test_candidate_snapshot_links tests.test_check_only tests.test_local_run tests.test_runtime_boundaries'",
+          "exit_code": 1,
+          "observed_suite_summaries": [
+            "Ran 68 tests in 21.558s",
+            "FAILED (failures=1, skipped=1)"
+          ],
+          "observed_output_sha256": "7fa3e7699ca926a41eb784b7b15b6fa2c876b137e1a2e5e8651c6815e1df42ac",
+          "cwd": null
+        },
+        {
+          "native_item_id": "item_25",
+          "command": "/bin/zsh -c '/opt/homebrew/Cellar/python@3.14/3.14.8_2/Frameworks/Python.framework/Versions/3.14/bin/python3.14 -m unittest tests.test_candidate_snapshot tests.test_candidate_snapshot_links tests.test_check_only tests.test_local_run tests.test_runtime_boundaries'",
+          "exit_code": 0,
+          "observed_suite_summaries": [
+            "Ran 68 tests in 22.117s",
+            "OK (skipped=1)"
+          ],
+          "observed_output_sha256": "7ddebd46a603ae000b592afc50be5cd156abf69eb3c54fdbb4ade5dcf3ec65a5",
+          "cwd": null
+        },
+        {
+          "native_item_id": "item_26",
+          "command": "/bin/zsh -c \"/opt/homebrew/Cellar/python@3.14/3.14.8_2/Frameworks/Python.framework/Versions/3.14/bin/python3.14 - <<'PY'\nfrom pathlib import Path\np=Path('checks/candidate_snapshot.py')\ns=p.read_text().replace('''        hops = 0\n        while pending:\n            part = pending.pop(0)\n''','''        hops = 0\n        steps = 0\n        while pending:\n            steps += 1\n            if steps > 4096:\n                raise InputGap(\\\"Symlink target exceeds the traversal limit\\\")\n            part = pending.pop(0)\n''')\np.write_text(s)\nPY\n/opt/homebrew/Cellar/python@3.14/3.14.8_2/Frameworks/Python.framework/Versions/3.14/bin/python3.14 -m unittest discover -s tests\"",
+          "exit_code": 1,
+          "observed_suite_summaries": [
+            "Ran 259 tests in 128.304s",
+            "FAILED (failures=3, skipped=8)"
+          ],
+          "observed_output_sha256": "416ce9175067cfdd68e8738667e1ad621f13982b6ab82a183d50fbb307afab80",
+          "cwd": null
+        },
+        {
+          "native_item_id": "item_30",
+          "command": "/bin/zsh -c 'git status --short && git diff --check && /opt/homebrew/Cellar/python@3.14/3.14.8_2/Frameworks/Python.framework/Versions/3.14/bin/python3.14 -m unittest tests.test_candidate_snapshot_links tests.test_candidate_snapshot tests.test_check_only'",
+          "exit_code": 0,
+          "observed_suite_summaries": [
+            "Ran 41 tests in 9.184s",
+            "OK (skipped=1)"
+          ],
+          "observed_output_sha256": "79e5a39ea1ba62bf07a0b5792a9c63e8e9206656897325176001c92c9c880c67",
+          "cwd": null
+        },
+        {
+          "native_item_id": "item_31",
+          "command": "/bin/zsh -c \"/opt/homebrew/Cellar/python@3.14/3.14.8_2/Frameworks/Python.framework/Versions/3.14/bin/python3.14 - <<'PY'\nfrom pathlib import Path\np=Path('tests/test_candidate_snapshot_links.py')\ns=p.read_text().replace('''        snapshot.freeze(self.product)\n        for prefix in (\\\".agents\\\", \\\".claude\\\"):\n''','''        _, frozen_tree = snapshot.freeze(self.product)\n        self.assertEqual(host_probe.git(self.product, \\\"rev-parse\\\", \\\"HEAD\"'^{tree}\"), frozen_tree)\n        for prefix in (\".agents\", \".claude\"):\n'\"''')\ns=s.replace('''            self.assertEqual(host_probe.git(self.product, \\\"show\\\", f\\\"HEAD:{prefix}/skills/proofline-check\\\"), \\\"../../skills/proofline-check\\\")\n''','''            tree_entry = host_probe.git(self.product, \\\"ls-tree\\\", \\\"HEAD\\\", f\\\"{prefix}/skills/proofline-check\\\")\n            self.assertIn(\\\"120000 blob \\\", tree_entry)\n            self.assertEqual(host_probe.git(self.product, \\\"show\\\", f\\\"HEAD:{prefix}/skills/proofline-check\\\"), \\\"../../skills/proofline-check\\\")\n''')\ns=s.replace('''        self.assertEqual(host_probe.git(product, \\\"show\\\", \\\"HEAD:.agents/skills/module\\\"), \\\"../../skills/module\\\")\n''','''        self.assertIn(\\\"120000 blob \\\", host_probe.git(product, \\\"ls-tree\\\", \\\"HEAD\\\", \\\".agents/skills/module\\\"))\n        self.assertEqual(host_probe.git(product, \\\"show\\\", \\\"HEAD:.agents/skills/module\\\"), \\\"../../skills/module\\\")\n        self.assertEqual(host_probe.git(product, \\\"rev-parse\\\", \\\"HEAD\"'^{tree}\"), result[\"candidate_tree\"])\n'\"''')\np.write_text(s)\nPY\n/opt/homebrew/Cellar/python@3.14/3.14.8_2/Frameworks/Python.framework/Versions/3.14/bin/python3.14 -m unittest tests.test_candidate_snapshot_links\"",
+          "exit_code": 0,
+          "observed_suite_summaries": [
+            "Ran 4 tests in 0.360s",
+            "OK"
+          ],
+          "observed_output_sha256": "638063167116a07a0cef89578996103c167f5697a9068dd11e969083308a6be5",
+          "cwd": null
+        }
+      ]
+    },
+    {
+      "sequence": 8,
+      "task": 42,
+      "arm": "high",
+      "source_status": "NOT_EXECUTED",
+      "commands": []
+    }
+  ],
+  "basis": "Exact native command events and observed output summaries. Some commands combine edits and tests; intermediate failures remain. Empty summaries do not assert a suite ran. Per-tool cwd is not exposed by these events and is not inferred; native invocation cwd and protected grader/suite argv/cwd remain in their receipts. Tool-bounded output is retained as observed, not represented as complete raw process output."
+}

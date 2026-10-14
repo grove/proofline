@@ -1,9 +1,15 @@
 {
+  "accounting.json": "9b2c133641c7021ee2035fc9c91043ef5ce8ba6107beabf3f720aeb4ab8a990c",
+  "analysis.json": "c7dced030e0c0ad122832b552e31835fa70e2f774cfa2e90e20d7aa8142d33a3",
+  "approval.json": "c8635739d2967978c7b73f17df229504e566f2fceba3267c1a82cfce00bd065a",
   "controls.json": "797334c7a93c31a9dcafb373b846a0f4efd06c655cd5beae25f5e84fb263d333",
   "development-check.zip": "dca3267444be98af57c864ba748508375a9717b0d8b19593083d9be930cf17b6",
+  "execution-evidence.zip": "1018072cce6beb4551e6f8ec3da8da74ad8c6f32233ab60bbc6e78d848273b0f",
+  "execution-verification.json": "29a57a4107e5703dc00436cf043a0cbf6516a5a080f15398541bcc9db7b26ab2",
   "frozen-source.zip": "746cb9a955c5421c1aef5d1c972dc9ffc9720f31f549cc47ec7a75a4369a5934",
   "preflight-evidence.zip": "53a5c29a36625089654769739a4e534cf86e6206ae6f486222b5fa08f8bdb83f",
   "preparation.json": "62bebf114e136079d3f68d7cf9a16b619a04e093f644e8927d7d7fd9aa745435",
-  "results.json": "520ecd33f83e86f51787af5e6dda3b236b0b8896ac59c71a1b538f1c8dad6b3e",
+  "results.json": "d60befcd05c9c81920e7e8a1a4e050a7743fd5b366808bf3dd5e95c4713d6bb6",
+  "self-checks.json": "68a27ee4146035e2468dc001ad4b04cde7495dc3a06cff6fbe8a2ab6c292c9e9",
   "verification.json": "150c2c43ac057debed2cd5e1cc64e23ee3cdcac712098b4f1074dbfacfaf8c46"
 }

@@ -1,0 +1,8 @@
+{
+  "study_id": "issue38-real-requests-medium-high-v4",
+  "freeze_sha256": "9405fc84f70ad452797e7e15280b5367255352fa8cfd642cf44869c202f246f4",
+  "max_native_dispatches": 8,
+  "max_seconds": 7200,
+  "user_authorization": "Approve this exact eight-turn study",
+  "authorization_context": "User selected approval in response to the exact-study PR #45 proposal: four public replays #12/#28/#41/#42, gpt-6-luna medium/high, 540 coding / 900 total seconds each, 7200 cumulative assignment seconds, no corrections/retries/model changes, actual dollar charges unknown; merge remains separate."
+}
