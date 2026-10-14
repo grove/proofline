@@ -2,5 +2,6 @@
   "evaluation/results/issue46-minimal-checklist/accounting.json": "7166f1fd68b4bb236b127142b709665acf115b91239c72019e0d5f544d1c329c",
   "evaluation/results/issue46-minimal-checklist/boundary.json": "6652e54725e117e4ea0b2cc90b6cef30012282357344ed0ab05138f5a2ba9f6c",
   "evaluation/results/issue46-minimal-checklist/preflight-evidence.zip": "eeadf9f8cc1b6b3f49819f9ccde91996c759eed47ed0862c824c517de015bfba",
-  "evaluation/results/issue46-minimal-checklist/preflight.json": "62f06afd4415a9b7c6df4be809bf11a78c5f2f064533ce210522dcefeb11a362"
+  "evaluation/results/issue46-minimal-checklist/preflight.json": "62f06afd4415a9b7c6df4be809bf11a78c5f2f064533ce210522dcefeb11a362",
+  "evaluation/results/issue46-minimal-checklist/review.md": "4827273dd32a514516e1ab2f21474b9853c37d037d6a0e3b015b9e780cca14e7"
 }

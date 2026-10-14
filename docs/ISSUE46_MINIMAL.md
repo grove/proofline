@@ -73,10 +73,23 @@ or end-to-end savings claim is possible, and unknown preparation costs must
 never be reported as zero. Shared preparation would be allocated equally;
 checklist-specific costs would all be charged to B in any later study.
 
-Independent review of this final stopped proposal is required before publication;
-the review must explicitly state its identity and limits. It cannot certify a
-source oracle or live study that was not executed. A review artifact is added
-without changing the stopped input freeze or receipts.
+[Independent review](../evaluation/results/issue46-minimal-checklist/review.md)
+by the explicitly authorized `/root/study_review` session agent supports
+publication as an honest early-stop proposal, **not live execution**. It reviewed
+candidate `4f1dec9` and the exact input freeze above. The final additions attach
+that review and disclose its findings; frozen study inputs and receipts are
+unchanged. This is not human certification, independent native reproduction or
+a qualified source oracle.
+
+The review also identifies a static timing limit: the script checks remaining
+time before native commands, but hashing, archive extraction, snapshots, Git
+preparation and startup imports are not covered by a whole-process watchdog.
+The measured stop occurred well inside the declared 120-second budget; do not
+represent the script as a hard deadline or use this recipe to retry the freeze.
+The historical single-library cohort also falls short of #46's intended breadth
+and substantial/ongoing work. These limits belong in any future selection
+review. For deadline acceptance, an undocumented but source-faithful usable
+interface is not a defect: the original request did not promise new docs.
 
 Recommendation: **INCONCLUSIVE on checklist value; retain the simpler design
 as a proposal only.** There are no implementation outcomes to compare. Do not
