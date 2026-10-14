@@ -1,0 +1,10 @@
+{
+  "study_id": "issue34-recovery-v1",
+  "freeze_sha256": "e6cd153ae5582fcbba5c7639b0f8e67fdb6ab09037376f19e67b44e6def5f2b9",
+  "max_assignments": 24,
+  "max_native_dispatches": 48,
+  "max_seconds": 28800,
+  "user_authorization": "I authorize live spending. I approve the exact frozen experiment and its declared limits. Do it!",
+  "approved_at": "2026-10-14T05:33:08.141744+00:00",
+  "source": "Explicit user instruction in the 2026-10-14 continuation of issue #34 / PR #35"
+}

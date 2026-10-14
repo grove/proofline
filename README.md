@@ -323,8 +323,9 @@ The separate [issue #32 Sol-guided Luna study](docs/ISSUE32.md) prepares four ne
 
 The fresh [issue #34 recovery comparison](docs/ISSUE34.md) freezes six Python
 repository changes across ordinary Luna, checks plus Luna, Proofline plus Luna,
-and defect-triggered Sol diagnosis. Its native controls are qualified; live
-execution requires fresh spending approval. No recovery benefit is claimed.
+and defect-triggered Sol diagnosis. Its authorized six-baseline run stopped at
+the spending gate: five passed the frozen oracle and one grade is disputed.
+All 18 intervention slots remain unobserved; no recovery benefit is claimed.
 
 **License:** [Apache 2.0](LICENSE).
 

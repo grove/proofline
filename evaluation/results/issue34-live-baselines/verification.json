@@ -1,0 +1,29 @@
+{
+  "status": "PASSED",
+  "frozen_identity": {
+    "freeze_sha256": "e6cd153ae5582fcbba5c7639b0f8e67fdb6ab09037376f19e67b44e6def5f2b9"
+  },
+  "native_turns": 6,
+  "distinct_luna_threads": 6,
+  "assigned": 24,
+  "unobserved": 18,
+  "candidate_blobs_verified": 36,
+  "checks": [
+    "All archived native events and prompts match receipts",
+    "All six initial/final trees are unchanged and archive blobs match Git",
+    "All 24 archived requests match the original declaration",
+    "Original frozen sources and preparation archive hashes are intact",
+    "Published success rates are null for disputed/unobserved outcomes"
+  ],
+  "suite": {
+    "tests_run": 241,
+    "native_opt_in_skips": 8,
+    "result": "OK",
+    "seconds": 178.016
+  },
+  "fixed_oracle_controls": {
+    "tests_run": 3,
+    "result": "OK"
+  },
+  "models_dispatched_by_verification": 0
+}
