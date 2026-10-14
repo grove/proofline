@@ -1,0 +1,38 @@
+{
+  "10": {
+    "status": "QUALIFIED",
+    "problems": [],
+    "source_sha256": "f69d4455bdd35b38d5f8b230e4c8a56378b8d2c86d805c8a300add8d6c0a4b08",
+    "oracle_sha256": "42c70bf7e7671260bae097178e76bf82df107c93d9cc866c08e3dc0ec0a14c0d",
+    "expected_assertions": 3,
+    "qualified_assertions": 3,
+    "model_dispatches": 0
+  },
+  "11": {
+    "status": "QUALIFIED",
+    "problems": [],
+    "source_sha256": "fa43e51f795978317f133d09472c13da3f3cfec3e3b0f730f8d356c5bbdb1342",
+    "oracle_sha256": "270f2660d45ea8ef8a34c48c79c97396a4d71f8e3d8a3c60fc17148eb78816f2",
+    "expected_assertions": 6,
+    "qualified_assertions": 6,
+    "model_dispatches": 0
+  },
+  "14": {
+    "status": "QUALIFIED",
+    "problems": [],
+    "source_sha256": "25e731c090cc65c0806ed7de3060ed8642b16a4bfe0c653f82d4bba3322696e7",
+    "oracle_sha256": "65ff97ca6bf90ab3f1377ec854aa733027d2891715d5a333ec46c9d590609a3f",
+    "expected_assertions": 5,
+    "qualified_assertions": 5,
+    "model_dispatches": 0
+  },
+  "13": {
+    "status": "QUALIFIED",
+    "problems": [],
+    "source_sha256": "1d055c3b6c3e6bf5661024aeebc113b98b97e913dd03835ab621d3f193e87909",
+    "oracle_sha256": "d9e7e72d83da77749dc6957deb1d6fd41a0e24d1ba467efa7f536ec69ab70d73",
+    "expected_assertions": 5,
+    "qualified_assertions": 5,
+    "model_dispatches": 0
+  }
+}

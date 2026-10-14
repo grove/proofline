@@ -1,0 +1,129 @@
+{
+  "schema_version": 1,
+  "study_id": "issue46-minimal-checklist-v1",
+  "tasks": [
+    {
+      "issue": 10,
+      "label": "Runner-core extraction",
+      "source_url": "https://github.com/grove/proofline/issues/10",
+      "source_sha256": "f69d4455bdd35b38d5f8b230e4c8a56378b8d2c86d805c8a300add8d6c0a4b08",
+      "base_commit": "9c3684d22d4ae7ce0c87115ff9f1be7667dd374d",
+      "base_tree": "79c42bdf681fa79e2cb3938b2c891bb245cbe68d",
+      "reference_commit": "c5f9a12044db6bbfd253b3784a556f779809e4df",
+      "reference_tree": "3025f9ec86e2ea08e66aae425c3754f063684e8d",
+      "visible_tests": [
+        "tests.test_supported_cli"
+      ],
+      "selection": "Frozen before new candidate dispatch/outcomes. Public retrospective request; no #16/#32/#34/#38 task/solution/oracle pair reused."
+    },
+    {
+      "issue": 11,
+      "label": "Model-free check-only mode",
+      "source_url": "https://github.com/grove/proofline/issues/11",
+      "source_sha256": "fa43e51f795978317f133d09472c13da3f3cfec3e3b0f730f8d356c5bbdb1342",
+      "base_commit": "c5f9a12044db6bbfd253b3784a556f779809e4df",
+      "base_tree": "3025f9ec86e2ea08e66aae425c3754f063684e8d",
+      "reference_commit": "d130bdeb15ba5e3aae00664a371296fc28ae132f",
+      "reference_tree": "58d6bf72c45dd5a2fcafcae9966bf055758bdfd6",
+      "visible_tests": [
+        "tests.test_supported_cli"
+      ],
+      "selection": "Frozen before new candidate dispatch/outcomes. Public retrospective request; no #16/#32/#34/#38 task/solution/oracle pair reused."
+    },
+    {
+      "issue": 14,
+      "label": "Actionable failure feedback",
+      "source_url": "https://github.com/grove/proofline/issues/14",
+      "source_sha256": "25e731c090cc65c0806ed7de3060ed8642b16a4bfe0c653f82d4bba3322696e7",
+      "base_commit": "5e6e1ec311b121fb990049076190866e75380cc5",
+      "base_tree": "e4138ed9804b1cba3348fc44f6011af73b2223de",
+      "reference_commit": "78cdb5a966fcae3e77437612541745596c00a013",
+      "reference_tree": "0ed4d1bc3d8c616e93f6517a94667bd501059d23",
+      "visible_tests": [
+        "tests.test_supported_cli"
+      ],
+      "selection": "Frozen before new candidate dispatch/outcomes. Public retrospective request; no #16/#32/#34/#38 task/solution/oracle pair reused."
+    },
+    {
+      "issue": 13,
+      "label": "Source-linked evidence mapping",
+      "source_url": "https://github.com/grove/proofline/issues/13",
+      "source_sha256": "1d055c3b6c3e6bf5661024aeebc113b98b97e913dd03835ab621d3f193e87909",
+      "base_commit": "78cdb5a966fcae3e77437612541745596c00a013",
+      "base_tree": "0ed4d1bc3d8c616e93f6517a94667bd501059d23",
+      "reference_commit": "a559a8046b4bdb590105106ba6e65dac8c3e4f7f",
+      "reference_tree": "07195ffa4940fcf371807c8d9131eab9012c4eb7",
+      "visible_tests": [
+        "tests.test_supported_cli"
+      ],
+      "selection": "Frozen before new candidate dispatch/outcomes. Public retrospective request; no #16/#32/#34/#38 task/solution/oracle pair reused."
+    }
+  ],
+  "models": {
+    "ordinary": {
+      "model": "gpt-6-luna",
+      "model_reasoning_effort": "medium"
+    },
+    "checklist": {
+      "model": "gpt-6-luna",
+      "model_reasoning_effort": "medium"
+    }
+  },
+  "order": [
+    [
+      "ordinary",
+      "checklist"
+    ],
+    [
+      "checklist",
+      "ordinary"
+    ],
+    [
+      "ordinary",
+      "checklist"
+    ],
+    [
+      "checklist",
+      "ordinary"
+    ]
+  ],
+  "limits": {
+    "native_dispatches": 8,
+    "coding_seconds": 900,
+    "assignment_seconds": 1200,
+    "campaign_seconds": 9600,
+    "preflight_seconds": 1800
+  },
+  "host": {
+    "versions": [
+      "Darwin",
+      "arm64",
+      "26.6.2",
+      "3.14.8"
+    ],
+    "codex": "codex-cli 0.162.1"
+  },
+  "guidance": "Use your ordinary coding approach and the complete unchanged original request. Ordinary repository context, tools and tests are available. No separate planner, reviewer, model/effort escalation, mandatory Proofline step, correction or retry. The caller owns separately authorized host qualification and publication; do not claim those effects from implementation.",
+  "execution_map": "No network, external repository/history after the base, private evaluator, other assignments or published study receipts. Only this product and scratch are writable. Use installed Python. Self-tests and checklist reading count toward the same assignment budget.",
+  "prior_preflight_seconds": 119.70300304191187,
+  "grading": {
+    "complete": "Independent source assessment of every frozen material clause, actual candidate diff, executable observations, documentation, installation/usability and plausible alternatives; green sampled tests alone never suffice.",
+    "external_effects": "Only implementation obligations are replayed. Original requests remain complete. Normal CI and native assurance require their own observations; no replayed publication, merge or fresh live product-model qualification is claimed.",
+    "alternatives": "No exact new module/helper names, optional flags, exception types or prose beyond what the original request prescribes. Interface-specific probes are diagnostic; equivalent documented implementations must be observed through their own interfaces before grading. Unsupported/disputed expectations are not defects.",
+    "review_gate": "A genuinely independent reviewer must adjudicate the source/checklist/complete inventory/controls before any live dispatch; organizer authorship is not independent review."
+  },
+  "stop_rules": [
+    "Qualify source declarations, all reference/alternative/defective controls and both native role boundaries before live dispatch.",
+    "Fresh explicit authorization identifies this exact freeze, host, model/effort, eight turns and 9600 cumulative assignment seconds. No #38 approval reuse.",
+    "Serial balanced order; one initial coding attempt per slot. No retry, resume, repair, substitution, corpus change or privileged worker tests.",
+    "Native access, isolation, evidence drift, grading unavailability, uncertain dispatch or exhausted budget stops the cohort. Keep all eight slots; unavailable is not proven incorrect.",
+    "No merge without explicit approval."
+  ],
+  "accounting": {
+    "actual_billing_usd": null,
+    "cached_input": "input includes cached; uncached=input-cached, never input+cached",
+    "preparation": "Retain elapsed process time for selection, authoring/grounding, independent review, preflight and distribution separately. Organizer model tokens and active human time stay UNKNOWN unless observed, never zero. Include checklist-specific preparation entirely in B and allocate shared preparation equally.",
+    "comparison": "Per-task paired independently correct complete deliveries, time/turns/tools/input/cached/uncached/output and total resources per correct delivery; report measured portions and UNKNOWN totals when preparation usage is missing. No dollars inferred from token counts.",
+    "decision": "Four pairs/one attempt. All-correct ceilings, too few observed defects, incomplete execution or unknown full overhead imply INCONCLUSIVE. KEEP only for useful paired fidelity gain justified by full overhead; SIMPLIFY if preparation can be reduced; REJECT if observed overhead outweighs gain. Price sensitivity is separate from actual billing."
+  }
+}

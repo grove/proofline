@@ -1,0 +1,158 @@
+{
+  "study_id": "issue46-minimal-checklist-v1",
+  "freeze_sha256": "dc32e41ac170b216994bffebc702ae3015b1457799f6fb6dd23245d70dab6c41",
+  "status": "STOPPED_NOT_QUALIFIED",
+  "reason": "Protected native CLI assembly unavailable and independent source/control review NOT QUALIFIED.",
+  "assigned": 8,
+  "model_dispatches": 0,
+  "reserved_native_dispatches": 0,
+  "assignments": [
+    {
+      "sequence": 1,
+      "task": 10,
+      "arm": "ordinary",
+      "seed_tree": "79c42bdf681fa79e2cb3938b2c891bb245cbe68d",
+      "status": "NOT_EXECUTED",
+      "stages": [],
+      "source_audit": null,
+      "total_seconds": null,
+      "billing_usd": null,
+      "attempted": false,
+      "base_commit": "9c3684d22d4ae7ce0c87115ff9f1be7667dd374d",
+      "source_sha256": "f69d4455bdd35b38d5f8b230e4c8a56378b8d2c86d805c8a300add8d6c0a4b08",
+      "model": {
+        "model": "gpt-6-luna",
+        "model_reasoning_effort": "medium"
+      }
+    },
+    {
+      "sequence": 2,
+      "task": 10,
+      "arm": "checklist",
+      "seed_tree": "79c42bdf681fa79e2cb3938b2c891bb245cbe68d",
+      "status": "NOT_EXECUTED",
+      "stages": [],
+      "source_audit": null,
+      "total_seconds": null,
+      "billing_usd": null,
+      "attempted": false,
+      "base_commit": "9c3684d22d4ae7ce0c87115ff9f1be7667dd374d",
+      "source_sha256": "f69d4455bdd35b38d5f8b230e4c8a56378b8d2c86d805c8a300add8d6c0a4b08",
+      "model": {
+        "model": "gpt-6-luna",
+        "model_reasoning_effort": "medium"
+      }
+    },
+    {
+      "sequence": 3,
+      "task": 11,
+      "arm": "checklist",
+      "seed_tree": "3025f9ec86e2ea08e66aae425c3754f063684e8d",
+      "status": "NOT_EXECUTED",
+      "stages": [],
+      "source_audit": null,
+      "total_seconds": null,
+      "billing_usd": null,
+      "attempted": false,
+      "base_commit": "c5f9a12044db6bbfd253b3784a556f779809e4df",
+      "source_sha256": "fa43e51f795978317f133d09472c13da3f3cfec3e3b0f730f8d356c5bbdb1342",
+      "model": {
+        "model": "gpt-6-luna",
+        "model_reasoning_effort": "medium"
+      }
+    },
+    {
+      "sequence": 4,
+      "task": 11,
+      "arm": "ordinary",
+      "seed_tree": "3025f9ec86e2ea08e66aae425c3754f063684e8d",
+      "status": "NOT_EXECUTED",
+      "stages": [],
+      "source_audit": null,
+      "total_seconds": null,
+      "billing_usd": null,
+      "attempted": false,
+      "base_commit": "c5f9a12044db6bbfd253b3784a556f779809e4df",
+      "source_sha256": "fa43e51f795978317f133d09472c13da3f3cfec3e3b0f730f8d356c5bbdb1342",
+      "model": {
+        "model": "gpt-6-luna",
+        "model_reasoning_effort": "medium"
+      }
+    },
+    {
+      "sequence": 5,
+      "task": 14,
+      "arm": "ordinary",
+      "seed_tree": "e4138ed9804b1cba3348fc44f6011af73b2223de",
+      "status": "NOT_EXECUTED",
+      "stages": [],
+      "source_audit": null,
+      "total_seconds": null,
+      "billing_usd": null,
+      "attempted": false,
+      "base_commit": "5e6e1ec311b121fb990049076190866e75380cc5",
+      "source_sha256": "25e731c090cc65c0806ed7de3060ed8642b16a4bfe0c653f82d4bba3322696e7",
+      "model": {
+        "model": "gpt-6-luna",
+        "model_reasoning_effort": "medium"
+      }
+    },
+    {
+      "sequence": 6,
+      "task": 14,
+      "arm": "checklist",
+      "seed_tree": "e4138ed9804b1cba3348fc44f6011af73b2223de",
+      "status": "NOT_EXECUTED",
+      "stages": [],
+      "source_audit": null,
+      "total_seconds": null,
+      "billing_usd": null,
+      "attempted": false,
+      "base_commit": "5e6e1ec311b121fb990049076190866e75380cc5",
+      "source_sha256": "25e731c090cc65c0806ed7de3060ed8642b16a4bfe0c653f82d4bba3322696e7",
+      "model": {
+        "model": "gpt-6-luna",
+        "model_reasoning_effort": "medium"
+      }
+    },
+    {
+      "sequence": 7,
+      "task": 13,
+      "arm": "checklist",
+      "seed_tree": "0ed4d1bc3d8c616e93f6517a94667bd501059d23",
+      "status": "NOT_EXECUTED",
+      "stages": [],
+      "source_audit": null,
+      "total_seconds": null,
+      "billing_usd": null,
+      "attempted": false,
+      "base_commit": "78cdb5a966fcae3e77437612541745596c00a013",
+      "source_sha256": "1d055c3b6c3e6bf5661024aeebc113b98b97e913dd03835ab621d3f193e87909",
+      "model": {
+        "model": "gpt-6-luna",
+        "model_reasoning_effort": "medium"
+      }
+    },
+    {
+      "sequence": 8,
+      "task": 13,
+      "arm": "ordinary",
+      "seed_tree": "0ed4d1bc3d8c616e93f6517a94667bd501059d23",
+      "status": "NOT_EXECUTED",
+      "stages": [],
+      "source_audit": null,
+      "total_seconds": null,
+      "billing_usd": null,
+      "attempted": false,
+      "base_commit": "78cdb5a966fcae3e77437612541745596c00a013",
+      "source_sha256": "1d055c3b6c3e6bf5661024aeebc113b98b97e913dd03835ab621d3f193e87909",
+      "model": {
+        "model": "gpt-6-luna",
+        "model_reasoning_effort": "medium"
+      }
+    }
+  ],
+  "live_study_complete": false,
+  "candidate_acceptance_assessments": null,
+  "recommendation": "INCONCLUSIVE"
+}

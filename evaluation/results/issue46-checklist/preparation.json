@@ -1,0 +1,68 @@
+{
+  "status": "STOPPED_NOT_QUALIFIED",
+  "model_dispatches": 0,
+  "live_coding_tokens": 0,
+  "reviewer_model_calls": 1,
+  "organizer_model_tokens": null,
+  "human_active_seconds": null,
+  "actual_billing_usd": null,
+  "unmeasured_prior_preparation_seconds": null,
+  "measurement_started_utc": "2026-10-14T17:43:39Z",
+  "limitations": "Initial issue/repository inspection and checklist drafting elapsed/tokens were not independently metered. These are UNKNOWN, not free. Subsequent process receipts cover only measured preparation portions.",
+  "reviewer_authorization": "User replied \u201cDo whatever you need to do. I authorize it.\u201d to the question offering one reviewer turn, at most 15 minutes, billing UNKNOWN.",
+  "reviewer_identity": "/root/source_review",
+  "reviewer_observed_seconds": 347,
+  "reviewer_full_seconds": null,
+  "reviewer_tokens": null,
+  "reviewer_billing_usd": null,
+  "preflight_attempts": [
+    {
+      "attempt": "attempt1",
+      "seconds": 11.951580999884754,
+      "model_dispatches": 0,
+      "all_matched": false,
+      "blocker": null
+    },
+    {
+      "attempt": "attempt2",
+      "seconds": 19.89415341708809,
+      "model_dispatches": 0,
+      "all_matched": false,
+      "blocker": null
+    },
+    {
+      "attempt": "attempt3",
+      "seconds": 44.28182725002989,
+      "model_dispatches": 0,
+      "all_matched": true,
+      "blocker": "Unqualified native boundary; no dispatch"
+    },
+    {
+      "attempt": "attempt4",
+      "seconds": 43.57544137490913,
+      "model_dispatches": 0,
+      "all_matched": true,
+      "blocker": "[Errno 17] File exists: '/Users/grove/projects/proofline/.proofline/issue46-checklist-v1/qualification'"
+    },
+    {
+      "attempt": "attempt5",
+      "seconds": 84.83867304073647,
+      "model_dispatches": 0,
+      "all_matched": true,
+      "blocker": "Protected native CLI assembly unavailable; no live dispatch"
+    }
+  ],
+  "measured_preflight_seconds": 204.54167608264834,
+  "supplementary_probe_seconds": 3.661417415831238,
+  "measured_seed_preparation_seconds": 21.405896542128175,
+  "retained_validation": {
+    "tests": 280,
+    "skipped": 9,
+    "result": "PASSED",
+    "suite_seconds": 178.297
+  },
+  "native_inference_access": "UNKNOWN: no coding turn authorized/dispatched",
+  "total_preparation_tokens": null,
+  "total_preparation_seconds": null,
+  "conclusion": "No observed correct deliveries and incomplete preparation overhead; total time/tokens/dollars per correct delivery are not estimable."
+}

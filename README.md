@@ -342,6 +342,12 @@ a native coding timeout stopped the last pair. Recommendation: **inconclusive**.
 Exact candidates, usage, source omissions and unknown dollar charges are retained;
 no default model change or general reliability/resource-saving claim follows.
 
+The [minimal acceptance-checklist proposal (#46)](docs/ISSUE46.md) retains eight
+unexecuted slots after model-free preflight and an independent **NOT QUALIFIED**
+review. Trusted controls matched, but protected native grading and whole-request
+control coverage remain incomplete. No live coding comparison or guidance
+benefit is claimed; the result is **inconclusive**.
+
 **License:** [Apache 2.0](LICENSE).
 
 ---

@@ -1,0 +1,54 @@
+{
+  "10": [
+    "Reduce supported-runtime complexity **without losing the proven mechanical safeguards**. In particular, the current `checks/local_run.py` uses `checks/s6_baseline.py`; avoid depending on research/benchmark modules for normal product execution.",
+    "- Identify the smallest reusable implementation boundary for snapshot preparation, optional Codex dispatch, explicit check execution, and report/status readback.",
+    "- Move or factor shared runtime helpers into clearly named production modules, rather than importing an S6 baseline from the supported path.",
+    "- Keep historical `deliver`/`resume` experiments and their original evidence preserved; do not silently restore experimental certification or publication.",
+    "- Retain host isolation, source/candidate/check identity, stale-snapshot detection, bounded cumulative budgets, actual process receipts and distinctions between check failure and unavailable execution.",
+    "- Keep the existing qualified macOS/Codex path working; portability is a separate hypothesis, not permission to remove safeguards.",
+    "- [ ] `proofline.py run` and `proofline.py status` operate with the same visible semantics and successful, failed, unavailable and stale outcomes.",
+    "- [ ] The supported run/check path no longer needs to import `checks/s6_baseline.py` or a historical study coordinator.",
+    "- [ ] Native-security and deterministic regressions cover candidate immutability, exact command matching, protected material, timeouts and resource accounting.",
+    "- [ ] Normal CI passes on its supported test matrix; native qualification remains explicit rather than mocked into a success claim.",
+    "- [ ] README/SKILL explain the small supported entry point and keep historical research clearly separated.",
+    "- [ ] No new compulsory model role, planning format, framework abstraction, or ceremony is added.",
+    "Follows the product direction in #1. May be implemented with offline tests initially; native-host validation still required for assurance claims."
+  ],
+  "11": [
+    "Introduce `proofline.py check` as a local, model-free mode accepting an existing repository/candidate, the original source request and explicit executable checks. Choose a documented, safe way to snapshot even a dirty working tree, including relevant untracked files, without deleting or modifying user work. Execute checks against an isolated frozen candidate, not a mutable live worktree. Reuse qualified sandbox, receipt, time-budget and integrity mechanisms where possible.",
+    "- [ ] A coding agent can submit an existing candidate without Proofline launching Codex or any other model (assert zero model dispatches).",
+    "- [ ] The source repository remains byte-for-byte untouched, including dirty and untracked work; no reset, stash, auto-commit, or unapproved publication.",
+    "- [ ] The selected candidate, original request and exact command argument lists are bound to the record. Status detects changed or missing evidence and does not reuse stale checks.",
+    "- [ ] Selected checks run on the frozen candidate in the native protected boundary with explicit budgets and without granting network access or external effects.",
+    "- [ ] Failures, unavailable executions, and completed passes are distinct. `CHECKS PASSED` is scoped to the actual commands, never full-promise certification.",
+    "- [ ] Deterministic tests cover dirty worktrees, untracked files, freeze/receipt tampering, failed/unavailable checks, zero model dispatch, and source preservation.",
+    "- [ ] Clearly disclose any initially unsupported platforms or file types; no silent fallback to unprotected checks.",
+    "No correction agent, new reviewer/prover, risk scorer, PR/merge, or automatic generation of acceptance tests.",
+    "After #8 and the extraction boundary in #10. Prioritize this before the other functional features."
+  ],
+  "14": [
+    "Enhance the local `check` report and supported managed `run` output with a short failure summary and structured details. Preserve full raw receipts separately. Never invent expected results where the check did not specify them.",
+    "- [ ] For each check, report exact argv, exit status, elapsed time, bounded stdout/stderr references, and frozen candidate/source identity.",
+    "- [ ] A failed behavior assertion may show supplied expected and observed values and linked outcome IDs; otherwise report the actual command failure without fabricated expectations.",
+    "- [ ] Distinguish observed check failures, missing/insufficient evidence, environment/boundary unavailability, timeouts, and stale receipts.",
+    "- [ ] Produce concise plain-language guidance an existing coding agent can act upon; preserve logs for audit without dumping them into the primary answer.",
+    "- [ ] Successful commands produce a short result and do not trigger another reviewer or unnecessary model invocation.",
+    "- [ ] Tests cover failing and passing commands, truncated or missing output, timeouts, unauthorized mutation attempts, malformed expected/actual metadata, and correct status re-read.",
+    "Another AI reviewer, mandatory static analysis bundle, automatic diagnosis disguised as ground truth, or auto-correction.",
+    "After #11; integrate with optional mapping from #13, but do not block this issue on full contract integration.",
+    "When optional [#13](https://github.com/grove/proofline/issues/13) requirement IDs/source citations are present, report the affected `R` IDs alongside actual command receipts, and distinguish **a demonstrated failing test** from **an untested promise / an unavailable check / a proposed expected behavior**. Do not invent a test expectation from a planner's wording or call a missing check a candidate defect. Without any requirements mapping or Intentline, the ordinary concise check feedback must remain fully usable. No model dispatch or peer integration belongs in the mandatory feedback path."
+  ],
+  "13": [
+    "Extend the supported, model-free `proofline.py check` / `status` record to accept **optional**, small caller-provided source-linked outcome rows, each with a stable ID, exact original-source citation and selected check IDs/argv associations. Preserve and display the full original request regardless of whether any rows were supplied.",
+    "- [ ] A direct check needs **no** acceptance plan, Intentline/P2P installation, second model call, additional mandatory file or approval ceremony. Existing run/check/status semantics and native sandbox/receipt integrity remain intact.",
+    "- [ ] Optional rows identify source-linked obligations and outcomes, including positive and negative behaviors, compatibility constraints and exceptions. Validate IDs, source identity/quoted lines, exact selected-command references and candidate binding; reject missing/stale/contradictory claims. Source text always outranks an incomplete mapping.",
+    "- [ ] Report, **per supplied obligation**, actual linked-check outcomes: `LINKED CHECKS PASSED (limited evidence)`, `CHECK FAILED`, `CHECK UNAVAILABLE`, or `NOT DEMONSTRATED`. Never call a green command proof of the full obligation or all obligations. A requirement with *no selected check* is not demonstrated, not failed.",
+    "- [ ] Support an **optional step by the same existing coding agent**: reread the complete original source, compare it with the recorded rows/selected checks, and propose any apparent omitted material promise or high-value negative/compatibility case with a verbatim source citation and test suggestion. Record such findings as **proposals/gaps**, not authenticated or complete review. Proofline itself dispatches zero extra models. If no gap analysis was performed, make coverage completeness **unknown**, not silently complete.",
+    "- [ ] Any listed expected behavior, `oracle`, or proposed check derived from an agent is explicitly a *proposed expectation*, not an independently established answer. Actual success requires executable receipts.",
+    "- [ ] Negative tests: valid green existing suite but source's Unicode promise left uncovered; missing/duplicate IDs, omitted material source quote, changed source, wrong candidate, forged command link, failed check, unavailable sandbox, stale receipt, and an advisory plan that omits a user constraint.",
+    "- [ ] Output stays concise; detailed source/check/receipt identities are available for inspection but do not clutter ordinary successful handoffs.",
+    "This issue defines the **generic evidence mapping**, not a bundled Intentline parser. Follow-on **[Proofline #23](https://github.com/grove/proofline/issues/23)** may consume existing Intentline schema-1 `R` rows, boundaries, proposed oracles, evidence gaps and exact export identities as **optional untrusted guidance**, with no automatic adoption or peer execution. Keep source quotation and IDs compatible where straightforward; a caller-authored direct mapping remains equally supported.",
+    "No automatic semantic completeness certificate, universal requirement extraction, automatic test generator, independent AI reviewer/prover, workflow planner, or PR/merge controller.",
+    "After [#11](https://github.com/grove/proofline/issues/11) (implemented). Can proceed alongside [#14](https://github.com/grove/proofline/issues/14). [#16](https://github.com/grove/proofline/issues/16) must measure whether it actually catches missed outcomes at reasonable cost."
+  ]
+}

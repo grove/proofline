@@ -1,0 +1,10 @@
+{
+  "selected_utc": "2026-10-14T17:43:39Z",
+  "tasks": [
+    10,
+    11,
+    14,
+    13
+  ],
+  "reason": "Four substantial multi-module implementation requests, selected without any outcomes from this new cohort. All have real user-facing interfaces, negative/compatibility obligations; #10/#11 expressly require documentation/disclosures."
+}

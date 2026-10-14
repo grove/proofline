@@ -1,0 +1,184 @@
+{
+  "controls": [
+    {
+      "task": 10,
+      "kind": "reference",
+      "matched": true,
+      "tree": "3025f9ec86e2ea08e66aae425c3754f063684e8d",
+      "receipt_ref": "attempt5/10/reference/grade/observation.json",
+      "passed_probe_ids": [
+        "status-interface",
+        "run-interface",
+        "no-s6-dependency"
+      ],
+      "unknown_probe_ids": []
+    },
+    {
+      "task": 10,
+      "kind": "alternative",
+      "matched": true,
+      "tree": "45730a0e586a5c76f524bc0899c6c5db2421b277",
+      "receipt_ref": "attempt5/10/alternative/grade/observation.json",
+      "passed_probe_ids": [
+        "status-interface",
+        "run-interface",
+        "no-s6-dependency"
+      ],
+      "unknown_probe_ids": []
+    },
+    {
+      "task": 10,
+      "kind": "defective",
+      "matched": true,
+      "tree": "5f630c51f2f10011eb97b8682ff05cea66591ae8",
+      "receipt_ref": "attempt5/10/defective/grade/observation.json",
+      "passed_probe_ids": [
+        "run-interface",
+        "no-s6-dependency"
+      ],
+      "unknown_probe_ids": []
+    },
+    {
+      "task": 11,
+      "kind": "reference",
+      "matched": true,
+      "tree": "58d6bf72c45dd5a2fcafcae9966bf055758bdfd6",
+      "receipt_ref": "attempt5/11/reference/grade/observation.json",
+      "passed_probe_ids": [
+        "status-interface",
+        "check-interface",
+        "native-check",
+        "source-preserved",
+        "working-snapshot",
+        "stale-candidate"
+      ],
+      "unknown_probe_ids": []
+    },
+    {
+      "task": 11,
+      "kind": "alternative",
+      "matched": true,
+      "tree": "b6c6241d826eb56b6bcf390f418e824d16c4c33e",
+      "receipt_ref": "attempt5/11/alternative/grade/observation.json",
+      "passed_probe_ids": [
+        "status-interface",
+        "check-interface",
+        "native-check",
+        "source-preserved",
+        "working-snapshot",
+        "stale-candidate"
+      ],
+      "unknown_probe_ids": []
+    },
+    {
+      "task": 11,
+      "kind": "defective",
+      "matched": true,
+      "tree": "ec89b7a04a1676a4723216a0e4694896e20b994e",
+      "receipt_ref": "attempt5/11/defective/grade/observation.json",
+      "passed_probe_ids": [
+        "status-interface"
+      ],
+      "unknown_probe_ids": [
+        "native-check",
+        "source-preserved",
+        "working-snapshot",
+        "stale-candidate"
+      ]
+    },
+    {
+      "task": 14,
+      "kind": "reference",
+      "matched": true,
+      "tree": "0ed4d1bc3d8c616e93f6517a94667bd501059d23",
+      "receipt_ref": "attempt5/14/reference/grade/observation.json",
+      "passed_probe_ids": [
+        "status-interface",
+        "check-interface",
+        "native-check",
+        "source-preserved",
+        "no-invented-expectation"
+      ],
+      "unknown_probe_ids": []
+    },
+    {
+      "task": 14,
+      "kind": "alternative",
+      "matched": true,
+      "tree": "a716bb056856b7f3a833d0f224061d6888cf787a",
+      "receipt_ref": "attempt5/14/alternative/grade/observation.json",
+      "passed_probe_ids": [
+        "status-interface",
+        "check-interface",
+        "native-check",
+        "source-preserved",
+        "no-invented-expectation"
+      ],
+      "unknown_probe_ids": []
+    },
+    {
+      "task": 14,
+      "kind": "defective",
+      "matched": true,
+      "tree": "cfdd212c352d83fc3959b41172293283b67c6fc8",
+      "receipt_ref": "attempt5/14/defective/grade/observation.json",
+      "passed_probe_ids": [
+        "status-interface",
+        "check-interface",
+        "native-check",
+        "source-preserved"
+      ],
+      "unknown_probe_ids": []
+    },
+    {
+      "task": 13,
+      "kind": "reference",
+      "matched": true,
+      "tree": "07195ffa4940fcf371807c8d9131eab9012c4eb7",
+      "receipt_ref": "attempt5/13/reference/grade/observation.json",
+      "passed_probe_ids": [
+        "status-interface",
+        "check-interface",
+        "native-check",
+        "source-preserved",
+        "complete-source-display"
+      ],
+      "unknown_probe_ids": []
+    },
+    {
+      "task": 13,
+      "kind": "alternative",
+      "matched": true,
+      "tree": "91999cac5b3be869c63eaa9971a8d2b5a9493431",
+      "receipt_ref": "attempt5/13/alternative/grade/observation.json",
+      "passed_probe_ids": [
+        "status-interface",
+        "check-interface",
+        "native-check",
+        "source-preserved",
+        "complete-source-display"
+      ],
+      "unknown_probe_ids": []
+    },
+    {
+      "task": 13,
+      "kind": "defective",
+      "matched": true,
+      "tree": "fca2c58b84deb81211958ea52155cfff021e1589",
+      "receipt_ref": "attempt5/13/defective/grade/observation.json",
+      "passed_probe_ids": [
+        "status-interface",
+        "check-interface",
+        "native-check",
+        "source-preserved"
+      ],
+      "unknown_probe_ids": []
+    }
+  ],
+  "all_matched": true,
+  "execution_qualified": false,
+  "blocker": "Protected native CLI assembly unavailable; no live dispatch",
+  "elapsed_seconds": 84.83867304073647,
+  "model_dispatches": 0,
+  "scope": "Authored public reference/alternative/defective controls; independent semantic adjudication still required."
+}

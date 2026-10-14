@@ -1,0 +1,304 @@
+{
+  "10": {
+    "schema_version": 1,
+    "study_id": "issue46-minimal-checklist-v1",
+    "author": "organizer: /root (Codex), also checklist/probe author; not independent reviewer",
+    "source_sha256": "f69d4455bdd35b38d5f8b230e4c8a56378b8d2c86d805c8a300add8d6c0a4b08",
+    "oracle_sha256": "42c70bf7e7671260bae097178e76bf82df107c93d9cc866c08e3dc0ec0a14c0d",
+    "expectations": [
+      {
+        "id": "status-interface",
+        "kind": "compatibility",
+        "cases": [
+          "status-interface"
+        ],
+        "claim": "The existing status public entry point remains callable.",
+        "support": "source",
+        "source_clause": "- [ ] `proofline.py run` and `proofline.py status` operate with the same visible semantics and successful, failed, unavailable and stale outcomes.",
+        "ambiguity": "",
+        "acceptable_alternatives": [
+          "Equivalent documented implementation/interface; unsupported optional flag recipes yield UNKNOWN and need source assessment, not a defect."
+        ]
+      },
+      {
+        "id": "run-interface",
+        "kind": "compatibility",
+        "cases": [
+          "run-interface"
+        ],
+        "claim": "The existing run public entry point remains callable.",
+        "support": "source",
+        "source_clause": "- [ ] `proofline.py run` and `proofline.py status` operate with the same visible semantics and successful, failed, unavailable and stale outcomes.",
+        "ambiguity": "",
+        "acceptable_alternatives": [
+          "Equivalent documented implementation/interface; unsupported optional flag recipes yield UNKNOWN and need source assessment, not a defect."
+        ]
+      },
+      {
+        "id": "no-s6-dependency",
+        "kind": "negative",
+        "cases": [
+          "no-s6-dependency"
+        ],
+        "claim": "Reachable direct local Python imports from the supported CLI/local-run entry points exclude S6 baseline/comparison dependencies. Dynamic imports still require source review.",
+        "support": "source",
+        "source_clause": "- [ ] The supported run/check path no longer needs to import `checks/s6_baseline.py` or a historical study coordinator.",
+        "ambiguity": "",
+        "acceptable_alternatives": [
+          "Equivalent documented implementation/interface; unsupported optional flag recipes yield UNKNOWN and need source assessment, not a defect."
+        ]
+      }
+    ]
+  },
+  "11": {
+    "schema_version": 1,
+    "study_id": "issue46-minimal-checklist-v1",
+    "author": "organizer: /root (Codex), also checklist/probe author; not independent reviewer",
+    "source_sha256": "fa43e51f795978317f133d09472c13da3f3cfec3e3b0f730f8d356c5bbdb1342",
+    "oracle_sha256": "270f2660d45ea8ef8a34c48c79c97396a4d71f8e3d8a3c60fc17148eb78816f2",
+    "expectations": [
+      {
+        "id": "status-interface",
+        "kind": "compatibility",
+        "cases": [
+          "status-interface"
+        ],
+        "claim": "The status public entry point is available for frozen check records.",
+        "support": "source",
+        "source_clause": "- [ ] The selected candidate, original request and exact command argument lists are bound to the record. Status detects changed or missing evidence and does not reuse stale checks.",
+        "ambiguity": "",
+        "acceptable_alternatives": [
+          "Equivalent documented implementation/interface; unsupported optional flag recipes yield UNKNOWN and need source assessment, not a defect."
+        ]
+      },
+      {
+        "id": "check-interface",
+        "kind": "output",
+        "cases": [
+          "check-interface"
+        ],
+        "claim": "The requested check public entry point is callable.",
+        "support": "source",
+        "source_clause": "Introduce `proofline.py check` as a local, model-free mode accepting an existing repository/candidate, the original source request and explicit executable checks. Choose a documented, safe way to snapshot even a dirty working tree, including relevant untracked files, without deleting or modifying user work. Execute checks against an isolated frozen candidate, not a mutable live worktree. Reuse qualified sandbox, receipt, time-budget and integrity mechanisms where possible.",
+        "ambiguity": "",
+        "acceptable_alternatives": [
+          "Equivalent documented implementation/interface; unsupported optional flag recipes yield UNKNOWN and need source assessment, not a defect."
+        ]
+      },
+      {
+        "id": "native-check",
+        "kind": "output",
+        "cases": [
+          "native-check"
+        ],
+        "claim": "A native check completes the selected passing command on an existing candidate and records zero model dispatches; source review independently verifies the no-dispatch path.",
+        "support": "source",
+        "source_clause": "- [ ] A coding agent can submit an existing candidate without Proofline launching Codex or any other model (assert zero model dispatches).",
+        "ambiguity": "",
+        "acceptable_alternatives": [
+          "Equivalent documented implementation/interface; unsupported optional flag recipes yield UNKNOWN and need source assessment, not a defect."
+        ]
+      },
+      {
+        "id": "source-preserved",
+        "kind": "negative",
+        "cases": [
+          "source-preserved"
+        ],
+        "claim": "Dirty working bytes, untracked bytes and Git metadata remain unchanged after checking.",
+        "support": "source",
+        "source_clause": "- [ ] The source repository remains byte-for-byte untouched, including dirty and untracked work; no reset, stash, auto-commit, or unapproved publication.",
+        "ambiguity": "",
+        "acceptable_alternatives": [
+          "Equivalent documented implementation/interface; unsupported optional flag recipes yield UNKNOWN and need source assessment, not a defect."
+        ]
+      },
+      {
+        "id": "working-snapshot",
+        "kind": "output",
+        "cases": [
+          "working-snapshot"
+        ],
+        "claim": "The frozen candidate contains working bytes and relevant untracked bytes.",
+        "support": "source",
+        "source_clause": "Introduce `proofline.py check` as a local, model-free mode accepting an existing repository/candidate, the original source request and explicit executable checks. Choose a documented, safe way to snapshot even a dirty working tree, including relevant untracked files, without deleting or modifying user work. Execute checks against an isolated frozen candidate, not a mutable live worktree. Reuse qualified sandbox, receipt, time-budget and integrity mechanisms where possible.",
+        "ambiguity": "",
+        "acceptable_alternatives": [
+          "Equivalent documented implementation/interface; unsupported optional flag recipes yield UNKNOWN and need source assessment, not a defect."
+        ]
+      },
+      {
+        "id": "stale-candidate",
+        "kind": "negative",
+        "cases": [
+          "stale-candidate"
+        ],
+        "claim": "Status does not reuse a pass after the frozen candidate changes.",
+        "support": "source",
+        "source_clause": "- [ ] The selected candidate, original request and exact command argument lists are bound to the record. Status detects changed or missing evidence and does not reuse stale checks.",
+        "ambiguity": "",
+        "acceptable_alternatives": [
+          "Equivalent documented implementation/interface; unsupported optional flag recipes yield UNKNOWN and need source assessment, not a defect."
+        ]
+      }
+    ]
+  },
+  "14": {
+    "schema_version": 1,
+    "study_id": "issue46-minimal-checklist-v1",
+    "author": "organizer: /root (Codex), also checklist/probe author; not independent reviewer",
+    "source_sha256": "25e731c090cc65c0806ed7de3060ed8642b16a4bfe0c653f82d4bba3322696e7",
+    "oracle_sha256": "65ff97ca6bf90ab3f1377ec854aa733027d2891715d5a333ec46c9d590609a3f",
+    "expectations": [
+      {
+        "id": "status-interface",
+        "kind": "compatibility",
+        "cases": [
+          "status-interface"
+        ],
+        "claim": "The existing status entry point remains callable.",
+        "support": "source",
+        "source_clause": "Enhance the local `check` report and supported managed `run` output with a short failure summary and structured details. Preserve full raw receipts separately. Never invent expected results where the check did not specify them.",
+        "ambiguity": "",
+        "acceptable_alternatives": [
+          "Equivalent documented implementation/interface; unsupported optional flag recipes yield UNKNOWN and need source assessment, not a defect."
+        ]
+      },
+      {
+        "id": "check-interface",
+        "kind": "compatibility",
+        "cases": [
+          "check-interface"
+        ],
+        "claim": "The existing check entry point remains callable.",
+        "support": "source",
+        "source_clause": "Enhance the local `check` report and supported managed `run` output with a short failure summary and structured details. Preserve full raw receipts separately. Never invent expected results where the check did not specify them.",
+        "ambiguity": "",
+        "acceptable_alternatives": [
+          "Equivalent documented implementation/interface; unsupported optional flag recipes yield UNKNOWN and need source assessment, not a defect."
+        ]
+      },
+      {
+        "id": "native-check",
+        "kind": "output",
+        "cases": [
+          "native-check"
+        ],
+        "claim": "A nonzero selected command is recorded as a failed check, separately from unavailability, without a model dispatch.",
+        "support": "source",
+        "source_clause": "- [ ] Distinguish observed check failures, missing/insufficient evidence, environment/boundary unavailability, timeouts, and stale receipts.",
+        "ambiguity": "",
+        "acceptable_alternatives": [
+          "Equivalent documented implementation/interface; unsupported optional flag recipes yield UNKNOWN and need source assessment, not a defect."
+        ]
+      },
+      {
+        "id": "source-preserved",
+        "kind": "negative",
+        "cases": [
+          "source-preserved"
+        ],
+        "claim": "The existing safe check path preserves dirty/untracked source bytes and Git metadata.",
+        "support": "source",
+        "source_clause": "Enhance the local `check` report and supported managed `run` output with a short failure summary and structured details. Preserve full raw receipts separately. Never invent expected results where the check did not specify them.",
+        "ambiguity": "",
+        "acceptable_alternatives": [
+          "Equivalent documented implementation/interface; unsupported optional flag recipes yield UNKNOWN and need source assessment, not a defect."
+        ]
+      },
+      {
+        "id": "no-invented-expectation",
+        "kind": "negative",
+        "cases": [
+          "no-invented-expectation"
+        ],
+        "claim": "An ordinary failing command with no supplied expected value must not invent an expected result. The concrete fabricated-expectation control must be rejected.",
+        "support": "source",
+        "source_clause": "- [ ] A failed behavior assertion may show supplied expected and observed values and linked outcome IDs; otherwise report the actual command failure without fabricated expectations.",
+        "ambiguity": "",
+        "acceptable_alternatives": [
+          "Equivalent documented implementation/interface; unsupported optional flag recipes yield UNKNOWN and need source assessment, not a defect."
+        ]
+      }
+    ]
+  },
+  "13": {
+    "schema_version": 1,
+    "study_id": "issue46-minimal-checklist-v1",
+    "author": "organizer: /root (Codex), also checklist/probe author; not independent reviewer",
+    "source_sha256": "1d055c3b6c3e6bf5661024aeebc113b98b97e913dd03835ab621d3f193e87909",
+    "oracle_sha256": "d9e7e72d83da77749dc6957deb1d6fd41a0e24d1ba467efa7f536ec69ab70d73",
+    "expectations": [
+      {
+        "id": "status-interface",
+        "kind": "compatibility",
+        "cases": [
+          "status-interface"
+        ],
+        "claim": "The existing status public entry point remains callable.",
+        "support": "source",
+        "source_clause": "- [ ] A direct check needs **no** acceptance plan, Intentline/P2P installation, second model call, additional mandatory file or approval ceremony. Existing run/check/status semantics and native sandbox/receipt integrity remain intact.",
+        "ambiguity": "",
+        "acceptable_alternatives": [
+          "Equivalent documented implementation/interface; unsupported optional flag recipes yield UNKNOWN and need source assessment, not a defect."
+        ]
+      },
+      {
+        "id": "check-interface",
+        "kind": "compatibility",
+        "cases": [
+          "check-interface"
+        ],
+        "claim": "The existing check public entry point remains callable.",
+        "support": "source",
+        "source_clause": "- [ ] A direct check needs **no** acceptance plan, Intentline/P2P installation, second model call, additional mandatory file or approval ceremony. Existing run/check/status semantics and native sandbox/receipt integrity remain intact.",
+        "ambiguity": "",
+        "acceptable_alternatives": [
+          "Equivalent documented implementation/interface; unsupported optional flag recipes yield UNKNOWN and need source assessment, not a defect."
+        ]
+      },
+      {
+        "id": "native-check",
+        "kind": "output",
+        "cases": [
+          "native-check"
+        ],
+        "claim": "A direct check with no optional evidence mapping still runs and records zero model dispatches.",
+        "support": "source",
+        "source_clause": "- [ ] A direct check needs **no** acceptance plan, Intentline/P2P installation, second model call, additional mandatory file or approval ceremony. Existing run/check/status semantics and native sandbox/receipt integrity remain intact.",
+        "ambiguity": "",
+        "acceptable_alternatives": [
+          "Equivalent documented implementation/interface; unsupported optional flag recipes yield UNKNOWN and need source assessment, not a defect."
+        ]
+      },
+      {
+        "id": "source-preserved",
+        "kind": "negative",
+        "cases": [
+          "source-preserved"
+        ],
+        "claim": "The existing native check path preserves dirty/untracked source bytes and Git metadata.",
+        "support": "source",
+        "source_clause": "- [ ] A direct check needs **no** acceptance plan, Intentline/P2P installation, second model call, additional mandatory file or approval ceremony. Existing run/check/status semantics and native sandbox/receipt integrity remain intact.",
+        "ambiguity": "",
+        "acceptable_alternatives": [
+          "Equivalent documented implementation/interface; unsupported optional flag recipes yield UNKNOWN and need source assessment, not a defect."
+        ]
+      },
+      {
+        "id": "complete-source-display",
+        "kind": "output",
+        "cases": [
+          "complete-source-display"
+        ],
+        "claim": "The complete original source is inspectable/displayable even without supplied rows, through the documented source-display interface or an always-displayed source. No exact new flag is required.",
+        "support": "source",
+        "source_clause": "Extend the supported, model-free `proofline.py check` / `status` record to accept **optional**, small caller-provided source-linked outcome rows, each with a stable ID, exact original-source citation and selected check IDs/argv associations. Preserve and display the full original request regardless of whether any rows were supplied.",
+        "ambiguity": "",
+        "acceptable_alternatives": [
+          "Equivalent documented implementation/interface; unsupported optional flag recipes yield UNKNOWN and need source assessment, not a defect."
+        ]
+      }
+    ]
+  }
+}

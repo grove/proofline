@@ -1,0 +1,108 @@
+{
+  "assigned": 8,
+  "arms": {
+    "ordinary": {
+      "assigned": 4,
+      "attempted": 0,
+      "outcomes": {
+        "NOT_EXECUTED": 4
+      },
+      "correct_deliveries": 0,
+      "confirmed_defects": 0,
+      "disputed": 0,
+      "false_acceptance": 0,
+      "false_blocking": 0,
+      "green_test_omissions": 0,
+      "elapsed_seconds": null,
+      "seconds_per_correct_delivery": null,
+      "native_turns": 0,
+      "tool_executions": 0,
+      "tokens": {
+        "input_tokens": 0,
+        "cached_input_tokens": 0,
+        "output_tokens": 0,
+        "uncached_input_tokens": 0
+      },
+      "tokens_per_correct_delivery": {
+        "input_tokens": null,
+        "cached_input_tokens": null,
+        "output_tokens": null,
+        "uncached_input_tokens": null
+      },
+      "dollars_per_correct_delivery": null,
+      "total_seconds_per_correct_delivery_including_preparation": null,
+      "total_tokens_per_correct_delivery_including_preparation": null
+    },
+    "checklist": {
+      "assigned": 4,
+      "attempted": 0,
+      "outcomes": {
+        "NOT_EXECUTED": 4
+      },
+      "correct_deliveries": 0,
+      "confirmed_defects": 0,
+      "disputed": 0,
+      "false_acceptance": 0,
+      "false_blocking": 0,
+      "green_test_omissions": 0,
+      "elapsed_seconds": null,
+      "seconds_per_correct_delivery": null,
+      "native_turns": 0,
+      "tool_executions": 0,
+      "tokens": {
+        "input_tokens": 0,
+        "cached_input_tokens": 0,
+        "output_tokens": 0,
+        "uncached_input_tokens": 0
+      },
+      "tokens_per_correct_delivery": {
+        "input_tokens": null,
+        "cached_input_tokens": null,
+        "output_tokens": null,
+        "uncached_input_tokens": null
+      },
+      "dollars_per_correct_delivery": null,
+      "total_seconds_per_correct_delivery_including_preparation": null,
+      "total_tokens_per_correct_delivery_including_preparation": null
+    }
+  },
+  "paired": [
+    {
+      "task": 10,
+      "correct_delivery_difference": null,
+      "elapsed_seconds_difference": null,
+      "ordinary": "NOT_EXECUTED",
+      "checklist": "NOT_EXECUTED"
+    },
+    {
+      "task": 11,
+      "correct_delivery_difference": null,
+      "elapsed_seconds_difference": null,
+      "ordinary": "NOT_EXECUTED",
+      "checklist": "NOT_EXECUTED"
+    },
+    {
+      "task": 14,
+      "correct_delivery_difference": null,
+      "elapsed_seconds_difference": null,
+      "ordinary": "NOT_EXECUTED",
+      "checklist": "NOT_EXECUTED"
+    },
+    {
+      "task": 13,
+      "correct_delivery_difference": null,
+      "elapsed_seconds_difference": null,
+      "ordinary": "NOT_EXECUTED",
+      "checklist": "NOT_EXECUTED"
+    }
+  ],
+  "recommendation": "INCONCLUSIVE",
+  "billing_usd": null,
+  "organizer_tokens": null,
+  "human_active_seconds": null,
+  "limit": "Four retrospective public repository requests, one repetition. Neither an all-correct ceiling nor this small cohort establishes general reliability.",
+  "recommendation_reason": "Incomplete/very small one-attempt cohort or full preparation overhead unknown.",
+  "checklist_preparation_tokens": null,
+  "checklist_preparation_seconds": null,
+  "actual_billing": "UNKNOWN"
+}

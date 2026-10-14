@@ -1,0 +1,124 @@
+{
+  "10": {
+    "status-interface": {
+      "kind": "compatibility",
+      "cases": [
+        "status-interface"
+      ]
+    },
+    "run-interface": {
+      "kind": "compatibility",
+      "cases": [
+        "run-interface"
+      ]
+    },
+    "no-s6-dependency": {
+      "kind": "negative",
+      "cases": [
+        "no-s6-dependency"
+      ]
+    }
+  },
+  "11": {
+    "status-interface": {
+      "kind": "compatibility",
+      "cases": [
+        "status-interface"
+      ]
+    },
+    "check-interface": {
+      "kind": "output",
+      "cases": [
+        "check-interface"
+      ]
+    },
+    "native-check": {
+      "kind": "output",
+      "cases": [
+        "native-check"
+      ]
+    },
+    "source-preserved": {
+      "kind": "negative",
+      "cases": [
+        "source-preserved"
+      ]
+    },
+    "working-snapshot": {
+      "kind": "output",
+      "cases": [
+        "working-snapshot"
+      ]
+    },
+    "stale-candidate": {
+      "kind": "negative",
+      "cases": [
+        "stale-candidate"
+      ]
+    }
+  },
+  "14": {
+    "status-interface": {
+      "kind": "compatibility",
+      "cases": [
+        "status-interface"
+      ]
+    },
+    "check-interface": {
+      "kind": "compatibility",
+      "cases": [
+        "check-interface"
+      ]
+    },
+    "native-check": {
+      "kind": "output",
+      "cases": [
+        "native-check"
+      ]
+    },
+    "source-preserved": {
+      "kind": "negative",
+      "cases": [
+        "source-preserved"
+      ]
+    },
+    "no-invented-expectation": {
+      "kind": "negative",
+      "cases": [
+        "no-invented-expectation"
+      ]
+    }
+  },
+  "13": {
+    "status-interface": {
+      "kind": "compatibility",
+      "cases": [
+        "status-interface"
+      ]
+    },
+    "check-interface": {
+      "kind": "compatibility",
+      "cases": [
+        "check-interface"
+      ]
+    },
+    "native-check": {
+      "kind": "output",
+      "cases": [
+        "native-check"
+      ]
+    },
+    "source-preserved": {
+      "kind": "negative",
+      "cases": [
+        "source-preserved"
+      ]
+    },
+    "complete-source-display": {
+      "kind": "output",
+      "cases": [
+        "complete-source-display"
+      ]
+    }
+  }
+}

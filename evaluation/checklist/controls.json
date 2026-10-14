@@ -1,0 +1,80 @@
+{
+  "10": {
+    "alternative": [
+      {
+        "path": "checks/candidate_snapshot.py",
+        "old": "            target.write_bytes(raw)",
+        "new": "            with target.open(\"wb\") as stream:\n                stream.write(raw)",
+        "occurrences": 1
+      }
+    ],
+    "defective": [
+      {
+        "path": "proofline.py",
+        "old": "sub.add_parser(\"status\", help=\"Read back exact frozen check receipts\")",
+        "new": "sub.add_parser(\"state\", help=\"Read back exact frozen check receipts\")",
+        "occurrences": 1
+      }
+    ]
+  },
+  "11": {
+    "alternative": [
+      {
+        "path": "checks/candidate_snapshot.py",
+        "old": "                    target.write_bytes(data)",
+        "new": "                    with target.open(\"wb\") as stream:\n                        stream.write(data)",
+        "occurrences": 1
+      }
+    ],
+    "defective": [
+      {
+        "path": "proofline.py",
+        "old": "sub.add_parser(\"check\", help=\"Model-free protected checks on an existing working candidate\")",
+        "new": "sub.add_parser(\"verify\", help=\"Model-free protected checks on an existing working candidate\")",
+        "occurrences": 1
+      }
+    ]
+  },
+  "14": {
+    "alternative": [
+      {
+        "path": "checks/feedback.py",
+        "old": "return \"... \" + lines[-(limit - 4):]",
+        "new": "return lines[:limit - 4] + \" ...\"",
+        "occurrences": 1
+      }
+    ],
+    "defective": [
+      {
+        "path": "checks/feedback.py",
+        "old": "    lines = [\"Feedback: \" + view[\"headline\"]]",
+        "new": "    lines = [\"Feedback: \" + view[\"headline\"], \"Expected: fabricated-expected-result\"]",
+        "occurrences": 1
+      }
+    ]
+  },
+  "13": {
+    "alternative": [
+      {
+        "path": "proofline.py",
+        "old": "\"--show-source\"",
+        "new": "\"--original-request\", dest=\"show_source\"",
+        "occurrences": 1
+      },
+      {
+        "path": "README.md",
+        "old": "--show-source",
+        "new": "--original-request",
+        "occurrences": 1
+      }
+    ],
+    "defective": [
+      {
+        "path": "proofline.py",
+        "old": "                sys.stdout.write(original)",
+        "new": "                pass  # deliberately omit the requested full-source display",
+        "occurrences": 1
+      }
+    ]
+  }
+}
