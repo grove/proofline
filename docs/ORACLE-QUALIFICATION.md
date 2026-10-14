@@ -49,6 +49,8 @@ approval, or authorize another model comparison.
   It returns **NOT QUALIFIED** rather than a candidate score for missing,
   disputed, unknown or unsupported expectations. Every future evaluator must
   call this check **before** dispatch, not after observing candidates.
+  The example future_cache.preflight(declaration) needs no candidate and must
+  return QUALIFIED before any future runner may start a model.
 - [Future-only cache oracle](../evaluation/future_cache.py) runs the source
   qualification *before* executing any oracle. It enforces two narrowly
   meaningful invalid-TTL exception choices only when no class is specified,
