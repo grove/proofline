@@ -193,10 +193,8 @@ def script(allowed_exceptions=("ValueError", "TypeError")):
             + PRELUDE + SUITE)
 
 
-def grade(product, declaration, directory, *, source=SOURCE, trusted=True):
-    """Qualify before even starting a child process; retain every observation."""
-    directory = Path(directory)
-    directory.mkdir(parents=True, exist_ok=False)
+def _qualified_script(declaration, source):
+    """Resolve immutable oracle code and preflight without a product or model."""
     requested = None
     if isinstance(declaration, dict) and isinstance(declaration.get("expectations"), list):
         for item in declaration["expectations"]:
@@ -209,6 +207,19 @@ def grade(product, declaration, directory, *, source=SOURCE, trusted=True):
         generated = script()
     qualification = qualify(declaration, source=source, oracle_text=generated,
                             inventory=CASE_SPECS)
+    return generated, qualification
+
+
+def preflight(declaration, *, source=SOURCE):
+    """Call this at study preparation, *before* any possible model dispatch."""
+    return _qualified_script(declaration, source)[1]
+
+
+def grade(product, declaration, directory, *, source=SOURCE, trusted=True):
+    """Fail closed on the same preflight before any offline oracle execution."""
+    directory = Path(directory)
+    directory.mkdir(parents=True, exist_ok=False)
+    generated, qualification = _qualified_script(declaration, source)
     write_record(directory/"qualification.json", qualification)
     if qualification["status"] != "QUALIFIED":
         result = {"status":"NOT QUALIFIED", "correct":None, "cases":[],
