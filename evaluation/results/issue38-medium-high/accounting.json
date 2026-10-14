@@ -1,0 +1,269 @@
+{
+  "assignments": [
+    {
+      "sequence": 1,
+      "task": 12,
+      "arm": "medium",
+      "status": "FALSE_ACCEPTANCE",
+      "attempted": true,
+      "total_seconds": 296.3276564171538,
+      "source_audit_seconds": 161.2448902502656,
+      "stages": [
+        {
+          "native_status": "OBSERVED",
+          "native_seconds": 130.064533,
+          "usage": {
+            "input_tokens": 637404,
+            "cached_input_tokens": 585472,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 6462,
+            "reasoning_output_tokens": 1760,
+            "uncached_input_tokens": 51932
+          },
+          "usage_basis": "Native completed-turn event, including timeout recovery; status unchanged",
+          "tool_executions": 18,
+          "self_check_record": {
+            "file": "self-checks.json",
+            "sequence": 1,
+            "full_observed_output": "execution-evidence.zip native events"
+          }
+        }
+      ],
+      "retained_tree": "ddf539688f140a23f7567b05f60ce7756f68d7f1"
+    },
+    {
+      "sequence": 2,
+      "task": 12,
+      "arm": "high",
+      "status": "FALSE_ACCEPTANCE",
+      "attempted": true,
+      "total_seconds": 384.17533395811915,
+      "source_audit_seconds": 151.22004850022495,
+      "stages": [
+        {
+          "native_status": "OBSERVED",
+          "native_seconds": 227.818811,
+          "usage": {
+            "input_tokens": 1819913,
+            "cached_input_tokens": 1732096,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 14734,
+            "reasoning_output_tokens": 6113,
+            "uncached_input_tokens": 87817
+          },
+          "usage_basis": "Native completed-turn event, including timeout recovery; status unchanged",
+          "tool_executions": 41,
+          "self_check_record": {
+            "file": "self-checks.json",
+            "sequence": 2,
+            "full_observed_output": "execution-evidence.zip native events"
+          }
+        }
+      ],
+      "retained_tree": "27e9b936246fb6d8618e4b3e4ec94abc02bb3888"
+    },
+    {
+      "sequence": 3,
+      "task": 28,
+      "arm": "high",
+      "status": "CORRECT_DELIVERY",
+      "attempted": true,
+      "total_seconds": 267.5713581251912,
+      "source_audit_seconds": 43.37765933293849,
+      "stages": [
+        {
+          "native_status": "OBSERVED",
+          "native_seconds": 216.86119,
+          "usage": {
+            "input_tokens": 775792,
+            "cached_input_tokens": 691456,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 14502,
+            "reasoning_output_tokens": 8009,
+            "uncached_input_tokens": 84336
+          },
+          "usage_basis": "Native completed-turn event, including timeout recovery; status unchanged",
+          "tool_executions": 27,
+          "self_check_record": {
+            "file": "self-checks.json",
+            "sequence": 3,
+            "full_observed_output": "execution-evidence.zip native events"
+          }
+        }
+      ],
+      "retained_tree": "da3f227826bca106ffa0f3cca41cf8d04820859b"
+    },
+    {
+      "sequence": 4,
+      "task": 28,
+      "arm": "medium",
+      "status": "FALSE_ACCEPTANCE",
+      "attempted": true,
+      "total_seconds": 206.40733591699973,
+      "source_audit_seconds": 80.64446333283558,
+      "stages": [
+        {
+          "native_status": "OBSERVED",
+          "native_seconds": 119.63627,
+          "usage": {
+            "input_tokens": 592746,
+            "cached_input_tokens": 536320,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 6896,
+            "reasoning_output_tokens": 2442,
+            "uncached_input_tokens": 56426
+          },
+          "usage_basis": "Native completed-turn event, including timeout recovery; status unchanged",
+          "tool_executions": 22,
+          "self_check_record": {
+            "file": "self-checks.json",
+            "sequence": 4,
+            "full_observed_output": "execution-evidence.zip native events"
+          }
+        }
+      ],
+      "retained_tree": "392656b3d6f9ad5fcfb8765556c8e91d49aecb21"
+    },
+    {
+      "sequence": 5,
+      "task": 41,
+      "arm": "high",
+      "status": "CORRECT_DELIVERY",
+      "attempted": true,
+      "total_seconds": 413.2154075000435,
+      "source_audit_seconds": 65.45733941625804,
+      "stages": [
+        {
+          "native_status": "OBSERVED",
+          "native_seconds": 322.624215,
+          "usage": {
+            "input_tokens": 824411,
+            "cached_input_tokens": 743424,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 11248,
+            "reasoning_output_tokens": 5873,
+            "uncached_input_tokens": 80987
+          },
+          "usage_basis": "Native completed-turn event, including timeout recovery; status unchanged",
+          "tool_executions": 18,
+          "self_check_record": {
+            "file": "self-checks.json",
+            "sequence": 5,
+            "full_observed_output": "execution-evidence.zip native events"
+          }
+        }
+      ],
+      "retained_tree": "19552a7aef54ea508d761a3c1652273efee2f00d"
+    },
+    {
+      "sequence": 6,
+      "task": 41,
+      "arm": "medium",
+      "status": "CORRECT_DELIVERY",
+      "attempted": true,
+      "total_seconds": 414.6141734169796,
+      "source_audit_seconds": 119.87624845840037,
+      "stages": [
+        {
+          "native_status": "OBSERVED",
+          "native_seconds": 270.188835,
+          "usage": {
+            "input_tokens": 1497468,
+            "cached_input_tokens": 1425152,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 9046,
+            "reasoning_output_tokens": 3771,
+            "uncached_input_tokens": 72316
+          },
+          "usage_basis": "Native completed-turn event, including timeout recovery; status unchanged",
+          "tool_executions": 18,
+          "self_check_record": {
+            "file": "self-checks.json",
+            "sequence": 6,
+            "full_observed_output": "execution-evidence.zip native events"
+          }
+        }
+      ],
+      "retained_tree": "9018578ef94acbfc63d20ec997793de9e57abf15"
+    },
+    {
+      "sequence": 7,
+      "task": 42,
+      "arm": "medium",
+      "status": "UNAVAILABLE",
+      "attempted": true,
+      "total_seconds": 540.1686651660129,
+      "source_audit_seconds": null,
+      "stages": [
+        {
+          "native_status": "NOT VERIFIED",
+          "native_seconds": 523.921972,
+          "usage": {
+            "input_tokens": 4040465,
+            "cached_input_tokens": 3934464,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 20435,
+            "reasoning_output_tokens": 6475,
+            "uncached_input_tokens": 106001
+          },
+          "usage_basis": "Native completed-turn event, including timeout recovery; status unchanged",
+          "tool_executions": 27,
+          "self_check_record": {
+            "file": "self-checks.json",
+            "sequence": 7,
+            "full_observed_output": "execution-evidence.zip native events"
+          }
+        }
+      ],
+      "retained_tree": "b7b6f8505fa1e823433c201290ecaaa10f287cc3"
+    },
+    {
+      "sequence": 8,
+      "task": 42,
+      "arm": "high",
+      "status": "NOT_EXECUTED",
+      "attempted": null,
+      "total_seconds": null,
+      "source_audit_seconds": null,
+      "stages": []
+    }
+  ],
+  "shared_measured_preparation_seconds": 655.3223610017449,
+  "shared_preparation_allocation_per_arm": 327.66118050087243,
+  "campaign_seconds": 2524.019837041851,
+  "assignment_seconds": 2522.4799305005,
+  "organizer_tokens": null,
+  "human_active_seconds": null,
+  "observed_dollar_charges": null,
+  "note": "Recovered completed-turn tokens do not validate the timed-out invocation or grade its terminal candidate. Unequal executed arms cannot establish an effort-resource preference.",
+  "observed_overhead": {
+    "medium": {
+      "native_coding_seconds": 1043.81161,
+      "source_audit_wait_seconds": 361.76560204150155,
+      "source_regression_seconds": 6.993901958689094,
+      "selected_original_suite_invocation_seconds": 2.520265,
+      "capture_setup_controller_and_unseparated_seconds": 42.426451916955436,
+      "preparation_inclusive_seconds_per_correct_delivery": 1785.1790114180185
+    },
+    "high": {
+      "native_coding_seconds": 767.304216,
+      "source_audit_wait_seconds": 260.0550472494215,
+      "source_regression_seconds": 7.784771582577378,
+      "selected_original_suite_invocation_seconds": 3.256292,
+      "capture_setup_controller_and_unseparated_seconds": 26.561772751354994,
+      "preparation_inclusive_seconds_per_correct_delivery": 696.3116400421131
+    }
+  },
+  "development_validation_seconds": {
+    "ordinary_suite": 170.249,
+    "model_free_proofline_check": 2.9513198751956224,
+    "evidence_export": 2.421031749807298
+  },
+  "limitations": [
+    "Preflight process measurements omit unmeasured partial v3 preparation and editing/review work.",
+    "Source-audit wait is elapsed caller review/wait, not measured human active time.",
+    "Selected command entries are keyword-filtered for review; original events remain authoritative.",
+    "No #42 candidate grading or native integration was performed after the stop.",
+    "One arm has four attempts and the other three; observed resources are not a matched effort comparison."
+  ]
+}

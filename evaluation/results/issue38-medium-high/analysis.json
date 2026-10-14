@@ -1,0 +1,408 @@
+{
+  "study_id": "issue38-real-requests-medium-high-v4",
+  "freeze_sha256": "9405fc84f70ad452797e7e15280b5367255352fa8cfd642cf44869c202f246f4",
+  "raw_results_sha256": "d60befcd05c9c81920e7e8a1a4e050a7743fd5b366808bf3dd5e95c4713d6bb6",
+  "status": "STOPPED_INCOMPLETE",
+  "assignments": [
+    {
+      "sequence": 1,
+      "task": 12,
+      "arm": "medium",
+      "status": "FALSE_ACCEPTANCE",
+      "attempted": true,
+      "total_seconds": 296.3276564171538,
+      "repository_tests_passed": true,
+      "candidate_tree": "ddf539688f140a23f7567b05f60ce7756f68d7f1",
+      "source_audit": {
+        "verdict": "DEFECT",
+        "source_sha256": "217825e29a71651b8e34fac1dfaf43982bc1b5424649b31e114e5b648d362754",
+        "candidate_tree": "ddf539688f140a23f7567b05f60ce7756f68d7f1",
+        "observation_sha256": "21c5d0f1d79663007d6b245dbf349386e79ebd304df7ba8055811e2102de7e0a"
+      },
+      "stages": [
+        {
+          "role": "implementer",
+          "status": "OBSERVED",
+          "model": "gpt-6-luna",
+          "reasoning_effort": "medium",
+          "tool_executions": 18,
+          "usage": {
+            "input_tokens": 637404,
+            "cached_input_tokens": 585472,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 6462,
+            "reasoning_output_tokens": 1760
+          },
+          "receipt": {
+            "kind": "codex_exec",
+            "invocation_id": "01a76fe1-caa6-40f7-bf6c-99f3dee2456d",
+            "elapsed_seconds": 130.064533,
+            "exit_code": 0,
+            "timed_out": false,
+            "events.jsonl_sha256": "3a7650252521a15e4682283c968f583a9f2f523f95b6c1503c0b12e9e643500b",
+            "events_path": "assignments/01-12-medium/coding/implementation/private/events.jsonl"
+          }
+        }
+      ]
+    },
+    {
+      "sequence": 2,
+      "task": 12,
+      "arm": "high",
+      "status": "FALSE_ACCEPTANCE",
+      "attempted": true,
+      "total_seconds": 384.17533395811915,
+      "repository_tests_passed": true,
+      "candidate_tree": "27e9b936246fb6d8618e4b3e4ec94abc02bb3888",
+      "source_audit": {
+        "verdict": "DEFECT",
+        "source_sha256": "217825e29a71651b8e34fac1dfaf43982bc1b5424649b31e114e5b648d362754",
+        "candidate_tree": "27e9b936246fb6d8618e4b3e4ec94abc02bb3888",
+        "observation_sha256": "11ba5d3d96e0006f01290722d1e24f0529d354c66662574e81e279b50d320dae"
+      },
+      "stages": [
+        {
+          "role": "implementer",
+          "status": "OBSERVED",
+          "model": "gpt-6-luna",
+          "reasoning_effort": "high",
+          "tool_executions": 41,
+          "usage": {
+            "input_tokens": 1819913,
+            "cached_input_tokens": 1732096,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 14734,
+            "reasoning_output_tokens": 6113
+          },
+          "receipt": {
+            "kind": "codex_exec",
+            "invocation_id": "a242efca-d43f-4730-b8bc-5f9b044b113a",
+            "elapsed_seconds": 227.818811,
+            "exit_code": 0,
+            "timed_out": false,
+            "events.jsonl_sha256": "d203aeecca1dc1be245b6af71a4e64aa3e8f43564afc31ac957f93093f68ca98",
+            "events_path": "assignments/02-12-high/coding/implementation/private/events.jsonl"
+          }
+        }
+      ]
+    },
+    {
+      "sequence": 3,
+      "task": 28,
+      "arm": "high",
+      "status": "CORRECT_DELIVERY",
+      "attempted": true,
+      "total_seconds": 267.5713581251912,
+      "repository_tests_passed": true,
+      "candidate_tree": "da3f227826bca106ffa0f3cca41cf8d04820859b",
+      "source_audit": {
+        "verdict": "PASS",
+        "source_sha256": "0358c7171107906a7b52e2549c640cb875e410517cd83ea80863baa18b521ebb",
+        "candidate_tree": "da3f227826bca106ffa0f3cca41cf8d04820859b",
+        "observation_sha256": "074cbdeb73c4940e0a1b2f78299abd45efb122b69a106593ce2b64d974ad8f91"
+      },
+      "stages": [
+        {
+          "role": "implementer",
+          "status": "OBSERVED",
+          "model": "gpt-6-luna",
+          "reasoning_effort": "high",
+          "tool_executions": 27,
+          "usage": {
+            "input_tokens": 775792,
+            "cached_input_tokens": 691456,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 14502,
+            "reasoning_output_tokens": 8009
+          },
+          "receipt": {
+            "kind": "codex_exec",
+            "invocation_id": "da9c220b-29f2-4a20-97f3-109772c93fc8",
+            "elapsed_seconds": 216.86119,
+            "exit_code": 0,
+            "timed_out": false,
+            "events.jsonl_sha256": "0588bf737de4cad9b6ea1bb276cab41b9c7d344b75a1e1eccde00730536c08d2",
+            "events_path": "assignments/03-28-high/coding/implementation/private/events.jsonl"
+          }
+        }
+      ]
+    },
+    {
+      "sequence": 4,
+      "task": 28,
+      "arm": "medium",
+      "status": "FALSE_ACCEPTANCE",
+      "attempted": true,
+      "total_seconds": 206.40733591699973,
+      "repository_tests_passed": true,
+      "candidate_tree": "392656b3d6f9ad5fcfb8765556c8e91d49aecb21",
+      "source_audit": {
+        "verdict": "DEFECT",
+        "source_sha256": "0358c7171107906a7b52e2549c640cb875e410517cd83ea80863baa18b521ebb",
+        "candidate_tree": "392656b3d6f9ad5fcfb8765556c8e91d49aecb21",
+        "observation_sha256": "fae6cdc79e14cd868c5da379683e5cd7409fbe0799f0340d11ed5fb81f9e85e6"
+      },
+      "stages": [
+        {
+          "role": "implementer",
+          "status": "OBSERVED",
+          "model": "gpt-6-luna",
+          "reasoning_effort": "medium",
+          "tool_executions": 22,
+          "usage": {
+            "input_tokens": 592746,
+            "cached_input_tokens": 536320,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 6896,
+            "reasoning_output_tokens": 2442
+          },
+          "receipt": {
+            "kind": "codex_exec",
+            "invocation_id": "4c91bf1a-1a59-47f2-b0e5-da4030c2155b",
+            "elapsed_seconds": 119.63627,
+            "exit_code": 0,
+            "timed_out": false,
+            "events.jsonl_sha256": "3e910788e3bd685632e17eb8a3339457b73480fee0d73c2dab121f6f4224372e",
+            "events_path": "assignments/04-28-medium/coding/implementation/private/events.jsonl"
+          }
+        }
+      ]
+    },
+    {
+      "sequence": 5,
+      "task": 41,
+      "arm": "high",
+      "status": "CORRECT_DELIVERY",
+      "attempted": true,
+      "total_seconds": 413.2154075000435,
+      "repository_tests_passed": true,
+      "candidate_tree": "19552a7aef54ea508d761a3c1652273efee2f00d",
+      "source_audit": {
+        "verdict": "PASS",
+        "source_sha256": "374836e667caaa4c37ef10b30d0e821ea135dc04e51074c9f81b95972910d390",
+        "candidate_tree": "19552a7aef54ea508d761a3c1652273efee2f00d",
+        "observation_sha256": "4f5a112b5773fd97d90ebd37fcce7a89e38dc3567e53a1aedb4d700e8503858f"
+      },
+      "stages": [
+        {
+          "role": "implementer",
+          "status": "OBSERVED",
+          "model": "gpt-6-luna",
+          "reasoning_effort": "high",
+          "tool_executions": 18,
+          "usage": {
+            "input_tokens": 824411,
+            "cached_input_tokens": 743424,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 11248,
+            "reasoning_output_tokens": 5873
+          },
+          "receipt": {
+            "kind": "codex_exec",
+            "invocation_id": "235239e0-9b9e-482c-91e0-5c59e74ea05e",
+            "elapsed_seconds": 322.624215,
+            "exit_code": 0,
+            "timed_out": false,
+            "events.jsonl_sha256": "d9f75c470e6151f392e81878ec964d419d8cd6e06ce854dd69562534194dfd08",
+            "events_path": "assignments/05-41-high/coding/implementation/private/events.jsonl"
+          }
+        }
+      ]
+    },
+    {
+      "sequence": 6,
+      "task": 41,
+      "arm": "medium",
+      "status": "CORRECT_DELIVERY",
+      "attempted": true,
+      "total_seconds": 414.6141734169796,
+      "repository_tests_passed": true,
+      "candidate_tree": "9018578ef94acbfc63d20ec997793de9e57abf15",
+      "source_audit": {
+        "verdict": "PASS",
+        "source_sha256": "374836e667caaa4c37ef10b30d0e821ea135dc04e51074c9f81b95972910d390",
+        "candidate_tree": "9018578ef94acbfc63d20ec997793de9e57abf15",
+        "observation_sha256": "610588a1ddab86d5b0dd4479bb9751512367f9a74f452f456265bbd2e5dc7862"
+      },
+      "stages": [
+        {
+          "role": "implementer",
+          "status": "OBSERVED",
+          "model": "gpt-6-luna",
+          "reasoning_effort": "medium",
+          "tool_executions": 18,
+          "usage": {
+            "input_tokens": 1497468,
+            "cached_input_tokens": 1425152,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 9046,
+            "reasoning_output_tokens": 3771
+          },
+          "receipt": {
+            "kind": "codex_exec",
+            "invocation_id": "eea054cc-a283-415b-a3df-5a6893594558",
+            "elapsed_seconds": 270.188835,
+            "exit_code": 0,
+            "timed_out": false,
+            "events.jsonl_sha256": "03ca309f712f8f5472e7dbfd736899d7906c671229059ba9860f2ed7c74bfd3a",
+            "events_path": "assignments/06-41-medium/coding/implementation/private/events.jsonl"
+          }
+        }
+      ]
+    },
+    {
+      "sequence": 7,
+      "task": 42,
+      "arm": "medium",
+      "status": "UNAVAILABLE",
+      "attempted": true,
+      "total_seconds": 540.1686651660129,
+      "repository_tests_passed": null,
+      "candidate_tree": null,
+      "source_audit": null,
+      "stages": [
+        {
+          "role": "implementer",
+          "status": "NOT VERIFIED",
+          "model": "gpt-6-luna",
+          "reasoning_effort": "medium",
+          "tool_executions": 27,
+          "usage": {
+            "input_tokens": 4040465,
+            "cached_input_tokens": 3934464,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 20435,
+            "reasoning_output_tokens": 6475
+          },
+          "accounting_basis": "Recovered completed-turn usage only; invocation and delivery verdict unchanged",
+          "receipt": {
+            "kind": "codex_exec",
+            "invocation_id": "eba54689-3c9e-430a-9e57-b902c0bac81e",
+            "elapsed_seconds": 523.921972,
+            "exit_code": null,
+            "timed_out": true,
+            "events.jsonl_sha256": "9fcf2e07774c3d4c4c3070d6c052b6e1fcccc339b00e984a9d5cad2761514612",
+            "events_path": "assignments/07-42-medium/coding/implementation/private/events.jsonl"
+          }
+        }
+      ]
+    },
+    {
+      "sequence": 8,
+      "task": 42,
+      "arm": "high",
+      "status": "NOT_EXECUTED",
+      "attempted": null,
+      "total_seconds": null,
+      "repository_tests_passed": null,
+      "candidate_tree": null,
+      "source_audit": null,
+      "stages": []
+    }
+  ],
+  "metrics": {
+    "assigned": 8,
+    "arms": {
+      "medium": {
+        "assigned": 4,
+        "attempted": 4,
+        "outcomes": {
+          "FALSE_ACCEPTANCE": 2,
+          "CORRECT_DELIVERY": 1,
+          "UNAVAILABLE": 1
+        },
+        "correct_deliveries": 1,
+        "confirmed_defects": 2,
+        "disputed": 0,
+        "false_acceptance": 2,
+        "false_blocking": 0,
+        "green_test_omissions": 2,
+        "elapsed_seconds": 1457.517830917146,
+        "seconds_per_correct_delivery": 1457.517830917146,
+        "native_turns": 4,
+        "tool_executions": 85,
+        "tokens": {
+          "input_tokens": 6768083,
+          "cached_input_tokens": 6481408,
+          "output_tokens": 42839,
+          "uncached_input_tokens": 286675
+        },
+        "tokens_per_correct_delivery": {
+          "input_tokens": 6768083.0,
+          "cached_input_tokens": 6481408.0,
+          "output_tokens": 42839.0,
+          "uncached_input_tokens": 286675.0
+        },
+        "dollars_per_correct_delivery": null
+      },
+      "high": {
+        "assigned": 4,
+        "attempted": 3,
+        "outcomes": {
+          "FALSE_ACCEPTANCE": 1,
+          "CORRECT_DELIVERY": 2,
+          "NOT_EXECUTED": 1
+        },
+        "correct_deliveries": 2,
+        "confirmed_defects": 1,
+        "disputed": 0,
+        "false_acceptance": 1,
+        "false_blocking": 0,
+        "green_test_omissions": 1,
+        "elapsed_seconds": 1064.9620995833538,
+        "seconds_per_correct_delivery": 532.4810497916769,
+        "native_turns": 3,
+        "tool_executions": 86,
+        "tokens": {
+          "input_tokens": 3420116,
+          "cached_input_tokens": 3166976,
+          "output_tokens": 40484,
+          "uncached_input_tokens": 253140
+        },
+        "tokens_per_correct_delivery": {
+          "input_tokens": 1710058.0,
+          "cached_input_tokens": 1583488.0,
+          "output_tokens": 20242.0,
+          "uncached_input_tokens": 126570.0
+        },
+        "dollars_per_correct_delivery": null
+      }
+    },
+    "paired": [
+      {
+        "task": 12,
+        "medium": "FALSE_ACCEPTANCE",
+        "high": "FALSE_ACCEPTANCE",
+        "correct_delivery_difference": 0,
+        "elapsed_seconds_difference": -87.84767754096538
+      },
+      {
+        "task": 28,
+        "medium": "FALSE_ACCEPTANCE",
+        "high": "CORRECT_DELIVERY",
+        "correct_delivery_difference": -1,
+        "elapsed_seconds_difference": -61.164022208191454
+      },
+      {
+        "task": 41,
+        "medium": "CORRECT_DELIVERY",
+        "high": "CORRECT_DELIVERY",
+        "correct_delivery_difference": 0,
+        "elapsed_seconds_difference": 1.3987659169360995
+      },
+      {
+        "task": 42,
+        "medium": "UNAVAILABLE",
+        "high": "NOT_EXECUTED",
+        "correct_delivery_difference": null,
+        "elapsed_seconds_difference": null
+      }
+    ],
+    "recommendation": "INCONCLUSIVE",
+    "billing_usd": null,
+    "organizer_tokens": null,
+    "human_active_seconds": null,
+    "limit": "Four retrospective public repository requests, one repetition. Neither an all-correct ceiling nor this small cohort establishes general reliability."
+  },
+  "basis": "Portable derived accounting view; exact native source/audit/argv/diagnostic evidence remains in raw results and execution-evidence.zip. Completed-turn usage recovered for slot 7 without changing NOT VERIFIED/UNAVAILABLE. Recompute with evaluation.effort.report.summarize(assignments)."
+}

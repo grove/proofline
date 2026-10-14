@@ -1,0 +1,28 @@
+{
+  "ordinary_suite": {
+    "argv": [
+      "/opt/homebrew/bin/python3.14",
+      "-B",
+      "-m",
+      "unittest",
+      "discover",
+      "-s",
+      "tests",
+      "-v"
+    ],
+    "tests": 274,
+    "skipped": 9,
+    "elapsed_seconds": 170.249,
+    "status": "PASSED"
+  },
+  "proofline_check": {
+    "status": "CHECKS PASSED",
+    "model_dispatches": 0,
+    "candidate_tree": "4e608bb2a16dd8f44cc3b15fcfbbc3a9e8f175d4",
+    "source_sha256": "0b11328ef138112e48f0a865e9b1f216b37be64542a03034d1937bc7f856a176",
+    "report_sha256": "3fb9a927913eb7fb5c5f266221d820d37219aeb3bbe662c95f2f705577b11966",
+    "elapsed_seconds": 2.9513198751956224,
+    "readback": "CHECKS PASSED"
+  },
+  "limits": "Selected native check observes frozen code/evidence before this verification document; it is not full-promise certification or study efficacy."
+}

@@ -1,0 +1,38 @@
+{
+  "model_dispatches": 0,
+  "preflight_attempts": [
+    {
+      "study_id": "issue38-real-requests-medium-high-v1",
+      "freeze_sha256": "3d1c54088292f5a58419ba7773e52089fd73828aa6e3f4e60d0c76e3268da5e7",
+      "status": "STOPPED_NOT_QUALIFIED",
+      "model_dispatches": 0,
+      "preparation_seconds": 68.05612108437344,
+      "qualification_seconds": 118.37284162500873,
+      "blocker": "Control unavailable or disagrees: 41 defective"
+    },
+    {
+      "study_id": "issue38-real-requests-medium-high-v2",
+      "freeze_sha256": "6f11adb733c7690f17da16e1d29c8a352f8e6b0e49af11d62dd160e2a134b5ef",
+      "status": "STOPPED_NOT_QUALIFIED",
+      "model_dispatches": 0,
+      "preparation_seconds": 68.96910712495446,
+      "qualification_seconds": 139.79953875020146,
+      "blocker": "Control unavailable or disagrees: 42 reference"
+    },
+    {
+      "study_id": "issue38-real-requests-medium-high-v4",
+      "freeze_sha256": "9405fc84f70ad452797e7e15280b5367255352fa8cfd642cf44869c202f246f4",
+      "status": "QUALIFIED_NOT_DISPATCHED",
+      "model_dispatches": 0,
+      "preparation_seconds": 73.7459190422669,
+      "qualification_seconds": 186.37883337493986,
+      "blocker": null
+    }
+  ],
+  "measured_preparation_process_seconds": 655.3223610017449,
+  "organizer_model_usage": null,
+  "human_active_seconds": null,
+  "total_billing_usd": null,
+  "inference_access": "NOT QUALIFIED until the first separately authorized assigned turn",
+  "checks": "All 12 final reference/alternative/defective protected controls matched; final writable and read-only boundaries observed."
+}

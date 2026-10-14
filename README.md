@@ -336,6 +336,12 @@ implementation uses: one protected check passed and two were blocked by director
 symlinks. Ordinary tests also exposed a macOS receipt-path problem. No recovery
 or added test-coverage benefit was observed; checks remain optional.
 
+The [Luna medium/high comparison (#38)](docs/ISSUE38.md) retains all eight assigned
+slots after seven authorized ordinary coding turns. Six candidates were source-audited;
+a native coding timeout stopped the last pair. Recommendation: **inconclusive**.
+Exact candidates, usage, source omissions and unknown dollar charges are retained;
+no default model change or general reliability/resource-saving claim follows.
+
 **License:** [Apache 2.0](LICENSE).
 
 ---
