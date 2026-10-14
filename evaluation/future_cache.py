@@ -148,7 +148,7 @@ PRELUDE = corpus.code(r"""
 SUITE = corpus.code(r"""
     import app
     product_dir = str(Path(app.__file__).resolve().parent)
-    argv = [sys.executable,'-B','-m','unittest','discover','-s','tests']
+    argv = [str(Path(sys.executable).resolve()),'-B','-m','unittest','discover','-s','tests']
     receipt = {'argv':argv,'cwd':product_dir,'exit_code':None,
                'stdout':'','stderr':'','timed_out':False,
                'stdout_truncated':False,'stderr_truncated':False}
@@ -244,10 +244,11 @@ def grade(product, declaration, directory, *, source=SOURCE, trusted=True):
                 raise ValueError("Oracle case inventory mismatch")
             suite=observed["repository_tests"]
             receipt=suite["receipt"]
+            # Match the outer launch identity even if the child's alias was retargeted.
             if (suite["status"] not in ("PASSED","FAILED","UNAVAILABLE") or
                     suite["passed"] is not (True if suite["status"]=="PASSED" else
                                             False if suite["status"]=="FAILED" else None) or
-                    receipt["argv"] != [str(Path(__import__("sys").executable).resolve()),
+                    receipt["argv"] != [grader.PYTHON,
                                         "-B","-m","unittest","discover","-s","tests"] or
                     receipt["cwd"] != str((directory/"oracle/inputs/product").resolve()) or
                     (suite["status"]=="PASSED") != (receipt["exit_code"]==0) or
