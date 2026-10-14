@@ -112,8 +112,9 @@ def qualify(declaration, *, source, oracle_text, inventory):
                 problems.append(f"{identifier}: invalid exception policy")
             elif support == "source":
                 if row.get("exception_policy") == "unprescribed_validation":
-                    if (accepted != alternatives or set(accepted) != {"ValueError", "TypeError"}
-                            or not isinstance(clause, str) or
+                    if (not ambiguity or accepted != alternatives or
+                            set(accepted) != {"ValueError", "TypeError"} or
+                            not isinstance(clause, str) or
                             any(exc in clause for exc in accepted)):
                         problems.append(f"{identifier}: invalid unspecified-class exception policy")
                 elif not clause_exact or any(exc not in clause for exc in accepted):
