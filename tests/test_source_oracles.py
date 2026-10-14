@@ -142,6 +142,9 @@ class SourceQualification(unittest.TestCase):
     def test_qualification_stops_before_oracle_execution(self):
         bad=declaration()
         bad["expectations"][5]["allowed_exceptions"]=["ValueError"]
+        # This callable needs no candidate; new live runners must gate dispatch here.
+        self.assertEqual(future_cache.preflight(bad)["status"],"NOT QUALIFIED")
+        self.assertEqual(future_cache.preflight(declaration())["status"],"QUALIFIED")
         with tempfile.TemporaryDirectory() as folder,patch.object(
                 future_cache.grader,"invoke",side_effect=AssertionError("must not execute")):
             dest=Path(folder)/"grade"
