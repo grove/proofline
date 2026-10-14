@@ -1,0 +1,41 @@
+{
+  "study_id": "issue46-minimal-checklist-v1",
+  "live_dispatch_allowed": false,
+  "source_fidelity_review": "PENDING",
+  "sha256": {
+    "checks/candidate_snapshot.py": "1943f795bb3e1de379b927d476bea3a341f0f525b68db702d9130d89eb364306",
+    "checks/host_probe.py": "6f30bd9761454f7eec98e9d0b8112f299f2650f925272f47d24cb4a5cdb6684d",
+    "checks/native_checks.py": "fc94848417f3b145b4079966f1e4f3d261dd4f70a9533463059da06f209847f6",
+    "evaluation/checklist_minimal/README.md": "1b1bb362bde70a044b0d6ba35a9b2214dc8aa7acb51d4151c7606993ac97ec65",
+    "evaluation/checklist_minimal/inputs/deadline-base.tar": "daa1f8a8ca794b46ca81d8edf9fa55ebd0fef2300762089f11390b56a9b64863",
+    "evaluation/checklist_minimal/inputs/deadline-reference.tar": "c70c6db878197ce6e36cb3eaf45e2ce705395749f10083bfaea924f17145560c",
+    "evaluation/checklist_minimal/inputs/next-tag-base.tar": "77d8afea91aa4f55f7a33457e54c7e048d64a3239df43d5cec0d5217c6f82012",
+    "evaluation/checklist_minimal/inputs/next-tag-reference.tar": "0acd1692b21c1b124e51c626ff49b41764b35a032e53f1f21945c0b5e648fd45",
+    "evaluation/checklist_minimal/inputs/retrieve-base.tar": "381b1422df2869d3bb26e5c1b3d571a0fc13de06a81dc340a2ef9370919c7f69",
+    "evaluation/checklist_minimal/inputs/retrieve-reference.tar": "143901b1c44d0941d011f482a0587b228093985b7d8d6cbd6f9af64ea26687df",
+    "evaluation/checklist_minimal/inputs/typed-base.tar": "738f027d48705445c61758e578977b9feeecd72cba15beb22d19291c1da7e463",
+    "evaluation/checklist_minimal/inputs/typed-reference.tar": "cfa2f09e8903e7485877a846008ee80f57f011d55c88a6ab09e55da86b26b820",
+    "evaluation/checklist_minimal/preflight.py": "4d0aa2656134dc2f9b24b238c956d4715102bacc368fc2599d6d90665c5aadcd",
+    "evaluation/checklist_minimal/protocol.json": "315c97ea2839911bbe7708b2485b7174bf9f305d64dd79f3e51ac8e9bb03379d",
+    "evaluation/checklist_minimal/requests/deadline.json": "f92c9934e9b9cae975c6607ffd21cb5e0654a83c2163acb18dea68190fdd8aef",
+    "evaluation/checklist_minimal/requests/deadline.md": "e9512c72d3895216f53ae2454abf0c9b091f1c33855ae3725a31f3266dd2783e",
+    "evaluation/checklist_minimal/requests/issue46.json": "8712026b75d0742a4e8f7ceee48695ec04cc29f4825c2b9d6065956b75155d64",
+    "evaluation/checklist_minimal/requests/next-tag.json": "8cd06b79732162cb5ca46ed0e755a25598447c93d61cacd2fd28dc156ef55cd6",
+    "evaluation/checklist_minimal/requests/next-tag.md": "dc6d1db47567d520287b41ce0793e8549f8d8bad395a38c89b5fca166b65dc2b",
+    "evaluation/checklist_minimal/requests/retrieve.json": "ede46da1be4519d796a05c1e247cec0278848b4e59bfd41ad00e98ef319c22a9",
+    "evaluation/checklist_minimal/requests/retrieve.md": "bfcd3ccdf903bcff2267ed33a5c1467809c3fdad40203faee1c95b31260ec1de",
+    "evaluation/checklist_minimal/requests/typed.json": "0a9750f0941642d88460e5b2b9c3872614a404d3e9f1d5629bf44fbbf28fe4c9",
+    "evaluation/checklist_minimal/requests/typed.md": "2b0d5042a8ebad12084d04e16815c87d941fbaa6ad91de58d88c4b81c7894ffb",
+    "evaluation/recovery/grader.py": "18172fc5998717e805cb46a503c6f75aaa9855e5c5b043b2d36860437d829fc5"
+  },
+  "host": [
+    "Darwin",
+    "arm64",
+    "26.6.2",
+    "3.14.8"
+  ],
+  "runtime_sha256": {
+    "python": "a39ba8658c8955a744ba1e87d2912bb019c5f4e93fcfd8e96263f891d15ec1aa",
+    "codex": "74c6a6d263f40d65f99c27a815275f5b4ed0bcc2baecc396b4cf3255498bdfc0"
+  }
+}

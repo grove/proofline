@@ -1,0 +1,22 @@
+{
+  "status": "STOPPED_NOT_QUALIFIED",
+  "recommendation": "INCONCLUSIVE",
+  "live_coding_dispatches": 0,
+  "cli_reviewer_dispatches": 0,
+  "session_review_agents_authorized": 1,
+  "coding_slots_assigned": 8,
+  "coding_slots_executed": 0,
+  "coding_tokens": 0,
+  "measured_preflight_seconds": 0.6194139998406172,
+  "preflight_cap_seconds": 120,
+  "organizer_elapsed_seconds": null,
+  "checklist_authoring_grounding_seconds": null,
+  "distribution_seconds": null,
+  "independent_review_seconds": null,
+  "organizer_tokens": null,
+  "session_reviewer_tokens": null,
+  "human_active_seconds": null,
+  "actual_billing_usd": null,
+  "unknown_policy": "null means UNKNOWN, never zero or free. No end-to-end cost-effectiveness claim is possible. Coding dispatches/tokens are zero; preparation and the explicitly authorized session review are not free.",
+  "outcome": "The native read-only canary observed an oracle fixture read as allowed. Stop before repository tests, control execution, packaging, writable-role or catalog qualification. No implementation outcomes exist."
+}

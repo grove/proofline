@@ -1,0 +1,140 @@
+{
+  "study_id": "issue46-minimal-checklist-v1",
+  "question": "Does a concise acceptance checklist help Luna:medium deliver more of the original user promise than ordinary Luna:medium?",
+  "base_proofline_commit": "e1ffa58",
+  "tasks": [
+    {
+      "id": "deadline",
+      "request_url": "https://github.com/dbader/schedule/pull/195",
+      "request_file": "requests/deadline.md",
+      "base_commit": "ede2294c1a239f862dafb71f4b2bb8b0b3f27cae",
+      "reference_commit": "1849e0165278f1cdfaf41972f73e02ecda4d09a6",
+      "trees": {
+        "base": "ec5fb4b19f9b8a58dd5bf097b8975dd39e5961f7",
+        "reference": "599c4445c3051ce3bd9a2bdff0ecc857808c669c"
+      },
+      "public_check": [
+        "PYTHON",
+        "-B",
+        "-m",
+        "unittest",
+        "test_schedule"
+      ],
+      "normal_tests_dependency": "mock"
+    },
+    {
+      "id": "retrieve",
+      "request_url": "https://github.com/dbader/schedule/pull/419",
+      "request_file": "requests/retrieve.md",
+      "base_commit": "90fb86fa2474a2788236b20c9939c4842eaf3e8c",
+      "reference_commit": "a55c562a73d91b2ea39f31056416fb745f96bfb8",
+      "trees": {
+        "base": "767199fd6142378560c7fcfcfb88dd7e550aba00",
+        "reference": "370cbea48a9587f1955e521fe5b302e5ae4b44a8"
+      },
+      "public_check": [
+        "PYTHON",
+        "-B",
+        "-m",
+        "unittest",
+        "test_schedule"
+      ],
+      "normal_tests_dependency": "mock"
+    },
+    {
+      "id": "next-tag",
+      "request_url": "https://github.com/dbader/schedule/issues/175",
+      "request_file": "requests/next-tag.md",
+      "base_commit": "64f83981b2a55136ea3737b8c35cf3da7b270055",
+      "reference_commit": "c883af0229143285cf38e1c7733aaf36656c8744",
+      "trees": {
+        "base": "73997a5423498810d3679be241cdf084700f938e",
+        "reference": "6499a413b67e4fb83af1f76bf457bcdec76084ee"
+      },
+      "public_check": [
+        "PYTHON",
+        "-B",
+        "-m",
+        "unittest",
+        "test_schedule"
+      ],
+      "normal_tests_dependency": "mock"
+    },
+    {
+      "id": "typed",
+      "request_url": "https://github.com/dbader/schedule/issues/473",
+      "request_file": "requests/typed.md",
+      "base_commit": "76119a2a4e411adf0693e311477fd4b35bee3cf3",
+      "reference_commit": "2f23c128e6188c8ca48f7a2df685d99abc20a7e5",
+      "trees": {
+        "base": "a632b420e1c9d0c89c53d6ba3f6fa2802bb7906f",
+        "reference": "92abfef5e6253497d74d0a34b8166dbe71af0e3d"
+      },
+      "public_check": [
+        "PYTHON",
+        "-B",
+        "-m",
+        "unittest",
+        "test_schedule"
+      ],
+      "normal_tests_dependency": "mock"
+    }
+  ],
+  "models": {
+    "ordinary": {
+      "model": "gpt-6-luna",
+      "model_reasoning_effort": "medium"
+    },
+    "checklist": {
+      "model": "gpt-6-luna",
+      "model_reasoning_effort": "medium"
+    }
+  },
+  "order": [
+    [
+      "deadline",
+      "ordinary"
+    ],
+    [
+      "deadline",
+      "checklist"
+    ],
+    [
+      "retrieve",
+      "checklist"
+    ],
+    [
+      "retrieve",
+      "ordinary"
+    ],
+    [
+      "next-tag",
+      "ordinary"
+    ],
+    [
+      "next-tag",
+      "checklist"
+    ],
+    [
+      "typed",
+      "checklist"
+    ],
+    [
+      "typed",
+      "ordinary"
+    ]
+  ],
+  "limits": {
+    "preflight_seconds": 120,
+    "coding_seconds": 900,
+    "assignment_seconds": 1200,
+    "campaign_seconds": 9600,
+    "max_coding_dispatches": 8,
+    "max_attempts_per_cell": 1
+  },
+  "common_guidance": "Use the existing repository tests and ordinary coding approach. The complete original request controls. Selected tests do not certify acceptance.",
+  "checklist_input": "README.md: four source-grounded task checklists; B adds only its own checklist to common guidance. A receives only common guidance.",
+  "execution": "checks.coding_attempt.run, then checks.local_run.check / proofline.py check; no correct-once, planner, router, reviewer worker, or nested CLI. Private assessment occurs after handoff, not as worker feedback.",
+  "status": "PREDECLARED_NOT_QUALIFIED",
+  "live_authorization": null
+}

@@ -1,0 +1,55 @@
+{
+  "receipt": {
+    "kind": "process_probe",
+    "invocation_id": "f5f35509-5a25-4cff-8171-c77d7430d71a",
+    "argv": [
+      "/opt/homebrew/bin/codex",
+      "--no-daemon",
+      "-c",
+      "permissions.proofline_s0_69234dfce62a4b3782a439dbafe0ccdc={\"filesystem\"={\":minimal\"=\"read\",\"/opt/homebrew/Cellar/python@3.14/3.14.8_2/Frameworks/Python.framework/Versions/3.14\"=\"read\",\"/opt/homebrew/opt/python@3.14/Frameworks/Python.framework/Versions/3.14\"=\"read\",\"/opt/homebrew/opt/python@3.14/bin/python3.14\"=\"read\",\"/opt/homebrew/Cellar/python@3.14/3.14.8_2/Frameworks/Python.framework/Versions/3.14/bin/python3.14\"=\"read\",\"/private/tmp/proofline46-minimal-preflight/boundary-inputs\"=\"read\",\"/private/tmp/proofline46-minimal-preflight/boundary/scratch\"=\"write\",\"/private/tmp/proofline46-minimal-preflight/boundary/private\"=\"deny\",\"/opt/homebrew\"=\"read\",\"/Library/Developer/CommandLineTools/usr/bin\"=\"read\",\"/Library/Developer/CommandLineTools/usr/libexec/git-core\"=\"read\"},\"network\"={\"enabled\"=false}}",
+      "sandbox",
+      "--permission-profile",
+      "proofline_s0_69234dfce62a4b3782a439dbafe0ccdc",
+      "--include-managed-config",
+      "--cd",
+      "/private/tmp/proofline46-minimal-preflight/boundary/scratch",
+      "--",
+      "/opt/homebrew/Cellar/python@3.14/3.14.8_2/Frameworks/Python.framework/Versions/3.14/bin/python3.14",
+      "-I",
+      "-B",
+      "/private/tmp/proofline46-minimal-preflight/boundary-inputs/canary.py",
+      "/private/tmp/proofline46-minimal-preflight/boundary-inputs/canary.json"
+    ],
+    "cwd": "/private/tmp/proofline46-minimal-preflight/boundary/scratch",
+    "exit_code": 0,
+    "timed_out": false,
+    "stdout": "{\"nonce\": \"9ea674954fb04c73bf54203d0a75e052\", \"writes\": {\"source\": \"denied\", \"input\": \"denied\", \"candidate\": \"denied\", \"git_head\": \"denied\", \"receipt\": \"denied\"}, \"reads\": {\"receipt-canary\": \"denied\", \"oracle-canary\": \"denied\", \"other-role-canary\": \"denied\", \"actual_oracle\": \"allowed\"}, \"mode_change\": \"denied\", \"scratch\": true, \"network\": \"denied\"}\n",
+    "stderr": "",
+    "elapsed_seconds": 0.141735
+  },
+  "assessment": {
+    "status": "NOT VERIFIED",
+    "observations": {
+      "nonce": "9ea674954fb04c73bf54203d0a75e052",
+      "writes": {
+        "source": "denied",
+        "input": "denied",
+        "candidate": "denied",
+        "git_head": "denied",
+        "receipt": "denied"
+      },
+      "reads": {
+        "receipt-canary": "denied",
+        "oracle-canary": "denied",
+        "other-role-canary": "denied",
+        "actual_oracle": "allowed"
+      },
+      "mode_change": "denied",
+      "scratch": true,
+      "network": "denied"
+    },
+    "inputs_unchanged": true,
+    "scope": "native process canaries only; no model or external-tool qualification"
+  },
+  "network_control": "loopback reachable before sandbox"
+}

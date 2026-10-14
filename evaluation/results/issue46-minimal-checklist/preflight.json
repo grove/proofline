@@ -1,0 +1,128 @@
+{
+  "study_id": "issue46-minimal-checklist-v1",
+  "status": "STOPPED_NOT_QUALIFIED",
+  "freeze_sha256": "b6fc4bf890ae37d7d360d60c21fd15cf71159dc224de2dc0cae66e298c23176f",
+  "model_dispatches": 0,
+  "live_authorization": null,
+  "assignments": [
+    {
+      "sequence": 1,
+      "task": "deadline",
+      "arm": "ordinary",
+      "status": "NOT_EXECUTED",
+      "model_dispatches": 0,
+      "usage": null,
+      "total_seconds": null
+    },
+    {
+      "sequence": 2,
+      "task": "deadline",
+      "arm": "checklist",
+      "status": "NOT_EXECUTED",
+      "model_dispatches": 0,
+      "usage": null,
+      "total_seconds": null
+    },
+    {
+      "sequence": 3,
+      "task": "retrieve",
+      "arm": "checklist",
+      "status": "NOT_EXECUTED",
+      "model_dispatches": 0,
+      "usage": null,
+      "total_seconds": null
+    },
+    {
+      "sequence": 4,
+      "task": "retrieve",
+      "arm": "ordinary",
+      "status": "NOT_EXECUTED",
+      "model_dispatches": 0,
+      "usage": null,
+      "total_seconds": null
+    },
+    {
+      "sequence": 5,
+      "task": "next-tag",
+      "arm": "ordinary",
+      "status": "NOT_EXECUTED",
+      "model_dispatches": 0,
+      "usage": null,
+      "total_seconds": null
+    },
+    {
+      "sequence": 6,
+      "task": "next-tag",
+      "arm": "checklist",
+      "status": "NOT_EXECUTED",
+      "model_dispatches": 0,
+      "usage": null,
+      "total_seconds": null
+    },
+    {
+      "sequence": 7,
+      "task": "typed",
+      "arm": "checklist",
+      "status": "NOT_EXECUTED",
+      "model_dispatches": 0,
+      "usage": null,
+      "total_seconds": null
+    },
+    {
+      "sequence": 8,
+      "task": "typed",
+      "arm": "ordinary",
+      "status": "NOT_EXECUTED",
+      "model_dispatches": 0,
+      "usage": null,
+      "total_seconds": null
+    }
+  ],
+  "version_receipt": {
+    "kind": "process_probe",
+    "invocation_id": "5ca7ca6f-1bdd-4080-b8d5-a2561e736f81",
+    "argv": [
+      "/opt/homebrew/bin/codex",
+      "--version"
+    ],
+    "cwd": "/private/tmp/proofline46-minimal-preflight",
+    "exit_code": 0,
+    "timed_out": false,
+    "stdout": "codex-cli 0.162.1\n",
+    "stderr": "",
+    "elapsed_seconds": 0.02495
+  },
+  "boundary": {
+    "status": "NOT VERIFIED",
+    "observations": {
+      "nonce": "9ea674954fb04c73bf54203d0a75e052",
+      "writes": {
+        "source": "denied",
+        "input": "denied",
+        "candidate": "denied",
+        "git_head": "denied",
+        "receipt": "denied"
+      },
+      "reads": {
+        "receipt-canary": "denied",
+        "oracle-canary": "denied",
+        "other-role-canary": "denied",
+        "actual_oracle": "allowed"
+      },
+      "mode_change": "denied",
+      "scratch": true,
+      "network": "denied"
+    },
+    "inputs_unchanged": true,
+    "scope": "native process canaries only; no model or external-tool qualification"
+  },
+  "blocker": "Existing native boundary unavailable",
+  "elapsed_seconds": 0.6194139998406172,
+  "remaining_qualification": [
+    "independent source-to-oracle review",
+    "reference/alternative/omission controls",
+    "typed package build/install",
+    "writable worker role",
+    "model-free catalog readback"
+  ]
+}
