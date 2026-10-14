@@ -3,6 +3,8 @@ import copy
 import hashlib
 import json
 from pathlib import Path
+import subprocess
+import sys
 import tempfile
 import unittest
 from unittest.mock import patch
@@ -188,7 +190,7 @@ class FutureCacheControls(unittest.TestCase):
                         code=code.replace("raise ValueError('ttl')","raise RuntimeError('ttl')")
                     if variant=="early-loader":
                         code=code.replace("if ttl is not None and",
-                                          "loader()\n        if ttl is not None and")
+                                          "if ttl is True: loader()\n        if ttl is not None and")
                     implementation.write_text(code)
                     grade=future_cache.grade(product,declaration(),directory/"grade")
                     correct=variant in ("reference","alternative")
@@ -211,6 +213,23 @@ class FutureCacheControls(unittest.TestCase):
                     if variant=="early-loader":
                         self.assertFalse(next(case for case in grade["cases"]
                             if case["label"]=="reject TTL True")["passed"])
+
+    def test_import_path_bug_is_reproduced_and_corrected_in_future_runner(self):
+        with tempfile.TemporaryDirectory(prefix="issue36-import-") as folder:
+            root=Path(folder)
+            product=self.product(root)
+            scratch=root/"scratch"
+            scratch.mkdir()
+            old=subprocess.run([sys.executable,"-B","-m","unittest","discover",
+                                "-s",str(product/"tests")],
+                               cwd=scratch,capture_output=True,text=True,timeout=10)
+            self.assertNotEqual(old.returncode,0)
+            self.assertIn("No module named 'app'",old.stderr)
+            fixed=future_cache.grade(product,declaration(),root/"grade")
+            self.assertEqual(fixed["repository_tests_status"],"PASSED")
+            self.assertEqual(fixed["repository_tests_receipt"]["exit_code"],0)
+            self.assertEqual(fixed["repository_tests_receipt"]["cwd"],
+                             str((root/"grade/oracle/inputs/product").resolve()))
 
     def test_original_suite_failure_preserves_argv_status_and_receipt(self):
         with tempfile.TemporaryDirectory(prefix="issue36-suite-") as folder:
