@@ -118,6 +118,14 @@ class SourceQualification(unittest.TestCase):
                 self.assertEqual(result["model_dispatches"],0)
                 self.assertTrue(result["problems"])
 
+    def test_no_case_inventory_cannot_qualify_vacuously(self):
+        empty=declaration()
+        empty["expectations"]=[]
+        result=qualify(empty,source=future_cache.SOURCE,
+                       oracle_text=future_cache.script(),inventory={})
+        self.assertEqual(result["status"],"NOT QUALIFIED")
+        self.assertIn("No independent material case inventory",result["problems"])
+
     def test_adjudicated_requires_separate_reviewer_and_supported_decision(self):
         spec=declaration()
         row=spec["expectations"][2]
