@@ -2,6 +2,7 @@
 import copy
 import hashlib
 import json
+import os
 from pathlib import Path
 import subprocess
 import sys
@@ -214,6 +215,7 @@ class FutureCacheControls(unittest.TestCase):
                     self.assertEqual(len(grade["cases"]),11)
                     receipt=grade["repository_tests_receipt"]
                     self.assertEqual(receipt["exit_code"],0)
+                    self.assertEqual(receipt["argv"][0],future_cache.grader.PYTHON)
                     self.assertEqual(receipt["argv"][1:],
                         ["-B","-m","unittest","discover","-s","tests"])
                     self.assertEqual(receipt["cwd"],str((directory/"grade/oracle/inputs/product").resolve()))
@@ -281,6 +283,134 @@ class FutureCacheControls(unittest.TestCase):
             self.assertFalse(red["correct"])
             self.assertEqual(green["qualification"]["status"],"QUALIFIED")
             self.assertEqual(red["qualification"]["status"],"QUALIFIED")
+
+    def test_unavailable_repository_suite_preserves_behavior_and_timeout_evidence(self):
+        with tempfile.TemporaryDirectory(prefix="issue41-unavailable-") as folder:
+            root=Path(folder)
+            product=self.product(root)
+            baseline=future_cache.grade(product,declaration(),root/"baseline")
+            self.assertEqual(baseline["status"],"PASSED")
+            invoked=copy.deepcopy(baseline["invocation"])
+            observed=json.loads(invoked["receipt"]["stdout"])
+            suite=observed["repository_tests"]
+            suite.update(status="UNAVAILABLE",passed=None)
+            receipt=suite["receipt"]
+            receipt.update(exit_code=None,timed_out=True,stdout="partial stdout",
+                           stderr="partial stderr",
+                           cwd=str((root/"timeout/oracle/inputs/product").resolve()))
+            invoked["receipt"]["stdout"]=json.dumps(observed)
+            with patch.object(future_cache.grader,"invoke",return_value=invoked):
+                result=future_cache.grade(product,declaration(),root/"timeout")
+            self.assertEqual(result["status"],"PASSED")
+            self.assertTrue(result["correct"])
+            self.assertEqual(result["repository_tests_status"],"UNAVAILABLE")
+            self.assertIsNone(result["repository_tests_passed"])
+            self.assertEqual(result["repository_tests_receipt"],receipt)
+
+    def test_relative_and_absolute_executable_aliases_record_canonical_invocation(self):
+        with tempfile.TemporaryDirectory(prefix="issue41-alias-") as folder:
+            root=Path(folder).resolve()
+            product=self.product(root)
+            for relative in (True,False):
+                with self.subTest(relative=relative):
+                    alias=root/("relative-python" if relative else "absolute-python")
+                    canonical=future_cache.grader.PYTHON
+                    alias.symlink_to(os.path.relpath(canonical,root) if relative else canonical)
+                    executable=os.path.relpath(alias,product) if relative else str(alias)
+                    # Homebrew may report its opt alias even when launched via our test alias.
+                    script="import sys; sys.executable="+repr(executable)+"\n"+future_cache.script()
+                    completed=subprocess.run([canonical,"-B","-c",script],cwd=product,
+                                             capture_output=True,text=True,timeout=15)
+                    self.assertEqual(completed.returncode,0,completed.stderr)
+                    observed=json.loads(completed.stdout)
+                    self.assertTrue(all(case["passed"] for case in observed["cases"]),observed)
+                    suite=observed["repository_tests"]
+                    self.assertEqual(suite["status"],"PASSED")
+                    self.assertEqual(suite["receipt"]["argv"],
+                        [canonical,"-B","-m","unittest","discover","-s","tests"])
+                    self.assertEqual(suite["receipt"]["cwd"],str(product.resolve()))
+                    self.assertEqual(suite["receipt"]["exit_code"],0)
+
+    @unittest.skipUnless(sys.platform=="darwin" and
+                         Path("/opt/homebrew/opt/python@3.14/bin/python3.14").exists(),
+                         "requires macOS Homebrew Python 3.14")
+    def test_homebrew_alias_and_cellar_launches_agree_on_exact_receipt(self):
+        with tempfile.TemporaryDirectory(prefix="issue41-homebrew-") as folder:
+            root=Path(folder)
+            product=self.product(root)
+            alias=Path("/opt/homebrew/opt/python@3.14/bin/python3.14")
+            canonical=str(alias.resolve())
+            for executable in (str(alias),canonical):
+                with self.subTest(executable=executable):
+                    completed=subprocess.run([executable,"-B","-c",future_cache.script()],
+                        cwd=product,capture_output=True,text=True,timeout=15)
+                    self.assertEqual(completed.returncode,0,completed.stderr)
+                    observed=json.loads(completed.stdout)
+                    self.assertTrue(all(case["passed"] for case in observed["cases"]))
+                    suite=observed["repository_tests"]
+                    self.assertEqual(suite["status"],"PASSED")
+                    self.assertEqual(suite["receipt"]["argv"],
+                        [canonical,"-B","-m","unittest","discover","-s","tests"])
+
+    def test_tampered_repository_receipts_remain_unavailable(self):
+        with tempfile.TemporaryDirectory(prefix="issue41-tamper-") as folder:
+            root=Path(folder)
+            product=self.product(root)
+            baseline=future_cache.grade(product,declaration(),root/"baseline")
+            self.assertEqual(baseline["status"],"PASSED")
+            alias=root/"python"
+            alias.symlink_to(future_cache.grader.PYTHON)
+            unrelated=root/"unrelated-python"
+            unrelated.write_text("#!/bin/sh\nexit 0\n")
+            unrelated.chmod(0o755)
+            for change in ("literal-alias","unrelated","changed-link","missing-option",
+                           "extra-argument","cwd","exit-code","status","passed",
+                           "timeout","error","stdout-truncated","stderr-truncated",
+                           "case-evidence","malformed"):
+                with self.subTest(change=change):
+                    invoked=copy.deepcopy(baseline["invocation"])
+                    observed=json.loads(invoked["receipt"]["stdout"])
+                    suite=observed["repository_tests"]
+                    receipt=suite["receipt"]
+                    receipt["cwd"]=str((root/change/"oracle/inputs/product").resolve())
+                    if change=="literal-alias":
+                        receipt["argv"][0]=str(alias)
+                    elif change=="unrelated":
+                        receipt["argv"][0]=str(unrelated)
+                    elif change=="changed-link":
+                        alias.unlink()
+                        alias.symlink_to(unrelated)
+                        # Re-resolving the caller's alias must not change the trusted identity.
+                        receipt["argv"][0]=str(alias.resolve())
+                    elif change=="missing-option":
+                        receipt["argv"].remove("-B")
+                    elif change=="extra-argument":
+                        receipt["argv"].append("-v")
+                    elif change=="cwd":
+                        receipt["cwd"]=str(root)
+                    elif change=="exit-code":
+                        receipt["exit_code"]=1
+                    elif change=="status":
+                        suite["status"]="FAILED"
+                    elif change=="passed":
+                        suite["passed"]=False
+                    elif change=="timeout":
+                        receipt["timed_out"]=True
+                    elif change=="error":
+                        receipt["error"]="OSError: test command unavailable"
+                    elif change.endswith("-truncated"):
+                        receipt[change.replace("-","_")]=True
+                    elif change=="case-evidence":
+                        observed["cases"][0]["passed"]="true"
+                    invoked["receipt"]["stdout"]=("malformed" if change=="malformed" else
+                                                   json.dumps(observed))
+                    with patch.object(sys,"executable",str(alias)),patch.object(
+                            future_cache.grader,"invoke",return_value=invoked):
+                        result=future_cache.grade(product,declaration(),root/change)
+                    self.assertEqual(result["status"],"ORACLE UNAVAILABLE")
+                    self.assertIsNone(result["correct"])
+                    self.assertIsNone(result["repository_tests_passed"])
+                    self.assertEqual(result["model_dispatches"],0)
 
 
 if __name__=="__main__":

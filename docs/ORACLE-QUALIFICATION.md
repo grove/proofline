@@ -59,7 +59,11 @@ approval, or authorize another model comparison.
   (python -B -m unittest discover -s tests). Its actual argv, cwd,
   exit code, stdout/stderr, timeout and status (PASSED, FAILED, UNAVAILABLE)
   survive in the repository test receipt; these results are separate from
-  behavioral cases and never silently become false acceptances.
+  behavioral cases and never silently become false acceptances. The child
+  invokes the resolved Python executable; its literal argv must exactly match
+  the outer grader's pinned interpreter and expected options. Alias strings
+  are never treated as equivalent during receipt validation. See the
+  [macOS alias regression results (#41)](ISSUE41.md).
 - [Regression controls](../tests/test_source_oracles.py) exercise reference,
   TypeError alternative, source-prescribed ValueError, cache defects,
   arbitrary exceptions, early loader calls, deliberately red repository
