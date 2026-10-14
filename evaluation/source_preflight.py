@@ -65,6 +65,7 @@ def qualify(declaration, *, source, oracle_text, inventory):
             problems.append(f"{identifier}: unknown expectation kind")
         if not isinstance(row.get("claim"), str) or not row["claim"].strip():
             problems.append(f"{identifier}: no precise expected behavior")
+        support = row.get("support")
         clause = row.get("source_clause")
         clause_exact = (isinstance(clause, str) and bool(clause.strip()) and
                         source.count(clause.encode("utf-8")) == 1)
@@ -79,7 +80,6 @@ def qualify(declaration, *, source, oracle_text, inventory):
         ) or len(set(alternatives)) != len(alternatives):
             problems.append(f"{identifier}: ambiguities/alternatives not documented")
             ambiguity, alternatives = None, []
-        support = row.get("support")
         if support == "source":
             if ambiguity and not (
                 row.get("kind") == "exception" and
