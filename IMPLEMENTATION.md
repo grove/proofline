@@ -95,6 +95,15 @@ JSON advisory adapter does not execute peers or grant authority.
 
 ## Stop rules
 
+Issue [#34](https://github.com/grove/proofline/issues/34) adds a separate
+[six-task recovery declaration](evaluation/recovery/README.md), with an A-arm
+spending gate, matched B/C probes and conditional D-arm diagnosis. Native
+qualification is model-free. Its authorized six-baseline run took the predeclared
+stop; five candidates passed the frozen oracle and one grade is disputed. All 18
+intervention slots remain unobserved; recovery effectiveness is unmeasured.
+It reuses the existing isolation and correction APIs without changing production
+CLI behavior or correction policy. See [current evidence](docs/ISSUE34.md).
+
 Never claim a command pass proves the complete original promise. Do not
 silently import historical experiments as approved behavior. No new mandatory
 reviewer, planner, approval ceremony or automatic GitHub publication. Any

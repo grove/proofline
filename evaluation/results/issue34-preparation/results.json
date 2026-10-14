@@ -1,0 +1,558 @@
+{
+  "study": "issue34-recovery-v1",
+  "status": "QUALIFIED_NOT_DISPATCHED",
+  "declared_at": "2026-10-13T21:50:43.084005+00:00",
+  "assignments": [
+    {
+      "sequence": 1,
+      "task": "safe-zip",
+      "arm": "A",
+      "status": "NOT_EXECUTED",
+      "stages": [],
+      "checks": [],
+      "correction": {
+        "attempted": false
+      },
+      "total_seconds": null,
+      "total_cost_usd": null,
+      "seed": "/Users/grove/projects/proofline/.proofline/issue34-recovery-v1/assignments/01-safe-zip-A/seed/product"
+    },
+    {
+      "sequence": 2,
+      "task": "report-columns",
+      "arm": "A",
+      "status": "NOT_EXECUTED",
+      "stages": [],
+      "checks": [],
+      "correction": {
+        "attempted": false
+      },
+      "total_seconds": null,
+      "total_cost_usd": null,
+      "seed": "/Users/grove/projects/proofline/.proofline/issue34-recovery-v1/assignments/02-report-columns-A/seed/product"
+    },
+    {
+      "sequence": 3,
+      "task": "retry-policy",
+      "arm": "A",
+      "status": "NOT_EXECUTED",
+      "stages": [],
+      "checks": [],
+      "correction": {
+        "attempted": false
+      },
+      "total_seconds": null,
+      "total_cost_usd": null,
+      "seed": "/Users/grove/projects/proofline/.proofline/issue34-recovery-v1/assignments/03-retry-policy-A/seed/product"
+    },
+    {
+      "sequence": 4,
+      "task": "atomic-export",
+      "arm": "A",
+      "status": "NOT_EXECUTED",
+      "stages": [],
+      "checks": [],
+      "correction": {
+        "attempted": false
+      },
+      "total_seconds": null,
+      "total_cost_usd": null,
+      "seed": "/Users/grove/projects/proofline/.proofline/issue34-recovery-v1/assignments/04-atomic-export-A/seed/product"
+    },
+    {
+      "sequence": 5,
+      "task": "cache-expiry",
+      "arm": "A",
+      "status": "NOT_EXECUTED",
+      "stages": [],
+      "checks": [],
+      "correction": {
+        "attempted": false
+      },
+      "total_seconds": null,
+      "total_cost_usd": null,
+      "seed": "/Users/grove/projects/proofline/.proofline/issue34-recovery-v1/assignments/05-cache-expiry-A/seed/product"
+    },
+    {
+      "sequence": 6,
+      "task": "config-overlay",
+      "arm": "A",
+      "status": "NOT_EXECUTED",
+      "stages": [],
+      "checks": [],
+      "correction": {
+        "attempted": false
+      },
+      "total_seconds": null,
+      "total_cost_usd": null,
+      "seed": "/Users/grove/projects/proofline/.proofline/issue34-recovery-v1/assignments/06-config-overlay-A/seed/product"
+    },
+    {
+      "sequence": 7,
+      "task": "report-columns",
+      "arm": "B",
+      "status": "NOT_EXECUTED",
+      "stages": [],
+      "checks": [],
+      "correction": {
+        "attempted": false
+      },
+      "total_seconds": null,
+      "total_cost_usd": null,
+      "seed": "/Users/grove/projects/proofline/.proofline/issue34-recovery-v1/assignments/07-report-columns-B/seed/product"
+    },
+    {
+      "sequence": 8,
+      "task": "report-columns",
+      "arm": "C",
+      "status": "NOT_EXECUTED",
+      "stages": [],
+      "checks": [],
+      "correction": {
+        "attempted": false
+      },
+      "total_seconds": null,
+      "total_cost_usd": null,
+      "seed": "/Users/grove/projects/proofline/.proofline/issue34-recovery-v1/assignments/08-report-columns-C/seed/product"
+    },
+    {
+      "sequence": 9,
+      "task": "report-columns",
+      "arm": "D",
+      "status": "NOT_EXECUTED",
+      "stages": [],
+      "checks": [],
+      "correction": {
+        "attempted": false
+      },
+      "total_seconds": null,
+      "total_cost_usd": null,
+      "seed": "/Users/grove/projects/proofline/.proofline/issue34-recovery-v1/assignments/09-report-columns-D/seed/product"
+    },
+    {
+      "sequence": 10,
+      "task": "config-overlay",
+      "arm": "C",
+      "status": "NOT_EXECUTED",
+      "stages": [],
+      "checks": [],
+      "correction": {
+        "attempted": false
+      },
+      "total_seconds": null,
+      "total_cost_usd": null,
+      "seed": "/Users/grove/projects/proofline/.proofline/issue34-recovery-v1/assignments/10-config-overlay-C/seed/product"
+    },
+    {
+      "sequence": 11,
+      "task": "config-overlay",
+      "arm": "D",
+      "status": "NOT_EXECUTED",
+      "stages": [],
+      "checks": [],
+      "correction": {
+        "attempted": false
+      },
+      "total_seconds": null,
+      "total_cost_usd": null,
+      "seed": "/Users/grove/projects/proofline/.proofline/issue34-recovery-v1/assignments/11-config-overlay-D/seed/product"
+    },
+    {
+      "sequence": 12,
+      "task": "config-overlay",
+      "arm": "B",
+      "status": "NOT_EXECUTED",
+      "stages": [],
+      "checks": [],
+      "correction": {
+        "attempted": false
+      },
+      "total_seconds": null,
+      "total_cost_usd": null,
+      "seed": "/Users/grove/projects/proofline/.proofline/issue34-recovery-v1/assignments/12-config-overlay-B/seed/product"
+    },
+    {
+      "sequence": 13,
+      "task": "retry-policy",
+      "arm": "D",
+      "status": "NOT_EXECUTED",
+      "stages": [],
+      "checks": [],
+      "correction": {
+        "attempted": false
+      },
+      "total_seconds": null,
+      "total_cost_usd": null,
+      "seed": "/Users/grove/projects/proofline/.proofline/issue34-recovery-v1/assignments/13-retry-policy-D/seed/product"
+    },
+    {
+      "sequence": 14,
+      "task": "retry-policy",
+      "arm": "B",
+      "status": "NOT_EXECUTED",
+      "stages": [],
+      "checks": [],
+      "correction": {
+        "attempted": false
+      },
+      "total_seconds": null,
+      "total_cost_usd": null,
+      "seed": "/Users/grove/projects/proofline/.proofline/issue34-recovery-v1/assignments/14-retry-policy-B/seed/product"
+    },
+    {
+      "sequence": 15,
+      "task": "retry-policy",
+      "arm": "C",
+      "status": "NOT_EXECUTED",
+      "stages": [],
+      "checks": [],
+      "correction": {
+        "attempted": false
+      },
+      "total_seconds": null,
+      "total_cost_usd": null,
+      "seed": "/Users/grove/projects/proofline/.proofline/issue34-recovery-v1/assignments/15-retry-policy-C/seed/product"
+    },
+    {
+      "sequence": 16,
+      "task": "cache-expiry",
+      "arm": "D",
+      "status": "NOT_EXECUTED",
+      "stages": [],
+      "checks": [],
+      "correction": {
+        "attempted": false
+      },
+      "total_seconds": null,
+      "total_cost_usd": null,
+      "seed": "/Users/grove/projects/proofline/.proofline/issue34-recovery-v1/assignments/16-cache-expiry-D/seed/product"
+    },
+    {
+      "sequence": 17,
+      "task": "cache-expiry",
+      "arm": "C",
+      "status": "NOT_EXECUTED",
+      "stages": [],
+      "checks": [],
+      "correction": {
+        "attempted": false
+      },
+      "total_seconds": null,
+      "total_cost_usd": null,
+      "seed": "/Users/grove/projects/proofline/.proofline/issue34-recovery-v1/assignments/17-cache-expiry-C/seed/product"
+    },
+    {
+      "sequence": 18,
+      "task": "cache-expiry",
+      "arm": "B",
+      "status": "NOT_EXECUTED",
+      "stages": [],
+      "checks": [],
+      "correction": {
+        "attempted": false
+      },
+      "total_seconds": null,
+      "total_cost_usd": null,
+      "seed": "/Users/grove/projects/proofline/.proofline/issue34-recovery-v1/assignments/18-cache-expiry-B/seed/product"
+    },
+    {
+      "sequence": 19,
+      "task": "atomic-export",
+      "arm": "B",
+      "status": "NOT_EXECUTED",
+      "stages": [],
+      "checks": [],
+      "correction": {
+        "attempted": false
+      },
+      "total_seconds": null,
+      "total_cost_usd": null,
+      "seed": "/Users/grove/projects/proofline/.proofline/issue34-recovery-v1/assignments/19-atomic-export-B/seed/product"
+    },
+    {
+      "sequence": 20,
+      "task": "atomic-export",
+      "arm": "D",
+      "status": "NOT_EXECUTED",
+      "stages": [],
+      "checks": [],
+      "correction": {
+        "attempted": false
+      },
+      "total_seconds": null,
+      "total_cost_usd": null,
+      "seed": "/Users/grove/projects/proofline/.proofline/issue34-recovery-v1/assignments/20-atomic-export-D/seed/product"
+    },
+    {
+      "sequence": 21,
+      "task": "atomic-export",
+      "arm": "C",
+      "status": "NOT_EXECUTED",
+      "stages": [],
+      "checks": [],
+      "correction": {
+        "attempted": false
+      },
+      "total_seconds": null,
+      "total_cost_usd": null,
+      "seed": "/Users/grove/projects/proofline/.proofline/issue34-recovery-v1/assignments/21-atomic-export-C/seed/product"
+    },
+    {
+      "sequence": 22,
+      "task": "safe-zip",
+      "arm": "C",
+      "status": "NOT_EXECUTED",
+      "stages": [],
+      "checks": [],
+      "correction": {
+        "attempted": false
+      },
+      "total_seconds": null,
+      "total_cost_usd": null,
+      "seed": "/Users/grove/projects/proofline/.proofline/issue34-recovery-v1/assignments/22-safe-zip-C/seed/product"
+    },
+    {
+      "sequence": 23,
+      "task": "safe-zip",
+      "arm": "B",
+      "status": "NOT_EXECUTED",
+      "stages": [],
+      "checks": [],
+      "correction": {
+        "attempted": false
+      },
+      "total_seconds": null,
+      "total_cost_usd": null,
+      "seed": "/Users/grove/projects/proofline/.proofline/issue34-recovery-v1/assignments/23-safe-zip-B/seed/product"
+    },
+    {
+      "sequence": 24,
+      "task": "safe-zip",
+      "arm": "D",
+      "status": "NOT_EXECUTED",
+      "stages": [],
+      "checks": [],
+      "correction": {
+        "attempted": false
+      },
+      "total_seconds": null,
+      "total_cost_usd": null,
+      "seed": "/Users/grove/projects/proofline/.proofline/issue34-recovery-v1/assignments/24-safe-zip-D/seed/product"
+    }
+  ],
+  "model_dispatches": 0,
+  "preparation_seconds": 14.947829084005207,
+  "metrics": {
+    "assigned": 24,
+    "executed": 0,
+    "arms": {
+      "A": {
+        "assigned": 6,
+        "outcomes": {
+          "NOT_EXECUTED": 6
+        },
+        "correct_deliveries": 0,
+        "rate_over_all_assigned": 0.0,
+        "initial_correct": 0,
+        "final_correct": 0,
+        "recovered": 0,
+        "persistent_defects": 0,
+        "corrections": 0,
+        "false_accept": 0,
+        "false_block": 0,
+        "green_probe_omissions": 0,
+        "green_repository_test_omissions": 0,
+        "unavailable_checks": 0,
+        "seconds": null,
+        "seconds_per_correct_delivery": null,
+        "probe_seconds": null,
+        "grading_seconds": null,
+        "cost_usd_per_correct_delivery": null,
+        "models": {
+          "gpt-6-luna": {
+            "native_turns": 0,
+            "tokens": {
+              "input_tokens": 0,
+              "cached_input_tokens": 0,
+              "output_tokens": 0,
+              "uncached_input_tokens": 0
+            },
+            "seconds": 0,
+            "tool_executions": 0,
+            "unknown_usage_stages": 0
+          },
+          "gpt-6.1-sol": {
+            "native_turns": 0,
+            "tokens": {
+              "input_tokens": 0,
+              "cached_input_tokens": 0,
+              "output_tokens": 0,
+              "uncached_input_tokens": 0
+            },
+            "seconds": 0,
+            "tool_executions": 0,
+            "unknown_usage_stages": 0
+          }
+        }
+      },
+      "B": {
+        "assigned": 6,
+        "outcomes": {
+          "NOT_EXECUTED": 6
+        },
+        "correct_deliveries": 0,
+        "rate_over_all_assigned": 0.0,
+        "initial_correct": 0,
+        "final_correct": 0,
+        "recovered": 0,
+        "persistent_defects": 0,
+        "corrections": 0,
+        "false_accept": 0,
+        "false_block": 0,
+        "green_probe_omissions": 0,
+        "green_repository_test_omissions": 0,
+        "unavailable_checks": 0,
+        "seconds": null,
+        "seconds_per_correct_delivery": null,
+        "probe_seconds": null,
+        "grading_seconds": null,
+        "cost_usd_per_correct_delivery": null,
+        "models": {
+          "gpt-6-luna": {
+            "native_turns": 0,
+            "tokens": {
+              "input_tokens": 0,
+              "cached_input_tokens": 0,
+              "output_tokens": 0,
+              "uncached_input_tokens": 0
+            },
+            "seconds": 0,
+            "tool_executions": 0,
+            "unknown_usage_stages": 0
+          },
+          "gpt-6.1-sol": {
+            "native_turns": 0,
+            "tokens": {
+              "input_tokens": 0,
+              "cached_input_tokens": 0,
+              "output_tokens": 0,
+              "uncached_input_tokens": 0
+            },
+            "seconds": 0,
+            "tool_executions": 0,
+            "unknown_usage_stages": 0
+          }
+        }
+      },
+      "C": {
+        "assigned": 6,
+        "outcomes": {
+          "NOT_EXECUTED": 6
+        },
+        "correct_deliveries": 0,
+        "rate_over_all_assigned": 0.0,
+        "initial_correct": 0,
+        "final_correct": 0,
+        "recovered": 0,
+        "persistent_defects": 0,
+        "corrections": 0,
+        "false_accept": 0,
+        "false_block": 0,
+        "green_probe_omissions": 0,
+        "green_repository_test_omissions": 0,
+        "unavailable_checks": 0,
+        "seconds": null,
+        "seconds_per_correct_delivery": null,
+        "probe_seconds": null,
+        "grading_seconds": null,
+        "cost_usd_per_correct_delivery": null,
+        "models": {
+          "gpt-6-luna": {
+            "native_turns": 0,
+            "tokens": {
+              "input_tokens": 0,
+              "cached_input_tokens": 0,
+              "output_tokens": 0,
+              "uncached_input_tokens": 0
+            },
+            "seconds": 0,
+            "tool_executions": 0,
+            "unknown_usage_stages": 0
+          },
+          "gpt-6.1-sol": {
+            "native_turns": 0,
+            "tokens": {
+              "input_tokens": 0,
+              "cached_input_tokens": 0,
+              "output_tokens": 0,
+              "uncached_input_tokens": 0
+            },
+            "seconds": 0,
+            "tool_executions": 0,
+            "unknown_usage_stages": 0
+          }
+        }
+      },
+      "D": {
+        "assigned": 6,
+        "outcomes": {
+          "NOT_EXECUTED": 6
+        },
+        "correct_deliveries": 0,
+        "rate_over_all_assigned": 0.0,
+        "initial_correct": 0,
+        "final_correct": 0,
+        "recovered": 0,
+        "persistent_defects": 0,
+        "corrections": 0,
+        "false_accept": 0,
+        "false_block": 0,
+        "green_probe_omissions": 0,
+        "green_repository_test_omissions": 0,
+        "unavailable_checks": 0,
+        "seconds": null,
+        "seconds_per_correct_delivery": null,
+        "probe_seconds": null,
+        "grading_seconds": null,
+        "cost_usd_per_correct_delivery": null,
+        "models": {
+          "gpt-6-luna": {
+            "native_turns": 0,
+            "tokens": {
+              "input_tokens": 0,
+              "cached_input_tokens": 0,
+              "output_tokens": 0,
+              "uncached_input_tokens": 0
+            },
+            "seconds": 0,
+            "tool_executions": 0,
+            "unknown_usage_stages": 0
+          },
+          "gpt-6.1-sol": {
+            "native_turns": 0,
+            "tokens": {
+              "input_tokens": 0,
+              "cached_input_tokens": 0,
+              "output_tokens": 0,
+              "uncached_input_tokens": 0
+            },
+            "seconds": 0,
+            "tool_executions": 0,
+            "unknown_usage_stages": 0
+          }
+        }
+      }
+    },
+    "paired": {},
+    "billing_usd": null,
+    "human_active_seconds": null,
+    "authoring_tokens": null,
+    "authoring_cost_usd": null,
+    "uncertainty": "Six fixed synthetic repositories, one repetition, conditional on the baseline gate. Exact paired sign tests are descriptive; no population reliability or monetary savings claim.",
+    "recommendations": {
+      "Proofline": "INCONCLUSIVE",
+      "selective_Sol": "INCONCLUSIVE"
+    }
+  },
+  "qualification_seconds": 98.17983558308333
+}

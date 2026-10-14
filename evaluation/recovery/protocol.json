@@ -1,0 +1,108 @@
+{
+  "schema_version": 1,
+  "study_id": "issue34-recovery-v1",
+  "tasks": [
+    "report-columns",
+    "config-overlay",
+    "retry-policy",
+    "cache-expiry",
+    "atomic-export",
+    "safe-zip"
+  ],
+  "arms": [
+    "A",
+    "B",
+    "C",
+    "D"
+  ],
+  "assignments": 24,
+  "repetitions": 1,
+  "concurrency": 1,
+  "retries": 0,
+  "baseline_order": [
+    "safe-zip",
+    "report-columns",
+    "retry-policy",
+    "atomic-export",
+    "cache-expiry",
+    "config-overlay"
+  ],
+  "remaining_order": [
+    [
+      "B",
+      "C",
+      "D"
+    ],
+    [
+      "C",
+      "D",
+      "B"
+    ],
+    [
+      "D",
+      "B",
+      "C"
+    ],
+    [
+      "D",
+      "C",
+      "B"
+    ],
+    [
+      "B",
+      "D",
+      "C"
+    ],
+    [
+      "C",
+      "B",
+      "D"
+    ]
+  ],
+  "order_method": "All six A slots first in fixed shuffled order. B/C/D then use all six permutations, each arm twice in every position. One independent initial thread per slot; only eligible correction resumes its own Luna.",
+  "models": {
+    "sol": {
+      "model": "gpt-6.1-sol",
+      "model_reasoning_effort": "high"
+    },
+    "luna": {
+      "model": "gpt-6-luna",
+      "model_reasoning_effort": "high"
+    }
+  },
+  "host": {
+    "versions": [
+      "Darwin",
+      "arm64",
+      "26.6.2",
+      "3.14.8"
+    ],
+    "codex": "codex-cli 0.162.1"
+  },
+  "limits": {
+    "episode_seconds": 1200,
+    "ordinary_initial_seconds": 1000,
+    "initial_seconds": 600,
+    "correction_seconds": 180,
+    "diagnosis_seconds": 120,
+    "check_seconds": 30,
+    "grading_seconds": 60,
+    "max_native_dispatches": 48,
+    "max_campaign_seconds": 28800
+  },
+  "spending_gate": {
+    "after": 6,
+    "minimum_independently_defective_A": 2,
+    "otherwise": "EARLY_STOP_CORRECTNESS_CEILING; all 18 B/C/D remain NOT_EXECUTED",
+    "no_cherry_picking": true
+  },
+  "reveal": "No additional probes in any initial worker input. Freeze initial candidate before B/C/D receive public check evidence. Hidden scripts, controls and grades are never worker/Sol inputs.",
+  "budget": "All four arms get 1200 total seconds including checks, diagnosis, one correction, isolation, snapshot capture and grading. A may use up to 1000 for ordinary self-testing. B/C/D have the same 600 initial and 180 correction limits; D alone spends up to 120 of the same total on qualified Sol diagnosis.",
+  "trigger": "Public probe 0 must fail with intact native AssertionError evidence on the exact candidate. All selected checks must be available. Missing tools, environment errors, private grades, self-authored expectations, reviewer claims and green probes never authorize repair.",
+  "Sol": "Zero dispatches on green or unqualified checks. Full original request, frozen candidate and public receipt-bound evidence only. No earlier plan or private grade. Advice never authorizes correction.",
+  "stop": "Stop on native access/isolation failure, input/runtime drift, unavailable selected checks or hidden grading, total-budget exhaustion or uncertain interrupted dispatch. Keep all slots. Never retry, substitute model/reasoning, replay, force completion or expand tasks.",
+  "controls": "24 controls: reference, alternative, public-probe defect, and green-probe hidden defect per task. Original repository tests must be green for every control. Fresh native controls and B/C assertion-equivalence qualification are zero-model. Reuse #32 staged same-thread control as machinery evidence only, not natural recovery.",
+  "corpus": "Six fresh representative synthetic Python repositories, five multi-file changes; not a random real-world sample. Literal public and disjoint hidden assertions derived from each original task request before any worker. Single author; alternatives share validation and are not independent human oracle replication.",
+  "costs": "Full elapsed times, stage/model usage, session-delta tokens, uncached=input-cached, tools, public setup/qualification/execution, grader time and failed slots. Billing, authoring tokens/dollars and active human time unknown unless independently observed. Checks are not free. No hypothetical dollars represented as billing.",
+  "authorization": "Fresh explicit user authorization bound to FREEZE.json is required before execute. Issue #32 approval is inapplicable. PR creation is authorized by the current request; merge is not."
+}

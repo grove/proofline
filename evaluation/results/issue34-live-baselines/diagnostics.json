@@ -1,0 +1,69 @@
+{
+  "scope": "Post-campaign diagnostics only; no grading, feedback, repair or model dispatch",
+  "model_dispatches": 0,
+  "repository_tests": [
+    {
+      "sequence": 1,
+      "task": "safe-zip",
+      "candidate_tree": "31daccc07c38d05f74dc82286beb6d2ef29d053f",
+      "repository_tests": "CHECKS PASSED",
+      "elapsed_seconds": 0.4883593749254942
+    },
+    {
+      "sequence": 2,
+      "task": "report-columns",
+      "candidate_tree": "c782956e985c140e61c62d7f8053ecba1892d2c6",
+      "repository_tests": "CHECKS PASSED",
+      "elapsed_seconds": 0.48538683308288455
+    },
+    {
+      "sequence": 3,
+      "task": "retry-policy",
+      "candidate_tree": "d0839a8b45c7d793eb1a9ec8dd3dd2ddeead3880",
+      "repository_tests": "CHECKS PASSED",
+      "elapsed_seconds": 0.48983695823699236
+    },
+    {
+      "sequence": 4,
+      "task": "atomic-export",
+      "candidate_tree": "6108fb24492792fe347aac991cd92aef97623d66",
+      "repository_tests": "CHECKS PASSED",
+      "elapsed_seconds": 0.48446204187348485
+    },
+    {
+      "sequence": 5,
+      "task": "cache-expiry",
+      "candidate_tree": "4b96a7f0c3d699a6afd8acb1cc55dc9e53fd3b11",
+      "repository_tests": "CHECKS PASSED",
+      "elapsed_seconds": 0.47847750037908554
+    },
+    {
+      "sequence": 6,
+      "task": "config-overlay",
+      "candidate_tree": "735b8d7010a850175609a36ff967d221a1b12e1a",
+      "repository_tests": "CHECKS PASSED",
+      "elapsed_seconds": 0.47360049979761243
+    }
+  ],
+  "ancillary_test_flag": {
+    "trustworthy": false,
+    "reference_child": {
+      "returncode": 1,
+      "stdout": "",
+      "stderr": "E\n======================================================================\nERROR: test_existing (unittest.loader._FailedTest.test_existing)\n----------------------------------------------------------------------\nImportError: Failed to import test module: test_existing\nTraceback (most recent call last):\n  File \"/opt/homebrew/Cellar/python@3.14/3.14.8_2/Frameworks/Python.framework/Versions/3.14/lib/python3.14/unittest/loader.py\", line 433, in _find_test_path\n    module = self._get_module_from_name(name)\n  File \"/opt/homebrew/Cellar/python@3.14/3.14.8_2/Frameworks/Python.framework/Versions/3.14/lib/python3.14/unittest/loader.py\", line 374, in _get_module_from_name\n    __import__(name)\n    ~~~~~~~~~~^^^^^^\n  File \"/Users/grove/projects/proofline/.proofline/issue34-recovery-v1/post-study-diagnostics/ancillary-path/inputs/product/tests/test_existing.py\", line 1, in <module>\n    from app import process\nModuleNotFoundError: No module named 'app'\n\n\n----------------------------------------------------------------------\nRan 1 test in 0.000s\n\nFAILED (errors=1)\n"
+    },
+    "reason": "Child unittest discovery runs from scratch without product on sys.path"
+  },
+  "cache_oracle": {
+    "trustworthy_failure": false,
+    "frozen_failed_case": {
+      "error": "TypeError: ttl must be a finite nonnegative int or float",
+      "label": "invalid ttl and loader failure",
+      "passed": false
+    },
+    "reason": "Frozen request requires TTL validation but does not specify its exception class",
+    "independent_correctness": "UNRESOLVED_ORACLE_EXPECTATION",
+    "no_regrading": true
+  },
+  "elapsed_seconds": 3.371318166144192
+}

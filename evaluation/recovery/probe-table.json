@@ -1,0 +1,218 @@
+{
+  "report-columns": {
+    "source_sha256": "e4c14c99b30c9b56e6befe42b615d9515c2fae7dbfd7de1085fd7e83b1fd240e",
+    "public_script_sha256": "7141a66bd5f6f90913ab0d8daa6a85b532b8fc2d3b9c199ae967227522ce863b",
+    "argv": [
+      [
+        "/opt/homebrew/Cellar/python@3.14/3.14.8_2/Frameworks/Python.framework/Versions/3.14/bin/python3.14",
+        "-B",
+        "-c",
+        "from app import process\nfrom service import handle\ndef rejects(call):\n    try: call()\n    except ValueError: return\n    raise AssertionError('expected ValueError')\npayload = {'rows':[{'name':'Ada','score':7}], 'columns':['score','missing']}\nassert process(payload)==[{'score':7,'missing':None}], 'missing column must be null'\nassert handle(payload)==[{'score':7,'missing':None}], 'service projection'\nrejects(lambda: process({'rows':[], 'columns':['x','x']}))\n"
+      ],
+      [
+        "/opt/homebrew/Cellar/python@3.14/3.14.8_2/Frameworks/Python.framework/Versions/3.14/bin/python3.14",
+        "-B",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "tests"
+      ]
+    ],
+    "expectation_provenance": "Literal source examples and source-derived assertions, independently executed against correct/alternative/defect/coverage-gap controls before live dispatch.",
+    "source_refs": [
+      {
+        "source_id": "S1",
+        "line_start": 6,
+        "line_end": 6,
+        "quote": "missing fields; preserve input row order and never mutate or alias input values."
+      },
+      {
+        "source_id": "S1",
+        "line_start": 7,
+        "line_end": 7,
+        "quote": "Validate columns even when rows is empty. Invalid rows/columns raise ValueError."
+      }
+    ]
+  },
+  "config-overlay": {
+    "source_sha256": "b44637573f613c2070c7a3ca616e8e1a5d43cd6b612e3b8a3fc8a69bdc79c86b",
+    "public_script_sha256": "e3b1b38f8e4c5392193144b9e38debc4cea8b2696b03df4a65fc6db109b13ac4",
+    "argv": [
+      [
+        "/opt/homebrew/Cellar/python@3.14/3.14.8_2/Frameworks/Python.framework/Versions/3.14/bin/python3.14",
+        "-B",
+        "-c",
+        "from app import process\nfrom service import handle\ndef rejects(call):\n    try: call()\n    except ValueError: return\n    raise AssertionError('expected ValueError')\npayload = {'layers':[{'db':{'host':'local','ports':[1]}},{'db':{'host':None,'ports':[2]}}]}\nexpected = {'config':{'db':{'ports':[2]}}}\nassert process(payload)==expected, 'nested deletion and list replacement'\nassert handle(payload)==expected, 'service must accept layers'\nrejects(lambda: handle({'config':{},'layers':[]}))\n"
+      ],
+      [
+        "/opt/homebrew/Cellar/python@3.14/3.14.8_2/Frameworks/Python.framework/Versions/3.14/bin/python3.14",
+        "-B",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "tests"
+      ]
+    ],
+    "expectation_provenance": "Literal source examples and source-derived assertions, independently executed against correct/alternative/defect/coverage-gap controls before live dispatch.",
+    "source_refs": [
+      {
+        "source_id": "S1",
+        "line_start": 6,
+        "line_end": 6,
+        "quote": "A null value deletes its key, including nested keys; deleting an absent key is a"
+      },
+      {
+        "source_id": "S1",
+        "line_start": 14,
+        "line_end": 14,
+        "quote": "via the same merge rules. Reject input containing both config and layers."
+      }
+    ]
+  },
+  "retry-policy": {
+    "source_sha256": "0377266f4d144376a9a3deaf13aca059f77d84cecd2ceeda2922c04f6c0b17fa",
+    "public_script_sha256": "4e806ee26bd7807b93fa8b3733311f330bbcfde5aa712fe24d8b89c98a58f608",
+    "argv": [
+      [
+        "/opt/homebrew/Cellar/python@3.14/3.14.8_2/Frameworks/Python.framework/Versions/3.14/bin/python3.14",
+        "-B",
+        "-c",
+        "from app import process\nfrom service import handle\ndef rejects(call):\n    try: call()\n    except ValueError: return\n    raise AssertionError('expected ValueError')\npayload = {'method':'GET','retries':1,'responses':[{'status':503,'body':'busy'},{'status':200,'body':'ok'}]}\nassert process(payload)=={'response':{'status':200,'body':'ok'},'attempts':2,'sleeps':[1]}, 'retry and backoff'\npayload['method'] = 'POST'\nassert handle(payload)=={'response':{'status':503,'body':'busy'},'attempts':1,'sleeps':[]}, 'POST must not retry'\n"
+      ],
+      [
+        "/opt/homebrew/Cellar/python@3.14/3.14.8_2/Frameworks/Python.framework/Versions/3.14/bin/python3.14",
+        "-B",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "tests"
+      ]
+    ],
+    "expectation_provenance": "Literal source examples and source-derived assertions, independently executed against correct/alternative/defect/coverage-gap controls before live dispatch.",
+    "source_refs": [
+      {
+        "source_id": "S1",
+        "line_start": 4,
+        "line_end": 4,
+        "quote": "Only GET and HEAD may retry status 429 or 503 and TimeoutError. All other methods"
+      },
+      {
+        "source_id": "S1",
+        "line_start": 9,
+        "line_end": 9,
+        "quote": "Backoff calls sleep(1), sleep(2), ... once before each extra attempt. The final"
+      }
+    ]
+  },
+  "cache-expiry": {
+    "source_sha256": "7620f6f361779d0a0afb67d94d3033a0a18072d7616bd07516ff2653424334e0",
+    "public_script_sha256": "25bd64afd6ede6389676573c26d96afc300958d67cdaa75faadf3cb28b32e9c9",
+    "argv": [
+      [
+        "/opt/homebrew/Cellar/python@3.14/3.14.8_2/Frameworks/Python.framework/Versions/3.14/bin/python3.14",
+        "-B",
+        "-c",
+        "from app import process\nfrom service import handle\ndef rejects(call):\n    try: call()\n    except ValueError: return\n    raise AssertionError('expected ValueError')\npayload = {'actions':[{'op':'get','key':'x','value':1,'at':0,'ttl':2},\n    {'op':'get','key':'x','value':2,'at':2,'ttl':2},{'op':'clear'}]}\nassert process(payload)=={'values':[1,2,1],'loads':2}, 'expiry at boundary and clear'\nassert handle(payload)=={'values':[1,2,1],'loads':2}, 'service cache actions'\n"
+      ],
+      [
+        "/opt/homebrew/Cellar/python@3.14/3.14.8_2/Frameworks/Python.framework/Versions/3.14/bin/python3.14",
+        "-B",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "tests"
+      ]
+    ],
+    "expectation_provenance": "Literal source examples and source-derived assertions, independently executed against correct/alternative/defect/coverage-gap controls before live dispatch.",
+    "source_refs": [
+      {
+        "source_id": "S1",
+        "line_start": 5,
+        "line_end": 5,
+        "quote": "Use the injected clock. A finite entry expires when now >= insertion_time + ttl;"
+      },
+      {
+        "source_id": "S1",
+        "line_start": 9,
+        "line_end": 9,
+        "quote": "Add Cache.clear() returning the number of stored entries and removing all entries."
+      }
+    ]
+  },
+  "atomic-export": {
+    "source_sha256": "a0dbfe778de30ca3527244b6d4de349aa1e2fdb52d23e3e38f95930eacf2806c",
+    "public_script_sha256": "d8495e9a1f7852f6282867f45a051721c2dbbb0525917d726da2d4a937d19693",
+    "argv": [
+      [
+        "/opt/homebrew/Cellar/python@3.14/3.14.8_2/Frameworks/Python.framework/Versions/3.14/bin/python3.14",
+        "-B",
+        "-c",
+        "from app import process\nfrom service import handle\ndef rejects(call):\n    try: call()\n    except ValueError: return\n    raise AssertionError('expected ValueError')\npayload = {'previous':'old','records':[{'z':'ø'}],'append':True}\nexpected = {'text':'old\\n{\"z\": \"ø\"}\\n','count':1}\nassert process(payload)==expected, 'append separator and UTF-8'\nassert handle(payload)==expected, 'service append'\nrejects(lambda: process({'records':[float('nan')]}))\n"
+      ],
+      [
+        "/opt/homebrew/Cellar/python@3.14/3.14.8_2/Frameworks/Python.framework/Versions/3.14/bin/python3.14",
+        "-B",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "tests"
+      ]
+    ],
+    "expectation_provenance": "Literal source examples and source-derived assertions, independently executed against correct/alternative/defect/coverage-gap controls before live dispatch.",
+    "source_refs": [
+      {
+        "source_id": "S1",
+        "line_start": 11,
+        "line_end": 11,
+        "quote": "append=True preserves existing bytes exactly, adding one separating newline only"
+      },
+      {
+        "source_id": "S1",
+        "line_start": 5,
+        "line_end": 5,
+        "quote": "UTF-8 with ensure_ascii=False. Accept an iterable and consume it once."
+      }
+    ]
+  },
+  "safe-zip": {
+    "source_sha256": "9ff7d735bf4bc5b6c700090cd3d5e696dfab56b3ed16790c8ac0f23d46900c1b",
+    "public_script_sha256": "bff5ad4254b8ee29993e86ab9cd2d0d9cd50f13a5f2e3ce8195c0e267561d3cf",
+    "argv": [
+      [
+        "/opt/homebrew/Cellar/python@3.14/3.14.8_2/Frameworks/Python.framework/Versions/3.14/bin/python3.14",
+        "-B",
+        "-c",
+        "from app import process\nfrom service import handle\ndef rejects(call):\n    try: call()\n    except ValueError: return\n    raise AssertionError('expected ValueError')\npayload = {'members':[{'name':'docs/'},{'name':'docs/a.txt','text':'hi'}]}\nexpected = {'files':['docs/a.txt'],'contents':{'docs/a.txt':'hi'}}\nassert process(payload)==expected, 'directory entries'\nassert handle(payload)==expected, 'service extraction'\nrejects(lambda: handle({'members':[{'name':'link','text':'target','symlink':True}]}))\n"
+      ],
+      [
+        "/opt/homebrew/Cellar/python@3.14/3.14.8_2/Frameworks/Python.framework/Versions/3.14/bin/python3.14",
+        "-B",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "tests"
+      ]
+    ],
+    "expectation_provenance": "Literal source examples and source-derived assertions, independently executed against correct/alternative/defect/coverage-gap controls before live dispatch.",
+    "source_refs": [
+      {
+        "source_id": "S1",
+        "line_start": 5,
+        "line_end": 5,
+        "quote": "empty internal components; Unix symlink members; duplicate file/directory paths"
+      },
+      {
+        "source_id": "S1",
+        "line_start": 10,
+        "line_end": 10,
+        "quote": "After validation, extract in archive order and return only relative file names in"
+      }
+    ]
+  }
+}

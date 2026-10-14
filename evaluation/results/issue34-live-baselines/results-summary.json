@@ -1,0 +1,1024 @@
+{
+  "study_id": "issue34-recovery-v1",
+  "freeze_sha256": "e6cd153ae5582fcbba5c7639b0f8e67fdb6ab09037376f19e67b44e6def5f2b9",
+  "source_result_sha256": "077d9983de5a94a39b6f201ea00ff89ff22a20ebb53b8a12b8e466174af86387",
+  "status": "EARLY_STOP_CORRECTNESS_CEILING",
+  "interpretation": "INSUFFICIENT_ERRORS_WITH_ORACLE_VALIDITY_LIMITATION",
+  "frozen_gate": {
+    "defective": 1,
+    "minimum_defects": 2,
+    "continue": false,
+    "conditional_inference": "All B/C/D cells execute only if at least two A candidates are defective."
+  },
+  "gate_validity": "At most one of six baselines could be defective; threshold two cannot be reached even if the disputed grade is counted",
+  "model_dispatches": 6,
+  "assignments": [
+    {
+      "sequence": 1,
+      "task": "safe-zip",
+      "arm": "A",
+      "status": "CORRECT_DELIVERY",
+      "initial_candidate": {
+        "path": "/Users/grove/projects/proofline/.proofline/issue34-recovery-v1/assignments/01-safe-zip-A/coding/implementation/inputs/product",
+        "tree": "31daccc07c38d05f74dc82286beb6d2ef29d053f"
+      },
+      "final_candidate": {
+        "path": "/Users/grove/projects/proofline/.proofline/issue34-recovery-v1/assignments/01-safe-zip-A/coding/implementation/inputs/product",
+        "tree": "31daccc07c38d05f74dc82286beb6d2ef29d053f"
+      },
+      "correction": {
+        "attempted": false
+      },
+      "total_seconds": 98.1522925416939,
+      "grading_seconds": 0.7349754995666444,
+      "probe_seconds": 0,
+      "initial_independent_correctness": "CORRECT",
+      "final_independent_correctness": "CORRECT",
+      "frozen_initial_grade": true,
+      "frozen_final_grade": true,
+      "frozen_cases": [
+        {
+          "label": "CLI compatibility",
+          "passed": true
+        },
+        {
+          "label": "all seams archive order",
+          "passed": true
+        },
+        {
+          "label": "unsafe manifest, duplicates and destination symlinks",
+          "passed": true
+        },
+        {
+          "label": "symlink member",
+          "passed": true
+        }
+      ],
+      "stages": [
+        {
+          "stage": "implementation",
+          "status": "OBSERVED",
+          "model": "gpt-6-luna",
+          "reasoning_effort": "high",
+          "thread_id": "01a138e6-aa34-74c1-a925-bdef0bb78c9d",
+          "usage": {
+            "input_tokens": 221715,
+            "cached_input_tokens": 189696,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 11239,
+            "reasoning_output_tokens": 5852
+          },
+          "observed_session_usage": {
+            "input_tokens": 221715,
+            "cached_input_tokens": 189696,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 11239,
+            "reasoning_output_tokens": 5852
+          },
+          "usage_basis": "Delta of completed native session totals; raw receipt unchanged",
+          "elapsed_seconds": 96.361252,
+          "tool_executions": 10
+        }
+      ]
+    },
+    {
+      "sequence": 2,
+      "task": "report-columns",
+      "arm": "A",
+      "status": "CORRECT_DELIVERY",
+      "initial_candidate": {
+        "path": "/Users/grove/projects/proofline/.proofline/issue34-recovery-v1/assignments/02-report-columns-A/coding/implementation/inputs/product",
+        "tree": "c782956e985c140e61c62d7f8053ecba1892d2c6"
+      },
+      "final_candidate": {
+        "path": "/Users/grove/projects/proofline/.proofline/issue34-recovery-v1/assignments/02-report-columns-A/coding/implementation/inputs/product",
+        "tree": "c782956e985c140e61c62d7f8053ecba1892d2c6"
+      },
+      "correction": {
+        "attempted": false
+      },
+      "total_seconds": 62.26630612509325,
+      "grading_seconds": 0.6606999589130282,
+      "probe_seconds": 0,
+      "initial_independent_correctness": "CORRECT",
+      "final_independent_correctness": "CORRECT",
+      "frozen_initial_grade": true,
+      "frozen_final_grade": true,
+      "frozen_cases": [
+        {
+          "label": "CLI compatibility",
+          "passed": true
+        },
+        {
+          "label": "all seams, order, missing",
+          "passed": true
+        },
+        {
+          "label": "empty selection",
+          "passed": true
+        },
+        {
+          "label": "API, order and alias freedom",
+          "passed": true
+        },
+        {
+          "label": "invalid columns 'a'",
+          "passed": true
+        },
+        {
+          "label": "invalid columns [False]",
+          "passed": true
+        },
+        {
+          "label": "invalid columns ['']",
+          "passed": true
+        },
+        {
+          "label": "invalid columns ['r', 'r']",
+          "passed": true
+        },
+        {
+          "label": "invalid columns {}",
+          "passed": true
+        },
+        {
+          "label": "invalid rows {}",
+          "passed": true
+        },
+        {
+          "label": "invalid rows [1]",
+          "passed": true
+        }
+      ],
+      "stages": [
+        {
+          "stage": "implementation",
+          "status": "OBSERVED",
+          "model": "gpt-6-luna",
+          "reasoning_effort": "high",
+          "thread_id": "01a138e8-2919-75d2-9ba3-0ca62e414545",
+          "usage": {
+            "input_tokens": 210204,
+            "cached_input_tokens": 182272,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 6258,
+            "reasoning_output_tokens": 1834
+          },
+          "observed_session_usage": {
+            "input_tokens": 210204,
+            "cached_input_tokens": 182272,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 6258,
+            "reasoning_output_tokens": 1834
+          },
+          "usage_basis": "Delta of completed native session totals; raw receipt unchanged",
+          "elapsed_seconds": 60.541444,
+          "tool_executions": 21
+        }
+      ]
+    },
+    {
+      "sequence": 3,
+      "task": "retry-policy",
+      "arm": "A",
+      "status": "CORRECT_DELIVERY",
+      "initial_candidate": {
+        "path": "/Users/grove/projects/proofline/.proofline/issue34-recovery-v1/assignments/03-retry-policy-A/coding/implementation/inputs/product",
+        "tree": "d0839a8b45c7d793eb1a9ec8dd3dd2ddeead3880"
+      },
+      "final_candidate": {
+        "path": "/Users/grove/projects/proofline/.proofline/issue34-recovery-v1/assignments/03-retry-policy-A/coding/implementation/inputs/product",
+        "tree": "d0839a8b45c7d793eb1a9ec8dd3dd2ddeead3880"
+      },
+      "correction": {
+        "attempted": false
+      },
+      "total_seconds": 56.211941374931484,
+      "grading_seconds": 0.6243262495845556,
+      "probe_seconds": 0,
+      "initial_independent_correctness": "CORRECT",
+      "final_independent_correctness": "CORRECT",
+      "frozen_initial_grade": true,
+      "frozen_final_grade": true,
+      "frozen_cases": [
+        {
+          "label": "CLI compatibility",
+          "passed": true
+        },
+        {
+          "label": "HEAD timeout all seams",
+          "passed": true
+        },
+        {
+          "label": "exhausted response",
+          "passed": true
+        },
+        {
+          "label": "exception policy and exhaustion",
+          "passed": true
+        },
+        {
+          "label": "validation and response identity",
+          "passed": true
+        }
+      ],
+      "stages": [
+        {
+          "stage": "implementation",
+          "status": "OBSERVED",
+          "model": "gpt-6-luna",
+          "reasoning_effort": "high",
+          "thread_id": "01a138e9-1ca4-73e2-b454-96a2ced6b024",
+          "usage": {
+            "input_tokens": 142340,
+            "cached_input_tokens": 116736,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 5534,
+            "reasoning_output_tokens": 1658
+          },
+          "observed_session_usage": {
+            "input_tokens": 142340,
+            "cached_input_tokens": 116736,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 5534,
+            "reasoning_output_tokens": 1658
+          },
+          "usage_basis": "Delta of completed native session totals; raw receipt unchanged",
+          "elapsed_seconds": 54.52664,
+          "tool_executions": 17
+        }
+      ]
+    },
+    {
+      "sequence": 4,
+      "task": "atomic-export",
+      "arm": "A",
+      "status": "CORRECT_DELIVERY",
+      "initial_candidate": {
+        "path": "/Users/grove/projects/proofline/.proofline/issue34-recovery-v1/assignments/04-atomic-export-A/coding/implementation/inputs/product",
+        "tree": "6108fb24492792fe347aac991cd92aef97623d66"
+      },
+      "final_candidate": {
+        "path": "/Users/grove/projects/proofline/.proofline/issue34-recovery-v1/assignments/04-atomic-export-A/coding/implementation/inputs/product",
+        "tree": "6108fb24492792fe347aac991cd92aef97623d66"
+      },
+      "correction": {
+        "attempted": false
+      },
+      "total_seconds": 78.02743158303201,
+      "grading_seconds": 0.6632267911918461,
+      "probe_seconds": 0,
+      "initial_independent_correctness": "CORRECT",
+      "final_independent_correctness": "CORRECT",
+      "frozen_initial_grade": true,
+      "frozen_final_grade": true,
+      "frozen_cases": [
+        {
+          "label": "CLI compatibility",
+          "passed": true
+        },
+        {
+          "label": "all seams missing append separator",
+          "passed": true
+        },
+        {
+          "label": "all seams append newline",
+          "passed": true
+        },
+        {
+          "label": "rollback, replace failure, cleanup and missing append",
+          "passed": true
+        }
+      ],
+      "stages": [
+        {
+          "stage": "implementation",
+          "status": "OBSERVED",
+          "model": "gpt-6-luna",
+          "reasoning_effort": "high",
+          "thread_id": "01a138e9-f833-7433-af21-05f1bc1c464f",
+          "usage": {
+            "input_tokens": 161494,
+            "cached_input_tokens": 143872,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 7392,
+            "reasoning_output_tokens": 2677
+          },
+          "observed_session_usage": {
+            "input_tokens": 161494,
+            "cached_input_tokens": 143872,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 7392,
+            "reasoning_output_tokens": 2677
+          },
+          "usage_basis": "Delta of completed native session totals; raw receipt unchanged",
+          "elapsed_seconds": 76.397633,
+          "tool_executions": 25
+        }
+      ]
+    },
+    {
+      "sequence": 5,
+      "task": "cache-expiry",
+      "arm": "A",
+      "status": "FALSE_ACCEPTANCE",
+      "initial_candidate": {
+        "path": "/Users/grove/projects/proofline/.proofline/issue34-recovery-v1/assignments/05-cache-expiry-A/coding/implementation/inputs/product",
+        "tree": "4b96a7f0c3d699a6afd8acb1cc55dc9e53fd3b11"
+      },
+      "final_candidate": {
+        "path": "/Users/grove/projects/proofline/.proofline/issue34-recovery-v1/assignments/05-cache-expiry-A/coding/implementation/inputs/product",
+        "tree": "4b96a7f0c3d699a6afd8acb1cc55dc9e53fd3b11"
+      },
+      "correction": {
+        "attempted": false
+      },
+      "total_seconds": 116.91411541681737,
+      "grading_seconds": 0.6599084581248462,
+      "probe_seconds": 0,
+      "initial_independent_correctness": "DISPUTED_ORACLE_EXPECTATION",
+      "final_independent_correctness": "DISPUTED_ORACLE_EXPECTATION",
+      "frozen_initial_grade": false,
+      "frozen_final_grade": false,
+      "frozen_cases": [
+        {
+          "label": "CLI compatibility",
+          "passed": true
+        },
+        {
+          "label": "action seams",
+          "passed": true
+        },
+        {
+          "label": "time, hit validation and aliases",
+          "passed": true
+        },
+        {
+          "error": "TypeError: ttl must be a finite nonnegative int or float",
+          "label": "invalid ttl and loader failure",
+          "passed": false
+        }
+      ],
+      "stages": [
+        {
+          "stage": "implementation",
+          "status": "OBSERVED",
+          "model": "gpt-6-luna",
+          "reasoning_effort": "high",
+          "thread_id": "01a138eb-289b-79f3-9c6d-422bbc32a5b0",
+          "usage": {
+            "input_tokens": 188198,
+            "cached_input_tokens": 139008,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 7912,
+            "reasoning_output_tokens": 3894
+          },
+          "observed_session_usage": {
+            "input_tokens": 188198,
+            "cached_input_tokens": 139008,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 7912,
+            "reasoning_output_tokens": 3894
+          },
+          "usage_basis": "Delta of completed native session totals; raw receipt unchanged",
+          "elapsed_seconds": 115.236269,
+          "tool_executions": 17
+        }
+      ]
+    },
+    {
+      "sequence": 6,
+      "task": "config-overlay",
+      "arm": "A",
+      "status": "CORRECT_DELIVERY",
+      "initial_candidate": {
+        "path": "/Users/grove/projects/proofline/.proofline/issue34-recovery-v1/assignments/06-config-overlay-A/coding/implementation/inputs/product",
+        "tree": "735b8d7010a850175609a36ff967d221a1b12e1a"
+      },
+      "final_candidate": {
+        "path": "/Users/grove/projects/proofline/.proofline/issue34-recovery-v1/assignments/06-config-overlay-A/coding/implementation/inputs/product",
+        "tree": "735b8d7010a850175609a36ff967d221a1b12e1a"
+      },
+      "correction": {
+        "attempted": false
+      },
+      "total_seconds": 72.09737820876762,
+      "grading_seconds": 0.6429178332909942,
+      "probe_seconds": 0,
+      "initial_independent_correctness": "CORRECT",
+      "final_independent_correctness": "CORRECT",
+      "frozen_initial_grade": true,
+      "frozen_final_grade": true,
+      "frozen_cases": [
+        {
+          "label": "CLI compatibility",
+          "passed": true
+        },
+        {
+          "label": "all seams recursive replacement",
+          "passed": true
+        },
+        {
+          "label": "new nested nulls",
+          "passed": true
+        },
+        {
+          "label": "type replacement",
+          "passed": true
+        },
+        {
+          "label": "legacy service",
+          "passed": true
+        },
+        {
+          "label": "no nested aliases",
+          "passed": true
+        },
+        {
+          "label": "invalid layers {}",
+          "passed": true
+        },
+        {
+          "label": "invalid layers [None]",
+          "passed": true
+        },
+        {
+          "label": "invalid layers [{1: 2}]",
+          "passed": true
+        },
+        {
+          "label": "invalid layers [{'list': [{2: 3}]}]",
+          "passed": true
+        },
+        {
+          "label": "ambiguous payload",
+          "passed": true
+        }
+      ],
+      "stages": [
+        {
+          "stage": "implementation",
+          "status": "OBSERVED",
+          "model": "gpt-6-luna",
+          "reasoning_effort": "high",
+          "thread_id": "01a138ec-f1d4-76b2-a8cc-0a0b850e707d",
+          "usage": {
+            "input_tokens": 150134,
+            "cached_input_tokens": 110592,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 5063,
+            "reasoning_output_tokens": 1737
+          },
+          "observed_session_usage": {
+            "input_tokens": 150134,
+            "cached_input_tokens": 110592,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 5063,
+            "reasoning_output_tokens": 1737
+          },
+          "usage_basis": "Delta of completed native session totals; raw receipt unchanged",
+          "elapsed_seconds": 70.339074,
+          "tool_executions": 19
+        }
+      ]
+    },
+    {
+      "sequence": 7,
+      "task": "report-columns",
+      "arm": "B",
+      "status": "NOT_EXECUTED",
+      "initial_candidate": null,
+      "final_candidate": null,
+      "correction": {
+        "attempted": false
+      },
+      "total_seconds": null,
+      "grading_seconds": null,
+      "probe_seconds": null,
+      "initial_independent_correctness": "UNOBSERVED",
+      "final_independent_correctness": "UNOBSERVED",
+      "frozen_initial_grade": null,
+      "frozen_final_grade": null,
+      "frozen_cases": null,
+      "stages": []
+    },
+    {
+      "sequence": 8,
+      "task": "report-columns",
+      "arm": "C",
+      "status": "NOT_EXECUTED",
+      "initial_candidate": null,
+      "final_candidate": null,
+      "correction": {
+        "attempted": false
+      },
+      "total_seconds": null,
+      "grading_seconds": null,
+      "probe_seconds": null,
+      "initial_independent_correctness": "UNOBSERVED",
+      "final_independent_correctness": "UNOBSERVED",
+      "frozen_initial_grade": null,
+      "frozen_final_grade": null,
+      "frozen_cases": null,
+      "stages": []
+    },
+    {
+      "sequence": 9,
+      "task": "report-columns",
+      "arm": "D",
+      "status": "NOT_EXECUTED",
+      "initial_candidate": null,
+      "final_candidate": null,
+      "correction": {
+        "attempted": false
+      },
+      "total_seconds": null,
+      "grading_seconds": null,
+      "probe_seconds": null,
+      "initial_independent_correctness": "UNOBSERVED",
+      "final_independent_correctness": "UNOBSERVED",
+      "frozen_initial_grade": null,
+      "frozen_final_grade": null,
+      "frozen_cases": null,
+      "stages": []
+    },
+    {
+      "sequence": 10,
+      "task": "config-overlay",
+      "arm": "C",
+      "status": "NOT_EXECUTED",
+      "initial_candidate": null,
+      "final_candidate": null,
+      "correction": {
+        "attempted": false
+      },
+      "total_seconds": null,
+      "grading_seconds": null,
+      "probe_seconds": null,
+      "initial_independent_correctness": "UNOBSERVED",
+      "final_independent_correctness": "UNOBSERVED",
+      "frozen_initial_grade": null,
+      "frozen_final_grade": null,
+      "frozen_cases": null,
+      "stages": []
+    },
+    {
+      "sequence": 11,
+      "task": "config-overlay",
+      "arm": "D",
+      "status": "NOT_EXECUTED",
+      "initial_candidate": null,
+      "final_candidate": null,
+      "correction": {
+        "attempted": false
+      },
+      "total_seconds": null,
+      "grading_seconds": null,
+      "probe_seconds": null,
+      "initial_independent_correctness": "UNOBSERVED",
+      "final_independent_correctness": "UNOBSERVED",
+      "frozen_initial_grade": null,
+      "frozen_final_grade": null,
+      "frozen_cases": null,
+      "stages": []
+    },
+    {
+      "sequence": 12,
+      "task": "config-overlay",
+      "arm": "B",
+      "status": "NOT_EXECUTED",
+      "initial_candidate": null,
+      "final_candidate": null,
+      "correction": {
+        "attempted": false
+      },
+      "total_seconds": null,
+      "grading_seconds": null,
+      "probe_seconds": null,
+      "initial_independent_correctness": "UNOBSERVED",
+      "final_independent_correctness": "UNOBSERVED",
+      "frozen_initial_grade": null,
+      "frozen_final_grade": null,
+      "frozen_cases": null,
+      "stages": []
+    },
+    {
+      "sequence": 13,
+      "task": "retry-policy",
+      "arm": "D",
+      "status": "NOT_EXECUTED",
+      "initial_candidate": null,
+      "final_candidate": null,
+      "correction": {
+        "attempted": false
+      },
+      "total_seconds": null,
+      "grading_seconds": null,
+      "probe_seconds": null,
+      "initial_independent_correctness": "UNOBSERVED",
+      "final_independent_correctness": "UNOBSERVED",
+      "frozen_initial_grade": null,
+      "frozen_final_grade": null,
+      "frozen_cases": null,
+      "stages": []
+    },
+    {
+      "sequence": 14,
+      "task": "retry-policy",
+      "arm": "B",
+      "status": "NOT_EXECUTED",
+      "initial_candidate": null,
+      "final_candidate": null,
+      "correction": {
+        "attempted": false
+      },
+      "total_seconds": null,
+      "grading_seconds": null,
+      "probe_seconds": null,
+      "initial_independent_correctness": "UNOBSERVED",
+      "final_independent_correctness": "UNOBSERVED",
+      "frozen_initial_grade": null,
+      "frozen_final_grade": null,
+      "frozen_cases": null,
+      "stages": []
+    },
+    {
+      "sequence": 15,
+      "task": "retry-policy",
+      "arm": "C",
+      "status": "NOT_EXECUTED",
+      "initial_candidate": null,
+      "final_candidate": null,
+      "correction": {
+        "attempted": false
+      },
+      "total_seconds": null,
+      "grading_seconds": null,
+      "probe_seconds": null,
+      "initial_independent_correctness": "UNOBSERVED",
+      "final_independent_correctness": "UNOBSERVED",
+      "frozen_initial_grade": null,
+      "frozen_final_grade": null,
+      "frozen_cases": null,
+      "stages": []
+    },
+    {
+      "sequence": 16,
+      "task": "cache-expiry",
+      "arm": "D",
+      "status": "NOT_EXECUTED",
+      "initial_candidate": null,
+      "final_candidate": null,
+      "correction": {
+        "attempted": false
+      },
+      "total_seconds": null,
+      "grading_seconds": null,
+      "probe_seconds": null,
+      "initial_independent_correctness": "UNOBSERVED",
+      "final_independent_correctness": "UNOBSERVED",
+      "frozen_initial_grade": null,
+      "frozen_final_grade": null,
+      "frozen_cases": null,
+      "stages": []
+    },
+    {
+      "sequence": 17,
+      "task": "cache-expiry",
+      "arm": "C",
+      "status": "NOT_EXECUTED",
+      "initial_candidate": null,
+      "final_candidate": null,
+      "correction": {
+        "attempted": false
+      },
+      "total_seconds": null,
+      "grading_seconds": null,
+      "probe_seconds": null,
+      "initial_independent_correctness": "UNOBSERVED",
+      "final_independent_correctness": "UNOBSERVED",
+      "frozen_initial_grade": null,
+      "frozen_final_grade": null,
+      "frozen_cases": null,
+      "stages": []
+    },
+    {
+      "sequence": 18,
+      "task": "cache-expiry",
+      "arm": "B",
+      "status": "NOT_EXECUTED",
+      "initial_candidate": null,
+      "final_candidate": null,
+      "correction": {
+        "attempted": false
+      },
+      "total_seconds": null,
+      "grading_seconds": null,
+      "probe_seconds": null,
+      "initial_independent_correctness": "UNOBSERVED",
+      "final_independent_correctness": "UNOBSERVED",
+      "frozen_initial_grade": null,
+      "frozen_final_grade": null,
+      "frozen_cases": null,
+      "stages": []
+    },
+    {
+      "sequence": 19,
+      "task": "atomic-export",
+      "arm": "B",
+      "status": "NOT_EXECUTED",
+      "initial_candidate": null,
+      "final_candidate": null,
+      "correction": {
+        "attempted": false
+      },
+      "total_seconds": null,
+      "grading_seconds": null,
+      "probe_seconds": null,
+      "initial_independent_correctness": "UNOBSERVED",
+      "final_independent_correctness": "UNOBSERVED",
+      "frozen_initial_grade": null,
+      "frozen_final_grade": null,
+      "frozen_cases": null,
+      "stages": []
+    },
+    {
+      "sequence": 20,
+      "task": "atomic-export",
+      "arm": "D",
+      "status": "NOT_EXECUTED",
+      "initial_candidate": null,
+      "final_candidate": null,
+      "correction": {
+        "attempted": false
+      },
+      "total_seconds": null,
+      "grading_seconds": null,
+      "probe_seconds": null,
+      "initial_independent_correctness": "UNOBSERVED",
+      "final_independent_correctness": "UNOBSERVED",
+      "frozen_initial_grade": null,
+      "frozen_final_grade": null,
+      "frozen_cases": null,
+      "stages": []
+    },
+    {
+      "sequence": 21,
+      "task": "atomic-export",
+      "arm": "C",
+      "status": "NOT_EXECUTED",
+      "initial_candidate": null,
+      "final_candidate": null,
+      "correction": {
+        "attempted": false
+      },
+      "total_seconds": null,
+      "grading_seconds": null,
+      "probe_seconds": null,
+      "initial_independent_correctness": "UNOBSERVED",
+      "final_independent_correctness": "UNOBSERVED",
+      "frozen_initial_grade": null,
+      "frozen_final_grade": null,
+      "frozen_cases": null,
+      "stages": []
+    },
+    {
+      "sequence": 22,
+      "task": "safe-zip",
+      "arm": "C",
+      "status": "NOT_EXECUTED",
+      "initial_candidate": null,
+      "final_candidate": null,
+      "correction": {
+        "attempted": false
+      },
+      "total_seconds": null,
+      "grading_seconds": null,
+      "probe_seconds": null,
+      "initial_independent_correctness": "UNOBSERVED",
+      "final_independent_correctness": "UNOBSERVED",
+      "frozen_initial_grade": null,
+      "frozen_final_grade": null,
+      "frozen_cases": null,
+      "stages": []
+    },
+    {
+      "sequence": 23,
+      "task": "safe-zip",
+      "arm": "B",
+      "status": "NOT_EXECUTED",
+      "initial_candidate": null,
+      "final_candidate": null,
+      "correction": {
+        "attempted": false
+      },
+      "total_seconds": null,
+      "grading_seconds": null,
+      "probe_seconds": null,
+      "initial_independent_correctness": "UNOBSERVED",
+      "final_independent_correctness": "UNOBSERVED",
+      "frozen_initial_grade": null,
+      "frozen_final_grade": null,
+      "frozen_cases": null,
+      "stages": []
+    },
+    {
+      "sequence": 24,
+      "task": "safe-zip",
+      "arm": "D",
+      "status": "NOT_EXECUTED",
+      "initial_candidate": null,
+      "final_candidate": null,
+      "correction": {
+        "attempted": false
+      },
+      "total_seconds": null,
+      "grading_seconds": null,
+      "probe_seconds": null,
+      "initial_independent_correctness": "UNOBSERVED",
+      "final_independent_correctness": "UNOBSERVED",
+      "frozen_initial_grade": null,
+      "frozen_final_grade": null,
+      "frozen_cases": null,
+      "stages": []
+    }
+  ],
+  "arms": {
+    "A": {
+      "assigned": 6,
+      "executed": 6,
+      "unexecuted": 0,
+      "confirmed_correct": 5,
+      "confirmed_defective": 0,
+      "disputed_grades": 1,
+      "observed_success_rate": null,
+      "rate_over_all_assigned": null,
+      "rate_reason": "One oracle expectation is unsupported by the request",
+      "seconds": 483.66946525033563,
+      "grading_seconds": 3.986054790671915,
+      "models": {
+        "gpt-6-luna": {
+          "native_turns": 6,
+          "tokens": {
+            "input_tokens": 1074085,
+            "cached_input_tokens": 882176,
+            "output_tokens": 43398,
+            "uncached_input_tokens": 191909
+          },
+          "seconds": 473.402312,
+          "tool_executions": 109,
+          "unknown_usage_stages": 0
+        },
+        "gpt-6.1-sol": {
+          "native_turns": 0,
+          "tokens": {
+            "input_tokens": 0,
+            "cached_input_tokens": 0,
+            "output_tokens": 0,
+            "uncached_input_tokens": 0
+          },
+          "seconds": 0,
+          "tool_executions": 0,
+          "unknown_usage_stages": 0
+        }
+      },
+      "actual_billing_usd": null,
+      "cost_per_independently_correct_delivery_usd": null
+    },
+    "B": {
+      "assigned": 6,
+      "executed": 0,
+      "unexecuted": 6,
+      "confirmed_correct": null,
+      "confirmed_defective": null,
+      "disputed_grades": 0,
+      "observed_success_rate": null,
+      "rate_over_all_assigned": null,
+      "rate_reason": "No observed deliveries",
+      "seconds": null,
+      "grading_seconds": null,
+      "models": {
+        "gpt-6-luna": {
+          "native_turns": 0,
+          "tokens": {
+            "input_tokens": 0,
+            "cached_input_tokens": 0,
+            "output_tokens": 0,
+            "uncached_input_tokens": 0
+          },
+          "seconds": 0,
+          "tool_executions": 0,
+          "unknown_usage_stages": 0
+        },
+        "gpt-6.1-sol": {
+          "native_turns": 0,
+          "tokens": {
+            "input_tokens": 0,
+            "cached_input_tokens": 0,
+            "output_tokens": 0,
+            "uncached_input_tokens": 0
+          },
+          "seconds": 0,
+          "tool_executions": 0,
+          "unknown_usage_stages": 0
+        }
+      },
+      "actual_billing_usd": null,
+      "cost_per_independently_correct_delivery_usd": null
+    },
+    "C": {
+      "assigned": 6,
+      "executed": 0,
+      "unexecuted": 6,
+      "confirmed_correct": null,
+      "confirmed_defective": null,
+      "disputed_grades": 0,
+      "observed_success_rate": null,
+      "rate_over_all_assigned": null,
+      "rate_reason": "No observed deliveries",
+      "seconds": null,
+      "grading_seconds": null,
+      "models": {
+        "gpt-6-luna": {
+          "native_turns": 0,
+          "tokens": {
+            "input_tokens": 0,
+            "cached_input_tokens": 0,
+            "output_tokens": 0,
+            "uncached_input_tokens": 0
+          },
+          "seconds": 0,
+          "tool_executions": 0,
+          "unknown_usage_stages": 0
+        },
+        "gpt-6.1-sol": {
+          "native_turns": 0,
+          "tokens": {
+            "input_tokens": 0,
+            "cached_input_tokens": 0,
+            "output_tokens": 0,
+            "uncached_input_tokens": 0
+          },
+          "seconds": 0,
+          "tool_executions": 0,
+          "unknown_usage_stages": 0
+        }
+      },
+      "actual_billing_usd": null,
+      "cost_per_independently_correct_delivery_usd": null
+    },
+    "D": {
+      "assigned": 6,
+      "executed": 0,
+      "unexecuted": 6,
+      "confirmed_correct": null,
+      "confirmed_defective": null,
+      "disputed_grades": 0,
+      "observed_success_rate": null,
+      "rate_over_all_assigned": null,
+      "rate_reason": "No observed deliveries",
+      "seconds": null,
+      "grading_seconds": null,
+      "models": {
+        "gpt-6-luna": {
+          "native_turns": 0,
+          "tokens": {
+            "input_tokens": 0,
+            "cached_input_tokens": 0,
+            "output_tokens": 0,
+            "uncached_input_tokens": 0
+          },
+          "seconds": 0,
+          "tool_executions": 0,
+          "unknown_usage_stages": 0
+        },
+        "gpt-6.1-sol": {
+          "native_turns": 0,
+          "tokens": {
+            "input_tokens": 0,
+            "cached_input_tokens": 0,
+            "output_tokens": 0,
+            "uncached_input_tokens": 0
+          },
+          "seconds": 0,
+          "tool_executions": 0,
+          "unknown_usage_stages": 0
+        }
+      },
+      "actual_billing_usd": null,
+      "cost_per_independently_correct_delivery_usd": null
+    }
+  },
+  "campaign_seconds": 483.6793071660213,
+  "preparation_seconds": 14.947829084005207,
+  "qualification_seconds": 98.17983558308333,
+  "post_study_diagnostic_seconds": 3.371318166144192,
+  "recovery_observed": false,
+  "paired_comparisons": null,
+  "recommendations": {
+    "Proofline": "INCONCLUSIVE",
+    "selective_Sol": "INCONCLUSIVE"
+  },
+  "accounting_limits": "Billing, authoring time/tokens/cost and active human time unknown. Post-study diagnostics are separate from primary assignment budgets.",
+  "presentation": "Raw frozen outcomes remain in raw-evidence.zip. Null rates mean unobserved or disputed, never 0% success. Cache was not regraded."
+}

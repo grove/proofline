@@ -1,0 +1,218 @@
+{
+  "model_dispatches": 0,
+  "worker": {
+    "assessment": {
+      "status": "OBSERVED",
+      "observations": {
+        "nonce": "ce52ad51717645cc8ea74a45e967322c",
+        "writes": {
+          "source": "denied",
+          "input": "denied",
+          "candidate": "allowed",
+          "git_head": "denied",
+          "receipt": "denied"
+        },
+        "reads": {
+          "receipt-canary": "denied",
+          "oracle-canary": "denied",
+          "other-role-canary": "denied",
+          "actual_oracle": "denied",
+          "matched_oracle": "denied",
+          "grader": "denied",
+          "study_results": "denied",
+          "enclosing_repository": "denied",
+          "sibling": "denied"
+        },
+        "mode_change": "allowed",
+        "scratch": true,
+        "network": "denied"
+      }
+    },
+    "receipt": {
+      "kind": "process_probe",
+      "invocation_id": "3560bcc8-8533-40ce-bffa-4d68bbe262f3",
+      "argv": [
+        "/opt/homebrew/bin/codex",
+        "--no-daemon",
+        "-c",
+        "permissions.proofline={\"filesystem\"={\":minimal\"=\"read\",\"/opt/homebrew/Cellar/python@3.14/3.14.8_2/Frameworks/Python.framework/Versions/3.14\"=\"read\",\"/opt/homebrew/opt/python@3.14/Frameworks/Python.framework/Versions/3.14\"=\"read\",\"/opt/homebrew/opt/python@3.14/bin/python3.14\"=\"read\",\"/opt/homebrew/Cellar/python@3.14/3.14.8_2/Frameworks/Python.framework/Versions/3.14/bin/python3.14\"=\"read\",\"/Users/grove/projects/proofline/.proofline/issue34-recovery-v1/qualification/seed\"=\"read\",\"/Users/grove/projects/proofline/.proofline/issue34-recovery-v1/qualification/worker/scratch\"=\"write\",\"/Users/grove/projects/proofline/.proofline/issue34-recovery-v1/qualification/worker/private\"=\"deny\",\"/opt/homebrew\"=\"read\",\"/Library/Developer/CommandLineTools/usr/bin\"=\"read\",\"/Library/Developer/CommandLineTools/usr/libexec/git-core\"=\"read\",\"/opt/homebrew/bin/codex\"=\"read\",\"/opt/homebrew/Caskroom/codex/0.162.1/bin/codex\"=\"read\",\"/Users/grove/projects/proofline/.proofline/issue34-recovery-v1/qualification/seed/product\"=\"write\",\"/Users/grove/projects/proofline/.proofline/issue34-recovery-v1/qualification/seed/product/.git\"=\"read\"},\"network\"={\"enabled\"=false}}",
+        "sandbox",
+        "--permission-profile",
+        "proofline",
+        "--include-managed-config",
+        "--cd",
+        "/Users/grove/projects/proofline/.proofline/issue34-recovery-v1/qualification/worker/scratch",
+        "--",
+        "/opt/homebrew/Cellar/python@3.14/3.14.8_2/Frameworks/Python.framework/Versions/3.14/bin/python3.14",
+        "-I",
+        "-B",
+        "/Users/grove/projects/proofline/.proofline/issue34-recovery-v1/qualification/seed/canary.py",
+        "/Users/grove/projects/proofline/.proofline/issue34-recovery-v1/qualification/seed/canary.json"
+      ],
+      "cwd": "/Users/grove/projects/proofline/.proofline/issue34-recovery-v1/qualification/worker/scratch",
+      "exit_code": 0,
+      "timed_out": false,
+      "stdout": "{\"nonce\": \"ce52ad51717645cc8ea74a45e967322c\", \"writes\": {\"source\": \"denied\", \"input\": \"denied\", \"candidate\": \"allowed\", \"git_head\": \"denied\", \"receipt\": \"denied\"}, \"reads\": {\"receipt-canary\": \"denied\", \"oracle-canary\": \"denied\", \"other-role-canary\": \"denied\", \"actual_oracle\": \"denied\", \"matched_oracle\": \"denied\", \"grader\": \"denied\", \"study_results\": \"denied\", \"enclosing_repository\": \"denied\", \"sibling\": \"denied\"}, \"mode_change\": \"allowed\", \"scratch\": true, \"network\": \"denied\"}\n",
+      "stderr": "",
+      "elapsed_seconds": 0.090964
+    }
+  },
+  "reader": {
+    "assessment": {
+      "status": "OBSERVED",
+      "observations": {
+        "nonce": "920e09a57d96442cbeee9fa11083dccf",
+        "writes": {
+          "source": "denied",
+          "input": "denied",
+          "candidate": "denied",
+          "git_head": "denied",
+          "receipt": "denied"
+        },
+        "reads": {
+          "receipt-canary": "denied",
+          "oracle-canary": "denied",
+          "other-role-canary": "denied",
+          "actual_oracle": "denied",
+          "matched_oracle": "denied",
+          "grader": "denied",
+          "study_results": "denied",
+          "enclosing_repository": "denied",
+          "sibling": "denied"
+        },
+        "mode_change": "denied",
+        "scratch": true,
+        "network": "denied"
+      },
+      "inputs_unchanged": true,
+      "scope": "native process canaries only; no model or external-tool qualification"
+    },
+    "receipt": {
+      "kind": "process_probe",
+      "invocation_id": "fa38b3a9-a353-4025-b966-e7eb9c0bdc36",
+      "argv": [
+        "/opt/homebrew/bin/codex",
+        "--no-daemon",
+        "-c",
+        "permissions.proofline_s0_d9f03a4a15dd4c4d96808b189a0a5a59={\"filesystem\"={\":minimal\"=\"read\",\"/opt/homebrew/Cellar/python@3.14/3.14.8_2/Frameworks/Python.framework/Versions/3.14\"=\"read\",\"/opt/homebrew/opt/python@3.14/Frameworks/Python.framework/Versions/3.14\"=\"read\",\"/opt/homebrew/opt/python@3.14/bin/python3.14\"=\"read\",\"/opt/homebrew/Cellar/python@3.14/3.14.8_2/Frameworks/Python.framework/Versions/3.14/bin/python3.14\"=\"read\",\"/Users/grove/projects/proofline/.proofline/issue34-recovery-v1/qualification/seed\"=\"read\",\"/Users/grove/projects/proofline/.proofline/issue34-recovery-v1/qualification/reader/scratch\"=\"write\",\"/Users/grove/projects/proofline/.proofline/issue34-recovery-v1/qualification/reader/private\"=\"deny\",\"/opt/homebrew\"=\"read\",\"/Library/Developer/CommandLineTools/usr/bin\"=\"read\",\"/Library/Developer/CommandLineTools/usr/libexec/git-core\"=\"read\"},\"network\"={\"enabled\"=false}}",
+        "sandbox",
+        "--permission-profile",
+        "proofline_s0_d9f03a4a15dd4c4d96808b189a0a5a59",
+        "--include-managed-config",
+        "--cd",
+        "/Users/grove/projects/proofline/.proofline/issue34-recovery-v1/qualification/reader/scratch",
+        "--",
+        "/opt/homebrew/Cellar/python@3.14/3.14.8_2/Frameworks/Python.framework/Versions/3.14/bin/python3.14",
+        "-I",
+        "-B",
+        "/Users/grove/projects/proofline/.proofline/issue34-recovery-v1/qualification/seed/canary.py",
+        "/Users/grove/projects/proofline/.proofline/issue34-recovery-v1/qualification/seed/canary.json"
+      ],
+      "cwd": "/Users/grove/projects/proofline/.proofline/issue34-recovery-v1/qualification/reader/scratch",
+      "exit_code": 0,
+      "timed_out": false,
+      "stdout": "{\"nonce\": \"920e09a57d96442cbeee9fa11083dccf\", \"writes\": {\"source\": \"denied\", \"input\": \"denied\", \"candidate\": \"denied\", \"git_head\": \"denied\", \"receipt\": \"denied\"}, \"reads\": {\"receipt-canary\": \"denied\", \"oracle-canary\": \"denied\", \"other-role-canary\": \"denied\", \"actual_oracle\": \"denied\", \"matched_oracle\": \"denied\", \"grader\": \"denied\", \"study_results\": \"denied\", \"enclosing_repository\": \"denied\", \"sibling\": \"denied\"}, \"mode_change\": \"denied\", \"scratch\": true, \"network\": \"denied\"}\n",
+      "stderr": "",
+      "elapsed_seconds": 0.203008
+    }
+  },
+  "delivery": [
+    {
+      "task": "report-columns",
+      "variant": "reference",
+      "B": "CHECKS PASSED",
+      "C": "CHECKS PASSED",
+      "B_eligible": false,
+      "C_eligible": false
+    },
+    {
+      "task": "report-columns",
+      "variant": "defective",
+      "B": "CHECKS FAILED",
+      "C": "CHECKS FAILED",
+      "B_eligible": true,
+      "C_eligible": true
+    },
+    {
+      "task": "config-overlay",
+      "variant": "reference",
+      "B": "CHECKS PASSED",
+      "C": "CHECKS PASSED",
+      "B_eligible": false,
+      "C_eligible": false
+    },
+    {
+      "task": "config-overlay",
+      "variant": "defective",
+      "B": "CHECKS FAILED",
+      "C": "CHECKS FAILED",
+      "B_eligible": true,
+      "C_eligible": true
+    },
+    {
+      "task": "retry-policy",
+      "variant": "reference",
+      "B": "CHECKS PASSED",
+      "C": "CHECKS PASSED",
+      "B_eligible": false,
+      "C_eligible": false
+    },
+    {
+      "task": "retry-policy",
+      "variant": "defective",
+      "B": "CHECKS FAILED",
+      "C": "CHECKS FAILED",
+      "B_eligible": true,
+      "C_eligible": true
+    },
+    {
+      "task": "cache-expiry",
+      "variant": "reference",
+      "B": "CHECKS PASSED",
+      "C": "CHECKS PASSED",
+      "B_eligible": false,
+      "C_eligible": false
+    },
+    {
+      "task": "cache-expiry",
+      "variant": "defective",
+      "B": "CHECKS FAILED",
+      "C": "CHECKS FAILED",
+      "B_eligible": true,
+      "C_eligible": true
+    },
+    {
+      "task": "atomic-export",
+      "variant": "reference",
+      "B": "CHECKS PASSED",
+      "C": "CHECKS PASSED",
+      "B_eligible": false,
+      "C_eligible": false
+    },
+    {
+      "task": "atomic-export",
+      "variant": "defective",
+      "B": "CHECKS FAILED",
+      "C": "CHECKS FAILED",
+      "B_eligible": true,
+      "C_eligible": true
+    },
+    {
+      "task": "safe-zip",
+      "variant": "reference",
+      "B": "CHECKS PASSED",
+      "C": "CHECKS PASSED",
+      "B_eligible": false,
+      "C_eligible": false
+    },
+    {
+      "task": "safe-zip",
+      "variant": "defective",
+      "B": "CHECKS FAILED",
+      "C": "CHECKS FAILED",
+      "B_eligible": true,
+      "C_eligible": true
+    }
+  ],
+  "native_controls_matched": true
+}
