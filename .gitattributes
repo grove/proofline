@@ -1,4 +1,4 @@
 # Exact producer bundle bytes must survive checkout line-ending settings.
 tests/fixtures/intentline/** -text
 evaluation/issue52/fixtures/** -text whitespace=cr-at-eol
-evaluation/issue52/replacement-sources/** -text
+evaluation/issue52/replacement-sources/** -text whitespace=cr-at-eol
