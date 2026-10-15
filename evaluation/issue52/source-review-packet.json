@@ -1,0 +1,198 @@
+{
+  "schema_version": 1,
+  "study_id": "proofline-52-phase3-review-packet",
+  "status": "PRELIMINARY_COVERAGE_GAPS_NOT_INDEPENDENT_APPROVAL",
+  "provenance": "Preparation assistant, separate from any coding worker but not an independent human reviewer",
+  "live_dispatch_allowed": false,
+  "findings_total": 16,
+  "source_reviews": [
+    {
+      "task": "feedback",
+      "source_file": "evaluation/issue52/requests/feedback.md",
+      "source_blob_sha": "7a4c35f077b9c5712a6f3d0280097c4cf9cc8f82",
+      "semantic_qualification": "NOT_QUALIFIED",
+      "whole_source_inventory": "NOT_COMPLETED",
+      "candidate_grading": "NOT_PERFORMED",
+      "findings": [
+        {
+          "id": "F1",
+          "source_fragment": "supported managed `run` output",
+          "phase2_control_limitation": "Module-helper probes, no task-specific managed-run output",
+          "review_required": "Protected actual managed output and receipt readback with no new worker",
+          "valid_alternatives": "Equivalent structured output allowed",
+          "proposal_status": "UNREVIEWED_COVERAGE_GAP",
+          "independent_review": null
+        },
+        {
+          "id": "F2",
+          "source_fragment": "frozen candidate/source identity",
+          "phase2_control_limitation": "Probe uses placeholder tree/commit",
+          "review_required": "Verify actual tree/source/argv/readback binding with native receipts",
+          "valid_alternatives": "Equivalent immutable identity representation",
+          "proposal_status": "UNREVIEWED_COVERAGE_GAP",
+          "independent_review": null
+        },
+        {
+          "id": "F3",
+          "source_fragment": "correct status re-read",
+          "phase2_control_limitation": "No stored status re-read on #14 implementation",
+          "review_required": "Model-free check/status on same candidate, then tamper receipt",
+          "valid_alternatives": "Unknown/stale or integrity error",
+          "proposal_status": "UNREVIEWED_COVERAGE_GAP",
+          "independent_review": null
+        },
+        {
+          "id": "F4",
+          "source_fragment": "report the affected `R` IDs alongside actual command receipts",
+          "phase2_control_limitation": "Optional #13 mapping amendment not covered by #14 controls",
+          "review_required": "Bind R IDs to native failures, unlinked stays NOT DEMONSTRATED",
+          "valid_alternatives": "No mandatory Intentline",
+          "proposal_status": "UNREVIEWED_COVERAGE_GAP",
+          "independent_review": null
+        }
+      ]
+    },
+    {
+      "task": "promise-mapping",
+      "source_file": "evaluation/issue52/requests/promise-mapping.md",
+      "source_blob_sha": "a8ccd10400d3e58642c325263e3d83c6fd9c1fff",
+      "semantic_qualification": "NOT_QUALIFIED",
+      "whole_source_inventory": "NOT_COMPLETED",
+      "candidate_grading": "NOT_PERFORMED",
+      "findings": [
+        {
+          "id": "M1",
+          "source_fragment": "Preserve and display the full original request",
+          "phase2_control_limitation": "Mock record doesn't demonstrate real full-source readback",
+          "review_required": "Freeze source bytes; check public status displays full source",
+          "valid_alternatives": "Formatting may differ",
+          "proposal_status": "UNREVIEWED_COVERAGE_GAP",
+          "independent_review": null
+        },
+        {
+          "id": "M2",
+          "source_fragment": "optional step by the same existing coding agent",
+          "phase2_control_limitation": "No live source reread/gap proposal evidence",
+          "review_required": "Score agent gap proposals separately from oracle",
+          "valid_alternatives": "No artificial gap expected",
+          "proposal_status": "UNREVIEWED_COVERAGE_GAP",
+          "independent_review": null
+        },
+        {
+          "id": "M3",
+          "source_fragment": "valid green existing suite but source's Unicode promise left uncovered",
+          "phase2_control_limitation": "Green defect differs from specified Unicode example",
+          "review_required": "Adjudicate equivalence, or exercise Unicode source obligation",
+          "valid_alternatives": "Alternative source constraints require review",
+          "proposal_status": "UNREVIEWED_COVERAGE_GAP",
+          "independent_review": null
+        },
+        {
+          "id": "M4",
+          "source_fragment": "forged command link, failed check, unavailable sandbox, stale receipt",
+          "phase2_control_limitation": "No native task-specific tamper/candidate swap",
+          "review_required": "Model-free native status after input and evidence mutation",
+          "valid_alternatives": "No undocumented exception class",
+          "proposal_status": "UNREVIEWED_COVERAGE_GAP",
+          "independent_review": null
+        }
+      ]
+    },
+    {
+      "task": "intentline-adapter",
+      "source_file": "evaluation/issue52/requests/intentline-adapter.md",
+      "source_blob_sha": "950c05fee5b0a9bbec04942d871f8793f0b547d1",
+      "semantic_qualification": "NOT_QUALIFIED",
+      "whole_source_inventory": "NOT_COMPLETED",
+      "candidate_grading": "NOT_PERFORMED",
+      "findings": [
+        {
+          "id": "I1",
+          "source_fragment": "forged source quote, unsupported successor, swapped/changed contract",
+          "phase2_control_limitation": "Corrupted data != syntactically valid but unsupported revision",
+          "review_required": "Consistent-hash unsupported S2/lineage must reject",
+          "valid_alternatives": "Exact error spelling unprescribed",
+          "proposal_status": "UNREVIEWED_COVERAGE_GAP",
+          "independent_review": null
+        },
+        {
+          "id": "I2",
+          "source_fragment": "metadata/hashes/labels **never authenticate user consent**",
+          "phase2_control_limitation": "A metadata field tested; forged approval/adoption not tested",
+          "review_required": "Test fabricated approval/adoption without granting publication or model effects",
+          "valid_alternatives": "Display as untrusted if explicitly labeled",
+          "proposal_status": "UNREVIEWED_COVERAGE_GAP",
+          "independent_review": null
+        },
+        {
+          "id": "I3",
+          "source_fragment": "lost evidence gaps, wrong candidate, and malicious paths/symlinks",
+          "phase2_control_limitation": "Only partial file-tamper helper checks",
+          "review_required": "Public opt-in CLI/status on different candidate, missing gap, hostile path",
+          "valid_alternatives": "Equivalent reject semantics",
+          "proposal_status": "UNREVIEWED_COVERAGE_GAP",
+          "independent_review": null
+        },
+        {
+          "id": "I4",
+          "source_fragment": "real round-trip on source and candidate",
+          "phase2_control_limitation": "Observed roundtrip is #16 fixture, not #23 whole-task candidate",
+          "review_required": "Qualify same source/candidate/check identity in subject task",
+          "valid_alternatives": "S1 revision 1 only",
+          "proposal_status": "UNREVIEWED_COVERAGE_GAP",
+          "independent_review": null
+        }
+      ]
+    },
+    {
+      "task": "next-check-hints",
+      "source_file": "evaluation/issue52/requests/next-check-hints.md",
+      "source_blob_sha": "26656f64a15f017f42be2c2cfcabc89fbf975fc4",
+      "semantic_qualification": "NOT_QUALIFIED",
+      "whole_source_inventory": "NOT_COMPLETED",
+      "candidate_grading": "NOT_PERFORMED",
+      "findings": [
+        {
+          "id": "H1",
+          "source_fragment": "top 3 gaps, with full detail in existing `report.json`",
+          "phase2_control_limitation": "No top-three and full-detail test",
+          "review_required": "Four plus unlinked rows, bounded summary, full JSON",
+          "valid_alternatives": "Equivalent concise output",
+          "proposal_status": "UNREVIEWED_COVERAGE_GAP",
+          "independent_review": null
+        },
+        {
+          "id": "H2",
+          "source_fragment": "`status` re-read reproduces the same evidence-grounded guidance",
+          "phase2_control_limitation": "Records hand-built; no actual persisted readback",
+          "review_required": "Check/status then mutate mapping/receipts; suppress stale hints",
+          "valid_alternatives": "Honest alternative wording",
+          "proposal_status": "UNREVIEWED_COVERAGE_GAP",
+          "independent_review": null
+        },
+        {
+          "id": "H3",
+          "source_fragment": "Existing `check`, `status`, `--promises`, `--intentline-export`, `--intentline-links`",
+          "phase2_control_limitation": "Task-specific public CLI compatibility untested",
+          "review_required": "Run model-free CLI flags matrix on actual candidate",
+          "valid_alternatives": "Default no planner",
+          "proposal_status": "UNREVIEWED_COVERAGE_GAP",
+          "independent_review": null
+        },
+        {
+          "id": "H4",
+          "source_fragment": "One short documented before/after example",
+          "phase2_control_limitation": "No task-specific docs audit",
+          "review_required": "Independently inspect documentation plus optional agent behavior",
+          "valid_alternatives": "Equivalent source-grounded example",
+          "proposal_status": "UNREVIEWED_COVERAGE_GAP",
+          "independent_review": null
+        }
+      ]
+    }
+  ],
+  "reviewer_name": null,
+  "reviewer_attestation": null,
+  "cohort_qualification": "NOT_QUALIFIED",
+  "warning": "Potential gaps in finite control coverage, not observed worker defects. Source citations do not establish entailment or full acceptance. Valid alternate implementations must be admitted."
+}
