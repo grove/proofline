@@ -301,6 +301,49 @@ Imported requirements begin **NOT DEMONSTRATED**. If you know which chosen check
 
 Replace the example Python path with the **exact path** actually used by `--command`. The adapter accepts only a canonical, complete, initial revision 1/schema 1 **single-S1** export, validating manifest hashes, contract, source bytes, quotes and check links. It rejects partial, amended, multi-source, noncanonical, tampered or symlinked exports. Exported data is never executed. Intentline's oracles, constraints, boundaries and `unapproved`/`operator_asserted_unverified` labels remain *advisory*, never external approval or push permission. `--promises` and `--intentline-export` are mutually exclusive. See [issue #23](https://github.com/grove/proofline/issues/23).
 
+### Optional next-check workflow for the existing coding agent
+
+`check` and `status` show next steps for the first three mapped evidence gaps;
+full citations, planning fields and remaining rows stay in `report.json`.
+An unlinked row surfaces existing source citations and **unverified** caller
+oracles or Intentline plans, boundaries, seams and gap reasons. Without a supplied
+plan, the summary explicitly says no expectation was inferred. A failed linked
+check instead points to actual failure receipts; unavailable checks call for
+restoring execution evidence. Stale records withhold plan hints and call for
+restoring intact inputs and receipts before rerunning.
+
+The already-running agent can inspect the imported R rows, validate their
+proposed expectations against the **full original request**, and select or
+author behavior-focused executable assertions, including negative and
+compatibility boundaries where proposed. Supply explicitly selected exact argv
+through the existing `--command`/`--checks` inputs and, optionally, associate
+them with R IDs using `--intentline-links` (or `--promises` for a direct mapping).
+Run `check`, inspect `status`, and revise/check again if needed. These hints
+are advisory data for the agent to assess, not commands to execute, established
+test oracles, or autonomous repair instructions.
+
+For example, suppose the original request covers valid login, invalid passwords,
+and lockout after five failures. R1/R2 have linked passing checks; R3 has no link
+but its imported plan proposes the fifth/sixth attempt and reset boundary.
+Previously the summary stopped at `R3 NOT DEMONSTRATED: No selected executable
+check linked`. An illustrative excerpt now adds:
+
+```text
+Promise evidence: 2/3 mapped rows have linked passing checks (limited); overall coverage UNKNOWN
+  R3 NOT DEMONSTRATED: No selected executable check linked
+    Source: inputs/source.md S1:3-3: "Lock the account after five failed attempts."
+    Proposed check focus (unverified Intentline plan): "Observe fifth/sixth attempt and reset"
+    Proposed boundaries/seam (unverified Intentline): "five failures; sixth attempt; reset"; "login interface"
+    Proposed oracle (unverified Intentline): "Sixth attempt rejected until reset"
+    Next: Validate proposed expectations against the full original request. Select/author an executable assertion, link its exact selected argv to R3, and rerun proofline check; passing remains limited evidence.
+```
+
+The agent's next step is to examine the lockout proposal and source, then choose
+an assertion and explicit link. This example claims no additional tests ran or
+correctness improved. Passing checks remain limited evidence;
+`coverage_completeness` stays **UNKNOWN**, including whether all source
+requirements were captured.
+
 ### Caller-supplied failure details
 
 If a checker already produced a specific case, optionally attach `--failure-details /private/failure-details.json`:

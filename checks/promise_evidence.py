@@ -280,6 +280,49 @@ def _summarize_mapping(record, mapping):
     return result
 
 
+def _hint_excerpt(value, limit=160):
+    # Quote advisory text so newlines and terminal controls cannot impersonate CLI output.
+    text = json.dumps(" ".join(value.split()), ensure_ascii=True)
+    return text if len(text) <= limit else text[:limit - 3] + "..."
+
+
+def _next_check_lines(row, stale):
+    if stale:
+        return ["    Next: Restore intact frozen inputs, mapping/import and receipts; "
+                "rerun proofline check for re-runnable evidence."]
+    if row["status"] == "CHECK FAILED":
+        return ["    Next: Diagnose the actual linked failure receipts and output in report.json; "
+                "validate expectations against the full original request before revising "
+                "and rerunning proofline check."]
+    if row["status"] == "CHECK UNAVAILABLE":
+        return ["    Next: Restore the linked execution boundary and re-runnable evidence; "
+                "rerun proofline check."]
+
+    ref = row["source_refs"][0]
+    lines = [f"    Source: inputs/source.md {ref['source_id']}:"
+             f"{ref['line_start']}-{ref['line_end']}: " + _hint_excerpt(ref["quote"], 120)]
+    plan = row.get("intentline_planning")
+    if plan:
+        lines.append("    Proposed check focus (unverified Intentline plan): " +
+                     _hint_excerpt(plan["planned_evidence"]))
+        lines.append("    Proposed boundaries/seam (unverified Intentline): " +
+                     _hint_excerpt("; ".join(plan["boundaries"]), 100) + "; " +
+                     _hint_excerpt(plan["seam"], 80))
+        if plan["evidence_gap_reasons"]:
+            lines.append("    Plan gap (unverified Intentline): " +
+                         _hint_excerpt("; ".join(plan["evidence_gap_reasons"])))
+    if "proposed_oracle" in row:
+        author = "Intentline" if plan else "caller"
+        lines.append(f"    Proposed oracle (unverified {author}): " +
+                     _hint_excerpt(row["proposed_oracle"]))
+    elif not plan:
+        lines.append("    No source-grounded check plan supplied; no expectation inferred.")
+    lines.append("    Next: Validate proposed expectations against the full original request. "
+                 "Select/author an executable assertion, link its exact selected argv to " +
+                 row["id"] + ", and rerun proofline check; passing remains limited evidence.")
+    return lines
+
+
 def format_lines(record, limit=3):
     evidence = summarize(record)
     if evidence is None:
@@ -300,6 +343,7 @@ def format_lines(record, limit=3):
                      " exclusion(s) retained; no external approval inferred")
     for row in not_demonstrated[:limit]:
         lines.append(f"  {row['id']} {row['status']}: {row['reason']}")
+        lines.extend(_next_check_lines(row, record.get("status") == "STALE CHECKS"))
     if len(not_demonstrated) > limit:
         lines.append(f"  ... {len(not_demonstrated) - limit} more; see report.json")
     review = evidence["same_agent_review"]

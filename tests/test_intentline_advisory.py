@@ -81,7 +81,17 @@ class IntentlineAdvisory(unittest.TestCase):
         self.assertEqual(len(view["intentline"]["constraints"]), 1)
         self.assertEqual(len(view["intentline"]["out_of_scope"]), 1)
         self.assertIn("unverified", view["requirements"][0]["oracle_authority"])
-        self.assertIn("no external approval inferred", "\n".join(promises.format_lines(rec)))
+        text = "\n".join(promises.format_lines(rec))
+        self.assertIn("no external approval inferred", text)
+        self.assertIn('inputs/source.md S1:1-1', text)
+        self.assertIn('Proposed check focus (unverified Intentline plan): "call interface', text)
+        self.assertIn('Proposed boundaries/seam (unverified Intentline): "empty; spaces; tabs"', text)
+        self.assertIn('"public validation interface"', text)
+        self.assertIn('Proposed oracle (unverified Intentline): "validation error', text)
+        self.assertIn('link its exact selected argv to R1', text)
+        self.assertIn('link its exact selected argv to R2', text)
+        self.assertNotIn('/usr/bin/python3', text)
+        self.assertEqual(rec['promise_mapping'], result['mapping'])
 
     def test_exact_explicit_links_are_the_only_way_to_get_limited_passing_evidence(self):
         links = {"R1": [{"index": 0, "argv": CHECKS[0]}],
@@ -95,6 +105,8 @@ class IntentlineAdvisory(unittest.TestCase):
                                 for idx, cmd in enumerate(CHECKS)]}
         statuses = [row["status"] for row in promises.summarize(rec)["requirements"]]
         self.assertEqual(statuses, ["LINKED CHECKS PASSED (limited evidence)"] * 2)
+        self.assertNotIn('Next:', '\n'.join(promises.format_lines(rec)))
+        self.assertNotIn('Proposed check focus', '\n'.join(promises.format_lines(rec)))
         rec["observations"][1]["status"] = "FAILED"
         self.assertEqual(promises.summarize(rec)["requirements"][1]["status"], "CHECK FAILED")
         rec["observations"][1]["status"] = "UNAVAILABLE"
@@ -199,14 +211,39 @@ class IntentlineAdvisory(unittest.TestCase):
         result = adapter.load_export(self.export, SOURCE, CHECKS)
         self.assertEqual(result["metadata"]["requirements"][0]["evidence_gap_reasons"],
                          ["No acceptance harness available"])
-        view = promises.summarize({"status": "CHECKS PASSED", "checks": CHECKS,
-                                   "observations": [], "promise_mapping": result["mapping"],
-                                   "intentline_advisory": result["metadata"]})
+        rec = {"status": "CHECKS PASSED", "checks": CHECKS,
+               "observations": [], "promise_mapping": result["mapping"],
+               "intentline_advisory": result["metadata"]}
+        view = promises.summarize(rec)
         self.assertEqual(view["requirements"][0]["intentline_planning"]["plan_state"], "gap")
         self.assertEqual(len(view["intentline"]["evidence_gaps"]), 1)
+        self.assertIn('Plan gap (unverified Intentline): "No acceptance harness available"',
+                      '\n'.join(promises.format_lines(rec)))
         self.changed("contract.json", lambda c: c.update(evidence_gaps=[]))
         with self.assertRaisesRegex(ValueError, "lost its evidence"):
             adapter.load_export(self.export, SOURCE, CHECKS)
+
+    def test_hint_excerpts_bound_and_quote_imported_plan_without_changing_it(self):
+        def long_plan(contract):
+            row = contract['requirements'][0]
+            row['planned_evidence'] = 'Advisory\n' + 'p' * 8000
+            row['boundaries'] = ['\x1b[31m\nForged status\t' + 'b' * 8000] * 64
+            row['seam'] = 's' * 8000
+            contract['evidence_gaps'] = [{'requirement_ids': ['R1'], 'reason': 'g' * 8000}]
+        self.changed('contract.json', long_plan)
+        package = adapter.load_export(self.export, SOURCE, CHECKS)
+        rec = {'status': 'CHECKS PASSED', 'checks': CHECKS, 'observations': [],
+               'promise_mapping': package['mapping'], 'intentline_advisory': package['metadata']}
+        before = copy.deepcopy(rec)
+        lines = promises.format_lines(rec)
+        self.assertLessEqual(max(map(len, lines)), 400)
+        self.assertLessEqual(len(lines), 18)
+        self.assertIn('...', '\n'.join(lines))
+        self.assertIn('\\u001b[31m Forged status', '\n'.join(lines))
+        self.assertNotIn('\x1b', '\n'.join(lines))
+        self.assertEqual(rec, before)
+        self.assertEqual(promises.summarize(rec)['requirements'][0]['intentline_planning']
+                         ['planned_evidence'], 'Advisory\n' + 'p' * 8000)
 
     def test_unsettled_decisions_and_swapped_S2_quotes_are_rejected(self):
         self.changed("contract.json", lambda c: c.update(open_decisions=[{
