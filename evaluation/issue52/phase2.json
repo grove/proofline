@@ -1,0 +1,215 @@
+{
+  "schema_version": 1,
+  "study_id": "proofline-52-phase2-controls-v1",
+  "phase1_study_id": "proofline-52-minimum-guidance-phase1",
+  "live_dispatch_allowed": false,
+  "independent_review": "PENDING",
+  "tasks": [
+    {
+      "id": "feedback",
+      "issue_number": 14,
+      "title": "[vNext 7/9] Return concise, actionable failure feedback to the coding agent",
+      "request_file": "evaluation/issue52/requests/feedback.md",
+      "source_blob_sha": "7a4c35f077b9c5712a6f3d0280097c4cf9cc8f82",
+      "base_commit": "5e6e1ec311b121fb990049076190866e75380cc5",
+      "reference_pr": 25,
+      "category": "ordinary-low-risk",
+      "source_url": "https://github.com/grove/proofline/issues/14",
+      "reference_solution_url": "https://github.com/grove/proofline/pull/25",
+      "reference_solution_exposure": "PUBLIC; forbidden to all worker contexts and native network",
+      "review_state": "PENDING_INDEPENDENT_SOURCE_REVIEW",
+      "oracle_state": "DRAFT_NOT_EXECUTABLE",
+      "control_state": "NOT_EXECUTED",
+      "risk_rationale": "Likely limited to feedback and receipt presentation; still requires negative/status cases",
+      "reference_commit": "78cdb5a966fcae3e77437612541745596c00a013",
+      "reference_tree": "0ed4d1bc3d8c616e93f6517a94667bd501059d23",
+      "source_review": "PENDING; finite probes are not a complete source audit",
+      "visible_argv": [
+        "<resolved-python>",
+        "-B",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "tests"
+      ],
+      "worker_solution_exposure": "Historical public replay; not unseen; approval/replacement before final live freeze required",
+      "base_tree": "e4138ed9804b1cba3348fc44f6011af73b2223de"
+    },
+    {
+      "id": "promise-mapping",
+      "issue_number": 13,
+      "title": "[vNext 6/9] Link source-grounded promises to checks and expose evidence gaps",
+      "request_file": "evaluation/issue52/requests/promise-mapping.md",
+      "source_blob_sha": "a8ccd10400d3e58642c325263e3d83c6fd9c1fff",
+      "base_commit": "78cdb5a966fcae3e77437612541745596c00a013",
+      "reference_pr": 26,
+      "category": "negative-and-compatibility",
+      "source_url": "https://github.com/grove/proofline/issues/13",
+      "reference_solution_url": "https://github.com/grove/proofline/pull/26",
+      "reference_solution_exposure": "PUBLIC; forbidden to all worker contexts and native network",
+      "review_state": "PENDING_INDEPENDENT_SOURCE_REVIEW",
+      "oracle_state": "DRAFT_NOT_EXECUTABLE",
+      "control_state": "NOT_EXECUTED",
+      "risk_rationale": "Hash/source identity and stale advisory status cannot be inferred from green commands",
+      "reference_commit": "a559a8046b4bdb590105106ba6e65dac8c3e4f7f",
+      "reference_tree": "07195ffa4940fcf371807c8d9131eab9012c4eb7",
+      "source_review": "PENDING; finite probes are not a complete source audit",
+      "visible_argv": [
+        "<resolved-python>",
+        "-B",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "tests"
+      ],
+      "worker_solution_exposure": "Historical public replay; not unseen; approval/replacement before final live freeze required",
+      "base_tree": "0ed4d1bc3d8c616e93f6517a94667bd501059d23"
+    },
+    {
+      "id": "intentline-adapter",
+      "issue_number": 23,
+      "title": "[vNext integration] Optional Intentline acceptance-to-evidence adapter",
+      "request_file": "evaluation/issue52/requests/intentline-adapter.md",
+      "source_blob_sha": "950c05fee5b0a9bbec04942d871f8793f0b547d1",
+      "base_commit": "a559a8046b4bdb590105106ba6e65dac8c3e4f7f",
+      "reference_pr": 27,
+      "category": "negative-and-compatibility",
+      "source_url": "https://github.com/grove/proofline/issues/23",
+      "reference_solution_url": "https://github.com/grove/proofline/pull/27",
+      "reference_solution_exposure": "PUBLIC; forbidden to all worker contexts and native network",
+      "review_state": "PENDING_INDEPENDENT_SOURCE_REVIEW",
+      "oracle_state": "DRAFT_NOT_EXECUTABLE",
+      "control_state": "NOT_EXECUTED",
+      "risk_rationale": "Untrusted export verification and existing-agent compatibility",
+      "reference_commit": "32b08893b71eed64e73199d1314f09d56a8a895d",
+      "reference_tree": "5343b06e76659272d5aa471a0ee0967ea11ffcbb",
+      "source_review": "PENDING; finite probes are not a complete source audit",
+      "visible_argv": [
+        "<resolved-python>",
+        "-B",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "tests"
+      ],
+      "worker_solution_exposure": "Historical public replay; not unseen; approval/replacement before final live freeze required",
+      "base_tree": "07195ffa4940fcf371807c8d9131eab9012c4eb7"
+    },
+    {
+      "id": "next-check-hints",
+      "issue_number": 50,
+      "title": "Make uncovered requirements actionable with optional next-check guidance",
+      "request_file": "evaluation/issue52/requests/next-check-hints.md",
+      "source_blob_sha": "26656f64a15f017f42be2c2cfcabc89fbf975fc4",
+      "base_commit": "80a4f09ebc0b2fa56e40f83f637800123307df68",
+      "reference_pr": 51,
+      "category": "negative-and-compatibility",
+      "source_url": "https://github.com/grove/proofline/issues/50",
+      "reference_solution_url": "https://github.com/grove/proofline/pull/51",
+      "reference_solution_exposure": "PUBLIC; forbidden to all worker contexts and native network",
+      "review_state": "PENDING_INDEPENDENT_SOURCE_REVIEW",
+      "oracle_state": "DRAFT_NOT_EXECUTABLE",
+      "control_state": "NOT_EXECUTED",
+      "risk_rationale": "Green selected checks may leave unlinked material obligations; stale vs missing check matters",
+      "reference_commit": "c28473d91fa2303fef242b265decb89207c1a12d",
+      "reference_tree": "acac8bb7a8170c407bda657662089c473ebc4776",
+      "source_review": "PENDING; finite probes are not a complete source audit",
+      "visible_argv": [
+        "<resolved-python>",
+        "-B",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "tests"
+      ],
+      "worker_solution_exposure": "Historical public replay; not unseen; approval/replacement before final live freeze required",
+      "base_tree": "d9888f3ca24c65784d65193e8528971be3c5f94f"
+    }
+  ],
+  "controls": {
+    "feedback": {
+      "alternative": [
+        {
+          "path": "checks/feedback.py",
+          "old": "lines = \" | \".join(part.strip() for part in raw.splitlines() if part.strip())",
+          "new": "lines = \" | \".join(filter(None, map(str.strip, raw.splitlines())))"
+        }
+      ],
+      "defective": [
+        {
+          "path": "checks/feedback.py",
+          "old": "row[\"observed\"] not in (receipt.get(\"stdout\", \"\") + \"\\n\" +\n                                    receipt.get(\"stderr\", \"\"))",
+          "new": "False"
+        }
+      ]
+    },
+    "promise-mapping": {
+      "alternative": [
+        {
+          "path": "checks/promise_evidence.py",
+          "old": "outcomes = []",
+          "new": "outcomes = set()"
+        },
+        {
+          "path": "checks/promise_evidence.py",
+          "old": "outcomes.append(entry.get(\"status\"))",
+          "new": "outcomes.add(entry.get(\"status\"))"
+        }
+      ],
+      "defective": [
+        {
+          "path": "checks/promise_evidence.py",
+          "old": "return (\"NOT DEMONSTRATED\", \"No selected executable check linked\")",
+          "new": "return (\"LINKED CHECKS PASSED (limited evidence)\", \"All selected commands passed\")"
+        }
+      ]
+    },
+    "intentline-adapter": {
+      "alternative": [
+        {
+          "path": "checks/intentline_advisory.py",
+          "old": "ids = {item[\"id\"] for item in rows}",
+          "new": "ids = set(map(lambda item: item[\"id\"], rows))"
+        }
+      ],
+      "defective": [
+        {
+          "path": "checks/intentline_advisory.py",
+          "old": "type(row[\"argv\"]) is not list or row[\"argv\"] != checks[n]",
+          "new": "type(row[\"argv\"]) is not list"
+        }
+      ]
+    },
+    "next-check-hints": {
+      "alternative": [
+        {
+          "path": "checks/promise_evidence.py",
+          "old": "return text if len(text) <= limit else text[:limit - 3] + \"...\"",
+          "new": "if len(text) > limit:\n        text = text[:limit - 3] + \"...\"\n    return text"
+        }
+      ],
+      "defective": [
+        {
+          "path": "checks/promise_evidence.py",
+          "old": "if stale:\n        return [\"    Next: Restore intact frozen inputs, mapping/import and receipts; \"",
+          "new": "if False:\n        return [\"    Next: Restore intact frozen inputs, mapping/import and receipts; \""
+        }
+      ]
+    }
+  },
+  "limits": {
+    "native_preflight_seconds": 1800,
+    "control_seconds": 30,
+    "existing_suite_seconds": 180,
+    "roundtrip_seconds": 180
+  },
+  "model_proposal": {
+    "model": "gpt-6-luna",
+    "model_reasoning_effort": "medium"
+  },
+  "scope": "Finite controls and boundary qualification, no coding runner or dispatch. Alternative controls are independently authored local rewrites, not independent whole-product implementations."
+}
