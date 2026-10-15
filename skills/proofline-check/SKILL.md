@@ -3,6 +3,14 @@ name: proofline-check
 description: After an existing coding agent implements a change, optionally run selected executable checks against a frozen candidate and report observed failures and missing evidence. The check-only mode invokes no models; managed coding and correction are opt-in.
 ---
 
+**Installation boundary:** `npx skills@latest add grove/proofline` installs this agent
+instruction, **not** the Proofline Python runtime. Before calling `check` or
+`run`, locate a complete local checkout containing `proofline.py` and
+`checks/` (see [setup](https://github.com/grove/proofline#get-started));
+use its actual absolute script path on a supported macOS host. If the
+runtime or native sandbox prerequisites are absent, report that limitation;
+never claim checks ran because the skill was installed.
+
 Use the [supported local runner](https://github.com/grove/proofline/blob/main/proofline.py) `check` command for existing
 agent work: **zero model dispatches**, **macOS**, Python 3.11+ and **Codex CLI
 0.162.1** (sandbox only; no model authentication needed). The optional `run`

@@ -101,6 +101,27 @@ A failed command is not always a code defect. A timeout, missing executable, tru
 
 Proofline includes **one optional agent skill**, [`proofline-check`](skills/proofline-check/SKILL.md), for an existing agent to use *after implementing code*. The skill documents check invocation, failure feedback, evidence gaps, and optional advanced paths; it is **not** a mandatory new agent or stage.
 
+
+### Install with the Skills CLI
+
+In your **target project** (or use `-g` for a user-level installation):
+
+```sh
+npx skills@latest add grove/proofline --list
+npx skills@latest add grove/proofline
+```
+
+The repository exposes **one** installable skill, `proofline-check`. The second command lets you choose your supported agent. For an unattended Codex installation, use:
+
+```sh
+npx skills@latest add grove/proofline --skill proofline-check -a codex -y
+```
+
+**Skill installation is not CLI installation.** `skills` copies the agent instructions, **not** `proofline.py`, the `checks/` modules, the required native Codex sandbox CLI, or project check dependencies. To execute checks, keep a complete Proofline checkout available (see [Get started](#get-started)) and invoke its `proofline.py` using an absolute path on the supported macOS host. The agent skill can guide an existing coding agent but cannot turn a missing runtime into a successful check.
+
+The old root [`SKILL.md`](SKILL.md) is a compatibility pointer without skill frontmatter; `skills` may warn that it skipped that file. It discovers the valid `skills/proofline-check/SKILL.md` instead. Do not install a second `proofline` alias.
+
+
 There is **one canonical directory**, `skills/proofline-check`, with two checked-in discovery symlinks pointing to it:
 
 | Agent | Path in this checkout | Explicit invocation |
@@ -108,7 +129,7 @@ There is **one canonical directory**, `skills/proofline-check`, with two checked
 | Codex | `.agents/skills/proofline-check` | `$proofline-check` |
 | Claude Code | `.claude/skills/proofline-check` | `/proofline-check` |
 
-Those discovery paths work when an agent is **working inside Proofline**. To use the skill while working in a *different* product repository, install it for your chosen agent. User-level symlinks on macOS/Linux:
+Those discovery paths work when an agent is **working inside Proofline**. The Skills CLI above is recommended for other repositories. Alternatively, use manual user-level symlinks on macOS/Linux:
 
 ```sh
 mkdir -p "$HOME/.agents/skills" "$HOME/.claude/skills"
