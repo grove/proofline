@@ -1,5 +1,10 @@
 # Issue #52 — Phase 1: preflight, not a live study
 
+Phase 2 now adds [executable model-free qualification](PHASE2.md) and
+[observed native controls and retained stops](../results/issue52-phase2/README.md).
+The original phase-1 worksheet below is preserved. Independent source/cohort
+review and live authorization remain pending; all coding slots are unexecuted.
+
 This directory is a **candidate declaration and qualification worksheet**, not an
 approved or executed experiment. It introduces no production workflow, coding
 model dispatch, native sandbox execution, expense or claim of improved quality.
