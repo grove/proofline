@@ -59,7 +59,84 @@ class SourceBoundMapping(unittest.TestCase):
         lines = "\n".join(promises.format_lines(record(normalized, ["PASSED", "PASSED"])))
         self.assertIn("R2 NOT DEMONSTRATED", lines)
         self.assertIn("coverage UNKNOWN", lines)
+        self.assertIn('inputs/source.md S1:2-2', lines)
+        self.assertIn('Proposed oracle (unverified caller)', lines)
+        self.assertIn('Jos', lines)
+        self.assertIn('full original request', lines)
+        self.assertIn('Select/author an executable assertion', lines)
+        self.assertIn('link its exact selected argv to R2', lines)
+        self.assertIn('rerun proofline check', lines)
+        self.assertIn('passing remains limited evidence', lines)
         self.assertNotIn("100%", lines)
+
+    def test_missing_plan_is_explicit_without_invented_expectations(self):
+        mapping = example()
+        mapping['requirements'][1].pop('oracle')
+        normalized = promises.validate(mapping, SOURCE, CHECKS)
+        rec = record(normalized, ['PASSED', 'PASSED'])
+        lines = '\n'.join(promises.format_lines(rec))
+        self.assertIn('No source-grounded check plan supplied', lines)
+        self.assertNotIn('Proposed', lines)
+        self.assertNotIn('José', lines)
+        self.assertNotIn('/usr/bin/python', lines)
+        self.assertEqual(promises.summarize(rec)['coverage_completeness'], 'UNKNOWN')
+
+    def test_failed_unavailable_and_stale_guidance_follow_receipts(self):
+        mapping = example()
+        mapping['requirements'] = [mapping['requirements'][0]]
+        normalized = promises.validate(mapping, SOURCE, CHECKS)
+        cases = [
+            ('CHECKS FAILED', ['FAILED'], 'Diagnose the actual linked failure', 'CHECK FAILED'),
+            ('CHECKS UNAVAILABLE', ['UNAVAILABLE'], 'Restore the linked execution boundary',
+             'CHECK UNAVAILABLE'),
+            ('CHECKS UNAVAILABLE', [], 'Restore the linked execution boundary', 'CHECK UNAVAILABLE'),
+            ('EXECUTION UNAVAILABLE', [], 'Restore the linked execution boundary', 'CHECK UNAVAILABLE'),
+            ('STALE CHECKS', ['PASSED'], 'Restore intact frozen inputs', 'NOT DEMONSTRATED'),
+        ]
+        for status, observations, action, state in cases:
+            with self.subTest(status=status, observations=observations):
+                lines = '\n'.join(promises.format_lines(record(normalized, observations, status)))
+                self.assertIn(action, lines)
+                self.assertIn('R1 ' + state, lines)
+                self.assertNotIn('Select/author', lines)
+                self.assertNotIn('No selected executable check linked', lines)
+
+    def test_stale_unlinked_rows_withhold_untrusted_plan_and_citations(self):
+        normalized = promises.validate(example(), SOURCE, CHECKS)
+        normalized['requirements'][1]['oracle'] = 'tampered suggestion'
+        rec = record(normalized, ['PASSED', 'PASSED'], 'STALE CHECKS')
+        lines = '\n'.join(promises.format_lines(rec))
+        self.assertIn('Restore intact frozen inputs', lines)
+        self.assertNotIn('tampered suggestion', lines)
+        self.assertNotIn('inputs/source.md', lines)
+        self.assertNotIn('Select/author', lines)
+
+    def test_mapping_free_and_all_linked_pass_output_stays_concise(self):
+        self.assertEqual(promises.format_lines({'status': 'CHECKS PASSED'}), [])
+        mapping = example()
+        mapping['requirements'].pop(1)
+        normalized = promises.validate(mapping, SOURCE, CHECKS)
+        self.assertEqual(promises.format_lines(record(normalized, ['PASSED', 'PASSED'])), [
+            'Promise evidence: 2/2 mapped rows have linked passing checks (limited); '
+            'overall coverage UNKNOWN'])
+
+    def test_output_limits_rows_and_untrusted_multiline_text(self):
+        mapping = example()
+        template = mapping['requirements'][1]
+        mapping['requirements'] = [{**template, 'id': f'R{i}',
+                                    'oracle': 'Advisory\n' + 'x' * 1500}
+                                   for i in range(1, 65)]
+        normalized = promises.validate(mapping, SOURCE, CHECKS)
+        rec = record(normalized, ['PASSED', 'PASSED'])
+        lines = promises.format_lines(rec)
+        self.assertEqual(sum('NOT DEMONSTRATED:' in line for line in lines), 3)
+        self.assertIn('61 more; see report.json', lines[-1])
+        self.assertLessEqual(max(map(len, lines)), 400)
+        self.assertLessEqual(len(lines), 20)
+        self.assertIn('...', '\n'.join(lines))
+        self.assertEqual(len(promises.summarize(rec)['requirements'][0]['proposed_oracle']), 1509)
+        limited = promises.format_lines(rec, limit=1)
+        self.assertEqual(sum('NOT DEMONSTRATED:' in line for line in limited), 1)
 
     def test_one_failed_and_one_unavailable_check_are_distinct(self):
         normalized = promises.validate(example(), SOURCE, CHECKS)

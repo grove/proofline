@@ -430,6 +430,10 @@ class CheckOnlyTests(unittest.TestCase):
         self.assertEqual(stale['promise_evidence']['coverage_completeness'], 'UNKNOWN')
         self.assertTrue(all(row['status'] == 'NOT DEMONSTRATED'
                             for row in stale['promise_evidence']['requirements']))
+        stale_text = '\n'.join(promises.format_lines(stale))
+        self.assertIn('Restore intact frozen inputs', stale_text)
+        self.assertNotIn('Proposed oracle', stale_text)
+        self.assertNotIn('Select/author', stale_text)
         source.write_bytes(original)
         self.assertEqual(runner.inspect(path)['status'], 'CHECKS PASSED')
         candidate = Path(result['candidate_path'])/'tiny.py'
@@ -468,6 +472,7 @@ class CheckOnlyTests(unittest.TestCase):
         self.assertEqual(result['status'], 'CHECKS PASSED')
         self.assertNotIn('promise_mapping', result)
         self.assertNotIn('promise_evidence', result)
+        self.assertEqual(promises.format_lines(result), [])
         proc = subprocess.run([sys.executable, '-B',
                                str(runner.host.ROOT/'proofline.py'), 'status',
                                str(self.output/'report.json'), '--show-source'],
@@ -531,14 +536,24 @@ class CheckOnlyTests(unittest.TestCase):
         record = self.output/'report.json'
         self.assertEqual(result['status'], 'CHECKS PASSED')
         self.assertEqual(result['promise_evidence']['requirements'][0]['status'], 'NOT DEMONSTRATED')
+        guidance = promises.format_lines(result)
+        self.assertIn('Proposed check focus (unverified Intentline plan)', '\n'.join(guidance))
+        self.assertIn('link its exact selected argv to R1', '\n'.join(guidance))
+        self.assertEqual(promises.format_lines(runner.inspect(record)), guidance)
+        proc = subprocess.run([sys.executable, '-B', str(runner.host.ROOT/'proofline.py'),
+                               'status', str(record)], capture_output=True, text=True, timeout=15)
+        self.assertEqual(proc.returncode, 0, proc.stderr)
+        self.assertIn('\n'.join(guidance), proc.stdout)
         shutil.rmtree(producer)
         self.assertEqual(runner.inspect(record)['status'], 'CHECKS PASSED')
+        self.assertEqual(promises.format_lines(runner.inspect(record)), guidance)
         frozen = self.output/'intentline-export/contract.json'
         saved = frozen.read_bytes()
         frozen.write_bytes(b'{"forged":true}')
         self.assertEqual(runner.inspect(record)['status'], 'STALE CHECKS')
         self.assertEqual(runner.inspect(record)['promise_evidence']['requirements'][0]['status'],
                          'NOT DEMONSTRATED')
+        self.assertNotIn('Proposed check focus', '\n'.join(promises.format_lines(runner.inspect(record))))
         frozen.write_bytes(saved)
         self.assertEqual(runner.inspect(record)['status'], 'CHECKS PASSED')
         candidate = Path(result['candidate_path'])/'tiny.py'
