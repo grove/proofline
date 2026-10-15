@@ -1,0 +1,358 @@
+{
+  "schema_version": 1,
+  "study_id": "proofline-52-minimum-guidance-phase1",
+  "status": "DRAFT_UNREVIEWED",
+  "worker_access": "DENY; never mount this file or any control into a worker product tree",
+  "entries": [
+    {
+      "task": "feedback",
+      "status": "DRAFT_NOT_QUALIFIED",
+      "expectations": [
+        {
+          "id": "receipt",
+          "kind": "compatibility",
+          "source_clause": "- [ ] For each check, report exact argv, exit status, elapsed time, bounded stdout/stderr references, and frozen candidate/source identity.",
+          "claim": "Check selected argv, exit code, elapsed, bounded output refs and frozen identities survive an actual run and status readback.",
+          "probe_plan": "Independent executable or inspected-source probe to be specified and reviewed; not yet implemented",
+          "acceptable_alternatives": [
+            "Accept equivalent indexed receipt layout with exact values and identities."
+          ],
+          "review": "PENDING",
+          "status": "DRAFT_UNTESTED"
+        },
+        {
+          "id": "failure-kinds",
+          "kind": "negative",
+          "source_clause": "- [ ] Distinguish observed check failures, missing/insufficient evidence, environment/boundary unavailability, timeouts, and stale receipts.",
+          "claim": "Actual failure, absent evidence, unavailable sandbox, timeout and stale receipt are distinct; none fabricated as candidate defects.",
+          "probe_plan": "Independent executable or inspected-source probe to be specified and reviewed; not yet implemented",
+          "acceptable_alternatives": [
+            "Allow different UI wording if machine classification and evidence remain unambiguous."
+          ],
+          "review": "PENDING",
+          "status": "DRAFT_UNTESTED"
+        },
+        {
+          "id": "green-path",
+          "kind": "compatibility",
+          "source_clause": "- [ ] Successful commands produce a short result and do not trigger another reviewer or unnecessary model invocation.",
+          "claim": "Successful check stays concise with no new model calls or reviewer demand.",
+          "probe_plan": "Independent executable or inspected-source probe to be specified and reviewed; not yet implemented",
+          "acceptable_alternatives": [
+            "Additional optional details are fine when default summary remains brief."
+          ],
+          "review": "PENDING",
+          "status": "DRAFT_UNTESTED"
+        },
+        {
+          "id": "malformed-readback",
+          "kind": "negative",
+          "source_clause": "- [ ] Tests cover failing and passing commands, truncated or missing output, timeouts, unauthorized mutation attempts, malformed expected/actual metadata, and correct status re-read.",
+          "claim": "Reject malformed expected/actual input, unauthorized mutations and stale readback; do not report passing evidence.",
+          "probe_plan": "Independent executable or inspected-source probe to be specified and reviewed; not yet implemented",
+          "acceptable_alternatives": [
+            "Do not impose undocumented exception class; accept explicit unavailable or integrity-error status."
+          ],
+          "review": "PENDING",
+          "status": "DRAFT_UNTESTED"
+        }
+      ],
+      "controls": [
+        {
+          "id": "reference",
+          "expected": "PASS_ORACLE",
+          "artifact": null,
+          "status": "NOT_EXECUTED",
+          "plan": "Separate source-correct implementation passing positive, negative and compatibility clauses."
+        },
+        {
+          "id": "alternative",
+          "expected": "PASS_ORACLE",
+          "artifact": null,
+          "status": "NOT_EXECUTED",
+          "plan": "Independently authored different source-correct implementation; reject reference-specific syntax/layout tests."
+        },
+        {
+          "id": "defective",
+          "expected": "FAIL_ORACLE",
+          "artifact": null,
+          "status": "NOT_EXECUTED",
+          "plan": "Deliberately omit a material negative/source obligation while preserving easy positive case."
+        }
+      ],
+      "independent_oracle_script": null,
+      "independent_oracle_sha256": null,
+      "independent_reviewer": null,
+      "reviewer_attestation": null,
+      "ambiguities": [],
+      "control_receipts": [],
+      "note": "Source clause matching is syntactic, not independent entailment review or validated behavioral acceptance."
+    },
+    {
+      "task": "promise-mapping",
+      "status": "DRAFT_NOT_QUALIFIED",
+      "expectations": [
+        {
+          "id": "direct-check",
+          "kind": "compatibility",
+          "source_clause": "- [ ] A direct check needs **no** acceptance plan, Intentline/P2P installation, second model call, additional mandatory file or approval ceremony. Existing run/check/status semantics and native sandbox/receipt integrity remain intact.",
+          "claim": "Unmapped check/status continues without extra planning artifacts, peer/model calls or changed native receipts.",
+          "probe_plan": "Independent executable or inspected-source probe to be specified and reviewed; not yet implemented",
+          "acceptable_alternatives": [
+            "Any internal representation acceptable if caller-facing behavior is unchanged."
+          ],
+          "review": "PENDING",
+          "status": "DRAFT_UNTESTED"
+        },
+        {
+          "id": "invalid-mapping",
+          "kind": "negative",
+          "source_clause": "- [ ] Optional rows identify source-linked obligations and outcomes, including positive and negative behaviors, compatibility constraints and exceptions. Validate IDs, source identity/quoted lines, exact selected-command references and candidate binding; reject missing/stale/contradictory claims. Source text always outranks an incomplete mapping.",
+          "claim": "Reject duplicate/incorrect R IDs, forged quotes, stale source or argv/candidate links, without upgrading a plan to authority.",
+          "probe_plan": "Independent executable or inspected-source probe to be specified and reviewed; not yet implemented",
+          "acceptable_alternatives": [
+            "Error response text not prescribed; rejection and identity binding are."
+          ],
+          "review": "PENDING",
+          "status": "DRAFT_UNTESTED"
+        },
+        {
+          "id": "unlinked",
+          "kind": "negative",
+          "source_clause": "- [ ] Report, **per supplied obligation**, actual linked-check outcomes: `LINKED CHECKS PASSED (limited evidence)`, `CHECK FAILED`, `CHECK UNAVAILABLE`, or `NOT DEMONSTRATED`. Never call a green command proof of the full obligation or all obligations. A requirement with *no selected check* is not demonstrated, not failed.",
+          "claim": "An unlinked source obligation is NOT DEMONSTRATED even with all other selected checks green; pass remains bounded.",
+          "probe_plan": "Independent executable or inspected-source probe to be specified and reviewed; not yet implemented",
+          "acceptable_alternatives": [
+            "Alternative JSON field organization is fine if per-R distinctions remain."
+          ],
+          "review": "PENDING",
+          "status": "DRAFT_UNTESTED"
+        },
+        {
+          "id": "missing-gap",
+          "kind": "compatibility",
+          "source_clause": "- [ ] Support an **optional step by the same existing coding agent**: reread the complete original source, compare it with the recorded rows/selected checks, and propose any apparent omitted material promise or high-value negative/compatibility case with a verbatim source citation and test suggestion. Record such findings as **proposals/gaps**, not authenticated or complete review. Proofline itself dispatches zero extra models. If no gap analysis was performed, make coverage completeness **unknown**, not silently complete.",
+          "claim": "No implicit completeness assertion where no gap analysis was performed; original request remains primary.",
+          "probe_plan": "Independent executable or inspected-source probe to be specified and reviewed; not yet implemented",
+          "acceptable_alternatives": [
+            "Coverage metadata may be absent or explicitly unknown but never complete."
+          ],
+          "review": "PENDING",
+          "status": "DRAFT_UNTESTED"
+        }
+      ],
+      "controls": [
+        {
+          "id": "reference",
+          "expected": "PASS_ORACLE",
+          "artifact": null,
+          "status": "NOT_EXECUTED",
+          "plan": "Separate source-correct implementation passing positive, negative and compatibility clauses."
+        },
+        {
+          "id": "alternative",
+          "expected": "PASS_ORACLE",
+          "artifact": null,
+          "status": "NOT_EXECUTED",
+          "plan": "Independently authored different source-correct implementation; reject reference-specific syntax/layout tests."
+        },
+        {
+          "id": "defective",
+          "expected": "FAIL_ORACLE",
+          "artifact": null,
+          "status": "NOT_EXECUTED",
+          "plan": "Deliberately omit a material negative/source obligation while preserving easy positive case."
+        },
+        {
+          "id": "green-suite-omission",
+          "expected": "FAIL_ORACLE_AND_PASS_EXISTING_SUITE",
+          "artifact": null,
+          "status": "NOT_EXECUTED",
+          "plan": "Independently defective candidate preserves green original project tests but omits an unlinked source promise; verify both results on native host."
+        }
+      ],
+      "independent_oracle_script": null,
+      "independent_oracle_sha256": null,
+      "independent_reviewer": null,
+      "reviewer_attestation": null,
+      "ambiguities": [],
+      "control_receipts": [],
+      "note": "Source clause matching is syntactic, not independent entailment review or validated behavioral acceptance."
+    },
+    {
+      "task": "intentline-adapter",
+      "status": "DRAFT_NOT_QUALIFIED",
+      "expectations": [
+        {
+          "id": "direct-path",
+          "kind": "compatibility",
+          "source_clause": "- [ ] The existing `proofline.py check` still works unchanged with only the original request and selected check argv. No Intentline install, account, extra config, planning skill, model invocation or second approval is required.",
+          "claim": "Without Intentline opt-in, source + check argv still work without extra model/service, account, approval, or config.",
+          "probe_plan": "Independent executable or inspected-source probe to be specified and reviewed; not yet implemented",
+          "acceptable_alternatives": [
+            "Implementation can wrap the optional adapter differently without changing default CLI."
+          ],
+          "review": "PENDING",
+          "status": "DRAFT_UNTESTED"
+        },
+        {
+          "id": "integrity",
+          "kind": "negative",
+          "source_clause": "- [ ] On explicit opt-in only, read supported Intentline export **as untrusted data**. Validate the completion marker, every imported byte hash, contract/source revision identity and original request's exact bytes against the Proofline request. Reject mismatch, stale/partial/missing data, ambiguous source/adoption claims and unsupported successor formats; no executable exported scripts.",
+          "claim": "Unsupported/tampered export source, manifest bytes, revision or adoption metadata rejected before trust or execution.",
+          "probe_plan": "Independent executable or inspected-source probe to be specified and reviewed; not yet implemented",
+          "acceptable_alternatives": [
+            "Both schema validation orders acceptable if neither accepts corrupted package."
+          ],
+          "review": "PENDING",
+          "status": "DRAFT_UNTESTED"
+        },
+        {
+          "id": "unsupported",
+          "kind": "negative",
+          "source_clause": "Implement one **read-only, explicitly opted-in adapter** that converts a supported Intentline export into the generic promise/evidence input defined by [#13](https://github.com/grove/proofline/issues/13). Start with **a single original-request acceptance schema 1 export** (e.g. `export --format json` with its complete `export-manifest.json`, `contract.json`, source manifest and original source capture). If amended/lineage/native bundles cannot be validated fully, **reject with an exact unsupported-format explanation**; never flatten them to a misleading single request. Future expansion needs evidence of value.",
+          "claim": "Unsupported lineage/amendment/native bundle must be rejected clearly; no flattening to first revision.",
+          "probe_plan": "Independent executable or inspected-source probe to be specified and reviewed; not yet implemented",
+          "acceptable_alternatives": [
+            "Equivalent explicit unsupported error without reference implementation wording."
+          ],
+          "review": "PENDING",
+          "status": "DRAFT_UNTESTED"
+        },
+        {
+          "id": "binding",
+          "kind": "compatibility",
+          "source_clause": "- [ ] Link only explicitly selected executable check receipts to the *exact frozen candidate* and imported requirement IDs. Unlinked obligations are reported **NOT DEMONSTRATED**; green commands don't establish that the requirements inventory is exhaustive.",
+          "claim": "Only exact selected executable checks bound to exact frozen candidate and R IDs; unlinked obligations not demonstrated.",
+          "probe_plan": "Independent executable or inspected-source probe to be specified and reviewed; not yet implemented",
+          "acceptable_alternatives": [
+            "Any internal join design acceptable when identity checks and status semantics remain."
+          ],
+          "review": "PENDING",
+          "status": "DRAFT_UNTESTED"
+        }
+      ],
+      "controls": [
+        {
+          "id": "reference",
+          "expected": "PASS_ORACLE",
+          "artifact": null,
+          "status": "NOT_EXECUTED",
+          "plan": "Separate source-correct implementation passing positive, negative and compatibility clauses."
+        },
+        {
+          "id": "alternative",
+          "expected": "PASS_ORACLE",
+          "artifact": null,
+          "status": "NOT_EXECUTED",
+          "plan": "Independently authored different source-correct implementation; reject reference-specific syntax/layout tests."
+        },
+        {
+          "id": "defective",
+          "expected": "FAIL_ORACLE",
+          "artifact": null,
+          "status": "NOT_EXECUTED",
+          "plan": "Deliberately omit a material negative/source obligation while preserving easy positive case."
+        }
+      ],
+      "independent_oracle_script": null,
+      "independent_oracle_sha256": null,
+      "independent_reviewer": null,
+      "reviewer_attestation": null,
+      "ambiguities": [],
+      "control_receipts": [],
+      "note": "Source clause matching is syntactic, not independent entailment review or validated behavioral acceptance."
+    },
+    {
+      "task": "next-check-hints",
+      "status": "DRAFT_NOT_QUALIFIED",
+      "expectations": [
+        {
+          "id": "bounded-hints",
+          "kind": "output",
+          "source_clause": "1. Enhance the existing `promise_evidence.format_lines()` / optional evidence report to surface **bounded, per-R next-check hints** for NOT DEMONSTRATED requirements. Derive hints **only from fields already validated and retained** by the direct promise mapping (if present) and optional Intentline import (`planned_evidence`, `boundaries`, `seam`, `evidence_gap_reasons`, source citations). Do **not** infer tests from arbitrary source prose or invent executable commands.",
+          "claim": "Source-linked unlinked R gets bounded actionable next-check advice; normal no-mapping path stays concise.",
+          "probe_plan": "Independent executable or inspected-source probe to be specified and reviewed; not yet implemented",
+          "acceptable_alternatives": [
+            "Equivalent output formatting acceptable if link/gap/advice present."
+          ],
+          "review": "PENDING",
+          "status": "DRAFT_UNTESTED"
+        },
+        {
+          "id": "distinct-kinds",
+          "kind": "negative",
+          "source_clause": "2. Distinguish: **no linked check**, **failed linked check**, **unavailable/stale evidence**, and **caller/Intentline-proposed check**. Recommend an additional selected check for an *unlinked* requirement, diagnosing actual failure evidence for a *failed* check, or restoring re-runnable evidence for *unavailable/stale* checks. Never describe absent evidence as an implementation defect.",
+          "claim": "Separate unlinked gap from failed linked check, stale evidence and unavailable sandbox; advise relevant next action without asserting defect.",
+          "probe_plan": "Independent executable or inspected-source probe to be specified and reviewed; not yet implemented",
+          "acceptable_alternatives": [
+            "Other wording okay if actual reason and next step remain correct."
+          ],
+          "review": "PENDING",
+          "status": "DRAFT_UNTESTED"
+        },
+        {
+          "id": "truthful-coverage",
+          "kind": "compatibility",
+          "source_clause": "- [ ] Hints never assert that a passed check semantically proves a requirement, or that all source requirements have been captured. All completion/coverage claims remain UNKNOWN beyond bounded receipts.",
+          "claim": "Neither green checks nor proposed tests certify semantic completeness; overall coverage still UNKNOWN.",
+          "probe_plan": "Independent executable or inspected-source probe to be specified and reviewed; not yet implemented",
+          "acceptable_alternatives": [
+            "May omit global message on unlinked-free default only if status still truthful."
+          ],
+          "review": "PENDING",
+          "status": "DRAFT_UNTESTED"
+        },
+        {
+          "id": "no-fabrication",
+          "kind": "negative",
+          "source_clause": "- [ ] No fabricated check argv, claims of tests executed, inherited approval, source rewriting, automatic link guessing, or execution of exported planning artifacts. Missing fields are handled without invented expectations.",
+          "claim": "Never construct imaginary executable argv or pretend to have executed/check linked it based on advisory source text.",
+          "probe_plan": "Independent executable or inspected-source probe to be specified and reviewed; not yet implemented",
+          "acceptable_alternatives": [
+            "Explicitly ask agent to choose or author executable check without implying its success."
+          ],
+          "review": "PENDING",
+          "status": "DRAFT_UNTESTED"
+        }
+      ],
+      "controls": [
+        {
+          "id": "reference",
+          "expected": "PASS_ORACLE",
+          "artifact": null,
+          "status": "NOT_EXECUTED",
+          "plan": "Separate source-correct implementation passing positive, negative and compatibility clauses."
+        },
+        {
+          "id": "alternative",
+          "expected": "PASS_ORACLE",
+          "artifact": null,
+          "status": "NOT_EXECUTED",
+          "plan": "Independently authored different source-correct implementation; reject reference-specific syntax/layout tests."
+        },
+        {
+          "id": "defective",
+          "expected": "FAIL_ORACLE",
+          "artifact": null,
+          "status": "NOT_EXECUTED",
+          "plan": "Deliberately omit a material negative/source obligation while preserving easy positive case."
+        },
+        {
+          "id": "green-suite-omission",
+          "expected": "FAIL_ORACLE_AND_PASS_EXISTING_SUITE",
+          "artifact": null,
+          "status": "NOT_EXECUTED",
+          "plan": "Independently defective candidate preserves green original project tests but omits an unlinked source promise; verify both results on native host."
+        }
+      ],
+      "independent_oracle_script": null,
+      "independent_oracle_sha256": null,
+      "independent_reviewer": null,
+      "reviewer_attestation": null,
+      "ambiguities": [],
+      "control_receipts": [],
+      "note": "Source clause matching is syntactic, not independent entailment review or validated behavioral acceptance."
+    }
+  ]
+}
