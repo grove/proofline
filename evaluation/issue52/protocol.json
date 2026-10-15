@@ -1,0 +1,221 @@
+{
+  "schema_version": 1,
+  "study_id": "proofline-52-minimum-guidance-phase1",
+  "phase": "PHASE1_PREPARATION",
+  "live_dispatch_allowed": false,
+  "approval": "NOT_GRANTED",
+  "host_qualification": "NOT_PERFORMED",
+  "independent_review": "PENDING",
+  "purpose": "Discover the smallest source-grounded guidance and executable verification with a measurable increase in complete independent deliveries per elapsed time/tokens; no product rollout decision before observations.",
+  "candidate_cohort": {
+    "task_count": 4,
+    "assignment_count": 16,
+    "max_tasks": 6,
+    "max_assignments": 24,
+    "cohort_rule": "All original-source requests fixed before the first worker; no cherry-picking or substitutions after dispatch. Historical public PR solutions must be excluded from isolated worker contexts."
+  },
+  "arms": {
+    "A": {
+      "label": "Ordinary",
+      "intervention": "Implement and self-test normally; no imposed checklist, Intentline plan, or Proofline check."
+    },
+    "B": {
+      "label": "Concise checklist",
+      "intervention": "Same worker first authors/uses one <=250-word checklist sourced from exact request, counting authoring inside the worker time. No Intentline or Proofline."
+    },
+    "C": {
+      "label": "Checklist + Proofline",
+      "intervention": "B plus same agent selects literal argv and may link source-cited R rows; opt-in check/status and #50 next-check hints; same agent assesses and may repair within same episode; no new reviewer model."
+    },
+    "D": {
+      "label": "Intentline + Proofline",
+      "intervention": "Same agent uses optional initial revision-1 single-S1 Intentline plan/export, Proofline import/check/status and optional explicit links. Unsupported exports fail without unmapped fallback; no reviewer/adopter/model controller."
+    }
+  },
+  "assignments": [
+    {
+      "slot": 1,
+      "task": "feedback",
+      "arm": "A",
+      "round": "baseline"
+    },
+    {
+      "slot": 2,
+      "task": "promise-mapping",
+      "arm": "A",
+      "round": "baseline"
+    },
+    {
+      "slot": 3,
+      "task": "intentline-adapter",
+      "arm": "A",
+      "round": "baseline"
+    },
+    {
+      "slot": 4,
+      "task": "next-check-hints",
+      "arm": "A",
+      "round": "baseline"
+    },
+    {
+      "slot": 5,
+      "task": "feedback",
+      "arm": "B",
+      "round": "conditional"
+    },
+    {
+      "slot": 6,
+      "task": "feedback",
+      "arm": "C",
+      "round": "conditional"
+    },
+    {
+      "slot": 7,
+      "task": "feedback",
+      "arm": "D",
+      "round": "conditional"
+    },
+    {
+      "slot": 8,
+      "task": "promise-mapping",
+      "arm": "C",
+      "round": "conditional"
+    },
+    {
+      "slot": 9,
+      "task": "promise-mapping",
+      "arm": "D",
+      "round": "conditional"
+    },
+    {
+      "slot": 10,
+      "task": "promise-mapping",
+      "arm": "B",
+      "round": "conditional"
+    },
+    {
+      "slot": 11,
+      "task": "intentline-adapter",
+      "arm": "D",
+      "round": "conditional"
+    },
+    {
+      "slot": 12,
+      "task": "intentline-adapter",
+      "arm": "B",
+      "round": "conditional"
+    },
+    {
+      "slot": 13,
+      "task": "intentline-adapter",
+      "arm": "C",
+      "round": "conditional"
+    },
+    {
+      "slot": 14,
+      "task": "next-check-hints",
+      "arm": "B",
+      "round": "conditional"
+    },
+    {
+      "slot": 15,
+      "task": "next-check-hints",
+      "arm": "C",
+      "round": "conditional"
+    },
+    {
+      "slot": 16,
+      "task": "next-check-hints",
+      "arm": "D",
+      "round": "conditional"
+    }
+  ],
+  "model_proposal": {
+    "model": "gpt-6-luna",
+    "effort": "medium",
+    "model_catalog_sha256": null,
+    "host": "macOS + authenticated Codex CLI (exact versions to be frozen after qualification)",
+    "status": "PROPOSED_NOT_VERIFIED"
+  },
+  "budget_proposal": {
+    "episode_seconds": 1500,
+    "agent_plus_interventions_seconds": 1200,
+    "independent_grading_and_finalization_seconds": 300,
+    "selected_check_invocation_seconds": 90,
+    "total_assignments_upper_bound_seconds": 24000,
+    "authoring_and_native_preflight_separate": "measure and report; no free time or estimated tokens"
+  },
+  "worker_exposure": {
+    "all": "Complete captured issue title/body, isolated pre-implementation product tree and existing project tests, same finite tool permissions/time; no solution/other assignment/hidden oracle, control, retrospective result or network.",
+    "B": "Agent creates checklist <=250 words from original request; no preauthored evaluator checklist.",
+    "C": "Agent-owned checklist plus opted-in exact Proofline selected-argv check/status; links optional. #50 next-check hint is advisory and never semantic proof.",
+    "D": "Single-S1 initial revision-1 Intentline JSON export, optional explicit links and Proofline. Producer/import/setup and any guidance included in episode cost."
+  },
+  "qualification_required": [
+    "Validate each material oracle expectation and accepted alternatives against the exact full original source with independent reviewer; reject disputed/infeasible cases.",
+    "Qualify reference, independent correct alternative, independent defect and at least one green-existing-suite/missed-source-obligation control on supported native host.",
+    "Freeze exact source files/blobs, base commits/trees, independent oracle implementation/code hash, controls, default project-test argv, selected-check argv, model catalog/effort, host, tools, stage deadlines and order.",
+    "Qualify native worker/grader isolation, lack of solution/oracle leakage, producer S1 export and Proofline import/check/status readback with model-free disposable probes.",
+    "Obtain new explicit bounded model-spending authorization tied to that freeze. Prior approvals are not reusable."
+  ],
+  "first_stage_gate": {
+    "scope": "Run A on all four tasks before any B/C/D.",
+    "threshold": 2,
+    "criterion": "At least two independently confirmed material relevant source failures, including material omission despite green existing checks; workers' self-tests/check labels do not independently confirm failures.",
+    "otherwise": "STOP_CEILING_OR_INSUFFICIENT_DISCRIMINATION; mark all 12 B/C/D NOT_EXECUTED; do not silently replace tasks or increase cohort.",
+    "when_passed": "Run B/C/D for every predeclared task with balanced post-A rotation."
+  },
+  "stop_rules": [
+    "Host/model/effort/tool/producer/schema drift or unqualified native sandbox/oracle/controls",
+    "Leak of oracle, reference solution, sibling assignment or known outcomes into worker context",
+    "Unreconciled worker/grader/check lifecycle, absent executable evidence or campaign budget exhaustion",
+    "Independent oracle dispute or source-expectation conflict; mark affected outcomes UNKNOWN, halt before new dispatch as required",
+    "No silent retries, resume, substitution or cross-cohort pooling; leave all remaining slots NOT_EXECUTED"
+  ],
+  "primary_outcome": "Independently satisfactory completion of all original source obligations per assigned slot, regardless of ordinary green tests or advisory plan labels.",
+  "outcome_labels": [
+    "CORRECT_DELIVERY",
+    "CONFIRMED_MATERIAL_FAILURE",
+    "FALSE_ACCEPTANCE",
+    "CORRECT_BUT_BLOCKED",
+    "UNKNOWN",
+    "UNAVAILABLE",
+    "NOT_EXECUTED"
+  ],
+  "measurement": {
+    "per_slot": [
+      "source/input/base/candidate/check/plan/protocol hashes",
+      "native terminal event, status and exact argv/cwd/check receipts",
+      "blind oracle grade and disputed/unavailable assertions",
+      "source-linked #50 hint observed, chosen executable check, and material discovery or cosmetic effect",
+      "elapsed non-overlapping stages: preparation, plan, implementation, check, status/repair, grading; agent dispatch/tool counts",
+      "provider input/cached-input/output tokens (do not double count cached), actual billed cost only when observed, human interaction"
+    ],
+    "cross_arm": [
+      "independently correct/assigned; missing or blocked in same denominator",
+      "cost and elapsed time per independently correct (undefined if zero correct)",
+      "separate setup and study preparation overhead, never modeled as zero",
+      "paired task descriptions and small-N uncertainty; no general efficacy claim"
+    ],
+    "decisions": [
+      "KEEP",
+      "SIMPLIFY",
+      "OPTIONAL",
+      "REMOVE",
+      "INCONCLUSIVE"
+    ]
+  },
+  "boundaries": [
+    "No production change, controller, extra AI reviewer, test generator or mandatory gate.",
+    "Only unqualified protocol and offline structural validation in Phase 1; native or live actions are NOT authorized.",
+    "No PR/merge publication by the study worker; this preparation PR is a user-authorized repository change distinct from experiment effects."
+  ],
+  "related": [
+    "https://github.com/grove/proofline/issues/16",
+    "https://github.com/grove/proofline/issues/36",
+    "https://github.com/grove/proofline/issues/38",
+    "https://github.com/grove/proofline/issues/46",
+    "https://github.com/grove/proofline/issues/50",
+    "https://github.com/grove/promise-to-proof/issues/52"
+  ]
+}
