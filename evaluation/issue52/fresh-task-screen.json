@@ -127,7 +127,7 @@
       "selected_for_live_study": false
     }
   ],
-  "next_action": "The expanded screen in candidate-cohort.json retains only two preferred Click candidates after excluding Arrow public-PR overlap. Find at least two additional suitable tasks including a low-risk control, then complete independent source/oracle/control qualification before any freeze. Preserve all historical assignments.",
+  "next_action": "All four Click/Arrow requests in candidate-cohort.json are excluded for public implementation overlap. A separate task-discovery effort needs four suitable unrehearsed tasks including a low-risk control, then independent source/oracle/control qualification before any freeze. Preserve all historical assignments; no further task search or live execution in this PR.",
   "excluded_examples": [
     {
       "repository": "grove/graph-verity",

@@ -31,10 +31,12 @@ These are not claimed unseen by a model: solution exposure and training
 contamination are unmeasured even when no known reference PR is attached.
 The original screen produced fewer than four useful tasks. A wider public
 search retained four [request captures](candidate-cohort.json), but the proposed
-Arrow documentation/control and timezone requests have overlapping public PRs
-and were excluded before freeze. Only Click usage wrapping and usage metadata
-remain preferred candidates. Their original suite runs; a qualified low-risk
-control and four-task cohort are still missing. No Java source/build file was
+Arrow requests and both Click requests have public implementation overlap and
+are excluded before freeze. Click #3362 has PRs #3385/#3425/#3437; #2992 has
+PRs #3180/#3276. Closed PRs remain public exposure. Their original suites and
+useful controls are retained as mechanical evidence, not unrehearsed tasks.
+No preferred candidate or qualified low-risk control remains; a separate
+discovery effort needs four suitable tasks. No Java source/build file was
 patched to force the original screen into the cohort.
 
 ## Oracle pre-review — not semantic approval

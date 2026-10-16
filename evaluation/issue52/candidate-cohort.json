@@ -19,13 +19,18 @@
       "base_commit": "2247b35ea1c47c727d7a06e51fa280e12a863ff6",
       "base_tree": "6b26180d3cc76de6213a1e998f1eaf821e7f0f3f",
       "category": "formatting-and-compatibility",
-      "selected_for_preparation": true,
+      "selected_for_preparation": false,
       "selected_for_live_study": false,
-      "qualification": "BUILD_OBSERVED_SEMANTIC_REVIEW_PENDING",
+      "qualification": "EXCLUDED_PUBLIC_REFERENCE_OVERLAP",
       "independent_review": "PENDING",
       "original_suite": "click-installed-baseline-tests.json",
       "oracle_status": "DRAFT_EXECUTABLE_PROBES",
-      "known_solution_exposure": "No overlapping open PR found in bounded metadata search; public issue and training exposure remain UNKNOWN. No guarantee of novelty."
+      "known_solution_exposure": "Existing public implementation PRs: https://github.com/pallets/click/pull/3385, https://github.com/pallets/click/pull/3425, https://github.com/pallets/click/pull/3437. All five cited Click PRs are closed, but their public implementations remain exposed. Exclude from the preferred unrehearsed cohort under the same criterion as Arrow; preserve behavioral controls as mechanical evidence only. The prior open-PR metadata screen missed these closed PRs.",
+      "public_implementation_prs": [
+        "https://github.com/pallets/click/pull/3385",
+        "https://github.com/pallets/click/pull/3425",
+        "https://github.com/pallets/click/pull/3437"
+      ]
     },
     {
       "id": "click-usage-metadata",
@@ -39,13 +44,17 @@
       "base_commit": "2247b35ea1c47c727d7a06e51fa280e12a863ff6",
       "base_tree": "6b26180d3cc76de6213a1e998f1eaf821e7f0f3f",
       "category": "nested-public-api",
-      "selected_for_preparation": true,
+      "selected_for_preparation": false,
       "selected_for_live_study": false,
-      "qualification": "BUILD_OBSERVED_SEMANTIC_REVIEW_PENDING",
+      "qualification": "EXCLUDED_PUBLIC_REFERENCE_OVERLAP",
       "independent_review": "PENDING",
       "original_suite": "click-installed-baseline-tests.json",
       "oracle_status": "DRAFT_EXECUTABLE_PROBES",
-      "known_solution_exposure": "No overlapping open PR found in bounded metadata search; public issue and training exposure remain UNKNOWN. No guarantee of novelty."
+      "known_solution_exposure": "Existing public implementation PRs: https://github.com/pallets/click/pull/3180, https://github.com/pallets/click/pull/3276. All five cited Click PRs are closed, but their public implementations remain exposed. Exclude from the preferred unrehearsed cohort under the same criterion as Arrow; preserve behavioral controls as mechanical evidence only. The prior open-PR metadata screen missed these closed PRs.",
+      "public_implementation_prs": [
+        "https://github.com/pallets/click/pull/3180",
+        "https://github.com/pallets/click/pull/3276"
+      ]
     },
     {
       "id": "arrow-shift-docs",
@@ -101,7 +110,8 @@
       "candidate_tree": null,
       "elapsed_seconds": null,
       "reported_tokens": null,
-      "actual_billed_cost": "UNKNOWN"
+      "actual_billed_cost": "UNKNOWN",
+      "exclusion_reason": "PUBLIC_REFERENCE_OVERLAP_BEFORE_FREEZE"
     },
     {
       "slot": 2,
@@ -112,7 +122,8 @@
       "candidate_tree": null,
       "elapsed_seconds": null,
       "reported_tokens": null,
-      "actual_billed_cost": "UNKNOWN"
+      "actual_billed_cost": "UNKNOWN",
+      "exclusion_reason": "PUBLIC_REFERENCE_OVERLAP_BEFORE_FREEZE"
     },
     {
       "slot": 3,
@@ -147,7 +158,8 @@
       "candidate_tree": null,
       "elapsed_seconds": null,
       "reported_tokens": null,
-      "actual_billed_cost": "UNKNOWN"
+      "actual_billed_cost": "UNKNOWN",
+      "exclusion_reason": "PUBLIC_REFERENCE_OVERLAP_BEFORE_FREEZE"
     },
     {
       "slot": 6,
@@ -158,7 +170,8 @@
       "candidate_tree": null,
       "elapsed_seconds": null,
       "reported_tokens": null,
-      "actual_billed_cost": "UNKNOWN"
+      "actual_billed_cost": "UNKNOWN",
+      "exclusion_reason": "PUBLIC_REFERENCE_OVERLAP_BEFORE_FREEZE"
     },
     {
       "slot": 7,
@@ -169,7 +182,8 @@
       "candidate_tree": null,
       "elapsed_seconds": null,
       "reported_tokens": null,
-      "actual_billed_cost": "UNKNOWN"
+      "actual_billed_cost": "UNKNOWN",
+      "exclusion_reason": "PUBLIC_REFERENCE_OVERLAP_BEFORE_FREEZE"
     },
     {
       "slot": 8,
@@ -180,7 +194,8 @@
       "candidate_tree": null,
       "elapsed_seconds": null,
       "reported_tokens": null,
-      "actual_billed_cost": "UNKNOWN"
+      "actual_billed_cost": "UNKNOWN",
+      "exclusion_reason": "PUBLIC_REFERENCE_OVERLAP_BEFORE_FREEZE"
     },
     {
       "slot": 9,
@@ -191,7 +206,8 @@
       "candidate_tree": null,
       "elapsed_seconds": null,
       "reported_tokens": null,
-      "actual_billed_cost": "UNKNOWN"
+      "actual_billed_cost": "UNKNOWN",
+      "exclusion_reason": "PUBLIC_REFERENCE_OVERLAP_BEFORE_FREEZE"
     },
     {
       "slot": 10,
@@ -202,7 +218,8 @@
       "candidate_tree": null,
       "elapsed_seconds": null,
       "reported_tokens": null,
-      "actual_billed_cost": "UNKNOWN"
+      "actual_billed_cost": "UNKNOWN",
+      "exclusion_reason": "PUBLIC_REFERENCE_OVERLAP_BEFORE_FREEZE"
     },
     {
       "slot": 11,
@@ -279,10 +296,10 @@
   ],
   "selection_correction": {
     "status": "INITIAL_FOUR_REQUEST_SHORTLIST_WITHDRAWN_BEFORE_FREEZE",
-    "reason": "Closing-issue metadata missed both overlapping Arrow PRs. Retain captures and all proposed slots but exclude both from preferred unrehearsed preparation. Only two preferred Click candidates remain; no qualified low-risk control was found. Do not force four.",
-    "preferred_candidate_count": 2,
+    "reason": "All four captured Click/Arrow requests have existing public implementation overlap and are excluded from preferred unrehearsed preparation. Closing-issue/title screening missed Arrow PRs initially and the open-only Click screen missed closed public implementation PRs #3385/#3425/#3437 for #3362 and #3180/#3276 for #2992. Preserve every capture, control and NOT_EXECUTED proposed slot. No preferred candidate or qualified low-risk control remains; do not force four.",
+    "preferred_candidate_count": 0,
     "minimum_cohort_size": 4,
     "low_risk_control_qualified": false,
-    "remaining_search": "Final bounded public search also found exposed SQLparse/JMESPath implementations. No new live cohort is declared."
+    "remaining_search": "A separate task-discovery effort needs four suitable unrehearsed requests, including a straightforward control. No further task search or new live cohort is part of this PR."
   }
 }

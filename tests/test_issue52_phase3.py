@@ -64,7 +64,9 @@ class PhaseThreeReadiness(unittest.TestCase):
         self.assertIsNone(cohort['semantic_reviewer'])
         self.assertIsNone(cohort['live_freeze'])
         self.assertEqual(len(cohort['tasks']), 4)
-        self.assertEqual(sum(t['selected_for_preparation'] for t in cohort['tasks']), 2)
+        self.assertFalse(any(t['selected_for_preparation'] for t in cohort['tasks']))
+        self.assertEqual(cohort['selection_correction']['preferred_candidate_count'], 0)
+        self.assertEqual(cohort['selection_correction']['minimum_cohort_size'], 4)
         self.assertFalse(cohort['selection_correction']['low_risk_control_qualified'])
         self.assertEqual({t['qualification'] for t in cohort['tasks']
                           if not t['selected_for_preparation']},
@@ -78,13 +80,20 @@ class PhaseThreeReadiness(unittest.TestCase):
                 self.assertIn(comment['body'].encode(), raw)
             self.assertFalse(task['selected_for_live_study'])
             self.assertEqual(task['independent_review'], 'PENDING')
+        for task_id, numbers in {'click-usage-hyphens': [3385, 3425, 3437],
+                                 'click-usage-metadata': [3180, 3276]}.items():
+            task = next(t for t in cohort['tasks'] if t['id'] == task_id)
+            self.assertEqual(task['public_implementation_prs'],
+                             [f'https://github.com/pallets/click/pull/{n}' for n in numbers])
         slots = cohort['proposed_assignments']
         self.assertEqual(len(slots), 16)
         self.assertEqual([r['arm'] for r in slots[:4]], ['A'] * 4)
         self.assertEqual({(r['task'], r['arm']) for r in slots},
                          {(t['id'], a) for t in cohort['tasks'] for a in 'ABCD'})
         self.assertTrue(all(r['status'] == 'NOT_EXECUTED' and r['independent_grade'] is None
-                            and r['actual_billed_cost'] == 'UNKNOWN' for r in slots))
+                            and r['actual_billed_cost'] == 'UNKNOWN'
+                            and r['exclusion_reason'] == 'PUBLIC_REFERENCE_OVERLAP_BEFORE_FREEZE'
+                            for r in slots))
 
     def test_retained_native_controls_do_not_become_semantic_approval(self):
         folder = ROOT / 'evaluation/results/issue52-phase3'
@@ -95,8 +104,18 @@ class PhaseThreeReadiness(unittest.TestCase):
         self.assertIsNone(result['independent_semantic_reviewer'])
         self.assertEqual(result['independent_semantic_review'], 'PENDING')
         self.assertEqual(result['qualified_live_tasks'], [])
+        self.assertEqual(result['selected_for_preparation'], [])
+        self.assertEqual(set(result['excluded_before_freeze']),
+                         {t['id'] for t in read(HERE / 'candidate-cohort.json')['tasks']})
+        self.assertEqual(result['cohort_size_gate'],
+                         'NOT_MET_ZERO_PREFERRED_CANDIDATES_NO_SMALL_CONTROL')
         self.assertEqual(hashlib.sha256((HERE / 'candidate-cohort.json').read_bytes()).hexdigest(),
                          result['candidate_manifest_sha256'])
+        # Exposure reclassification must preserve the already published observations.
+        self.assertEqual(result['archives'], {
+            'evidence.zip': '81730e088ef247ec9d165f0d45f91408e3ba473dfbc855577ecb1e55729bd167',
+            'runtime-overlay.zip': 'eec4f60a4e5fe9036af7ba3d03831484abe4a3dea79d8439670771e0e474d42e',
+        })
         for name, digest in result['archives'].items():
             self.assertEqual(hashlib.sha256((folder / name).read_bytes()).hexdigest(), digest)
             with zipfile.ZipFile(folder / name) as archive:

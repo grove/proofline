@@ -5,9 +5,12 @@ requests and their exact starting commits/trees. The initial four-request
 shortlist was withdrawn before freeze: Arrow #1287 already has PR #1307, and
 Arrow #1293 overlaps the default-timezone implementation in PR #1122 for
 related #1090. These PRs lacked the closing-issue links used by the initial
-metadata screen; a later title review caught them. Only the two Click requests
-remain preferred preparation candidates. No suitable low-risk control or
-qualified four-task cohort was found. No source inventory below has been approved by a separate
+metadata screen; a later title review caught them. The final targeted correction
+also excludes Click #3362 (public PRs #3385, #3425, #3437) and #2992 (public PRs
+#3180, #3276). Those Click PRs are closed, but their public implementations remain
+exposed; an open-only PR screen was insufficient. No preferred preparation
+candidate, suitable low-risk control or qualified four-task cohort remains.
+No source inventory below has been approved by a separate
 qualified reviewer; no live freeze or coding assignment exists. The complete
 issue title/body and discussion are captured together, with the original API
 response alongside each Markdown capture. Preserve these bytes, including CRLF.
@@ -21,12 +24,17 @@ retained with the preparation results. Absolute novelty/training exposure is
 UNKNOWN. Do not include evaluator patches, expectations, this checkout, or
 search results in worker inputs.
 
-## Click #3362: preserve hyphenated usage tokens
+## Click #3362: usage hyphens — EXCLUDED, public implementations
 
 Source: [complete request](replacement-sources/click-usage-hyphens.md),
 [upstream](https://github.com/pallets/click/issues/3362).
 Base: `2247b35ea1c47c727d7a06e51fa280e12a863ff6`, tree
 `6b26180d3cc76de6213a1e998f1eaf821e7f0f3f`.
+
+Public implementations: [#3385](https://github.com/pallets/click/pull/3385),
+[#3425](https://github.com/pallets/click/pull/3425),
+[#3437](https://github.com/pallets/click/pull/3437). Retain the controls below as
+mechanical evidence only; they do not make this an unrehearsed study task.
 
 Draft material obligations:
 
@@ -57,10 +65,14 @@ coverage independently. Current probes alone do not cover the whole request.
 The upstream discussion restricts autonomous issue/PR publication; this is a
 local experiment, with no upstream contribution or contact authorized.
 
-## Click #2992: expose contextual usage in information dictionaries
+## Click #2992: usage metadata — EXCLUDED, public implementations
 
 Source: [complete request](replacement-sources/click-usage-metadata.md),
 [upstream](https://github.com/pallets/click/issues/2992). Same Click base/tree.
+
+Public implementations: [#3180](https://github.com/pallets/click/pull/3180),
+[#3276](https://github.com/pallets/click/pull/3276). Preserve the captured source
+and draft assessment; exclude this request under the same criterion as Arrow.
 
 Draft material obligations:
 
@@ -146,9 +158,11 @@ adjudication. This is a bounded implementation candidate, not a qualified task.
 
 ## What must happen before freeze
 
-A suitable cohort still needs at least two additional genuinely unrehearsed
-requests, including a straightforward control. Do not treat the two exposed
-Arrow requests as filling those slots. The final SQLparse/JMESPath screen also
+A separate task-discovery effort needs **four suitable unrehearsed requests**,
+including a straightforward control. None of these four exposed Click/Arrow
+requests fills a preferred-cohort slot. This PR ends with an accurate preparation
+report; no further task search or benchmark expansion is included.
+The final SQLparse/JMESPath screen also
 found public fixes for the inspected requests, including SQLparse's simple
 `--help` request. The request/source captures and initial proposed slots are
 retained with explicit exclusions; no task was changed after a worker outcome.

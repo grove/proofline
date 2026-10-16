@@ -2,9 +2,12 @@
 
 The expanded search retained four source-pinned Click/Arrow requests, but
 **withdrew the initial shortlist before freeze**: both Arrow requests overlap
-public PRs missed by closing-issue metadata and found in title review. Only
-two preferred Click preparation candidates remain; a suitable small control
-and four-task cohort are still missing. Their original Python suites run.
+public PRs missed by closing-issue metadata and found in title review. The final
+targeted correction also excludes both Click requests for existing public
+implementations in closed PRs. **Zero preferred preparation candidates remain**;
+a separate task-discovery effort needs four suitable tasks, including a small
+control. Their original Python suites run, and the controls remain useful
+mechanical evidence despite the exposure exclusions.
 Supported native isolation, actual new-oracle exclusion, and the existing
 Intentline/Proofline S1 round trip were observed. One new behavioral-control set
 discriminates a green-suite omission. **Cohort selection, independent semantic
@@ -12,8 +15,8 @@ review and complete task grading remain incomplete. No live study is authorized.
 
 | Preparation candidate | Starting commit | Qualification evidence | A | B | C | D |
 | --- | --- | --- | --- | --- | --- | --- | --- |
-| [Click #3362](https://github.com/pallets/click/issues/3362), usage hyphens | `2247b35ea1c47c727d7a06e51fa280e12a863ff6` | two positive controls pass native probes; deliberate omission fails with original suite green; semantic review pending | NOT_EXECUTED | NOT_EXECUTED | NOT_EXECUTED | NOT_EXECUTED |
-| [Click #2992](https://github.com/pallets/click/issues/2992), usage metadata | same Click commit | dependency health observed; field/interface adjudication and validated controls pending | NOT_EXECUTED | NOT_EXECUTED | NOT_EXECUTED | NOT_EXECUTED |
+| [Click #3362](https://github.com/pallets/click/issues/3362), usage hyphens | `2247b35ea1c47c727d7a06e51fa280e12a863ff6` | EXCLUDED: public PRs [#3385](https://github.com/pallets/click/pull/3385), [#3425](https://github.com/pallets/click/pull/3425), [#3437](https://github.com/pallets/click/pull/3437); useful behavioral controls retained | NOT_EXECUTED | NOT_EXECUTED | NOT_EXECUTED | NOT_EXECUTED |
+| [Click #2992](https://github.com/pallets/click/issues/2992), usage metadata | same Click commit | EXCLUDED: public PRs [#3180](https://github.com/pallets/click/pull/3180), [#3276](https://github.com/pallets/click/pull/3276); source/draft assessment retained | NOT_EXECUTED | NOT_EXECUTED | NOT_EXECUTED | NOT_EXECUTED |
 | [Arrow #1287](https://github.com/arrow-py/arrow/issues/1287), shift keyword docs | `2224255c4acc594d734cef0bbc83360452a67983` | EXCLUDED: public PR #1307 directly addresses this task; original suite green is only dependency evidence | NOT_EXECUTED | NOT_EXECUTED | NOT_EXECUTED | NOT_EXECUTED |
 | [Arrow #1293](https://github.com/arrow-py/arrow/issues/1293), timezone fallback | same Arrow commit | EXCLUDED: overlapping public default-timezone PR #1122 for related #1090; interface/overlap not adjudicated | NOT_EXECUTED | NOT_EXECUTED | NOT_EXECUTED | NOT_EXECUTED |
 
@@ -60,9 +63,13 @@ title review found Arrow PR #1307 (directly addressing #1287) and default-timezo
 PR #1122 for related #1090 (overlapping #1293). Both Arrow candidates were
 excluded before any live freeze; their initial proposal and slots remain
 retained. SQLparse #840/#843/#885 and JMESPath #380/#381 also have public fixes;
-Click #3077's maintainer discussion says a glossary PR already exists. We did not
-read or fetch those solution branches into worker inputs. Public-source/model
-training exposure for the selected requests remains UNKNOWN.
+Click #3077's maintainer discussion says a glossary PR already exists. The final
+targeted check confirmed existing public implementations for Click #3362 in
+PRs #3385/#3425/#3437 and #2992 in PRs #3180/#3276. All five are closed, which
+does not remove exposure. The earlier open-only screen missed them; both Click
+requests are now excluded under the same criterion as Arrow. No solution
+branches were fetched into worker inputs; actual model-training exposure is
+UNKNOWN, but public implementation exposure for all four captures is established.
 
 The [16 historical review questions](../../issue52/REVIEW-ASSESSMENT.md) were
 assessed against current source, tests and actual native evidence. Some already
@@ -165,8 +172,10 @@ retained, but overlapping durations are not summed. Complete preparation
 elapsed time, organizer tokens, active human time and actual billed costs stay
 **UNKNOWN**. Study-model dispatches: **0**.
 
-**Readiness: NOT QUALIFIED. Next action:** find at least two further suitable
-unrehearsed requests, including the missing straightforward control. A separate
+**Readiness: NOT QUALIFIED. Next action:** a separate task-discovery effort
+must find **four suitable unrehearsed requests**, including a straightforward
+control. None of the four captured requests fills a preferred-cohort slot.
+This PR does not undertake another task search or expand the benchmark. A separate
 qualified reviewer must adjudicate complete source inventories, API choices
 and control fitness. Finish qualified-task graders/controls and native
 dependency qualification. Exclude or replace a candidate before any freeze if

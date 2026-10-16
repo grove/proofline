@@ -21,10 +21,7 @@
     "jdk": "OpenJDK 21.0.12.1",
     "maven": "3.9.11"
   },
-  "selected_for_preparation": [
-    "click-usage-hyphens",
-    "click-usage-metadata"
-  ],
+  "selected_for_preparation": [],
   "qualified_live_tasks": [],
   "independent_semantic_reviewer": null,
   "independent_semantic_review": "PENDING",
@@ -464,7 +461,7 @@
       "final/evaluation/issue52/qualify.py": "b10a3993791ec0da12f93134ebf8fcc45b5a585e8452bcfe344a7a4b1429ca1f"
     }
   },
-  "candidate_manifest_sha256": "fd5047528228a8df71f2a47fc8cf184deeaf814757086d2ac474dbe0431b7464",
+  "candidate_manifest_sha256": "41da6560d38b2305949d34011beeddddb4d826533f4715678d4155c68f297f37",
   "source_oracle_sha256": "c6591ff42bbb362a62954673363acb7efa3d236a5eda31da2e55e1906c6c9b13",
   "accounting": {
     "study_model_turns": 0,
@@ -480,7 +477,7 @@
     "proofline_checks_and_hints": "INCONCLUSIVE",
     "intentline_export": "INCONCLUSIVE"
   },
-  "next_action": "Find at least two further genuinely suitable unrehearsed requests, including a straightforward control. A separate qualified reviewer must adjudicate complete sources, APIs, controls and acceptable alternatives. Finish qualified-task grading and native dependency controls, then freeze the exact qualified experiment and obtain separate explicit live authorization. Do not dispatch now.",
+  "next_action": "A separate task-discovery effort needs four suitable unrehearsed requests, including a straightforward control; none of the four captured Click/Arrow requests qualifies for that preferred cohort. Complete independent source/API/oracle/control review and native dependency qualification before freezing an exact experiment and seeking separate explicit live authorization. Preserve all mechanical controls and historical evidence. No further task search or live execution in this PR.",
   "dependency_versions": [
     "arrow @ file:///Users/grove/projects/proofline/.proofline/issue52-phase3-arrow",
     "click @ file:///Users/grove/projects/proofline/.proofline/issue52-phase3-click",
@@ -519,8 +516,10 @@
     }
   },
   "excluded_before_freeze": [
+    "click-usage-hyphens",
+    "click-usage-metadata",
     "arrow-shift-docs",
     "arrow-default-timezone"
   ],
-  "cohort_size_gate": "NOT_MET_TWO_PREFERRED_CANDIDATES_NO_SMALL_CONTROL"
+  "cohort_size_gate": "NOT_MET_ZERO_PREFERRED_CANDIDATES_NO_SMALL_CONTROL"
 }

@@ -83,9 +83,11 @@ requests and [sixteen source/oracle questions](source-review-packet.json), now
 [assessed against available evidence](REVIEW-ASSESSMENT.md). A wider search adds
 a [wider Click/Arrow task screen](COHORT-REVIEW.md) with pinned sources,
 working original test suites, draft obligations and one native behavioral-control
-set. Later title review excluded both Arrow requests for public PR overlap;
-only two preferred Click candidates remain. **No fresh cohort is qualified**:
-task availability, separate semantic review and remaining controls are incomplete.
+set. Both Arrow requests and both Click requests are now excluded for public
+implementation overlap, including closed Click PRs missed by the open-only
+screen. **No fresh cohort is qualified** and no preferred candidate remains.
+A separate discovery effort needs four suitable tasks, including a small
+control, followed by independent source/oracle qualification.
 [Fresh supported-host observations and retained
 stops](../results/issue52-phase3/README.md) include the JDK 21 build attempt.
 The historical Phase 1/2 controls remain intact, but their public reference
