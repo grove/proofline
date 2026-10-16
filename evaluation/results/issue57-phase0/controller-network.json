@@ -1,0 +1,23 @@
+{
+  "seatbelt_policy": "(version 1) (allow default) (deny network*) (allow network-outbound (remote ip \"127.0.0.1:11434\"))",
+  "receipt": {
+    "kind": "process_probe",
+    "invocation_id": "f8484808-3194-48d5-81e8-7d4e2bd19862",
+    "argv": [
+      "/usr/bin/sandbox-exec",
+      "-f",
+      "/Users/grove/projects/proofline/.proofline/issue57-phase0-work/controller-network.sb",
+      "/opt/homebrew/Cellar/python@3.15/3.15.0/Frameworks/Python.framework/Versions/3.15/bin/python3.15",
+      "-I",
+      "-B",
+      "-c",
+      "import socket,json,urllib.request\nr={}\nopener=urllib.request.build_opener(urllib.request.ProxyHandler({}))\nr['ollama_version']=json.load(opener.open('http://127.0.0.1:11434/api/version',timeout=3))\nfor key,address in [('other_loopback',('127.0.0.1',1)),('external',('1.1.1.1',443))]:\n    try:\n        with socket.create_connection(address,timeout=1): pass\n        r[key]={'status':'ALLOWED'}\n    except OSError as e:\n        r[key]={'errno':e.errno,'error':str(e)}\nprint(json.dumps(r))"
+    ],
+    "cwd": "/Users/grove/projects/proofline/.proofline/issue57-phase0-work",
+    "exit_code": 65,
+    "timed_out": false,
+    "stdout": "",
+    "stderr": "sandbox-exec: host must be * or localhost in network address\n\nBacktrace: \n/Users/grove/projects/proofline/.proofline/issue57-phase0-work/controller-network.sb:1:70:\n\t(remote ip \"127.0.0.1:11434\")\n\n",
+    "elapsed_seconds": 0.01302
+  }
+}

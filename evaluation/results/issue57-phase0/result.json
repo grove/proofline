@@ -1,0 +1,62 @@
+{
+  "issue": 57,
+  "phase": 0,
+  "decision": "NO_GO",
+  "status": "NOT_FEASIBLE_UNDER_OBSERVED_HOST_LOAD",
+  "reason": "Existing 32768 allocation accompanied by active idle swapping and pressure; stopped before inference.",
+  "host": "Owner-authorized Apple M1 Pro / 32 GiB; originally specified M5 Pro / 48 GB unavailable in this session",
+  "model_digest": "f0fc7e0ae4947d382989b1f57db3d098a86b87c5b6e9523b9561ba81a2a64879",
+  "allocated_context_tokens": 32768,
+  "reported_model_bytes": 18272024260,
+  "reported_vram_bytes": 18272024260,
+  "idle_window_seconds": 10.187375,
+  "idle_counter_delta_bytes": {
+    "Swapins": 209092608,
+    "Swapouts": 241565696,
+    "Compressions": 29357293568,
+    "Decompressions": 29372153856
+  },
+  "sampled_swap_used_M": [
+    33765.06,
+    33814.12,
+    33795.94
+  ],
+  "sampled_maximum_swap_used_M": 33814.12,
+  "raw_pressure_level_samples": [
+    2,
+    2,
+    2
+  ],
+  "reported_free_percent_samples": [
+    13,
+    13,
+    13
+  ],
+  "worker_boundary": "OBSERVED_MODEL_FREE",
+  "bounded_controller_transport": "OBSERVED_MODEL_FREE",
+  "agent_read_edit_test_inspect": "NOT_EXECUTED",
+  "coding_agent_tool_support": "NOT_VERIFIED",
+  "context_65536": "NOT_EXECUTED",
+  "full_context_32768_occupancy": "NOT_EXECUTED",
+  "new_local_inference_requests": 0,
+  "coding_experiment_episodes": 0,
+  "external_inference_requests": 0,
+  "load_seconds": null,
+  "first_token_seconds": null,
+  "prompt_tokens_per_second": null,
+  "decode_tokens_per_second": null,
+  "coding_throughput": null,
+  "inference_peak_memory_bytes": null,
+  "inference_peak_swap_bytes": null,
+  "gpu_utilization_percent": null,
+  "thermal_state": null,
+  "provider_usage": null,
+  "provider_cost_usd": null,
+  "model_errors": null,
+  "diagnostic_errors": [
+    "unsupported literal-IP Seatbelt syntax; corrected probe passed",
+    "first show metadata receipt truncated; complete file recaptured"
+  ],
+  "settings_status": "PROPOSAL_NOT_APPROVED_NOT_VALIDATED",
+  "qualification": "No model tool qualification or A/C authorization follows from model-free canaries."
+}

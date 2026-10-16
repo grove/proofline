@@ -1,0 +1,420 @@
+{
+  "network_control": "loopback reachable before sandbox",
+  "receipt": {
+    "kind": "process_probe",
+    "invocation_id": "c148840d-7bd2-40a7-9df4-3426159c76bc",
+    "argv": [
+      "/opt/homebrew/bin/codex",
+      "--no-daemon",
+      "-c",
+      "permissions.proofline={\"filesystem\"={\":minimal\"=\"read\",\"/opt/homebrew/Cellar/python@3.15/3.15.0/Frameworks/Python.framework/Versions/3.15\"=\"read\",\"/opt/homebrew/opt/python@3.15/Frameworks/Python.framework/Versions/3.15\"=\"read\",\"/opt/homebrew/opt/python@3.15/bin/python3.15\"=\"read\",\"/opt/homebrew/Cellar/python@3.15/3.15.0/Frameworks/Python.framework/Versions/3.15/bin/python3.15\"=\"read\",\"/Users/grove/projects/proofline/.proofline/issue57-phase0-work/inputs\"=\"read\",\"/Users/grove/projects/proofline/.proofline/issue57-phase0-work/boundary/scratch\"=\"write\",\"/Users/grove/projects/proofline/.proofline/issue57-phase0-work/boundary/private\"=\"deny\",\"/opt/homebrew\"=\"read\",\"/Library/Developer/CommandLineTools/usr/bin\"=\"read\",\"/Library/Developer/CommandLineTools/usr/libexec/git-core\"=\"read\",\"/opt/homebrew/bin/codex\"=\"read\",\"/opt/homebrew/Caskroom/codex/0.163.0/bin/codex\"=\"read\",\"/Users/grove/projects/proofline/.proofline/issue57-phase0-work/inputs/product\"=\"write\",\"/Users/grove/projects/proofline/.proofline/issue57-phase0-work/inputs/product/.git\"=\"read\"},\"network\"={\"enabled\"=false}}",
+      "sandbox",
+      "--permission-profile",
+      "proofline",
+      "--include-managed-config",
+      "--cd",
+      "/Users/grove/projects/proofline/.proofline/issue57-phase0-work/boundary/scratch",
+      "--",
+      "/opt/homebrew/Cellar/python@3.15/3.15.0/Frameworks/Python.framework/Versions/3.15/bin/python3.15",
+      "-I",
+      "-B",
+      "/Users/grove/projects/proofline/.proofline/issue57-phase0-work/inputs/canary.py",
+      "/Users/grove/projects/proofline/.proofline/issue57-phase0-work/inputs/canary.json"
+    ],
+    "cwd": "/Users/grove/projects/proofline/.proofline/issue57-phase0-work",
+    "exit_code": 0,
+    "timed_out": false,
+    "stdout": "{\"nonce\": \"f8f395912e4e4a79a593e74bd7064c2d\", \"writes\": {\"source\": \"denied\", \"input\": \"denied\", \"candidate\": \"allowed\", \"git_head\": \"denied\", \"receipt\": \"denied\", \"symlink_source\": \"denied\"}, \"reads\": {\"receipt-canary\": \"denied\", \"oracle-canary\": \"denied\", \"other-role-canary\": \"denied\", \"actual_oracle\": \"denied\", \"sibling\": \"denied\", \"repository\": \"denied\", \"symlink_private\": \"denied\"}, \"mode_change\": \"allowed\", \"scratch\": true, \"network\": \"denied\", \"subprocess_private_read\": {\"exit_code\": 1, \"stderr\": \"Traceback (most recent call last):\\n  File \\\"<string>\\\", line 1, in <module>\\n    from pathlib import Path; Path('/Users/grove/projects/proofline/.proofline/issue57-phase0-work/boundary/private/oracle-canary').read_bytes()\\n                              ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^\\n  File \\\"/opt/homebrew/Cellar/python@3.15/3.15.0/Frameworks/Python.framework/Versions/3.15/lib/python3.15/pathlib/__init__.py\\\", line 976, in read_bytes\\n    with self.open(mode='rb', buffering=0) as f:\\n         ~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^\\n  File \\\"/opt/homebrew/Cellar/python@3.15/3.15.0/Frameworks/Python.framework/Versions/3.15/lib/python3.15/pathlib/__init__.py\\\", line 970, in open\\n    return io.open(self, mode, buffering, encoding, errors, newline)\\n           ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\\nPermissionError: [Errno 1] Operation not permitted: '/Users/grove/projects/proofline/.proofline/issue57-phase0-work/boundary/private/oracle-canary'\\n\"}, \"external_network\": \"denied\"}\n",
+    "stderr": "",
+    "elapsed_seconds": 0.292855
+  },
+  "before": {
+    "sha256": "d55926ed5b92d4c53d3a5cae53a50eca46fa893bf1ae4a8696541708b6d249b4",
+    "entries": [
+      {
+        "path": "accepted-input.md",
+        "mode": 420,
+        "kind": "file",
+        "sha256": "993211d7eddac9bcee6fd7ceefc758e975ab05933206210cf81068cf858401d6"
+      },
+      {
+        "path": "canary.json",
+        "mode": 420,
+        "kind": "file",
+        "sha256": "2cf7ab2a1f121394118ea95b55f27368971100c47077e7c3a557d7c00305fb22"
+      },
+      {
+        "path": "canary.py",
+        "mode": 420,
+        "kind": "file",
+        "sha256": "b366a602bc5effcd372cad945eb62e9d2f7cf5f81f6046269767b400be7520d4"
+      },
+      {
+        "path": "private-link",
+        "mode": 493,
+        "kind": "symlink",
+        "target": "/Users/grove/projects/proofline/.proofline/issue57-phase0-work/boundary/private/oracle-canary"
+      },
+      {
+        "path": "product",
+        "mode": 493,
+        "kind": "directory"
+      },
+      {
+        "path": "product/.git",
+        "mode": 493,
+        "kind": "directory"
+      },
+      {
+        "path": "product/.git/COMMIT_EDITMSG",
+        "mode": 420,
+        "kind": "file",
+        "sha256": "2fd1e50efdfe02fd7aa6e4baf1d4717fc57bff3d9459f00f12119d17d164e804"
+      },
+      {
+        "path": "product/.git/HEAD",
+        "mode": 420,
+        "kind": "file",
+        "sha256": "f6f2b945f6c411b02ba3da9c7ace88dcf71b6af65ba2e0d89aa82900042b5a10"
+      },
+      {
+        "path": "product/.git/config",
+        "mode": 420,
+        "kind": "file",
+        "sha256": "cae33efdb02cf774435c1ff9cb16bcc1014606908530c6e1dc727615fe3e8cda"
+      },
+      {
+        "path": "product/.git/index",
+        "mode": 420,
+        "kind": "file",
+        "sha256": "2cf6f9f5d1d243bdb390ff6ff40cc73bf8dbe06a6c160572ac9eaa89af1a2f13"
+      },
+      {
+        "path": "product/.git/logs",
+        "mode": 493,
+        "kind": "directory"
+      },
+      {
+        "path": "product/.git/logs/HEAD",
+        "mode": 420,
+        "kind": "file",
+        "sha256": "1fa0f71c29d8692d1e71dc39bd428e77f447a2e1875928ea3c5fd2beaa313fcc"
+      },
+      {
+        "path": "product/.git/logs/refs",
+        "mode": 493,
+        "kind": "directory"
+      },
+      {
+        "path": "product/.git/logs/refs/heads",
+        "mode": 493,
+        "kind": "directory"
+      },
+      {
+        "path": "product/.git/logs/refs/heads/master",
+        "mode": 420,
+        "kind": "file",
+        "sha256": "1fa0f71c29d8692d1e71dc39bd428e77f447a2e1875928ea3c5fd2beaa313fcc"
+      },
+      {
+        "path": "product/.git/objects",
+        "mode": 493,
+        "kind": "directory"
+      },
+      {
+        "path": "product/.git/objects/12",
+        "mode": 493,
+        "kind": "directory"
+      },
+      {
+        "path": "product/.git/objects/12/ee7431b8e0e3e366c904c33ef3dee767b1bc20",
+        "mode": 292,
+        "kind": "file",
+        "sha256": "65eba7f88a1713e9a9f5b58d6eaa45f1f105f7c501351e47eb1572c0a146c04c"
+      },
+      {
+        "path": "product/.git/objects/3a",
+        "mode": 493,
+        "kind": "directory"
+      },
+      {
+        "path": "product/.git/objects/3a/4317fc3f0991a6605b090de268141fbe23487c",
+        "mode": 292,
+        "kind": "file",
+        "sha256": "30e28ee4064adfb1a3cb15250fb6b528886adc332774a04ca9821fd39c9cf268"
+      },
+      {
+        "path": "product/.git/objects/86",
+        "mode": 493,
+        "kind": "directory"
+      },
+      {
+        "path": "product/.git/objects/86/7a9a7747977ecb1a55491e5352809d83d97e49",
+        "mode": 292,
+        "kind": "file",
+        "sha256": "8adddb0c639558ce90f2f9671e8e445a73da7f553e48379558eba058b09d2090"
+      },
+      {
+        "path": "product/.git/objects/a8",
+        "mode": 493,
+        "kind": "directory"
+      },
+      {
+        "path": "product/.git/objects/a8/c32525393db2e16a8f9acad19bf7627f734b33",
+        "mode": 292,
+        "kind": "file",
+        "sha256": "dc36faa23f195c6c83184e8d45f27a021356d1105368b2f592a126a0549fc0bc"
+      },
+      {
+        "path": "product/.git/objects/info",
+        "mode": 493,
+        "kind": "directory"
+      },
+      {
+        "path": "product/.git/objects/pack",
+        "mode": 493,
+        "kind": "directory"
+      },
+      {
+        "path": "product/.git/refs",
+        "mode": 493,
+        "kind": "directory"
+      },
+      {
+        "path": "product/.git/refs/heads",
+        "mode": 493,
+        "kind": "directory"
+      },
+      {
+        "path": "product/.git/refs/heads/master",
+        "mode": 420,
+        "kind": "file",
+        "sha256": "0e753587bc9bd95f3951eedf4d299b095eb48e7fd7195571bc7ba5e545479be8"
+      },
+      {
+        "path": "product/.git/refs/tags",
+        "mode": 493,
+        "kind": "directory"
+      },
+      {
+        "path": "product/app.py",
+        "mode": 420,
+        "kind": "file",
+        "sha256": "e1a894022d1a082987b87adecb623438c9e386d86b2b621cff4a5fe7fdf7edc8"
+      },
+      {
+        "path": "product/test_app.py",
+        "mode": 420,
+        "kind": "file",
+        "sha256": "0c8e1ffd2aaa2bc7512fb0c6e694f807c0f9eba6934069673c984f3a1ac91dd5"
+      },
+      {
+        "path": "source-link",
+        "mode": 493,
+        "kind": "symlink",
+        "target": "/Users/grove/projects/proofline/.proofline/issue57-phase0-work/inputs/source.md"
+      },
+      {
+        "path": "source.md",
+        "mode": 420,
+        "kind": "file",
+        "sha256": "993211d7eddac9bcee6fd7ceefc758e975ab05933206210cf81068cf858401d6"
+      }
+    ]
+  },
+  "after": {
+    "sha256": "838abee762a14418a2b5044bf668ef432d50c3de6561a08942a7ce7ada30f4f2",
+    "entries": [
+      {
+        "path": "accepted-input.md",
+        "mode": 420,
+        "kind": "file",
+        "sha256": "993211d7eddac9bcee6fd7ceefc758e975ab05933206210cf81068cf858401d6"
+      },
+      {
+        "path": "canary.json",
+        "mode": 420,
+        "kind": "file",
+        "sha256": "2cf7ab2a1f121394118ea95b55f27368971100c47077e7c3a557d7c00305fb22"
+      },
+      {
+        "path": "canary.py",
+        "mode": 420,
+        "kind": "file",
+        "sha256": "b366a602bc5effcd372cad945eb62e9d2f7cf5f81f6046269767b400be7520d4"
+      },
+      {
+        "path": "private-link",
+        "mode": 493,
+        "kind": "symlink",
+        "target": "/Users/grove/projects/proofline/.proofline/issue57-phase0-work/boundary/private/oracle-canary"
+      },
+      {
+        "path": "product",
+        "mode": 493,
+        "kind": "directory"
+      },
+      {
+        "path": "product/.git",
+        "mode": 493,
+        "kind": "directory"
+      },
+      {
+        "path": "product/.git/COMMIT_EDITMSG",
+        "mode": 420,
+        "kind": "file",
+        "sha256": "2fd1e50efdfe02fd7aa6e4baf1d4717fc57bff3d9459f00f12119d17d164e804"
+      },
+      {
+        "path": "product/.git/HEAD",
+        "mode": 420,
+        "kind": "file",
+        "sha256": "f6f2b945f6c411b02ba3da9c7ace88dcf71b6af65ba2e0d89aa82900042b5a10"
+      },
+      {
+        "path": "product/.git/config",
+        "mode": 420,
+        "kind": "file",
+        "sha256": "cae33efdb02cf774435c1ff9cb16bcc1014606908530c6e1dc727615fe3e8cda"
+      },
+      {
+        "path": "product/.git/index",
+        "mode": 420,
+        "kind": "file",
+        "sha256": "2cf6f9f5d1d243bdb390ff6ff40cc73bf8dbe06a6c160572ac9eaa89af1a2f13"
+      },
+      {
+        "path": "product/.git/logs",
+        "mode": 493,
+        "kind": "directory"
+      },
+      {
+        "path": "product/.git/logs/HEAD",
+        "mode": 420,
+        "kind": "file",
+        "sha256": "1fa0f71c29d8692d1e71dc39bd428e77f447a2e1875928ea3c5fd2beaa313fcc"
+      },
+      {
+        "path": "product/.git/logs/refs",
+        "mode": 493,
+        "kind": "directory"
+      },
+      {
+        "path": "product/.git/logs/refs/heads",
+        "mode": 493,
+        "kind": "directory"
+      },
+      {
+        "path": "product/.git/logs/refs/heads/master",
+        "mode": 420,
+        "kind": "file",
+        "sha256": "1fa0f71c29d8692d1e71dc39bd428e77f447a2e1875928ea3c5fd2beaa313fcc"
+      },
+      {
+        "path": "product/.git/objects",
+        "mode": 493,
+        "kind": "directory"
+      },
+      {
+        "path": "product/.git/objects/12",
+        "mode": 493,
+        "kind": "directory"
+      },
+      {
+        "path": "product/.git/objects/12/ee7431b8e0e3e366c904c33ef3dee767b1bc20",
+        "mode": 292,
+        "kind": "file",
+        "sha256": "65eba7f88a1713e9a9f5b58d6eaa45f1f105f7c501351e47eb1572c0a146c04c"
+      },
+      {
+        "path": "product/.git/objects/3a",
+        "mode": 493,
+        "kind": "directory"
+      },
+      {
+        "path": "product/.git/objects/3a/4317fc3f0991a6605b090de268141fbe23487c",
+        "mode": 292,
+        "kind": "file",
+        "sha256": "30e28ee4064adfb1a3cb15250fb6b528886adc332774a04ca9821fd39c9cf268"
+      },
+      {
+        "path": "product/.git/objects/86",
+        "mode": 493,
+        "kind": "directory"
+      },
+      {
+        "path": "product/.git/objects/86/7a9a7747977ecb1a55491e5352809d83d97e49",
+        "mode": 292,
+        "kind": "file",
+        "sha256": "8adddb0c639558ce90f2f9671e8e445a73da7f553e48379558eba058b09d2090"
+      },
+      {
+        "path": "product/.git/objects/a8",
+        "mode": 493,
+        "kind": "directory"
+      },
+      {
+        "path": "product/.git/objects/a8/c32525393db2e16a8f9acad19bf7627f734b33",
+        "mode": 292,
+        "kind": "file",
+        "sha256": "dc36faa23f195c6c83184e8d45f27a021356d1105368b2f592a126a0549fc0bc"
+      },
+      {
+        "path": "product/.git/objects/info",
+        "mode": 493,
+        "kind": "directory"
+      },
+      {
+        "path": "product/.git/objects/pack",
+        "mode": 493,
+        "kind": "directory"
+      },
+      {
+        "path": "product/.git/refs",
+        "mode": 493,
+        "kind": "directory"
+      },
+      {
+        "path": "product/.git/refs/heads",
+        "mode": 493,
+        "kind": "directory"
+      },
+      {
+        "path": "product/.git/refs/heads/master",
+        "mode": 420,
+        "kind": "file",
+        "sha256": "0e753587bc9bd95f3951eedf4d299b095eb48e7fd7195571bc7ba5e545479be8"
+      },
+      {
+        "path": "product/.git/refs/tags",
+        "mode": 493,
+        "kind": "directory"
+      },
+      {
+        "path": "product/app.py",
+        "mode": 484,
+        "kind": "file",
+        "sha256": "dc1ba3fd1bccfdbb0f084cab3ab009f5e2e3f7699ba9a8419e857e7d65e9e643"
+      },
+      {
+        "path": "product/test_app.py",
+        "mode": 420,
+        "kind": "file",
+        "sha256": "0c8e1ffd2aaa2bc7512fb0c6e694f807c0f9eba6934069673c984f3a1ac91dd5"
+      },
+      {
+        "path": "source-link",
+        "mode": 493,
+        "kind": "symlink",
+        "target": "/Users/grove/projects/proofline/.proofline/issue57-phase0-work/inputs/source.md"
+      },
+      {
+        "path": "source.md",
+        "mode": 420,
+        "kind": "file",
+        "sha256": "993211d7eddac9bcee6fd7ceefc758e975ab05933206210cf81068cf858401d6"
+      }
+    ]
+  },
+  "private_unchanged": true
+}

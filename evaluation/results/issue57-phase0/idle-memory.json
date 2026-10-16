@@ -1,0 +1,194 @@
+[
+  {
+    "utc": "2026-10-16T18:14:00.862618+00:00",
+    "commands": [
+      {
+        "kind": "process_probe",
+        "invocation_id": "09a2bb33-5f1b-459c-9514-fc08481246e0",
+        "argv": [
+          "sysctl",
+          "hw.memsize",
+          "hw.model",
+          "machdep.cpu.brand_string",
+          "vm.swapusage",
+          "kern.memorystatus_vm_pressure_level"
+        ],
+        "cwd": "/Users/grove/projects/proofline/.proofline/issue57-phase0-work",
+        "exit_code": 0,
+        "timed_out": false,
+        "stdout": "hw.memsize: 34359738368\nhw.model: MacBookPro18,1\nmachdep.cpu.brand_string: Apple M1 Pro\nvm.swapusage: total = 34816.00M  used = 33765.06M  free = 1050.94M  (encrypted)\nkern.memorystatus_vm_pressure_level: 2\n",
+        "stderr": "",
+        "elapsed_seconds": 0.010387
+      },
+      {
+        "kind": "process_probe",
+        "invocation_id": "bd74f3e4-dfc3-44b0-ad31-378e02ec1ccc",
+        "argv": [
+          "vm_stat"
+        ],
+        "cwd": "/Users/grove/projects/proofline/.proofline/issue57-phase0-work",
+        "exit_code": 0,
+        "timed_out": false,
+        "stdout": "Mach Virtual Memory Statistics: (page size of 16384 bytes)\nPages free:                                     4140.\nPages active:                                 133737.\nPages inactive:                               131539.\nPages speculative:                              1496.\nPages throttled:                                   0.\nPages wired down:                            1367740.\nPages purgeable:                                   2.\n\"Translation faults\":                    77724787482.\nPages copy-on-write:                      8055004098.\nPages zero filled:                       23692204910.\nPages reactivated:                        5060345094.\nPages purged:                              360551955.\nFile-backed pages:                             99762.\nAnonymous pages:                              167010.\nPages stored in compressor:                  4316455.\nPages occupied by compressor:                 404365.\nDecompressions:                           3802214349.\nCompressions:                             4200527723.\nPageins:                                  2052621848.\nPageouts:                                   16613348.\nSwapins:                                    11308877.\nSwapouts:                                   18214515.\n",
+        "stderr": "",
+        "elapsed_seconds": 0.007988
+      },
+      {
+        "kind": "process_probe",
+        "invocation_id": "2d9512d7-9804-43e1-9514-c039cd5adf1c",
+        "argv": [
+          "memory_pressure",
+          "-Q"
+        ],
+        "cwd": "/Users/grove/projects/proofline/.proofline/issue57-phase0-work",
+        "exit_code": 0,
+        "timed_out": false,
+        "stdout": "The system has 34359738368 (2097152 pages with a page size of 16384).\nSystem-wide memory free percentage: 13%\n",
+        "stderr": "",
+        "elapsed_seconds": 0.009438
+      },
+      {
+        "kind": "process_probe",
+        "invocation_id": "70060315-4d53-440d-8880-5c18433f6fe4",
+        "argv": [
+          "ollama",
+          "ps"
+        ],
+        "cwd": "/Users/grove/projects/proofline/.proofline/issue57-phase0-work",
+        "exit_code": 0,
+        "timed_out": false,
+        "stdout": "NAME              ID              SIZE     PROCESSOR    CONTEXT    RUNNER    UNTIL              \ngemma4:26b-mlx    f0fc7e0ae494    18 GB    100% GPU     32768      mlx       2 minutes from now    \n",
+        "stderr": "",
+        "elapsed_seconds": 0.031342
+      }
+    ]
+  },
+  {
+    "utc": "2026-10-16T18:14:05.924280+00:00",
+    "commands": [
+      {
+        "kind": "process_probe",
+        "invocation_id": "65a68e83-6f93-4489-9e77-3a64f3f9566a",
+        "argv": [
+          "sysctl",
+          "hw.memsize",
+          "hw.model",
+          "machdep.cpu.brand_string",
+          "vm.swapusage",
+          "kern.memorystatus_vm_pressure_level"
+        ],
+        "cwd": "/Users/grove/projects/proofline/.proofline/issue57-phase0-work",
+        "exit_code": 0,
+        "timed_out": false,
+        "stdout": "hw.memsize: 34359738368\nhw.model: MacBookPro18,1\nmachdep.cpu.brand_string: Apple M1 Pro\nvm.swapusage: total = 34816.00M  used = 33814.12M  free = 1001.88M  (encrypted)\nkern.memorystatus_vm_pressure_level: 2\n",
+        "stderr": "",
+        "elapsed_seconds": 0.029851
+      },
+      {
+        "kind": "process_probe",
+        "invocation_id": "483c23d1-e72d-4099-805b-07c4cb4339cb",
+        "argv": [
+          "vm_stat"
+        ],
+        "cwd": "/Users/grove/projects/proofline/.proofline/issue57-phase0-work",
+        "exit_code": 0,
+        "timed_out": false,
+        "stdout": "Mach Virtual Memory Statistics: (page size of 16384 bytes)\nPages free:                                     3535.\nPages active:                                 135828.\nPages inactive:                               133499.\nPages speculative:                              1733.\nPages throttled:                                   0.\nPages wired down:                            1367631.\nPages purgeable:                                   0.\n\"Translation faults\":                    77725858290.\nPages copy-on-write:                      8055005965.\nPages zero filled:                       23692227056.\nPages reactivated:                        5060418174.\nPages purged:                              360553241.\nFile-backed pages:                             99593.\nAnonymous pages:                              171467.\nPages stored in compressor:                  4306610.\nPages occupied by compressor:                 400662.\nDecompressions:                           3803163540.\nCompressions:                             4201474320.\nPageins:                                  2052622787.\nPageouts:                                   16613388.\nSwapins:                                    11315269.\nSwapouts:                                   18224279.\n",
+        "stderr": "",
+        "elapsed_seconds": 0.016625
+      },
+      {
+        "kind": "process_probe",
+        "invocation_id": "6492c573-1964-417e-9fb8-83bcb294f9ad",
+        "argv": [
+          "memory_pressure",
+          "-Q"
+        ],
+        "cwd": "/Users/grove/projects/proofline/.proofline/issue57-phase0-work",
+        "exit_code": 0,
+        "timed_out": false,
+        "stdout": "The system has 34359738368 (2097152 pages with a page size of 16384).\nSystem-wide memory free percentage: 13%\n",
+        "stderr": "",
+        "elapsed_seconds": 0.007001
+      },
+      {
+        "kind": "process_probe",
+        "invocation_id": "2b016157-e569-44ff-8e1c-22069b808869",
+        "argv": [
+          "ollama",
+          "ps"
+        ],
+        "cwd": "/Users/grove/projects/proofline/.proofline/issue57-phase0-work",
+        "exit_code": 0,
+        "timed_out": false,
+        "stdout": "NAME              ID              SIZE     PROCESSOR    CONTEXT    RUNNER    UNTIL              \ngemma4:26b-mlx    f0fc7e0ae494    18 GB    100% GPU     32768      mlx       2 minutes from now    \n",
+        "stderr": "",
+        "elapsed_seconds": 0.069095
+      }
+    ]
+  },
+  {
+    "utc": "2026-10-16T18:14:11.049993+00:00",
+    "commands": [
+      {
+        "kind": "process_probe",
+        "invocation_id": "3029b379-36b7-460a-b064-fd6680692fac",
+        "argv": [
+          "sysctl",
+          "hw.memsize",
+          "hw.model",
+          "machdep.cpu.brand_string",
+          "vm.swapusage",
+          "kern.memorystatus_vm_pressure_level"
+        ],
+        "cwd": "/Users/grove/projects/proofline/.proofline/issue57-phase0-work",
+        "exit_code": 0,
+        "timed_out": false,
+        "stdout": "hw.memsize: 34359738368\nhw.model: MacBookPro18,1\nmachdep.cpu.brand_string: Apple M1 Pro\nvm.swapusage: total = 34816.00M  used = 33795.94M  free = 1020.06M  (encrypted)\nkern.memorystatus_vm_pressure_level: 2\n",
+        "stderr": "",
+        "elapsed_seconds": 0.039835
+      },
+      {
+        "kind": "process_probe",
+        "invocation_id": "07a124cc-8c8f-424c-8cba-17e5e149c104",
+        "argv": [
+          "vm_stat"
+        ],
+        "cwd": "/Users/grove/projects/proofline/.proofline/issue57-phase0-work",
+        "exit_code": 0,
+        "timed_out": false,
+        "stdout": "Mach Virtual Memory Statistics: (page size of 16384 bytes)\nPages free:                                     3642.\nPages active:                                 135821.\nPages inactive:                               132815.\nPages speculative:                              1821.\nPages throttled:                                   0.\nPages wired down:                            1368435.\nPages purgeable:                                   0.\n\"Translation faults\":                    77726807344.\nPages copy-on-write:                      8055006570.\nPages zero filled:                       23692245659.\nPages reactivated:                        5060479522.\nPages purged:                              360557107.\nFile-backed pages:                             98662.\nAnonymous pages:                              171795.\nPages stored in compressor:                  4307002.\nPages occupied by compressor:                 400450.\nDecompressions:                           3804007083.\nCompressions:                             4202319550.\nPageins:                                  2052624196.\nPageouts:                                   16613429.\nSwapins:                                    11321639.\nSwapouts:                                   18229259.\n",
+        "stderr": "",
+        "elapsed_seconds": 0.024224
+      },
+      {
+        "kind": "process_probe",
+        "invocation_id": "6a09035f-0d79-4ab2-9bc5-8c7e27160354",
+        "argv": [
+          "memory_pressure",
+          "-Q"
+        ],
+        "cwd": "/Users/grove/projects/proofline/.proofline/issue57-phase0-work",
+        "exit_code": 0,
+        "timed_out": false,
+        "stdout": "The system has 34359738368 (2097152 pages with a page size of 16384).\nSystem-wide memory free percentage: 13%\n",
+        "stderr": "",
+        "elapsed_seconds": 0.012732
+      },
+      {
+        "kind": "process_probe",
+        "invocation_id": "afb5b060-9f69-41fa-b577-c28e15671c0d",
+        "argv": [
+          "ollama",
+          "ps"
+        ],
+        "cwd": "/Users/grove/projects/proofline/.proofline/issue57-phase0-work",
+        "exit_code": 0,
+        "timed_out": false,
+        "stdout": "NAME              ID              SIZE     PROCESSOR    CONTEXT    RUNNER    UNTIL              \ngemma4:26b-mlx    f0fc7e0ae494    18 GB    100% GPU     32768      mlx       2 minutes from now    \n",
+        "stderr": "",
+        "elapsed_seconds": 0.059788
+      }
+    ]
+  }
+]
