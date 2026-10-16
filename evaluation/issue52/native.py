@@ -21,7 +21,7 @@ def run(output):
     sibling = output / 'qualification/sibling.txt'
     sibling.parent.mkdir()
     sibling.write_text('Private sibling canary; forbidden to the worker.\n')
-    runner = bound_module(boundaries, ROOT=qualify.ROOT, STORE=output)
+    runner = bound_module(boundaries, ROOT=qualify.ROOT, STORE=output, CODEX=qualify.CODEX)
     runner.read_protocol = lambda: {'model': qualify.spec()['model_proposal']}
     try:
         catalog = output / 'model-catalog.json'
@@ -40,7 +40,7 @@ def run(output):
         result['boundaries']['grader'] = runner.boundary(inputs, output / 'grader-boundary')
         result['boundaries']['worker'] = runner.boundary(inputs, output / 'worker-boundary', worker=True)
         preflight.check_adapter_roundtrip(output / 'roundtrip', producer.install_tool,
-                                         producer.selected_checks, runner.boundary)
+                                         producer.selected_checks, runner.boundary, codex=qualify.CODEX)
         report = output / 'roundtrip/qualification.json'
         result['roundtrip_sha256'] = host.sha256(report.read_bytes())
         result['roundtrip'] = json.loads(report.read_text())

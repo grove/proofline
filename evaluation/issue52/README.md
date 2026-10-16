@@ -75,3 +75,22 @@ not observations or free authoring in this study**. Keep freezes separate.
 
 No change to production `check`/`status`, no new study framework, and no
 merge authorization are implied by Phase 1.
+
+## Phase 3: independent review and fresh-task eligibility
+
+The [Phase 3 readiness note](PHASE3.md) retains six screened replacement
+requests and [sixteen source/oracle questions](source-review-packet.json), now
+[assessed against available evidence](REVIEW-ASSESSMENT.md). A wider search adds
+a [wider Click/Arrow task screen](COHORT-REVIEW.md) with pinned sources,
+working original test suites, draft obligations and one native behavioral-control
+set. Both Arrow requests and both Click requests are now excluded for public
+implementation overlap, including closed Click PRs missed by the open-only
+screen. **No fresh cohort is qualified** and no preferred candidate remains.
+A separate discovery effort needs four suitable tasks, including a small
+control, followed by independent source/oracle qualification.
+[Fresh supported-host observations and retained
+stops](../results/issue52-phase3/README.md) include the JDK 21 build attempt.
+The historical Phase 1/2 controls remain intact, but their public reference
+implementations cannot be represented as an unseen benchmark. All live coding
+assignments remain NOT_EXECUTED; no model spending or changed product behavior
+was authorized by this update.

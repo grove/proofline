@@ -1,0 +1,35 @@
+--- a/src/click/formatting.py
++++ b/src/click/formatting.py
+@@ -163,6 +163,14 @@
+         :param prefix: The prefix for the first line. Defaults to
+             ``"Usage: "``.
+         """
++        from ._textwrap import TextWrapper
++
++        def wrap_usage(text, width, initial_indent, subsequent_indent):
++            return TextWrapper(width, initial_indent=initial_indent,
++                               subsequent_indent=subsequent_indent,
++                               replace_whitespace=False,
++                               break_on_hyphens=False).fill(text.expandtabs())
++
+         if prefix is None:
+             prefix = "{usage} ".format(usage=_("Usage:"))
+ 
+@@ -181,7 +189,7 @@
+             # The arguments will fit to the right of the prefix.
+             indent = " " * term_len(usage_prefix)
+             self.write(
+-                wrap_text(
++                wrap_usage(
+                     args,
+                     text_width,
+                     initial_indent=usage_prefix,
+@@ -194,7 +202,7 @@
+             self.write("\n")
+             indent = " " * (max(self.current_indent, term_len(prefix)) + 4)
+             self.write(
+-                wrap_text(
++                wrap_usage(
+                     args, text_width, initial_indent=indent, subsequent_indent=indent
+                 )
+             )
