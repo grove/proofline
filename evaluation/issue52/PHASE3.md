@@ -5,7 +5,7 @@
 evidence that assistance improves deliveries. The source/oracle and task
 selection gates remain open. This follow-up observed supported native host
 controls, but has not completed independent semantic qualification. Zero coding
-assignments have been executed. See the [four-request shortlist and remaining
+assignments have been executed. See the [expanded screen and remaining
 review decisions](COHORT-REVIEW.md), [assessment of all 16 historical
 questions](REVIEW-ASSESSMENT.md), and [fresh observations and retained
 stops](../results/issue52-phase3/README.md).
@@ -30,12 +30,12 @@ inputs*, not a new selected cohort or a live study freeze:
 These are not claimed unseen by a model: solution exposure and training
 contamination are unmeasured even when no known reference PR is attached.
 The original screen produced fewer than four useful tasks. A wider public
-search now provides four different [preparation candidates](candidate-cohort.json):
-Click usage wrapping and usage metadata, Arrow shift documentation (the small
-control), and timezone fallback. Their original suites run successfully; their
-independent semantic/oracle qualification is incomplete. They are not approved
-substitutions or a live freeze. No Java source/build file was patched to force
-the original screen into the cohort.
+search retained four [request captures](candidate-cohort.json), but the proposed
+Arrow documentation/control and timezone requests have overlapping public PRs
+and were excluded before freeze. Only Click usage wrapping and usage metadata
+remain preferred candidates. Their original suite runs; a qualified low-risk
+control and four-task cohort are still missing. No Java source/build file was
+patched to force the original screen into the cohort.
 
 ## Oracle pre-review — not semantic approval
 

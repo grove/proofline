@@ -81,10 +81,12 @@ merge authorization are implied by Phase 1.
 The [Phase 3 readiness note](PHASE3.md) retains six screened replacement
 requests and [sixteen source/oracle questions](source-review-packet.json), now
 [assessed against available evidence](REVIEW-ASSESSMENT.md). A wider search adds
-a [four-request Click/Arrow shortlist](COHORT-REVIEW.md) with pinned sources,
+a [wider Click/Arrow task screen](COHORT-REVIEW.md) with pinned sources,
 working original test suites, draft obligations and one native behavioral-control
-set. **No fresh cohort is qualified**: separate semantic review and remaining
-task controls are incomplete. [Fresh supported-host observations and retained
+set. Later title review excluded both Arrow requests for public PR overlap;
+only two preferred Click candidates remain. **No fresh cohort is qualified**:
+task availability, separate semantic review and remaining controls are incomplete.
+[Fresh supported-host observations and retained
 stops](../results/issue52-phase3/README.md) include the JDK 21 build attempt.
 The historical Phase 1/2 controls remain intact, but their public reference
 implementations cannot be represented as an unseen benchmark. All live coding

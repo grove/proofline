@@ -23,9 +23,7 @@
   },
   "selected_for_preparation": [
     "click-usage-hyphens",
-    "click-usage-metadata",
-    "arrow-shift-docs",
-    "arrow-default-timezone"
+    "click-usage-metadata"
   ],
   "qualified_live_tasks": [],
   "independent_semantic_reviewer": null,
@@ -125,7 +123,7 @@
     "exmeso": "Original source-6 build rejected. With release=8, 3 core + 13 Jackson + 3 Kryo tests passed; full reactor timed out at 180s in MessagePack. No full-suite green claim."
   },
   "archives": {
-    "evidence.zip": "79f9823f6b07bd5706fa057730a6df1b6232d89c15f30e4dbe98f4ddf77799dc",
+    "evidence.zip": "81730e088ef247ec9d165f0d45f91408e3ba473dfbc855577ecb1e55729bd167",
     "runtime-overlay.zip": "eec4f60a4e5fe9036af7ba3d03831484abe4a3dea79d8439670771e0e474d42e"
   },
   "evidence_members_sha256": {
@@ -279,6 +277,7 @@
       "issue52-phase3-recheck/exmeso-release8-build.json": "75ad7a164c70cf09e7743d6a7202410973ea1a0956cbd79f00382b82875f5586",
       "issue52-phase3-recheck/exmeso-single-chunk-distinct.json": "30d9ea0a0989a0ff15296f5822e8076d240c6a4c731591a7ff67fc24b353797f",
       "issue52-phase3-recheck/exmeso-stable-merge.json": "b98d4d535e008703e00a900e1b6ac46ce5fab3b892b30a80d1c34f29bb2d86ca",
+      "issue52-phase3-recheck/final-focused-validation.json": "8a39c38eb6458e549486b0aed90b0286e0e9121796baf14c266d0137ddcb7319",
       "issue52-phase3-recheck/fresh-boundaries.py": "b2a7a761bff53da25c2cf032551396dfff021ecace380baf41eb96f06a47073d",
       "issue52-phase3-recheck/humanize-open-prs.json": "000587d1bdd628d3d03fed0cb5a3b96967256c3693495c999df651354d160941",
       "issue52-phase3-recheck/jsonschema-search.json": "e4cb8b552142d26ba3f58625ff72ed3790efda6a07192c259c0ad1ebec675e13",
@@ -295,6 +294,12 @@
       "issue52-phase3-recheck/run-controls.py": "d3e9b6d5afe4b865b1e495273df18f17c424ad98baffef392e0afa38619a7e1a",
       "issue52-phase3-recheck/schedule-open-prs.json": "56381e4e495327ba6fb449597c1712ad59e266f93a0303985f59cad7f8a6b783",
       "issue52-phase3-recheck/source-recheck.json": "8943084e845a441ee9221661350a2bb310521b6505af00551ca09298dc7faf82",
+      "issue52-phase3-selected-control-backend/native/inputs/probe.py": "1921a61523942414b847d3eb0adac575bec2d9c1db5164e4c2934962cd053a5d",
+      "issue52-phase3-selected-control-backend/native/result.json": "4c4a14033656eb26ed719646baef8838b3a455515d003d1b956f763f042cd11d",
+      "issue52-phase3-selected-control-backend/native/scratch/fixtures/contract.json": "983effa47fd79dbefd9e26814af7affc661caaa1d0c1dd2bbe3e4f30c255861b",
+      "issue52-phase3-selected-control-backend/native/scratch/fixtures/export-manifest.json": "7206010936326102d5ae0ed85e7a54ac718b9a27c8e5539259c02de7bf561f2a",
+      "issue52-phase3-selected-control-backend/native/scratch/fixtures/source-S1.txt": "54962ec5ec269555068401d68869d652bbb6545333250593b07424bc6ba6241d",
+      "issue52-phase3-selected-control-backend/native/scratch/fixtures/source-manifest.json": "15df00ccc974cf497ccf4ca74c4166972c39d45033be089387fecc6f0a262c9a",
       "issue52-phase3-supported-boundaries-20261016/boundary-inputs/source.md": "fcf454f2847cea97e12149afc1256878ce69169dee150ebf709124bd29acd789",
       "issue52-phase3-supported-boundaries-20261016/grader-boundary/boundary.json": "e4aa338f115ec9bb1977485d68376aa0490ca9b699cf0e1b718fdd0948dc7215",
       "issue52-phase3-supported-boundaries-20261016/grader-boundary/scratch/output.txt": "af0cd455d63e3c6f87d3ab4e6d6f626d32ce479652a13e94808162a4e07dc73b",
@@ -389,13 +394,10 @@
       "issue52-phase3-supported-boundaries-20261016/worker-boundary/scratch/output.txt": "660e1eba32fd45494f0cb26695d133ae5543a0a5ccd1cbf9ec0c3b65b37e6b50",
       "issue52-phase3-supported-catalog-120s/catalog-readback.json": "787973bafb7d671c71a746049db80d5a0a1fae86c61a758a1b589847a9b7a605",
       "issue52-phase3-supported-catalog-120s/model-catalog.json": "6ffb82e9efbc99a21cdaee8c7aa77381f2f5caddc1df4ec3edc5a79af6ea1716",
-      "issue52-phase3-selected-control-backend/native/result.json": "4c4a14033656eb26ed719646baef8838b3a455515d003d1b956f763f042cd11d",
-      "issue52-phase3-selected-control-backend/native/inputs/probe.py": "1921a61523942414b847d3eb0adac575bec2d9c1db5164e4c2934962cd053a5d",
-      "issue52-phase3-selected-control-backend/native/scratch/fixtures/source-manifest.json": "15df00ccc974cf497ccf4ca74c4166972c39d45033be089387fecc6f0a262c9a",
-      "issue52-phase3-selected-control-backend/native/scratch/fixtures/source-S1.txt": "54962ec5ec269555068401d68869d652bbb6545333250593b07424bc6ba6241d",
-      "issue52-phase3-selected-control-backend/native/scratch/fixtures/export-manifest.json": "7206010936326102d5ae0ed85e7a54ac718b9a27c8e5539259c02de7bf561f2a",
-      "issue52-phase3-selected-control-backend/native/scratch/fixtures/contract.json": "983effa47fd79dbefd9e26814af7affc661caaa1d0c1dd2bbe3e4f30c255861b",
-      "issue52-phase3-recheck/final-focused-validation.json": "8a39c38eb6458e549486b0aed90b0286e0e9121796baf14c266d0137ddcb7319"
+      "issue52-phase3-recheck/exposure-corrections.json": "e915f948f9350f501b79c0a8a335fba1bf24c7244430e31cd2180cc54bd27c0f",
+      "issue52-phase3-recheck/python-pathspec-search.json": "b30b538392d628e91bae9331102940de5c9fc12697ce603fc4dc7e5ca3a4760e",
+      "issue52-phase3-recheck/sqlparse-search.json": "657852294e64cd74510723657a9aafa1d67c538106b87e3dd4d5822a6656a394",
+      "issue52-phase3-recheck/jmespath.py-search.json": "c579611d44e7f0b74a68ff2d289ff7edf91498997cd816422240e6a0ddbb877c"
     },
     "runtime-overlay.zip": {
       "evaluation/issue52/fresh_oracles.py": "c6591ff42bbb362a62954673363acb7efa3d236a5eda31da2e55e1906c6c9b13",
@@ -462,7 +464,7 @@
       "final/evaluation/issue52/qualify.py": "b10a3993791ec0da12f93134ebf8fcc45b5a585e8452bcfe344a7a4b1429ca1f"
     }
   },
-  "candidate_manifest_sha256": "93ff2a0933fe3036ec30c4513790e72e1f3f7847ef87ef6b16a83c41f3894c63",
+  "candidate_manifest_sha256": "fd5047528228a8df71f2a47fc8cf184deeaf814757086d2ac474dbe0431b7464",
   "source_oracle_sha256": "c6591ff42bbb362a62954673363acb7efa3d236a5eda31da2e55e1906c6c9b13",
   "accounting": {
     "study_model_turns": 0,
@@ -478,7 +480,7 @@
     "proofline_checks_and_hints": "INCONCLUSIVE",
     "intentline_export": "INCONCLUSIVE"
   },
-  "next_action": "A separate qualified reviewer must adjudicate complete source inventories, candidate interfaces and controls. Finish remaining three task graders/controls and task-specific native dependencies/docs validation. Then freeze exact qualified experiment and obtain separate explicit live authorization. Do not dispatch now.",
+  "next_action": "Find at least two further genuinely suitable unrehearsed requests, including a straightforward control. A separate qualified reviewer must adjudicate complete sources, APIs, controls and acceptable alternatives. Finish qualified-task grading and native dependency controls, then freeze the exact qualified experiment and obtain separate explicit live authorization. Do not dispatch now.",
   "dependency_versions": [
     "arrow @ file:///Users/grove/projects/proofline/.proofline/issue52-phase3-arrow",
     "click @ file:///Users/grove/projects/proofline/.proofline/issue52-phase3-click",
@@ -515,5 +517,10 @@
       "elapsed_seconds": 12.451,
       "status": "PASSED"
     }
-  }
+  },
+  "excluded_before_freeze": [
+    "arrow-shift-docs",
+    "arrow-default-timezone"
+  ],
+  "cohort_size_gate": "NOT_MET_TWO_PREFERRED_CANDIDATES_NO_SMALL_CONTROL"
 }

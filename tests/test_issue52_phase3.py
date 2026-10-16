@@ -64,8 +64,11 @@ class PhaseThreeReadiness(unittest.TestCase):
         self.assertIsNone(cohort['semantic_reviewer'])
         self.assertIsNone(cohort['live_freeze'])
         self.assertEqual(len(cohort['tasks']), 4)
-        self.assertTrue(any(t['category'] == 'straightforward-documentation-control'
-                            for t in cohort['tasks']))
+        self.assertEqual(sum(t['selected_for_preparation'] for t in cohort['tasks']), 2)
+        self.assertFalse(cohort['selection_correction']['low_risk_control_qualified'])
+        self.assertEqual({t['qualification'] for t in cohort['tasks']
+                          if not t['selected_for_preparation']},
+                         {'EXCLUDED_PUBLIC_REFERENCE_OVERLAP'})
         for task in cohort['tasks']:
             raw = (ROOT / task['original_request_file']).read_bytes()
             self.assertEqual(git_blob_sha1(raw), task['original_request_blob_sha'])

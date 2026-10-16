@@ -1,14 +1,19 @@
-# Four-request shortlist — independent review is still required
+# Expanded task screen — no qualified four-task cohort
 
 **NOT QUALIFIED.** [candidate-cohort.json](candidate-cohort.json) pins four
-requests and their exact starting commits/trees. All four are selected for
-preparation only. No source inventory below has been approved by a separate
+requests and their exact starting commits/trees. The initial four-request
+shortlist was withdrawn before freeze: Arrow #1287 already has PR #1307, and
+Arrow #1293 overlaps the default-timezone implementation in PR #1122 for
+related #1090. These PRs lacked the closing-issue links used by the initial
+metadata screen; a later title review caught them. Only the two Click requests
+remain preferred preparation candidates. No suitable low-risk control or
+qualified four-task cohort was found. No source inventory below has been approved by a separate
 qualified reviewer; no live freeze or coding assignment exists. The complete
 issue title/body and discussion are captured together, with the original API
 response alongside each Markdown capture. Preserve these bytes, including CRLF.
 
 The bounded search checked Grove's available issue trackers and eleven public
-Python projects. Many plausible bugs already had working patches in PRs or
+Python projects, then three further small repositories. Many plausible bugs already had working patches in PRs or
 issue comments. In particular, an open issue and an empty upstream PR list do
 not establish novelty: jsonschema's interaction limits led contributors to
 publish solutions in forks instead. The search evidence and exclusions are
@@ -82,7 +87,7 @@ original suite failure here is not automatically a candidate defect. Assess
 aliases, hidden/dynamic commands, custom usage and side effects from current
 API behavior; do not invent new requirements from the preferred control design.
 
-## Arrow #1287: document all accepted shift keywords (small control)
+## Arrow #1287: shift keywords — EXCLUDED, public PR #1307
 
 Source: [complete request](replacement-sources/arrow-shift-docs.md),
 [upstream](https://github.com/arrow-py/arrow/issues/1287).
@@ -109,9 +114,10 @@ list (for example omitting quarters/weekday) is a proposed negative control,
 establish dependency health, not documentation completeness. Docs build and
 genuine alternative/negative documentation controls remain NOT_EXECUTED.
 
-This is the task where extra process is expected to be unnecessary.
+This was the proposed small control. Its public implementation makes it
+unsuitable for the preferred unrehearsed cohort; no low-risk control is qualified.
 
-## Arrow #1293: choose a timezone fallback without overwriting explicit zones
+## Arrow #1293: timezone fallback — EXCLUDED, public overlapping PR #1122
 
 Source: [complete request](replacement-sources/arrow-default-timezone.md),
 [upstream](https://github.com/arrow-py/arrow/issues/1293). Same Arrow base/tree.
@@ -140,10 +146,17 @@ adjudication. This is a bounded implementation candidate, not a qualified task.
 
 ## What must happen before freeze
 
+A suitable cohort still needs at least two additional genuinely unrehearsed
+requests, including a straightforward control. Do not treat the two exposed
+Arrow requests as filling those slots. The final SQLparse/JMESPath screen also
+found public fixes for the inspected requests, including SQLparse's simple
+`--help` request. The request/source captures and initial proposed slots are
+retained with explicit exclusions; no task was changed after a worker outcome.
+
 A separate qualified reviewer must independently inventory the complete sources,
 adjudicate the decisions above, and assess all controls and genuinely different
 correct implementations. Preparation-author notes are not that review. Complete
-the remaining three task graders/controls, docs build, and native dependency
+qualified-task graders/controls, docs checks where needed, and native dependency
 exposure checks using the existing snapshot/protected-command machinery.
 Reject any task whose obligations or dependencies cannot be qualified; do not
 force four by dropping part of a request. The Exmeso tasks stay in the earlier

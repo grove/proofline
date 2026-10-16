@@ -1,18 +1,21 @@
 # Issue #52 Phase 3 follow-up — NOT QUALIFIED
 
-Four source-pinned Click/Arrow requests now form a **preparation shortlist**,
-including one straightforward documentation task. Their original Python suites
-run. Supported native isolation, actual new-oracle exclusion, and the existing
+The expanded search retained four source-pinned Click/Arrow requests, but
+**withdrew the initial shortlist before freeze**: both Arrow requests overlap
+public PRs missed by closing-issue metadata and found in title review. Only
+two preferred Click preparation candidates remain; a suitable small control
+and four-task cohort are still missing. Their original Python suites run.
+Supported native isolation, actual new-oracle exclusion, and the existing
 Intentline/Proofline S1 round trip were observed. One new behavioral-control set
-discriminates a green-suite omission. **Independent semantic review and the
-other three task graders/controls are incomplete. No live study is authorized.**
+discriminates a green-suite omission. **Cohort selection, independent semantic
+review and complete task grading remain incomplete. No live study is authorized.**
 
 | Preparation candidate | Starting commit | Qualification evidence | A | B | C | D |
 | --- | --- | --- | --- | --- | --- | --- | --- |
 | [Click #3362](https://github.com/pallets/click/issues/3362), usage hyphens | `2247b35ea1c47c727d7a06e51fa280e12a863ff6` | two positive controls pass native probes; deliberate omission fails with original suite green; semantic review pending | NOT_EXECUTED | NOT_EXECUTED | NOT_EXECUTED | NOT_EXECUTED |
 | [Click #2992](https://github.com/pallets/click/issues/2992), usage metadata | same Click commit | dependency health observed; field/interface adjudication and validated controls pending | NOT_EXECUTED | NOT_EXECUTED | NOT_EXECUTED | NOT_EXECUTED |
-| [Arrow #1287](https://github.com/arrow-py/arrow/issues/1287), shift keyword docs | `2224255c4acc594d734cef0bbc83360452a67983` | small control; original suite green; rendered-doc review/build and controls pending | NOT_EXECUTED | NOT_EXECUTED | NOT_EXECUTED | NOT_EXECUTED |
-| [Arrow #1293](https://github.com/arrow-py/arrow/issues/1293), timezone fallback | same Arrow commit | original suite green; new API/precedence adjudication and independent oracle/controls pending | NOT_EXECUTED | NOT_EXECUTED | NOT_EXECUTED | NOT_EXECUTED |
+| [Arrow #1287](https://github.com/arrow-py/arrow/issues/1287), shift keyword docs | `2224255c4acc594d734cef0bbc83360452a67983` | EXCLUDED: public PR #1307 directly addresses this task; original suite green is only dependency evidence | NOT_EXECUTED | NOT_EXECUTED | NOT_EXECUTED | NOT_EXECUTED |
+| [Arrow #1293](https://github.com/arrow-py/arrow/issues/1293), timezone fallback | same Arrow commit | EXCLUDED: overlapping public default-timezone PR #1122 for related #1090; interface/overlap not adjudicated | NOT_EXECUTED | NOT_EXECUTED | NOT_EXECUTED | NOT_EXECUTED |
 
 These are new **proposed** slots, not replacement observations or assigned live
 episodes. The historical Phase 1/2 sixteen-slot ledger and all published earlier
@@ -24,7 +27,9 @@ defects do not count toward its two independently confirmed material failures.
 
 [candidate-cohort.json](../../issue52/candidate-cohort.json) pins full request
 blobs, original API captures including discussion, commit/tree identities,
-proposed order and all sixteen NOT_EXECUTED cells. [COHORT-REVIEW.md](../../issue52/COHORT-REVIEW.md)
+initial proposed order, explicit pre-freeze exclusions and all sixteen
+NOT_EXECUTED cells. These are retained records, not a qualified new cohort.
+[COHORT-REVIEW.md](../../issue52/COHORT-REVIEW.md)
 inventories draft obligations, acceptable alternatives and unresolved decisions.
 No upstream issues, comments or PRs were created or changed.
 
@@ -42,7 +47,7 @@ Exmeso surefire process was found afterward. The full suite, task oracles and
 native dependency environment remain unqualified; these bugs were not forced
 into the new shortlist.
 
-A wider bounded search covered eleven additional Grove trackers and eleven
+A wider bounded search covered eleven additional Grove trackers and fourteen
 public Python repositories. Evidence includes issue/PR metadata and explicit
 exposure exclusions: Boltons #581/#565/#553/#551/#566 have prepared PRs;
 Humanize #438/#366 and Dateutil #1591/#1611/#1432 have public fixes; Pydash
@@ -50,7 +55,12 @@ Humanize #438/#366 and Dateutil #1591/#1611/#1432 have public fixes; Pydash
 Cachetools #417 already has a tested upstream development solution;
 More-itertools #1268 was already merged, #1332 has a prepared fix, and #1315
 supplies implementations and reserves the work to its author. Click #3652 has
-unsettled maintainer semantics; #3886 was declined by a maintainer. We did not
+unsettled maintainer semantics; #3886 was declined by a maintainer. Follow-up
+title review found Arrow PR #1307 (directly addressing #1287) and default-timezone
+PR #1122 for related #1090 (overlapping #1293). Both Arrow candidates were
+excluded before any live freeze; their initial proposal and slots remain
+retained. SQLparse #840/#843/#885 and JMESPath #380/#381 also have public fixes;
+Click #3077's maintainer discussion says a glossary PR already exists. We did not
 read or fetch those solution branches into worker inputs. Public-source/model
 training exposure for the selected requests remains UNKNOWN.
 
@@ -155,9 +165,10 @@ retained, but overlapping durations are not summed. Complete preparation
 elapsed time, organizer tokens, active human time and actual billed costs stay
 **UNKNOWN**. Study-model dispatches: **0**.
 
-**Readiness: NOT QUALIFIED. Next action:** a separate qualified reviewer must
-adjudicate the complete four-request inventories, API choices and control
-fitness. Finish the remaining three task graders/controls and docs/native
+**Readiness: NOT QUALIFIED. Next action:** find at least two further suitable
+unrehearsed requests, including the missing straightforward control. A separate
+qualified reviewer must adjudicate complete source inventories, API choices
+and control fitness. Finish qualified-task graders/controls and native
 dependency qualification. Exclude or replace a candidate before any freeze if
 it cannot qualify; do not shrink its request to keep four tasks. Then freeze
 the exact qualified cohort, oracle/control/runtime/catalog hashes, permissions,

@@ -59,13 +59,13 @@
       "base_commit": "2224255c4acc594d734cef0bbc83360452a67983",
       "base_tree": "1ec889cbad20c2ede0242e5c662b8af9c1973f30",
       "category": "straightforward-documentation-control",
-      "selected_for_preparation": true,
+      "selected_for_preparation": false,
       "selected_for_live_study": false,
-      "qualification": "BUILD_OBSERVED_SEMANTIC_REVIEW_PENDING",
+      "qualification": "EXCLUDED_PUBLIC_REFERENCE_OVERLAP",
       "independent_review": "PENDING",
       "original_suite": "arrow-baseline-tests.json",
       "oracle_status": "REVIEW_REQUIRED_NOT_EXECUTABLE_WHOLE_REQUEST_GRADING",
-      "known_solution_exposure": "No overlapping open PR found in bounded metadata search; public issue and training exposure remain UNKNOWN. No guarantee of novelty."
+      "known_solution_exposure": "Public overlapping PR https://github.com/arrow-py/arrow/pull/1307 directly addresses #1287. Detected in title review after closing-issue metadata missed it; no live assignment occurred."
     },
     {
       "id": "arrow-default-timezone",
@@ -79,13 +79,13 @@
       "base_commit": "2224255c4acc594d734cef0bbc83360452a67983",
       "base_tree": "1ec889cbad20c2ede0242e5c662b8af9c1973f30",
       "category": "timezone-and-backward-compatibility",
-      "selected_for_preparation": true,
+      "selected_for_preparation": false,
       "selected_for_live_study": false,
-      "qualification": "BUILD_OBSERVED_SEMANTIC_REVIEW_PENDING",
+      "qualification": "EXCLUDED_PUBLIC_REFERENCE_OVERLAP",
       "independent_review": "PENDING",
       "original_suite": "arrow-baseline-tests.json",
       "oracle_status": "REVIEW_REQUIRED_NOT_EXECUTABLE_WHOLE_REQUEST_GRADING",
-      "known_solution_exposure": "No overlapping open PR found in bounded metadata search; public issue and training exposure remain UNKNOWN. No guarantee of novelty."
+      "known_solution_exposure": "Public overlapping PR https://github.com/arrow-py/arrow/pull/1122 implements default-timezone support for related #1090; overlap with #1293 requires review. Exclude from preferred unrehearsed cohort. Detected in title review after closing-issue metadata missed it; no live assignment occurred."
     }
   ],
   "protocol_basis": "evaluation/issue52/protocol.json",
@@ -123,7 +123,8 @@
       "candidate_tree": null,
       "elapsed_seconds": null,
       "reported_tokens": null,
-      "actual_billed_cost": "UNKNOWN"
+      "actual_billed_cost": "UNKNOWN",
+      "exclusion_reason": "PUBLIC_REFERENCE_OVERLAP_BEFORE_FREEZE"
     },
     {
       "slot": 4,
@@ -134,7 +135,8 @@
       "candidate_tree": null,
       "elapsed_seconds": null,
       "reported_tokens": null,
-      "actual_billed_cost": "UNKNOWN"
+      "actual_billed_cost": "UNKNOWN",
+      "exclusion_reason": "PUBLIC_REFERENCE_OVERLAP_BEFORE_FREEZE"
     },
     {
       "slot": 5,
@@ -211,7 +213,8 @@
       "candidate_tree": null,
       "elapsed_seconds": null,
       "reported_tokens": null,
-      "actual_billed_cost": "UNKNOWN"
+      "actual_billed_cost": "UNKNOWN",
+      "exclusion_reason": "PUBLIC_REFERENCE_OVERLAP_BEFORE_FREEZE"
     },
     {
       "slot": 12,
@@ -222,7 +225,8 @@
       "candidate_tree": null,
       "elapsed_seconds": null,
       "reported_tokens": null,
-      "actual_billed_cost": "UNKNOWN"
+      "actual_billed_cost": "UNKNOWN",
+      "exclusion_reason": "PUBLIC_REFERENCE_OVERLAP_BEFORE_FREEZE"
     },
     {
       "slot": 13,
@@ -233,7 +237,8 @@
       "candidate_tree": null,
       "elapsed_seconds": null,
       "reported_tokens": null,
-      "actual_billed_cost": "UNKNOWN"
+      "actual_billed_cost": "UNKNOWN",
+      "exclusion_reason": "PUBLIC_REFERENCE_OVERLAP_BEFORE_FREEZE"
     },
     {
       "slot": 14,
@@ -244,7 +249,8 @@
       "candidate_tree": null,
       "elapsed_seconds": null,
       "reported_tokens": null,
-      "actual_billed_cost": "UNKNOWN"
+      "actual_billed_cost": "UNKNOWN",
+      "exclusion_reason": "PUBLIC_REFERENCE_OVERLAP_BEFORE_FREEZE"
     },
     {
       "slot": 15,
@@ -255,7 +261,8 @@
       "candidate_tree": null,
       "elapsed_seconds": null,
       "reported_tokens": null,
-      "actual_billed_cost": "UNKNOWN"
+      "actual_billed_cost": "UNKNOWN",
+      "exclusion_reason": "PUBLIC_REFERENCE_OVERLAP_BEFORE_FREEZE"
     },
     {
       "slot": 16,
@@ -266,7 +273,16 @@
       "candidate_tree": null,
       "elapsed_seconds": null,
       "reported_tokens": null,
-      "actual_billed_cost": "UNKNOWN"
+      "actual_billed_cost": "UNKNOWN",
+      "exclusion_reason": "PUBLIC_REFERENCE_OVERLAP_BEFORE_FREEZE"
     }
-  ]
+  ],
+  "selection_correction": {
+    "status": "INITIAL_FOUR_REQUEST_SHORTLIST_WITHDRAWN_BEFORE_FREEZE",
+    "reason": "Closing-issue metadata missed both overlapping Arrow PRs. Retain captures and all proposed slots but exclude both from preferred unrehearsed preparation. Only two preferred Click candidates remain; no qualified low-risk control was found. Do not force four.",
+    "preferred_candidate_count": 2,
+    "minimum_cohort_size": 4,
+    "low_risk_control_qualified": false,
+    "remaining_search": "Final bounded public search also found exposed SQLparse/JMESPath implementations. No new live cohort is declared."
+  }
 }

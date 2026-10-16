@@ -127,7 +127,7 @@
       "selected_for_live_study": false
     }
   ],
-  "next_action": "Review the separate four-request Click/Arrow preparation shortlist in candidate-cohort.json. Do not freeze or dispatch until independent source/oracle/alternative-control and native dependency qualification complete. Retain these six screened sources and all historical assignments.",
+  "next_action": "The expanded screen in candidate-cohort.json retains only two preferred Click candidates after excluding Arrow public-PR overlap. Find at least two additional suitable tasks including a low-risk control, then complete independent source/oracle/control qualification before any freeze. Preserve all historical assignments.",
   "excluded_examples": [
     {
       "repository": "grove/graph-verity",
