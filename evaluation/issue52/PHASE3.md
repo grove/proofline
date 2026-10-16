@@ -1,10 +1,14 @@
-# Issue #52 — Phase 3 readiness: honest stop, source-review packet
+# Issue #52 — Phase 3 readiness: NOT QUALIFIED
 
 **Decision: NO LIVE DISPATCH.** Phase 2's 12 native controls are valuable
 **mechanical qualification**, not an independent whole-request oracle or
 evidence that assistance improves deliveries. The source/oracle and task
-selection gates remain open, and no qualified macOS/Codex coding host is
-available to this conversation. Zero coding assignments have been executed.
+selection gates remain open. This follow-up observed supported native host
+controls, but has not completed independent semantic qualification. Zero coding
+assignments have been executed. See the [four-request shortlist and remaining
+review decisions](COHORT-REVIEW.md), [assessment of all 16 historical
+questions](REVIEW-ASSESSMENT.md), and [fresh observations and retained
+stops](../results/issue52-phase3/README.md).
 
 ## Real-request replacement screen
 
@@ -16,8 +20,8 @@ inputs*, not a new selected cohort or a live study freeze:
 
 | Candidate | Screen result | Reason |
 | --- | --- | --- |
-| [Exmeso #2](https://github.com/grove/exmeso/issues/2), single-chunk distinct | Host qualification needed | Real low-risk bug, but old Maven project targets Java 1.6; no supported build/controls were executed |
-| [Exmeso #3](https://github.com/grove/exmeso/issues/3), stable merge | Host qualification needed | Real ordering obligation; requires tie-case behavioral oracle and supported JDK/build |
+| [Exmeso #2](https://github.com/grove/exmeso/issues/2), single-chunk distinct | Build qualification incomplete | JDK 21 installed; original source-6 build fails. Release-8 setting passes three modules, but full suite times out after 180 seconds |
+| [Exmeso #3](https://github.com/grove/exmeso/issues/3), stable merge | Build qualification incomplete | Same build evidence; independent tie-case oracle and alternative controls remain unauthored |
 | [P2P #110](https://github.com/grove/promise-to-proof/issues/110), cold preflight | Exclude for now | Depends on real #109 performance/boundary evidence |
 | [P2P #111](https://github.com/grove/promise-to-proof/issues/111), idle-progress recovery | Exclude for now | Depends on actual stalled/productive native episodes; too broad for a finite short attempt without qualification |
 | [P2P #112](https://github.com/grove/promise-to-proof/issues/112), instruction overhead | Exclude for now | Requires matched real model-stage accounting and quality controls |
@@ -25,10 +29,13 @@ inputs*, not a new selected cohort or a live study freeze:
 
 These are not claimed unseen by a model: solution exposure and training
 contamination are unmeasured even when no known reference PR is attached.
-Two conditionally useful tasks are **fewer than the required four**. Creating
-synthetic source obligations or ignoring dependencies to complete the count
-would defeat the study. Avoid adding unnecessary Java/JDK setup simply to
-force a cohort.
+The original screen produced fewer than four useful tasks. A wider public
+search now provides four different [preparation candidates](candidate-cohort.json):
+Click usage wrapping and usage metadata, Arrow shift documentation (the small
+control), and timezone fallback. Their original suites run successfully; their
+independent semantic/oracle qualification is incomplete. They are not approved
+substitutions or a live freeze. No Java source/build file was patched to force
+the original screen into the cohort.
 
 ## Oracle pre-review — not semantic approval
 

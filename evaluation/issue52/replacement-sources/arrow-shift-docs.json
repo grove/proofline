@@ -1,0 +1,8 @@
+{
+  "body": "<!--\nThanks for taking the time to submit documentation feedback.\nPlease provide us with a detailed description of the documentation issue.\n-->\n\n## Issue Description\n\nThe docs for the shift function could be clearer. While the examples give you a rough idea what kwargs are accepted it would be nice with a complete list of accepted kwargs without poking through the code too much. \n\n<!-- Replace this comment block with a description of the documentation issue. -->\n",
+  "comments": [],
+  "state": "OPEN",
+  "title": "Docs for kwargs in shift function",
+  "updatedAt": "2026-06-02T07:46:40Z",
+  "url": "https://github.com/arrow-py/arrow/issues/1287"
+}

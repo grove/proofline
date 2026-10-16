@@ -1,0 +1,8 @@
+{
+  "body": "## Context \n\nI am generating some of my user-facing documentation using `get_info_dict()`, and was looking for a way to automate the usage as well without having to hardcode it in the docstrings. \n\n## Potential solution\n\nUsing the calls of `get_info_dict()` to add a `usage` key with the value being the output of `get_usage()`.\n\nOther relevant issues: #2762 \n\n## Workaround\n\nFor now I'm using `get_info_dict()`, then looping through the context to get groups and commands, and using `get_usage()` on each, then adding it to that dictionary. The code looks something like this (with the for loop matching the structure of my CLI):\n\n```python\n    info = ctx.to_info_dict()\n    for cmd_n1 in ctx.command.list_commands(ctx):\n        cmd2 = ctx.command.get_command(ctx, cmd_n1)\n        sub_ctx = ctx._make_sub_context(cmd2)\n        usage = cmd2.get_usage(sub_ctx).replace(\"Usage: \", \"\")\n        info[\"command\"][\"commands\"][cmd_n1][\"usage\"] = usage\n        if isinstance(cmd2, click.Group):\n            # Groups\n            for cmd_n2 in cmd2.list_commands(ctx):\n                cmd3 = cmd2.get_command(ctx, cmd_n2)\n                sub_ctx3 = sub_ctx._make_sub_context(cmd3)\n                usage = cmd3.get_usage(sub_ctx3).replace(\"Usage: \", \"\")\n                info[\"command\"][\"commands\"][cmd_n1][\"commands\"][cmd_n2][\"usage\"] = usage\n\n```\n\n",
+  "comments": [],
+  "state": "OPEN",
+  "title": "Add output of get_usage() to get_info_dict()",
+  "updatedAt": "2026-08-29T13:04:20Z",
+  "url": "https://github.com/pallets/click/issues/2992"
+}

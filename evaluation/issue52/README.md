@@ -78,10 +78,14 @@ merge authorization are implied by Phase 1.
 
 ## Phase 3: independent review and fresh-task eligibility
 
-The [Phase 3 readiness note](PHASE3.md) screens six still-open replacement
-requests and records [sixteen potential source/oracle coverage gaps](source-review-packet.json)
-for independent adjudication. **No fresh cohort is qualified**: two Java bugs
-need host qualification; the other screened requests have unresolved prerequisites.
+The [Phase 3 readiness note](PHASE3.md) retains six screened replacement
+requests and [sixteen source/oracle questions](source-review-packet.json), now
+[assessed against available evidence](REVIEW-ASSESSMENT.md). A wider search adds
+a [four-request Click/Arrow shortlist](COHORT-REVIEW.md) with pinned sources,
+working original test suites, draft obligations and one native behavioral-control
+set. **No fresh cohort is qualified**: separate semantic review and remaining
+task controls are incomplete. [Fresh supported-host observations and retained
+stops](../results/issue52-phase3/README.md) include the JDK 21 build attempt.
 The historical Phase 1/2 controls remain intact, but their public reference
 implementations cannot be represented as an unseen benchmark. All live coding
 assignments remain NOT_EXECUTED; no model spending or changed product behavior

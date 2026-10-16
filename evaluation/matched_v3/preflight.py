@@ -7,7 +7,7 @@ from checks import host_probe as host, intentline_advisory as adapter, local_run
 from evaluation.matched import corpus
 
 
-def check_adapter_roundtrip(root, install_tool, selected_checks, boundary):
+def check_adapter_roundtrip(root, install_tool, selected_checks, boundary, *, codex="/opt/homebrew/bin/codex"):
     product = corpus.seed("atomic-transfers", root / "inputs", "reference")
     host.git(product, "init", "--quiet", "--template=")
     host.git(product, "add", "--all")
@@ -23,7 +23,7 @@ def check_adapter_roundtrip(root, install_tool, selected_checks, boundary):
     cli = [str(Path(sys.executable).resolve()), "-B", str(inputs / "intentline_cli.py")]
 
     def invoke(args):
-        command = host.sandbox_argv("/opt/homebrew/bin/codex", inputs, scratch, private)
+        command = host.sandbox_argv(codex, inputs, scratch, private)
         command = command[:command.index("--") + 1] + cli + args
         receipt = host.run_command(command, scratch, 15)
         receipts.append(receipt)

@@ -1,0 +1,21 @@
+{
+  "task": "click-usage-hyphens",
+  "independent_review": "PENDING",
+  "whole_source_correct": null,
+  "path": "src/click/formatting.py",
+  "base_sha256": "f125b628692f8dfcfd43535b7a88cc1ee64137471f9d0243b389aa0cfea85e6b",
+  "variants": {
+    "reference": {
+      "new_sha256": "df63944c7369f27994f13acc64c181188aed39ebf3c239b36252c72b6b90ae10",
+      "patch_file": "evaluation/issue52/fresh-controls/reference.patch"
+    },
+    "alternative": {
+      "new_sha256": "52ebe9f4261be4f1979653a347a38ba255ae3c84aa0383c1635867fd1e855760",
+      "patch_file": "evaluation/issue52/fresh-controls/alternative.patch"
+    },
+    "defective-second-layout": {
+      "new_sha256": "d3fc836c9f6a8abbfb846ff3ca7aa02a69dce27ef76d0738b2164cff5aab9fd1",
+      "patch_file": "evaluation/issue52/fresh-controls/defective-second-layout.patch"
+    }
+  }
+}

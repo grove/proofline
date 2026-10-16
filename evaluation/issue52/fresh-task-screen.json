@@ -24,8 +24,8 @@
       "base_commit": "e9ff70161658acd6bf9b71844d95a8922159f333",
       "base_tree": "d933ced7be4741f7fed0f3380336e7a9b6853a7f",
       "category": "ordinary-low-risk",
-      "qualification": "HOST_DEPENDENCIES_UNVERIFIED",
-      "screening_rationale": "Genuine unimplemented localized deduplication bug; Maven project targets Java 1.6; actual JDK/dependency/test command is unqualified.",
+      "qualification": "BUILD_QUALIFICATION_INCOMPLETE",
+      "screening_rationale": "JDK 21.0.12.1 is now installed. Original Maven build rejects source/target 1.6. On the unchanged pinned tree, -Dmaven.compiler.release=8 passes core (3), Jackson (13), and Kryo (3) tests, but the full reactor times out after 180 seconds in MessagePack. Complete suite and native task controls remain unqualified; see Phase 3 follow-up evidence.",
       "independent_oracle": "NOT_AUTHORED",
       "native_control_receipts": "NOT_EXECUTED",
       "solution_exposure": "UNVERIFIED; no claim of absolute novelty",
@@ -43,8 +43,8 @@
       "base_commit": "e9ff70161658acd6bf9b71844d95a8922159f333",
       "base_tree": "d933ced7be4741f7fed0f3380336e7a9b6853a7f",
       "category": "edge-ordering",
-      "qualification": "HOST_DEPENDENCIES_UNVERIFIED",
-      "screening_rationale": "Equal-key cross-file stable ordering is a real reported defect. Needs legitimate alternative implementation and executable tie-order oracle; old Java build unqualified.",
+      "qualification": "BUILD_QUALIFICATION_INCOMPLETE",
+      "screening_rationale": "JDK 21.0.12.1 is now installed. Original Maven build rejects source/target 1.6. On the unchanged pinned tree, -Dmaven.compiler.release=8 passes core (3), Jackson (13), and Kryo (3) tests, but the full reactor times out after 180 seconds in MessagePack. Complete suite and native task controls remain unqualified; see Phase 3 follow-up evidence.",
       "independent_oracle": "NOT_AUTHORED",
       "native_control_receipts": "NOT_EXECUTED",
       "solution_exposure": "UNVERIFIED; no claim of absolute novelty",
@@ -127,7 +127,7 @@
       "selected_for_live_study": false
     }
   ],
-  "next_action": "Source at least four qualified, realistically sized, previously unimplemented requests. Host-screen Java candidates or select new Python requests before authoring oracles. Do not repurpose the frozen Phase 1 assignment ledger.",
+  "next_action": "Review the separate four-request Click/Arrow preparation shortlist in candidate-cohort.json. Do not freeze or dispatch until independent source/oracle/alternative-control and native dependency qualification complete. Retain these six screened sources and all historical assignments.",
   "excluded_examples": [
     {
       "repository": "grove/graph-verity",
@@ -140,7 +140,7 @@
   ],
   "limitations": [
     "Issue body as captured at screen time; current issue state and code drift require revalidation before freeze.",
-    "No qualified native host for this proposed cross-project cohort; per-task build/dependency health UNKNOWN.",
+    "Fresh supported-Codex worker/grader and S1 round-trip canaries were observed in the follow-up; task-specific cross-project dependency exposure and grading remain incomplete.",
     "Candidate existence does not constitute an independently approved source oracle, even if the repo issue remains open."
   ]
 }

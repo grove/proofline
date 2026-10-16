@@ -25,7 +25,7 @@ from evaluation.issue52 import oracles
 
 ROOT = Path(__file__).resolve().parents[2]
 HERE = Path(__file__).resolve().parent
-CODEX = '/opt/homebrew/bin/codex'
+CODEX = host.find_codex(None) or '/opt/homebrew/bin/codex'
 PYTHON = str(Path(sys.executable).resolve())
 
 

@@ -1,0 +1,8 @@
+{
+  "body": "<!--\nThanks for taking the time to submit this feature request.\n\nPlease provide us with a detailed description of the potential improvement.\n-->\n\n## Feature Request\n\nWhen providing a date as a string, it's often useful to be able to have it default to the local timezone but also have the ability to override it with a specific timezone. For example, writing `2025-01-01 12:34` for 12:34 PM in the local time, or `2025-01-01 12:34-0800` for 12:34 PM in the `US/Pacific` timezone.\n\nCurrently, if you parse a time with an explicit timezone but also provide a `tzinfo` parameter, the timezone will override the parsed time, for example:\n\n```\n>>> arrow.get('2025-01-01 00:00-0800',tzinfo='US/Eastern')\n<Arrow [2025-01-01T00:00:00-05:00]>\n```\n\nOne possible workaround is to use `arrow.get` and then look at the resulting object's tzinfo, but this will fail if the time is being explicitly set to UTC:\n\n```\n>>> arrow.get('2025-01-01 00:00:00').tzinfo\ndatetime.timezone.utc\n>>> arrow.get('2025-01-01 00:00:00+0000').tzinfo\ndatetime.timezone.utc\n```\n\nand I do not see any way to determine whether the timezone was specified in the string provided to `.get()`, and this information doesn't even seem to be preserved anywhere:\n\n```\n>>> arrow.get('2025-01-01 00:00:00+0000').__dict__\n{'_datetime': datetime.datetime(2025, 1, 1, 0, 0, tzinfo=datetime.timezone.utc)}\n>>> arrow.get('2025-01-01 00:00:00').__dict__\n{'_datetime': datetime.datetime(2025, 1, 1, 0, 0, tzinfo=datetime.timezone.utc)}\n```\n",
+  "comments": [],
+  "state": "OPEN",
+  "title": "Provide a means to override the default timezone in `arrow.get()`",
+  "updatedAt": "2026-06-08T20:22:39Z",
+  "url": "https://github.com/arrow-py/arrow/issues/1293"
+}
