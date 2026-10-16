@@ -137,15 +137,19 @@ semantic prover, benchmark framework or mandatory delivery stage was added.
 [runtime-overlay.zip](runtime-overlay.zip) preserves the relevant runtime
 changes and actual Intentline producer bytes over Proofline commit
 `45a23160102e9e1ba1a4915165b29883721b997e`. Execution scripts and actual probes
-for all three authoring revisions are retained. Reconstruct controls by
+for all three authoring revisions are retained. The overlay's `final/` entry
+records the subsequent binding of the historical control grader to the same
+selected binary; a further native probe verifies that exact receipt argv.
+Reconstruct controls by
 fetching the pinned Click commit and applying the named patch; run the archived
 native adapter script with the supported binary. Do not overwrite output or
 claim that extracting path-bound receipts re-executes them. Exclude every
 evaluator artifact from worker input snapshots and deny reads to this checkout.
 
 Validation passed: **291 tests, 9 opt-in skips** in the full repository suite;
-the final **6 focused Phase 3 tests**, including the subsequently added archive
-integrity check, also passed, as did all **3 fixed oracle controls**. Native observations supplement CI;
+after the final path-binding and archive regressions, **20 focused Phase 3,
+Phase 2 and recovery tests** also passed, as did all **3 fixed oracle controls**.
+Native observations supplement CI;
 Linux CI does not qualify the macOS execution boundary. Per-process times are
 retained, but overlapping durations are not summed. Complete preparation
 elapsed time, organizer tokens, active human time and actual billed costs stay

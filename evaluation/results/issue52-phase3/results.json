@@ -125,8 +125,8 @@
     "exmeso": "Original source-6 build rejected. With release=8, 3 core + 13 Jackson + 3 Kryo tests passed; full reactor timed out at 180s in MessagePack. No full-suite green claim."
   },
   "archives": {
-    "evidence.zip": "d35062f51126e77ccae86983dd40e8b101cf415e85bc914be1770cb866cc7b79",
-    "runtime-overlay.zip": "e5bfc7c224d4efb94fe5654093d31e762d964c03e2e5d22d55c6afae6673d7d3"
+    "evidence.zip": "79f9823f6b07bd5706fa057730a6df1b6232d89c15f30e4dbe98f4ddf77799dc",
+    "runtime-overlay.zip": "eec4f60a4e5fe9036af7ba3d03831484abe4a3dea79d8439670771e0e474d42e"
   },
   "evidence_members_sha256": {
     "evidence.zip": {
@@ -388,7 +388,14 @@
       "issue52-phase3-supported-boundaries-20261016/worker-boundary/boundary.json": "7e2124ed6f401fb050c62d2a002424cfbda60a14db3842fe14f4ecdd8a0b4381",
       "issue52-phase3-supported-boundaries-20261016/worker-boundary/scratch/output.txt": "660e1eba32fd45494f0cb26695d133ae5543a0a5ccd1cbf9ec0c3b65b37e6b50",
       "issue52-phase3-supported-catalog-120s/catalog-readback.json": "787973bafb7d671c71a746049db80d5a0a1fae86c61a758a1b589847a9b7a605",
-      "issue52-phase3-supported-catalog-120s/model-catalog.json": "6ffb82e9efbc99a21cdaee8c7aa77381f2f5caddc1df4ec3edc5a79af6ea1716"
+      "issue52-phase3-supported-catalog-120s/model-catalog.json": "6ffb82e9efbc99a21cdaee8c7aa77381f2f5caddc1df4ec3edc5a79af6ea1716",
+      "issue52-phase3-selected-control-backend/native/result.json": "4c4a14033656eb26ed719646baef8838b3a455515d003d1b956f763f042cd11d",
+      "issue52-phase3-selected-control-backend/native/inputs/probe.py": "1921a61523942414b847d3eb0adac575bec2d9c1db5164e4c2934962cd053a5d",
+      "issue52-phase3-selected-control-backend/native/scratch/fixtures/source-manifest.json": "15df00ccc974cf497ccf4ca74c4166972c39d45033be089387fecc6f0a262c9a",
+      "issue52-phase3-selected-control-backend/native/scratch/fixtures/source-S1.txt": "54962ec5ec269555068401d68869d652bbb6545333250593b07424bc6ba6241d",
+      "issue52-phase3-selected-control-backend/native/scratch/fixtures/export-manifest.json": "7206010936326102d5ae0ed85e7a54ac718b9a27c8e5539259c02de7bf561f2a",
+      "issue52-phase3-selected-control-backend/native/scratch/fixtures/contract.json": "983effa47fd79dbefd9e26814af7affc661caaa1d0c1dd2bbe3e4f30c255861b",
+      "issue52-phase3-recheck/final-focused-validation.json": "8a39c38eb6458e549486b0aed90b0286e0e9121796baf14c266d0137ddcb7319"
     },
     "runtime-overlay.zip": {
       "evaluation/issue52/fresh_oracles.py": "c6591ff42bbb362a62954673363acb7efa3d236a5eda31da2e55e1906c6c9b13",
@@ -451,7 +458,8 @@
       "intentline/schema/slice-handoff-v1.schema.json": "5013c1f565c60f4a073df297f56e2aa8bda9c51c89348cbe95d765cac7d6e70a",
       "intentline/schema/slicing-v1.schema.json": "77486706d8f1db7ca8a35d4a2436475b255eae778e028cc1e84476cd7adf91ff",
       "intentline/schema/source-bundle-v2.schema.json": "6fd9606347a7825e60b8977d5c9cab9d325c965f0498c0716741e728b1dd8ac4",
-      "intentline/skills/intentline-plan/SKILL.md": "6d35ec8b0af205364c59cd97ab4dd1bc1ed8ee85b097cb80faf101e7d21796ed"
+      "intentline/skills/intentline-plan/SKILL.md": "6d35ec8b0af205364c59cd97ab4dd1bc1ed8ee85b097cb80faf101e7d21796ed",
+      "final/evaluation/issue52/qualify.py": "b10a3993791ec0da12f93134ebf8fcc45b5a585e8452bcfe344a7a4b1429ca1f"
     }
   },
   "candidate_manifest_sha256": "93ff2a0933fe3036ec30c4513790e72e1f3f7847ef87ef6b16a83c41f3894c63",
@@ -498,12 +506,13 @@
       "elapsed_seconds": 183.845,
       "status": "PASSED"
     },
-    "final_phase3_focused": {
-      "tests": 6,
-      "status": "PASSED"
-    },
     "fixed_behavioral_controls": {
       "tests": 3,
+      "status": "PASSED"
+    },
+    "final_phase3_and_recovery_focused": {
+      "tests": 20,
+      "elapsed_seconds": 12.451,
       "status": "PASSED"
     }
   }

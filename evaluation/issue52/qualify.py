@@ -18,7 +18,6 @@ from checks import candidate_snapshot as snapshots, host_probe as host
 from checks.native_checks import write_record
 from evaluation.effort.study import seed as existing_seed, capture_with_history
 from evaluation.recovery import grader
-from evaluation.recovery.grader import invoke
 from evaluation.sol_luna.grader import bound_module
 from evaluation.source_preflight import qualify as source_qualify
 from evaluation.issue52 import oracles
@@ -27,6 +26,7 @@ ROOT = Path(__file__).resolve().parents[2]
 HERE = Path(__file__).resolve().parent
 CODEX = host.find_codex(None) or '/opt/homebrew/bin/codex'
 PYTHON = str(Path(sys.executable).resolve())
+invoke = bound_module(grader, CODEX=CODEX).invoke
 
 
 def spec():
@@ -199,7 +199,8 @@ def controls(output, *, native=False, green_suite=False):
                                f'argv=[{PYTHON!r}, "-B", "-m", "unittest", "discover", "-s", "tests"]\n'
                                'p=subprocess.run(argv,cwd=product,capture_output=True,text=True,timeout=150)\n'
                                'print(json.dumps(dict(argv=argv,cwd=product,exit_code=p.returncode,stdout=p.stdout,stderr=p.stderr,pythonpath=os.environ["PYTHONPATH"],sitecustomize=shim)))\n')
-                    historical = bound_module(grader, snapshots=SimpleNamespace(capture_worktree=capture_with_history))
+                    historical = bound_module(grader, CODEX=CODEX,
+                                              snapshots=SimpleNamespace(capture_worktree=capture_with_history))
                     suite = historical.invoke(product, program, folder / 'existing-suite', trusted=not native,
                                               seconds=min(spec()['limits']['existing_suite_seconds'], deadline-time.monotonic()))
                     row['existing_suite'] = suite

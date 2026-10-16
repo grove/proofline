@@ -27,6 +27,9 @@ def git_blob_sha1(raw):
 
 
 class PhaseThreeReadiness(unittest.TestCase):
+    def test_control_invocations_share_the_discovered_codex(self):
+        self.assertEqual(qualify.invoke.__globals__['CODEX'], qualify.CODEX)
+
     def test_pinned_codex_reaches_catalog_both_roles_and_roundtrip(self):
         runner = Mock()
         runner.boundary.return_value = {}
