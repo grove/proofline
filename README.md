@@ -367,6 +367,19 @@ If a checker already produced a specific case, optionally attach `--failure-deta
 - **Native isolation is mandatory.** Missing/unqualified native boundaries produce unavailable evidence; offline Linux CI does not establish live macOS safety.
 - **Remote actions are out of scope.** No local check, promise map or Intentline export grants permission for PRs, pushes, merges or deployment. The supported CLI has no publisher or full-promise certification command.
 
+## Neighboring projects
+
+Proofline works independently. No sibling is required or automatically invoked.
+
+| Project | Question it owns |
+| --- | --- |
+| [Intentline](https://github.com/grove/intentline) | What was requested, and what acceptance draft follows? |
+| **Proofline** | What did selected checks establish about an identified candidate? |
+| [Faultline](https://github.com/grove/faultline) | Would selected tests detect particular plausible wrong behaviors? |
+| [Gapline](https://github.com/grove/gapline) | Which consequential weaknesses can this investigation substantiate? |
+
+An optional exchange must retain source identity, scope, and uncertainty. A generated plan remains advisory; a passing check establishes only its limited claim; a surviving mutation does not establish a defect in the original candidate. No shared schema or runtime is required.
+
 ## Contributing and background
 
 Contributions are welcome—particularly improvements to helpful failures, native sandbox integrity, tests, and documentation. [DESIGN.md](DESIGN.md) explains the intentionally lightweight contract, [IMPLEMENTATION.md](IMPLEMENTATION.md) the core boundaries, and the [issue tracker](https://github.com/grove/proofline/issues) the current work.
