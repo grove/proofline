@@ -1,0 +1,67 @@
+{
+  "source_commit": "d614429ab661e8e686ef618db81e33cbca09a28b",
+  "historical_receipt_files_verified": 15,
+  "historical_worker_assertions": "PASS_MODEL_FREE_M1_ONLY",
+  "historical_endpoint_transport_assertions": "PASS_MODEL_FREE_M1_ONLY",
+  "controller_transport_filesystem_policy": "allow default; network-only canary, not agent filesystem isolation",
+  "current_host": "Apple M1 Pro / 32 GB; not M5 Pro",
+  "m5_telemetry_available_in_session": false,
+  "current_check_status": "EXECUTION UNAVAILABLE",
+  "current_check_error": "This boundary requires Codex CLI 0.162.1; no model authentication is used",
+  "version_receipt": {
+    "kind": "process_probe",
+    "invocation_id": "b4da1865-e934-4b25-a27f-a5a2f2ea8a35",
+    "argv": [
+      "/opt/homebrew/bin/codex",
+      "--version"
+    ],
+    "exit_code": 0,
+    "timed_out": false,
+    "stdout": "codex-cli 0.163.0\n",
+    "stderr": "WARNING: proceeding, even though we could not create PATH aliases: Operation not permitted (os error 1)\n",
+    "elapsed_seconds": 0.016636
+  },
+  "current_source_unchanged": true,
+  "new_model_dispatches": 0,
+  "ac_assignments_launched": 0,
+  "regression_receipt": {
+    "kind": "process_probe",
+    "invocation_id": "f47a23bd-a8e6-4a2c-9b3d-1dc42b726342",
+    "exit_code": 0,
+    "timed_out": false,
+    "stdout": "",
+    "stderr": "............ss.s..........s....s.s.......................ss..............\n----------------------------------------------------------------------\nRan 73 tests in 27.650s\n\nOK (skipped=8)\n",
+    "elapsed_seconds": 27.967916
+  },
+  "regression_scope": "Focused offline tests only; 73 tests, 8 skipped; no live M5 qualification",
+  "historical_manifest_sha256": "eeea9337c210d575263a51a7b99a425a548437e62f02085fb00b2544bdbf7727",
+  "m5_completed_evidence": {
+    "provenance": "Owner-supplied independently verified smoke; not rerun in this session",
+    "basic_local_coding_feasibility": "PASSED",
+    "full_phase0_qualification": "INCOMPLETE",
+    "pilot_recommendation": "NO_GO",
+    "chip": "Apple M5 Pro",
+    "unified_memory_GB": 48,
+    "ollama_version": "0.40.5",
+    "model": "gemma4:26b-mlx",
+    "model_digest": null,
+    "allocated_context_tokens": 32768,
+    "runner": "MLX",
+    "gpu_placement_percent": 100,
+    "approximate_ollama_model_footprint_GB": 27,
+    "approximate_swapouts_MiB": 856,
+    "telemetry_local_path": "~/gemma-proofline-telemetry/m5-gemma-live.log",
+    "clamp_edit_lines": 1,
+    "independent_test_command": "python3 -m unittest -q test_clamp",
+    "tests_passed": 3,
+    "git_diff_check": "PASSED",
+    "calculator_smoke": "PASSED",
+    "protected_manual_claude_isolation": "NOT_ESTABLISHED",
+    "longer_task_memory_stability": "UNKNOWN"
+  },
+  "publication": {
+    "url": "https://github.com/grove/proofline/issues/57#issuecomment-6232218589",
+    "body_sha256": "ed913f4d345a03bb5294f242a34467fc01238fd95bff0abceb4aff8495879406",
+    "readback_matches": true
+  }
+}

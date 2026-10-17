@@ -1,0 +1,21 @@
+{
+  "kind": "process_probe",
+  "invocation_id": "3fca3a7c-b95b-4e8c-97e1-78f101f3e308",
+  "argv": [
+    "curl",
+    "--noproxy",
+    "*",
+    "--connect-timeout",
+    "3",
+    "--max-time",
+    "10",
+    "-sS",
+    "http://127.0.0.1:11434/api/version"
+  ],
+  "cwd": "/Users/grove/projects/proofline/.proofline/issue57-phase0-work",
+  "exit_code": 0,
+  "timed_out": false,
+  "stdout": "{\"version\":\"0.40.5\"}",
+  "stderr": "",
+  "elapsed_seconds": 0.022813
+}

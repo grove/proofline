@@ -1,0 +1,26 @@
+{
+  "spec": {
+    "nonce": "f8f395912e4e4a79a593e74bd7064c2d",
+    "writes": {
+      "source": "/Users/grove/projects/proofline/.proofline/issue57-phase0-work/inputs/source.md",
+      "input": "/Users/grove/projects/proofline/.proofline/issue57-phase0-work/inputs/accepted-input.md",
+      "candidate": "/Users/grove/projects/proofline/.proofline/issue57-phase0-work/inputs/product/app.py",
+      "git_head": "/Users/grove/projects/proofline/.proofline/issue57-phase0-work/inputs/product/.git/HEAD",
+      "receipt": "/Users/grove/projects/proofline/.proofline/issue57-phase0-work/boundary/private/receipt-canary",
+      "symlink_source": "/Users/grove/projects/proofline/.proofline/issue57-phase0-work/inputs/source-link"
+    },
+    "reads": {
+      "receipt-canary": "/Users/grove/projects/proofline/.proofline/issue57-phase0-work/boundary/private/receipt-canary",
+      "oracle-canary": "/Users/grove/projects/proofline/.proofline/issue57-phase0-work/boundary/private/oracle-canary",
+      "other-role-canary": "/Users/grove/projects/proofline/.proofline/issue57-phase0-work/boundary/private/other-role-canary",
+      "actual_oracle": "/Users/grove/projects/proofline/checks/fixtures/s0/oracle.py",
+      "sibling": "/Users/grove/projects/proofline/.proofline/issue57-phase0-work/sibling.txt",
+      "repository": "/Users/grove/projects/proofline/README.md",
+      "symlink_private": "/Users/grove/projects/proofline/.proofline/issue57-phase0-work/inputs/private-link"
+    },
+    "mode_target": "/Users/grove/projects/proofline/.proofline/issue57-phase0-work/inputs/product/app.py",
+    "scratch_file": "/Users/grove/projects/proofline/.proofline/issue57-phase0-work/boundary/scratch/output.txt",
+    "port": 64927
+  },
+  "code": "import errno, json, os, socket, stat, sys\nfrom pathlib import Path\nspec = json.loads(Path(sys.argv[1]).read_text())\nresult = {\"nonce\": spec[\"nonce\"], \"writes\": {}, \"reads\": {}, \"mode_change\": None,\n          \"scratch\": False, \"network\": \"not_observed\"}\ndef denied(exc):\n    return \"denied\" if exc.errno in (errno.EPERM, errno.EACCES, errno.EROFS) else \"unknown\"\nfor name, filename in spec[\"writes\"].items():\n    try:\n        Path(filename).write_text(\"disposable S0 write canary\\n\")\n        result[\"writes\"][name] = \"allowed\"\n    except OSError as exc:\n        result[\"writes\"][name] = denied(exc)\nfor name, filename in spec[\"reads\"].items():\n    try:\n        Path(filename).read_bytes()\n        result[\"reads\"][name] = \"allowed\"\n    except OSError as exc:\n        result[\"reads\"][name] = denied(exc)\ntry:\n    path = Path(spec[\"mode_target\"])\n    path.chmod(stat.S_IMODE(path.stat().st_mode) ^ stat.S_IXUSR)\n    result[\"mode_change\"] = \"allowed\"\nexcept OSError as exc:\n    result[\"mode_change\"] = denied(exc)\ntry:\n    Path(spec[\"scratch_file\"]).write_text(spec[\"nonce\"])\n    result[\"scratch\"] = True\nexcept OSError:\n    pass\nif spec[\"port\"] is not None:\n    try:\n        with socket.create_connection((\"127.0.0.1\", spec[\"port\"]), timeout=1):\n            result[\"network\"] = \"allowed\"\n    except OSError as exc:\n        result[\"network\"] = denied(exc)\n\nimport subprocess\nchild_code = \"from pathlib import Path; Path(\" + repr(spec['reads']['oracle-canary']) + \").read_bytes()\"\nchild = subprocess.run([sys.executable, '-I', '-B', '-c', child_code], capture_output=True, text=True)\nresult['subprocess_private_read'] = {'exit_code':child.returncode, 'stderr':child.stderr}\ntry:\n    with socket.create_connection(('1.1.1.1',443), timeout=1): pass\n    result['external_network'] = 'allowed'\nexcept OSError as exc:\n    result['external_network'] = denied(exc)\nprint(json.dumps(result))\n\n"
+}

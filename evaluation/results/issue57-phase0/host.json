@@ -1,0 +1,63 @@
+{
+  "utc": "2026-10-16T18:14:00.556320+00:00",
+  "scope": "Phase 0 only; no study assignments",
+  "host_authorization": "User explicitly selected the observed M1 Pro / 32 GiB host.",
+  "commands": [
+    {
+      "kind": "process_probe",
+      "invocation_id": "23105cef-bd07-4fd5-8add-eb99d1bb9335",
+      "argv": [
+        "sw_vers"
+      ],
+      "cwd": "/Users/grove/projects/proofline/.proofline/issue57-phase0-work",
+      "exit_code": 0,
+      "timed_out": false,
+      "stdout": "ProductName:\t\tmacOS\nProductVersion:\t\t26.6.2\nBuildVersion:\t\t25G83\n",
+      "stderr": "",
+      "elapsed_seconds": 0.023859
+    },
+    {
+      "kind": "process_probe",
+      "invocation_id": "2dc2389c-e8ce-4d17-8dbc-ff29eff22232",
+      "argv": [
+        "ollama",
+        "--version"
+      ],
+      "cwd": "/Users/grove/projects/proofline/.proofline/issue57-phase0-work",
+      "exit_code": 0,
+      "timed_out": false,
+      "stdout": "ollama version is 0.40.5\n",
+      "stderr": "",
+      "elapsed_seconds": 0.078265
+    },
+    {
+      "kind": "process_probe",
+      "invocation_id": "b84b6ef7-99d5-4924-b936-840744d02cfa",
+      "argv": [
+        "ollama",
+        "show",
+        "gemma4:26b-mlx"
+      ],
+      "cwd": "/Users/grove/projects/proofline/.proofline/issue57-phase0-work",
+      "exit_code": 0,
+      "timed_out": false,
+      "stdout": "  Model\n    architecture        gemma4    \n    parameters          26.2B     \n    context length      262144    \n    embedding length    2816      \n    quantization        nvfp4     \n    requires            0.31.0    \n\n  Capabilities\n    completion     \n    vision         \n    tools          \n    thinking       \n        levels     false, true    \n        default    true           \n\n  Parameters\n    temperature    1       \n    top_k          64      \n    top_p          0.95    \n\n  License\n    Apache License               \n    Version 2.0, January 2004    \n    ...                          \n\n",
+      "stderr": "",
+      "elapsed_seconds": 0.060135
+    },
+    {
+      "kind": "process_probe",
+      "invocation_id": "d48b558b-4c61-4632-94cf-d79afae70c8c",
+      "argv": [
+        "/opt/homebrew/bin/codex",
+        "--version"
+      ],
+      "cwd": "/Users/grove/projects/proofline/.proofline/issue57-phase0-work",
+      "exit_code": 0,
+      "timed_out": false,
+      "stdout": "codex-cli 0.163.0\n",
+      "stderr": "",
+      "elapsed_seconds": 0.035344
+    }
+  ]
+}

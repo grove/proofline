@@ -1,0 +1,21 @@
+{
+  "kind": "process_probe",
+  "invocation_id": "84843637-eafe-42a0-b464-d3d9d30ec457",
+  "argv": [
+    "curl",
+    "--noproxy",
+    "*",
+    "--connect-timeout",
+    "3",
+    "--max-time",
+    "10",
+    "-sS",
+    "http://127.0.0.1:11434/api/tags"
+  ],
+  "cwd": "/Users/grove/projects/proofline/.proofline/issue57-phase0-work",
+  "exit_code": 0,
+  "timed_out": false,
+  "stdout": "{\"models\":[{\"name\":\"gemma4:26b-mlx\",\"model\":\"gemma4:26b-mlx\",\"modified_at\":\"2026-10-16T20:02:12.605878975+02:00\",\"size\":18334412658,\"digest\":\"f0fc7e0ae4947d382989b1f57db3d098a86b87c5b6e9523b9561ba81a2a64879\",\"details\":{\"parent_model\":\"\",\"format\":\"safetensors\",\"family\":\"\",\"families\":null,\"parameter_size\":\"\",\"quantization_level\":\"nvfp4\",\"runner\":\"mlx\"},\"capabilities\":[\"completion\",\"vision\",\"tools\",\"thinking\"]}]}",
+  "stderr": "",
+  "elapsed_seconds": 0.032698
+}
