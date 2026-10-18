@@ -1,6 +1,6 @@
 name: One-time Proofline issue 59 native Node/OpenSSL probe
 
-# Run once on this branch and remove before the reviewable patch.
+# Second scoped diagnostic: paired baseline-vs-exact-file-read, then remove.
 on:
   push:
     branches: [fix/macos-openssl-read-probe]
