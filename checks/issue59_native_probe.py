@@ -120,6 +120,37 @@ startup = host.run_command(
 save("node-startup-receipt.json", startup)
 node_started = startup.get("exit_code") == 0 and "NODE_BOOTSTRAPPED" in startup.get("stdout", "")
 
+# Paired, same-run diagnostic: remove only the proposed file read grant,
+# keep all other native permissions/runner inputs unchanged, and observe Node.
+# This control is expected to fail; it never relaxes the sandbox.
+original_profile = host.permission_profile
+def without_openssl_file(*args):
+    value = original_profile(*args)
+    value["filesystem"].pop(str(openssl), None)
+    return value
+host.permission_profile = without_openssl_file
+try:
+    prior = host.sandbox_argv(codex, inputs, scratch, private)
+finally:
+    host.permission_profile = original_profile
+assert prior[prior.index("--") + 1:] == sandbox[sandbox.index("--") + 1:]
+baseline = host.run_command(
+    prior[:prior.index("--") + 1] + exec_argv, scratch, timeout=25,
+    env={"PATH": "/usr/bin:/bin", "TMPDIR": str(scratch)})
+save("node-baseline-without-file-receipt.json", baseline)
+baseline_denied = (
+    baseline.get("exit_code") != 0 and
+    "openssl.cnf" in baseline.get("stderr", "") and
+    "Operation not permitted" in baseline.get("stderr", ""))
+save("paired-startup-comparison.json", {
+    "read_only_file_grant": str(openssl),
+    "with_grant_exit": startup.get("exit_code"),
+    "without_grant_exit": baseline.get("exit_code"),
+    "without_grant_openssl_denial": baseline_denied,
+    "same_runner_pins": True,
+    "no_proof_of_general_filesystem_isolation": True,
+})
+
 r1 = [node, "--test", "--test-name-pattern=^R1", "test/audit-cli.test.mjs"]
 r2 = [node, "--test", "--test-name-pattern=^R2", "test/audit-cli.test.mjs"]
 scenarios = [
