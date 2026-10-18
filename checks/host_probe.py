@@ -214,6 +214,12 @@ def permission_profile(inputs: Path, scratch: Path, private: Path) -> dict:
     if platform.system() == "Darwin" and Path("/opt/homebrew").is_dir():
         profile["filesystem"]["/opt/homebrew"] = "read"
     if platform.system() == "Darwin":
+        # Node's macOS OpenSSL startup reads this Apple-managed configuration.
+        # An exact, regular, non-symlink file is read-only; never allow its
+        # parent, private OpenSSL directories, arbitrary files or writes.
+        openssl_config = Path("/System/Library/OpenSSL/openssl.cnf")
+        if openssl_config.is_file() and not openssl_config.is_symlink():
+            profile["filesystem"][str(openssl_config)] = "read"
         for path in ("/Library/Developer/CommandLineTools/usr/bin",
                      "/Library/Developer/CommandLineTools/usr/libexec/git-core"):
             if Path(path).is_dir():
