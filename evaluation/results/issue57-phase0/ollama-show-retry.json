@@ -1,0 +1,30 @@
+{
+  "kind": "process_probe",
+  "invocation_id": "6dc3bf07-c8c3-48f1-8857-6ff3932b18eb",
+  "argv": [
+    "curl",
+    "--noproxy",
+    "*",
+    "--connect-timeout",
+    "3",
+    "--max-time",
+    "10",
+    "-fsS",
+    "http://127.0.0.1:11434/api/show",
+    "-H",
+    "Content-Type: application/json",
+    "-d",
+    "{\"model\":\"gemma4:26b-mlx\"}",
+    "-o",
+    "/Users/grove/projects/proofline/.proofline/issue57-phase0-work/show-full.json"
+  ],
+  "cwd": "/Users/grove/projects/proofline/.proofline/issue57-phase0-work",
+  "exit_code": 0,
+  "timed_out": false,
+  "stdout": "",
+  "stderr": "",
+  "elapsed_seconds": 0.050864,
+  "response_file": "ollama-show-full.json",
+  "response_sha256": "6f510949152db8939eebee170d8677b8fd17a227db73e60557bf575f2f64235b",
+  "response_bytes": 21717
+}
