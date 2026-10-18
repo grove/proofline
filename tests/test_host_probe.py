@@ -16,6 +16,7 @@ import importlib.util
 import json
 import os
 from pathlib import Path
+from unittest import mock
 import signal
 import socket
 import stat
@@ -533,6 +534,50 @@ class DiagnosticTests(DisposableCase):
         with self.assertRaises(FileExistsError):
             probe.diagnose(output, self.offline_codex(), timeout=5)
         self.assertEqual(probe.snapshot(output), before)
+
+
+class MacOSOpenSSLReadScopeTests(unittest.TestCase):
+    """Offline shape guard; only a real macOS run tests permission enforcement."""
+
+    def profile(self):
+        return probe.permission_profile(
+            Path("/temporary/input"), Path("/temporary/scratch"),
+            Path("/temporary/private"))
+
+    def test_non_darwin_does_not_add_openssl_file(self):
+        with mock.patch.object(probe.platform, "system", return_value="Linux"):
+            p = self.profile()
+        self.assertNotIn("/System/Library/OpenSSL/openssl.cnf", p["filesystem"])
+        self.assertFalse(p["network"]["enabled"])
+
+    def test_darwin_regular_file_adds_only_exact_read_scope(self):
+        name = "/System/Library/OpenSSL/openssl.cnf"
+        with (mock.patch.object(probe.platform, "system", return_value="Darwin"),
+              mock.patch.object(probe.Path, "is_file", autospec=True,
+                                side_effect=lambda file: str(file) == name),
+              mock.patch.object(probe.Path, "is_symlink", autospec=True,
+                                return_value=False)):
+            p = self.profile()
+        self.assertEqual(p["filesystem"][name], "read")
+        for forbidden in ("/System", "/System/Library", "/System/Library/OpenSSL",
+                          "/private", "/Users"):
+            self.assertNotIn(forbidden, p["filesystem"])
+        self.assertEqual(p["filesystem"]["/temporary/input"], "read")
+        self.assertEqual(p["filesystem"]["/temporary/scratch"], "write")
+        self.assertEqual(p["filesystem"]["/temporary/private"], "deny")
+        self.assertEqual(p["network"], {"enabled": False})
+
+    def test_missing_or_symlinked_openssl_file_adds_nothing(self):
+        name = "/System/Library/OpenSSL/openssl.cnf"
+        for exists, symlinked in ((False, False), (True, True)):
+            with self.subTest(exists=exists, symlinked=symlinked):
+                with (mock.patch.object(probe.platform, "system", return_value="Darwin"),
+                      mock.patch.object(probe.Path, "is_file", autospec=True,
+                                        return_value=exists),
+                      mock.patch.object(probe.Path, "is_symlink", autospec=True,
+                                        return_value=symlinked)):
+                    p = self.profile()
+                self.assertNotIn(name, p["filesystem"])
 
 
 if __name__ == "__main__":
