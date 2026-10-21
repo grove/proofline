@@ -1,0 +1,45 @@
+{
+  "frozen_input_files_verified": 23,
+  "dependency_digest_unchanged": true,
+  "fresh_contexts": 4,
+  "native_task_turns": 4,
+  "boundary_canaries_observed": [
+    "01-boltons-medium",
+    "02-boltons-high",
+    "03-itsdangerous-high",
+    "04-itsdangerous-medium"
+  ],
+  "prompts_match_within_pairs_except_paths_and_remaining_time": true,
+  "source_preflights_qualified": 3,
+  "control_outcomes_matched": 8,
+  "candidate_reconstructions": [
+    {
+      "slot": "01-boltons-medium",
+      "initial_tree": "08234b584a09eb3893b061d2d7ea4b87608dfbf1",
+      "candidate_tree": "c7eefe2d97ec69d0a6b10429d82436cffa541128",
+      "patch_sha256": "5305e118bf9bde6587ec2ca3bcd1390e83671a55dd99fb96df167adddac87b32"
+    },
+    {
+      "slot": "02-boltons-high",
+      "initial_tree": "08234b584a09eb3893b061d2d7ea4b87608dfbf1",
+      "candidate_tree": "35805938a55284356ec725dd3ee177ca3a787964",
+      "patch_sha256": "7f037c735aa8d6dab45cf3678bc591cacd5d96c3fad1694d00b799eff1854028"
+    },
+    {
+      "slot": "03-itsdangerous-high",
+      "initial_tree": "ef4287f82d8234404b58c7b29d38197e1f38e207",
+      "candidate_tree": "1247ec4fb3a401363534d578d2da74ab927839aa",
+      "patch_sha256": "0e5b6681893c3bf9990cab3de7668823a1b0ebef3c666208d1ca55f2a96180f1"
+    },
+    {
+      "slot": "04-itsdangerous-medium",
+      "initial_tree": "ef4287f82d8234404b58c7b29d38197e1f38e207",
+      "candidate_tree": "efaedc2a115497e13052f54d00164079bc325323",
+      "patch_sha256": "9ae8e79241450ae2b5499e388227e148fc91a81c57a9aee6eb882a17320c730f"
+    }
+  ],
+  "protected_grades_available_and_bound": true,
+  "supplementary_regression_observed_on_baseline_controls_and_both_candidates": true,
+  "production_code_changes": 0,
+  "additional_model_dispatches": 0
+}
