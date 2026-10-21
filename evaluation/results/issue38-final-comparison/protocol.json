@@ -1,0 +1,38 @@
+{
+  "study": "issue38-final-comparison",
+  "declared_before_dispatch": true,
+  "tasks": [
+    {
+      "task": "boltons",
+      "repository": "mahmoud/boltons",
+      "issue": 510,
+      "base": "4e5faa3d7e4008d89e0d8bf1ea87b6d9a061a16d",
+      "tree": "08234b584a09eb3893b061d2d7ea4b87608dfbf1",
+      "source_sha256": "93c2defda882bd8bbd90babf245f5562360b38709c8d2e6c874dfdb4dab93b02"
+    },
+    {
+      "task": "itsdangerous",
+      "repository": "pallets/itsdangerous",
+      "issue": 429,
+      "base": "672971d66a2ef9f85151e53283113f33d642dabd",
+      "tree": "ef4287f82d8234404b58c7b29d38197e1f38e207",
+      "source_sha256": "b4f8c7ee3f29539b6d293aee2a26e04323e33829b8dc047b505fb1ad95fa8b43"
+    }
+  ],
+  "order": [
+    "boltons:medium",
+    "boltons:high",
+    "itsdangerous:high",
+    "itsdangerous:medium"
+  ],
+  "model": "gpt-6-luna",
+  "seconds_per_attempt": 900,
+  "attempts": 4,
+  "retries": 0,
+  "authorization": "Current user request explicitly authorizes final four attempts and draft PR; existing subscription only, no paid API/fallback.",
+  "backend_identity": "UNKNOWN",
+  "billing_usd": "UNKNOWN",
+  "isolation": "Existing native profile with only dedicated dependency directory added read-only. No network, plugins, memories, delegation, grader or sibling access.",
+  "source_exposure": "Public issues; possible public solutions/training exposure UNKNOWN. Neither used as prior Proofline coding assignment.",
+  "stop_rule": "No retries or arm escalation. Retain all attempts; stop if native boundary fails or subscription unavailable."
+}

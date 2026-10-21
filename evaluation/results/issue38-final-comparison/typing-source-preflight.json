@@ -1,0 +1,44 @@
+{
+  "declaration": {
+    "schema_version": 1,
+    "study_id": "issue38-final-comparison",
+    "author": "organizer before dispatch",
+    "source_sha256": "b4f8c7ee3f29539b6d293aee2a26e04323e33829b8dc047b505fb1ad95fa8b43",
+    "oracle_sha256": "b48aed6f0a2552d810085328a293b1e867ae5faea5575eca578cf0e00fbd680c",
+    "expectations": [
+      {
+        "id": "typing",
+        "kind": "compatibility",
+        "cases": [
+          "type-checker-flags-untimed-max-age",
+          "type-checker-allows-existing-timed-and-untimed-calls"
+        ],
+        "claim": "Furthermore, the type checkers should warn the developer before they even run the code.",
+        "support": "source",
+        "source_clause": "Furthermore, the type checkers should warn the developer before they even run the code.",
+        "ambiguity": "",
+        "acceptable_alternatives": [
+          "Any static diagnostic on the unexpected argument; no exact wording"
+        ]
+      }
+    ]
+  },
+  "inventory": {
+    "typing": {
+      "kind": "compatibility",
+      "cases": [
+        "type-checker-flags-untimed-max-age",
+        "type-checker-allows-existing-timed-and-untimed-calls"
+      ]
+    }
+  },
+  "qualification": {
+    "status": "QUALIFIED",
+    "problems": [],
+    "source_sha256": "b4f8c7ee3f29539b6d293aee2a26e04323e33829b8dc047b505fb1ad95fa8b43",
+    "oracle_sha256": "b48aed6f0a2552d810085328a293b1e867ae5faea5575eca578cf0e00fbd680c",
+    "expected_assertions": 1,
+    "qualified_assertions": 1,
+    "model_dispatches": 0
+  }
+}

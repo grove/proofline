@@ -1,0 +1,474 @@
+{
+  "model_dispatches": 0,
+  "all_matched": true,
+  "controls": [
+    {
+      "task": "boltons",
+      "variant": "baseline",
+      "expected_pass": false,
+      "passed": false,
+      "observations": {
+        "behavior": {
+          "available": true,
+          "receipt": {
+            "kind": "process_probe",
+            "invocation_id": "88465fee-beea-4fc7-9143-d21fe343356a",
+            "argv": [
+              "/opt/homebrew/bin/codex",
+              "--no-daemon",
+              "-c",
+              "permissions.proofline_s0_ec3f25291f2941d9880ed266a3e19d2c={\"filesystem\"={\":minimal\"=\"read\",\"/opt/homebrew/Cellar/python@3.15/3.15.0/Frameworks/Python.framework/Versions/3.15\"=\"read\",\"/opt/homebrew/opt/python@3.15/Frameworks/Python.framework/Versions/3.15\"=\"read\",\"/opt/homebrew/opt/python@3.15/bin/python3.15\"=\"read\",\"/opt/homebrew/Cellar/python@3.15/3.15.0/Frameworks/Python.framework/Versions/3.15/bin/python3.15\"=\"read\",\"/private/tmp/proofline-issue38-final/controls/boltons/baseline/behavior/inputs\"=\"read\",\"/private/tmp/proofline-issue38-final/controls/boltons/baseline/behavior/scratch\"=\"write\",\"/private/tmp/proofline-issue38-final/controls/boltons/baseline/behavior/private\"=\"deny\",\"/opt/homebrew\"=\"read\",\"/System/Library/OpenSSL/openssl.cnf\"=\"read\",\"/Library/Developer/CommandLineTools/usr/bin\"=\"read\",\"/Library/Developer/CommandLineTools/usr/libexec/git-core\"=\"read\",\"/private/tmp/proofline-issue38-final/deps\"=\"read\"},\"network\"={\"enabled\"=false}}",
+              "sandbox",
+              "--permission-profile",
+              "proofline_s0_ec3f25291f2941d9880ed266a3e19d2c",
+              "--include-managed-config",
+              "--cd",
+              "/private/tmp/proofline-issue38-final/controls/boltons/baseline/behavior/scratch",
+              "--",
+              "/opt/homebrew/Cellar/python@3.15/3.15.0/Frameworks/Python.framework/Versions/3.15/bin/python3.15",
+              "-I",
+              "-B",
+              "-c",
+              "import json,os,sys; a=json.loads(sys.argv[1]); os.execv(a[0],a)",
+              "[\"/opt/homebrew/Cellar/python@3.15/3.15.0/Frameworks/Python.framework/Versions/3.15/bin/python3.15\", \"-I\", \"-B\", \"-c\", \"import os,runpy,sys; sys.path.insert(0,sys.argv[1]); runpy.run_path(sys.argv[2],run_name='__main__')\", \"/private/tmp/proofline-issue38-final/controls/boltons/baseline/behavior/inputs/product\", \"/private/tmp/proofline-issue38-final/controls/boltons/baseline/behavior/inputs/probe.py\"]"
+            ],
+            "cwd": "/private/tmp/proofline-issue38-final/controls/boltons/baseline/behavior/scratch",
+            "exit_code": 1,
+            "timed_out": false,
+            "stdout": "{\"cases\": [{\"label\": \"original-collision\", \"passed\": false, \"error\": \"TypeError(\\\"original() got multiple values for argument 'a'\\\")\"}, {\"label\": \"mixed-defaults-varargs-annotations\", \"passed\": false, \"error\": \"TypeError(\\\"original() got multiple values for argument 'a'\\\")\"}, {\"label\": \"keyword-rejection\", \"passed\": false, \"error\": \"AssertionError('positional-only keyword accepted')\"}, {\"label\": \"ordinary-signature-compatibility\", \"passed\": true}, {\"label\": \"positional-default-without-varargs\", \"passed\": false, \"error\": \"AssertionError()\"}]}\n",
+            "stderr": "Traceback (most recent call last):\n  File \"<string>\", line 1, in <module>\n    import os,runpy,sys; sys.path.insert(0,sys.argv[1]); runpy.run_path(sys.argv[2],run_name='__main__')\n                                                         ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"<frozen runpy>\", line 292, in run_path\n  File \"<frozen runpy>\", line 97, in _run_module_code\n  File \"<frozen runpy>\", line 87, in _run_code\n  File \"/private/tmp/proofline-issue38-final/controls/boltons/baseline/behavior/inputs/probe.py\", line 73, in <module>\n    assert all(c['passed'] for c in cases)\n           ~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError\n",
+            "elapsed_seconds": 0.29868
+          },
+          "inputs_unchanged": true
+        }
+      },
+      "matched": true
+    },
+    {
+      "task": "boltons",
+      "variant": "reference",
+      "expected_pass": true,
+      "passed": true,
+      "observations": {
+        "behavior": {
+          "available": true,
+          "receipt": {
+            "kind": "process_probe",
+            "invocation_id": "a46f4547-0955-4496-b1d1-060345a3dc25",
+            "argv": [
+              "/opt/homebrew/bin/codex",
+              "--no-daemon",
+              "-c",
+              "permissions.proofline_s0_c6b3099a63874af1af599797d9955063={\"filesystem\"={\":minimal\"=\"read\",\"/opt/homebrew/Cellar/python@3.15/3.15.0/Frameworks/Python.framework/Versions/3.15\"=\"read\",\"/opt/homebrew/opt/python@3.15/Frameworks/Python.framework/Versions/3.15\"=\"read\",\"/opt/homebrew/opt/python@3.15/bin/python3.15\"=\"read\",\"/opt/homebrew/Cellar/python@3.15/3.15.0/Frameworks/Python.framework/Versions/3.15/bin/python3.15\"=\"read\",\"/private/tmp/proofline-issue38-final/controls/boltons/reference/behavior/inputs\"=\"read\",\"/private/tmp/proofline-issue38-final/controls/boltons/reference/behavior/scratch\"=\"write\",\"/private/tmp/proofline-issue38-final/controls/boltons/reference/behavior/private\"=\"deny\",\"/opt/homebrew\"=\"read\",\"/System/Library/OpenSSL/openssl.cnf\"=\"read\",\"/Library/Developer/CommandLineTools/usr/bin\"=\"read\",\"/Library/Developer/CommandLineTools/usr/libexec/git-core\"=\"read\",\"/private/tmp/proofline-issue38-final/deps\"=\"read\"},\"network\"={\"enabled\"=false}}",
+              "sandbox",
+              "--permission-profile",
+              "proofline_s0_c6b3099a63874af1af599797d9955063",
+              "--include-managed-config",
+              "--cd",
+              "/private/tmp/proofline-issue38-final/controls/boltons/reference/behavior/scratch",
+              "--",
+              "/opt/homebrew/Cellar/python@3.15/3.15.0/Frameworks/Python.framework/Versions/3.15/bin/python3.15",
+              "-I",
+              "-B",
+              "-c",
+              "import json,os,sys; a=json.loads(sys.argv[1]); os.execv(a[0],a)",
+              "[\"/opt/homebrew/Cellar/python@3.15/3.15.0/Frameworks/Python.framework/Versions/3.15/bin/python3.15\", \"-I\", \"-B\", \"-c\", \"import os,runpy,sys; sys.path.insert(0,sys.argv[1]); runpy.run_path(sys.argv[2],run_name='__main__')\", \"/private/tmp/proofline-issue38-final/controls/boltons/reference/behavior/inputs/product\", \"/private/tmp/proofline-issue38-final/controls/boltons/reference/behavior/inputs/probe.py\"]"
+            ],
+            "cwd": "/private/tmp/proofline-issue38-final/controls/boltons/reference/behavior/scratch",
+            "exit_code": 0,
+            "timed_out": false,
+            "stdout": "{\"cases\": [{\"label\": \"original-collision\", \"passed\": true}, {\"label\": \"mixed-defaults-varargs-annotations\", \"passed\": true}, {\"label\": \"keyword-rejection\", \"passed\": true}, {\"label\": \"ordinary-signature-compatibility\", \"passed\": true}, {\"label\": \"positional-default-without-varargs\", \"passed\": true}]}\n",
+            "stderr": "",
+            "elapsed_seconds": 0.244417
+          },
+          "inputs_unchanged": true
+        }
+      },
+      "matched": true
+    },
+    {
+      "task": "boltons",
+      "variant": "alternative",
+      "expected_pass": true,
+      "passed": true,
+      "observations": {
+        "behavior": {
+          "available": true,
+          "receipt": {
+            "kind": "process_probe",
+            "invocation_id": "62973a2c-278b-43f2-ae03-10f39a9c9b1e",
+            "argv": [
+              "/opt/homebrew/bin/codex",
+              "--no-daemon",
+              "-c",
+              "permissions.proofline_s0_c8e05e77c0014d3a8b46cb37387a2d76={\"filesystem\"={\":minimal\"=\"read\",\"/opt/homebrew/Cellar/python@3.15/3.15.0/Frameworks/Python.framework/Versions/3.15\"=\"read\",\"/opt/homebrew/opt/python@3.15/Frameworks/Python.framework/Versions/3.15\"=\"read\",\"/opt/homebrew/opt/python@3.15/bin/python3.15\"=\"read\",\"/opt/homebrew/Cellar/python@3.15/3.15.0/Frameworks/Python.framework/Versions/3.15/bin/python3.15\"=\"read\",\"/private/tmp/proofline-issue38-final/controls/boltons/alternative/behavior/inputs\"=\"read\",\"/private/tmp/proofline-issue38-final/controls/boltons/alternative/behavior/scratch\"=\"write\",\"/private/tmp/proofline-issue38-final/controls/boltons/alternative/behavior/private\"=\"deny\",\"/opt/homebrew\"=\"read\",\"/System/Library/OpenSSL/openssl.cnf\"=\"read\",\"/Library/Developer/CommandLineTools/usr/bin\"=\"read\",\"/Library/Developer/CommandLineTools/usr/libexec/git-core\"=\"read\",\"/private/tmp/proofline-issue38-final/deps\"=\"read\"},\"network\"={\"enabled\"=false}}",
+              "sandbox",
+              "--permission-profile",
+              "proofline_s0_c8e05e77c0014d3a8b46cb37387a2d76",
+              "--include-managed-config",
+              "--cd",
+              "/private/tmp/proofline-issue38-final/controls/boltons/alternative/behavior/scratch",
+              "--",
+              "/opt/homebrew/Cellar/python@3.15/3.15.0/Frameworks/Python.framework/Versions/3.15/bin/python3.15",
+              "-I",
+              "-B",
+              "-c",
+              "import json,os,sys; a=json.loads(sys.argv[1]); os.execv(a[0],a)",
+              "[\"/opt/homebrew/Cellar/python@3.15/3.15.0/Frameworks/Python.framework/Versions/3.15/bin/python3.15\", \"-I\", \"-B\", \"-c\", \"import os,runpy,sys; sys.path.insert(0,sys.argv[1]); runpy.run_path(sys.argv[2],run_name='__main__')\", \"/private/tmp/proofline-issue38-final/controls/boltons/alternative/behavior/inputs/product\", \"/private/tmp/proofline-issue38-final/controls/boltons/alternative/behavior/inputs/probe.py\"]"
+            ],
+            "cwd": "/private/tmp/proofline-issue38-final/controls/boltons/alternative/behavior/scratch",
+            "exit_code": 0,
+            "timed_out": false,
+            "stdout": "{\"cases\": [{\"label\": \"original-collision\", \"passed\": true}, {\"label\": \"mixed-defaults-varargs-annotations\", \"passed\": true}, {\"label\": \"keyword-rejection\", \"passed\": true}, {\"label\": \"ordinary-signature-compatibility\", \"passed\": true}, {\"label\": \"positional-default-without-varargs\", \"passed\": true}]}\n",
+            "stderr": "",
+            "elapsed_seconds": 0.224842
+          },
+          "inputs_unchanged": true
+        }
+      },
+      "matched": true
+    },
+    {
+      "task": "boltons",
+      "variant": "defective",
+      "expected_pass": false,
+      "passed": false,
+      "observations": {
+        "behavior": {
+          "available": true,
+          "receipt": {
+            "kind": "process_probe",
+            "invocation_id": "88b606c2-4b2d-4275-be62-bc17f32ec6b1",
+            "argv": [
+              "/opt/homebrew/bin/codex",
+              "--no-daemon",
+              "-c",
+              "permissions.proofline_s0_b8a87fb383c54fb2949834236c67ea43={\"filesystem\"={\":minimal\"=\"read\",\"/opt/homebrew/Cellar/python@3.15/3.15.0/Frameworks/Python.framework/Versions/3.15\"=\"read\",\"/opt/homebrew/opt/python@3.15/Frameworks/Python.framework/Versions/3.15\"=\"read\",\"/opt/homebrew/opt/python@3.15/bin/python3.15\"=\"read\",\"/opt/homebrew/Cellar/python@3.15/3.15.0/Frameworks/Python.framework/Versions/3.15/bin/python3.15\"=\"read\",\"/private/tmp/proofline-issue38-final/controls/boltons/defective/behavior/inputs\"=\"read\",\"/private/tmp/proofline-issue38-final/controls/boltons/defective/behavior/scratch\"=\"write\",\"/private/tmp/proofline-issue38-final/controls/boltons/defective/behavior/private\"=\"deny\",\"/opt/homebrew\"=\"read\",\"/System/Library/OpenSSL/openssl.cnf\"=\"read\",\"/Library/Developer/CommandLineTools/usr/bin\"=\"read\",\"/Library/Developer/CommandLineTools/usr/libexec/git-core\"=\"read\",\"/private/tmp/proofline-issue38-final/deps\"=\"read\"},\"network\"={\"enabled\"=false}}",
+              "sandbox",
+              "--permission-profile",
+              "proofline_s0_b8a87fb383c54fb2949834236c67ea43",
+              "--include-managed-config",
+              "--cd",
+              "/private/tmp/proofline-issue38-final/controls/boltons/defective/behavior/scratch",
+              "--",
+              "/opt/homebrew/Cellar/python@3.15/3.15.0/Frameworks/Python.framework/Versions/3.15/bin/python3.15",
+              "-I",
+              "-B",
+              "-c",
+              "import json,os,sys; a=json.loads(sys.argv[1]); os.execv(a[0],a)",
+              "[\"/opt/homebrew/Cellar/python@3.15/3.15.0/Frameworks/Python.framework/Versions/3.15/bin/python3.15\", \"-I\", \"-B\", \"-c\", \"import os,runpy,sys; sys.path.insert(0,sys.argv[1]); runpy.run_path(sys.argv[2],run_name='__main__')\", \"/private/tmp/proofline-issue38-final/controls/boltons/defective/behavior/inputs/product\", \"/private/tmp/proofline-issue38-final/controls/boltons/defective/behavior/inputs/probe.py\"]"
+            ],
+            "cwd": "/private/tmp/proofline-issue38-final/controls/boltons/defective/behavior/scratch",
+            "exit_code": 1,
+            "timed_out": false,
+            "stdout": "{\"cases\": [{\"label\": \"original-collision\", \"passed\": true}, {\"label\": \"mixed-defaults-varargs-annotations\", \"passed\": true}, {\"label\": \"keyword-rejection\", \"passed\": true}, {\"label\": \"ordinary-signature-compatibility\", \"passed\": true}, {\"label\": \"positional-default-without-varargs\", \"passed\": false, \"error\": \"AssertionError()\"}]}\n",
+            "stderr": "Traceback (most recent call last):\n  File \"<string>\", line 1, in <module>\n    import os,runpy,sys; sys.path.insert(0,sys.argv[1]); runpy.run_path(sys.argv[2],run_name='__main__')\n                                                         ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"<frozen runpy>\", line 292, in run_path\n  File \"<frozen runpy>\", line 97, in _run_module_code\n  File \"<frozen runpy>\", line 87, in _run_code\n  File \"/private/tmp/proofline-issue38-final/controls/boltons/defective/behavior/inputs/probe.py\", line 73, in <module>\n    assert all(c['passed'] for c in cases)\n           ~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError\n",
+            "elapsed_seconds": 0.244606
+          },
+          "inputs_unchanged": true
+        }
+      },
+      "matched": true
+    },
+    {
+      "task": "itsdangerous",
+      "variant": "baseline",
+      "expected_pass": false,
+      "passed": false,
+      "observations": {
+        "behavior": {
+          "available": true,
+          "receipt": {
+            "kind": "process_probe",
+            "invocation_id": "11187c3f-cd1f-4671-919b-0168da7cdbbf",
+            "argv": [
+              "/opt/homebrew/bin/codex",
+              "--no-daemon",
+              "-c",
+              "permissions.proofline_s0_111c80b5c8c84603912dfd9f892a9add={\"filesystem\"={\":minimal\"=\"read\",\"/opt/homebrew/Cellar/python@3.15/3.15.0/Frameworks/Python.framework/Versions/3.15\"=\"read\",\"/opt/homebrew/opt/python@3.15/Frameworks/Python.framework/Versions/3.15\"=\"read\",\"/opt/homebrew/opt/python@3.15/bin/python3.15\"=\"read\",\"/opt/homebrew/Cellar/python@3.15/3.15.0/Frameworks/Python.framework/Versions/3.15/bin/python3.15\"=\"read\",\"/private/tmp/proofline-issue38-final/controls/itsdangerous/baseline/behavior/inputs\"=\"read\",\"/private/tmp/proofline-issue38-final/controls/itsdangerous/baseline/behavior/scratch\"=\"write\",\"/private/tmp/proofline-issue38-final/controls/itsdangerous/baseline/behavior/private\"=\"deny\",\"/opt/homebrew\"=\"read\",\"/System/Library/OpenSSL/openssl.cnf\"=\"read\",\"/Library/Developer/CommandLineTools/usr/bin\"=\"read\",\"/Library/Developer/CommandLineTools/usr/libexec/git-core\"=\"read\",\"/private/tmp/proofline-issue38-final/deps\"=\"read\"},\"network\"={\"enabled\"=false}}",
+              "sandbox",
+              "--permission-profile",
+              "proofline_s0_111c80b5c8c84603912dfd9f892a9add",
+              "--include-managed-config",
+              "--cd",
+              "/private/tmp/proofline-issue38-final/controls/itsdangerous/baseline/behavior/scratch",
+              "--",
+              "/opt/homebrew/Cellar/python@3.15/3.15.0/Frameworks/Python.framework/Versions/3.15/bin/python3.15",
+              "-I",
+              "-B",
+              "-c",
+              "import json,os,sys; a=json.loads(sys.argv[1]); os.execv(a[0],a)",
+              "[\"/opt/homebrew/Cellar/python@3.15/3.15.0/Frameworks/Python.framework/Versions/3.15/bin/python3.15\", \"-I\", \"-B\", \"-c\", \"import os,runpy,sys; sys.path.insert(0,sys.argv[1]); runpy.run_path(sys.argv[2],run_name='__main__')\", \"/private/tmp/proofline-issue38-final/controls/itsdangerous/baseline/behavior/inputs/product\", \"/private/tmp/proofline-issue38-final/controls/itsdangerous/baseline/behavior/inputs/probe.py\"]"
+            ],
+            "cwd": "/private/tmp/proofline-issue38-final/controls/itsdangerous/baseline/behavior/scratch",
+            "exit_code": 1,
+            "timed_out": false,
+            "stdout": "{\"cases\": [{\"label\": \"untimed-max-age-error-or-warning\", \"passed\": false, \"error\": \"AssertionError('max_age silently ignored')\"}, {\"label\": \"timed-expiry-and-timestamp-compatibility\", \"passed\": true}, {\"label\": \"salt-key-and-invalid-signature-compatibility\", \"passed\": true}]}\n",
+            "stderr": "Traceback (most recent call last):\n  File \"<string>\", line 1, in <module>\n    import os,runpy,sys; sys.path.insert(0,sys.argv[1]); runpy.run_path(sys.argv[2],run_name='__main__')\n                                                         ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"<frozen runpy>\", line 292, in run_path\n  File \"<frozen runpy>\", line 97, in _run_module_code\n  File \"<frozen runpy>\", line 87, in _run_code\n  File \"/private/tmp/proofline-issue38-final/controls/itsdangerous/baseline/behavior/inputs/probe.py\", line 57, in <module>\n    assert all(c['passed'] for c in cases)\n           ~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError\n",
+            "elapsed_seconds": 0.283308
+          },
+          "inputs_unchanged": true
+        },
+        "typing": {
+          "available": true,
+          "receipt": {
+            "kind": "process_probe",
+            "invocation_id": "9b7df7de-f160-4149-a0a1-d492655c91cc",
+            "argv": [
+              "/opt/homebrew/bin/codex",
+              "--no-daemon",
+              "-c",
+              "permissions.proofline_s0_6cde918b9d2d4532857d72580a6489ae={\"filesystem\"={\":minimal\"=\"read\",\"/opt/homebrew/Cellar/python@3.15/3.15.0/Frameworks/Python.framework/Versions/3.15\"=\"read\",\"/opt/homebrew/opt/python@3.15/Frameworks/Python.framework/Versions/3.15\"=\"read\",\"/opt/homebrew/opt/python@3.15/bin/python3.15\"=\"read\",\"/opt/homebrew/Cellar/python@3.15/3.15.0/Frameworks/Python.framework/Versions/3.15/bin/python3.15\"=\"read\",\"/private/tmp/proofline-issue38-final/controls/itsdangerous/baseline/typing/inputs\"=\"read\",\"/private/tmp/proofline-issue38-final/controls/itsdangerous/baseline/typing/scratch\"=\"write\",\"/private/tmp/proofline-issue38-final/controls/itsdangerous/baseline/typing/private\"=\"deny\",\"/opt/homebrew\"=\"read\",\"/System/Library/OpenSSL/openssl.cnf\"=\"read\",\"/Library/Developer/CommandLineTools/usr/bin\"=\"read\",\"/Library/Developer/CommandLineTools/usr/libexec/git-core\"=\"read\",\"/private/tmp/proofline-issue38-final/deps\"=\"read\"},\"network\"={\"enabled\"=false}}",
+              "sandbox",
+              "--permission-profile",
+              "proofline_s0_6cde918b9d2d4532857d72580a6489ae",
+              "--include-managed-config",
+              "--cd",
+              "/private/tmp/proofline-issue38-final/controls/itsdangerous/baseline/typing/scratch",
+              "--",
+              "/opt/homebrew/Cellar/python@3.15/3.15.0/Frameworks/Python.framework/Versions/3.15/bin/python3.15",
+              "-I",
+              "-B",
+              "-c",
+              "import json,os,sys; a=json.loads(sys.argv[1]); os.execv(a[0],a)",
+              "[\"/opt/homebrew/Cellar/python@3.15/3.15.0/Frameworks/Python.framework/Versions/3.15/bin/python3.15\", \"-I\", \"-B\", \"-c\", \"import os,runpy,sys; sys.path.insert(0,sys.argv[1]); runpy.run_path(sys.argv[2],run_name='__main__')\", \"/private/tmp/proofline-issue38-final/controls/itsdangerous/baseline/typing/inputs/product\", \"/private/tmp/proofline-issue38-final/controls/itsdangerous/baseline/typing/inputs/probe.py\"]"
+            ],
+            "cwd": "/private/tmp/proofline-issue38-final/controls/itsdangerous/baseline/typing/scratch",
+            "exit_code": 1,
+            "timed_out": false,
+            "stdout": "{\"cases\": [{\"label\": \"type-checker-flags-untimed-max-age\", \"passed\": false}, {\"label\": \"type-checker-allows-existing-timed-and-untimed-calls\", \"passed\": true}], \"diagnostics\": {\"version\": \"1.1.414\", \"time\": \"1792572848594\", \"generalDiagnostics\": [], \"summary\": {\"filesAnalyzed\": 2, \"errorCount\": 0, \"warningCount\": 0, \"informationCount\": 0, \"timeInSec\": 0.218}}, \"subprocess_exit_code\": 0, \"stderr\": \"\"}\n",
+            "stderr": "Traceback (most recent call last):\n  File \"<string>\", line 1, in <module>\n    import os,runpy,sys; sys.path.insert(0,sys.argv[1]); runpy.run_path(sys.argv[2],run_name='__main__')\n                                                         ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"<frozen runpy>\", line 292, in run_path\n  File \"<frozen runpy>\", line 97, in _run_module_code\n  File \"<frozen runpy>\", line 87, in _run_code\n  File \"/private/tmp/proofline-issue38-final/controls/itsdangerous/baseline/typing/inputs/probe.py\", line 25, in <module>\n    assert all(c['passed'] for c in cases)\n           ~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError\n",
+            "elapsed_seconds": 0.987416
+          },
+          "inputs_unchanged": true
+        }
+      },
+      "matched": true
+    },
+    {
+      "task": "itsdangerous",
+      "variant": "reference",
+      "expected_pass": true,
+      "passed": true,
+      "observations": {
+        "behavior": {
+          "available": true,
+          "receipt": {
+            "kind": "process_probe",
+            "invocation_id": "e853a442-b46a-4935-981b-46f249fa333f",
+            "argv": [
+              "/opt/homebrew/bin/codex",
+              "--no-daemon",
+              "-c",
+              "permissions.proofline_s0_104ac15126d14e6fa69bceda468aa578={\"filesystem\"={\":minimal\"=\"read\",\"/opt/homebrew/Cellar/python@3.15/3.15.0/Frameworks/Python.framework/Versions/3.15\"=\"read\",\"/opt/homebrew/opt/python@3.15/Frameworks/Python.framework/Versions/3.15\"=\"read\",\"/opt/homebrew/opt/python@3.15/bin/python3.15\"=\"read\",\"/opt/homebrew/Cellar/python@3.15/3.15.0/Frameworks/Python.framework/Versions/3.15/bin/python3.15\"=\"read\",\"/private/tmp/proofline-issue38-final/controls/itsdangerous/reference/behavior/inputs\"=\"read\",\"/private/tmp/proofline-issue38-final/controls/itsdangerous/reference/behavior/scratch\"=\"write\",\"/private/tmp/proofline-issue38-final/controls/itsdangerous/reference/behavior/private\"=\"deny\",\"/opt/homebrew\"=\"read\",\"/System/Library/OpenSSL/openssl.cnf\"=\"read\",\"/Library/Developer/CommandLineTools/usr/bin\"=\"read\",\"/Library/Developer/CommandLineTools/usr/libexec/git-core\"=\"read\",\"/private/tmp/proofline-issue38-final/deps\"=\"read\"},\"network\"={\"enabled\"=false}}",
+              "sandbox",
+              "--permission-profile",
+              "proofline_s0_104ac15126d14e6fa69bceda468aa578",
+              "--include-managed-config",
+              "--cd",
+              "/private/tmp/proofline-issue38-final/controls/itsdangerous/reference/behavior/scratch",
+              "--",
+              "/opt/homebrew/Cellar/python@3.15/3.15.0/Frameworks/Python.framework/Versions/3.15/bin/python3.15",
+              "-I",
+              "-B",
+              "-c",
+              "import json,os,sys; a=json.loads(sys.argv[1]); os.execv(a[0],a)",
+              "[\"/opt/homebrew/Cellar/python@3.15/3.15.0/Frameworks/Python.framework/Versions/3.15/bin/python3.15\", \"-I\", \"-B\", \"-c\", \"import os,runpy,sys; sys.path.insert(0,sys.argv[1]); runpy.run_path(sys.argv[2],run_name='__main__')\", \"/private/tmp/proofline-issue38-final/controls/itsdangerous/reference/behavior/inputs/product\", \"/private/tmp/proofline-issue38-final/controls/itsdangerous/reference/behavior/inputs/probe.py\"]"
+            ],
+            "cwd": "/private/tmp/proofline-issue38-final/controls/itsdangerous/reference/behavior/scratch",
+            "exit_code": 0,
+            "timed_out": false,
+            "stdout": "{\"cases\": [{\"label\": \"untimed-max-age-error-or-warning\", \"passed\": true}, {\"label\": \"timed-expiry-and-timestamp-compatibility\", \"passed\": true}, {\"label\": \"salt-key-and-invalid-signature-compatibility\", \"passed\": true}]}\n",
+            "stderr": "",
+            "elapsed_seconds": 0.301685
+          },
+          "inputs_unchanged": true
+        },
+        "typing": {
+          "available": true,
+          "receipt": {
+            "kind": "process_probe",
+            "invocation_id": "f7bf4570-b0b3-4253-bad8-3798fa3f173d",
+            "argv": [
+              "/opt/homebrew/bin/codex",
+              "--no-daemon",
+              "-c",
+              "permissions.proofline_s0_37d2cb7e44334ee7875ebe60b1b5e09f={\"filesystem\"={\":minimal\"=\"read\",\"/opt/homebrew/Cellar/python@3.15/3.15.0/Frameworks/Python.framework/Versions/3.15\"=\"read\",\"/opt/homebrew/opt/python@3.15/Frameworks/Python.framework/Versions/3.15\"=\"read\",\"/opt/homebrew/opt/python@3.15/bin/python3.15\"=\"read\",\"/opt/homebrew/Cellar/python@3.15/3.15.0/Frameworks/Python.framework/Versions/3.15/bin/python3.15\"=\"read\",\"/private/tmp/proofline-issue38-final/controls/itsdangerous/reference/typing/inputs\"=\"read\",\"/private/tmp/proofline-issue38-final/controls/itsdangerous/reference/typing/scratch\"=\"write\",\"/private/tmp/proofline-issue38-final/controls/itsdangerous/reference/typing/private\"=\"deny\",\"/opt/homebrew\"=\"read\",\"/System/Library/OpenSSL/openssl.cnf\"=\"read\",\"/Library/Developer/CommandLineTools/usr/bin\"=\"read\",\"/Library/Developer/CommandLineTools/usr/libexec/git-core\"=\"read\",\"/private/tmp/proofline-issue38-final/deps\"=\"read\"},\"network\"={\"enabled\"=false}}",
+              "sandbox",
+              "--permission-profile",
+              "proofline_s0_37d2cb7e44334ee7875ebe60b1b5e09f",
+              "--include-managed-config",
+              "--cd",
+              "/private/tmp/proofline-issue38-final/controls/itsdangerous/reference/typing/scratch",
+              "--",
+              "/opt/homebrew/Cellar/python@3.15/3.15.0/Frameworks/Python.framework/Versions/3.15/bin/python3.15",
+              "-I",
+              "-B",
+              "-c",
+              "import json,os,sys; a=json.loads(sys.argv[1]); os.execv(a[0],a)",
+              "[\"/opt/homebrew/Cellar/python@3.15/3.15.0/Frameworks/Python.framework/Versions/3.15/bin/python3.15\", \"-I\", \"-B\", \"-c\", \"import os,runpy,sys; sys.path.insert(0,sys.argv[1]); runpy.run_path(sys.argv[2],run_name='__main__')\", \"/private/tmp/proofline-issue38-final/controls/itsdangerous/reference/typing/inputs/product\", \"/private/tmp/proofline-issue38-final/controls/itsdangerous/reference/typing/inputs/probe.py\"]"
+            ],
+            "cwd": "/private/tmp/proofline-issue38-final/controls/itsdangerous/reference/typing/scratch",
+            "exit_code": 0,
+            "timed_out": false,
+            "stdout": "{\"cases\": [{\"label\": \"type-checker-flags-untimed-max-age\", \"passed\": true}, {\"label\": \"type-checker-allows-existing-timed-and-untimed-calls\", \"passed\": true}], \"diagnostics\": {\"version\": \"1.1.414\", \"time\": \"1792572851613\", \"generalDiagnostics\": [{\"file\": \"/private/tmp/proofline-issue38-final/controls/itsdangerous/reference/typing/scratch/bad.py\", \"severity\": \"error\", \"message\": \"No parameter named \\\"max_age\\\"\", \"range\": {\"start\": {\"line\": 2, \"character\": 26}, \"end\": {\"line\": 2, \"character\": 33}}, \"rule\": \"reportCallIssue\"}], \"summary\": {\"filesAnalyzed\": 2, \"errorCount\": 1, \"warningCount\": 0, \"informationCount\": 0, \"timeInSec\": 0.299}}, \"subprocess_exit_code\": 1, \"stderr\": \"\"}\n",
+            "stderr": "",
+            "elapsed_seconds": 0.982832
+          },
+          "inputs_unchanged": true
+        }
+      },
+      "matched": true
+    },
+    {
+      "task": "itsdangerous",
+      "variant": "alternative",
+      "expected_pass": true,
+      "passed": true,
+      "observations": {
+        "behavior": {
+          "available": true,
+          "receipt": {
+            "kind": "process_probe",
+            "invocation_id": "58fc4503-e83f-40d5-8483-c356137f042e",
+            "argv": [
+              "/opt/homebrew/bin/codex",
+              "--no-daemon",
+              "-c",
+              "permissions.proofline_s0_26eb4d4191ef412a82e15e418db3a519={\"filesystem\"={\":minimal\"=\"read\",\"/opt/homebrew/Cellar/python@3.15/3.15.0/Frameworks/Python.framework/Versions/3.15\"=\"read\",\"/opt/homebrew/opt/python@3.15/Frameworks/Python.framework/Versions/3.15\"=\"read\",\"/opt/homebrew/opt/python@3.15/bin/python3.15\"=\"read\",\"/opt/homebrew/Cellar/python@3.15/3.15.0/Frameworks/Python.framework/Versions/3.15/bin/python3.15\"=\"read\",\"/private/tmp/proofline-issue38-final/controls/itsdangerous/alternative/behavior/inputs\"=\"read\",\"/private/tmp/proofline-issue38-final/controls/itsdangerous/alternative/behavior/scratch\"=\"write\",\"/private/tmp/proofline-issue38-final/controls/itsdangerous/alternative/behavior/private\"=\"deny\",\"/opt/homebrew\"=\"read\",\"/System/Library/OpenSSL/openssl.cnf\"=\"read\",\"/Library/Developer/CommandLineTools/usr/bin\"=\"read\",\"/Library/Developer/CommandLineTools/usr/libexec/git-core\"=\"read\",\"/private/tmp/proofline-issue38-final/deps\"=\"read\"},\"network\"={\"enabled\"=false}}",
+              "sandbox",
+              "--permission-profile",
+              "proofline_s0_26eb4d4191ef412a82e15e418db3a519",
+              "--include-managed-config",
+              "--cd",
+              "/private/tmp/proofline-issue38-final/controls/itsdangerous/alternative/behavior/scratch",
+              "--",
+              "/opt/homebrew/Cellar/python@3.15/3.15.0/Frameworks/Python.framework/Versions/3.15/bin/python3.15",
+              "-I",
+              "-B",
+              "-c",
+              "import json,os,sys; a=json.loads(sys.argv[1]); os.execv(a[0],a)",
+              "[\"/opt/homebrew/Cellar/python@3.15/3.15.0/Frameworks/Python.framework/Versions/3.15/bin/python3.15\", \"-I\", \"-B\", \"-c\", \"import os,runpy,sys; sys.path.insert(0,sys.argv[1]); runpy.run_path(sys.argv[2],run_name='__main__')\", \"/private/tmp/proofline-issue38-final/controls/itsdangerous/alternative/behavior/inputs/product\", \"/private/tmp/proofline-issue38-final/controls/itsdangerous/alternative/behavior/inputs/probe.py\"]"
+            ],
+            "cwd": "/private/tmp/proofline-issue38-final/controls/itsdangerous/alternative/behavior/scratch",
+            "exit_code": 0,
+            "timed_out": false,
+            "stdout": "{\"cases\": [{\"label\": \"untimed-max-age-error-or-warning\", \"passed\": true}, {\"label\": \"timed-expiry-and-timestamp-compatibility\", \"passed\": true}, {\"label\": \"salt-key-and-invalid-signature-compatibility\", \"passed\": true}]}\n",
+            "stderr": "",
+            "elapsed_seconds": 0.391111
+          },
+          "inputs_unchanged": true
+        },
+        "typing": {
+          "available": true,
+          "receipt": {
+            "kind": "process_probe",
+            "invocation_id": "83eaf278-b39b-47eb-9f4b-5d3f463be046",
+            "argv": [
+              "/opt/homebrew/bin/codex",
+              "--no-daemon",
+              "-c",
+              "permissions.proofline_s0_08fabc48aecb482e98e4977a986ac96e={\"filesystem\"={\":minimal\"=\"read\",\"/opt/homebrew/Cellar/python@3.15/3.15.0/Frameworks/Python.framework/Versions/3.15\"=\"read\",\"/opt/homebrew/opt/python@3.15/Frameworks/Python.framework/Versions/3.15\"=\"read\",\"/opt/homebrew/opt/python@3.15/bin/python3.15\"=\"read\",\"/opt/homebrew/Cellar/python@3.15/3.15.0/Frameworks/Python.framework/Versions/3.15/bin/python3.15\"=\"read\",\"/private/tmp/proofline-issue38-final/controls/itsdangerous/alternative/typing/inputs\"=\"read\",\"/private/tmp/proofline-issue38-final/controls/itsdangerous/alternative/typing/scratch\"=\"write\",\"/private/tmp/proofline-issue38-final/controls/itsdangerous/alternative/typing/private\"=\"deny\",\"/opt/homebrew\"=\"read\",\"/System/Library/OpenSSL/openssl.cnf\"=\"read\",\"/Library/Developer/CommandLineTools/usr/bin\"=\"read\",\"/Library/Developer/CommandLineTools/usr/libexec/git-core\"=\"read\",\"/private/tmp/proofline-issue38-final/deps\"=\"read\"},\"network\"={\"enabled\"=false}}",
+              "sandbox",
+              "--permission-profile",
+              "proofline_s0_08fabc48aecb482e98e4977a986ac96e",
+              "--include-managed-config",
+              "--cd",
+              "/private/tmp/proofline-issue38-final/controls/itsdangerous/alternative/typing/scratch",
+              "--",
+              "/opt/homebrew/Cellar/python@3.15/3.15.0/Frameworks/Python.framework/Versions/3.15/bin/python3.15",
+              "-I",
+              "-B",
+              "-c",
+              "import json,os,sys; a=json.loads(sys.argv[1]); os.execv(a[0],a)",
+              "[\"/opt/homebrew/Cellar/python@3.15/3.15.0/Frameworks/Python.framework/Versions/3.15/bin/python3.15\", \"-I\", \"-B\", \"-c\", \"import os,runpy,sys; sys.path.insert(0,sys.argv[1]); runpy.run_path(sys.argv[2],run_name='__main__')\", \"/private/tmp/proofline-issue38-final/controls/itsdangerous/alternative/typing/inputs/product\", \"/private/tmp/proofline-issue38-final/controls/itsdangerous/alternative/typing/inputs/probe.py\"]"
+            ],
+            "cwd": "/private/tmp/proofline-issue38-final/controls/itsdangerous/alternative/typing/scratch",
+            "exit_code": 0,
+            "timed_out": false,
+            "stdout": "{\"cases\": [{\"label\": \"type-checker-flags-untimed-max-age\", \"passed\": true}, {\"label\": \"type-checker-allows-existing-timed-and-untimed-calls\", \"passed\": true}], \"diagnostics\": {\"version\": \"1.1.414\", \"time\": \"1792572854405\", \"generalDiagnostics\": [{\"file\": \"/private/tmp/proofline-issue38-final/controls/itsdangerous/alternative/typing/scratch/bad.py\", \"severity\": \"error\", \"message\": \"Argument of type \\\"Literal[-1]\\\" cannot be assigned to parameter \\\"max_age\\\" of type \\\"NoReturn\\\" in function \\\"loads\\\"\\n\\u00a0\\u00a0Type \\\"Literal[-1]\\\" is not assignable to type \\\"NoReturn\\\"\", \"range\": {\"start\": {\"line\": 2, \"character\": 34}, \"end\": {\"line\": 2, \"character\": 36}}, \"rule\": \"reportArgumentType\"}], \"summary\": {\"filesAnalyzed\": 2, \"errorCount\": 1, \"warningCount\": 0, \"informationCount\": 0, \"timeInSec\": 0.192}}, \"subprocess_exit_code\": 1, \"stderr\": \"\"}\n",
+            "stderr": "",
+            "elapsed_seconds": 0.814041
+          },
+          "inputs_unchanged": true
+        }
+      },
+      "matched": true
+    },
+    {
+      "task": "itsdangerous",
+      "variant": "defective",
+      "expected_pass": false,
+      "passed": false,
+      "observations": {
+        "behavior": {
+          "available": true,
+          "receipt": {
+            "kind": "process_probe",
+            "invocation_id": "47ab6a13-ba88-455d-881c-ebea3a7cd315",
+            "argv": [
+              "/opt/homebrew/bin/codex",
+              "--no-daemon",
+              "-c",
+              "permissions.proofline_s0_80f9fb39b53e488c9f5e3cb8b82b7fc3={\"filesystem\"={\":minimal\"=\"read\",\"/opt/homebrew/Cellar/python@3.15/3.15.0/Frameworks/Python.framework/Versions/3.15\"=\"read\",\"/opt/homebrew/opt/python@3.15/Frameworks/Python.framework/Versions/3.15\"=\"read\",\"/opt/homebrew/opt/python@3.15/bin/python3.15\"=\"read\",\"/opt/homebrew/Cellar/python@3.15/3.15.0/Frameworks/Python.framework/Versions/3.15/bin/python3.15\"=\"read\",\"/private/tmp/proofline-issue38-final/controls/itsdangerous/defective/behavior/inputs\"=\"read\",\"/private/tmp/proofline-issue38-final/controls/itsdangerous/defective/behavior/scratch\"=\"write\",\"/private/tmp/proofline-issue38-final/controls/itsdangerous/defective/behavior/private\"=\"deny\",\"/opt/homebrew\"=\"read\",\"/System/Library/OpenSSL/openssl.cnf\"=\"read\",\"/Library/Developer/CommandLineTools/usr/bin\"=\"read\",\"/Library/Developer/CommandLineTools/usr/libexec/git-core\"=\"read\",\"/private/tmp/proofline-issue38-final/deps\"=\"read\"},\"network\"={\"enabled\"=false}}",
+              "sandbox",
+              "--permission-profile",
+              "proofline_s0_80f9fb39b53e488c9f5e3cb8b82b7fc3",
+              "--include-managed-config",
+              "--cd",
+              "/private/tmp/proofline-issue38-final/controls/itsdangerous/defective/behavior/scratch",
+              "--",
+              "/opt/homebrew/Cellar/python@3.15/3.15.0/Frameworks/Python.framework/Versions/3.15/bin/python3.15",
+              "-I",
+              "-B",
+              "-c",
+              "import json,os,sys; a=json.loads(sys.argv[1]); os.execv(a[0],a)",
+              "[\"/opt/homebrew/Cellar/python@3.15/3.15.0/Frameworks/Python.framework/Versions/3.15/bin/python3.15\", \"-I\", \"-B\", \"-c\", \"import os,runpy,sys; sys.path.insert(0,sys.argv[1]); runpy.run_path(sys.argv[2],run_name='__main__')\", \"/private/tmp/proofline-issue38-final/controls/itsdangerous/defective/behavior/inputs/product\", \"/private/tmp/proofline-issue38-final/controls/itsdangerous/defective/behavior/inputs/probe.py\"]"
+            ],
+            "cwd": "/private/tmp/proofline-issue38-final/controls/itsdangerous/defective/behavior/scratch",
+            "exit_code": 0,
+            "timed_out": false,
+            "stdout": "{\"cases\": [{\"label\": \"untimed-max-age-error-or-warning\", \"passed\": true}, {\"label\": \"timed-expiry-and-timestamp-compatibility\", \"passed\": true}, {\"label\": \"salt-key-and-invalid-signature-compatibility\", \"passed\": true}]}\n",
+            "stderr": "",
+            "elapsed_seconds": 0.251427
+          },
+          "inputs_unchanged": true
+        },
+        "typing": {
+          "available": true,
+          "receipt": {
+            "kind": "process_probe",
+            "invocation_id": "257baf52-9983-404e-a62a-b03e8740c666",
+            "argv": [
+              "/opt/homebrew/bin/codex",
+              "--no-daemon",
+              "-c",
+              "permissions.proofline_s0_d2e0094b4381451f88a4b4f940c30424={\"filesystem\"={\":minimal\"=\"read\",\"/opt/homebrew/Cellar/python@3.15/3.15.0/Frameworks/Python.framework/Versions/3.15\"=\"read\",\"/opt/homebrew/opt/python@3.15/Frameworks/Python.framework/Versions/3.15\"=\"read\",\"/opt/homebrew/opt/python@3.15/bin/python3.15\"=\"read\",\"/opt/homebrew/Cellar/python@3.15/3.15.0/Frameworks/Python.framework/Versions/3.15/bin/python3.15\"=\"read\",\"/private/tmp/proofline-issue38-final/controls/itsdangerous/defective/typing/inputs\"=\"read\",\"/private/tmp/proofline-issue38-final/controls/itsdangerous/defective/typing/scratch\"=\"write\",\"/private/tmp/proofline-issue38-final/controls/itsdangerous/defective/typing/private\"=\"deny\",\"/opt/homebrew\"=\"read\",\"/System/Library/OpenSSL/openssl.cnf\"=\"read\",\"/Library/Developer/CommandLineTools/usr/bin\"=\"read\",\"/Library/Developer/CommandLineTools/usr/libexec/git-core\"=\"read\",\"/private/tmp/proofline-issue38-final/deps\"=\"read\"},\"network\"={\"enabled\"=false}}",
+              "sandbox",
+              "--permission-profile",
+              "proofline_s0_d2e0094b4381451f88a4b4f940c30424",
+              "--include-managed-config",
+              "--cd",
+              "/private/tmp/proofline-issue38-final/controls/itsdangerous/defective/typing/scratch",
+              "--",
+              "/opt/homebrew/Cellar/python@3.15/3.15.0/Frameworks/Python.framework/Versions/3.15/bin/python3.15",
+              "-I",
+              "-B",
+              "-c",
+              "import json,os,sys; a=json.loads(sys.argv[1]); os.execv(a[0],a)",
+              "[\"/opt/homebrew/Cellar/python@3.15/3.15.0/Frameworks/Python.framework/Versions/3.15/bin/python3.15\", \"-I\", \"-B\", \"-c\", \"import os,runpy,sys; sys.path.insert(0,sys.argv[1]); runpy.run_path(sys.argv[2],run_name='__main__')\", \"/private/tmp/proofline-issue38-final/controls/itsdangerous/defective/typing/inputs/product\", \"/private/tmp/proofline-issue38-final/controls/itsdangerous/defective/typing/inputs/probe.py\"]"
+            ],
+            "cwd": "/private/tmp/proofline-issue38-final/controls/itsdangerous/defective/typing/scratch",
+            "exit_code": 1,
+            "timed_out": false,
+            "stdout": "{\"cases\": [{\"label\": \"type-checker-flags-untimed-max-age\", \"passed\": false}, {\"label\": \"type-checker-allows-existing-timed-and-untimed-calls\", \"passed\": true}], \"diagnostics\": {\"version\": \"1.1.414\", \"time\": \"1792572857235\", \"generalDiagnostics\": [], \"summary\": {\"filesAnalyzed\": 2, \"errorCount\": 0, \"warningCount\": 0, \"informationCount\": 0, \"timeInSec\": 0.242}}, \"subprocess_exit_code\": 0, \"stderr\": \"\"}\n",
+            "stderr": "Traceback (most recent call last):\n  File \"<string>\", line 1, in <module>\n    import os,runpy,sys; sys.path.insert(0,sys.argv[1]); runpy.run_path(sys.argv[2],run_name='__main__')\n                                                         ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"<frozen runpy>\", line 292, in run_path\n  File \"<frozen runpy>\", line 97, in _run_module_code\n  File \"<frozen runpy>\", line 87, in _run_code\n  File \"/private/tmp/proofline-issue38-final/controls/itsdangerous/defective/typing/inputs/probe.py\", line 25, in <module>\n    assert all(c['passed'] for c in cases)\n           ~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError\n",
+            "elapsed_seconds": 0.832795
+          },
+          "inputs_unchanged": true
+        }
+      },
+      "matched": true
+    }
+  ]
+}

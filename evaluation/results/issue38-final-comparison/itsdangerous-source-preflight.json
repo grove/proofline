@@ -1,0 +1,47 @@
+{
+  "declaration": {
+    "schema_version": 1,
+    "study_id": "issue38-final-comparison",
+    "author": "organizer before dispatch",
+    "source_sha256": "b4f8c7ee3f29539b6d293aee2a26e04323e33829b8dc047b505fb1ad95fa8b43",
+    "oracle_sha256": "ed87aca719ae57709950ee1044fab202b583968e5166bec5062c4b6aa1c72431",
+    "expectations": [
+      {
+        "id": "behavior",
+        "kind": "negative",
+        "cases": [
+          "untimed-max-age-error-or-warning",
+          "timed-expiry-and-timestamp-compatibility",
+          "salt-key-and-invalid-signature-compatibility"
+        ],
+        "claim": "I would still expect some kind of error or a warning on the line with `loads`;",
+        "support": "source",
+        "source_clause": "I would still expect some kind of error or a warning on the line with `loads`;",
+        "ambiguity": "",
+        "acceptable_alternatives": [
+          "Equivalent behavior; no prescribed implementation",
+          "ItsDangerous allows warning or error of any class"
+        ]
+      }
+    ]
+  },
+  "inventory": {
+    "behavior": {
+      "kind": "negative",
+      "cases": [
+        "untimed-max-age-error-or-warning",
+        "timed-expiry-and-timestamp-compatibility",
+        "salt-key-and-invalid-signature-compatibility"
+      ]
+    }
+  },
+  "qualification": {
+    "status": "QUALIFIED",
+    "problems": [],
+    "source_sha256": "b4f8c7ee3f29539b6d293aee2a26e04323e33829b8dc047b505fb1ad95fa8b43",
+    "oracle_sha256": "ed87aca719ae57709950ee1044fab202b583968e5166bec5062c4b6aa1c72431",
+    "expected_assertions": 1,
+    "qualified_assertions": 1,
+    "model_dispatches": 0
+  }
+}

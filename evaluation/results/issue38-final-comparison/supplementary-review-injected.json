@@ -1,0 +1,185 @@
+{
+  "discovery": "Organizer caller review after medium handoff; not part of frozen pre-dispatch probe. Applied to baseline and controls to distinguish regression. No worker feedback or correction.",
+  "observations": [
+    {
+      "name": "baseline",
+      "observation": {
+        "available": true,
+        "receipt": {
+          "kind": "process_probe",
+          "invocation_id": "e9105389-c38f-4645-9fca-ad3b5e172f52",
+          "argv": [
+            "/opt/homebrew/bin/codex",
+            "--no-daemon",
+            "-c",
+            "permissions.proofline_s0_15469e4307244f258c68ea5a4b7f00dc={\"filesystem\"={\":minimal\"=\"read\",\"/opt/homebrew/Cellar/python@3.15/3.15.0/Frameworks/Python.framework/Versions/3.15\"=\"read\",\"/opt/homebrew/opt/python@3.15/Frameworks/Python.framework/Versions/3.15\"=\"read\",\"/opt/homebrew/opt/python@3.15/bin/python3.15\"=\"read\",\"/opt/homebrew/Cellar/python@3.15/3.15.0/Frameworks/Python.framework/Versions/3.15/bin/python3.15\"=\"read\",\"/private/tmp/proofline-issue38-final/review-injected/baseline/inputs\"=\"read\",\"/private/tmp/proofline-issue38-final/review-injected/baseline/scratch\"=\"write\",\"/private/tmp/proofline-issue38-final/review-injected/baseline/private\"=\"deny\",\"/opt/homebrew\"=\"read\",\"/System/Library/OpenSSL/openssl.cnf\"=\"read\",\"/Library/Developer/CommandLineTools/usr/bin\"=\"read\",\"/Library/Developer/CommandLineTools/usr/libexec/git-core\"=\"read\",\"/private/tmp/proofline-issue38-final/deps\"=\"read\"},\"network\"={\"enabled\"=false}}",
+            "sandbox",
+            "--permission-profile",
+            "proofline_s0_15469e4307244f258c68ea5a4b7f00dc",
+            "--include-managed-config",
+            "--cd",
+            "/private/tmp/proofline-issue38-final/review-injected/baseline/scratch",
+            "--",
+            "/opt/homebrew/Cellar/python@3.15/3.15.0/Frameworks/Python.framework/Versions/3.15/bin/python3.15",
+            "-I",
+            "-B",
+            "-c",
+            "import json,os,sys; a=json.loads(sys.argv[1]); os.execv(a[0],a)",
+            "[\"/opt/homebrew/Cellar/python@3.15/3.15.0/Frameworks/Python.framework/Versions/3.15/bin/python3.15\", \"-I\", \"-B\", \"-c\", \"import os,runpy,sys; sys.path.insert(0,sys.argv[1]); runpy.run_path(sys.argv[2],run_name='__main__')\", \"/private/tmp/proofline-issue38-final/review-injected/baseline/inputs/product\", \"/private/tmp/proofline-issue38-final/review-injected/baseline/inputs/probe.py\"]"
+          ],
+          "cwd": "/private/tmp/proofline-issue38-final/review-injected/baseline/scratch",
+          "exit_code": 0,
+          "timed_out": false,
+          "stdout": "{\"passed\": true, \"result\": [100, 2, 4], \"generated_source\": \"def original(b, c):\\n    return _call(b, c=c)\"}\n",
+          "stderr": "",
+          "elapsed_seconds": 0.317437
+        },
+        "inputs_unchanged": true
+      }
+    },
+    {
+      "name": "reference-control",
+      "observation": {
+        "available": true,
+        "receipt": {
+          "kind": "process_probe",
+          "invocation_id": "8246b2ad-ac9a-4505-a3b8-a4e1c9538a3e",
+          "argv": [
+            "/opt/homebrew/bin/codex",
+            "--no-daemon",
+            "-c",
+            "permissions.proofline_s0_490e015abcbc48ab86948e1ee47e1510={\"filesystem\"={\":minimal\"=\"read\",\"/opt/homebrew/Cellar/python@3.15/3.15.0/Frameworks/Python.framework/Versions/3.15\"=\"read\",\"/opt/homebrew/opt/python@3.15/Frameworks/Python.framework/Versions/3.15\"=\"read\",\"/opt/homebrew/opt/python@3.15/bin/python3.15\"=\"read\",\"/opt/homebrew/Cellar/python@3.15/3.15.0/Frameworks/Python.framework/Versions/3.15/bin/python3.15\"=\"read\",\"/private/tmp/proofline-issue38-final/review-injected/reference-control/inputs\"=\"read\",\"/private/tmp/proofline-issue38-final/review-injected/reference-control/scratch\"=\"write\",\"/private/tmp/proofline-issue38-final/review-injected/reference-control/private\"=\"deny\",\"/opt/homebrew\"=\"read\",\"/System/Library/OpenSSL/openssl.cnf\"=\"read\",\"/Library/Developer/CommandLineTools/usr/bin\"=\"read\",\"/Library/Developer/CommandLineTools/usr/libexec/git-core\"=\"read\",\"/private/tmp/proofline-issue38-final/deps\"=\"read\"},\"network\"={\"enabled\"=false}}",
+            "sandbox",
+            "--permission-profile",
+            "proofline_s0_490e015abcbc48ab86948e1ee47e1510",
+            "--include-managed-config",
+            "--cd",
+            "/private/tmp/proofline-issue38-final/review-injected/reference-control/scratch",
+            "--",
+            "/opt/homebrew/Cellar/python@3.15/3.15.0/Frameworks/Python.framework/Versions/3.15/bin/python3.15",
+            "-I",
+            "-B",
+            "-c",
+            "import json,os,sys; a=json.loads(sys.argv[1]); os.execv(a[0],a)",
+            "[\"/opt/homebrew/Cellar/python@3.15/3.15.0/Frameworks/Python.framework/Versions/3.15/bin/python3.15\", \"-I\", \"-B\", \"-c\", \"import os,runpy,sys; sys.path.insert(0,sys.argv[1]); runpy.run_path(sys.argv[2],run_name='__main__')\", \"/private/tmp/proofline-issue38-final/review-injected/reference-control/inputs/product\", \"/private/tmp/proofline-issue38-final/review-injected/reference-control/inputs/probe.py\"]"
+          ],
+          "cwd": "/private/tmp/proofline-issue38-final/review-injected/reference-control/scratch",
+          "exit_code": 1,
+          "timed_out": false,
+          "stdout": "{\"passed\": false, \"error\": \"TypeError(\\\"original() got some positional-only arguments passed as keyword arguments: 'c'\\\")\", \"generated_source\": \"def original(b, c, /):\\n    return _call(b, c=c)\"}\n",
+          "stderr": "Traceback (most recent call last):\n  File \"<string>\", line 1, in <module>\n    import os,runpy,sys; sys.path.insert(0,sys.argv[1]); runpy.run_path(sys.argv[2],run_name='__main__')\n                                                         ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"<frozen runpy>\", line 292, in run_path\n  File \"<frozen runpy>\", line 97, in _run_module_code\n  File \"<frozen runpy>\", line 87, in _run_code\n  File \"/private/tmp/proofline-issue38-final/review-injected/reference-control/inputs/probe.py\", line 15, in <module>\n    result=wrapped(2, c=4)\nTypeError: original() got some positional-only arguments passed as keyword arguments: 'c'\n",
+          "elapsed_seconds": 0.461277
+        },
+        "inputs_unchanged": true
+      }
+    },
+    {
+      "name": "alternative-control",
+      "observation": {
+        "available": true,
+        "receipt": {
+          "kind": "process_probe",
+          "invocation_id": "3decf43c-9aea-4ea8-81e7-fb4806e8cfa8",
+          "argv": [
+            "/opt/homebrew/bin/codex",
+            "--no-daemon",
+            "-c",
+            "permissions.proofline_s0_aefce92496ad4f929e8dedf77b6f0143={\"filesystem\"={\":minimal\"=\"read\",\"/opt/homebrew/Cellar/python@3.15/3.15.0/Frameworks/Python.framework/Versions/3.15\"=\"read\",\"/opt/homebrew/opt/python@3.15/Frameworks/Python.framework/Versions/3.15\"=\"read\",\"/opt/homebrew/opt/python@3.15/bin/python3.15\"=\"read\",\"/opt/homebrew/Cellar/python@3.15/3.15.0/Frameworks/Python.framework/Versions/3.15/bin/python3.15\"=\"read\",\"/private/tmp/proofline-issue38-final/review-injected/alternative-control/inputs\"=\"read\",\"/private/tmp/proofline-issue38-final/review-injected/alternative-control/scratch\"=\"write\",\"/private/tmp/proofline-issue38-final/review-injected/alternative-control/private\"=\"deny\",\"/opt/homebrew\"=\"read\",\"/System/Library/OpenSSL/openssl.cnf\"=\"read\",\"/Library/Developer/CommandLineTools/usr/bin\"=\"read\",\"/Library/Developer/CommandLineTools/usr/libexec/git-core\"=\"read\",\"/private/tmp/proofline-issue38-final/deps\"=\"read\"},\"network\"={\"enabled\"=false}}",
+            "sandbox",
+            "--permission-profile",
+            "proofline_s0_aefce92496ad4f929e8dedf77b6f0143",
+            "--include-managed-config",
+            "--cd",
+            "/private/tmp/proofline-issue38-final/review-injected/alternative-control/scratch",
+            "--",
+            "/opt/homebrew/Cellar/python@3.15/3.15.0/Frameworks/Python.framework/Versions/3.15/bin/python3.15",
+            "-I",
+            "-B",
+            "-c",
+            "import json,os,sys; a=json.loads(sys.argv[1]); os.execv(a[0],a)",
+            "[\"/opt/homebrew/Cellar/python@3.15/3.15.0/Frameworks/Python.framework/Versions/3.15/bin/python3.15\", \"-I\", \"-B\", \"-c\", \"import os,runpy,sys; sys.path.insert(0,sys.argv[1]); runpy.run_path(sys.argv[2],run_name='__main__')\", \"/private/tmp/proofline-issue38-final/review-injected/alternative-control/inputs/product\", \"/private/tmp/proofline-issue38-final/review-injected/alternative-control/inputs/probe.py\"]"
+          ],
+          "cwd": "/private/tmp/proofline-issue38-final/review-injected/alternative-control/scratch",
+          "exit_code": 1,
+          "timed_out": false,
+          "stdout": "{\"passed\": false, \"error\": \"TypeError(\\\"original() got some positional-only arguments passed as keyword arguments: 'c'\\\")\", \"generated_source\": \"def original(b, c, /):\\n    return _call(b, c=c)\"}\n",
+          "stderr": "Traceback (most recent call last):\n  File \"<string>\", line 1, in <module>\n    import os,runpy,sys; sys.path.insert(0,sys.argv[1]); runpy.run_path(sys.argv[2],run_name='__main__')\n                                                         ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"<frozen runpy>\", line 292, in run_path\n  File \"<frozen runpy>\", line 97, in _run_module_code\n  File \"<frozen runpy>\", line 87, in _run_code\n  File \"/private/tmp/proofline-issue38-final/review-injected/alternative-control/inputs/probe.py\", line 15, in <module>\n    result=wrapped(2, c=4)\nTypeError: original() got some positional-only arguments passed as keyword arguments: 'c'\n",
+          "elapsed_seconds": 0.463865
+        },
+        "inputs_unchanged": true
+      }
+    },
+    {
+      "name": "medium",
+      "observation": {
+        "available": true,
+        "receipt": {
+          "kind": "process_probe",
+          "invocation_id": "c9d59d29-940d-4c23-8163-25ad5e9a6a16",
+          "argv": [
+            "/opt/homebrew/bin/codex",
+            "--no-daemon",
+            "-c",
+            "permissions.proofline_s0_a71501c4b5514a88a15a251da47596ad={\"filesystem\"={\":minimal\"=\"read\",\"/opt/homebrew/Cellar/python@3.15/3.15.0/Frameworks/Python.framework/Versions/3.15\"=\"read\",\"/opt/homebrew/opt/python@3.15/Frameworks/Python.framework/Versions/3.15\"=\"read\",\"/opt/homebrew/opt/python@3.15/bin/python3.15\"=\"read\",\"/opt/homebrew/Cellar/python@3.15/3.15.0/Frameworks/Python.framework/Versions/3.15/bin/python3.15\"=\"read\",\"/private/tmp/proofline-issue38-final/review-injected/medium/inputs\"=\"read\",\"/private/tmp/proofline-issue38-final/review-injected/medium/scratch\"=\"write\",\"/private/tmp/proofline-issue38-final/review-injected/medium/private\"=\"deny\",\"/opt/homebrew\"=\"read\",\"/System/Library/OpenSSL/openssl.cnf\"=\"read\",\"/Library/Developer/CommandLineTools/usr/bin\"=\"read\",\"/Library/Developer/CommandLineTools/usr/libexec/git-core\"=\"read\",\"/private/tmp/proofline-issue38-final/deps\"=\"read\"},\"network\"={\"enabled\"=false}}",
+            "sandbox",
+            "--permission-profile",
+            "proofline_s0_a71501c4b5514a88a15a251da47596ad",
+            "--include-managed-config",
+            "--cd",
+            "/private/tmp/proofline-issue38-final/review-injected/medium/scratch",
+            "--",
+            "/opt/homebrew/Cellar/python@3.15/3.15.0/Frameworks/Python.framework/Versions/3.15/bin/python3.15",
+            "-I",
+            "-B",
+            "-c",
+            "import json,os,sys; a=json.loads(sys.argv[1]); os.execv(a[0],a)",
+            "[\"/opt/homebrew/Cellar/python@3.15/3.15.0/Frameworks/Python.framework/Versions/3.15/bin/python3.15\", \"-I\", \"-B\", \"-c\", \"import os,runpy,sys; sys.path.insert(0,sys.argv[1]); runpy.run_path(sys.argv[2],run_name='__main__')\", \"/private/tmp/proofline-issue38-final/review-injected/medium/inputs/product\", \"/private/tmp/proofline-issue38-final/review-injected/medium/inputs/probe.py\"]"
+          ],
+          "cwd": "/private/tmp/proofline-issue38-final/review-injected/medium/scratch",
+          "exit_code": 1,
+          "timed_out": false,
+          "stdout": "{\"passed\": false, \"error\": \"TypeError(\\\"original() got some positional-only arguments passed as keyword arguments: 'c'\\\")\", \"generated_source\": \"def original(b, c, /):\\n    return _call(b, c=c)\"}\n",
+          "stderr": "Traceback (most recent call last):\n  File \"<string>\", line 1, in <module>\n    import os,runpy,sys; sys.path.insert(0,sys.argv[1]); runpy.run_path(sys.argv[2],run_name='__main__')\n                                                         ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"<frozen runpy>\", line 292, in run_path\n  File \"<frozen runpy>\", line 97, in _run_module_code\n  File \"<frozen runpy>\", line 87, in _run_code\n  File \"/private/tmp/proofline-issue38-final/review-injected/medium/inputs/probe.py\", line 15, in <module>\n    result=wrapped(2, c=4)\nTypeError: original() got some positional-only arguments passed as keyword arguments: 'c'\n",
+          "elapsed_seconds": 0.311225
+        },
+        "inputs_unchanged": true
+      }
+    },
+    {
+      "name": "high",
+      "observation": {
+        "available": true,
+        "receipt": {
+          "kind": "process_probe",
+          "invocation_id": "10d2ade2-211b-43a8-abdc-f90a58b71f71",
+          "argv": [
+            "/opt/homebrew/bin/codex",
+            "--no-daemon",
+            "-c",
+            "permissions.proofline_s0_e7b2a60522074976810792eef3ba893f={\"filesystem\"={\":minimal\"=\"read\",\"/opt/homebrew/Cellar/python@3.15/3.15.0/Frameworks/Python.framework/Versions/3.15\"=\"read\",\"/opt/homebrew/opt/python@3.15/Frameworks/Python.framework/Versions/3.15\"=\"read\",\"/opt/homebrew/opt/python@3.15/bin/python3.15\"=\"read\",\"/opt/homebrew/Cellar/python@3.15/3.15.0/Frameworks/Python.framework/Versions/3.15/bin/python3.15\"=\"read\",\"/private/tmp/proofline-issue38-final/review-injected/high/inputs\"=\"read\",\"/private/tmp/proofline-issue38-final/review-injected/high/scratch\"=\"write\",\"/private/tmp/proofline-issue38-final/review-injected/high/private\"=\"deny\",\"/opt/homebrew\"=\"read\",\"/System/Library/OpenSSL/openssl.cnf\"=\"read\",\"/Library/Developer/CommandLineTools/usr/bin\"=\"read\",\"/Library/Developer/CommandLineTools/usr/libexec/git-core\"=\"read\",\"/private/tmp/proofline-issue38-final/deps\"=\"read\"},\"network\"={\"enabled\"=false}}",
+            "sandbox",
+            "--permission-profile",
+            "proofline_s0_e7b2a60522074976810792eef3ba893f",
+            "--include-managed-config",
+            "--cd",
+            "/private/tmp/proofline-issue38-final/review-injected/high/scratch",
+            "--",
+            "/opt/homebrew/Cellar/python@3.15/3.15.0/Frameworks/Python.framework/Versions/3.15/bin/python3.15",
+            "-I",
+            "-B",
+            "-c",
+            "import json,os,sys; a=json.loads(sys.argv[1]); os.execv(a[0],a)",
+            "[\"/opt/homebrew/Cellar/python@3.15/3.15.0/Frameworks/Python.framework/Versions/3.15/bin/python3.15\", \"-I\", \"-B\", \"-c\", \"import os,runpy,sys; sys.path.insert(0,sys.argv[1]); runpy.run_path(sys.argv[2],run_name='__main__')\", \"/private/tmp/proofline-issue38-final/review-injected/high/inputs/product\", \"/private/tmp/proofline-issue38-final/review-injected/high/inputs/probe.py\"]"
+          ],
+          "cwd": "/private/tmp/proofline-issue38-final/review-injected/high/scratch",
+          "exit_code": 1,
+          "timed_out": false,
+          "stdout": "{\"passed\": false, \"error\": \"TypeError(\\\"original() got some positional-only arguments passed as keyword arguments: 'c'\\\")\", \"generated_source\": \"def original(b, c, /):\\n    return _call(b, c=c)\"}\n",
+          "stderr": "Traceback (most recent call last):\n  File \"<string>\", line 1, in <module>\n    import os,runpy,sys; sys.path.insert(0,sys.argv[1]); runpy.run_path(sys.argv[2],run_name='__main__')\n                                                         ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"<frozen runpy>\", line 292, in run_path\n  File \"<frozen runpy>\", line 97, in _run_module_code\n  File \"<frozen runpy>\", line 87, in _run_code\n  File \"/private/tmp/proofline-issue38-final/review-injected/high/inputs/probe.py\", line 15, in <module>\n    result=wrapped(2, c=4)\nTypeError: original() got some positional-only arguments passed as keyword arguments: 'c'\n",
+          "elapsed_seconds": 0.596109
+        },
+        "inputs_unchanged": true
+      }
+    }
+  ]
+}

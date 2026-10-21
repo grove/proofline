@@ -1,0 +1,51 @@
+{
+  "declaration": {
+    "schema_version": 1,
+    "study_id": "issue38-final-comparison",
+    "author": "organizer before dispatch",
+    "source_sha256": "93c2defda882bd8bbd90babf245f5562360b38709c8d2e6c874dfdb4dab93b02",
+    "oracle_sha256": "126773faa7891faa730003a56c55d554e8ca08d40317872f344cb7e8c7784b92",
+    "expectations": [
+      {
+        "id": "behavior",
+        "kind": "compatibility",
+        "cases": [
+          "original-collision",
+          "mixed-defaults-varargs-annotations",
+          "keyword-rejection",
+          "ordinary-signature-compatibility",
+          "positional-default-without-varargs"
+        ],
+        "claim": "The wrapped call should return the same result as the original.",
+        "support": "source",
+        "source_clause": "The wrapped call should return the same result as the original.",
+        "ambiguity": "",
+        "acceptable_alternatives": [
+          "Equivalent behavior; no prescribed implementation",
+          "ItsDangerous allows warning or error of any class"
+        ]
+      }
+    ]
+  },
+  "inventory": {
+    "behavior": {
+      "kind": "compatibility",
+      "cases": [
+        "original-collision",
+        "mixed-defaults-varargs-annotations",
+        "keyword-rejection",
+        "ordinary-signature-compatibility",
+        "positional-default-without-varargs"
+      ]
+    }
+  },
+  "qualification": {
+    "status": "QUALIFIED",
+    "problems": [],
+    "source_sha256": "93c2defda882bd8bbd90babf245f5562360b38709c8d2e6c874dfdb4dab93b02",
+    "oracle_sha256": "126773faa7891faa730003a56c55d554e8ca08d40317872f344cb7e8c7784b92",
+    "expected_assertions": 1,
+    "qualified_assertions": 1,
+    "model_dispatches": 0
+  }
+}

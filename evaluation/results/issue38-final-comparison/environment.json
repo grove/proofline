@@ -1,0 +1,22 @@
+{
+  "python": "3.15.0 (main, Oct  9 2026, 11:16:41) [Clang 21.0.0 (clang-2100.3.34.2)]",
+  "python_executable": "/opt/homebrew/Cellar/python@3.15/3.15.0/Frameworks/Python.framework/Versions/3.15/bin/python3.15",
+  "host": "macOS-27.0.1-arm64-arm-64bit-Mach-O",
+  "codex": "0.163.0",
+  "dependency_directory": "/private/tmp/proofline-issue38-final/deps",
+  "dependency_snapshot_sha256": "2a742b6f28b347ac77f9f172de0093107299e64a6a8429d426745d347e4c1272",
+  "versions": {
+    "freezegun": "1.5.5",
+    "packaging": "26.3",
+    "Pygments": "2.21.0",
+    "iniconfig": "2.3.1",
+    "pluggy": "1.7.0",
+    "pytest": "9.1.1",
+    "python-dateutil": "2.9.0.post0",
+    "nodeenv": "1.11.0",
+    "pyright": "1.1.414",
+    "typing_extensions": "4.16.0",
+    "six": "1.17.0"
+  },
+  "preparation_elapsed_seconds": 24.117177082996932
+}
