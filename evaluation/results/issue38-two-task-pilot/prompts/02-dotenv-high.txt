@@ -1,0 +1,16 @@
+Work in the supplied fresh theskumar/python-dotenv checkout pinned at 0b2880591780a426b0551436f47a17e7a76d954f.
+
+You have approximately 15 minutes, including self-testing. Use the complete original request as authority. Implement an actual code change and useful regression coverage. Run relevant existing tests where safely supported. This host has Python but no pytest installed; stdlib self-checks are available. Network access is disabled. Do not install dependencies or change permissions. Do not use another agent or review/correction service. Read only this assignment. Do not inspect other attempts, grader files, upstream solutions, or study reports. Do not commit. In your final summary identify changes, exact test commands and observed results, unresolved issues, and candidate path. A small complete solution is preferred.
+
+Complete original request:
+
+An empty value ignores ${name:-default}
+
+`${name:-default}` is the POSIX form that uses the default when `name` is unset or empty. An empty value is returned as itself.
+
+```python
+dotenv.dotenv_values(stream=io.StringIO("b=\na=${b:-d}"))
+# {'b': '', 'a': ''}
+```
+
+`a` should be `d`. A missing `b` already becomes `d`. `b=c` still stays `c`. `${b}` with no default stays empty.

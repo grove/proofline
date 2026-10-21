@@ -1,0 +1,46 @@
+{
+  "all_passed": true,
+  "checks": {
+    "frozen_inputs": true,
+    "four_slots": true,
+    "order": true,
+    "unique_contexts": true,
+    "within_budget": true,
+    "one_turn_no_retry": true,
+    "protected_source_checks": true,
+    "source_preflight": true,
+    "controls": true,
+    "baseline_and_candidate_reconstruction": true,
+    "same_task_prompts": true,
+    "local_links": true
+  },
+  "reconstructions": [
+    {
+      "slot": 1,
+      "original_tree": "67cf795babae9e0cbab112b79da1351d60efbc15",
+      "candidate_tree": "57fd9b65a7ebb095a5e817d37ce739f445a92271",
+      "matched": true
+    },
+    {
+      "slot": 2,
+      "original_tree": "67cf795babae9e0cbab112b79da1351d60efbc15",
+      "candidate_tree": "0e372ed58efcf7dacd79fe7cf7ac29a1f6abf664",
+      "matched": true
+    },
+    {
+      "slot": 3,
+      "original_tree": "22817592e1da835a22658fce65fef0b3cd575f60",
+      "candidate_tree": "de16b696f3e5bedf9093aa70c1c3a974b8969d84",
+      "matched": true
+    },
+    {
+      "slot": 4,
+      "original_tree": "22817592e1da835a22658fce65fef0b3cd575f60",
+      "candidate_tree": "18341683668086bab8768c6dc7e568be9fcfe257",
+      "matched": true
+    }
+  ],
+  "bad_links": [],
+  "project_suite": "NOT RUN: report/evidence only; relevant native probes and source controls executed",
+  "historical_studies": "No edits; only a new results directory is staged"
+}

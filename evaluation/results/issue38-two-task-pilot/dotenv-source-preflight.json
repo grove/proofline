@@ -1,0 +1,66 @@
+{
+  "declaration": {
+    "schema_version": 1,
+    "study_id": "issue38-two-task-pilot-20261021",
+    "author": "organizer before dispatch",
+    "source_sha256": "ea1a8b1fbb6283cc7852b9e4970a23568f435cf8da5735ea022672d22e31db71",
+    "oracle_sha256": "39094c574663e282b63f3bb0305b9abdc21a5c573419b7181c1bbfeb99c7a088",
+    "expectations": [
+      {
+        "id": "defaults",
+        "kind": "output",
+        "cases": [
+          "empty",
+          "missing"
+        ],
+        "claim": "`${name:-default}` is the POSIX form that uses the default when `name` is unset or empty.",
+        "support": "source",
+        "source_clause": "`${name:-default}` is the POSIX form that uses the default when `name` is unset or empty.",
+        "ambiguity": "",
+        "acceptable_alternatives": [
+          "Any implementation with equivalent public behavior"
+        ]
+      },
+      {
+        "id": "unchanged",
+        "kind": "negative",
+        "cases": [
+          "populated",
+          "no-default"
+        ],
+        "claim": "`b=c` still stays `c`. `${b}` with no default stays empty.",
+        "support": "source",
+        "source_clause": "`b=c` still stays `c`. `${b}` with no default stays empty.",
+        "ambiguity": "",
+        "acceptable_alternatives": [
+          "Any implementation with equivalent public behavior"
+        ]
+      }
+    ]
+  },
+  "inventory": {
+    "defaults": {
+      "kind": "output",
+      "cases": [
+        "empty",
+        "missing"
+      ]
+    },
+    "unchanged": {
+      "kind": "negative",
+      "cases": [
+        "populated",
+        "no-default"
+      ]
+    }
+  },
+  "qualification": {
+    "status": "QUALIFIED",
+    "problems": [],
+    "source_sha256": "ea1a8b1fbb6283cc7852b9e4970a23568f435cf8da5735ea022672d22e31db71",
+    "oracle_sha256": "39094c574663e282b63f3bb0305b9abdc21a5c573419b7181c1bbfeb99c7a088",
+    "expected_assertions": 2,
+    "qualified_assertions": 2,
+    "model_dispatches": 0
+  }
+}

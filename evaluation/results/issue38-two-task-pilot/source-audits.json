@@ -1,0 +1,92 @@
+[
+  {
+    "slot": 1,
+    "candidate_tree": "57fd9b65a7ebb095a5e817d37ce739f445a92271",
+    "assessment": "INDEPENDENTLY_SUPPORTED_CORRECT_DELIVERY",
+    "reviewer": "organizer, separate from isolated coding workers; no independent human reviewer",
+    "evidence": [
+      "grade-01.json",
+      "execution-evidence.zip: candidate.patch and observations.json"
+    ],
+    "findings": [
+      "Shared Variable.resolve now applies fallback for missing/empty values while returning populated strings unchanged.",
+      "The public dotenv_values reproduction and missing/populated/no-default negatives pass the same protected probe.",
+      "Actual source and integration regression additions are present; native self-tests are observed; ordinary pytest execution is unavailable."
+    ],
+    "material_defects": [],
+    "disputes": [],
+    "unverified": [
+      "Full ordinary pytest suite",
+      "Exhaustive behavior beyond source-grounded samples"
+    ],
+    "judgment_pending": false
+  },
+  {
+    "slot": 2,
+    "candidate_tree": "0e372ed58efcf7dacd79fe7cf7ac29a1f6abf664",
+    "assessment": "INDEPENDENTLY_SUPPORTED_CORRECT_DELIVERY",
+    "reviewer": "organizer, separate from isolated coding workers; no independent human reviewer",
+    "evidence": [
+      "grade-02.json",
+      "execution-evidence.zip: candidate.patch and observations.json"
+    ],
+    "findings": [
+      "Shared Variable.resolve now applies fallback for missing/empty values while returning populated strings unchanged.",
+      "The public dotenv_values reproduction and missing/populated/no-default negatives pass the same protected probe.",
+      "Actual source and integration regression additions are present; native self-tests are observed; ordinary pytest execution is unavailable."
+    ],
+    "material_defects": [],
+    "disputes": [],
+    "unverified": [
+      "Full ordinary pytest suite",
+      "Exhaustive behavior beyond source-grounded samples"
+    ],
+    "judgment_pending": false
+  },
+  {
+    "slot": 3,
+    "candidate_tree": "de16b696f3e5bedf9093aa70c1c3a974b8969d84",
+    "assessment": "INDEPENDENTLY_SUPPORTED_CORRECT_DELIVERY",
+    "reviewer": "organizer, separate from isolated coding workers; no independent human reviewer",
+    "evidence": [
+      "grade-03.json",
+      "execution-evidence.zip: candidate.patch and observations.json"
+    ],
+    "findings": [
+      "Only the float conversion used for rollover catches ValueError; formatting errors outside that conversion are not broadly swallowed.",
+      "Nonnumeric decorated output retains the original suffix, an explicitly accepted source alternative; plain numeric rollover remains intact.",
+      "Prefix, suffix, negative, decimal/binary/GNU rollover and bytes cases pass; public import/reproducer also passes. Regression test additions cover prefix and suffix.",
+      "Both workers repaired their own mistaken GNU self-test expectation during the original attempt; this is retained as an intermediate check failure."
+    ],
+    "material_defects": [],
+    "disputes": [],
+    "unverified": [
+      "Full ordinary pytest suite",
+      "Exhaustive behavior beyond source-grounded samples"
+    ],
+    "judgment_pending": false
+  },
+  {
+    "slot": 4,
+    "candidate_tree": "18341683668086bab8768c6dc7e568be9fcfe257",
+    "assessment": "INDEPENDENTLY_SUPPORTED_CORRECT_DELIVERY",
+    "reviewer": "organizer, separate from isolated coding workers; no independent human reviewer",
+    "evidence": [
+      "grade-04.json",
+      "execution-evidence.zip: candidate.patch and observations.json"
+    ],
+    "findings": [
+      "Only the float conversion used for rollover catches ValueError; formatting errors outside that conversion are not broadly swallowed.",
+      "Nonnumeric decorated output retains the original suffix, an explicitly accepted source alternative; plain numeric rollover remains intact.",
+      "Prefix, suffix, negative, decimal/binary/GNU rollover and bytes cases pass; public import/reproducer also passes. Regression test additions cover prefix and suffix.",
+      "Both workers repaired their own mistaken GNU self-test expectation during the original attempt; this is retained as an intermediate check failure."
+    ],
+    "material_defects": [],
+    "disputes": [],
+    "unverified": [
+      "Full ordinary pytest suite",
+      "Exhaustive behavior beyond source-grounded samples"
+    ],
+    "judgment_pending": false
+  }
+]

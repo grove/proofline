@@ -1,0 +1,33 @@
+{
+  "available": true,
+  "receipt": {
+    "kind": "process_probe",
+    "invocation_id": "00918de6-3d0e-493f-9c2a-f2d05a2b5c34",
+    "argv": [
+      "/opt/homebrew/bin/codex",
+      "--no-daemon",
+      "-c",
+      "permissions.proofline_s0_a4aaba22435d4f4a8ddc61a6be773f31={\"filesystem\"={\":minimal\"=\"read\",\"/opt/homebrew/Cellar/python@3.15/3.15.0/Frameworks/Python.framework/Versions/3.15\"=\"read\",\"/opt/homebrew/opt/python@3.15/Frameworks/Python.framework/Versions/3.15\"=\"read\",\"/opt/homebrew/opt/python@3.15/bin/python3.15\"=\"read\",\"/opt/homebrew/Cellar/python@3.15/3.15.0/Frameworks/Python.framework/Versions/3.15/bin/python3.15\"=\"read\",\"/private/tmp/proofline-issue38-pilot-20261021/grades/02-dotenv-high/inputs\"=\"read\",\"/private/tmp/proofline-issue38-pilot-20261021/grades/02-dotenv-high/scratch\"=\"write\",\"/private/tmp/proofline-issue38-pilot-20261021/grades/02-dotenv-high/private\"=\"deny\",\"/opt/homebrew\"=\"read\",\"/System/Library/OpenSSL/openssl.cnf\"=\"read\",\"/Library/Developer/CommandLineTools/usr/bin\"=\"read\",\"/Library/Developer/CommandLineTools/usr/libexec/git-core\"=\"read\"},\"network\"={\"enabled\"=false}}",
+      "sandbox",
+      "--permission-profile",
+      "proofline_s0_a4aaba22435d4f4a8ddc61a6be773f31",
+      "--include-managed-config",
+      "--cd",
+      "/private/tmp/proofline-issue38-pilot-20261021/grades/02-dotenv-high/scratch",
+      "--",
+      "/opt/homebrew/Cellar/python@3.15/3.15.0/Frameworks/Python.framework/Versions/3.15/bin/python3.15",
+      "-I",
+      "-B",
+      "-c",
+      "import json,os,sys; a=json.loads(sys.argv[1]); os.execv(a[0],a)",
+      "[\"/opt/homebrew/Cellar/python@3.15/3.15.0/Frameworks/Python.framework/Versions/3.15/bin/python3.15\", \"-I\", \"-B\", \"-c\", \"import os,runpy,sys; sys.path.insert(0,sys.argv[1]); runpy.run_path(sys.argv[2],run_name='__main__')\", \"/private/tmp/proofline-issue38-pilot-20261021/grades/02-dotenv-high/inputs/product\", \"/private/tmp/proofline-issue38-pilot-20261021/grades/02-dotenv-high/inputs/probe.py\"]"
+    ],
+    "cwd": "/private/tmp/proofline-issue38-pilot-20261021/grades/02-dotenv-high/scratch",
+    "exit_code": 0,
+    "timed_out": false,
+    "stdout": "4 source-grounded cases passed\n",
+    "stderr": "",
+    "elapsed_seconds": 0.164699
+  },
+  "inputs_unchanged": true
+}

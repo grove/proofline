@@ -1,0 +1,55 @@
+{
+  "receipt": {
+    "kind": "process_probe",
+    "invocation_id": "520d8d24-c686-4e68-9fc5-76e9b06e80fd",
+    "argv": [
+      "/opt/homebrew/bin/codex",
+      "--no-daemon",
+      "-c",
+      "permissions.proofline_s0_8fe2d9593a4c47feb56e738f4f6dd37d={\"filesystem\"={\":minimal\"=\"read\",\"/opt/homebrew/Cellar/python@3.15/3.15.0/Frameworks/Python.framework/Versions/3.15\"=\"read\",\"/opt/homebrew/opt/python@3.15/Frameworks/Python.framework/Versions/3.15\"=\"read\",\"/opt/homebrew/opt/python@3.15/bin/python3.15\"=\"read\",\"/opt/homebrew/Cellar/python@3.15/3.15.0/Frameworks/Python.framework/Versions/3.15/bin/python3.15\"=\"read\",\"/private/tmp/proofline-issue38-pilot-20261021/boundary/inputs\"=\"read\",\"/private/tmp/proofline-issue38-pilot-20261021/boundary/probe/scratch\"=\"write\",\"/private/tmp/proofline-issue38-pilot-20261021/boundary/probe/private\"=\"deny\",\"/opt/homebrew\"=\"read\",\"/System/Library/OpenSSL/openssl.cnf\"=\"read\",\"/Library/Developer/CommandLineTools/usr/bin\"=\"read\",\"/Library/Developer/CommandLineTools/usr/libexec/git-core\"=\"read\"},\"network\"={\"enabled\"=false}}",
+      "sandbox",
+      "--permission-profile",
+      "proofline_s0_8fe2d9593a4c47feb56e738f4f6dd37d",
+      "--include-managed-config",
+      "--cd",
+      "/private/tmp/proofline-issue38-pilot-20261021/boundary/probe/scratch",
+      "--",
+      "/opt/homebrew/Cellar/python@3.15/3.15.0/Frameworks/Python.framework/Versions/3.15/bin/python3.15",
+      "-I",
+      "-B",
+      "/private/tmp/proofline-issue38-pilot-20261021/boundary/inputs/canary.py",
+      "/private/tmp/proofline-issue38-pilot-20261021/boundary/inputs/canary.json"
+    ],
+    "cwd": "/private/tmp/proofline-issue38-pilot-20261021/boundary/probe/scratch",
+    "exit_code": 0,
+    "timed_out": false,
+    "stdout": "{\"nonce\": \"43bbed874a7a4a719d3a206ecb21354d\", \"writes\": {\"source\": \"denied\", \"input\": \"denied\", \"candidate\": \"denied\", \"git_head\": \"denied\", \"receipt\": \"denied\"}, \"reads\": {\"receipt-canary\": \"denied\", \"oracle-canary\": \"denied\", \"other-role-canary\": \"denied\", \"actual_oracle\": \"denied\"}, \"mode_change\": \"denied\", \"scratch\": true, \"network\": \"denied\"}\n",
+    "stderr": "",
+    "elapsed_seconds": 0.089291
+  },
+  "assessment": {
+    "status": "OBSERVED",
+    "observations": {
+      "nonce": "43bbed874a7a4a719d3a206ecb21354d",
+      "writes": {
+        "source": "denied",
+        "input": "denied",
+        "candidate": "denied",
+        "git_head": "denied",
+        "receipt": "denied"
+      },
+      "reads": {
+        "receipt-canary": "denied",
+        "oracle-canary": "denied",
+        "other-role-canary": "denied",
+        "actual_oracle": "denied"
+      },
+      "mode_change": "denied",
+      "scratch": true,
+      "network": "denied"
+    },
+    "inputs_unchanged": true,
+    "scope": "native process canaries only; no model or external-tool qualification"
+  },
+  "network_control": "loopback reachable before sandbox"
+}

@@ -1,0 +1,93 @@
+{
+  "declaration": {
+    "schema_version": 1,
+    "study_id": "issue38-two-task-pilot-20261021",
+    "author": "organizer before dispatch",
+    "source_sha256": "a85f2999941bc63ceec5bdee51d55881cd8d46b9f8daeb31ec05bcb836ed6d25",
+    "oracle_sha256": "f8a5145b78ef2d64910a57401657e8da67a87b1fa795487f933eaadf0736208d",
+    "expectations": [
+      {
+        "id": "text",
+        "kind": "output",
+        "cases": [
+          "prefix",
+          "suffix",
+          "negative"
+        ],
+        "claim": "The documented custom formatter should continue to accept text around the numeric conversion.",
+        "support": "source",
+        "source_clause": "The documented custom formatter should continue to accept text around the numeric conversion.",
+        "ambiguity": "",
+        "acceptable_alternatives": [
+          "Any implementation with equivalent public behavior"
+        ]
+      },
+      {
+        "id": "compatibility",
+        "kind": "compatibility",
+        "cases": [
+          "decimal-rollover",
+          "binary-rollover",
+          "gnu-rollover",
+          "bytes"
+        ],
+        "claim": "PR #329 added unit rollover handling.",
+        "support": "source",
+        "source_clause": "PR #329 added unit rollover handling.",
+        "ambiguity": "",
+        "acceptable_alternatives": [
+          "Any implementation with equivalent public behavior"
+        ]
+      },
+      {
+        "id": "alternative",
+        "kind": "compatibility",
+        "cases": [
+          "decorated-boundary"
+        ],
+        "claim": "One\nbackward-compatible option is to apply rollover only when the formatted result is a\nplain numeric string, and otherwise preserve the pre-4.16 behavior.",
+        "support": "source",
+        "source_clause": "One\nbackward-compatible option is to apply rollover only when the formatted result is a\nplain numeric string, and otherwise preserve the pre-4.16 behavior.",
+        "ambiguity": "",
+        "acceptable_alternatives": [
+          "Skip rollover for decorated format",
+          "Derive rounded numeric mantissa independently"
+        ]
+      }
+    ]
+  },
+  "inventory": {
+    "text": {
+      "kind": "output",
+      "cases": [
+        "prefix",
+        "suffix",
+        "negative"
+      ]
+    },
+    "compatibility": {
+      "kind": "compatibility",
+      "cases": [
+        "decimal-rollover",
+        "binary-rollover",
+        "gnu-rollover",
+        "bytes"
+      ]
+    },
+    "alternative": {
+      "kind": "compatibility",
+      "cases": [
+        "decorated-boundary"
+      ]
+    }
+  },
+  "qualification": {
+    "status": "QUALIFIED",
+    "problems": [],
+    "source_sha256": "a85f2999941bc63ceec5bdee51d55881cd8d46b9f8daeb31ec05bcb836ed6d25",
+    "oracle_sha256": "f8a5145b78ef2d64910a57401657e8da67a87b1fa795487f933eaadf0736208d",
+    "expected_assertions": 3,
+    "qualified_assertions": 3,
+    "model_dispatches": 0
+  }
+}

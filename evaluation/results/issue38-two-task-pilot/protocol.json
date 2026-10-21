@@ -1,0 +1,41 @@
+{
+  "study": "issue38-two-task-pilot-20261021",
+  "status": "DECLARED_BEFORE_DISPATCH",
+  "tasks": [
+    {
+      "task": "dotenv",
+      "repository": "theskumar/python-dotenv",
+      "issue": 715,
+      "base": "0b2880591780a426b0551436f47a17e7a76d954f",
+      "tree": "67cf795babae9e0cbab112b79da1351d60efbc15",
+      "source_sha256": "ea1a8b1fbb6283cc7852b9e4970a23568f435cf8da5735ea022672d22e31db71"
+    },
+    {
+      "task": "humanize",
+      "repository": "python-humanize/humanize",
+      "issue": 366,
+      "base": "785e5dcc0d0308ad0dff3f6cc0faa7085ad0375b",
+      "tree": "22817592e1da835a22658fce65fef0b3cd575f60",
+      "source_sha256": "a85f2999941bc63ceec5bdee51d55881cd8d46b9f8daeb31ec05bcb836ed6d25"
+    }
+  ],
+  "order": [
+    "dotenv:medium",
+    "dotenv:high",
+    "humanize:high",
+    "humanize:medium"
+  ],
+  "model": "gpt-6-luna",
+  "host": "macOS-27.0.1-arm64-arm-64bit-Mach-O",
+  "python": "3.15.0 (main, Oct  9 2026, 11:16:41) [Clang 21.0.0 (clang-2100.3.34.2)]",
+  "codex": "0.163.0",
+  "backend_identity": "UNKNOWN",
+  "auth": "Logged in using ChatGPT",
+  "billing": "UNKNOWN",
+  "budget_seconds_per_attempt": 900,
+  "max_initial_attempts": 4,
+  "automatic_retries": 0,
+  "authorization": "Current user request authorizes four attempts using existing subscription; no paid API, credits, or paid fallback.",
+  "existing_tests": "pytest unavailable on host; both arms receive identical notice and may use standard-library self-checks.",
+  "catalog_rpc": "30-second timeout during initialize; cache supports exact medium/high, inference not yet qualified."
+}
