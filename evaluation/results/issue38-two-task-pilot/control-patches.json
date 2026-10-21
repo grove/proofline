@@ -1,0 +1,20 @@
+{
+  "dotenv": {
+    "path": "src/dotenv/variables.py",
+    "old": "        return result if result is not None else \"\"",
+    "replacements": {
+      "reference": "        return result or default",
+      "alternative": "        return default if result in (None, \"\") else result",
+      "defective": "        return default"
+    }
+  },
+  "humanize": {
+    "path": "src/humanize/filesize.py",
+    "old": "    if exp < len(suffix) and abs(float(format % (abs_bytes / (base**exp)))) >= base:\n        exp += 1",
+    "replacements": {
+      "reference": "    try:\n        rounded = abs(float(format % (abs_bytes / (base**exp))))\n    except ValueError:\n        rounded = 0\n    if exp < len(suffix) and rounded >= base:\n        exp += 1",
+      "alternative": "    formatted = format % (abs_bytes / (base**exp))\n    import re\n    if re.fullmatch(r\"[+-]?[0-9]+(?:\\.[0-9]*)?(?:[eE][+-]?[0-9]+)?\", formatted.strip()):\n        if exp < len(suffix) and abs(float(formatted)) >= base:\n            exp += 1",
+      "defective": "    # Deliberate compatibility defect: suppress all rollover.\n    pass"
+    }
+  }
+}

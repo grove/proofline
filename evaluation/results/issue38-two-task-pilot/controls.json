@@ -1,0 +1,318 @@
+{
+  "model_dispatches": 0,
+  "all_matched": true,
+  "controls": [
+    {
+      "task": "dotenv",
+      "kind": "baseline",
+      "expected_pass": false,
+      "matched": true,
+      "observation": {
+        "available": true,
+        "receipt": {
+          "kind": "process_probe",
+          "invocation_id": "0dcd1bc8-4947-488a-a666-fdf9d978ecef",
+          "argv": [
+            "/opt/homebrew/bin/codex",
+            "--no-daemon",
+            "-c",
+            "permissions.proofline_s0_64c92a039b7641d3b17b482e08690563={\"filesystem\"={\":minimal\"=\"read\",\"/opt/homebrew/Cellar/python@3.15/3.15.0/Frameworks/Python.framework/Versions/3.15\"=\"read\",\"/opt/homebrew/opt/python@3.15/Frameworks/Python.framework/Versions/3.15\"=\"read\",\"/opt/homebrew/opt/python@3.15/bin/python3.15\"=\"read\",\"/opt/homebrew/Cellar/python@3.15/3.15.0/Frameworks/Python.framework/Versions/3.15/bin/python3.15\"=\"read\",\"/private/tmp/proofline-issue38-pilot-20261021/controls/dotenv/baseline/grade/inputs\"=\"read\",\"/private/tmp/proofline-issue38-pilot-20261021/controls/dotenv/baseline/grade/scratch\"=\"write\",\"/private/tmp/proofline-issue38-pilot-20261021/controls/dotenv/baseline/grade/private\"=\"deny\",\"/opt/homebrew\"=\"read\",\"/System/Library/OpenSSL/openssl.cnf\"=\"read\",\"/Library/Developer/CommandLineTools/usr/bin\"=\"read\",\"/Library/Developer/CommandLineTools/usr/libexec/git-core\"=\"read\"},\"network\"={\"enabled\"=false}}",
+            "sandbox",
+            "--permission-profile",
+            "proofline_s0_64c92a039b7641d3b17b482e08690563",
+            "--include-managed-config",
+            "--cd",
+            "/private/tmp/proofline-issue38-pilot-20261021/controls/dotenv/baseline/grade/scratch",
+            "--",
+            "/opt/homebrew/Cellar/python@3.15/3.15.0/Frameworks/Python.framework/Versions/3.15/bin/python3.15",
+            "-I",
+            "-B",
+            "-c",
+            "import json,os,sys; a=json.loads(sys.argv[1]); os.execv(a[0],a)",
+            "[\"/opt/homebrew/Cellar/python@3.15/3.15.0/Frameworks/Python.framework/Versions/3.15/bin/python3.15\", \"-I\", \"-B\", \"-c\", \"import os,runpy,sys; sys.path.insert(0,sys.argv[1]); runpy.run_path(sys.argv[2],run_name='__main__')\", \"/private/tmp/proofline-issue38-pilot-20261021/controls/dotenv/baseline/grade/inputs/product\", \"/private/tmp/proofline-issue38-pilot-20261021/controls/dotenv/baseline/grade/inputs/probe.py\"]"
+          ],
+          "cwd": "/private/tmp/proofline-issue38-pilot-20261021/controls/dotenv/baseline/grade/scratch",
+          "exit_code": 1,
+          "timed_out": false,
+          "stdout": "",
+          "stderr": "Traceback (most recent call last):\n  File \"<string>\", line 1, in <module>\n    import os,runpy,sys; sys.path.insert(0,sys.argv[1]); runpy.run_path(sys.argv[2],run_name='__main__')\n                                                         ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"<frozen runpy>\", line 292, in run_path\n  File \"<frozen runpy>\", line 97, in _run_module_code\n  File \"<frozen runpy>\", line 87, in _run_code\n  File \"/private/tmp/proofline-issue38-pilot-20261021/controls/dotenv/baseline/grade/inputs/probe.py\", line 20, in <module>\n    assert actual == expected, (source, actual, expected)\n           ^^^^^^^^^^^^^^^^^^\nAssertionError: ('b=\\na=${b:-d}', OrderedDict({'b': '', 'a': ''}), {'b': '', 'a': 'd'})\n",
+          "elapsed_seconds": 0.198452
+        },
+        "inputs_unchanged": true
+      }
+    },
+    {
+      "task": "dotenv",
+      "kind": "reference",
+      "expected_pass": true,
+      "matched": true,
+      "observation": {
+        "available": true,
+        "receipt": {
+          "kind": "process_probe",
+          "invocation_id": "8a69c80a-f18e-4619-851c-fa72f935d374",
+          "argv": [
+            "/opt/homebrew/bin/codex",
+            "--no-daemon",
+            "-c",
+            "permissions.proofline_s0_5c15782d5e1541dea45ef2bd392c3b89={\"filesystem\"={\":minimal\"=\"read\",\"/opt/homebrew/Cellar/python@3.15/3.15.0/Frameworks/Python.framework/Versions/3.15\"=\"read\",\"/opt/homebrew/opt/python@3.15/Frameworks/Python.framework/Versions/3.15\"=\"read\",\"/opt/homebrew/opt/python@3.15/bin/python3.15\"=\"read\",\"/opt/homebrew/Cellar/python@3.15/3.15.0/Frameworks/Python.framework/Versions/3.15/bin/python3.15\"=\"read\",\"/private/tmp/proofline-issue38-pilot-20261021/controls/dotenv/reference/grade/inputs\"=\"read\",\"/private/tmp/proofline-issue38-pilot-20261021/controls/dotenv/reference/grade/scratch\"=\"write\",\"/private/tmp/proofline-issue38-pilot-20261021/controls/dotenv/reference/grade/private\"=\"deny\",\"/opt/homebrew\"=\"read\",\"/System/Library/OpenSSL/openssl.cnf\"=\"read\",\"/Library/Developer/CommandLineTools/usr/bin\"=\"read\",\"/Library/Developer/CommandLineTools/usr/libexec/git-core\"=\"read\"},\"network\"={\"enabled\"=false}}",
+            "sandbox",
+            "--permission-profile",
+            "proofline_s0_5c15782d5e1541dea45ef2bd392c3b89",
+            "--include-managed-config",
+            "--cd",
+            "/private/tmp/proofline-issue38-pilot-20261021/controls/dotenv/reference/grade/scratch",
+            "--",
+            "/opt/homebrew/Cellar/python@3.15/3.15.0/Frameworks/Python.framework/Versions/3.15/bin/python3.15",
+            "-I",
+            "-B",
+            "-c",
+            "import json,os,sys; a=json.loads(sys.argv[1]); os.execv(a[0],a)",
+            "[\"/opt/homebrew/Cellar/python@3.15/3.15.0/Frameworks/Python.framework/Versions/3.15/bin/python3.15\", \"-I\", \"-B\", \"-c\", \"import os,runpy,sys; sys.path.insert(0,sys.argv[1]); runpy.run_path(sys.argv[2],run_name='__main__')\", \"/private/tmp/proofline-issue38-pilot-20261021/controls/dotenv/reference/grade/inputs/product\", \"/private/tmp/proofline-issue38-pilot-20261021/controls/dotenv/reference/grade/inputs/probe.py\"]"
+          ],
+          "cwd": "/private/tmp/proofline-issue38-pilot-20261021/controls/dotenv/reference/grade/scratch",
+          "exit_code": 0,
+          "timed_out": false,
+          "stdout": "4 source-grounded cases passed\n",
+          "stderr": "",
+          "elapsed_seconds": 0.1631
+        },
+        "inputs_unchanged": true
+      }
+    },
+    {
+      "task": "dotenv",
+      "kind": "alternative",
+      "expected_pass": true,
+      "matched": true,
+      "observation": {
+        "available": true,
+        "receipt": {
+          "kind": "process_probe",
+          "invocation_id": "09c511b0-1ddf-4db5-b4dc-b2e8a0defe78",
+          "argv": [
+            "/opt/homebrew/bin/codex",
+            "--no-daemon",
+            "-c",
+            "permissions.proofline_s0_8e4b5aa7494e4413a670f5eac43c8b79={\"filesystem\"={\":minimal\"=\"read\",\"/opt/homebrew/Cellar/python@3.15/3.15.0/Frameworks/Python.framework/Versions/3.15\"=\"read\",\"/opt/homebrew/opt/python@3.15/Frameworks/Python.framework/Versions/3.15\"=\"read\",\"/opt/homebrew/opt/python@3.15/bin/python3.15\"=\"read\",\"/opt/homebrew/Cellar/python@3.15/3.15.0/Frameworks/Python.framework/Versions/3.15/bin/python3.15\"=\"read\",\"/private/tmp/proofline-issue38-pilot-20261021/controls/dotenv/alternative/grade/inputs\"=\"read\",\"/private/tmp/proofline-issue38-pilot-20261021/controls/dotenv/alternative/grade/scratch\"=\"write\",\"/private/tmp/proofline-issue38-pilot-20261021/controls/dotenv/alternative/grade/private\"=\"deny\",\"/opt/homebrew\"=\"read\",\"/System/Library/OpenSSL/openssl.cnf\"=\"read\",\"/Library/Developer/CommandLineTools/usr/bin\"=\"read\",\"/Library/Developer/CommandLineTools/usr/libexec/git-core\"=\"read\"},\"network\"={\"enabled\"=false}}",
+            "sandbox",
+            "--permission-profile",
+            "proofline_s0_8e4b5aa7494e4413a670f5eac43c8b79",
+            "--include-managed-config",
+            "--cd",
+            "/private/tmp/proofline-issue38-pilot-20261021/controls/dotenv/alternative/grade/scratch",
+            "--",
+            "/opt/homebrew/Cellar/python@3.15/3.15.0/Frameworks/Python.framework/Versions/3.15/bin/python3.15",
+            "-I",
+            "-B",
+            "-c",
+            "import json,os,sys; a=json.loads(sys.argv[1]); os.execv(a[0],a)",
+            "[\"/opt/homebrew/Cellar/python@3.15/3.15.0/Frameworks/Python.framework/Versions/3.15/bin/python3.15\", \"-I\", \"-B\", \"-c\", \"import os,runpy,sys; sys.path.insert(0,sys.argv[1]); runpy.run_path(sys.argv[2],run_name='__main__')\", \"/private/tmp/proofline-issue38-pilot-20261021/controls/dotenv/alternative/grade/inputs/product\", \"/private/tmp/proofline-issue38-pilot-20261021/controls/dotenv/alternative/grade/inputs/probe.py\"]"
+          ],
+          "cwd": "/private/tmp/proofline-issue38-pilot-20261021/controls/dotenv/alternative/grade/scratch",
+          "exit_code": 0,
+          "timed_out": false,
+          "stdout": "4 source-grounded cases passed\n",
+          "stderr": "",
+          "elapsed_seconds": 0.161176
+        },
+        "inputs_unchanged": true
+      }
+    },
+    {
+      "task": "dotenv",
+      "kind": "defective",
+      "expected_pass": false,
+      "matched": true,
+      "observation": {
+        "available": true,
+        "receipt": {
+          "kind": "process_probe",
+          "invocation_id": "737d6830-3d29-44b6-917b-72db6d7d016e",
+          "argv": [
+            "/opt/homebrew/bin/codex",
+            "--no-daemon",
+            "-c",
+            "permissions.proofline_s0_7a455abe763b4d74a70b4a129ac16e67={\"filesystem\"={\":minimal\"=\"read\",\"/opt/homebrew/Cellar/python@3.15/3.15.0/Frameworks/Python.framework/Versions/3.15\"=\"read\",\"/opt/homebrew/opt/python@3.15/Frameworks/Python.framework/Versions/3.15\"=\"read\",\"/opt/homebrew/opt/python@3.15/bin/python3.15\"=\"read\",\"/opt/homebrew/Cellar/python@3.15/3.15.0/Frameworks/Python.framework/Versions/3.15/bin/python3.15\"=\"read\",\"/private/tmp/proofline-issue38-pilot-20261021/controls/dotenv/defective/grade/inputs\"=\"read\",\"/private/tmp/proofline-issue38-pilot-20261021/controls/dotenv/defective/grade/scratch\"=\"write\",\"/private/tmp/proofline-issue38-pilot-20261021/controls/dotenv/defective/grade/private\"=\"deny\",\"/opt/homebrew\"=\"read\",\"/System/Library/OpenSSL/openssl.cnf\"=\"read\",\"/Library/Developer/CommandLineTools/usr/bin\"=\"read\",\"/Library/Developer/CommandLineTools/usr/libexec/git-core\"=\"read\"},\"network\"={\"enabled\"=false}}",
+            "sandbox",
+            "--permission-profile",
+            "proofline_s0_7a455abe763b4d74a70b4a129ac16e67",
+            "--include-managed-config",
+            "--cd",
+            "/private/tmp/proofline-issue38-pilot-20261021/controls/dotenv/defective/grade/scratch",
+            "--",
+            "/opt/homebrew/Cellar/python@3.15/3.15.0/Frameworks/Python.framework/Versions/3.15/bin/python3.15",
+            "-I",
+            "-B",
+            "-c",
+            "import json,os,sys; a=json.loads(sys.argv[1]); os.execv(a[0],a)",
+            "[\"/opt/homebrew/Cellar/python@3.15/3.15.0/Frameworks/Python.framework/Versions/3.15/bin/python3.15\", \"-I\", \"-B\", \"-c\", \"import os,runpy,sys; sys.path.insert(0,sys.argv[1]); runpy.run_path(sys.argv[2],run_name='__main__')\", \"/private/tmp/proofline-issue38-pilot-20261021/controls/dotenv/defective/grade/inputs/product\", \"/private/tmp/proofline-issue38-pilot-20261021/controls/dotenv/defective/grade/inputs/probe.py\"]"
+          ],
+          "cwd": "/private/tmp/proofline-issue38-pilot-20261021/controls/dotenv/defective/grade/scratch",
+          "exit_code": 1,
+          "timed_out": false,
+          "stdout": "",
+          "stderr": "Traceback (most recent call last):\n  File \"<string>\", line 1, in <module>\n    import os,runpy,sys; sys.path.insert(0,sys.argv[1]); runpy.run_path(sys.argv[2],run_name='__main__')\n                                                         ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"<frozen runpy>\", line 292, in run_path\n  File \"<frozen runpy>\", line 97, in _run_module_code\n  File \"<frozen runpy>\", line 87, in _run_code\n  File \"/private/tmp/proofline-issue38-pilot-20261021/controls/dotenv/defective/grade/inputs/probe.py\", line 20, in <module>\n    assert actual == expected, (source, actual, expected)\n           ^^^^^^^^^^^^^^^^^^\nAssertionError: ('b=c\\na=${b:-d}', OrderedDict({'b': 'c', 'a': 'd'}), {'b': 'c', 'a': 'c'})\n",
+          "elapsed_seconds": 0.170409
+        },
+        "inputs_unchanged": true
+      }
+    },
+    {
+      "task": "humanize",
+      "kind": "baseline",
+      "expected_pass": false,
+      "matched": true,
+      "observation": {
+        "available": true,
+        "receipt": {
+          "kind": "process_probe",
+          "invocation_id": "8f46b2b5-7674-4b19-be2b-967bf729d202",
+          "argv": [
+            "/opt/homebrew/bin/codex",
+            "--no-daemon",
+            "-c",
+            "permissions.proofline_s0_03db07220156496786d106a4ad39f0d9={\"filesystem\"={\":minimal\"=\"read\",\"/opt/homebrew/Cellar/python@3.15/3.15.0/Frameworks/Python.framework/Versions/3.15\"=\"read\",\"/opt/homebrew/opt/python@3.15/Frameworks/Python.framework/Versions/3.15\"=\"read\",\"/opt/homebrew/opt/python@3.15/bin/python3.15\"=\"read\",\"/opt/homebrew/Cellar/python@3.15/3.15.0/Frameworks/Python.framework/Versions/3.15/bin/python3.15\"=\"read\",\"/private/tmp/proofline-issue38-pilot-20261021/controls/humanize/baseline/grade/inputs\"=\"read\",\"/private/tmp/proofline-issue38-pilot-20261021/controls/humanize/baseline/grade/scratch\"=\"write\",\"/private/tmp/proofline-issue38-pilot-20261021/controls/humanize/baseline/grade/private\"=\"deny\",\"/opt/homebrew\"=\"read\",\"/System/Library/OpenSSL/openssl.cnf\"=\"read\",\"/Library/Developer/CommandLineTools/usr/bin\"=\"read\",\"/Library/Developer/CommandLineTools/usr/libexec/git-core\"=\"read\"},\"network\"={\"enabled\"=false}}",
+            "sandbox",
+            "--permission-profile",
+            "proofline_s0_03db07220156496786d106a4ad39f0d9",
+            "--include-managed-config",
+            "--cd",
+            "/private/tmp/proofline-issue38-pilot-20261021/controls/humanize/baseline/grade/scratch",
+            "--",
+            "/opt/homebrew/Cellar/python@3.15/3.15.0/Frameworks/Python.framework/Versions/3.15/bin/python3.15",
+            "-I",
+            "-B",
+            "-c",
+            "import json,os,sys; a=json.loads(sys.argv[1]); os.execv(a[0],a)",
+            "[\"/opt/homebrew/Cellar/python@3.15/3.15.0/Frameworks/Python.framework/Versions/3.15/bin/python3.15\", \"-I\", \"-B\", \"-c\", \"import os,runpy,sys; sys.path.insert(0,sys.argv[1]); runpy.run_path(sys.argv[2],run_name='__main__')\", \"/private/tmp/proofline-issue38-pilot-20261021/controls/humanize/baseline/grade/inputs/product\", \"/private/tmp/proofline-issue38-pilot-20261021/controls/humanize/baseline/grade/inputs/probe.py\"]"
+          ],
+          "cwd": "/private/tmp/proofline-issue38-pilot-20261021/controls/humanize/baseline/grade/scratch",
+          "exit_code": 1,
+          "timed_out": false,
+          "stdout": "",
+          "stderr": "Traceback (most recent call last):\n  File \"<string>\", line 1, in <module>\n    import os,runpy,sys; sys.path.insert(0,sys.argv[1]); runpy.run_path(sys.argv[2],run_name='__main__')\n                                                         ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"<frozen runpy>\", line 292, in run_path\n  File \"<frozen runpy>\", line 97, in _run_module_code\n  File \"<frozen runpy>\", line 87, in _run_code\n  File \"/private/tmp/proofline-issue38-pilot-20261021/controls/humanize/baseline/grade/inputs/probe.py\", line 23, in <module>\n    actual = naturalsize(*args, **kwargs)\n  File \"/private/tmp/proofline-issue38-pilot-20261021/controls/humanize/baseline/grade/inputs/product/src/humanize/filesize.py\", line 106, in naturalsize\n    if exp < len(suffix) and abs(float(format % (abs_bytes / (base**exp)))) >= base:\n                                 ~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nValueError: could not convert string to float: 'Size: 976.6'\n",
+          "elapsed_seconds": 0.112879
+        },
+        "inputs_unchanged": true
+      }
+    },
+    {
+      "task": "humanize",
+      "kind": "reference",
+      "expected_pass": true,
+      "matched": true,
+      "observation": {
+        "available": true,
+        "receipt": {
+          "kind": "process_probe",
+          "invocation_id": "0b087492-ec82-420f-865b-c031972f1d57",
+          "argv": [
+            "/opt/homebrew/bin/codex",
+            "--no-daemon",
+            "-c",
+            "permissions.proofline_s0_f9e81dc344f4434cb7411e2fc6d1f750={\"filesystem\"={\":minimal\"=\"read\",\"/opt/homebrew/Cellar/python@3.15/3.15.0/Frameworks/Python.framework/Versions/3.15\"=\"read\",\"/opt/homebrew/opt/python@3.15/Frameworks/Python.framework/Versions/3.15\"=\"read\",\"/opt/homebrew/opt/python@3.15/bin/python3.15\"=\"read\",\"/opt/homebrew/Cellar/python@3.15/3.15.0/Frameworks/Python.framework/Versions/3.15/bin/python3.15\"=\"read\",\"/private/tmp/proofline-issue38-pilot-20261021/controls/humanize/reference/grade/inputs\"=\"read\",\"/private/tmp/proofline-issue38-pilot-20261021/controls/humanize/reference/grade/scratch\"=\"write\",\"/private/tmp/proofline-issue38-pilot-20261021/controls/humanize/reference/grade/private\"=\"deny\",\"/opt/homebrew\"=\"read\",\"/System/Library/OpenSSL/openssl.cnf\"=\"read\",\"/Library/Developer/CommandLineTools/usr/bin\"=\"read\",\"/Library/Developer/CommandLineTools/usr/libexec/git-core\"=\"read\"},\"network\"={\"enabled\"=false}}",
+            "sandbox",
+            "--permission-profile",
+            "proofline_s0_f9e81dc344f4434cb7411e2fc6d1f750",
+            "--include-managed-config",
+            "--cd",
+            "/private/tmp/proofline-issue38-pilot-20261021/controls/humanize/reference/grade/scratch",
+            "--",
+            "/opt/homebrew/Cellar/python@3.15/3.15.0/Frameworks/Python.framework/Versions/3.15/bin/python3.15",
+            "-I",
+            "-B",
+            "-c",
+            "import json,os,sys; a=json.loads(sys.argv[1]); os.execv(a[0],a)",
+            "[\"/opt/homebrew/Cellar/python@3.15/3.15.0/Frameworks/Python.framework/Versions/3.15/bin/python3.15\", \"-I\", \"-B\", \"-c\", \"import os,runpy,sys; sys.path.insert(0,sys.argv[1]); runpy.run_path(sys.argv[2],run_name='__main__')\", \"/private/tmp/proofline-issue38-pilot-20261021/controls/humanize/reference/grade/inputs/product\", \"/private/tmp/proofline-issue38-pilot-20261021/controls/humanize/reference/grade/inputs/probe.py\"]"
+          ],
+          "cwd": "/private/tmp/proofline-issue38-pilot-20261021/controls/humanize/reference/grade/scratch",
+          "exit_code": 0,
+          "timed_out": false,
+          "stdout": "8 source/compatibility cases passed\n",
+          "stderr": "",
+          "elapsed_seconds": 0.113095
+        },
+        "inputs_unchanged": true
+      }
+    },
+    {
+      "task": "humanize",
+      "kind": "alternative",
+      "expected_pass": true,
+      "matched": true,
+      "observation": {
+        "available": true,
+        "receipt": {
+          "kind": "process_probe",
+          "invocation_id": "7fe195be-bd09-4f3e-8cf6-6c6132ba279d",
+          "argv": [
+            "/opt/homebrew/bin/codex",
+            "--no-daemon",
+            "-c",
+            "permissions.proofline_s0_0dcb5d3ad9644755b86d89f6abc3b560={\"filesystem\"={\":minimal\"=\"read\",\"/opt/homebrew/Cellar/python@3.15/3.15.0/Frameworks/Python.framework/Versions/3.15\"=\"read\",\"/opt/homebrew/opt/python@3.15/Frameworks/Python.framework/Versions/3.15\"=\"read\",\"/opt/homebrew/opt/python@3.15/bin/python3.15\"=\"read\",\"/opt/homebrew/Cellar/python@3.15/3.15.0/Frameworks/Python.framework/Versions/3.15/bin/python3.15\"=\"read\",\"/private/tmp/proofline-issue38-pilot-20261021/controls/humanize/alternative/grade/inputs\"=\"read\",\"/private/tmp/proofline-issue38-pilot-20261021/controls/humanize/alternative/grade/scratch\"=\"write\",\"/private/tmp/proofline-issue38-pilot-20261021/controls/humanize/alternative/grade/private\"=\"deny\",\"/opt/homebrew\"=\"read\",\"/System/Library/OpenSSL/openssl.cnf\"=\"read\",\"/Library/Developer/CommandLineTools/usr/bin\"=\"read\",\"/Library/Developer/CommandLineTools/usr/libexec/git-core\"=\"read\"},\"network\"={\"enabled\"=false}}",
+            "sandbox",
+            "--permission-profile",
+            "proofline_s0_0dcb5d3ad9644755b86d89f6abc3b560",
+            "--include-managed-config",
+            "--cd",
+            "/private/tmp/proofline-issue38-pilot-20261021/controls/humanize/alternative/grade/scratch",
+            "--",
+            "/opt/homebrew/Cellar/python@3.15/3.15.0/Frameworks/Python.framework/Versions/3.15/bin/python3.15",
+            "-I",
+            "-B",
+            "-c",
+            "import json,os,sys; a=json.loads(sys.argv[1]); os.execv(a[0],a)",
+            "[\"/opt/homebrew/Cellar/python@3.15/3.15.0/Frameworks/Python.framework/Versions/3.15/bin/python3.15\", \"-I\", \"-B\", \"-c\", \"import os,runpy,sys; sys.path.insert(0,sys.argv[1]); runpy.run_path(sys.argv[2],run_name='__main__')\", \"/private/tmp/proofline-issue38-pilot-20261021/controls/humanize/alternative/grade/inputs/product\", \"/private/tmp/proofline-issue38-pilot-20261021/controls/humanize/alternative/grade/inputs/probe.py\"]"
+          ],
+          "cwd": "/private/tmp/proofline-issue38-pilot-20261021/controls/humanize/alternative/grade/scratch",
+          "exit_code": 0,
+          "timed_out": false,
+          "stdout": "8 source/compatibility cases passed\n",
+          "stderr": "",
+          "elapsed_seconds": 0.111795
+        },
+        "inputs_unchanged": true
+      }
+    },
+    {
+      "task": "humanize",
+      "kind": "defective",
+      "expected_pass": false,
+      "matched": true,
+      "observation": {
+        "available": true,
+        "receipt": {
+          "kind": "process_probe",
+          "invocation_id": "2f6ffd2b-de2d-47a7-925e-8db6b9afe1de",
+          "argv": [
+            "/opt/homebrew/bin/codex",
+            "--no-daemon",
+            "-c",
+            "permissions.proofline_s0_482b30966c824390a2b05cf682e568c4={\"filesystem\"={\":minimal\"=\"read\",\"/opt/homebrew/Cellar/python@3.15/3.15.0/Frameworks/Python.framework/Versions/3.15\"=\"read\",\"/opt/homebrew/opt/python@3.15/Frameworks/Python.framework/Versions/3.15\"=\"read\",\"/opt/homebrew/opt/python@3.15/bin/python3.15\"=\"read\",\"/opt/homebrew/Cellar/python@3.15/3.15.0/Frameworks/Python.framework/Versions/3.15/bin/python3.15\"=\"read\",\"/private/tmp/proofline-issue38-pilot-20261021/controls/humanize/defective/grade/inputs\"=\"read\",\"/private/tmp/proofline-issue38-pilot-20261021/controls/humanize/defective/grade/scratch\"=\"write\",\"/private/tmp/proofline-issue38-pilot-20261021/controls/humanize/defective/grade/private\"=\"deny\",\"/opt/homebrew\"=\"read\",\"/System/Library/OpenSSL/openssl.cnf\"=\"read\",\"/Library/Developer/CommandLineTools/usr/bin\"=\"read\",\"/Library/Developer/CommandLineTools/usr/libexec/git-core\"=\"read\"},\"network\"={\"enabled\"=false}}",
+            "sandbox",
+            "--permission-profile",
+            "proofline_s0_482b30966c824390a2b05cf682e568c4",
+            "--include-managed-config",
+            "--cd",
+            "/private/tmp/proofline-issue38-pilot-20261021/controls/humanize/defective/grade/scratch",
+            "--",
+            "/opt/homebrew/Cellar/python@3.15/3.15.0/Frameworks/Python.framework/Versions/3.15/bin/python3.15",
+            "-I",
+            "-B",
+            "-c",
+            "import json,os,sys; a=json.loads(sys.argv[1]); os.execv(a[0],a)",
+            "[\"/opt/homebrew/Cellar/python@3.15/3.15.0/Frameworks/Python.framework/Versions/3.15/bin/python3.15\", \"-I\", \"-B\", \"-c\", \"import os,runpy,sys; sys.path.insert(0,sys.argv[1]); runpy.run_path(sys.argv[2],run_name='__main__')\", \"/private/tmp/proofline-issue38-pilot-20261021/controls/humanize/defective/grade/inputs/product\", \"/private/tmp/proofline-issue38-pilot-20261021/controls/humanize/defective/grade/inputs/probe.py\"]"
+          ],
+          "cwd": "/private/tmp/proofline-issue38-pilot-20261021/controls/humanize/defective/grade/scratch",
+          "exit_code": 1,
+          "timed_out": false,
+          "stdout": "",
+          "stderr": "Traceback (most recent call last):\n  File \"<string>\", line 1, in <module>\n    import os,runpy,sys; sys.path.insert(0,sys.argv[1]); runpy.run_path(sys.argv[2],run_name='__main__')\n                                                         ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"<frozen runpy>\", line 292, in run_path\n  File \"<frozen runpy>\", line 97, in _run_module_code\n  File \"<frozen runpy>\", line 87, in _run_code\n  File \"/private/tmp/proofline-issue38-pilot-20261021/controls/humanize/defective/grade/inputs/probe.py\", line 24, in <module>\n    assert actual == expected, (args, kwargs, actual, expected)\n           ^^^^^^^^^^^^^^^^^^\nAssertionError: ((999999,), {}, '1000.0 kB', '1.0 MB')\n",
+          "elapsed_seconds": 0.118273
+        },
+        "inputs_unchanged": true
+      }
+    }
+  ]
+}

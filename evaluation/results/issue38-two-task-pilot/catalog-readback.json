@@ -1,0 +1,29 @@
+{
+  "status": "NOT VERIFIED",
+  "model_dispatches": 0,
+  "argv": [
+    "/opt/homebrew/bin/codex",
+    "--no-daemon",
+    "app-server",
+    "--listen",
+    "stdio://",
+    "--strict-config",
+    "-c",
+    "model_catalog_json=\"/Users/grove/.codex/models_cache.json\"",
+    "-c",
+    "sqlite_home=\"/private/tmp/proofline-issue38-pilot-20261021/host/catalog-state\"",
+    "-c",
+    "mcp_servers={}",
+    "-c",
+    "apps._default.enabled=false"
+  ],
+  "catalog_sha256": "8f42f5b99038ae9920596104e80c5f6ac1ffbae54f9899bbc2e5091d0e1c3e0c",
+  "responses": [],
+  "phase": "initialize",
+  "timeout_seconds": 30,
+  "stderr": "",
+  "error": "Native catalog timeout during initialize",
+  "exit_before_cleanup": null,
+  "exit_code": -9,
+  "elapsed_seconds": 30.016624417003186
+}

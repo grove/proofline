@@ -1,0 +1,22 @@
+{
+  "protocol.json": "be9ad9ff4ed45316997a64d0c34d6f89d277af191269469a5de32096ad7440e0",
+  "guidance.txt": "49c7525cd3de5c22d10ef5fafa135bf103ca907af952c462a3b5bdd6bd6a5321",
+  "probe_dotenv.py": "39094c574663e282b63f3bb0305b9abdc21a5c573419b7181c1bbfeb99c7a088",
+  "probe_humanize.py": "f8a5145b78ef2d64910a57401657e8da67a87b1fa795487f933eaadf0736208d",
+  "acceptance.md": "3c1a6e832cc60e56aacf13f17362aff53a7dfefebe83177b388ee263039ab0d6",
+  "dotenv-source-preflight.json": "12a7c4052cc3bd3fb41b9ac137878b5fed90b5a420b65e3a59d7e2fb0020dfaa",
+  "humanize-source-preflight.json": "6b34de98e1cbd085b462c27574230f3e0c0e6d965d5dd4abd9a21e5899478318",
+  "controls.json": "a383a53e384e38ca2bd6dacb80799e6521b9acfe5a84acb929def1b60d2d1e57",
+  "control-patches.json": "9cc1eae24dddc017a850e39e3d0b40aaafa73d162b9a5dba7022eda98e5ffa62",
+  "model-support.json": "7903217bd621aa7738f319adc0dd907d11bc7e5792c0f7231db604c598d3610e",
+  "requests/humanize-366.md": "a85f2999941bc63ceec5bdee51d55881cd8d46b9f8daeb31ec05bcb836ed6d25",
+  "requests/dotenv-715.md": "ea1a8b1fbb6283cc7852b9e4970a23568f435cf8da5735ea022672d22e31db71",
+  "requests/humanize-366.json": "8e5ffe665d2871a1a828cc3d7f08c57748e2ecc44bf3f9cb3a8714e1d726a1fe",
+  "requests/dotenv-715.json": "d560bfd46136713d2e5a72b7cd8f36616e1537bfa4b095cee295e5f44a917d3f",
+  "prompts/04-humanize-medium.txt": "a8fcb7c26416e10ecc6463a237cdcafc597435a6824214e53a0030507c7f7fe1",
+  "prompts/03-humanize-high.txt": "a8fcb7c26416e10ecc6463a237cdcafc597435a6824214e53a0030507c7f7fe1",
+  "prompts/02-dotenv-high.txt": "ce4c5a59ba2ec6c55934d26494992a1c92223d00f3f4cb4bccff5ec952d32bcd",
+  "prompts/01-dotenv-medium.txt": "ce4c5a59ba2ec6c55934d26494992a1c92223d00f3f4cb4bccff5ec952d32bcd",
+  "dotenv-base.tar.gz": "7e5e7930ce8ed1f229de913a99be5ec3bbcccda214d0485748898677116c6cf3",
+  "humanize-base.tar.gz": "7efa3597bb99f089e7ccf3802dd22a259c561660c32bf91cfca821d6d49d91cd"
+}
